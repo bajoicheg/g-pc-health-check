@@ -99,6 +99,7 @@ internal static class Program
         StorageReviewMenu.Attach(main);
         EndpointReviewMenu.Attach(main);
         FileUseMenu.Attach(main);
+        DiagnosticBundleMenu.Attach(main);
         Application.Run(main);
     }
 }
