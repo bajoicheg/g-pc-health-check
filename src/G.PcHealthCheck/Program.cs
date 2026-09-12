@@ -76,6 +76,7 @@ internal static class Program
             if (result == 0) result = DiagnosticBundleSelfTest.Run();
             if (result == 0) result = DiagnosticBundleReportSelfTest.Run();
             if (result == 0) result = DiagnosticBundleIntegrationSelfTest.Run();
+            if (result == 0) result = DiagnosticBundleAcceptanceSelfTest.Run();
             Environment.Exit(result);
             return;
         }
