@@ -61,7 +61,7 @@ internal sealed class ProcessObservationForm : Form
         _mark.Click += (_, _) => Mark(); _copy.Click += (_, _) => { if (_current is { } s) TryUi(() => Clipboard.SetText(ProcessObservationReport.Summary(s))); };
         _export.Click += async (_, _) => await ExportAsync();
         _processMetric.SelectedIndexChanged += (_, _) => Display(); _systemMetric.SelectedIndexChanged += (_, _) => Display();
-        _grid.SelectionChanged += (_, _) => { if (_grid.CurrentRow?.Tag is ProcessObservationSample sample) _detail.Text = ProcessObservationReport.Detail(sample); };
+        _grid.CurrentCellChanged += (_, _) => { if (_grid.CurrentRow?.Tag is ProcessObservationSample sample) _detail.Text = ProcessObservationReport.Detail(sample); };
         _timer.Tick += (_, _) =>
         {
             if (_clock is not { } clock || _live is not { } live) return;
@@ -166,7 +166,7 @@ internal static class ProcessObservationLink
         {
             button.Enabled = ownerQuery.Enabled && grid.Enabled && grid.CurrentRow?.Tag is ProcessReviewEntry p && p.Pid > 0 && p.CreatedAt is DateTimeOffset created && ProcessObservationCore.ValidCreatedAt(created);
         }
-        grid.SelectionChanged += (_, _) => Refresh(); grid.EnabledChanged += (_, _) => Refresh(); ownerQuery.EnabledChanged += (_, _) => Refresh();
+        grid.CurrentCellChanged += (_, _) => Refresh(); grid.EnabledChanged += (_, _) => Refresh(); ownerQuery.EnabledChanged += (_, _) => Refresh();
         button.Click += (_, _) =>
         {
             if (!button.Enabled || grid.CurrentRow?.Tag is not ProcessReviewEntry row) return;

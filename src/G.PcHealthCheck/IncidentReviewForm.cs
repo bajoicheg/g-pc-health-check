@@ -55,7 +55,8 @@ internal sealed class IncidentReviewForm : Form
         ConfigureColumns();
         _search.TextChanged += (_, _) => Render(); _log.SelectedIndexChanged += (_, _) => Render(); _id.ValueChanged += (_, _) => Render(); _warningsOnly.CheckedChanged += (_, _) => Render();
         _from.ValueChanged += (_, _) => IntervalChanged(); _to.ValueChanged += (_, _) => IntervalChanged();
-        _grid.SelectionChanged += (_, _) => ShowDetail();
+        // SelectionChanged precedes CurrentCellChanged and can still expose the old row.
+        _grid.CurrentCellChanged += (_, _) => ShowDetail();
         _run.Click += async (_, _) => await CollectAsync(); _owner.Click += async (_, _) => await OwnerAsync();
         _cancel.Click += (_, _) => { _cancellation?.Cancel(); _cancel.Enabled = false; _status.Text = "Отмена запрошена; ожидается возврат поставщика данных."; };
         _copy.Click += (_, _) => { if (_current is { } snapshot) TryUi(() => Clipboard.SetText(IncidentReport.Summary(snapshot, Filter()))); };
