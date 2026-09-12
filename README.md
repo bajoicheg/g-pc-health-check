@@ -2,9 +2,15 @@
 
 Windows 11 x64 Service Desk utility for workstation diagnostics, explainable findings, before/after reporting and controlled remediation.
 
-Current project version: **0.13.0**. A self-contained single-file `G-PC-Health-Check.exe`; no installation is required. Portable copies may use any folder and filename.
+Current project version: **0.14.0**. A self-contained single-file `G-PC-Health-Check.exe`; no installation is required. Portable copies may use any folder and filename.
 
 > **Privacy:** review exports before sharing. Account names/SIDs, profile and file paths, commands, events, device identifiers, resource addresses and notes can be sensitive. Search is not redaction. See [`SECURITY.md`](SECURITY.md).
+
+## New in 0.14.0 — observe a selected process
+
+In **Анализ → Подробности процессов…**, select a current process with known PID/creation time and choose **Наблюдать за процессом…**. The new window opens idle and starts observation explicitly, default 120 seconds / 2 seconds. It presents process CPU, working set, private committed memory and read/write I/O rates alongside the existing whole-machine CPU/RAM/disk context, with aligned timelines, gap-preserving graphs, symptom markers and complete HTML/JSON.
+
+One limited-query/synchronize handle binds the selected instance. Exit or identity mismatch never transfers observation to a reused PID; machine collection continues. CPU is normalized to total active logical processors, not process affinity/quota. I/O means process-accounted transfer, not physical disk throughput. The first point has no derived rates; unavailable data is not zero. All nine metric graphs, raw counters and collecting context are exported regardless of chart selection. No artificial workload, process modification, elevation or new repair. [Scope, measurement definitions and pilot checks](docs/releases/0.14.0.md).
 
 ## New in 0.13.0 — applications using a file
 
@@ -41,6 +47,7 @@ Startup review still reads HKCU/personal Startup of the **process account**. Rai
 | Проверить доступность ресурса (DNS/TCP)… | Resolve one hostname/IP and connect to one chosen port after explicit outbound consent | Separate DNS/address outcomes; direct OS/VPN TCP, not HTTP proxy or TLS/application validation. [0.7.0](docs/releases/0.7.0.md) |
 | События за время сбоя… | Local Application/System events for a selected incident interval, search and filters | Up to seven days and 1000 newest records per log; missing/truncated data stays visible. [0.8.0](docs/releases/0.8.0.md) |
 | Подробности процессов… | Process identity, parent, path/command, memory/session and checked owner lookup | Exact PID/creation-time matching; no process changes or historical PID guesswork. [0.8.0](docs/releases/0.8.0.md) |
+| Наблюдать за процессом… (button in process details) | One selected instance's CPU/memory/I/O time series with aligned whole-machine context | Query-only handle; no PID rebinding, artificial workload or privilege changes. [0.14.0](docs/releases/0.14.0.md) |
 | Сеанс производительности… | Timed CPU/RAM/disk observation with live graphs and symptom markers | Default 120 seconds / 2 seconds; sample statistics, not time fractions or proof of a bottleneck. [0.9.0](docs/releases/0.9.0.md) |
 | Место по папкам… | Own/subtree logical sizes, counts, immediate folders and largest 200 files | Default 200000 entries / 20000 folders / 120 seconds; no deletion or file-content reads. [0.10.0](docs/releases/0.10.0.md) |
 | Подробности накопителей… | Physical-disk properties and explicitly associated Windows reliability counters | Missing is not zero; consumed wear, not remaining health; not full raw SMART or a surface test. [0.10.0](docs/releases/0.10.0.md) |

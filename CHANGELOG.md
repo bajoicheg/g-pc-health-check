@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.14.0 — Selected-process observation with machine context
+
+- Adds a process-details button and idle-on-open observation window for one selected PID/creation-time identity.
+- Presents interval CPU, working set, private commit and read/write process-accounted I/O rates beside existing system CPU/RAM/disk measurements on aligned elapsed-time axes.
+- Holds a query-only process handle; exit and identity changes never rebind to a reused PID. System observations continue after process exit.
+- Reuses the existing sequential performance scheduler and commits only completed process/system pairs, retaining their separate source receipt timestamps.
+- Preserves zero versus unknown, rate warmup, missing/rollback/long-gap boundaries and unconfirmed processor counts. CPU normalization is relative to total active logical processors, not affinity/quota.
+- Provides selectable live charts, numeric sample table, symptom markers, detailed warnings, summary and unique complete HTML/JSON exports including all nine metric graphs.
+- Adds 33 behavior and eight native/UI/export acceptance cases; all prior suites and portable tests remain enabled.
+- No artificial workload, process modification, automatic elevation, new repairs, dependencies or workflow-permission changes. Existing UAC/context/Temp and unrestricted portable filename/location behavior remain unchanged.
+- Version `0.14.0`, FileVersion `0.14.0.0`. [Scope, definitions and validation gates](docs/releases/0.14.0.md).
+
 ## 0.13.0 — Applications using a selected file
 
 - Adds an idle-on-open Analysis window using Windows Restart Manager for one explicitly selected ordinary local file.

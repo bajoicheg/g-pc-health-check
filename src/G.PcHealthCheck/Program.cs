@@ -66,6 +66,13 @@ internal static class Program
                 var review = FileUseReviewSelfTest.Run();
                 result = behavior != 0 ? behavior : integration != 0 ? integration : review;
             }
+            if (result == 0)
+            {
+                var behavior = ProcessObservationSelfTest.Run();
+                var integration = ProcessObservationIntegrationSelfTest.Run();
+                var completion = ProcessObservationCompletionSelfTest.Run();
+                result = behavior != 0 ? behavior : integration != 0 ? integration : completion;
+            }
             Environment.Exit(result);
             return;
         }
