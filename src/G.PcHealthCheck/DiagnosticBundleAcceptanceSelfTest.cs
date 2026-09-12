@@ -31,14 +31,20 @@ internal static class DiagnosticBundleAcceptanceSelfTest
             Require(html.Contains("synthetic symptom", StringComparison.Ordinal) && json.Contains("Performance", StringComparison.Ordinal), "Performance evidence missing from report.");
         });
 
-        Test("production Quick collection never requests performance", () =>
+        Test("production Quick reduced envelope never requests performance", () =>
         {
-            var options = DiagnosticBundleCore.DefaultOptions(DiagnosticBundleMode.Quick);
+            // Use one fast native category here: --selftest also runs against the packaged and renamed portable EXE,
+            // so exercising the full WMI/Event Log Quick set would multiply slow provider waits without increasing
+            // coverage of coordinator ordering (covered synthetically above).
+            var options = new DiagnosticBundleOptions(DiagnosticBundleMode.Quick,
+                new HashSet<DiagnosticBundleCategory> { DiagnosticBundleCategory.Endpoints });
             var snapshot = new DiagnosticBundleService().CollectAsync(options, new WindowsDiagnosticBundleCollector(),
                 ExecutionContextService.Capture(), null, null, CancellationToken.None).GetAwaiter().GetResult();
             Require(!snapshot.Performance.Requested && snapshot.Performance.State == "NotRequested", "Quick started timed performance.");
-            var allowed = new HashSet<string>(StringComparer.Ordinal) { "Complete", "Partial", "Unavailable" };
-            Require(snapshot.Sources.Where(x => x.Requested).All(x => allowed.Contains(x.State)), "Requested source did not reach a terminal state.");
+            Require(snapshot.Endpoints.Requested, "Native endpoint category was not requested.");
+            Require(snapshot.Endpoints.State is "Complete" or "Partial" or "Unavailable", "Native endpoint source did not reach a terminal state.");
+            Require(snapshot.Sources.Where(x => x.Category != DiagnosticBundleCategory.Endpoints).All(x => !x.Requested && x.State == "NotRequested"),
+                "Reduced envelope collected an unrequested source.");
             Require(snapshot.Sources.All(x => x.State is not "Pending" and not "Running"), "Coordinator left unfinished source state.");
             Require(snapshot.Outcome is "Complete" or "Partial" or "Unavailable", "Unexpected Quick outcome.");
         });
