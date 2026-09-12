@@ -2,9 +2,19 @@
 
 Windows 11 x64 Service Desk utility for workstation diagnostics, explainable findings, before/after reporting and controlled remediation.
 
-Current project version: **0.14.0**. A self-contained single-file `G-PC-Health-Check.exe`; no installation is required. Portable copies may use any folder and filename.
+Current project version: **0.15.0**. A self-contained single-file `G-PC-Health-Check.exe`; no installation is required. Portable copies may use any folder and filename.
 
 > **Privacy:** review exports before sharing. Account names/SIDs, profile and file paths, commands, events, device identifiers, resource addresses and notes can be sensitive. Search is not redaction. See [`SECURITY.md`](SECURITY.md).
+
+## New in 0.15.0 — Service Desk diagnostic bundle
+
+**Анализ → Собрать пакет для Service Desk…** combines the existing read-only diagnostic collectors into one explicit escalation workflow. The window opens idle and shows the selected categories plus examples of sensitive evidence before collection.
+
+**Быстрый** mode collects the existing Health Check/assessment, current processes, local TCP/UDP owner-PID tables, Application/System events for the last 60 minutes, physical-disk/reliability evidence and execution context. It deliberately does not run timed performance or an active DNS/TCP probe. **Расширенный** adds an explicit whole-machine performance phase, default **60 seconds / 2 seconds**, with 30/60-second duration, 1/2/5-second intervals and symptom notes.
+
+Each category retains `NotRequested`, complete, partial, unavailable or cancelled state independently. Missing telemetry is not interpreted as healthy and Health Score/Coverage semantics are unchanged. Collection uses the current GUI token and never silently elevates. No remediation, Temp cleanup, process termination, service restart, active network probe or automatic upload is part of the bundle.
+
+Saving is explicit and creates a unique evidence folder first, with optional ZIP second. `summary.html`, `manifest.json` and separate source JSON files preserve the source matrix and collected evidence; Extended packages include performance output when available. Review the package before sharing because it may contain accounts/SIDs, paths and command lines, IP/ports, event messages, device identifiers and notes. [Scope, output semantics and pilot limits](docs/releases/0.15.0.md).
 
 ## New in 0.14.0 — observe a selected process
 
@@ -42,6 +52,7 @@ Startup review still reads HKCU/personal Startup of the **process account**. Rai
 
 | Menu under Анализ | Purpose | Scope / version notes |
 |---|---|---|
+| Собрать пакет для Service Desk… | Guided Quick/Extended collection of existing read-only evidence into one reviewable folder/optional ZIP | Per-source completeness remains explicit; no hidden elevation, active probe, remediation or upload. [0.15.0](docs/releases/0.15.0.md) |
 | Предпросмотр очистки Temp… | Exact age cutoff, candidate count, logical-size estimate and largest 200 files before the existing cleanup | Metadata only; current-session profile and elevated preview since 0.11.0. [Inspection scope](docs/releases/0.6.0.md) |
 | Разбор автозагрузки… | Searchable Run/RunOnce/Startup records, raw commands, account and source status | No command execution, disabling or shortcut resolution; not full Autoruns. [0.6.0](docs/releases/0.6.0.md) |
 | Проверить доступность ресурса (DNS/TCP)… | Resolve one hostname/IP and connect to one chosen port after explicit outbound consent | Separate DNS/address outcomes; direct OS/VPN TCP, not HTTP proxy or TLS/application validation. [0.7.0](docs/releases/0.7.0.md) |
