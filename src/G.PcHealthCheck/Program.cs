@@ -70,7 +70,8 @@ internal static class Program
             {
                 var behavior = ProcessObservationSelfTest.Run();
                 var integration = ProcessObservationIntegrationSelfTest.Run();
-                result = behavior != 0 ? behavior : integration;
+                var completion = ProcessObservationCompletionSelfTest.Run();
+                result = behavior != 0 ? behavior : integration != 0 ? integration : completion;
             }
             Environment.Exit(result);
             return;
