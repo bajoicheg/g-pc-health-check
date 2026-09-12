@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.15.0 — Service Desk diagnostic bundle
+
+- Adds **Анализ → Собрать пакет для Service Desk…**, an idle-on-open guided workflow that composes existing read-only diagnostics into one escalation package.
+- Quick mode collects Health Check/assessment, current processes, local TCP/UDP endpoints, Application/System events from the last 60 minutes, physical storage/reliability and execution context; timed performance and active DNS/TCP probing are excluded.
+- Extended mode adds an explicit whole-machine performance phase, default 60 seconds / 2 seconds, with 30/60-second duration, 1/2/5-second intervals and bounded symptom notes.
+- Keeps per-source `NotRequested`, complete, partial, unavailable and cancelled states separate; missing telemetry is never treated as healthy and existing Health Score/Coverage semantics are unchanged.
+- Adds category opt-out and privacy examples before collection, fresh execution-context capture, cooperative stop and preservation of already useful evidence when a later source fails or collection is cancelled.
+- Saves a unique evidence folder first with `summary.html`, `manifest.json` and source JSON files; optional ZIP is created only afterward and never replaces the folder as the sole evidence copy.
+- Summary reuses existing assessment and performance semantics, groups already collected warning/error events, ranks working-set evidence, summarizes endpoint counts/storage warnings and avoids causal, exposure or maliciousness claims.
+- Adds explicit tests that the bundle collector surface exposes only Health/Processes/Endpoints/Events/Storage/Performance collection and no active probe, remediation, Temp, file-use or process-observation operation.
+- Preserves arbitrary executable location/name, existing UAC/worker allow-list, elevated read-only Temp preview, same-user non-elevated Temp deletion, dependencies and workflow permissions. No automatic upload/redaction/remediation/elevation is added.
+- Version `0.15.0`, FileVersion `0.15.0.0`. [Scope and pilot checks](docs/releases/0.15.0.md). [Observed validation](docs/releases/0.15.0-validation.md).
+
 ## 0.14.0 — Selected-process observation with machine context
 
 - Adds a process-details button and idle-on-open observation window for one selected PID/creation-time identity.

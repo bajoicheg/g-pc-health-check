@@ -73,6 +73,10 @@ internal static class Program
                 var completion = ProcessObservationCompletionSelfTest.Run();
                 result = behavior != 0 ? behavior : integration != 0 ? integration : completion;
             }
+            if (result == 0) result = DiagnosticBundleSelfTest.Run();
+            if (result == 0) result = DiagnosticBundleReportSelfTest.Run();
+            if (result == 0) result = DiagnosticBundleIntegrationSelfTest.Run();
+            if (result == 0) result = DiagnosticBundleAcceptanceSelfTest.Run();
             Environment.Exit(result);
             return;
         }
@@ -96,6 +100,7 @@ internal static class Program
         StorageReviewMenu.Attach(main);
         EndpointReviewMenu.Attach(main);
         FileUseMenu.Attach(main);
+        DiagnosticBundleMenu.Attach(main);
         Application.Run(main);
     }
 }
