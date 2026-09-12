@@ -74,6 +74,7 @@ internal static class Program
                 result = behavior != 0 ? behavior : integration != 0 ? integration : completion;
             }
             if (result == 0) result = DiagnosticBundleSelfTest.Run();
+            if (result == 0) result = DiagnosticBundleReportSelfTest.Run();
             Environment.Exit(result);
             return;
         }
