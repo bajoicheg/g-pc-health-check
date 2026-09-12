@@ -62,6 +62,7 @@ internal sealed class IncidentReviewForm : Form
         _export.Click += (_, _) => Export();
         _timer.Tick += (_, _) => _status.Text = (_cancellation?.IsCancellationRequested == true ? "Отмена запрошена… " : "Ожидание / сбор… ") + $"{_watch.Elapsed.TotalSeconds:0.0} с";
         FormClosing += (_, _) => _cancellation?.Cancel(); FormClosed += (_, _) => _timer.Dispose(); UpdateButtons();
+        ProcessObservationLink.Attach(this, _grid, _owner, eventsMode);
     }
     private void ConfigureColumns()
     {
