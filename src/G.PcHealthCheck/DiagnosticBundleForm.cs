@@ -249,10 +249,11 @@ internal sealed class DiagnosticBundleForm : Form
             UseDescriptionForTitle = true
         };
         if (dialog.ShowDialog(this) != DialogResult.OK) return;
+        var request = CreateSaveRequest(snapshot, dialog.SelectedPath);
         _saving = _busy = true; _stage = "Сохраняю пакет…"; _elapsed.Restart(); _timer.Start(); FreezeInputs(true); UpdateButtons();
         try
         {
-            var saved = await Task.Run(() => DiagnosticBundleReport.Save(snapshot, dialog.SelectedPath, _zip.Checked));
+            var saved = await request.ExecuteAsync();
             if (!IsDisposed) _status.Text = saved.Zip is null ? "Сохранено: " + saved.Folder : $"Сохранено: {saved.Folder}; ZIP: {saved.Zip}";
         }
         catch (Exception ex)
@@ -266,6 +267,9 @@ internal sealed class DiagnosticBundleForm : Form
             _saving = _busy = false; _elapsed.Stop(); if (!IsDisposed) { _timer.Stop(); FreezeInputs(false); UpdateButtons(); }
         }
     }
+
+    private DiagnosticBundleSaveRequest CreateSaveRequest(DiagnosticBundleSnapshot snapshot, string parentDirectory)
+        => new(snapshot, parentDirectory, _zip.Checked);
 
     private void RenderSources(DiagnosticBundleSnapshot snapshot)
     {
