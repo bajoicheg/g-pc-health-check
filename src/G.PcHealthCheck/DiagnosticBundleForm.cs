@@ -90,6 +90,8 @@ internal sealed class DiagnosticBundleForm : Form
 
         _summary.Text = "Пакет ещё не собран. Выберите режим и категории, затем нажмите «Собрать пакет». Ничего не запускается при открытии окна.";
         _mode.SelectedIndexChanged += (_, _) => ApplyModeDefaults();
+        _duration.SelectedIndexChanged += (_, _) => NextRunOptionsChanged();
+        _interval.SelectedIndexChanged += (_, _) => NextRunOptionsChanged();
         _sources.CurrentCellDirtyStateChanged += (_, _) =>
         {
             if (_sources.IsCurrentCellDirty && _sources.CurrentCell is DataGridViewCheckBoxCell)
@@ -97,7 +99,7 @@ internal sealed class DiagnosticBundleForm : Form
         };
         _sources.CellValueChanged += (_, e) =>
         {
-            if (e.RowIndex >= 0 && e.ColumnIndex == _sources.Columns["Included"].Index) SourceSelectionChanged();
+            if (e.RowIndex >= 0 && e.ColumnIndex == _sources.Columns["Included"].Index) NextRunOptionsChanged();
         };
         _start.Click += async (_, _) => await StartAsync();
         _stop.Click += (_, _) => RequestStop();
@@ -150,7 +152,7 @@ internal sealed class DiagnosticBundleForm : Form
         if (_current is { } current)
         {
             RenderSources(current);
-            _status.Text = "Отображается предыдущий собранный пакет; параметры выше применятся к следующему сбору. Состояния источников относятся к отображаемому пакету.";
+            NextRunOptionsChanged();
         }
         UpdateButtons();
     }
@@ -163,18 +165,24 @@ internal sealed class DiagnosticBundleForm : Form
             .Select(row => (DiagnosticBundleCategory)row.Tag!)
             .ToHashSet();
 
-    private void SourceSelectionChanged()
+    private void NextRunOptionsChanged()
     {
         if (_busy || _current is not { } current) return;
-        var matchesSaved = SelectedCategories().SetEquals(current.Options.Categories);
-        if (!matchesSaved)
+        var mode = CurrentMode();
+        var reasons = new List<string>();
+        if (mode != current.Options.Mode) reasons.Add("режим");
+        if (!SelectedCategories().SetEquals(current.Options.Categories)) reasons.Add("категории");
+        if (mode == DiagnosticBundleMode.Extended && current.Options.Mode == DiagnosticBundleMode.Extended)
         {
-            _status.Text = "Категории следующего сбора изменены; показан предыдущий собранный пакет. Состояния источников относятся к отображаемому пакету.";
-            return;
+            var duration = Convert.ToInt32(_duration.SelectedItem ?? 60);
+            var interval = Convert.ToInt32(_interval.SelectedItem ?? 2);
+            if (duration != current.Options.PerformanceSeconds || interval != current.Options.PerformanceIntervalSeconds)
+                reasons.Add("длительность/интервал наблюдения");
         }
-        _status.Text = CurrentMode() == current.Options.Mode
-            ? "Отображается собранный пакет; выбранные категории совпадают с сохранённым пакетом. Состояния источников относятся к отображаемому пакету."
-            : "Отображается предыдущий собранный пакет; параметры выше применятся к следующему сбору. Состояния источников относятся к отображаемому пакету.";
+
+        _status.Text = reasons.Count == 0
+            ? "Отображается собранный пакет; выбранные параметры совпадают с сохранённым пакетом. Состояния источников относятся к отображаемому пакету."
+            : $"Параметры следующего сбора изменены ({string.Join(", ", reasons)}); показан предыдущий собранный пакет. Состояния источников относятся к отображаемому пакету.";
     }
 
     private DiagnosticBundleOptions BuildOptions()
