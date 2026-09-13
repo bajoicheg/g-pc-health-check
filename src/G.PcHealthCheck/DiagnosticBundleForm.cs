@@ -238,6 +238,7 @@ internal sealed class DiagnosticBundleForm : Form
         if (result.Sources.Any(source => source.PayloadAvailable))
         {
             _current = result;
+            _context.Text = ExecutionPolicy.Describe(result.ExecutionContext);
             RenderSources(result);
             _summary.Text = DiagnosticBundleReport.Summary(result);
             return;
@@ -245,12 +246,14 @@ internal sealed class DiagnosticBundleForm : Form
 
         if (_current is { } current)
         {
+            _context.Text = ExecutionPolicy.Describe(current.ExecutionContext);
             RenderSources(current);
             _summary.Text = DiagnosticBundleReport.Summary(current);
             _status.Text = "Новая попытка не дала полезного payload; отображается и сохраняется предыдущий пакет.";
             return;
         }
 
+        _context.Text = ExecutionPolicy.Describe(result.ExecutionContext);
         RenderSources(result);
         _summary.Text = DiagnosticBundleReport.Summary(result);
     }
