@@ -45,6 +45,12 @@ internal static class PerformanceSessionTimingSelfTest
             var s = PerformanceSessionSelfTest.Snapshot(10, 20); s.Outcome = "Stopped";
             Require(PerformanceStatistics.Completeness(s).Contains("Неполные", StringComparison.Ordinal), "Stopped session described as complete.");
         });
+        Test("report says missing values are not zero without claiming gaps exist", () =>
+        {
+            var text = PerformanceSessionReport.Summary(PerformanceSessionSelfTest.Snapshot(10, 20));
+            Require(text.Contains("не подставляются как нули", StringComparison.Ordinal), "Missing values are not explained as unknown evidence.");
+            Require(!text.Contains("пропуски не равны нулю", StringComparison.OrdinalIgnoreCase), "A complete session is worded as if gaps must exist.");
+        });
         Test("cancel-induced provider error remains stopped", () =>
         {
             using var cancellation = new CancellationTokenSource();
