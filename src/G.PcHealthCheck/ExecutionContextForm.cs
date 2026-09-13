@@ -36,7 +36,8 @@ internal sealed class ExecutionContextForm : Form
             var row = _matrix.Rows[_matrix.Rows.Add(title, ExecutionPolicy.StateText(availability.State), availability.Scope)];
             row.Tag = availability;
         }
-        _matrix.SelectionChanged += (_, _) => ShowDetail();
+        // SelectionChanged can fire while CurrentRow still points at the previous cell.
+        _matrix.CurrentCellChanged += (_, _) => ShowDetail();
         var copy = new Button { Text = "Копировать сведения", AutoSize = true };
         copy.Click += (_, _) =>
         {

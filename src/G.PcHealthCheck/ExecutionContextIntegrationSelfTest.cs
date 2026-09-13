@@ -69,6 +69,26 @@ internal static class ExecutionContextIntegrationSelfTest
             using var form = (Form)Activator.CreateInstance(type!, [user])!;
             Require(form.Controls.Find("Availability", true).Single() is DataGridView g && g.Rows.Count >= 7, "Availability matrix incomplete.");
         });
+        Test("context detail follows current cell after reselection", () =>
+        {
+            var type = typeof(MainForm).Assembly.GetType("G.PcHealthCheck.ExecutionContextForm");
+            Require(type is not null, "Context window absent.");
+            using var form = (Form)Activator.CreateInstance(type!, [user])!;
+            var grid = (DataGridView)form.Controls.Find("Availability", true).Single();
+            var detailField = type!.GetField("_detail", BindingFlags.Instance | BindingFlags.NonPublic);
+            var showDetail = type.GetMethod("ShowDetail", BindingFlags.Instance | BindingFlags.NonPublic);
+            Require(detailField is not null && showDetail is not null && grid.Rows.Count >= 2, "Context detail selection boundary missing.");
+            var detail = (TextBox)detailField!.GetValue(form)!;
+            grid.Rows[0].Tag = new ActionAvailability("Ready", "First synthetic reason", "First scope");
+            grid.Rows[1].Tag = new ActionAvailability("Unavailable", "Second synthetic reason", "Second scope");
+            grid.CurrentCell = grid.Rows[0].Cells[0];
+            showDetail!.Invoke(form, null);
+            Require(detail.Text == "First synthetic reason", "First context detail was not established.");
+            grid.CurrentCell = grid.Rows[1].Cells[0];
+            Application.DoEvents();
+            Require(grid.CurrentCell?.RowIndex == 1, "Second context row was not selected.");
+            Require(detail.Text == "Second synthetic reason", "Context detail pane still shows the previously selected row.");
+        });
         Console.WriteLine($"Execution context integration: {count - failures.Count}/{count} passed.");
         foreach (var failure in failures) Console.Error.WriteLine("FAIL: " + failure);
         return failures.Count == 0 ? 0 : 241;
