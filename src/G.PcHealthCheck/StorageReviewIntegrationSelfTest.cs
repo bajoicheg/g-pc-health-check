@@ -87,6 +87,34 @@ internal static class StorageReviewIntegrationSelfTest
             var grid = (DataGridView)form.Controls.Find("StorageEvidence", true).Single();
             Require(grid.Rows.Count == 1 && grid.Columns.Cast<DataGridViewColumn>().Any(x => x.ValueType == typeof(decimal)), "Numeric sorting has only formatted strings.");
         });
+        Test("storage detail follows current cell after reselection", () =>
+        {
+            using var form = Window(true);
+            var snapshot = new FolderUsageSnapshot
+            {
+                Root = "C:\\Synthetic",
+                Outcome = "Completed",
+                Folders =
+                [
+                    new() { Path = "C:\\Synthetic\\first", Bytes = 200, Files = 2, Incomplete = false },
+                    new() { Path = "C:\\Synthetic\\second", Bytes = 100, Files = 1, Incomplete = false }
+                ]
+            };
+            var type = TypeNamed("StorageReviewForm");
+            type.GetMethod("DisplaySnapshot", BindingFlags.Instance | BindingFlags.NonPublic)!.Invoke(form, [snapshot]);
+            var grid = (DataGridView)form.Controls.Find("StorageEvidence", true).Single();
+            var detailField = type.GetField("_detail", BindingFlags.Instance | BindingFlags.NonPublic);
+            var renderDetail = type.GetMethod("RenderDetail", BindingFlags.Instance | BindingFlags.NonPublic);
+            Require(detailField is not null && renderDetail is not null && grid.Rows.Count >= 2, "Storage detail selection boundary missing.");
+            var detail = (TextBox)detailField!.GetValue(form)!;
+            grid.CurrentCell = grid.Rows[0].Cells[0];
+            renderDetail!.Invoke(form, null);
+            Require(detail.Text.Contains("C:\\Synthetic\\first", StringComparison.Ordinal), "First storage detail was not established.");
+            grid.CurrentCell = grid.Rows[1].Cells[0];
+            Application.DoEvents();
+            Require(grid.CurrentCell?.RowIndex == 1, "Second storage row was not selected.");
+            Require(detail.Text.Contains("C:\\Synthetic\\second", StringComparison.Ordinal), "Storage detail pane still shows the previously selected row.");
+        });
         Console.WriteLine($"Storage review integration: {count - failures.Count}/{count} passed.");
         foreach (var failure in failures) Console.Error.WriteLine("FAIL: " + failure);
         return failures.Count == 0 ? 0 : 231;
