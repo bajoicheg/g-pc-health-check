@@ -198,11 +198,7 @@ internal sealed class DiagnosticBundleForm : Form
             if (IsDisposed) return;
             if (result.Performance.Payload is { } performance && _pendingMarkers.Count > 0)
                 DiagnosticBundleCore.AttachPerformanceMarkers(performance, _pendingMarkers);
-            _lastAttempt = result;
-            RenderSources(result);
-            _summary.Text = DiagnosticBundleReport.Summary(result);
-            if (result.Sources.Any(source => source.PayloadAvailable)) _current = result;
-            else if (_current is not null) _status.Text = "Новая попытка не дала полезного payload; предыдущий сохраняемый пакет оставлен в памяти.";
+            ApplyCollectedResult(result);
         }
         catch (OperationCanceledException)
         {
@@ -234,6 +230,29 @@ internal sealed class DiagnosticBundleForm : Form
         _pendingMarkers.Add(new PerformanceMarker(_performanceMarkerClock.ElapsedMs(Stopwatch.GetTimestamp()), note));
         _marker.Clear(); _status.Text = $"Отметка #{_pendingMarkers.Count} добавлена к временной шкале производительности.";
         UpdateButtons();
+    }
+
+    private void ApplyCollectedResult(DiagnosticBundleSnapshot result)
+    {
+        _lastAttempt = result;
+        if (result.Sources.Any(source => source.PayloadAvailable))
+        {
+            _current = result;
+            RenderSources(result);
+            _summary.Text = DiagnosticBundleReport.Summary(result);
+            return;
+        }
+
+        if (_current is { } current)
+        {
+            RenderSources(current);
+            _summary.Text = DiagnosticBundleReport.Summary(current);
+            _status.Text = "Новая попытка не дала полезного payload; отображается и сохраняется предыдущий пакет.";
+            return;
+        }
+
+        RenderSources(result);
+        _summary.Text = DiagnosticBundleReport.Summary(result);
     }
 
     private async Task SaveAsync()

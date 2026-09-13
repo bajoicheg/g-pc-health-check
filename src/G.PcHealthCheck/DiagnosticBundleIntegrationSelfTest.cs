@@ -129,6 +129,34 @@ internal static class DiagnosticBundleIntegrationSelfTest
                 "Excluded marker is not visible in performance warnings.");
         });
 
+        Test("bundle keeps visible summary aligned with saveable current snapshot", () =>
+        {
+            using var form = CreateForm();
+            var type = form.GetType();
+            var current = type.GetField("_current", BindingFlags.Instance | BindingFlags.NonPublic);
+            var lastAttempt = type.GetField("_lastAttempt", BindingFlags.Instance | BindingFlags.NonPublic);
+            var apply = type.GetMethod("ApplyCollectedResult", BindingFlags.Instance | BindingFlags.NonPublic);
+            Require(current is not null && lastAttempt is not null && apply is not null,
+                "Diagnostic bundle has no explicit collected-result UI boundary.");
+
+            var previous = new DiagnosticBundleSnapshot { Outcome = "Partial" };
+            previous.Performance.Requested = true;
+            previous.Performance.State = "Complete";
+            previous.Performance.Payload = new PerformanceSessionSnapshot { ElapsedMs = 1000 };
+            current!.SetValue(form, previous);
+
+            var unavailable = new DiagnosticBundleSnapshot { Outcome = "Unavailable" };
+            apply!.Invoke(form, [unavailable]);
+
+            Require(ReferenceEquals(current.GetValue(form), previous),
+                "Unavailable retry replaced the previous saveable snapshot.");
+            Require(ReferenceEquals(lastAttempt!.GetValue(form), unavailable),
+                "Unavailable retry was not retained as the last attempt.");
+            var summary = (TextBox)form.Controls.Find("BundleSummary", true).Single();
+            Require(summary.Text == DiagnosticBundleReport.Summary(previous),
+                "Visible summary no longer matches the snapshot used by copy/save.");
+        });
+
         Test("bundle UI exposes no active probe or remediation controls", () =>
         {
             using var form = CreateForm();
