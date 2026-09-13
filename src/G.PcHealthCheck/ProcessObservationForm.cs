@@ -60,6 +60,7 @@ internal sealed class ProcessObservationForm : Form
         _stop.Click += (_, _) => { _cancellation?.Cancel(); _status.Text = "Остановка запрошена; ожидается возврат системного вызова. Завершённые пары останутся в памяти."; UpdateButtons(); };
         _mark.Click += (_, _) => Mark(); _copy.Click += (_, _) => { if (_current is { } s) TryUi(() => Clipboard.SetText(ProcessObservationReport.Summary(s))); };
         _export.Click += async (_, _) => await ExportAsync();
+        _duration.SelectedIndexChanged += (_, _) => SessionOptionsChanged(); _interval.SelectedIndexChanged += (_, _) => SessionOptionsChanged();
         _processMetric.SelectedIndexChanged += (_, _) => Display(); _systemMetric.SelectedIndexChanged += (_, _) => Display();
         _grid.CurrentCellChanged += (_, _) => { if (_grid.CurrentRow?.Tag is ProcessObservationSample sample) _detail.Text = ProcessObservationReport.Detail(sample); };
         _timer.Tick += (_, _) =>
@@ -72,13 +73,28 @@ internal sealed class ProcessObservationForm : Form
         FormClosing += (_, e) => { if (_exporting) { e.Cancel = true; _status.Text = "Дождитесь завершения сохранения файлов."; } else _cancellation?.Cancel(); };
         UpdateButtons();
     }
+    private PerformanceSessionOptions CurrentOptions() => new((int)_duration.SelectedItem!, (int)_interval.SelectedItem!);
+    private string SavedStatusText(ProcessObservationSnapshot snapshot)
+    {
+        var interrupted = snapshot.System.Warnings.Any(warning => warning.StartsWith("Не удалось завершить сеанс:", StringComparison.Ordinal));
+        var evidence = interrupted
+            ? "Сеанс прерван; доступные данные можно экспортировать."
+            : $"{PerformanceSessionReport.Outcome(snapshot.System.Outcome)} · {snapshot.System.ElapsedMs / 1000d:0.0} с · пар {snapshot.Samples.Count}. Последнее состояние процесса: {(snapshot.Samples.Count == 0 ? "нет данных" : ProcessObservationCore.StateText(snapshot.Samples[^1].Process.Counters.State))}. Экспорт сохраняет данные на диск.";
+        return CurrentOptions() == snapshot.System.Options
+            ? evidence
+            : $"Параметры следующего запуска изменены; показаны результаты предыдущего наблюдения ({snapshot.System.Options.DurationSeconds} с / {snapshot.System.Options.IntervalSeconds} с). {evidence}";
+    }
+    private void SessionOptionsChanged()
+    {
+        if (!_busy && _current is { } snapshot) _status.Text = SavedStatusText(snapshot);
+    }
     private async Task RunAsync()
     {
         if (_busy || IsDisposed) return;
         if (!Gate.Wait(0)) { _status.Text = "Предыдущее наблюдение ещё завершает системный вызов. Дождитесь его окончания."; return; }
         using var cancellation = new CancellationTokenSource(); _cancellation = cancellation; _busy = true;
         var clock = new MonotonicPerformanceClock(); _clock = clock;
-        var options = new PerformanceSessionOptions((int)_duration.SelectedItem!, (int)_interval.SelectedItem!);
+        var options = CurrentOptions();
         var live = new ProcessObservationSnapshot { Target = _target, System = new() { Options = options, StartedAt = clock.Now, Outcome = "Running" } };
         _live = live; _current = null; _marks.Clear(); _markers.Items.Clear(); _grid.Rows.Clear(); _detail.Clear(); _stats.Text = "Ожидаю первый замер. Скорости появятся после второй последовательной точки."; _timer.Start(); UpdateButtons();
         try
@@ -99,14 +115,14 @@ internal sealed class ProcessObservationForm : Form
             result.System.Markers = _marks.ToList(); _current = result; _live = null;
             _grid.Rows.Clear(); foreach (var sample in result.Samples) Add(sample);
             _overview.Text = ProcessObservationReport.Summary(result); Display();
-            _status.Text = $"{PerformanceSessionReport.Outcome(result.System.Outcome)} · {result.System.ElapsedMs / 1000d:0.0} с · пар {result.Samples.Count}. Последнее состояние процесса: {(result.Samples.Count == 0 ? "нет данных" : ProcessObservationCore.StateText(result.Samples[^1].Process.Counters.State))}. Экспорт сохраняет данные на диск.";
+            _status.Text = SavedStatusText(result);
         }
         catch (Exception ex)
         {
             if (IsDisposed) return;
             live.System.Outcome = cancellation.IsCancellationRequested ? "Stopped" : "Failed"; live.System.FinishedAt = clock.Now; live.System.ElapsedMs = clock.ElapsedMs;
             live.System.Markers = _marks.ToList(); live.System.Warnings.Add($"Не удалось завершить сеанс: {ex.GetType().Name}, 0x{ex.HResult:X8}. Сохранена доступная интерфейсу часть данных.");
-            _current = live; _live = null; _overview.Text = ProcessObservationReport.Summary(live); _status.Text = "Сеанс прерван; доступные данные можно экспортировать."; Display();
+            _current = live; _live = null; _overview.Text = ProcessObservationReport.Summary(live); _status.Text = SavedStatusText(live); Display();
         }
         finally { Gate.Release(); _cancellation = null; _clock = null; _busy = false; if (!IsDisposed) { _timer.Stop(); UpdateButtons(); } }
     }
