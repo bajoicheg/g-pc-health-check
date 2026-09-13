@@ -151,8 +151,19 @@ internal sealed class ProcessObservationForm : Form
         if (dialog.ShowDialog(this) != DialogResult.OK) return;
         var parent = dialog.SelectedPath; _busy = _exporting = true; _status.Text = "Сохраняю все графики и измерения…"; UpdateButtons();
         try { var path = await Task.Run(() => ProcessObservationReport.Save(current, parent)); if (!IsDisposed) _status.Text = "Сохранено: " + path; }
-        catch (Exception ex) { if (!IsDisposed) MessageBox.Show(this, "Экспорт не завершён полностью. " + ex.Message, "Экспорт", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+        catch (Exception ex)
+        {
+            if (!IsDisposed)
+            {
+                ApplyExportFailure(ex);
+                MessageBox.Show(this, "Экспорт не завершён полностью. " + ex.Message, "Экспорт", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
         finally { _busy = _exporting = false; if (!IsDisposed) UpdateButtons(); }
+    }
+    private void ApplyExportFailure(Exception ex)
+    {
+        _status.Text = $"Сохранение не завершено: {ex.GetType().Name}, 0x{ex.HResult:X8}.";
     }
     private void UpdateButtons()
     {
