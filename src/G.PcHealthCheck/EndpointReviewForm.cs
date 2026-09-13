@@ -53,7 +53,8 @@ internal sealed class EndpointReviewForm : Form
         _export.Click += async (_, _) => await ExportAsync();
         _copy.Click += (_, _) => { if (_current is { } current) TryUi(() => Clipboard.SetText(EndpointReviewReport.Summary(current, _previous))); };
         _close.Click += (_, _) => Close(); _search.TextChanged += (_, _) => RenderRows(); _filter.SelectedIndexChanged += (_, _) => RenderRows();
-        _grid.SelectionChanged += (_, _) => { if (_grid.CurrentRow?.Tag is EndpointObservation row) _detail.Text = EndpointReviewReport.Detail(row); };
+        // SelectionChanged is raised before CurrentCellChanged and may still expose the previous row.
+        _grid.CurrentCellChanged += (_, _) => { if (_grid.CurrentRow?.Tag is EndpointObservation row) _detail.Text = EndpointReviewReport.Detail(row); };
         _timer.Tick += (_, _) => { if (_busy) _status.Text = $"{_stage} · {_elapsed.Elapsed.TotalSeconds:0.0} с"; };
         FormClosing += (_, e) => { if (_exporting) { e.Cancel = true; _stage = "Дождитесь окончания сохранения файлов."; } else _cancellation?.Cancel(); };
         AcceptButton = _start; CancelButton = _close; _status.Text = _stage; UpdateButtons();
