@@ -58,6 +58,21 @@ internal static class FileUseIntegrationSelfTest
             Require(grid.CurrentCell?.RowIndex == 1, "Second synthetic row was not selected.");
             Require(detailBox.Text.Contains("Second app", StringComparison.Ordinal) && !detailBox.Text.Contains("First app", StringComparison.Ordinal), "Detail pane still shows the previously selected row.");
         });
+        Test("file-use filter redraw preserves stale-target warning", () =>
+        {
+            var type = typeof(MainForm).Assembly.GetType("G.PcHealthCheck.FileUseForm"); Require(type is not null, "File-use window missing.");
+            using var form = (Form)Activator.CreateInstance(type!)!;
+            var flags = BindingFlags.Instance | BindingFlags.NonPublic;
+            var current = type!.GetField("_current", flags); var render = type.GetMethod("RenderRows", flags); var status = type.GetField("_status", flags);
+            Require(current is not null && render is not null && status is not null, "File-use stale-target UI boundary missing.");
+            var target = (TextBox)form.Controls.Find("FileUseTarget", true).Single(); var search = (TextBox)form.Controls.Find("FileUseSearch", true).Single();
+            var snapshot = FileUseSelfTest.Snapshot(FileUseSelfTest.Row()); target.Text = snapshot.TargetPath; current!.SetValue(form, snapshot); render!.Invoke(form, null);
+            target.Text = @"C:\Test\другой.txt";
+            var statusLabel = (Label)status!.GetValue(form)!;
+            Require(statusLabel.Text.Contains("Поле пути изменено", StringComparison.Ordinal), "Target edit did not mark the current snapshot stale.");
+            search.Text = "no-match";
+            Require(statusLabel.Text.Contains("Поле пути изменено", StringComparison.Ordinal), "Filter redraw hid the stale-target warning.");
+        });
         Test("menu attaches once", () =>
         {
             var type = typeof(MainForm).Assembly.GetType("G.PcHealthCheck.FileUseMenu"); Require(type is not null, "File-use menu missing.");

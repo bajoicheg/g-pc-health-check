@@ -50,7 +50,7 @@ internal sealed class FileUseForm : Form
         _stop.Click += (_, _) => { _cancellation?.Cancel(); _stage = "Запрошена остановка. Текущий вызов Windows может задержать возврат; завершённые данные сохранятся в памяти."; UpdateButtons(); };
         _copy.Click += (_, _) => { if (_current is { } current) TryUi(() => Clipboard.SetText(FileUseReport.Summary(current, _previous))); };
         _export.Click += async (_, _) => await ExportAsync(); _close.Click += (_, _) => Close(); _search.TextChanged += (_, _) => RenderRows();
-        _target.TextChanged += (_, _) => { UpdateButtons(); if (_current is not null && !_busy) _status.Text = "Поле пути изменено; показанные результаты относятся к пути в сводке. Для нового пути запустите проверку."; };
+        _target.TextChanged += (_, _) => { UpdateButtons(); if (_current is not null && !_busy) RenderStatus(_current, _grid.Rows.Count); };
         // SelectionChanged is raised before CurrentCellChanged and may still expose the previous row.
         _grid.CurrentCellChanged += (_, _) => { if (_grid.CurrentRow?.Tag is FileUseProcess row) _detail.Text = FileUseReport.Detail(row); };
         _timer.Tick += (_, _) => { if (_busy) _status.Text = $"{_stage} · {_elapsed.Elapsed.TotalSeconds:0.0} с"; };
@@ -61,6 +61,18 @@ internal sealed class FileUseForm : Form
     {
         using var dialog = new OpenFileDialog { Title = "Выберите один локальный файл", CheckFileExists = true, Multiselect = false, Filter = "Все файлы (*.*)|*.*", DereferenceLinks = false };
         if (dialog.ShowDialog(this) == DialogResult.OK) _target.Text = dialog.FileName;
+    }
+    private bool TargetChanged(FileUseSnapshot snapshot)
+    {
+        try { return !string.Equals(FileUseCore.NormalizeTarget(_target.Text), snapshot.TargetPath, StringComparison.OrdinalIgnoreCase); }
+        catch (ArgumentException) { return true; }
+    }
+    private void RenderStatus(FileUseSnapshot snapshot, int visibleCount)
+    {
+        var summary = $"{FileUseCore.StateText(snapshot.State)} · {snapshot.FinishedAt:HH:mm:ss} · показано {visibleCount}/{snapshot.Processes.Count}. Экспорт сохраняет обе попытки целиком.";
+        _status.Text = TargetChanged(snapshot)
+            ? "Поле пути изменено; показанные результаты относятся к пути в сводке. Для нового пути запустите проверку.\n" + summary
+            : summary;
     }
     private async Task CollectAsync()
     {
@@ -97,7 +109,7 @@ internal sealed class FileUseForm : Form
             var i = _grid.Rows.Add(row.Pid, row.ApplicationName, row.ServiceName, FileUseCore.TypeText(row.ApplicationType), session, row.ProcessName, FileUseCore.IdentityText(row.IdentityState));
             _grid.Rows[i].Tag = row;
         }
-        _status.Text = $"{FileUseCore.StateText(_current.State)} · {_current.FinishedAt:HH:mm:ss} · показано {rows.Count}/{_current.Processes.Count}. Экспорт сохраняет обе попытки целиком.";
+        RenderStatus(_current, rows.Count);
     }
     private async Task ExportAsync()
     {
