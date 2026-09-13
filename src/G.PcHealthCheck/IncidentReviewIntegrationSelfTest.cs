@@ -37,7 +37,7 @@ internal static class IncidentReviewIntegrationSelfTest
             var window = (IncidentWindow)type.GetMethod("Window", flags)!.Invoke(form, null)!;
             var snapshot = new IncidentSnapshot { Window = window, StartedAt = DateTimeOffset.Now, FinishedAt = DateTimeOffset.Now, State = "Complete" };
             type.GetField("_current", flags)!.SetValue(form, snapshot);
-            type.GetMethod("Render", flags)!.Invoke(form, null);
+            type.GetMethod("Render", flags)!.Invoke(form, [null]);
             var from = (DateTimePicker)type.GetField("_from", flags)!.GetValue(form)!;
             var label = (Label)type.GetField("_snapshot", flags)!.GetValue(form)!;
             var search = (TextBox)form.Controls.Find("IncidentSearch", true).Single();
