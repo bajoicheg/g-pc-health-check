@@ -68,7 +68,7 @@ internal sealed class IncidentReviewForm : Form
     private void ConfigureColumns()
     {
         void Add(string name, string caption, Type type, int width, string? format = null) => _grid.Columns.Add(new DataGridViewTextBoxColumn
-        { Name = name, HeaderText = caption, ValueType = type, Width = width, SortMode = DataGridViewSortMode.Automatic, DefaultCellStyle = new DataGridViewCellStyle { NullValue = "—", Format = format ?? "" } });
+        { Name = name, HeaderText = caption, ValueType = type, Width = width, SortMode = DataGridViewColumnSortMode.Automatic, DefaultCellStyle = new DataGridViewCellStyle { NullValue = "—", Format = format ?? "" } });
         if (_eventsMode)
         {
             Add("Timestamp", "Время (местное)", typeof(DateTime), 165, "dd.MM.yyyy HH:mm:ss"); Add("Log", "Журнал", typeof(string), 100);
@@ -170,7 +170,7 @@ internal sealed class IncidentReviewForm : Form
             var rows = IncidentQueries.Processes(processes, (string)filter);
             foreach (var p in rows)
             {
-                var owner = processes.OwnerChecks.LastOrDefault(x => x.Pid == p.Pid && x.CreationKey == preserve.CreationKey);
+                var owner = processes.OwnerChecks.LastOrDefault(x => x.Pid == p.Pid && x.CreationKey == p.CreationKey);
                 double? memory = p.WorkingSetBytes is ulong bytes ? bytes / 1048576d : null;
                 var i = _grid.Rows.Add(p.Pid, p.Name, p.CreatedAt?.LocalDateTime, memory, p.ParentPid, owner is null ? "Не запрошен" : owner.State == "Verified" ? owner.Owner : IncidentReport.StateText(owner.State), p.Executable);
                 _grid.Rows[i].Tag = p;
