@@ -39,6 +39,27 @@ internal static class EndpointReviewIntegrationSelfTest
             Require(form.Controls.Find("EndpointSearch", true).Single() is TextBox && form.Controls.Find("EndpointStart", true).Single().Enabled, "Search/start absent.");
             Require(!form.Controls.Find("EndpointExport", true).Single().Enabled, "Export active without snapshot.");
         });
+        Test("endpoint details follow current cell after reselection", () =>
+        {
+            var type = typeof(MainForm).Assembly.GetType("G.PcHealthCheck.EndpointReviewForm"); Require(type is not null, "Endpoint window missing.");
+            using var form = (Form)Activator.CreateInstance(type!)!;
+            var rows = type!.GetField("_rows", BindingFlags.Instance | BindingFlags.NonPublic);
+            var detail = type.GetField("_detail", BindingFlags.Instance | BindingFlags.NonPublic);
+            var render = type.GetMethod("RenderRows", BindingFlags.Instance | BindingFlags.NonPublic);
+            Require(rows is not null && detail is not null && render is not null, "Endpoint selection UI boundary missing.");
+            var first = new EndpointObservation(EndpointReviewSelfTest.Row(41) with { ProcessName = "First app" }, "Appeared");
+            var second = new EndpointObservation(EndpointReviewSelfTest.Row(42) with { ProcessName = "Second app" }, "Appeared");
+            rows!.SetValue(form, new List<EndpointObservation> { first, second });
+            render!.Invoke(form, null); form.PerformLayout();
+            var grid = (DataGridView)form.Controls.Find("EndpointEvidence", true).Single();
+            var detailBox = (TextBox)detail!.GetValue(form)!;
+            Require(grid.Rows.Count == 2, "Synthetic endpoint rows missing.");
+            grid.CurrentCell = grid.Rows[0].Cells[0]; Application.DoEvents();
+            Require(grid.CurrentCell?.RowIndex == 0, "First synthetic endpoint row was not selected.");
+            grid.CurrentCell = grid.Rows[1].Cells[0]; Application.DoEvents();
+            Require(grid.CurrentCell?.RowIndex == 1, "Second synthetic endpoint row was not selected.");
+            Require(detailBox.Text.Contains("Second app", StringComparison.Ordinal) && !detailBox.Text.Contains("First app", StringComparison.Ordinal), "Endpoint detail pane still shows the previously selected row.");
+        });
         Test("analysis menu attaches exactly once", () =>
         {
             var type = typeof(MainForm).Assembly.GetType("G.PcHealthCheck.EndpointReviewMenu"); Require(type is not null, "Endpoint menu missing.");
