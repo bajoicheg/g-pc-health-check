@@ -63,6 +63,20 @@ internal static class ProcessObservationIntegrationSelfTest
             interval.SelectedItem = 2; Application.DoEvents();
             Require(!status.Text.Contains("следующ", StringComparison.OrdinalIgnoreCase), "Restored interval still marks observation evidence stale.");
         });
+        Test("export failure leaves terminal status", () =>
+        {
+            var type = typeof(MainForm).Assembly.GetType("G.PcHealthCheck.ProcessObservationForm"); Require(type is not null, "Observation form absent.");
+            using var form = (Form)Activator.CreateInstance(type!, [ProcessObservationSelfTest.Target])!;
+            var flags = BindingFlags.Instance | BindingFlags.NonPublic;
+            var statusField = type!.GetField("_status", flags); var applyFailure = type.GetMethod("ApplyExportFailure", flags);
+            Require(statusField is not null && applyFailure is not null, "Process observation export failure status boundary missing.");
+            var status = (Label)statusField!.GetValue(form)!;
+            status.Text = "Сохраняю все графики и измерения…";
+            applyFailure!.Invoke(form, [new IOException("synthetic export failure")]);
+            Require(status.Text.Contains("Сохранение не завершено", StringComparison.Ordinal)
+                && !status.Text.Contains("Сохраняю", StringComparison.Ordinal),
+                "Process observation export failure did not leave a terminal status.");
+        });
         Test("exports never replace previous results", () =>
         {
             var root = Path.Combine(Path.GetTempPath(), "GpcProcessObs-" + Guid.NewGuid().ToString("N")); Directory.CreateDirectory(root);
