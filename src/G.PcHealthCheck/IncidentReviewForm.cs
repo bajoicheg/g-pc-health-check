@@ -151,8 +151,9 @@ internal sealed class IncidentReviewForm : Form
     }
     private void End(CancellationTokenSource cancellation)
     {
+        var cancelled = cancellation.IsCancellationRequested;
         cancellation.Dispose(); _cancellation = null; _busy = false; _watch.Stop();
-        if (!IsDisposed) { _timer.Stop(); _status.Text = $"Завершено за {_watch.Elapsed.TotalSeconds:0.0} с"; UpdateButtons(); }
+        if (!IsDisposed) { _timer.Stop(); _status.Text = (cancelled ? "Отменено за " : "Завершено за ") + $"{_watch.Elapsed.TotalSeconds:0.0} с"; UpdateButtons(); }
     }
     private void Render(ProcessReviewEntry? preserve = null)
     {

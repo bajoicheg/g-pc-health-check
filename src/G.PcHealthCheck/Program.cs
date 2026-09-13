@@ -30,7 +30,8 @@ internal static class Program
             {
                 var behavior = IncidentReviewSelfTest.Run();
                 var integration = IncidentReviewIntegrationSelfTest.Run();
-                result = behavior != 0 ? behavior : integration;
+                var cancellation = IncidentCancelStatusSelfTest.Run();
+                result = behavior != 0 ? behavior : integration != 0 ? integration : cancellation;
             }
             if (result == 0)
             {
