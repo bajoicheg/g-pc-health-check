@@ -60,7 +60,7 @@ internal sealed class PerformanceSessionForm : Form
         AddColumn("Queue", "Очередь", typeof(double), 85);
         AddColumn("Duration", "Сбор, мс", typeof(long), 90, "0");
         _samples.Columns.Add(new DataGridViewTextBoxColumn { Name = "Warning", HeaderText = "Предупреждения", AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill });
-        _samples.SelectionChanged += (_, _) => ShowDetail();
+        _samples.CurrentCellChanged += (_, _) => ShowDetail();
         var tabs = new TabControl { Dock = DockStyle.Fill };
         var samplesPage = new TabPage("Измерения"); samplesPage.Controls.Add(_samples); tabs.TabPages.Add(samplesPage);
         var markersPage = new TabPage("Отметки симптома"); markersPage.Controls.Add(_markers); tabs.TabPages.Add(markersPage);

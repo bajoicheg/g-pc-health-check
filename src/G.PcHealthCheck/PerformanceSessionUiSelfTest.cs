@@ -49,6 +49,30 @@ internal static class PerformanceSessionUiSelfTest
             try { source.Read(c.Token); } catch (OperationCanceledException) { return; }
             throw new InvalidOperationException("Cancelled source returned data.");
         });
+        Test("sample detail follows current cell after reselection", () =>
+        {
+            using var form = (Form)Activator.CreateInstance(TypeOf("PerformanceSessionForm"))!;
+            var type = TypeOf("PerformanceSessionForm");
+            var currentField = type.GetField("_current", BindingFlags.Instance | BindingFlags.NonPublic);
+            var samplesField = type.GetField("_samples", BindingFlags.Instance | BindingFlags.NonPublic);
+            var detailField = type.GetField("_detail", BindingFlags.Instance | BindingFlags.NonPublic);
+            var showDetail = type.GetMethod("ShowDetail", BindingFlags.Instance | BindingFlags.NonPublic);
+            Require(currentField is not null && samplesField is not null && detailField is not null && showDetail is not null, "Performance detail selection boundary missing.");
+            currentField!.SetValue(form, PerformanceSessionSelfTest.Snapshot(10, 20));
+            var grid = (DataGridView)samplesField!.GetValue(form)!;
+            var detail = (TextBox)detailField!.GetValue(form)!;
+            var first = new PerformanceSample(1000, 5, DateTimeOffset.Parse("2026-01-01T00:00:01Z"), new(10, 40, 5, 0, ["FIRST_SYNTHETIC_WARNING"]));
+            var second = new PerformanceSample(2000, 5, DateTimeOffset.Parse("2026-01-01T00:00:02Z"), new(20, 40, 5, 0, ["SECOND_SYNTHETIC_WARNING"]));
+            var firstRow = grid.Rows.Add(); grid.Rows[firstRow].Tag = first;
+            var secondRow = grid.Rows.Add(); grid.Rows[secondRow].Tag = second;
+            grid.CurrentCell = grid.Rows[0].Cells[0];
+            showDetail!.Invoke(form, null);
+            Require(detail.Text.Contains("FIRST_SYNTHETIC_WARNING", StringComparison.Ordinal), "First performance sample detail was not established.");
+            grid.CurrentCell = grid.Rows[1].Cells[0];
+            Application.DoEvents();
+            Require(grid.CurrentCell?.RowIndex == 1, "Second performance sample row was not selected.");
+            Require(detail.Text.Contains("SECOND_SYNTHETIC_WARNING", StringComparison.Ordinal), "Performance sample detail still shows the previously selected row.");
+        });
         foreach (var metric in Enum.GetValues<SessionMetric>())
             Test("render graph with missing data " + metric, () =>
             {
