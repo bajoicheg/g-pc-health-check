@@ -100,7 +100,7 @@ internal sealed class PerformanceSessionService
                 progress?.Report(sample);
                 next += interval;
                 // Skip elapsed slots: never overlap reads or launch a catch-up burst.
-                while (next <= duration && next < clock.ElapsedMs) { result.MissedSlots++; next += interval; }
+                while (next <= duration && next <= clock.ElapsedMs) { result.MissedSlots++; next += interval; }
             }
             if (clock.ElapsedMs < duration) await clock.DelayAsync((int)(duration - clock.ElapsedMs), ct).ConfigureAwait(false);
             ct.ThrowIfCancellationRequested();
