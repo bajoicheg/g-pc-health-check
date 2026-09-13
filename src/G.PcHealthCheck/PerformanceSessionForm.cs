@@ -69,6 +69,7 @@ internal sealed class PerformanceSessionForm : Form
         _start.Click += async (_, _) => await StartAsync();
         _stop.Click += (_, _) => { _cancellation?.Cancel(); _stop.Enabled = _mark.Enabled = false; _state.Text = "Остановка запрошена; ожидается завершение текущего системного вызова."; };
         _mark.Click += (_, _) => Mark();
+        _duration.SelectedIndexChanged += (_, _) => SessionOptionsChanged(); _interval.SelectedIndexChanged += (_, _) => SessionOptionsChanged();
         _metric.SelectedIndexChanged += (_, _) => RefreshChart();
         _copy.Click += (_, _) => { if (_current is { } s) TryUi(() => Clipboard.SetText(PerformanceSessionReport.Summary(s))); };
         _export.Click += (_, _) => Export();
@@ -85,11 +86,26 @@ internal sealed class PerformanceSessionForm : Form
         UpdateButtons();
     }
 
+    private PerformanceSessionOptions CurrentOptions() => new((int)_duration.SelectedItem!, (int)_interval.SelectedItem!);
+    private string SavedStateText(PerformanceSessionSnapshot snapshot)
+    {
+        var evidence = snapshot.Outcome == "Failed"
+            ? "Сеанс прерван; доступные данные можно сохранить."
+            : $"{PerformanceSessionReport.Outcome(snapshot.Outcome)}: {snapshot.ElapsedMs / 1000d:0.0} с; замеров {snapshot.Samples.Count}; пропущено интервалов {snapshot.MissedSlots}. {PerformanceStatistics.Completeness(snapshot)}.";
+        return CurrentOptions() == snapshot.Options
+            ? evidence
+            : $"Параметры следующего запуска изменены; показаны результаты предыдущего сеанса ({snapshot.Options.DurationSeconds} с / {snapshot.Options.IntervalSeconds} с). {evidence}";
+    }
+    private void SessionOptionsChanged()
+    {
+        if (!_busy && _current is { } snapshot) _state.Text = SavedStateText(snapshot);
+    }
+
     private async Task StartAsync()
     {
         if (_busy || IsDisposed) return;
         if (!Gate.Wait(0)) { _state.Text = "Предыдущий сеанс ещё завершает системный вызов. Дождитесь его окончания."; return; }
-        var options = new PerformanceSessionOptions((int)_duration.SelectedItem!, (int)_interval.SelectedItem!);
+        var options = CurrentOptions();
         var cancellation = new CancellationTokenSource();
         var clock = new MonotonicPerformanceClock();
         _cancellation = cancellation; _clock = clock; _busy = true;
@@ -113,7 +129,7 @@ internal sealed class PerformanceSessionForm : Form
             result.Markers = _markerData.ToList(); _current = result; _live = null;
             _samples.Rows.Clear(); foreach (var sample in result.Samples) AddSample(sample);
             UpdateStatistics(result); RefreshChart();
-            _state.Text = $"{PerformanceSessionReport.Outcome(result.Outcome)}: {result.ElapsedMs / 1000d:0.0} с; замеров {result.Samples.Count}; пропущено интервалов {result.MissedSlots}. {PerformanceStatistics.Completeness(result)}.";
+            _state.Text = SavedStateText(result);
             ShowDetail();
         }
         catch (Exception ex)
@@ -122,7 +138,7 @@ internal sealed class PerformanceSessionForm : Form
             live.Outcome = cancellation.IsCancellationRequested ? "Stopped" : "Failed";
             live.ElapsedMs = clock.ElapsedMs; live.FinishedAt = clock.Now; live.Markers = _markerData.ToList();
             live.Warnings.Add($"Не удалось завершить сеанс: {ex.GetType().Name}, 0x{ex.HResult:X8}.");
-            _current = live; _live = null; _state.Text = "Сеанс прерван; доступные данные можно сохранить.";
+            _current = live; _live = null; _state.Text = SavedStateText(live);
             UpdateStatistics(live); RefreshChart(); ShowDetail();
         }
         finally
