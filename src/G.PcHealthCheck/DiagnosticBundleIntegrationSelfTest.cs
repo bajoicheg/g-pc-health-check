@@ -108,6 +108,27 @@ internal static class DiagnosticBundleIntegrationSelfTest
             Require(field?.FieldType == clockType, "DiagnosticBundleForm does not use the monotonic marker clock.");
         });
 
+        Test("bundle excludes symptom markers beyond collected performance window", () =>
+        {
+            var coreType = typeof(MainForm).Assembly.GetType("G.PcHealthCheck.DiagnosticBundleCore");
+            var attach = coreType?.GetMethod("AttachPerformanceMarkers", BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
+            Require(attach is not null, "Diagnostic bundle has no final performance-window marker boundary.");
+
+            var performance = new PerformanceSessionSnapshot { ElapsedMs = 2000 };
+            var pending = new[]
+            {
+                new PerformanceMarker(500, "во время сбора"),
+                new PerformanceMarker(2500, "после фактического завершения")
+            };
+            var excluded = Convert.ToInt32(attach!.Invoke(null, [performance, pending]));
+            Require(excluded == 1, "Late marker was not reported as excluded.");
+            Require(performance.Markers.Count == 1 && performance.Markers[0].OffsetMs == 500,
+                "Marker outside the collected performance window was retained.");
+            Require(performance.Warnings.Any(value => value.Contains("отмет", StringComparison.OrdinalIgnoreCase)
+                && value.Contains("временн", StringComparison.OrdinalIgnoreCase)),
+                "Excluded marker is not visible in performance warnings.");
+        });
+
         Test("bundle UI exposes no active probe or remediation controls", () =>
         {
             using var form = CreateForm();
