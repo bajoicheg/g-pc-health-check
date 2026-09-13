@@ -196,8 +196,15 @@ internal sealed class PerformanceSessionForm : Form
     {
         if (_busy || _current is not { } snapshot) return;
         using var dialog = new FolderBrowserDialog { Description = "Сохранить весь сеанс. Заметки могут содержать чувствительные сведения.", UseDescriptionForTitle = true };
-        if (dialog.ShowDialog(this) == DialogResult.OK) TryUi(() => _state.Text = "Сохранено: " + PerformanceSessionExport.Save(snapshot, dialog.SelectedPath));
+        if (dialog.ShowDialog(this) != DialogResult.OK) return;
+        try { _state.Text = "Сохранено: " + PerformanceSessionExport.Save(snapshot, dialog.SelectedPath); }
+        catch (Exception ex)
+        {
+            ApplyExportFailure(ex);
+            MessageBox.Show(this, ex.Message, "Действие не завершено", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
     }
+    private void ApplyExportFailure(Exception ex) => _state.Text = $"Экспорт не завершён: {ex.GetType().Name}, 0x{ex.HResult:X8}.";
     private void TryUi(Action action) { try { action(); } catch (Exception ex) { MessageBox.Show(this, ex.Message, "Действие не завершено", MessageBoxButtons.OK, MessageBoxIcon.Warning); } }
     private void AddColumn(string name, string title, Type type, int width, string format = "0.##")
         => _samples.Columns.Add(new DataGridViewTextBoxColumn { Name = name, HeaderText = title, Width = width, ValueType = type, SortMode = DataGridViewColumnSortMode.Automatic, DefaultCellStyle = new DataGridViewCellStyle { Format = format, NullValue = "—" } });
