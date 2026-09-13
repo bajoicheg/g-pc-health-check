@@ -87,7 +87,7 @@ internal sealed class FileUseForm : Form
             FileUseSnapshot result;
             try
             {
-                var progress = new Progress<string>(text => { if (!IsDisposed) _stage = text; });
+                var progress = new Progress<string>(text => ApplyCollectionProgress(cancellation, text));
                 result = await Task.Run(() => FileUseService.Collect(new FileUseWindowsSource(), path, ExecutionContextService.Capture(), cancellation.Token, progress), cancellation.Token);
             }
             finally { Gate.Release(); }
@@ -97,6 +97,10 @@ internal sealed class FileUseForm : Form
         catch (OperationCanceledException) { if (!IsDisposed) _status.Text = "Сбор не начат; предыдущие результаты сохранены."; }
         catch (Exception ex) { if (!IsDisposed) _status.Text = "Сбор не завершён; предыдущие результаты сохранены. " + ex.GetType().Name + ": " + ex.Message; }
         finally { _cancellation = null; _busy = false; if (!IsDisposed) { _timer.Stop(); UpdateButtons(); } }
+    }
+    private void ApplyCollectionProgress(CancellationTokenSource owner, string text)
+    {
+        if (!IsDisposed && ReferenceEquals(_cancellation, owner) && !owner.IsCancellationRequested) _stage = text;
     }
     private void RenderRows()
     {
