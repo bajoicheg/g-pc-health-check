@@ -271,7 +271,16 @@ internal sealed class StorageReviewForm : Form
         if (_snapshot is not { } snapshot || _cancellation is not null) return;
         using var dialog = new FolderBrowserDialog { Description = "Отчёт содержит пути и идентификаторы. Выберите папку; перед передачей проверьте данные.", UseDescriptionForTitle = true };
         if (dialog.ShowDialog(this) != DialogResult.OK) return;
-        TryUi(() => { _status.Text = "HTML и JSON сохранены: " + StorageReviewReport.Save(snapshot, dialog.SelectedPath); });
+        try { _status.Text = "HTML и JSON сохранены: " + StorageReviewReport.Save(snapshot, dialog.SelectedPath); }
+        catch (Exception ex)
+        {
+            ApplyExportFailure(ex);
+            MessageBox.Show(this, ex.Message, "Действие не завершено полностью", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+    }
+    private void ApplyExportFailure(Exception ex)
+    {
+        if (!IsDisposed) _status.Text = $"Экспорт не завершён: {ex.GetType().Name}, 0x{ex.HResult:X8}.";
     }
     private void UpdateButtons()
     {
