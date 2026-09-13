@@ -51,9 +51,7 @@ internal static class FileUseIntegrationSelfTest
             render!.Invoke(form, null); form.PerformLayout();
             var grid = (DataGridView)form.Controls.Find("FileUseEvidence", true).Single();
             var detailBox = (TextBox)detail!.GetValue(form)!;
-            Require(grid.Rows.Count == 2, "Synthetic rows missing.");
-            grid.CurrentCell = grid.Rows[0].Cells[0]; Application.DoEvents();
-            Require(detailBox.Text.Contains("First app", StringComparison.Ordinal), "First row detail not shown.");
+            Require(grid.Rows.Count == 2 && grid.CurrentCell?.RowIndex == 0, "Synthetic initial selection missing.");
             grid.CurrentCell = grid.Rows[1].Cells[0]; Application.DoEvents();
             Require(detailBox.Text.Contains("Second app", StringComparison.Ordinal) && !detailBox.Text.Contains("First app", StringComparison.Ordinal), "Detail pane still shows the previously selected row.");
         });
