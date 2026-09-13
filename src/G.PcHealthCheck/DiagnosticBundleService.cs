@@ -1,10 +1,15 @@
+using System.Diagnostics;
+
 namespace G.PcHealthCheck;
 
 internal sealed record DiagnosticBundleProgress(
     DiagnosticBundleCategory Category,
     string Phase,
     string Message,
-    DateTimeOffset Timestamp);
+    DateTimeOffset Timestamp)
+{
+    public long MonotonicTimestamp { get; init; } = Stopwatch.GetTimestamp();
+}
 
 internal interface IDiagnosticBundleCollector
 {
