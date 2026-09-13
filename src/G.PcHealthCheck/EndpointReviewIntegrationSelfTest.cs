@@ -60,6 +60,27 @@ internal static class EndpointReviewIntegrationSelfTest
             Require(grid.CurrentCell?.RowIndex == 1, "Second synthetic endpoint row was not selected.");
             Require(detailBox.Text.Contains("Second app", StringComparison.Ordinal) && !detailBox.Text.Contains("First app", StringComparison.Ordinal), "Endpoint detail pane still shows the previously selected row.");
         });
+        Test("late endpoint progress cannot overwrite a newer collection stage", () =>
+        {
+            var type = typeof(MainForm).Assembly.GetType("G.PcHealthCheck.EndpointReviewForm"); Require(type is not null, "Endpoint window missing.");
+            using var form = (Form)Activator.CreateInstance(type!)!;
+            var cancellationField = type!.GetField("_cancellation", BindingFlags.Instance | BindingFlags.NonPublic);
+            var stageField = type.GetField("_stage", BindingFlags.Instance | BindingFlags.NonPublic);
+            var apply = type.GetMethod("ApplyCollectionProgress", BindingFlags.Instance | BindingFlags.NonPublic);
+            Require(cancellationField is not null && stageField is not null && apply is not null, "Endpoint progress ownership boundary missing.");
+            using var oldRun = new CancellationTokenSource(); using var newRun = new CancellationTokenSource();
+            cancellationField!.SetValue(form, oldRun);
+            apply!.Invoke(form, [oldRun, "old run active"]);
+            Require((string?)stageField!.GetValue(form) == "old run active", "Active endpoint progress was not accepted.");
+            cancellationField.SetValue(form, newRun); stageField.SetValue(form, "new run waiting");
+            apply.Invoke(form, [oldRun, "late old progress"]);
+            Require((string?)stageField.GetValue(form) == "new run waiting", "Late progress from a previous endpoint run overwrote the newer stage.");
+            apply.Invoke(form, [newRun, "new run active"]);
+            Require((string?)stageField.GetValue(form) == "new run active", "Current endpoint progress was not accepted.");
+            newRun.Cancel(); stageField.SetValue(form, "new run cancellation requested");
+            apply.Invoke(form, [newRun, "late cancelled progress"]);
+            Require((string?)stageField.GetValue(form) == "new run cancellation requested", "Progress after endpoint cancellation overwrote the cancellation stage.");
+        });
         Test("analysis menu attaches exactly once", () =>
         {
             var type = typeof(MainForm).Assembly.GetType("G.PcHealthCheck.EndpointReviewMenu"); Require(type is not null, "Endpoint menu missing.");
