@@ -81,6 +81,20 @@ internal static class EndpointReviewIntegrationSelfTest
             apply.Invoke(form, [newRun, "late cancelled progress"]);
             Require((string?)stageField.GetValue(form) == "new run cancellation requested", "Progress after endpoint cancellation overwrote the cancellation stage.");
         });
+        Test("endpoint export failure leaves an explicit terminal status", () =>
+        {
+            var type = typeof(MainForm).Assembly.GetType("G.PcHealthCheck.EndpointReviewForm"); Require(type is not null, "Endpoint window missing.");
+            using var form = (Form)Activator.CreateInstance(type!)!;
+            var statusField = type!.GetField("_status", BindingFlags.Instance | BindingFlags.NonPublic);
+            var applyFailure = type.GetMethod("ApplyExportFailureStatus", BindingFlags.Instance | BindingFlags.NonPublic);
+            Require(statusField is not null && applyFailure is not null, "Endpoint export failure status boundary missing.");
+            var status = (Label)statusField!.GetValue(form)!;
+            status.Text = "Сохраняю оба снимка…";
+            applyFailure!.Invoke(form, [new IOException("synthetic export failure")]);
+            Require(status.Text.Contains("Сохранение не завершено", StringComparison.Ordinal)
+                && !status.Text.Contains("Сохраняю", StringComparison.Ordinal),
+                "Endpoint export failure left the UI looking like an active save.");
+        });
         Test("analysis menu attaches exactly once", () =>
         {
             var type = typeof(MainForm).Assembly.GetType("G.PcHealthCheck.EndpointReviewMenu"); Require(type is not null, "Endpoint menu missing.");
