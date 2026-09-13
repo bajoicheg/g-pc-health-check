@@ -73,6 +73,25 @@ internal static class PerformanceSessionUiSelfTest
             Require(grid.CurrentCell?.RowIndex == 1, "Second performance sample row was not selected.");
             Require(detail.Text.Contains("SECOND_SYNTHETIC_WARNING", StringComparison.Ordinal), "Performance sample detail still shows the previously selected row.");
         });
+        Test("completed-session options distinguish next run from visible evidence", () =>
+        {
+            using var form = (Form)Activator.CreateInstance(TypeOf("PerformanceSessionForm"))!;
+            var type = TypeOf("PerformanceSessionForm"); var flags = BindingFlags.Instance | BindingFlags.NonPublic;
+            var currentField = type.GetField("_current", flags); var durationField = type.GetField("_duration", flags); var intervalField = type.GetField("_interval", flags); var stateField = type.GetField("_state", flags);
+            Require(currentField is not null && durationField is not null && intervalField is not null && stateField is not null, "Performance option/evidence UI boundary missing.");
+            var snapshot = new PerformanceSessionSnapshot { Options = new(120, 2), Outcome = "Completed", ElapsedMs = 120000, StartedAt = DateTimeOffset.Parse("2026-01-01T00:00:00Z") };
+            currentField!.SetValue(form, snapshot);
+            var duration = (ComboBox)durationField!.GetValue(form)!; var interval = (ComboBox)intervalField!.GetValue(form)!; var state = (Label)stateField!.GetValue(form)!;
+            state.Text = "Завершённый сеанс: параметры 120/2.";
+            duration.SelectedItem = 60; Application.DoEvents();
+            Require(state.Text.Contains("следующ", StringComparison.OrdinalIgnoreCase) && state.Text.Contains("предыдущ", StringComparison.OrdinalIgnoreCase), "Changed duration is visually presented as if it described the visible completed session.");
+            duration.SelectedItem = 120; Application.DoEvents();
+            Require(!state.Text.Contains("следующ", StringComparison.OrdinalIgnoreCase), "Restored duration still marks completed evidence as stale.");
+            interval.SelectedItem = 1; Application.DoEvents();
+            Require(state.Text.Contains("следующ", StringComparison.OrdinalIgnoreCase) && state.Text.Contains("предыдущ", StringComparison.OrdinalIgnoreCase), "Changed interval is visually presented as if it described the visible completed session.");
+            interval.SelectedItem = 2; Application.DoEvents();
+            Require(!state.Text.Contains("следующ", StringComparison.OrdinalIgnoreCase), "Restored interval still marks completed evidence as stale.");
+        });
         foreach (var metric in Enum.GetValues<SessionMetric>())
             Test("render graph with missing data " + metric, () =>
             {
