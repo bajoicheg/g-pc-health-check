@@ -60,6 +60,26 @@ internal static class DiagnosticBundleCore
         return useful ? "Partial" : snapshot.CancellationRequested ? "Cancelled" : "Unavailable";
     }
 
+    public static int AttachPerformanceMarkers(PerformanceSessionSnapshot performance, IEnumerable<PerformanceMarker> pending)
+    {
+        ArgumentNullException.ThrowIfNull(performance);
+        ArgumentNullException.ThrowIfNull(pending);
+
+        var excluded = 0;
+        foreach (var marker in pending)
+        {
+            if (performance.Markers.Count >= 100 || marker.OffsetMs < 0 || marker.OffsetMs > performance.ElapsedMs)
+            {
+                excluded++;
+                continue;
+            }
+            performance.Markers.Add(marker);
+        }
+        if (excluded > 0)
+            performance.Warnings.Add($"{excluded} отметок симптомов получены вне фактической временной шкалы производительности или сверх лимита и не включены.");
+        return excluded;
+    }
+
     public static IReadOnlyList<DiagnosticEventHighlight> EventHighlights(IncidentSnapshot snapshot, int maximum = 10)
     {
         ArgumentNullException.ThrowIfNull(snapshot);

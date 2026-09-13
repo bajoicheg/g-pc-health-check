@@ -197,7 +197,7 @@ internal sealed class DiagnosticBundleForm : Form
 
             if (IsDisposed) return;
             if (result.Performance.Payload is { } performance && _pendingMarkers.Count > 0)
-                performance.Markers.AddRange(_pendingMarkers.Take(100));
+                DiagnosticBundleCore.AttachPerformanceMarkers(performance, _pendingMarkers);
             _lastAttempt = result;
             RenderSources(result);
             _summary.Text = DiagnosticBundleReport.Summary(result);
