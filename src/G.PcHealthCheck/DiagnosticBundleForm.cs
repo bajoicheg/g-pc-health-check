@@ -90,6 +90,15 @@ internal sealed class DiagnosticBundleForm : Form
 
         _summary.Text = "Пакет ещё не собран. Выберите режим и категории, затем нажмите «Собрать пакет». Ничего не запускается при открытии окна.";
         _mode.SelectedIndexChanged += (_, _) => ApplyModeDefaults();
+        _sources.CurrentCellDirtyStateChanged += (_, _) =>
+        {
+            if (_sources.IsCurrentCellDirty && _sources.CurrentCell is DataGridViewCheckBoxCell)
+                _sources.CommitEdit(DataGridViewDataErrorContexts.Commit);
+        };
+        _sources.CellValueChanged += (_, e) =>
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex == _sources.Columns["Included"].Index) SourceSelectionChanged();
+        };
         _start.Click += async (_, _) => await StartAsync();
         _stop.Click += (_, _) => RequestStop();
         _copy.Click += (_, _) => { if (_current is { } snapshot) TryUi(() => Clipboard.SetText(DiagnosticBundleReport.Summary(snapshot))); };
@@ -148,14 +157,30 @@ internal sealed class DiagnosticBundleForm : Form
 
     private DiagnosticBundleMode CurrentMode() => _mode.SelectedIndex == 1 ? DiagnosticBundleMode.Extended : DiagnosticBundleMode.Quick;
 
-    private DiagnosticBundleOptions BuildOptions()
-    {
-        _sources.EndEdit();
-        var selected = _sources.Rows.Cast<DataGridViewRow>()
+    private HashSet<DiagnosticBundleCategory> SelectedCategories()
+        => _sources.Rows.Cast<DataGridViewRow>()
             .Where(row => row.Tag is DiagnosticBundleCategory && Convert.ToBoolean(row.Cells["Included"].Value ?? false))
             .Select(row => (DiagnosticBundleCategory)row.Tag!)
             .ToHashSet();
-        var options = new DiagnosticBundleOptions(CurrentMode(), selected,
+
+    private void SourceSelectionChanged()
+    {
+        if (_busy || _current is not { } current) return;
+        var matchesSaved = SelectedCategories().SetEquals(current.Options.Categories);
+        if (!matchesSaved)
+        {
+            _status.Text = "Категории следующего сбора изменены; показан предыдущий собранный пакет. Состояния источников относятся к отображаемому пакету.";
+            return;
+        }
+        _status.Text = CurrentMode() == current.Options.Mode
+            ? "Отображается собранный пакет; выбранные категории совпадают с сохранённым пакетом. Состояния источников относятся к отображаемому пакету."
+            : "Отображается предыдущий собранный пакет; параметры выше применятся к следующему сбору. Состояния источников относятся к отображаемому пакету.";
+    }
+
+    private DiagnosticBundleOptions BuildOptions()
+    {
+        _sources.EndEdit();
+        var options = new DiagnosticBundleOptions(CurrentMode(), SelectedCategories(),
             Convert.ToInt32(_duration.SelectedItem ?? 60), Convert.ToInt32(_interval.SelectedItem ?? 2));
         DiagnosticBundleCore.Validate(options);
         return options;
