@@ -58,6 +58,10 @@ internal static class DiagnosticBundleReport
             foreach (var finding in findings)
                 builder.AppendLine($"{finding.Severity}: {finding.Category} — {finding.Title}; {finding.Value}. {finding.Recommendation}".TrimEnd());
         }
+        else if (!snapshot.Health.Requested)
+        {
+            builder.AppendLine("Health Check исключён оператором; Health Score в пакет не включён.");
+        }
         else
         {
             builder.AppendLine("Health Check не дал полезного payload; отсутствие оценки не считается здоровым состоянием.");
@@ -165,6 +169,11 @@ internal static class DiagnosticBundleReport
     private static void AppendFindings(StringBuilder builder, DiagnosticBundleSnapshot snapshot)
     {
         builder.Append("<section><h2>Главные выводы Health Check</h2>");
+        if (!snapshot.Health.Requested)
+        {
+            builder.Append("<p>").Append(H("Health Check исключён оператором; Health Score в пакет не включён.")).Append("</p></section>");
+            return;
+        }
         if (snapshot.Health.Payload is not { } health)
         {
             builder.Append("<p class='warn'>").Append(H("Health Check: " + StateText(snapshot.Health.State) + ". Отсутствующий источник не считается здоровым.")).Append("</p></section>");
