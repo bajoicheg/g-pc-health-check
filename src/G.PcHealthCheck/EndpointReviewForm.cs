@@ -109,8 +109,19 @@ internal sealed class EndpointReviewForm : Form
         var previous = _previous; var target = dialog.SelectedPath;
         _busy = _exporting = true; _stage = "Сохраняю оба снимка…"; _elapsed.Restart(); _timer.Start(); UpdateButtons();
         try { var folder = await Task.Run(() => EndpointReviewReport.Save(current, previous, target)); if (!IsDisposed) _status.Text = "Сохранено: " + folder; }
-        catch (Exception ex) { if (!IsDisposed) MessageBox.Show(this, "Сохранение не завершено полностью. " + ex.Message, "Экспорт", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+        catch (Exception ex)
+        {
+            if (!IsDisposed)
+            {
+                ApplyExportFailureStatus(ex);
+                MessageBox.Show(this, "Сохранение не завершено полностью. " + ex.Message, "Экспорт", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
         finally { _busy = _exporting = false; if (!IsDisposed) { _timer.Stop(); UpdateButtons(); } }
+    }
+    private void ApplyExportFailureStatus(Exception ex)
+    {
+        _status.Text = $"Сохранение не завершено: {ex.GetType().Name}, 0x{ex.HResult:X8}.";
     }
     private void UpdateButtons()
     {
