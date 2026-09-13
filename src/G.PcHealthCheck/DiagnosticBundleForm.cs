@@ -222,6 +222,7 @@ internal sealed class DiagnosticBundleForm : Form
             }
             finally { Gate.Release(); }
 
+            ReleaseCollectionProgressOwner(cancellation);
             if (IsDisposed) return;
             if (result.Performance.Payload is { } performance && _pendingMarkers.Count > 0)
                 DiagnosticBundleCore.AttachPerformanceMarkers(performance, _pendingMarkers);
@@ -229,15 +230,17 @@ internal sealed class DiagnosticBundleForm : Form
         }
         catch (OperationCanceledException)
         {
+            ReleaseCollectionProgressOwner(cancellation);
             if (!IsDisposed) _status.Text = "Сбор отменён до получения нового полезного результата; предыдущий пакет сохранён в памяти.";
         }
         catch (Exception ex)
         {
+            ReleaseCollectionProgressOwner(cancellation);
             if (!IsDisposed) _status.Text = $"Сбор не завершён: {ex.GetType().Name}; 0x{ex.HResult:X8}. Предыдущий пакет сохранён в памяти.";
         }
         finally
         {
-            _cancellation = null; _busy = false; _performancePhase = false; _performanceMarkerClock.Reset(); _elapsed.Stop();
+            ReleaseCollectionProgressOwner(cancellation); _busy = false; _performancePhase = false; _performanceMarkerClock.Reset(); _elapsed.Stop();
             if (!IsDisposed) { _timer.Stop(); FreezeInputs(false); UpdateButtons(); }
         }
     }
@@ -253,6 +256,11 @@ internal sealed class DiagnosticBundleForm : Form
             if (item.Phase == "Finished") { _performancePhase = false; _performanceMarkerClock.Reset(); }
             UpdateButtons();
         }
+    }
+
+    private void ReleaseCollectionProgressOwner(CancellationTokenSource owner)
+    {
+        if (ReferenceEquals(_cancellation, owner)) _cancellation = null;
     }
 
     private void RequestStop()
