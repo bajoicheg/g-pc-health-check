@@ -328,14 +328,24 @@ internal sealed class DiagnosticBundleForm : Form
         }
         catch (Exception ex)
         {
-            if (!IsDisposed) MessageBox.Show(this,
-                "Сохранение не завершено полностью. Если ошибка возникла при ZIP, уже созданная папка evidence могла сохраниться.\n" + ex.Message,
-                "Сохранение пакета", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            if (!IsDisposed)
+            {
+                ApplySaveFailure(ex);
+                MessageBox.Show(this,
+                    "Сохранение не завершено полностью. Если ошибка возникла при ZIP, уже созданная папка evidence могла сохраниться.\n" + ex.Message,
+                    "Сохранение пакета", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
         finally
         {
             _saving = _busy = false; _elapsed.Stop(); if (!IsDisposed) { _timer.Stop(); FreezeInputs(false); UpdateButtons(); }
         }
+    }
+
+    private void ApplySaveFailure(Exception ex)
+    {
+        _stage = $"Сохранение не завершено: {ex.GetType().Name}, 0x{ex.HResult:X8}.";
+        _status.Text = _stage;
     }
 
     private DiagnosticBundleSaveRequest CreateSaveRequest(DiagnosticBundleSnapshot snapshot, string parentDirectory)
