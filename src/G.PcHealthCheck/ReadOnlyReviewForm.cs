@@ -70,7 +70,9 @@ internal sealed class ReadOnlyReviewForm : Form
         _cancel.Click += (_, _) => { _cancellation?.Cancel(); _status.Text = "Отмена запрошена; ожидается завершение текущего вызова поставщика данных."; UpdateButtons(); };
         _copy.Click += (_, _) => { if (_snapshot is { } snapshot) TryUi(() => { Clipboard.SetText(ReviewReport.Summary(snapshot)); _status.Text = "Скопирован весь сохранённый снимок, независимо от поиска."; }); };
         _export.Click += (_, _) => Export(); _close.Click += (_, _) => Close();
-        _search.TextChanged += (_, _) => RenderRows(); _grid.SelectionChanged += (_, _) => RenderDetail();
+        _search.TextChanged += (_, _) => RenderRows();
+        // SelectionChanged can fire while CurrentRow still points at the previous cell.
+        _grid.CurrentCellChanged += (_, _) => RenderDetail();
         Shown += async (_, _) => await ScanAsync(); FormClosing += (_, _) => _cancellation?.Cancel();
         AcceptButton = _scan; CancelButton = _close;
         _overview.Text = "Снимок ещё не собран."; _status.Text = "Готов к проверке."; UpdateButtons();
