@@ -59,6 +59,29 @@ internal static class DiagnosticBundleIntegrationSelfTest
                 "Privacy examples are missing.");
         });
 
+        Test("bundle save snapshots UI values before background work", () =>
+        {
+            var assembly = typeof(MainForm).Assembly;
+            var requestType = assembly.GetType("G.PcHealthCheck.DiagnosticBundleSaveRequest");
+            Require(requestType is not null, "UI-free diagnostic bundle save request missing.");
+
+            var memberTypes = requestType!.GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+                .Select(property => property.PropertyType)
+                .Concat(requestType.GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+                    .Select(field => field.FieldType));
+            Require(memberTypes.All(type => !typeof(Control).IsAssignableFrom(type)),
+                "Background save request retains a WinForms Control.");
+
+            var execute = requestType.GetMethod("ExecuteAsync", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            Require(execute is not null && execute.GetParameters().Length == 0,
+                "Background save request has no parameterless ExecuteAsync boundary.");
+
+            var formType = assembly.GetType("G.PcHealthCheck.DiagnosticBundleForm");
+            var capture = formType?.GetMethod("CreateSaveRequest", BindingFlags.Instance | BindingFlags.NonPublic);
+            Require(capture is not null && capture.ReturnType == requestType,
+                "DiagnosticBundleForm does not snapshot save inputs on the UI thread.");
+        });
+
         Test("bundle UI exposes no active probe or remediation controls", () =>
         {
             using var form = CreateForm();
