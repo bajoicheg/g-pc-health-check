@@ -8,7 +8,7 @@ namespace G.PcHealthCheck;
 
 internal static class PerformanceSessionReport
 {
-    public const string Boundary = "Это наблюдение, не стресс-тест. Порог и совпадение с отметкой не доказывает причину сбоя. Статистика рассчитана по доступным замерам, не по доле времени; пропуски не равны нулю. CPU — среднее между отсчётами GetSystemTimes, RAM — физическая память, диски — WMI PhysicalDisk _Total (100 − PercentIdleTime и текущая очередь), не только системный том. Показатели читаются последовательно, не атомарно; WMI использует свой интервал обновления. Сбор и другое ПО могут влиять на нагрузку. Индекс здоровья не изменяется.";
+    public const string Boundary = "Это наблюдение, не стресс-тест. Порог и совпадение с отметкой не доказывает причину сбоя. Статистика рассчитана по доступным замерам, не по доле времени; недоступные и пропущенные значения не подставляются как нули. CPU — среднее между отсчётами GetSystemTimes, RAM — физическая память, диски — WMI PhysicalDisk _Total (100 − PercentIdleTime и текущая очередь), не только системный том. Показатели читаются последовательно, не атомарно; WMI использует свой интервал обновления. Сбор и другое ПО могут влиять на нагрузку. Индекс здоровья не изменяется.";
     private static readonly JsonSerializerOptions Options = new() { WriteIndented = true, Converters = { new JsonStringEnumConverter() } };
 
     public static string Json(PerformanceSessionSnapshot snapshot)
