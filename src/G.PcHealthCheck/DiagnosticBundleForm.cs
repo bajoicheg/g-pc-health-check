@@ -208,18 +208,7 @@ internal sealed class DiagnosticBundleForm : Form
         _context.Text = ExecutionPolicy.Describe(context);
         FreezeInputs(true); UpdateButtons();
 
-        var progress = new Progress<DiagnosticBundleProgress>(item =>
-        {
-            if (IsDisposed) return;
-            _stage = SourceName(item.Category) + ": " + item.Message;
-            SetSourceState(item.Category, item.Phase == "Finished" ? "Завершено" : "Сбор…");
-            if (item.Category == DiagnosticBundleCategory.Performance)
-            {
-                if (item.Phase == "Starting") { _performancePhase = true; _performanceMarkerClock.Start(item.MonotonicTimestamp); }
-                if (item.Phase == "Finished") { _performancePhase = false; _performanceMarkerClock.Reset(); }
-                UpdateButtons();
-            }
-        });
+        var progress = new Progress<DiagnosticBundleProgress>(item => ApplyCollectionProgress(cancellation, item));
 
         try
         {
@@ -250,6 +239,19 @@ internal sealed class DiagnosticBundleForm : Form
         {
             _cancellation = null; _busy = false; _performancePhase = false; _performanceMarkerClock.Reset(); _elapsed.Stop();
             if (!IsDisposed) { _timer.Stop(); FreezeInputs(false); UpdateButtons(); }
+        }
+    }
+
+    private void ApplyCollectionProgress(CancellationTokenSource owner, DiagnosticBundleProgress item)
+    {
+        if (IsDisposed || !ReferenceEquals(_cancellation, owner) || owner.IsCancellationRequested) return;
+        _stage = SourceName(item.Category) + ": " + item.Message;
+        SetSourceState(item.Category, item.Phase == "Finished" ? "Завершено" : "Сбор…");
+        if (item.Category == DiagnosticBundleCategory.Performance)
+        {
+            if (item.Phase == "Starting") { _performancePhase = true; _performanceMarkerClock.Start(item.MonotonicTimestamp); }
+            if (item.Phase == "Finished") { _performancePhase = false; _performanceMarkerClock.Reset(); }
+            UpdateButtons();
         }
     }
 
