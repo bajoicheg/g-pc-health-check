@@ -53,7 +53,8 @@ internal sealed class CommonProblemsForm : Form
         _grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(CommonProblemFinding.Status), HeaderText = "Статус", Width = 85 });
         _grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(CommonProblemFinding.Title), HeaderText = "Проверка", Width = 320 });
         _grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(CommonProblemFinding.Evidence), HeaderText = "Наблюдаемые данные", AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill, MinimumWidth = 220 });
-        _grid.SelectionChanged += (_, _) => ShowDetail();
+        // SelectionChanged can fire while CurrentRow still points at the previous cell.
+        _grid.CurrentCellChanged += (_, _) => ShowDetail();
         root.Controls.Add(_grid, 0, 2);
         _detail.Dock = DockStyle.Fill; _detail.Multiline = true; _detail.ReadOnly = true; _detail.ScrollBars = ScrollBars.Vertical;
         root.Controls.Add(_detail, 0, 3);
