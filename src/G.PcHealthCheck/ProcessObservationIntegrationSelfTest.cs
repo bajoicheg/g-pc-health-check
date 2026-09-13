@@ -43,6 +43,26 @@ internal static class ProcessObservationIntegrationSelfTest
             using var f = (Form)Activator.CreateInstance(type!, [ProcessObservationSelfTest.Target])!; f.PerformLayout();
             Require(f.Controls.Find("ObservationStart", true).Single().Enabled && !f.Controls.Find("ObservationExport", true).Single().Enabled && f.Controls.Find("ProcessTimeline", true).Length == 1 && f.Controls.Find("SystemTimeline", true).Length == 1, "Idle controls/charts absent.");
         });
+        Test("completed observation options distinguish next run from visible evidence", () =>
+        {
+            var type = typeof(MainForm).Assembly.GetType("G.PcHealthCheck.ProcessObservationForm"); Require(type is not null, "Observation form absent.");
+            using var form = (Form)Activator.CreateInstance(type!, [ProcessObservationSelfTest.Target])!;
+            var flags = BindingFlags.Instance | BindingFlags.NonPublic;
+            var currentField = type!.GetField("_current", flags); var durationField = type.GetField("_duration", flags); var intervalField = type.GetField("_interval", flags); var statusField = type.GetField("_status", flags);
+            Require(currentField is not null && durationField is not null && intervalField is not null && statusField is not null, "Observation option/evidence UI boundary missing.");
+            var snapshot = new ProcessObservationSnapshot { Target = ProcessObservationSelfTest.Target, System = new PerformanceSessionSnapshot { Options = new(120, 2), Outcome = "Completed", ElapsedMs = 120000 } };
+            currentField!.SetValue(form, snapshot);
+            var duration = (ComboBox)durationField!.GetValue(form)!; var interval = (ComboBox)intervalField!.GetValue(form)!; var status = (Label)statusField!.GetValue(form)!;
+            status.Text = "Завершённое наблюдение: параметры 120/2.";
+            duration.SelectedItem = 60; Application.DoEvents();
+            Require(status.Text.Contains("следующ", StringComparison.OrdinalIgnoreCase) && status.Text.Contains("предыдущ", StringComparison.OrdinalIgnoreCase), "Changed duration is visually presented as if it described visible observation evidence.");
+            duration.SelectedItem = 120; Application.DoEvents();
+            Require(!status.Text.Contains("следующ", StringComparison.OrdinalIgnoreCase), "Restored duration still marks observation evidence stale.");
+            interval.SelectedItem = 1; Application.DoEvents();
+            Require(status.Text.Contains("следующ", StringComparison.OrdinalIgnoreCase) && status.Text.Contains("предыдущ", StringComparison.OrdinalIgnoreCase), "Changed interval is visually presented as if it described visible observation evidence.");
+            interval.SelectedItem = 2; Application.DoEvents();
+            Require(!status.Text.Contains("следующ", StringComparison.OrdinalIgnoreCase), "Restored interval still marks observation evidence stale.");
+        });
         Test("exports never replace previous results", () =>
         {
             var root = Path.Combine(Path.GetTempPath(), "GpcProcessObs-" + Guid.NewGuid().ToString("N")); Directory.CreateDirectory(root);
