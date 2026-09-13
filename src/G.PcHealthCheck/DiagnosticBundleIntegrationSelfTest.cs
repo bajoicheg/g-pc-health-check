@@ -82,6 +82,32 @@ internal static class DiagnosticBundleIntegrationSelfTest
                 "DiagnosticBundleForm does not snapshot save inputs on the UI thread.");
         });
 
+        Test("bundle marker timing keeps producer monotonic origin", () =>
+        {
+            var assembly = typeof(MainForm).Assembly;
+            var progressType = assembly.GetType("G.PcHealthCheck.DiagnosticBundleProgress");
+            Require(progressType?.GetProperty("MonotonicTimestamp")?.PropertyType == typeof(long),
+                "Bundle progress does not carry the producer monotonic timestamp.");
+
+            var clockType = assembly.GetType("G.PcHealthCheck.DiagnosticBundleMarkerClock");
+            Require(clockType is not null, "Diagnostic bundle marker clock is missing.");
+            var start = clockType!.GetMethod("Start", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            var elapsed = clockType.GetMethod("ElapsedMs", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            Require(start is not null && elapsed is not null, "Marker clock boundary is incomplete.");
+
+            var clock = Activator.CreateInstance(clockType)!;
+            const long origin = 1_000_000;
+            var later = origin + 3L * System.Diagnostics.Stopwatch.Frequency;
+            start!.Invoke(clock, [origin]);
+            var offset = Convert.ToInt64(elapsed!.Invoke(clock, [later]));
+            Require(Math.Abs(offset - 3000) <= 1,
+                "Delayed UI dispatch changed the symptom-marker timeline origin.");
+
+            var formType = assembly.GetType("G.PcHealthCheck.DiagnosticBundleForm");
+            var field = formType?.GetField("_performanceMarkerClock", BindingFlags.Instance | BindingFlags.NonPublic);
+            Require(field?.FieldType == clockType, "DiagnosticBundleForm does not use the monotonic marker clock.");
+        });
+
         Test("bundle UI exposes no active probe or remediation controls", () =>
         {
             using var form = CreateForm();
