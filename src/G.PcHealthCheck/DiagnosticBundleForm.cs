@@ -138,6 +138,11 @@ internal sealed class DiagnosticBundleForm : Form
         var extended = mode == DiagnosticBundleMode.Extended;
         _duration.Enabled = _interval.Enabled = extended;
         _marker.Enabled = _mark.Enabled = false;
+        if (_current is { } current)
+        {
+            RenderSources(current);
+            _status.Text = "Отображается предыдущий собранный пакет; параметры выше применятся к следующему сбору. Состояния источников относятся к отображаемому пакету.";
+        }
         UpdateButtons();
     }
 
