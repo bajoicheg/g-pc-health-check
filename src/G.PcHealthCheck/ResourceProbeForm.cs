@@ -61,7 +61,7 @@ internal sealed class ResourceProbeForm : Form
         _grid.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "мс", Width = 85, ValueType = typeof(double), DefaultCellStyle = new DataGridViewCellStyle { Format = "0.##" } });
         _grid.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "Исходный IP", Width = 150 });
         _grid.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "Код", AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill, MinimumWidth = 100 });
-        _grid.SelectionChanged += (_, _) => ShowDetail(); results.Controls.Add(_grid, 0, 1); root.Controls.Add(results, 0, 5); root.Controls.Add(_detail, 0, 6);
+        _grid.CurrentCellChanged += (_, _) => ShowDetail(); results.Controls.Add(_grid, 0, 1); root.Controls.Add(results, 0, 5); root.Controls.Add(_detail, 0, 6);
         var footer = new FlowLayoutPanel { Dock = DockStyle.Fill, AutoSize = true, WrapContents = true }; footer.Controls.AddRange([_progress, _elapsed, _status]); root.Controls.Add(footer, 0, 7);
         _host.TextChanged += (_, _) => TargetChanged(); _port.ValueChanged += (_, _) => TargetChanged(); _timeout.ValueChanged += (_, _) => TargetChanged(); _consent.CheckedChanged += (_, _) => UpdateButtons();
         _run.Click += async (_, _) => await RunAsync();
