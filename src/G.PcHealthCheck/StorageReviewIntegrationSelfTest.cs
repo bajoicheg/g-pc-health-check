@@ -115,6 +115,26 @@ internal static class StorageReviewIntegrationSelfTest
             Require(grid.CurrentCell?.RowIndex == 1, "Second storage row was not selected.");
             Require(detail.Text.Contains("C:\\Synthetic\\second", StringComparison.Ordinal), "Storage detail pane still shows the previously selected row.");
         });
+        Test("folder root edits distinguish next scan from visible snapshot", () =>
+        {
+            using var form = Window(true);
+            var snapshot = new FolderUsageSnapshot
+            {
+                Root = "C:\\Synthetic",
+                Outcome = "Completed",
+                Folders = [new() { Path = "C:\\Synthetic", Bytes = 10, Files = 1, Incomplete = false }]
+            };
+            var type = TypeNamed("StorageReviewForm");
+            type.GetMethod("DisplaySnapshot", BindingFlags.Instance | BindingFlags.NonPublic)!.Invoke(form, [snapshot]);
+            var root = (TextBox)form.Controls.Find("StorageRoot", true).Single();
+            var statusField = type.GetField("_status", BindingFlags.Instance | BindingFlags.NonPublic);
+            Require(statusField is not null, "Storage root/evidence status boundary missing.");
+            var status = (Label)statusField!.GetValue(form)!;
+            root.Text = "C:\\Other"; Application.DoEvents();
+            Require(status.Text.Contains("следующ", StringComparison.OrdinalIgnoreCase) && status.Text.Contains("C:\\Synthetic", StringComparison.OrdinalIgnoreCase), "Changed folder root is visually presented as if it described visible storage evidence.");
+            root.Text = "C:\\Synthetic\\"; Application.DoEvents();
+            Require(!status.Text.Contains("следующ", StringComparison.OrdinalIgnoreCase), "Equivalent restored folder root still marks storage evidence stale.");
+        });
         Console.WriteLine($"Storage review integration: {count - failures.Count}/{count} passed.");
         foreach (var failure in failures) Console.Error.WriteLine("FAIL: " + failure);
         return failures.Count == 0 ? 0 : 231;
