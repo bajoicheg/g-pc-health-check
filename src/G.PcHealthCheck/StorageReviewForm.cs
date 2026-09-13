@@ -86,7 +86,7 @@ internal sealed class StorageReviewForm : Form
         };
         _export.Click += (_, _) => Export(); _close.Click += (_, _) => Close();
         _view.SelectedIndexChanged += (_, _) => RenderRows(); _search.TextChanged += (_, _) => RenderRows();
-        _grid.SelectionChanged += (_, _) => RenderDetail();
+        _grid.CurrentCellChanged += (_, _) => RenderDetail();
         _timer.Tick += (_, _) =>
         {
             if (_cancellation is not null && !IsDisposed) _status.Text = $"{_stage} · {_elapsed?.Elapsed.TotalSeconds:0.0} с";
