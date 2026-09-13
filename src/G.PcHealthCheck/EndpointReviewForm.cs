@@ -69,7 +69,7 @@ internal sealed class EndpointReviewForm : Form
             EndpointSnapshot result;
             try
             {
-                var progress = new Progress<string>(text => { if (!IsDisposed) _stage = text; });
+                var progress = new Progress<string>(text => ApplyCollectionProgress(cancellation, text));
                 result = await Task.Run(() => EndpointReviewService.Collect(new EndpointWindowsSource(), ExecutionContextService.Capture(), cancellation.Token, progress), cancellation.Token);
             }
             finally { Gate.Release(); }
@@ -80,6 +80,10 @@ internal sealed class EndpointReviewForm : Form
         catch (OperationCanceledException) { if (!IsDisposed) _status.Text = "Сбор не начат / отменён; прошлый снимок сохранён."; }
         catch (Exception ex) { if (!IsDisposed) _status.Text = "Сбор не завершён; прошлый снимок сохранён. " + EndpointReviewService.Describe(ex); }
         finally { _cancellation = null; _busy = false; if (!IsDisposed) { _timer.Stop(); UpdateButtons(); } }
+    }
+    private void ApplyCollectionProgress(CancellationTokenSource owner, string text)
+    {
+        if (!IsDisposed && ReferenceEquals(_cancellation, owner) && !owner.IsCancellationRequested) _stage = text;
     }
     private void RenderRows()
     {
