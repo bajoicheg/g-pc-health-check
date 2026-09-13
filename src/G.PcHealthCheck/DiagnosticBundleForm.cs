@@ -28,7 +28,7 @@ internal sealed class DiagnosticBundleForm : Form
     private readonly ProgressBar _progress = new() { Name = "BundleProgress", Style = ProgressBarStyle.Marquee, Width = 110, Visible = false };
     private readonly System.Windows.Forms.Timer _timer = new() { Interval = 250 };
     private readonly Stopwatch _elapsed = new();
-    private readonly Stopwatch _performanceElapsed = new();
+    private readonly DiagnosticBundleMarkerClock _performanceMarkerClock = new();
     private readonly List<PerformanceMarker> _pendingMarkers = [];
     private CancellationTokenSource? _cancellation;
     private DiagnosticBundleSnapshot? _current;
@@ -165,7 +165,7 @@ internal sealed class DiagnosticBundleForm : Form
 
         using var cancellation = new CancellationTokenSource();
         _cancellation = cancellation; _busy = true; _stage = "Подготовка…"; _elapsed.Restart(); _timer.Start();
-        _performanceElapsed.Reset(); _performancePhase = false; _pendingMarkers.Clear();
+        _performanceMarkerClock.Reset(); _performancePhase = false; _pendingMarkers.Clear();
         var context = ExecutionContextService.Capture();
         _context.Text = ExecutionPolicy.Describe(context);
         FreezeInputs(true); UpdateButtons();
@@ -177,8 +177,8 @@ internal sealed class DiagnosticBundleForm : Form
             SetSourceState(item.Category, item.Phase == "Finished" ? "Завершено" : "Сбор…");
             if (item.Category == DiagnosticBundleCategory.Performance)
             {
-                if (item.Phase == "Starting") { _performancePhase = true; _performanceElapsed.Restart(); }
-                if (item.Phase == "Finished") { _performancePhase = false; _performanceElapsed.Stop(); }
+                if (item.Phase == "Starting") { _performancePhase = true; _performanceMarkerClock.Start(item.MonotonicTimestamp); }
+                if (item.Phase == "Finished") { _performancePhase = false; _performanceMarkerClock.Reset(); }
                 UpdateButtons();
             }
         });
@@ -214,7 +214,7 @@ internal sealed class DiagnosticBundleForm : Form
         }
         finally
         {
-            _cancellation = null; _busy = false; _performancePhase = false; _performanceElapsed.Stop(); _elapsed.Stop();
+            _cancellation = null; _busy = false; _performancePhase = false; _performanceMarkerClock.Reset(); _elapsed.Stop();
             if (!IsDisposed) { _timer.Stop(); FreezeInputs(false); UpdateButtons(); }
         }
     }
@@ -231,7 +231,7 @@ internal sealed class DiagnosticBundleForm : Form
         var note = _marker.Text.Trim();
         if (note.Length == 0) { _status.Text = "Введите непустую заметку о симптоме."; return; }
         if (note.Length > 160) note = note[..160];
-        _pendingMarkers.Add(new PerformanceMarker(_performanceElapsed.ElapsedMilliseconds, note));
+        _pendingMarkers.Add(new PerformanceMarker(_performanceMarkerClock.ElapsedMs(Stopwatch.GetTimestamp()), note));
         _marker.Clear(); _status.Text = $"Отметка #{_pendingMarkers.Count} добавлена к временной шкале производительности.";
         UpdateButtons();
     }
