@@ -12,6 +12,7 @@ public sealed partial class MainForm : Form
     private string? _latestReport;
     private bool _isBusy;
     private object? _scanProgressOwner;
+    private object? _applyProgressOwner;
 
     private readonly Label _score = new();
     private readonly Label _state = new();
@@ -245,6 +246,11 @@ public sealed partial class MainForm : Form
         if (!IsDisposed && ReferenceEquals(_scanProgressOwner, owner)) _status.Text = text;
     }
 
+    private void ApplyOperationProgress(object owner, string text)
+    {
+        if (!IsDisposed && ReferenceEquals(_applyProgressOwner, owner)) _status.Text = text;
+    }
+
     private async Task ScanAsync()
     {
         if (_isBusy) return;
@@ -307,14 +313,24 @@ public sealed partial class MainForm : Form
         if (MessageBox.Show(this, "Будут выполнены выбранные действия:\n\n" + summary + "\n\nПосле выполнения программа автоматически повторит диагностику в исходном процессе.", "Подтвердите действия", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) != DialogResult.OK) return;
 
         var before = _current;
+        object? activeProgressOwner = null;
         try
         {
             Busy(true, "Выполняю выбранные действия…");
-            var progress = new Progress<string>(s => _status.Text = s);
-            var batch = await RemediationWorker.ExecuteFromGuiAsync(selected, _assessment.Thresholds.TempOlderThanDays, progress);
+            var remediationOwner = new object();
+            activeProgressOwner = remediationOwner;
+            _applyProgressOwner = remediationOwner;
+            var remediationProgress = new Progress<string>(s => ApplyOperationProgress(remediationOwner, s));
+            var batch = await RemediationWorker.ExecuteFromGuiAsync(selected, _assessment.Thresholds.TempOlderThanDays, remediationProgress);
+
+            var verificationOwner = new object();
+            activeProgressOwner = verificationOwner;
+            _applyProgressOwner = verificationOwner;
             _status.Text = "Повторная диагностика после remediation…";
+            var verificationProgress = new Progress<string>(s => ApplyOperationProgress(verificationOwner, s));
             var context = await Task.Run(ExecutionContextService.Capture);
-            var afterData = await _diagnostics.CollectAsync(progress);
+            var afterData = await _diagnostics.CollectAsync(verificationProgress);
+            if (ReferenceEquals(_applyProgressOwner, verificationOwner)) _applyProgressOwner = null;
             StampExecutionContext(afterData, context);
             var after = _assessment.Assess(afterData);
             var verification = new VerificationResult { Before = before, After = after, Remediation = batch };
@@ -327,9 +343,21 @@ public sealed partial class MainForm : Form
             var ok = batch.Actions.Count(x => x.Success);
             MessageBox.Show(this, $"Выполнено: {ok}/{batch.Actions.Count}. Повторная диагностика завершена.\nИндекс: {before.Assessment.Score} → {after.Assessment.Score}.\nУстранение симптома нужно подтвердить отдельно.", "G PC Health Check", MessageBoxButtons.OK, batch.Actions.All(x => x.Success) ? MessageBoxIcon.Information : MessageBoxIcon.Warning);
         }
-        catch (OperationCanceledException ex) { MessageBox.Show(this, ex.Message, "Операция отменена", MessageBoxButtons.OK, MessageBoxIcon.Information); }
-        catch (Exception ex) { MessageBox.Show(this, ex.Message, "Ошибка remediation", MessageBoxButtons.OK, MessageBoxIcon.Error); }
-        finally { Busy(false); }
+        catch (OperationCanceledException ex)
+        {
+            _applyProgressOwner = null;
+            MessageBox.Show(this, ex.Message, "Операция отменена", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        catch (Exception ex)
+        {
+            _applyProgressOwner = null;
+            MessageBox.Show(this, ex.Message, "Ошибка remediation", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        finally
+        {
+            if (activeProgressOwner is not null && ReferenceEquals(_applyProgressOwner, activeProgressOwner)) _applyProgressOwner = null;
+            Busy(false);
+        }
     }
 
     private List<ActionRecommendation> SelectedAutomatableActions()
