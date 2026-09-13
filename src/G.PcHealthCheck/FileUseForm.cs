@@ -123,8 +123,19 @@ internal sealed class FileUseForm : Form
         var previous = _previous; var parent = dialog.SelectedPath;
         _busy = _exporting = true; _stage = "Сохраняю результаты…"; _elapsed.Restart(); _timer.Start(); UpdateButtons();
         try { var folder = await Task.Run(() => FileUseReport.Save(current, previous, parent)); if (!IsDisposed) _status.Text = "Сохранено: " + folder; }
-        catch (Exception ex) { if (!IsDisposed) MessageBox.Show(this, "Сохранение не завершено полностью. " + ex.Message, "Экспорт", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+        catch (Exception ex)
+        {
+            if (!IsDisposed)
+            {
+                ApplyExportFailure(ex);
+                MessageBox.Show(this, "Сохранение не завершено полностью. " + ex.Message, "Экспорт", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
         finally { _busy = _exporting = false; if (!IsDisposed) { _timer.Stop(); UpdateButtons(); } }
+    }
+    private void ApplyExportFailure(Exception ex)
+    {
+        _status.Text = $"Сохранение не завершено: {ex.GetType().Name}, 0x{ex.HResult:X8}.";
     }
     private void UpdateButtons()
     {

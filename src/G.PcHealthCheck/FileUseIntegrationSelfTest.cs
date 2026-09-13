@@ -73,6 +73,20 @@ internal static class FileUseIntegrationSelfTest
             search.Text = "no-match";
             Require(statusLabel.Text.Contains("Поле пути изменено", StringComparison.Ordinal), "Filter redraw hid the stale-target warning.");
         });
+        Test("file-use export failure leaves terminal status", () =>
+        {
+            var type = typeof(MainForm).Assembly.GetType("G.PcHealthCheck.FileUseForm"); Require(type is not null, "File-use window missing.");
+            using var form = (Form)Activator.CreateInstance(type!)!;
+            var flags = BindingFlags.Instance | BindingFlags.NonPublic;
+            var statusField = type!.GetField("_status", flags); var applyFailure = type.GetMethod("ApplyExportFailure", flags);
+            Require(statusField is not null && applyFailure is not null, "File-use export failure status boundary missing.");
+            var status = (Label)statusField!.GetValue(form)!;
+            status.Text = "Сохраняю результаты…";
+            applyFailure!.Invoke(form, [new IOException("synthetic export failure")]);
+            Require(status.Text.Contains("Сохранение не завершено", StringComparison.Ordinal)
+                && !status.Text.Contains("Сохраняю", StringComparison.Ordinal),
+                "File-use export failure left the UI looking like an active save.");
+        });
         Test("menu attaches once", () =>
         {
             var type = typeof(MainForm).Assembly.GetType("G.PcHealthCheck.FileUseMenu"); Require(type is not null, "File-use menu missing.");
