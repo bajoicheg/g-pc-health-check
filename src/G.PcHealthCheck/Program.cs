@@ -65,7 +65,8 @@ internal static class Program
                 var behavior = FileUseSelfTest.Run();
                 var integration = FileUseIntegrationSelfTest.Run();
                 var review = FileUseReviewSelfTest.Run();
-                result = behavior != 0 ? behavior : integration != 0 ? integration : review;
+                var ownership = FileUseProgressOwnershipSelfTest.Run();
+                result = behavior != 0 ? behavior : integration != 0 ? integration : review != 0 ? review : ownership;
             }
             if (result == 0)
             {
