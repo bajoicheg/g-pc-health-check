@@ -60,7 +60,25 @@ internal static class DiagnosticBundleStaleOptionsSelfTest
                     "Restoring the saved source selection still marks the visible bundle as stale.");
             }
 
-            Console.WriteLine("Diagnostic bundle stale-options regression: 2/2 passed.");
+            using (var form = (Form)Activator.CreateInstance(type!)!)
+            {
+                var mode = (ComboBox)form.Controls.Find("BundleMode", true).Single();
+                mode.SelectedItem = "Расширенный";
+                var snapshot = Snapshot(DiagnosticBundleMode.Extended);
+                apply!.Invoke(form, [snapshot]);
+
+                var status = (Label)form.Controls.Find("BundleStatus", true).Single();
+                var duration = (ComboBox)form.Controls.Find("BundlePerformanceSeconds", true).Single();
+                status.Text = "Отображается собранный пакет.";
+                duration.SelectedItem = 30;
+                Application.DoEvents();
+
+                Require(status.Text.Contains("следующ", StringComparison.OrdinalIgnoreCase)
+                    && status.Text.Contains("предыдущ", StringComparison.OrdinalIgnoreCase),
+                    "Changing next-run performance duration did not distinguish it from visible saved evidence.");
+            }
+
+            Console.WriteLine("Diagnostic bundle stale-options regression: 3/3 passed.");
             return 0;
         }
         catch (Exception ex)
@@ -70,11 +88,11 @@ internal static class DiagnosticBundleStaleOptionsSelfTest
         }
     }
 
-    private static DiagnosticBundleSnapshot Snapshot()
+    private static DiagnosticBundleSnapshot Snapshot(DiagnosticBundleMode mode = DiagnosticBundleMode.Quick)
     {
         var snapshot = new DiagnosticBundleSnapshot
         {
-            Options = DiagnosticBundleCore.DefaultOptions(DiagnosticBundleMode.Quick),
+            Options = DiagnosticBundleCore.DefaultOptions(mode),
             Outcome = "Partial"
         };
         snapshot.Health.Requested = true;
