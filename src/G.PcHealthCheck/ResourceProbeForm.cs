@@ -72,11 +72,22 @@ internal sealed class ResourceProbeForm : Form
         FormClosing += (_, _) => _cancellation?.Cancel(); FormClosed += (_, _) => _timer.Dispose();
         UpdateButtons(); // Intentionally no Shown/Load scan: opening makes no requests.
     }
+    private ResourceProbeOptions CurrentOptions() => new(5000, (int)_timeout.Value * 1000, 8);
+    private bool MatchesCurrentSnapshot(ResourceProbeSnapshot snapshot)
+    {
+        try { return ResourceTargetParser.Parse(_host.Text, (int)_port.Value) == snapshot.Target && CurrentOptions() == snapshot.Options; }
+        catch (ArgumentException) { return false; }
+    }
+    private void RenderTargetStatus(ResourceProbeSnapshot snapshot)
+    {
+        _status.Text = MatchesCurrentSnapshot(snapshot)
+            ? ResourceProbeReport.OutcomeText(snapshot.Outcome) + ". Подробности — в сводке и отчёте."
+            : "Поля цели изменены; показанные результаты относятся к предыдущей цели. Для новой цели запустите проверку.";
+    }
     private void TargetChanged()
     {
         _consent.Checked = false;
-        if (_current is not null && !_busy)
-            _status.Text = "Поля цели изменены; показанные результаты относятся к предыдущей цели. Для новой цели запустите проверку.";
+        if (_current is { } current && !_busy) RenderTargetStatus(current);
         UpdateButtons();
     }
     private void UpdateButtons()
@@ -93,7 +104,7 @@ internal sealed class ResourceProbeForm : Form
         if (_busy || !_consent.Checked) return;
         ResourceTarget target;
         try { target = ResourceTargetParser.Parse(_host.Text, (int)_port.Value); } catch (ArgumentException ex) { _status.Text = ex.Message; return; }
-        var options = new ResourceProbeOptions(5000, (int)_timeout.Value * 1000, 8);
+        var options = CurrentOptions();
         _busy = true; _cancellation = new(); var cancellation = _cancellation; var started = DateTimeOffset.Now;
         _grid.Rows.Clear(); _detail.Clear(); _snapshotLabel.Text = $"Выполняется новая попытка: {target.Host}, TCP {target.Port}, начало {started:HH:mm:ss}.";
         _watch.Restart(); _timer.Start(); UpdateButtons();
@@ -120,7 +131,7 @@ internal sealed class ResourceProbeForm : Form
             var row = _grid.Rows.Add(step.Stage, step.Endpoint, ResourceProbeReport.OutcomeText(step.Outcome), step.ElapsedMs, step.LocalAddress, step.ErrorCode); _grid.Rows[row].Tag = step;
         }
         _snapshotLabel.Text = $"{snapshot.StartedAt:HH:mm:ss} — {snapshot.Target.Host} · TCP {snapshot.Target.Port}: {ResourceProbeReport.OutcomeText(snapshot.Outcome)}. Адреса: {string.Join(", ", snapshot.Addresses)}";
-        _status.Text = ResourceProbeReport.OutcomeText(snapshot.Outcome) + ". Подробности — в сводке и отчёте.";
+        RenderTargetStatus(snapshot);
         _elapsed.Text = $"{_watch.Elapsed.TotalSeconds:0.0} с"; _consent.Checked = false; ShowDetail(); UpdateButtons();
     }
     private void ShowDetail()
