@@ -29,6 +29,23 @@ internal static class IncidentReviewIntegrationSelfTest
                 Require(column.ValueType == (events ? typeof(int) : typeof(uint)), "Numeric field uses string sorting.");
                 Require(form.Controls.Find("IncidentSearch", true).Length == 1 && form.MinimumSize.Width >= 850, "Missing search or minimum layout.");
             });
+        Test("event filter redraw preserves stale-window warning", () =>
+        {
+            var type = Type("IncidentReviewForm");
+            using var form = (Form)Activator.CreateInstance(type, [true])!;
+            var flags = BindingFlags.Instance | BindingFlags.NonPublic;
+            var window = (IncidentWindow)type.GetMethod("Window", flags)!.Invoke(form, null)!;
+            var snapshot = new IncidentSnapshot { Window = window, StartedAt = DateTimeOffset.Now, FinishedAt = DateTimeOffset.Now, State = "Complete" };
+            type.GetField("_current", flags)!.SetValue(form, snapshot);
+            type.GetMethod("Render", flags)!.Invoke(form, null);
+            var from = (DateTimePicker)type.GetField("_from", flags)!.GetValue(form)!;
+            var label = (Label)type.GetField("_snapshot", flags)!.GetValue(form)!;
+            var search = (TextBox)form.Controls.Find("IncidentSearch", true).Single();
+            from.Value = from.Value.AddMinutes(-5);
+            Require(label.Text.Contains("Границы изменены.", StringComparison.Ordinal), "Interval edit did not mark the current snapshot stale.");
+            search.Text = "no-match";
+            Require(label.Text.Contains("Границы изменены.", StringComparison.Ordinal), "Filter redraw hid the stale-window warning.");
+        });
         Test("Windows event adapter rejects Security channel", () =>
         {
             var source = (IIncidentEventSource)Activator.CreateInstance(Type("WindowsIncidentEventSource"))!;
