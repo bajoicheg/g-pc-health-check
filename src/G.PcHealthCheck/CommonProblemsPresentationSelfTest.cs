@@ -1,3 +1,4 @@
+using System.Reflection;
 using System.Text.Json;
 
 namespace G.PcHealthCheck;
@@ -36,7 +37,29 @@ internal static class CommonProblemsPresentationSelfTest
             if (content.Top < main.MainMenuStrip.Bottom) return 129;
             using var extra = new CommonProblemsForm();
             if (extra.Controls.Count == 0 || extra.MinimumSize.Width < 800) return 130;
-            Console.WriteLine("Common problems presentation: URI allow-list, HTML encoding, JSON envelope and menu layout passed.");
+            var gridField = typeof(CommonProblemsForm).GetField("_grid", BindingFlags.Instance | BindingFlags.NonPublic);
+            var detailField = typeof(CommonProblemsForm).GetField("_detail", BindingFlags.Instance | BindingFlags.NonPublic);
+            var showDetail = typeof(CommonProblemsForm).GetMethod("ShowDetail", BindingFlags.Instance | BindingFlags.NonPublic);
+            if (gridField is null || detailField is null || showDetail is null) return 131;
+            var grid = (DataGridView)gridField.GetValue(extra)!;
+            var detail = (TextBox)detailField.GetValue(extra)!;
+            grid.DataSource = new List<CommonProblemFinding>
+            {
+                new() { Id = "SYNTHETIC.FIRST", Title = "First synthetic finding", Evidence = "FIRST_SYNTHETIC_EVIDENCE", Resolution = "First step", Topic = "Network" },
+                new() { Id = "SYNTHETIC.SECOND", Title = "Second synthetic finding", Evidence = "SECOND_SYNTHETIC_EVIDENCE", Resolution = "Second step", Topic = "Printing" }
+            };
+            grid.CurrentCell = grid.Rows[0].Cells[0];
+            showDetail.Invoke(extra, null);
+            if (!detail.Text.Contains("FIRST_SYNTHETIC_EVIDENCE", StringComparison.Ordinal)) return 132;
+            grid.CurrentCell = grid.Rows[1].Cells[0];
+            Application.DoEvents();
+            if (grid.CurrentCell?.RowIndex != 1) return 133;
+            if (!detail.Text.Contains("SECOND_SYNTHETIC_EVIDENCE", StringComparison.Ordinal))
+            {
+                Console.Error.WriteLine("Common problems detail still shows the previously selected row.");
+                return 134;
+            }
+            Console.WriteLine("Common problems presentation: URI allow-list, HTML encoding, JSON envelope, menu layout and detail reselection passed.");
             return 0;
         }
         catch (Exception ex)
