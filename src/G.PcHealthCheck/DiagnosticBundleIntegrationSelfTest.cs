@@ -157,6 +157,42 @@ internal static class DiagnosticBundleIntegrationSelfTest
                 "Visible summary no longer matches the snapshot used by copy/save.");
         });
 
+        Test("bundle keeps visible execution context aligned with saveable current snapshot", () =>
+        {
+            using var form = CreateForm();
+            var type = form.GetType();
+            var current = type.GetField("_current", BindingFlags.Instance | BindingFlags.NonPublic);
+            var apply = type.GetMethod("ApplyCollectedResult", BindingFlags.Instance | BindingFlags.NonPublic);
+            Require(current is not null && apply is not null,
+                "Diagnostic bundle has no explicit collected-result UI boundary.");
+
+            var previousContext = new ExecutionContextInfo
+            {
+                ProcessAccount = "previous-account",
+                ProcessSid = "S-1-5-21-100",
+                SessionAccount = "previous-account",
+                SessionSid = "S-1-5-21-100",
+                SessionId = 1
+            };
+            var previous = new DiagnosticBundleSnapshot { Outcome = "Partial", ExecutionContext = previousContext };
+            previous.Health.Requested = true;
+            previous.Health.State = "Complete";
+            previous.Health.Payload = new DiagnosticBundleHealthPayload(new DiagnosticData(), new ScanResult());
+            current!.SetValue(form, previous);
+
+            var context = (Label)form.Controls.Find("BundleContext", true).Single();
+            context.Text = "failed-attempt-context";
+            var unavailable = new DiagnosticBundleSnapshot
+            {
+                Outcome = "Unavailable",
+                ExecutionContext = new ExecutionContextInfo { ProcessAccount = "failed-attempt" }
+            };
+            apply!.Invoke(form, [unavailable]);
+
+            Require(context.Text == ExecutionPolicy.Describe(previousContext),
+                "Visible execution context no longer matches the snapshot used by copy/save.");
+        });
+
         Test("bundle UI exposes no active probe or remediation controls", () =>
         {
             using var form = CreateForm();
