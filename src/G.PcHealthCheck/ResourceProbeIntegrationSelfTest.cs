@@ -55,6 +55,30 @@ internal static class ResourceProbeIntegrationSelfTest
             }
             finally { Directory.Delete(root, true); }
         });
+        Test("resource detail follows current cell after reselection", () =>
+        {
+            using var form = NewForm(new CountingNetwork());
+            var type = TypeFor("ResourceProbeForm");
+            var currentField = type.GetField("_current", BindingFlags.Instance | BindingFlags.NonPublic);
+            var gridField = type.GetField("_grid", BindingFlags.Instance | BindingFlags.NonPublic);
+            var detailField = type.GetField("_detail", BindingFlags.Instance | BindingFlags.NonPublic);
+            var showDetail = type.GetMethod("ShowDetail", BindingFlags.Instance | BindingFlags.NonPublic);
+            Require(currentField is not null && gridField is not null && detailField is not null && showDetail is not null, "Resource detail selection boundary missing.");
+            currentField!.SetValue(form, new ResourceProbeSnapshot { Target = new("synthetic.invalid", 443), Outcome = "Connected" });
+            var grid = (DataGridView)gridField!.GetValue(form)!;
+            var detail = (TextBox)detailField!.GetValue(form)!;
+            var first = new ResourceProbeStep("DNS", "first.synthetic", "Resolved", 1, "", "FIRST_SYNTHETIC_DETAIL");
+            var second = new ResourceProbeStep("TCP", "second.synthetic:443", "Connected", 2, "", "SECOND_SYNTHETIC_DETAIL");
+            var firstRow = grid.Rows.Add(first.Stage, first.Endpoint, first.Outcome, first.ElapsedMs, first.LocalAddress, first.ErrorCode); grid.Rows[firstRow].Tag = first;
+            var secondRow = grid.Rows.Add(second.Stage, second.Endpoint, second.Outcome, second.ElapsedMs, second.LocalAddress, second.ErrorCode); grid.Rows[secondRow].Tag = second;
+            grid.CurrentCell = grid.Rows[0].Cells[0];
+            showDetail!.Invoke(form, null);
+            Require(detail.Text.Contains("FIRST_SYNTHETIC_DETAIL", StringComparison.Ordinal), "First resource detail was not established.");
+            grid.CurrentCell = grid.Rows[1].Cells[0];
+            Application.DoEvents();
+            Require(grid.CurrentCell?.RowIndex == 1, "Second resource row was not selected.");
+            Require(detail.Text.Contains("SECOND_SYNTHETIC_DETAIL", StringComparison.Ordinal), "Resource detail pane still shows the previously selected row.");
+        });
         Console.WriteLine($"Resource integration regression: {count - failures.Count}/{count} passed.");
         foreach (var f in failures) Console.Error.WriteLine("FAIL: " + f);
         return failures.Count == 0 ? 0 : 201;
