@@ -51,8 +51,11 @@ internal static class FileUseIntegrationSelfTest
             render!.Invoke(form, null); form.PerformLayout();
             var grid = (DataGridView)form.Controls.Find("FileUseEvidence", true).Single();
             var detailBox = (TextBox)detail!.GetValue(form)!;
-            Require(grid.Rows.Count == 2 && grid.CurrentCell?.RowIndex == 0, "Synthetic initial selection missing.");
+            Require(grid.Rows.Count == 2, "Synthetic rows missing.");
+            grid.CurrentCell = grid.Rows[0].Cells[0]; Application.DoEvents();
+            Require(grid.CurrentCell?.RowIndex == 0, "First synthetic row was not selected.");
             grid.CurrentCell = grid.Rows[1].Cells[0]; Application.DoEvents();
+            Require(grid.CurrentCell?.RowIndex == 1, "Second synthetic row was not selected.");
             Require(detailBox.Text.Contains("Second app", StringComparison.Ordinal) && !detailBox.Text.Contains("First app", StringComparison.Ordinal), "Detail pane still shows the previously selected row.");
         });
         Test("menu attaches once", () =>
