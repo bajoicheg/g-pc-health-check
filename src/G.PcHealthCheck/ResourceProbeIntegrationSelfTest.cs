@@ -40,6 +40,19 @@ internal static class ResourceProbeIntegrationSelfTest
             using var form = NewForm(new CountingNetwork()); Find<TextBox>(form, "ProbeHost").Text = "host"; Find<CheckBox>(form, "ProbeConsent").Checked = true;
             Find<NumericUpDown>(form, "ProbePort").Value = 80; Require(!Find<CheckBox>(form, "ProbeConsent").Checked, "Consent reused for a different port.");
         });
+        Test("editing target after a result marks visible evidence as previous target", () =>
+        {
+            using var form = NewForm(new CountingNetwork());
+            var type = TypeFor("ResourceProbeForm");
+            var currentField = type.GetField("_current", BindingFlags.Instance | BindingFlags.NonPublic);
+            var statusField = type.GetField("_status", BindingFlags.Instance | BindingFlags.NonPublic);
+            Require(currentField is not null && statusField is not null, "Resource stale-target status boundary missing.");
+            currentField!.SetValue(form, new ResourceProbeSnapshot { Target = new("old.invalid", 443), Outcome = "Connected" });
+            Find<TextBox>(form, "ProbeHost").Text = "new.invalid";
+            var status = (Label)statusField!.GetValue(form)!;
+            Require(status.Text.Contains("предыдущ", StringComparison.OrdinalIgnoreCase) && status.Text.Contains("новой цели", StringComparison.OrdinalIgnoreCase),
+                "Editing the target did not distinguish the displayed old snapshot from a new target.");
+        });
         Test("export keeps cancelled current attempt and previous result", () =>
         {
             var root = Path.Combine(Path.GetTempPath(), "GPcHealthCheck-ResourceExport-" + Guid.NewGuid().ToString("N")); Directory.CreateDirectory(root);

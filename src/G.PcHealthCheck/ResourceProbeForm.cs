@@ -72,7 +72,13 @@ internal sealed class ResourceProbeForm : Form
         FormClosing += (_, _) => _cancellation?.Cancel(); FormClosed += (_, _) => _timer.Dispose();
         UpdateButtons(); // Intentionally no Shown/Load scan: opening makes no requests.
     }
-    private void TargetChanged() { _consent.Checked = false; UpdateButtons(); }
+    private void TargetChanged()
+    {
+        _consent.Checked = false;
+        if (_current is not null && !_busy)
+            _status.Text = "Поля цели изменены; показанные результаты относятся к предыдущей цели. Для новой цели запустите проверку.";
+        UpdateButtons();
+    }
     private void UpdateButtons()
     {
         var valid = false;
