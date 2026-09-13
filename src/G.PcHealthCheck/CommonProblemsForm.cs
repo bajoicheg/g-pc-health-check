@@ -19,6 +19,7 @@ internal sealed class CommonProblemsForm : Form
     private CommonProblemSnapshot? _previous;
     private RemediationBatchResult? _lastCommand;
     private CancellationTokenSource? _scanCancellation;
+    private object? _progressOwner;
     private bool _busy;
     private bool _commandRunning;
 
@@ -92,20 +93,23 @@ internal sealed class CommonProblemsForm : Form
         if (_busy || IsDisposed) return;
         _scanCancellation = new CancellationTokenSource();
         var cancellation = _scanCancellation;
+        var progressOwner = new object(); _progressOwner = progressOwner;
         _busy = true; UpdateButtons();
         try
         {
-            var data = await _collector.CollectAsync(Progress(), cancellation.Token);
+            var data = await _collector.CollectAsync(Progress(progressOwner, cancellation.Token), cancellation.Token);
             if (IsDisposed || cancellation.IsCancellationRequested) return;
+            ReleaseProgressOwner(progressOwner);
             _previous = _current; _current = data;
             _grid.DataSource = CommonProblemsAssessment.Assess(data);
             _status.Text = $"Снимок {data.CollectedAt:HH:mm:ss}. Повторная проверка не заменяет подтверждение симптома пользователем." + CommandStatus();
             ShowDetail();
         }
-        catch (OperationCanceledException) { if (!IsDisposed) _status.Text = "Сбор отменён. Предыдущие результаты не заменены." + CommandStatus(); }
-        catch (Exception ex) { if (!IsDisposed) _status.Text = "Не удалось завершить сбор: " + ex.Message + CommandStatus(); }
+        catch (OperationCanceledException) { ReleaseProgressOwner(progressOwner); if (!IsDisposed) _status.Text = "Сбор отменён. Предыдущие результаты не заменены." + CommandStatus(); }
+        catch (Exception ex) { ReleaseProgressOwner(progressOwner); if (!IsDisposed) _status.Text = "Не удалось завершить сбор: " + ex.Message + CommandStatus(); }
         finally
         {
+            ReleaseProgressOwner(progressOwner);
             cancellation.Dispose(); _scanCancellation = null; _busy = false;
             if (!IsDisposed) UpdateButtons();
         }
@@ -118,12 +122,14 @@ internal sealed class CommonProblemsForm : Form
         if (MessageBox.Show(this,
             "Используйте только при симптомах разрешения имён. Будет очищен локальный DNS-кэш; DNS-серверы, IP, proxy и VPN не меняются. Это не исправляет DHCP, отсутствие DNS или недоступность сервера. После команды будет повторно прочитана конфигурация, а обращение к проблемному ресурсу необходимо проверить отдельно. Продолжить?",
             "Подтвердите очистку DNS-кэша", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) != DialogResult.Yes) return;
-        _busy = true; _commandRunning = true; _lastCommand = null; UpdateButtons();
+        _busy = true; _commandRunning = true; _lastCommand = null;
+        var progressOwner = new object(); _progressOwner = progressOwner;
+        UpdateButtons();
         var startedAt = DateTime.Now;
         try
         {
             _lastCommand = await RemediationWorker.ExecuteFromGuiAsync(
-                [new ActionRecommendation { Id = "FlushDns", CanAutomate = true, RequiresAdmin = false }], 3, Progress());
+                [new ActionRecommendation { Id = "FlushDns", CanAutomate = true, RequiresAdmin = false }], 3, Progress(progressOwner));
         }
         catch (Exception ex)
         {
@@ -131,6 +137,7 @@ internal sealed class CommonProblemsForm : Form
         }
         finally
         {
+            ReleaseProgressOwner(progressOwner);
             _busy = false; _commandRunning = false;
             if (!IsDisposed) { _status.Text = CommandStatus(); UpdateButtons(); }
         }
@@ -139,7 +146,15 @@ internal sealed class CommonProblemsForm : Form
 
     private string CommandStatus() => _lastCommand is null ? "" : " Последняя команда: " + string.Join("; ", _lastCommand.Actions.Select(x =>
         $"{x.Id}: {(x.Success ? "код выполнения успешный" : "ошибка / результат не подтверждён")}; {x.Message}"));
-    private IProgress<string> Progress() => new Progress<string>(message => { if (!IsDisposed) _status.Text = message; });
+    private IProgress<string> Progress(object owner, CancellationToken cancellationToken = default) => new Progress<string>(message => ApplyProgress(owner, cancellationToken, message));
+    private void ApplyProgress(object owner, CancellationToken cancellationToken, string message)
+    {
+        if (!IsDisposed && ReferenceEquals(_progressOwner, owner) && !cancellationToken.IsCancellationRequested) _status.Text = message;
+    }
+    private void ReleaseProgressOwner(object owner)
+    {
+        if (ReferenceEquals(_progressOwner, owner)) _progressOwner = null;
+    }
     private CommonProblemFinding? Selected() => _grid.CurrentRow?.DataBoundItem as CommonProblemFinding;
     private void ShowDetail()
     {
