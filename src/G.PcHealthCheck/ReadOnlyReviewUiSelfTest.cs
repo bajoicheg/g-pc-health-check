@@ -39,6 +39,30 @@ internal static class ReadOnlyReviewUiSelfTest
                 form.DisplaySnapshot(new StartupReviewSnapshot { Entries = [new() { Name = "Длинная запись", Command = command }] });
                 Require((string)Grid(form).Rows[0].Cells["Command"].Value == command && (string)Grid(form).Rows[0].Cells["State"].Value == "Не определено", "Grid altered evidence.");
             });
+            Test("read-only review detail follows current cell after reselection", () =>
+            {
+                using var form = new ReadOnlyReviewForm(false, 3);
+                form.DisplaySnapshot(new StartupReviewSnapshot
+                {
+                    Entries =
+                    [
+                        new() { Name = "First synthetic entry", Command = "FIRST_SYNTHETIC_COMMAND", Scope = "First scope", Source = "First source" },
+                        new() { Name = "Second synthetic entry", Command = "SECOND_SYNTHETIC_COMMAND", Scope = "Second scope", Source = "Second source" }
+                    ]
+                });
+                var grid = Grid(form);
+                var detailField = typeof(ReadOnlyReviewForm).GetField("_detail", BindingFlags.Instance | BindingFlags.NonPublic);
+                var renderDetail = typeof(ReadOnlyReviewForm).GetMethod("RenderDetail", BindingFlags.Instance | BindingFlags.NonPublic);
+                Require(detailField is not null && renderDetail is not null && grid.Rows.Count >= 2, "Read-only review detail selection boundary missing.");
+                var detail = (TextBox)detailField!.GetValue(form)!;
+                grid.CurrentCell = grid.Rows[0].Cells[0];
+                renderDetail!.Invoke(form, null);
+                Require(detail.Text.Contains("FIRST_SYNTHETIC_COMMAND", StringComparison.Ordinal), "First read-only review detail was not established.");
+                grid.CurrentCell = grid.Rows[1].Cells[0];
+                Application.DoEvents();
+                Require(grid.CurrentCell?.RowIndex == 1, "Second read-only review row was not selected.");
+                Require(detail.Text.Contains("SECOND_SYNTHETIC_COMMAND", StringComparison.Ordinal), "Read-only review detail pane still shows the previously selected row.");
+            });
             Test("snapshot cannot be displayed in wrong mode", () =>
             {
                 using var form = new ReadOnlyReviewForm(true, 3);
