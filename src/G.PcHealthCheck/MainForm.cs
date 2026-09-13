@@ -11,6 +11,7 @@ public sealed partial class MainForm : Form
     private ScanResult? _current;
     private string? _latestReport;
     private bool _isBusy;
+    private object? _scanProgressOwner;
 
     private readonly Label _score = new();
     private readonly Label _state = new();
@@ -239,26 +240,38 @@ public sealed partial class MainForm : Form
         return p;
     }
 
+    private void ApplyScanProgress(object owner, string text)
+    {
+        if (!IsDisposed && ReferenceEquals(_scanProgressOwner, owner)) _status.Text = text;
+    }
+
     private async Task ScanAsync()
     {
         if (_isBusy) return;
         var started = Stopwatch.StartNew();
+        var progressOwner = new object();
+        _scanProgressOwner = progressOwner;
         try
         {
             Busy(true, "Определяю контекст диагностики…");
             var context = await Task.Run(ExecutionContextService.Capture);
             RenderExecutionContext(context);
-            var progress = new Progress<string>(s => _status.Text = s);
+            var progress = new Progress<string>(s => ApplyScanProgress(progressOwner, s));
             var data = await _diagnostics.CollectAsync(progress);
             StampExecutionContext(data, context);
             _current = _assessment.Assess(data);
             var saved = _reports.SaveScan(_current);
             _latestReport = saved.Html;
             Populate(_current);
+            _scanProgressOwner = null;
             _status.Text = $"Готово · {DateTime.Now:HH:mm:ss} · {started.Elapsed.TotalSeconds:0.0} с";
         }
         catch (Exception ex) { MessageBox.Show(this, ex.Message, "Ошибка диагностики", MessageBoxButtons.OK, MessageBoxIcon.Error); }
-        finally { Busy(false); }
+        finally
+        {
+            if (ReferenceEquals(_scanProgressOwner, progressOwner)) _scanProgressOwner = null;
+            Busy(false);
+        }
     }
 
     private async Task ApplyAsync()
