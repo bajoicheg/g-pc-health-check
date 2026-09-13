@@ -135,6 +135,20 @@ internal static class StorageReviewIntegrationSelfTest
             root.Text = "C:\\Synthetic\\"; Application.DoEvents();
             Require(!status.Text.Contains("следующ", StringComparison.OrdinalIgnoreCase), "Equivalent restored folder root still marks storage evidence stale.");
         });
+        Test("storage export failure leaves terminal status", () =>
+        {
+            using var form = Window(true);
+            var type = TypeNamed("StorageReviewForm");
+            var statusField = type.GetField("_status", BindingFlags.Instance | BindingFlags.NonPublic);
+            var applyFailure = type.GetMethod("ApplyExportFailure", BindingFlags.Instance | BindingFlags.NonPublic);
+            Require(statusField is not null && applyFailure is not null, "Storage review export failure status boundary missing.");
+            var status = (Label)statusField!.GetValue(form)!;
+            status.Text = "HTML и JSON сохранены: C:\\previous";
+            applyFailure!.Invoke(form, [new IOException("synthetic export failure")]);
+            Require(status.Text.Contains("не заверш", StringComparison.OrdinalIgnoreCase), "Failed storage export still looks successful.");
+            Require(status.Text.Contains(nameof(IOException), StringComparison.Ordinal), "Storage export failure status omits exception type.");
+            Require(status.Text.Contains("0x", StringComparison.OrdinalIgnoreCase), "Storage export failure status omits HRESULT.");
+        });
         Console.WriteLine($"Storage review integration: {count - failures.Count}/{count} passed.");
         foreach (var failure in failures) Console.Error.WriteLine("FAIL: " + failure);
         return failures.Count == 0 ? 0 : 231;
