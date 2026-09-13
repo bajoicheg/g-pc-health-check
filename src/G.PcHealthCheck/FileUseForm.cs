@@ -51,7 +51,8 @@ internal sealed class FileUseForm : Form
         _copy.Click += (_, _) => { if (_current is { } current) TryUi(() => Clipboard.SetText(FileUseReport.Summary(current, _previous))); };
         _export.Click += async (_, _) => await ExportAsync(); _close.Click += (_, _) => Close(); _search.TextChanged += (_, _) => RenderRows();
         _target.TextChanged += (_, _) => { UpdateButtons(); if (_current is not null && !_busy) _status.Text = "Поле пути изменено; показанные результаты относятся к пути в сводке. Для нового пути запустите проверку."; };
-        _grid.SelectionChanged += (_, _) => { if (_grid.CurrentRow?.Tag is FileUseProcess row) _detail.Text = FileUseReport.Detail(row); };
+        // SelectionChanged is raised before CurrentCellChanged and may still expose the previous row.
+        _grid.CurrentCellChanged += (_, _) => { if (_grid.CurrentRow?.Tag is FileUseProcess row) _detail.Text = FileUseReport.Detail(row); };
         _timer.Tick += (_, _) => { if (_busy) _status.Text = $"{_stage} · {_elapsed.Elapsed.TotalSeconds:0.0} с"; };
         FormClosing += (_, e) => { if (_exporting) { e.Cancel = true; _stage = "Дождитесь окончания сохранения файлов."; } else _cancellation?.Cancel(); };
         AcceptButton = _start; CancelButton = _close; UpdateButtons();
