@@ -26,6 +26,7 @@ internal sealed class StorageReviewForm : Form
     private Stopwatch? _elapsed;
     private object? _snapshot;
     private string _stage = "Готов к сбору.";
+    private string _rowsStatus = "";
 
     public StorageReviewForm(bool folder)
     {
@@ -86,6 +87,7 @@ internal sealed class StorageReviewForm : Form
         };
         _export.Click += (_, _) => Export(); _close.Click += (_, _) => Close();
         _view.SelectedIndexChanged += (_, _) => RenderRows(); _search.TextChanged += (_, _) => RenderRows();
+        _root.TextChanged += (_, _) => FolderRootChanged();
         _grid.CurrentCellChanged += (_, _) => RenderDetail();
         _timer.Tick += (_, _) =>
         {
@@ -209,8 +211,34 @@ internal sealed class StorageReviewForm : Form
             }
         }
         if (_snapshot is not null && _cancellation is null)
-            _status.Text = $"Показано {_grid.Rows.Count:N0} из {matched:N0} совпадений. Таблица ограничена 2000 строками; поиск — по всему снимку, экспорт — без фильтра.";
+        {
+            _rowsStatus = $"Показано {_grid.Rows.Count:N0} из {matched:N0} совпадений. Таблица ограничена 2000 строками; поиск — по всему снимку, экспорт — без фильтра.";
+            RenderRowsStatus();
+        }
         RenderDetail();
+    }
+    private bool FolderRootMatches(FolderUsageSnapshot snapshot)
+    {
+        try
+        {
+            var current = FolderUsageService.Validate(_root.Text, snapshot.Options);
+            return string.Equals(current, snapshot.Root, StringComparison.OrdinalIgnoreCase);
+        }
+        catch (Exception ex) when (ex is ArgumentException or IOException or NotSupportedException)
+        {
+            return false;
+        }
+    }
+    private void FolderRootChanged()
+    {
+        if (_cancellation is null && _snapshot is FolderUsageSnapshot) RenderRowsStatus();
+    }
+    private void RenderRowsStatus()
+    {
+        if (_snapshot is null || _cancellation is not null) return;
+        _status.Text = _snapshot is FolderUsageSnapshot folder && !FolderRootMatches(folder)
+            ? $"Папка следующего сканирования изменена; показан прежний снимок «{folder.Root}». {_rowsStatus}"
+            : _rowsStatus;
     }
     private void RenderDetail()
     {
