@@ -83,6 +83,7 @@ internal static class Program
             if (result == 0) result = DiagnosticBundleReportSelfTest.Run();
             if (result == 0) result = DiagnosticBundleHealthSelectionSelfTest.Run();
             if (result == 0) result = DiagnosticBundleIntegrationSelfTest.Run();
+            if (result == 0) result = DiagnosticBundleSaveFailureSelfTest.Run();
             if (result == 0) result = DiagnosticBundleStaleOptionsSelfTest.Run();
             if (result == 0) result = DiagnosticBundleProgressOwnershipSelfTest.Run();
             if (result == 0) result = DiagnosticBundleAcceptanceSelfTest.Run();
