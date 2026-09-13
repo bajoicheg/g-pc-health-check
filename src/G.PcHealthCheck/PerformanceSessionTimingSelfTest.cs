@@ -19,6 +19,19 @@ internal static class PerformanceSessionTimingSelfTest
             var s = new PerformanceSessionService().RunAsync(new(2, 1), source, clock, null, default).GetAwaiter().GetResult();
             Require(s.Samples.Count == 0 && s.MissedSlots == 2 && source.Calls == 0, "Expired slots were backfilled.");
         });
+        Test("read ending exactly on next slot does not trigger catch-up burst", () =>
+        {
+            var clock = new Clock(0);
+            using var source = new Source(() =>
+            {
+                clock.Advance(1000);
+                return new(10, 40, 5, 0, []);
+            });
+            var s = new PerformanceSessionService().RunAsync(new(3, 1), source, clock, null, default).GetAwaiter().GetResult();
+            Require(source.Calls == 2 && s.Samples.Count == 2, "A provider ending on the next slot triggered an immediate catch-up read.");
+            Require(s.MissedSlots == 1, "The slot consumed by the long provider read was not recorded as missed.");
+            Require(s.Samples[0].OffsetMs == 2000 && s.Samples[1].OffsetMs == 4000, "Provider completion timestamps were not preserved.");
+        });
         Test("finite large queue measurements cannot overflow the median", () =>
         {
             var s = PerformanceSessionSelfTest.Snapshot(10, 20);
@@ -49,6 +62,7 @@ internal static class PerformanceSessionTimingSelfTest
         public long ElapsedMs { get; private set; }
         public DateTimeOffset Now => DateTimeOffset.UnixEpoch.AddMilliseconds(ElapsedMs);
         public Task DelayAsync(int milliseconds, CancellationToken ct) { ct.ThrowIfCancellationRequested(); ElapsedMs += milliseconds + overshoot; return Task.CompletedTask; }
+        public void Advance(int milliseconds) => ElapsedMs += milliseconds;
     }
     private sealed class Source(Func<PerformanceReading>? read = null) : IPerformanceSessionSource
     {
