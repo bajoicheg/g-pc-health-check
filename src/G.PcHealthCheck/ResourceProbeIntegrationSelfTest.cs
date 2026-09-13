@@ -53,6 +53,25 @@ internal static class ResourceProbeIntegrationSelfTest
             Require(status.Text.Contains("предыдущ", StringComparison.OrdinalIgnoreCase) && status.Text.Contains("новой цели", StringComparison.OrdinalIgnoreCase),
                 "Editing the target did not distinguish the displayed old snapshot from a new target.");
         });
+        Test("restoring collected resource target clears stale warning but not consent", () =>
+        {
+            using var form = NewForm(new CountingNetwork());
+            var type = TypeFor("ResourceProbeForm"); var flags = BindingFlags.Instance | BindingFlags.NonPublic;
+            var currentField = type.GetField("_current", flags); var statusField = type.GetField("_status", flags); var timeoutField = type.GetField("_timeout", flags);
+            Require(currentField is not null && statusField is not null && timeoutField is not null, "Resource target restoration boundary missing.");
+            var host = Find<TextBox>(form, "ProbeHost"); var consent = Find<CheckBox>(form, "ProbeConsent"); var timeout = (NumericUpDown)timeoutField!.GetValue(form)!;
+            host.Text = "old.invalid";
+            currentField!.SetValue(form, new ResourceProbeSnapshot { Target = new("old.invalid", 443), Options = new(5000, 3000, 8), Outcome = "Connected" });
+            consent.Checked = true; host.Text = "new.invalid";
+            var status = (Label)statusField!.GetValue(form)!;
+            Require(status.Text.Contains("предыдущ", StringComparison.OrdinalIgnoreCase) && !consent.Checked, "Changed host was not stale or retained consent.");
+            host.Text = "old.invalid";
+            Require(!status.Text.Contains("предыдущ", StringComparison.OrdinalIgnoreCase) && !consent.Checked, "Restored host still claims previous-target evidence or restored consent.");
+            consent.Checked = true; timeout.Value = 4;
+            Require(status.Text.Contains("предыдущ", StringComparison.OrdinalIgnoreCase) && !consent.Checked, "Changed timeout was not stale or retained consent.");
+            timeout.Value = 3;
+            Require(!status.Text.Contains("предыдущ", StringComparison.OrdinalIgnoreCase) && !consent.Checked, "Restored timeout still claims previous-target evidence or restored consent.");
+        });
         Test("export keeps cancelled current attempt and previous result", () =>
         {
             var root = Path.Combine(Path.GetTempPath(), "GPcHealthCheck-ResourceExport-" + Guid.NewGuid().ToString("N")); Directory.CreateDirectory(root);
