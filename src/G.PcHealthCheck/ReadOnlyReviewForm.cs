@@ -89,7 +89,7 @@ internal sealed class ReadOnlyReviewForm : Form
     {
         if (_cancellation is not null || IsDisposed) return;
         var cancellation = new CancellationTokenSource(); _cancellation = cancellation; UpdateButtons();
-        var progress = new Progress<string>(text => { if (!IsDisposed && !cancellation.IsCancellationRequested) _status.Text = text; });
+        var progress = new Progress<string>(text => ApplyCollectionProgress(cancellation, text));
         try
         {
             _status.Text = "Собираю новый снимок; предыдущий пока остаётся на экране…";
@@ -110,6 +110,10 @@ internal sealed class ReadOnlyReviewForm : Form
         catch (OperationCanceledException) { if (!IsDisposed) _status.Text = "Сбор отменён. Предыдущий снимок не заменён; его дата указана выше."; }
         catch (Exception ex) { if (!IsDisposed) _status.Text = $"Сбор не завершён: {ex.GetType().Name}, 0x{ex.HResult:X8}. Предыдущий снимок не заменён."; }
         finally { _cancellation = null; cancellation.Dispose(); if (!IsDisposed) UpdateButtons(); }
+    }
+    private void ApplyCollectionProgress(CancellationTokenSource owner, string text)
+    {
+        if (!IsDisposed && ReferenceEquals(_cancellation, owner) && !owner.IsCancellationRequested) _status.Text = text;
     }
     internal void DisplaySnapshot(object snapshot)
     {
