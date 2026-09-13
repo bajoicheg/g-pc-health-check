@@ -37,6 +37,26 @@ internal static class FileUseIntegrationSelfTest
             Require(form.Controls.Find("FileUseEvidence", true).Single() is DataGridView g && g.Rows.Count == 0 && !form.Controls.Find("FileUseExport", true).Single().Enabled, "Window queried or exported without target.");
             Require(form.Controls.Find("FileUseTarget", true).Single() is TextBox && form.Controls.Find("FileUseSearch", true).Single() is TextBox, "Target/search missing.");
         });
+        Test("file-use details follow current cell after reselection", () =>
+        {
+            var type = typeof(MainForm).Assembly.GetType("G.PcHealthCheck.FileUseForm"); Require(type is not null, "File-use window missing.");
+            using var form = (Form)Activator.CreateInstance(type!)!;
+            var current = type!.GetField("_current", BindingFlags.Instance | BindingFlags.NonPublic);
+            var detail = type.GetField("_detail", BindingFlags.Instance | BindingFlags.NonPublic);
+            var render = type.GetMethod("RenderRows", BindingFlags.Instance | BindingFlags.NonPublic);
+            Require(current is not null && detail is not null && render is not null, "File-use selection UI boundary missing.");
+            var first = FileUseSelfTest.Row() with { Pid = 41, ApplicationName = "First app" };
+            var second = FileUseSelfTest.Row() with { Pid = 42, ApplicationName = "Second app" };
+            current!.SetValue(form, FileUseSelfTest.Snapshot(first, second));
+            render!.Invoke(form, null); form.PerformLayout();
+            var grid = (DataGridView)form.Controls.Find("FileUseEvidence", true).Single();
+            var detailBox = (TextBox)detail!.GetValue(form)!;
+            Require(grid.Rows.Count == 2, "Synthetic rows missing.");
+            grid.CurrentCell = grid.Rows[0].Cells[0]; Application.DoEvents();
+            Require(detailBox.Text.Contains("First app", StringComparison.Ordinal), "First row detail not shown.");
+            grid.CurrentCell = grid.Rows[1].Cells[0]; Application.DoEvents();
+            Require(detailBox.Text.Contains("Second app", StringComparison.Ordinal) && !detailBox.Text.Contains("First app", StringComparison.Ordinal), "Detail pane still shows the previously selected row.");
+        });
         Test("menu attaches once", () =>
         {
             var type = typeof(MainForm).Assembly.GetType("G.PcHealthCheck.FileUseMenu"); Require(type is not null, "File-use menu missing.");
