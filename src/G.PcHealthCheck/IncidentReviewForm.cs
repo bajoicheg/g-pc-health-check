@@ -94,9 +94,22 @@ internal sealed class IncidentReviewForm : Form
         }
         var result = new IncidentWindow(Local(_from.Value), Local(_to.Value)); IncidentQueries.Validate(result); return result;
     }
+    private bool WindowChanged(IncidentWindow window)
+    {
+        try { return Window() != window; }
+        catch (ArgumentException) { return true; }
+    }
+    private string EventSnapshotText(IncidentSnapshot events, int visibleCount)
+    {
+        var summary = $"Снимок {events.StartedAt:dd.MM HH:mm:ss}: {IncidentReport.StateText(events.State)}. Интервал {events.Window.From:O} — {events.Window.To:O}.\n" +
+            string.Join("; ", events.Logs.Select(x => $"{x.Log}: {IncidentReport.StateText(x.State)}, {x.Events.Count} записей")) + $". Видно по фильтру: {visibleCount}.";
+        return WindowChanged(events.Window)
+            ? $"Границы изменены. Показан прежний снимок {events.StartedAt:HH:mm:ss}, интервал {events.Window.From:O} — {events.Window.To:O}. Для нового сбора нажмите кнопку.\n{summary}"
+            : summary;
+    }
     private void IntervalChanged()
     {
-        if (_current is IncidentSnapshot s) _snapshot.Text = $"Границы изменены. Показан прежний снимок {s.StartedAt:HH:mm:ss}, интервал {s.Window.From:O} — {s.Window.To:O}. Для нового сбора нажмите кнопку.";
+        if (_current is IncidentSnapshot s) _snapshot.Text = EventSnapshotText(s, _grid.Rows.Count);
     }
     private async Task CollectAsync()
     {
@@ -149,8 +162,7 @@ internal sealed class IncidentReviewForm : Form
         {
             var rows = IncidentQueries.Events(events, (IncidentFilter)filter);
             foreach (var e in rows) { var i = _grid.Rows.Add(e.Timestamp?.LocalDateTime, e.Log, e.EventId, IncidentReport.LevelText(e.Level), e.Provider, e.EmitterPid, e.RecordId); _grid.Rows[i].Tag = e; }
-            _snapshot.Text = $"Снимок {events.StartedAt:dd.MM HH:mm:ss}: {IncidentReport.StateText(events.State)}. Интервал {events.Window.From:O} — {events.Window.To:O}.\n" +
-                string.Join("; ", events.Logs.Select(x => $"{x.Log}: {IncidentReport.StateText(x.State)}, {x.Events.Count} записей")) + $". Видно по фильтру: {rows.Count}.";
+            _snapshot.Text = EventSnapshotText(events, rows.Count);
         }
         else if (_current is ProcessReviewSnapshot processes)
         {
