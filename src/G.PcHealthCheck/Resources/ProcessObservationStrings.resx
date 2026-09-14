@@ -4,7 +4,128 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+
   <data name="ProcessObservation.Link.Button" xml:space="preserve"><value>Наблюдать за процессом…</value></data>
   <data name="ProcessObservation.Link.PanelMissing" xml:space="preserve"><value>Панель процессов не подготовлена.</value></data>
   <data name="ProcessObservation.Link.UnavailableTitle" xml:space="preserve"><value>Наблюдение недоступно</value></data>
+
+  <data name="ProcessObservation.Core.FromEntry" xml:space="preserve"><value>Для наблюдения нужны PID и время создания выбранного процесса. Повторите сбор сведений о процессах.</value></data>
+  <data name="ProcessObservation.Core.MeasurementsUnavailable" xml:space="preserve"><value>Измерения процесса недоступны: {0}</value></data>
+  <data name="ProcessObservation.Core.WorkingSetMissing" xml:space="preserve"><value>Рабочая память процесса не получена.</value></data>
+  <data name="ProcessObservation.Core.PrivateMissing" xml:space="preserve"><value>Частная выделенная память процесса не получена.</value></data>
+  <data name="ProcessObservation.Core.NeedTwo" xml:space="preserve"><value>CPU и скорости I/O: нужны два последовательных замера того же экземпляра без пропуска.</value></data>
+  <data name="ProcessObservation.Core.CpuMissing" xml:space="preserve"><value>CPU процесса: счётчик/число процессоров недоступен, изменился или дал некорректную дельту.</value></data>
+  <data name="ProcessObservation.Core.CounterMissing" xml:space="preserve"><value>{0}: счётчик недоступен или уменьшился.</value></data>
+  <data name="ProcessObservation.Core.ReadIo" xml:space="preserve"><value>Чтение I/O</value></data>
+  <data name="ProcessObservation.Core.WriteIo" xml:space="preserve"><value>Запись I/O</value></data>
+  <data name="ProcessObservation.State.Live" xml:space="preserve"><value>Тот же процесс</value></data>
+  <data name="ProcessObservation.State.Exited" xml:space="preserve"><value>Процесс завершён</value></data>
+  <data name="ProcessObservation.State.IdentityChanged" xml:space="preserve"><value>Другой экземпляр — наблюдение не переносится</value></data>
+  <data name="ProcessObservation.State.AccessDenied" xml:space="preserve"><value>Доступ к процессу запрещён</value></data>
+  <data name="ProcessObservation.State.Unavailable" xml:space="preserve"><value>Данные процесса недоступны</value></data>
+
+  <data name="ProcessObservation.Service.TargetMissing" xml:space="preserve"><value>Не определён экземпляр процесса.</value></data>
+  <data name="ProcessObservation.Service.PendingMissing" xml:space="preserve"><value>Нет измерения процесса для завершённой пары.</value></data>
+  <data name="ProcessObservation.Service.ProcessError" xml:space="preserve"><value>Процесс: {0}, 0x{1}.</value></data>
+  <data name="ProcessObservation.Service.IdentityMismatch" xml:space="preserve"><value>PID/время создания не соответствуют выбранной строке.</value></data>
+  <data name="ProcessObservation.Service.HostError" xml:space="preserve"><value>Компьютер: {0}, 0x{1}.</value></data>
+
+  <data name="ProcessObservation.Form.Start" xml:space="preserve"><value>Начать / повторить</value></data>
+  <data name="ProcessObservation.Form.Stop" xml:space="preserve"><value>Остановить наблюдение</value></data>
+  <data name="ProcessObservation.Form.Mark" xml:space="preserve"><value>Отметить симптом</value></data>
+  <data name="ProcessObservation.Form.Copy" xml:space="preserve"><value>Копировать сводку</value></data>
+  <data name="ProcessObservation.Form.Export" xml:space="preserve"><value>Сохранить HTML / JSON</value></data>
+  <data name="ProcessObservation.Form.NoteDefault" xml:space="preserve"><value>Зависание / задержка</value></data>
+  <data name="ProcessObservation.Form.Ready" xml:space="preserve"><value>Готов к наблюдению. Данные не собирались.</value></data>
+  <data name="ProcessObservation.Form.InvalidTarget" xml:space="preserve"><value>Не определён экземпляр процесса.</value></data>
+  <data name="ProcessObservation.Form.Title" xml:space="preserve"><value>G PC Health Check — наблюдение за процессом</value></data>
+  <data name="ProcessObservation.Form.Intro" xml:space="preserve"><value>{0} · PID {1} · создан {2:O}
+Выбран один экземпляр. После его завершения сбор компьютера продолжается; другой процесс с тем же PID не подставляется.</value></data>
+  <data name="ProcessObservation.Form.Duration" xml:space="preserve"><value>Длительность, с</value></data>
+  <data name="ProcessObservation.Form.Interval" xml:space="preserve"><value>Интервал, с</value></data>
+  <data name="ProcessObservation.Column.ProcessOffset" xml:space="preserve"><value>Процесс, с</value></data>
+  <data name="ProcessObservation.Column.State" xml:space="preserve"><value>Состояние процесса</value></data>
+  <data name="ProcessObservation.Column.Working" xml:space="preserve"><value>Рабочая, MiB</value></data>
+  <data name="ProcessObservation.Column.Read" xml:space="preserve"><value>Чтение, MiB/с</value></data>
+  <data name="ProcessObservation.Column.Write" xml:space="preserve"><value>Запись, MiB/с</value></data>
+  <data name="ProcessObservation.Column.SystemOffset" xml:space="preserve"><value>Компьютер, с</value></data>
+  <data name="ProcessObservation.Column.SystemCpu" xml:space="preserve"><value>CPU ПК, %</value></data>
+  <data name="ProcessObservation.Column.SystemMemory" xml:space="preserve"><value>RAM ПК, %</value></data>
+  <data name="ProcessObservation.Column.Disk" xml:space="preserve"><value>Диски, %</value></data>
+  <data name="ProcessObservation.Column.Queue" xml:space="preserve"><value>Очередь</value></data>
+  <data name="ProcessObservation.Tab.Measurements" xml:space="preserve"><value>Измерения</value></data>
+  <data name="ProcessObservation.Tab.Markers" xml:space="preserve"><value>Отметки симптомов</value></data>
+  <data name="ProcessObservation.Tab.Detail" xml:space="preserve"><value>Подробности измерения</value></data>
+  <data name="ProcessObservation.Tab.Summary" xml:space="preserve"><value>Сводка и методика</value></data>
+  <data name="ProcessObservation.Form.Overview" xml:space="preserve"><value>{0}
+
+Сбор начинается по кнопке. Новый сеанс заменяет предыдущий в окне: экспортируйте нужные результаты заранее.</value></data>
+  <data name="ProcessObservation.Form.StopRequested" xml:space="preserve"><value>Остановка запрошена; ожидается возврат системного вызова. Завершённые пары останутся в памяти.</value></data>
+  <data name="ProcessObservation.Form.Running" xml:space="preserve"><value>Наблюдение: {0:0.0}/{1} с; завершённых пар {2}; отметок {3}.</value></data>
+  <data name="ProcessObservation.Form.WaitSave" xml:space="preserve"><value>Дождитесь завершения сохранения файлов.</value></data>
+  <data name="ProcessObservation.Form.Interrupted" xml:space="preserve"><value>Сеанс прерван; доступные данные можно экспортировать.</value></data>
+  <data name="ProcessObservation.Form.SavedStatus" xml:space="preserve"><value>{0} · {1:0.0} с · пар {2}. Последнее состояние процесса: {3}. Экспорт сохраняет данные на диск.</value></data>
+  <data name="ProcessObservation.Form.NoData" xml:space="preserve"><value>нет данных</value></data>
+  <data name="ProcessObservation.Form.PreviousOptions" xml:space="preserve"><value>Параметры следующего запуска изменены; показаны результаты предыдущего наблюдения ({0} с / {1} с). {2}</value></data>
+  <data name="ProcessObservation.Form.PreviousBusy" xml:space="preserve"><value>Предыдущее наблюдение ещё завершает системный вызов. Дождитесь его окончания.</value></data>
+  <data name="ProcessObservation.Form.WaitFirst" xml:space="preserve"><value>Ожидаю первый замер. Скорости появятся после второй последовательной точки.</value></data>
+  <data name="ProcessObservation.Form.SessionError" xml:space="preserve"><value>Не удалось завершить сеанс: {0}, 0x{1}. Сохранена доступная интерфейсу часть данных.</value></data>
+  <data name="ProcessObservation.Form.MarkerInvalid" xml:space="preserve"><value>Нужна заметка 1–160 символов; максимум 100 отметок.</value></data>
+  <data name="ProcessObservation.Form.MarkerItem" xml:space="preserve"><value>+{0:0.000} с — {1}</value></data>
+  <data name="ProcessObservation.Form.ExportDescription" xml:space="preserve"><value>Сохранить весь сеанс. Имена, пути, аккаунты и заметки могут быть чувствительными.</value></data>
+  <data name="ProcessObservation.Form.Saving" xml:space="preserve"><value>Сохраняю все графики и измерения…</value></data>
+  <data name="ProcessObservation.Form.Saved" xml:space="preserve"><value>Сохранено: {0}</value></data>
+  <data name="ProcessObservation.Form.ExportMessage" xml:space="preserve"><value>Экспорт не завершён полностью. {0}</value></data>
+  <data name="ProcessObservation.Form.ExportTitle" xml:space="preserve"><value>Экспорт</value></data>
+  <data name="ProcessObservation.Form.SaveFailed" xml:space="preserve"><value>Сохранение не завершено: {0}, 0x{1}.</value></data>
+  <data name="ProcessObservation.Form.ActionFailed" xml:space="preserve"><value>Действие не завершено</value></data>
+
+  <data name="ProcessObservation.Report.Boundary" xml:space="preserve"><value>Наблюдается один выбранный экземпляр процесса, не всё приложение и не его дочерние процессы. PID проверяется вместе со временем создания; после завершения переключения на новый процесс нет. CPU — доля процессорного времени от всей системы, с учётом числа активных логических процессоров; это не доля разрешённой процессу affinity или квоты. Рабочая память включает общие резидентные страницы; частная выделенная память — commit, не объём занятой физической RAM. I/O — учтённые Windows байты ввода-вывода процесса, не скорость физического диска. Первый замер и пропуски не дают скоростей. Процесс и компьютер читаются последовательно, с отдельными отметками на одной монотонной шкале; атомарного снимка нет. Совпадение нагрузки с симптомом не устанавливает причину. Измерения и сборщик могут влиять на нагрузку; искусственная нагрузка и исправления не запускаются.</value></data>
+  <data name="ProcessObservation.Metric.Cpu" xml:space="preserve"><value>CPU процесса, % всей системы</value></data>
+  <data name="ProcessObservation.Metric.Working" xml:space="preserve"><value>Рабочая память процесса, MiB</value></data>
+  <data name="ProcessObservation.Metric.Private" xml:space="preserve"><value>Частная выделенная память, MiB</value></data>
+  <data name="ProcessObservation.Metric.Read" xml:space="preserve"><value>Чтение I/O процесса, MiB/с</value></data>
+  <data name="ProcessObservation.Metric.Write" xml:space="preserve"><value>Запись I/O процесса, MiB/с</value></data>
+  <data name="ProcessObservation.Report.StatsNone" xml:space="preserve"><value>{0}: нет доступных значений (0/{1}).</value></data>
+  <data name="ProcessObservation.Report.StatsLine" xml:space="preserve"><value>{0}: min {1}; медиана {2}; P95 {3}; max {4}; доступно {5}/{6}.</value></data>
+  <data name="ProcessObservation.Report.Title" xml:space="preserve"><value>G PC Health Check — наблюдение за процессом</value></data>
+  <data name="ProcessObservation.Report.Target" xml:space="preserve"><value>Компьютер: {0}; выбран: {1}; PID {2}; создание {3:O}.</value></data>
+  <data name="ProcessObservation.Report.StartEnd" xml:space="preserve"><value>Начало: {0:O}; завершение: {1:O}. {2}.</value></data>
+  <data name="ProcessObservation.Report.Plan" xml:space="preserve"><value>План: {0} с / {1} с; фактически {2:0.000} с; завершённых пар {3}; пропущено интервалов {4}.</value></data>
+  <data name="ProcessObservation.Report.LastState" xml:space="preserve"><value>Последнее состояние процесса: {0}</value></data>
+  <data name="ProcessObservation.Report.StatsMeaning" xml:space="preserve"><value>Статистика — по доступным замерам, не по доле времени. Пропуски не равны нулю.</value></data>
+  <data name="ProcessObservation.Report.Computer" xml:space="preserve"><value>Компьютер: {0}</value></data>
+  <data name="ProcessObservation.Report.Marker" xml:space="preserve"><value>Симптом +{0:0.000} с: {1}</value></data>
+  <data name="ProcessObservation.Report.Privacy" xml:space="preserve"><value>Экспорт сохраняет все измерения и все девять графиков; имена, пути EXE, аккаунты и заметки могут быть чувствительными.</value></data>
+  <data name="ProcessObservation.Report.Heading" xml:space="preserve"><value>Наблюдение за процессом</value></data>
+  <data name="ProcessObservation.Report.HostContext" xml:space="preserve"><value>Контекст компьютера</value></data>
+  <data name="ProcessObservation.Report.Pairs" xml:space="preserve"><value>Все завершённые пары измерений</value></data>
+  <data name="ProcessObservation.Report.Column.ProcessTime" xml:space="preserve"><value>Процесс: с / время</value></data>
+  <data name="ProcessObservation.Report.Column.State" xml:space="preserve"><value>Состояние</value></data>
+  <data name="ProcessObservation.Report.Column.Working" xml:space="preserve"><value>Рабочая память, MiB</value></data>
+  <data name="ProcessObservation.Report.Column.Read" xml:space="preserve"><value>Чтение, MiB/с</value></data>
+  <data name="ProcessObservation.Report.Column.Write" xml:space="preserve"><value>Запись, MiB/с</value></data>
+  <data name="ProcessObservation.Report.Column.Interval" xml:space="preserve"><value>Интервал, мс</value></data>
+  <data name="ProcessObservation.Report.Column.HostTime" xml:space="preserve"><value>Компьютер: с / время</value></data>
+  <data name="ProcessObservation.Report.Column.Disks" xml:space="preserve"><value>Диски, %</value></data>
+  <data name="ProcessObservation.Report.Column.Queue" xml:space="preserve"><value>Очередь</value></data>
+  <data name="ProcessObservation.Report.Column.Collection" xml:space="preserve"><value>Сбор пары, мс</value></data>
+  <data name="ProcessObservation.Report.Column.Warnings" xml:space="preserve"><value>Предупреждения</value></data>
+  <data name="ProcessObservation.Report.RawJson" xml:space="preserve"><value>Полные исходные счётчики, контекст и отметки (JSON)</value></data>
+  <data name="ProcessObservation.Report.NoValues" xml:space="preserve"><value>Нет доступных значений — не нулевая нагрузка</value></data>
+  <data name="ProcessObservation.Report.Detail" xml:space="preserve"><value>Процесс: +{0:0.000} с; {1:O}
+Компьютер: +{2:0.000} с; {3:O}
+Сбор пары: {4} мс; интервал дельты: {5} мс
+{6}
+EXE: {7}
+Создание FILETIME: {8}; логических процессоров: {9}
+
+{10}
+
+{11}</value></data>
+
+  <data name="ProcessObservation.Timeline.Accessible" xml:space="preserve"><value>График выбранного процесса</value></data>
+  <data name="ProcessObservation.Timeline.NotStarted" xml:space="preserve"><value>Наблюдение за процессом ещё не начато.</value></data>
+  <data name="ProcessObservation.Timeline.NoValues" xml:space="preserve"><value>Нет доступных значений — это не нулевая нагрузка.</value></data>
+  <data name="ProcessObservation.Unit.Seconds" xml:space="preserve"><value>{0} с</value></data>
 </root>
