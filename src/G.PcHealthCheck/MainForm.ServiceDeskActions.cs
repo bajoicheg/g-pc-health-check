@@ -5,12 +5,12 @@ public sealed partial class MainForm
     private readonly CheckBox _selectAllAvailable = new()
     {
         Name = "SelectAllAvailable",
-        Text = "Выбрать все доступные",
+        Text = AppLocalization.T("Main.ServiceDesk.SelectAll"),
         AutoSize = true,
         Padding = new Padding(0, 7, 8, 0)
     };
-    private readonly Button _makeBetter = BatchButton("MakeBetter", "Сделать хорошо", Color.FromArgb(23, 122, 75));
-    private readonly Button _doEverything = BatchButton("DoEverything", "Сделать всё", Color.FromArgb(181, 54, 54));
+    private readonly Button _makeBetter = BatchButton("MakeBetter", AppLocalization.T("Main.ServiceDesk.MakeBetter"), Color.FromArgb(23, 122, 75));
+    private readonly Button _doEverything = BatchButton("DoEverything", AppLocalization.T("Main.ServiceDesk.DoEverything"), Color.FromArgb(181, 54, 54));
     private bool _serviceDeskActionsUiInitialized;
     private bool _syncingSelectAll;
 
@@ -28,7 +28,7 @@ public sealed partial class MainForm
         var page = _tabs.TabPages.Count > 0 ? _tabs.TabPages[0] : null;
         var layout = page?.Controls.OfType<TableLayoutPanel>().FirstOrDefault();
         if (layout is null)
-            throw new InvalidOperationException("Не найдена панель рекомендаций для Service Desk действий.");
+            throw new InvalidOperationException(AppLocalization.T("Main.ServiceDesk.MissingPanel"));
 
         var split = layout.Controls.OfType<SplitContainer>().SingleOrDefault();
         layout.RowCount = 3;
@@ -67,6 +67,7 @@ public sealed partial class MainForm
         _actions.RowsRemoved += (_, _) => SyncSelectAllAvailable();
         _makeBetter.Click += async (_, _) => await MakeBetterAsync();
         SyncSelectAllAvailable();
+        RefreshMainLocalization();
     }
 
     private async Task MakeBetterAsync()
@@ -75,7 +76,7 @@ public sealed partial class MainForm
         BatchPreflight preflight;
         try
         {
-            Busy(true, "Проверяю рекомендуемые автоматические действия…");
+            Busy(true, AppLocalization.T("Main.ServiceDesk.CheckRecommended"));
             var context = await Task.Run(ExecutionContextService.Capture);
             RenderExecutionContext(context);
             preflight = ServiceDeskBatchPlanner.Plan(
@@ -93,15 +94,17 @@ public sealed partial class MainForm
             {
                 var skipped = preflight.Actions.Where(x => x.State == PlannedActionState.Skipped).ToList();
                 var detail = skipped.Count == 0
-                    ? "По текущему снимку нет рекомендуемых автоматических действий."
-                    : "Рекомендуемые действия сейчас недоступны:\n\n" + string.Join("\n", skipped.Select(x => x.Descriptor.Id + ": " + x.Reason));
-                MessageBox.Show(this, detail, "Сделать хорошо", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ? AppLocalization.T("Main.ServiceDesk.NoRecommended")
+                    : AppLocalization.T(
+                        "Main.ServiceDesk.RecommendedUnavailable",
+                        string.Join("\n", skipped.Select(x => x.Descriptor.Id + ": " + x.Reason)));
+                MessageBox.Show(this, detail, AppLocalization.T("Main.ServiceDesk.MakeBetter"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
         }
         catch (Exception ex)
         {
-            MessageBox.Show(this, ex.Message, "Не удалось подготовить рекомендуемые действия", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show(this, ex.Message, AppLocalization.T("Main.ServiceDesk.PrepareFailed"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return;
         }
         finally
