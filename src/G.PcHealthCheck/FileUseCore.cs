@@ -12,16 +12,16 @@ internal static class FileUseCore
         path = path.Replace('/', '\\');
         if (path.Length is < 4 or > 32760 || !char.IsAsciiLetter(path[0]) || path[1] != ':' || path[2] != '\\'
             || path.AsSpan(2).Contains(':') || path.Any(char.IsControl) || path.IndexOfAny(['<', '>', '"', '|', '*', '?']) >= 0)
-            throw new ArgumentException("Укажите полный путь к одному локальному файлу. URL, UNC, устройства, маски и альтернативные потоки не поддерживаются.", nameof(target));
+            throw new ArgumentException(AppLocalization.T("FileUse.Core.TargetAbsolute"), nameof(target));
         // Validate input components before normalizing away dot/parent segments.
         foreach (var part in path[3..].Split('\\', StringSplitOptions.RemoveEmptyEntries))
         {
             if (part is "." or "..") continue;
             if (part.EndsWith(' ') || part.EndsWith('.') || ReservedComponent(part))
-                throw new ArgumentException("Путь содержит зарезервированное имя устройства либо неоднозначную точку/пробел в конце компонента.", nameof(target));
+                throw new ArgumentException(AppLocalization.T("FileUse.Core.TargetReserved"), nameof(target));
         }
         var full = Path.GetFullPath(path);
-        if (full.Length <= 3) throw new ArgumentException("Нужен файл, не корень диска.", nameof(target));
+        if (full.Length <= 3) throw new ArgumentException(AppLocalization.T("FileUse.Core.TargetFile"), nameof(target));
         return full;
     }
     private static bool ReservedComponent(string part)
@@ -55,20 +55,41 @@ internal static class FileUseCore
     }
     public static string Verdict(FileUseSnapshot snapshot)
     {
-        if (!snapshot.ListCompleted) return snapshot.State == "Cancelled" ? "Сбор остановлен; список приложений не получен." : "Не удалось получить список использующих файл приложений.";
-        var prefix = snapshot.State == "Cancelled" ? "Сбор остановлен после получения списка. " : snapshot.State == "Partial" ? "Проверка завершена с предупреждениями. " : "";
+        if (!snapshot.ListCompleted)
+            return AppLocalization.T(snapshot.State == "Cancelled" ? "FileUse.Core.Verdict.CancelledNoList" : "FileUse.Core.Verdict.NoList");
+        var prefix = snapshot.State == "Cancelled"
+            ? AppLocalization.T("FileUse.Core.Verdict.CancelledPrefix")
+            : snapshot.State == "Partial" ? AppLocalization.T("FileUse.Core.Verdict.PartialPrefix") : "";
         return prefix + (snapshot.Processes.Count > 0
-            ? $"Restart Manager сообщил приложений/служб: {snapshot.Processes.Count}. Это сведения об использовании файла, не доказательство причины отказа конкретной операции."
-            : "Restart Manager не сообщил использующих файл приложений. Это не доказывает отсутствие блокировки или возможность удаления/переименования.");
+            ? AppLocalization.T("FileUse.Core.Verdict.Found", snapshot.Processes.Count)
+            : AppLocalization.T("FileUse.Core.Verdict.Empty"));
     }
     public static string Session(FileUseProcess row) => row.ApplicationType is 3 or 1000 || row.SessionId == uint.MaxValue ? "—" : row.SessionId.ToString(CultureInfo.InvariantCulture);
     public static string TypeText(uint type) => type switch
-    { 0 => "Не определён", 1 => "Приложение", 2 => "Окно приложения", 3 => "Служба", 4 => "Проводник", 5 => "Консоль", 1000 => "Критический процесс", _ => $"Неизвестный тип ({type})" };
+    {
+        0 => AppLocalization.T("FileUse.Core.Type.Undefined"),
+        1 => AppLocalization.T("FileUse.Core.Type.Application"),
+        2 => AppLocalization.T("FileUse.Core.Type.Window"),
+        3 => AppLocalization.T("FileUse.Core.Type.Service"),
+        4 => AppLocalization.T("FileUse.Core.Type.Explorer"),
+        5 => AppLocalization.T("FileUse.Core.Type.Console"),
+        1000 => AppLocalization.T("FileUse.Core.Type.Critical"),
+        _ => AppLocalization.T("FileUse.Core.Type.Unknown", type)
+    };
     public static string IdentityText(string state) => state switch
     {
-        "Matched" => "PID и время создания совпали", "Changed" => "PID уже относится к другому процессу",
-        "Invalid" => "PID/время создания не определены", "NotChecked" => "Проверка EXE не завершена", _ => "Метаданные EXE недоступны"
+        "Matched" => AppLocalization.T("FileUse.Core.Identity.Matched"),
+        "Changed" => AppLocalization.T("FileUse.Core.Identity.Changed"),
+        "Invalid" => AppLocalization.T("FileUse.Core.Identity.Invalid"),
+        "NotChecked" => AppLocalization.T("FileUse.Core.Identity.NotChecked"),
+        _ => AppLocalization.T("FileUse.Core.Identity.Unavailable")
     };
     public static string StateText(string state) => state switch
-    { "Complete" => "Собрано", "Partial" => "С предупреждениями", "Cancelled" => "Остановлено", "Unavailable" => "Недоступно", _ => "Не собиралось" };
+    {
+        "Complete" => AppLocalization.T("FileUse.Core.State.Complete"),
+        "Partial" => AppLocalization.T("FileUse.Core.State.Partial"),
+        "Cancelled" => AppLocalization.T("FileUse.Core.State.Cancelled"),
+        "Unavailable" => AppLocalization.T("FileUse.Core.State.Unavailable"),
+        _ => AppLocalization.T("FileUse.Core.State.NotCollected")
+    };
 }
