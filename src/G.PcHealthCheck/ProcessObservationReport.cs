@@ -59,7 +59,8 @@ internal static class ProcessObservationReport
             s.Append("<section><h2>").Append(H(PerformanceSessionReport.Name(metric))).Append("</h2>").Append(Svg(snapshot, PerformanceStatistics.Segments(snapshot.System, metric), PerformanceSessionReport.Name(metric), metric != SessionMetric.DiskQueue)).Append("</section>");
         s.Append("<section class='scroll'><h2>").Append(H(AppLocalization.T("ProcessObservation.Report.Pairs"))).Append("</h2><table><tr><th>")
             .Append(H(AppLocalization.T("ProcessObservation.Report.Column.ProcessTime"))).Append("</th><th>")
-            .Append(H(AppLocalization.T("ProcessObservation.Report.Column.State"))).Append("</th><th>CPU, %</th><th>")
+            .Append(H(AppLocalization.T("ProcessObservation.Report.Column.State"))).Append("</th><th>")
+            .Append(H(AppLocalization.T("ProcessObservation.Report.Column.Exe"))).Append("</th><th>CPU, %</th><th>")
             .Append(H(AppLocalization.T("ProcessObservation.Report.Column.Working"))).Append("</th><th>")
             .Append(H(AppLocalization.T("ProcessObservation.Metric.Private"))).Append("</th><th>")
             .Append(H(AppLocalization.T("ProcessObservation.Report.Column.Read"))).Append("</th><th>")
@@ -72,7 +73,8 @@ internal static class ProcessObservationReport
             .Append(H(AppLocalization.T("ProcessObservation.Report.Column.Warnings"))).Append("</th></tr>");
         foreach (var pair in snapshot.Samples)
         {
-            s.Append("<tr><td>").Append(H($"{pair.Process.OffsetMs / 1000d:0.000} / {pair.Process.CollectedAt:O}")).Append("</td><td>").Append(H(ProcessObservationCore.StateText(pair.Process.Counters.State))).Append("</td>");
+            s.Append("<tr><td>").Append(H($"{pair.Process.OffsetMs / 1000d:0.000} / {pair.Process.CollectedAt:O}")).Append("</td><td>").Append(H(ProcessObservationCore.StateText(pair.Process.Counters.State)))
+                .Append("</td><td>").Append(H(pair.Process.Counters.ImagePath)).Append("</td>");
             foreach (var metric in Enum.GetValues<ProcessMetric>()) s.Append("<td>").Append(H(F(ProcessObservationCore.Value(pair.Reading, metric)))).Append("</td>");
             s.Append("<td>").Append(H(pair.Reading.IntervalMs?.ToString() ?? "—")).Append("</td><td>").Append(H($"{pair.System.OffsetMs / 1000d:0.000} / {pair.System.CollectedAt:O}")).Append("</td>");
             foreach (var metric in Enum.GetValues<SessionMetric>()) s.Append("<td>").Append(H(F(PerformanceValues.Value(pair.System.Reading, metric)))).Append("</td>");
