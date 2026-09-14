@@ -21,7 +21,7 @@ internal static class ReviewReport
         ReviewCollectionState.Missing => "Каталог/источник отсутствует",
         _ => "Данные недоступны"
     };
-    public static string Bytes(long bytes) => $"{bytes / 1048576d:N2} MiB ({bytes:N0} байт)";
+    public static string Bytes(long bytes) => HumanSize.Megabytes(bytes);
     public static string Overview(object snapshot)
     {
         var sb = new StringBuilder(); sb.AppendLine(Title(snapshot));
@@ -59,7 +59,7 @@ internal static class ReviewReport
     {
         var sb = new StringBuilder("G PC Health Check\n"); sb.AppendLine(Overview(snapshot));
         if (snapshot is TempPreviewSnapshot t)
-            foreach (var row in t.LargestFiles) sb.AppendLine($"{row.Bytes} байт | {row.LastWriteTime:O} | {row.Path}");
+            foreach (var row in t.LargestFiles) sb.AppendLine($"{HumanSize.Megabytes(row.Bytes)} | {row.LastWriteTime:O} | {row.Path}");
         else if (snapshot is StartupReviewSnapshot s)
             foreach (var row in s.Entries) sb.AppendLine($"{row.Name} | {row.Scope} | {row.Source} | {row.State}\n{row.Command}");
         return sb.ToString();
@@ -77,9 +77,9 @@ internal static class ReviewReport
         sb.Append(H(title)).Append("</h1></header><main><section><pre>").Append(H(Overview(snapshot))).Append("</pre></section><section class='table'><table><thead><tr>");
         if (snapshot is TempPreviewSnapshot t)
         {
-            foreach (var h in new[] { "Размер, байт", "Изменён", "Путь" }) sb.Append("<th>").Append(H(h)).Append("</th>");
+            foreach (var h in new[] { "Размер, MB", "Изменён", "Путь" }) sb.Append("<th>").Append(H(h)).Append("</th>");
             sb.Append("</tr></thead><tbody>");
-            foreach (var row in t.LargestFiles) Row(sb, row.Bytes.ToString(), row.LastWriteTime.ToString("O"), row.Path);
+            foreach (var row in t.LargestFiles) Row(sb, HumanSize.Megabytes(row.Bytes), row.LastWriteTime.ToString("O"), row.Path);
         }
         else if (snapshot is StartupReviewSnapshot s)
         {

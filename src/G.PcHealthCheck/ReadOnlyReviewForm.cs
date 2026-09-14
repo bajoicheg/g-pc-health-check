@@ -55,7 +55,7 @@ internal sealed class ReadOnlyReviewForm : Form
         _grid.BackgroundColor = SystemColors.Window;
         if (temp)
         {
-            Column("Bytes", "Размер, байт", 130, typeof(long), "N0");
+            Column("Bytes", "Размер, MB", 130, typeof(double), "N1");
             Column("Modified", "Изменён", 175, typeof(DateTime), "dd.MM.yyyy HH:mm:ss");
             Column("Path", "Полный путь — крупнейшие кандидаты", 580, typeof(string), fill: true);
         }
@@ -125,7 +125,7 @@ internal sealed class ReadOnlyReviewForm : Form
     {
         _grid.Rows.Clear();
         if (_snapshot is TempPreviewSnapshot t)
-            foreach (var row in t.LargestFiles) _grid.Rows[_grid.Rows.Add(row.Bytes, row.LastWriteTime, row.Path)].Tag = row;
+            foreach (var row in t.LargestFiles) _grid.Rows[_grid.Rows.Add(HumanSize.MegabytesValue(row.Bytes), row.LastWriteTime, row.Path)].Tag = row;
         else if (_snapshot is StartupReviewSnapshot s)
         {
             var rows = StartupReviewService.Filter(s, _search.Text);

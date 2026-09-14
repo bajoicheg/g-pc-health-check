@@ -30,7 +30,7 @@ internal static class ReadOnlyReviewUiSelfTest
                 using var form = new ReadOnlyReviewForm(true, 3);
                 form.DisplaySnapshot(new TempPreviewSnapshot { LargestFiles = [new() { Path = "a", Bytes = 900 }, new() { Path = "b", Bytes = 1100 }] });
                 var grid = Grid(form); grid.Sort(grid.Columns["Bytes"], ListSortDirection.Descending);
-                Require((long)grid.Rows[0].Cells["Bytes"].Value == 1100 && grid.ReadOnly, "Size sort is not numeric/read-only.");
+                Require(Math.Abs(Convert.ToDouble(grid.Rows[0].Cells["Bytes"].Value) - (1100d / 1048576d)) < 1e-12 && grid.ReadOnly, "Size sort is not numeric/read-only.");
             });
             Test("startup grid preserves full command and unknown enabled state", () =>
             {

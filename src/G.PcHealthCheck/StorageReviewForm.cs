@@ -168,15 +168,15 @@ internal sealed class StorageReviewForm : Form
             var total = f.Folders.FirstOrDefault()?.Bytes ?? 0;
             if (_view.SelectedIndex == 2)
             {
-                Column("Bytes", "Байт", 135, typeof(long), "N0");
+                Column("Bytes", "Размер, MB", 135, typeof(double), "N1");
                 Column("Modified", "Изменён", 185, typeof(DateTimeOffset), "dd.MM.yyyy HH:mm:ss zzz");
                 Column("Path", "Полный путь", 600, typeof(string), fill: true);
                 var rows = f.LargestFiles.Where(x => Matches(x.Path)).ToList(); matched = rows.Count;
-                foreach (var row in rows) _grid.Rows[_grid.Rows.Add(row.Bytes, row.Modified, row.Path)].Tag = row;
+                foreach (var row in rows) _grid.Rows[_grid.Rows.Add(HumanSize.MegabytesValue(row.Bytes), row.Modified, row.Path)].Tag = row;
             }
             else
             {
-                Column("Bytes", "Всего байт", 155, typeof(decimal), "N0");
+                Column("Bytes", "Всего, MB", 155, typeof(double), "N1");
                 Column("Files", "Файлов", 95, typeof(int), "N0");
                 Column("Percent", "Доля учтённого, %", 120, typeof(decimal), "0.0");
                 Column("Scope", "Полнота", 130, typeof(string));
@@ -186,7 +186,7 @@ internal sealed class StorageReviewForm : Form
                 foreach (var row in rows.Take(2000))
                 {
                     var percent = total > 0 ? row.Bytes / total * 100m : 0m;
-                    _grid.Rows[_grid.Rows.Add(row.Bytes, row.Files, percent, row.Incomplete ? "Неполная" : "В рамках обхода", row.Path)].Tag = row;
+                    _grid.Rows[_grid.Rows.Add(HumanSize.MegabytesDecimalValue(row.Bytes), row.Files, percent, row.Incomplete ? "Неполная" : "В рамках обхода", row.Path)].Tag = row;
                 }
             }
         }
