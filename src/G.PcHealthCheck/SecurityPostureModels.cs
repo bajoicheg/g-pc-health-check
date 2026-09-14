@@ -78,3 +78,27 @@ internal sealed record DeviceGuardObservation(
     IReadOnlyList<int> SecurityServicesRunning,
     IReadOnlyList<int> SecurityServicesConfigured,
     string Source);
+
+internal sealed record SecurityCenterProduct(
+    string Name,
+    string Provider,
+    string ProductState,
+    string SignatureState,
+    string? ProductPath,
+    string Source);
+
+internal sealed record DefenderSecurityObservation(
+    bool? AntivirusEnabled,
+    bool? RealTimeProtectionEnabled,
+    bool? BehaviorMonitorEnabled,
+    bool? IoavProtectionEnabled,
+    bool? TamperProtected,
+    int? SignatureAgeDays,
+    string? PlatformVersion,
+    string Source);
+
+internal sealed record KasperskySecurityObservation(
+    bool? RealTimeProtectionEnabled,
+    DateTime? DefinitionsUpdatedAt,
+    string? ProductVersion,
+    string Source);
