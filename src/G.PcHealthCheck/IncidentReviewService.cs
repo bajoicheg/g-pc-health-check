@@ -8,15 +8,19 @@ internal static class IncidentQueries
     public static void Validate(IncidentWindow window)
     {
         ArgumentNullException.ThrowIfNull(window);
-        if (window.To <= window.From || window.To - window.From > TimeSpan.FromDays(7)) throw new ArgumentException("Интервал должен быть положительным и не превышать 7 суток.");
-        if (window.MaxPerLog is < 1 or > 5000) throw new ArgumentOutOfRangeException(nameof(window), "Допустимо 1–5000 записей на журнал.");
+        if (window.To <= window.From || window.To - window.From > TimeSpan.FromDays(7))
+            throw new ArgumentException(AppLocalization.T("Incident.Query.InvalidWindow"));
+        if (window.MaxPerLog is < 1 or > 5000)
+            throw new ArgumentOutOfRangeException(nameof(window), AppLocalization.T("Incident.Query.InvalidLimit"));
     }
+
     public static string XPath(IncidentWindow window)
     {
         Validate(window);
         static string Utc(DateTimeOffset t) => t.UtcDateTime.ToString("yyyy-MM-ddTHH:mm:ss.fffffffZ", CultureInfo.InvariantCulture);
         return $"*[System[TimeCreated[@SystemTime >= '{Utc(window.From)}' and @SystemTime <= '{Utc(window.To)}']]]";
     }
+
     public static List<IncidentEvent> Events(IncidentSnapshot snapshot, IncidentFilter filter)
     {
         ArgumentNullException.ThrowIfNull(snapshot); ArgumentNullException.ThrowIfNull(filter);
@@ -26,9 +30,11 @@ internal static class IncidentQueries
             .Where(x => (filter.Log.Length == 0 || x.Log.Equals(filter.Log, StringComparison.OrdinalIgnoreCase))
                 && (!filter.EventId.HasValue || x.EventId == filter.EventId)
                 && (!filter.WarningsOnly || x.Level is >= 1 and <= 3)
-                && (text.Length == 0 || new[] { x.Provider, x.Message, x.EventId.ToString(CultureInfo.InvariantCulture), x.EmitterPid?.ToString(CultureInfo.InvariantCulture) ?? "" }.Any(v => v.Contains(text, StringComparison.OrdinalIgnoreCase))))
+                && (text.Length == 0 || new[] { x.Provider, x.Message, x.EventId.ToString(CultureInfo.InvariantCulture), x.EmitterPid?.ToString(CultureInfo.InvariantCulture) ?? "" }
+                    .Any(v => v.Contains(text, StringComparison.OrdinalIgnoreCase))))
             .OrderByDescending(x => x.Timestamp).ThenBy(x => x.Log, StringComparer.Ordinal).ThenByDescending(x => x.RecordId).ToList();
     }
+
     public static List<ProcessReviewEntry> Processes(ProcessReviewSnapshot snapshot, string text)
     {
         ArgumentNullException.ThrowIfNull(snapshot); ArgumentNullException.ThrowIfNull(text); text = text.Trim();
@@ -37,7 +43,9 @@ internal static class IncidentQueries
             .Any(v => v.Contains(text, StringComparison.OrdinalIgnoreCase)))
             .OrderBy(x => x.Name, StringComparer.OrdinalIgnoreCase).ThenBy(x => x.Pid).ToList();
     }
-    public static string Error(Exception ex) => (ex is UnauthorizedAccessException ? "Доступ запрещён. " : "") + $"{ex.GetType().Name}; 0x{ex.HResult:X8}";
+
+    public static string Error(Exception ex)
+        => (ex is UnauthorizedAccessException ? AppLocalization.T("Incident.Query.AccessDenied") : "") + $"{ex.GetType().Name}; 0x{ex.HResult:X8}";
 }
 
 internal sealed class IncidentEvents(IIncidentEventSource source)
@@ -57,21 +65,47 @@ internal sealed class IncidentEvents(IIncidentEventSource source)
                 while (true)
                 {
                     ct.ThrowIfCancellationRequested();
-                    if (watch.Elapsed >= TimeSpan.FromSeconds(20)) { result.Warnings.Add("Достигнуто 20 секунд между вызовами поставщика; журнал просмотрен не полностью."); break; }
+                    if (watch.Elapsed >= TimeSpan.FromSeconds(20))
+                    {
+                        result.Warnings.Add(AppLocalization.T("Incident.Events.Timeout"));
+                        break;
+                    }
                     if (!iterator.MoveNext()) break;
                     ct.ThrowIfCancellationRequested();
-                    if (++observed > window.MaxPerLog) { result.Warnings.Add($"Достигнут лимит {window.MaxPerLog} записей; более старые результаты не прочитаны."); break; }
+                    if (++observed > window.MaxPerLog)
+                    {
+                        result.Warnings.Add(AppLocalization.T("Incident.Events.Limit", window.MaxPerLog));
+                        break;
+                    }
                     var e = iterator.Current;
                     if (e.Timestamp is null || e.Timestamp < window.From || e.Timestamp > window.To)
-                    { result.Warnings.Add("Пропущена запись без подтверждённого времени внутри интервала."); continue; }
-                    result.Events.Add(new IncidentEvent { Log = log, RecordId = e.RecordId, Timestamp = e.Timestamp, EventId = e.EventId, Level = e.Level,
-                        Provider = e.Provider, Message = e.Message, MessageState = e.MessageState, EmitterPid = e.EmitterPid });
-                    if (e.MessageState != "Available") result.Warnings.Add($"Record ID {e.RecordId}: текст события недоступен полностью ({e.MessageState}); метаданные сохранены.");
+                    {
+                        result.Warnings.Add(AppLocalization.T("Incident.Events.BadTimestamp"));
+                        continue;
+                    }
+                    result.Events.Add(new IncidentEvent
+                    {
+                        Log = log,
+                        RecordId = e.RecordId,
+                        Timestamp = e.Timestamp,
+                        EventId = e.EventId,
+                        Level = e.Level,
+                        Provider = e.Provider,
+                        Message = e.Message,
+                        MessageState = e.MessageState,
+                        EmitterPid = e.EmitterPid
+                    });
+                    if (e.MessageState != "Available")
+                        result.Warnings.Add(AppLocalization.T("Incident.Events.MessageUnavailable", e.RecordId, IncidentReport.MessageStateText(e.MessageState)));
                 }
                 ct.ThrowIfCancellationRequested();
                 result.State = result.Warnings.Count == 0 ? "Complete" : "Partial";
             }
-            catch (OperationCanceledException) when (ct.IsCancellationRequested) { result.State = "Cancelled"; result.Warnings.Add("Сбор отменён; показаны только уже полученные записи."); }
+            catch (OperationCanceledException) when (ct.IsCancellationRequested)
+            {
+                result.State = "Cancelled";
+                result.Warnings.Add(AppLocalization.T("Incident.Events.Cancelled"));
+            }
             catch (Exception ex)
             {
                 result.State = ct.IsCancellationRequested ? "Cancelled" : result.Events.Count > 0 || observed > 0 ? "Partial" : "Unavailable";
@@ -97,36 +131,64 @@ internal sealed class ProcessReview(IProcessReviewSource source)
             while (true)
             {
                 ct.ThrowIfCancellationRequested();
-                if (watch.Elapsed >= TimeSpan.FromSeconds(20)) { snapshot.Warnings.Add("Достигнуто 20 секунд между вызовами WMI; список неполный."); break; }
+                if (watch.Elapsed >= TimeSpan.FromSeconds(20))
+                {
+                    snapshot.Warnings.Add(AppLocalization.T("Incident.Processes.Timeout"));
+                    break;
+                }
                 if (!iterator.MoveNext()) break;
                 ct.ThrowIfCancellationRequested();
-                if (snapshot.Processes.Count >= maximum) { snapshot.Warnings.Add($"Достигнут лимит {maximum} процессов; список неполный."); break; }
+                if (snapshot.Processes.Count >= maximum)
+                {
+                    snapshot.Warnings.Add(AppLocalization.T("Incident.Processes.Limit", maximum));
+                    break;
+                }
                 snapshot.Processes.Add(iterator.Current);
             }
             ct.ThrowIfCancellationRequested();
             snapshot.State = snapshot.Warnings.Count > 0 || snapshot.Processes.Any(x => x.Warnings.Count > 0) ? "Partial" : "Complete";
         }
-        catch (OperationCanceledException) when (ct.IsCancellationRequested) { snapshot.State = "Cancelled"; snapshot.Warnings.Add("Сбор отменён; список может быть неполным."); }
-        catch (Exception ex) { snapshot.State = ct.IsCancellationRequested ? "Cancelled" : snapshot.Processes.Count == 0 ? "Unavailable" : "Partial"; snapshot.Warnings.Add(IncidentQueries.Error(ex)); }
+        catch (OperationCanceledException) when (ct.IsCancellationRequested)
+        {
+            snapshot.State = "Cancelled";
+            snapshot.Warnings.Add(AppLocalization.T("Incident.Processes.Cancelled"));
+        }
+        catch (Exception ex)
+        {
+            snapshot.State = ct.IsCancellationRequested ? "Cancelled" : snapshot.Processes.Count == 0 ? "Unavailable" : "Partial";
+            snapshot.Warnings.Add(IncidentQueries.Error(ex));
+        }
         snapshot.FinishedAt = DateTimeOffset.Now; return snapshot;
     }
+
     public ProcessOwnerEvidence Owner(ProcessReviewEntry selected, CancellationToken ct)
     {
         ArgumentNullException.ThrowIfNull(selected);
-        ProcessOwnerEvidence Result(string state, string owner, string detail) => new(selected.Pid, selected.CreationKey, state, owner, detail, DateTimeOffset.Now);
+        ProcessOwnerEvidence Result(string state, string owner, string detail)
+            => new(selected.Pid, selected.CreationKey, state, owner, detail, DateTimeOffset.Now);
         bool Same(ProcessReviewEntry? row) => row is not null && row.Pid == selected.Pid && row.CreationKey == selected.CreationKey;
         try
         {
             ct.ThrowIfCancellationRequested();
-            if (string.IsNullOrWhiteSpace(selected.CreationKey)) return Result("Unverified", "", "Нет времени создания: нельзя подтвердить, что PID всё ещё принадлежит выбранному процессу.");
-            if (!Same(source.Lookup(selected.Pid, ct))) return Result("Stale", "", "Процесс завершён или PID уже принадлежит другому процессу. Обновите список.");
+            if (string.IsNullOrWhiteSpace(selected.CreationKey))
+                return Result("Unverified", "", AppLocalization.T("Incident.Owner.NoCreation"));
+            if (!Same(source.Lookup(selected.Pid, ct)))
+                return Result("Stale", "", AppLocalization.T("Incident.Owner.Stale"));
             ct.ThrowIfCancellationRequested(); var owner = source.ReadOwner(selected.Pid, ct); ct.ThrowIfCancellationRequested();
-            if (!Same(source.Lookup(selected.Pid, ct))) return Result("Stale", "", "Идентичность изменилась во время проверки; полученный владелец отброшен.");
+            if (!Same(source.Lookup(selected.Pid, ct)))
+                return Result("Stale", "", AppLocalization.T("Incident.Owner.Changed"));
             ct.ThrowIfCancellationRequested();
-            return string.IsNullOrWhiteSpace(owner) ? Result("Unavailable", "", "WMI не сообщил владельца.")
-                : Result("Verified", owner, "PID и CreationDate совпали до и после GetOwner. Это наблюдение на момент проверки, не постоянная связь.");
+            return string.IsNullOrWhiteSpace(owner)
+                ? Result("Unavailable", "", AppLocalization.T("Incident.Owner.Unavailable"))
+                : Result("Verified", owner, AppLocalization.T("Incident.Owner.Verified"));
         }
-        catch (OperationCanceledException) when (ct.IsCancellationRequested) { return Result("Cancelled", "", "Проверка владельца отменена."); }
-        catch (Exception ex) { return Result(ct.IsCancellationRequested ? "Cancelled" : "Unavailable", "", IncidentQueries.Error(ex)); }
+        catch (OperationCanceledException) when (ct.IsCancellationRequested)
+        {
+            return Result("Cancelled", "", AppLocalization.T("Incident.Owner.Cancelled"));
+        }
+        catch (Exception ex)
+        {
+            return Result(ct.IsCancellationRequested ? "Cancelled" : "Unavailable", "", IncidentQueries.Error(ex));
+        }
     }
 }
