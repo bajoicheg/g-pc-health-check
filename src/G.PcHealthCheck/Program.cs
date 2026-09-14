@@ -1,5 +1,3 @@
-using System.Globalization;
-
 namespace G.PcHealthCheck;
 
 internal static class Program
@@ -7,8 +5,7 @@ internal static class Program
     [STAThread]
     private static void Main(string[] args)
     {
-        CultureInfo.DefaultThreadCurrentCulture = CultureInfo.GetCultureInfo("ru-RU");
-        CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.GetCultureInfo("ru-RU");
+        AppLocalization.Initialize();
         if (args.Any(a => string.Equals(a, "--selftest", StringComparison.OrdinalIgnoreCase)))
         {
             var result = SelfTest.Run();
