@@ -2,9 +2,17 @@
 
 Windows 11 x64 Service Desk utility for workstation diagnostics, explainable findings, before/after reporting and controlled remediation.
 
-Current project version: **0.15.1**. A self-contained single-file `G-PC-Health-Check.exe`; no installation is required. Portable copies may use any folder and filename.
+Current project version: **0.16.0**. A self-contained single-file `G-PC-Health-Check.exe`; no installation is required. Portable copies may use any folder and filename.
 
 > **Privacy:** review exports before sharing. Account names/SIDs, profile and file paths, commands, events, device identifiers, resource addresses and notes can be sensitive. Search is not redaction. See [`SECURITY.md`](SECURITY.md).
+
+## 0.16.0 — bilingual Service Desk actions and one-click repair
+
+0.16.0 adds RU/EN operator UI, MB presentation for human-readable file/folder sizes, safe one-shot auto-collection for fully defined read-only Analysis views, About/branding cleanup and a centralized Service Desk action model. Stable IDs, JSON keys and raw provider evidence remain language-independent.
+
+The main action area now has Select All plus two explicit batch paths. **Сделать хорошо / Make it better** runs only currently recommended, automated and requestable actions. **Сделать всё / Do everything** uses one fixed 14-action code-owned allow-list and an authenticated phased worker with one UAC for administrative work. Network-disruptive actions are deliberately late; the worker remains session/nonce bound and does not expose a generic command/service/adapter interface.
+
+The red batch must first be tested only on an approved disposable/test workstation. It can interrupt VPN/RDP/network connectivity, reset DHCP/Winsock/TCP-IP, restart adapters/services, delete pending print jobs, refresh Group Policy, run DISM/SFC and leave Windows requiring a reboot. Security software is never disabled or weakened. [0.16.0 scope and safety notes](docs/releases/0.16.0.md).
 
 ## 0.15.1 — pilot hardening maintenance release
 
@@ -71,7 +79,7 @@ Startup review still reads HKCU/personal Startup of the **process account**. Rai
 | Сетевые соединения и порты (TCP/UDP)… | Local owner-PID tables, checked process-name attribution and qualified snapshot differences | No probe/reverse DNS or connection/process changes; full retained-snapshot export. [0.12.0](docs/releases/0.12.0.md) |
 | Кто использует файл… | Restart Manager application/service evidence for one selected local file, with checked executable metadata | No forced unlocking or termination; failed/empty results stay distinct. [0.13.0](docs/releases/0.13.0.md) |
 
-Read-only tools open idle and provide explicit collection, progress, cancellation, details and local reports. Export before replacing an in-memory result. HTML/JSON preserve the complete collected snapshot, not only a search filter. Permissions, source limits and unavailable values remain meaningful; no provider is guaranteed to return promptly. Folder sizes are logical, nested totals overlap and hard links count per name. Network/cloud paths and native name resolution may generate OS traffic.
+Read-only tools with fully defined default scope may collect once when opened in 0.16.0; target/consent-required tools such as Resource Probe, File Use and Process Observation remain idle. Collection, progress, cancellation, details and local reports preserve complete evidence rather than only a search filter. Permissions, source limits and unavailable values remain meaningful; no provider is guaranteed to return promptly. Folder sizes are logical, nested totals overlap and hard links count per name. Network/cloud paths and native name resolution may generate OS traffic.
 
 ## Main diagnostics and common problems
 
@@ -83,13 +91,13 @@ The original health thresholds and previous tools are preserved. See [`docs/ASSE
 
 ## Portable remediation and execution boundaries
 
-**DISM/SFC work from any EXE folder/name**, including Downloads and renamed copies. Start normally, select and confirm actions; a separate process requests UAC for the same executable. An already administrative GUI uses its existing rights. Move/rename the file only while closed. Windows access and enterprise launch policies still apply.
+0.16.0 centralizes remediation metadata and keeps a fixed, code-owned action set. The green **Сделать хорошо / Make it better** batch includes only currently recommended, automated and requestable actions. The red **Сделать всё / Do everything** batch is the exact fixed 14-action allow-list documented in [0.16.0 release notes](docs/releases/0.16.0.md); it cannot accept arbitrary commands, services or adapters.
 
-`CleanTemp` removes only old ordinary files in the confirmed session user's **profile\\AppData\\Local\\Temp**, not Windows Temp/Prefetch. It requires a non-elevated process with matching user SIDs/profiles, rechecks the context and refuses encountered reparse points. An invalid or inaccessible root is not reported as a successful empty cleanup. Preview remains read-only and can run elevated; its scope is not an automatic discovery of every redirected/custom TMP folder.
+Administrative actions use one authenticated phased worker lifetime with session/nonce-bound IPC and one UAC prompt when elevation is required. Parent-side original-user actions and worker-side machine actions remain separated; network disruption is scheduled late. Alternate-admin elevation does not impersonate the interactive user. `CleanTemp` remains limited to the verified same-user/session/profile scope.
 
-`FlushDns` runs under the current token when selected alone, with no automatic elevated retry. When included with DISM/SFC it travels through their worker. Combined batches keep CleanTemp in the original normal parent. DISM RestoreHealth and SFC /scannow retain fixed paths/arguments and administrative requirements. The worker still accepts only FlushDns/Dism/Sfc and validates session, pipe and nonce; unknown/mixed requests and CleanTemp are rejected. Obsolete bootstrap remains disabled.
+**DISM/SFC work from any EXE folder/name**, including Downloads and renamed copies. Windows access and enterprise launch policies still apply. No security software disable/stop/exclusion, Event Log clearing, credential/profile deletion, forced reboot or forced logoff is provided.
 
-No automatic network reset, DHCP release, DNS/proxy/VPN/GPO/EDR change, service restart, print-job removal, driver installation, startup disabling or reboot is added. No credentials are stored, no user profile is loaded and no current token is elevated or impersonated by context discovery. See [`docs/SECURITY.md`](docs/SECURITY.md) and [0.11.0 context rules](docs/releases/0.11.0.md).
+The red batch is intentionally disruptive and must first be exercised only on an approved disposable/test workstation. It may interrupt VPN/RDP/network, reset DHCP/Winsock/TCP-IP, restart adapters/services, delete pending print jobs, refresh Group Policy, resynchronize time and leave Windows requiring reboot. Hosted CI validates the fixed handlers/protocol with fakes and negative tests; it does not execute those real disruptive repairs.
 
 ## Build, CI and provenance
 
