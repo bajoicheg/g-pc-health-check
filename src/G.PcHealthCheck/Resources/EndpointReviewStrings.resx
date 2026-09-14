@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Endpoint.Form.Start" xml:space="preserve"><value>Собрать / повторить</value></data>
+  <data name="Endpoint.Form.Stop" xml:space="preserve"><value>Остановить сбор</value></data>
+  <data name="Endpoint.Form.Copy" xml:space="preserve"><value>Копировать сводку</value></data>
+  <data name="Endpoint.Form.Export" xml:space="preserve"><value>Сохранить HTML / JSON</value></data>
+  <data name="Endpoint.Form.Close" xml:space="preserve"><value>Закрыть</value></data>
+  <data name="Endpoint.Form.Search" xml:space="preserve"><value>Процесс, PID, IP, порт или состояние…</value></data>
+  <data name="Endpoint.Form.Ready" xml:space="preserve"><value>Готов к сбору.</value></data>
+  <data name="Endpoint.Form.Title" xml:space="preserve"><value>G PC Health Check — сетевые соединения и порты</value></data>
+  <data name="Endpoint.Form.Intro" xml:space="preserve"><value>ЛОКАЛЬНЫЕ TCP/UDP — только чтение, без проверки удалённых портов и обратного DNS.
+UDP — локальные привязки; LISTEN не доказывает доступность извне. Сравнение снимков не является трассировкой событий.</value></data>
+  <data name="Endpoint.Filter.All" xml:space="preserve"><value>Все записи</value></data>
+  <data name="Endpoint.Filter.Tcp" xml:space="preserve"><value>TCP</value></data>
+  <data name="Endpoint.Filter.Udp" xml:space="preserve"><value>UDP</value></data>
+  <data name="Endpoint.Filter.Listen" xml:space="preserve"><value>TCP: LISTEN</value></data>
+  <data name="Endpoint.Filter.Established" xml:space="preserve"><value>TCP: ESTABLISHED</value></data>
+  <data name="Endpoint.Filter.Changes" xml:space="preserve"><value>Изменения между снимками</value></data>
+  <data name="Endpoint.Column.Change" xml:space="preserve"><value>Наблюдение</value></data>
+  <data name="Endpoint.Column.Protocol" xml:space="preserve"><value>Протокол</value></data>
+  <data name="Endpoint.Column.Process" xml:space="preserve"><value>Процесс</value></data>
+  <data name="Endpoint.Column.LocalIp" xml:space="preserve"><value>Локальный IP</value></data>
+  <data name="Endpoint.Column.Port" xml:space="preserve"><value>Порт</value></data>
+  <data name="Endpoint.Column.RemoteIp" xml:space="preserve"><value>Удалённый IP</value></data>
+  <data name="Endpoint.Column.State" xml:space="preserve"><value>Состояние</value></data>
+  <data name="Endpoint.Form.OverviewEmpty" xml:space="preserve"><value>Снимок ещё не собран. Нажмите «{0}». Новая проверка сдвигает текущий снимок в предыдущий; экспортируйте нужные данные заранее.</value></data>
+  <data name="Endpoint.Form.DetailEmpty" xml:space="preserve"><value>Выберите запись. «Больше не наблюдается» относится к предыдущему снимку, а не к текущему состоянию.</value></data>
+  <data name="Endpoint.Form.StopRequested" xml:space="preserve"><value>Запрошена остановка; завершённые таблицы будут сохранены в памяти.</value></data>
+  <data name="Endpoint.Form.Elapsed" xml:space="preserve"><value>{0} · {1:0.0} с</value></data>
+  <data name="Endpoint.Form.WaitSave" xml:space="preserve"><value>Дождитесь окончания сохранения файлов.</value></data>
+  <data name="Endpoint.Form.WaitCollector" xml:space="preserve"><value>Ожидаю освобождения сборщика…</value></data>
+  <data name="Endpoint.Form.Cancelled" xml:space="preserve"><value>Сбор не начат / отменён; прошлый снимок сохранён.</value></data>
+  <data name="Endpoint.Form.CollectionFailed" xml:space="preserve"><value>Сбор не завершён; прошлый снимок сохранён. {0}</value></data>
+  <data name="Endpoint.Form.NotCollected" xml:space="preserve"><value>Снимок ещё не собран.</value></data>
+  <data name="Endpoint.Form.Status" xml:space="preserve"><value>{0} · {1:HH:mm:ss} · совпадений {2}, показано {3}. Экспорт включает оба снимка целиком.</value></data>
+  <data name="Endpoint.Form.ExportDescription" xml:space="preserve"><value>Отчёты содержат сетевые адреса, имена процессов и аккаунтов. Выберите папку для отдельного комплекта HTML/JSON.</value></data>
+  <data name="Endpoint.Form.Saving" xml:space="preserve"><value>Сохраняю оба снимка…</value></data>
+  <data name="Endpoint.Form.Saved" xml:space="preserve"><value>Сохранено: {0}</value></data>
+  <data name="Endpoint.Form.SaveFailedMessage" xml:space="preserve"><value>Сохранение не завершено полностью. {0}</value></data>
+  <data name="Endpoint.Form.ExportTitle" xml:space="preserve"><value>Экспорт</value></data>
+  <data name="Endpoint.Form.SaveFailed" xml:space="preserve"><value>Сохранение не завершено: {0}, 0x{1}.</value></data>
+  <data name="Endpoint.Form.ActionFailed" xml:space="preserve"><value>Действие не завершено</value></data>
+  <data name="Endpoint.Menu.Item" xml:space="preserve"><value>Сетевые соединения и порты (TCP/UDP)…</value></data>
+</root>

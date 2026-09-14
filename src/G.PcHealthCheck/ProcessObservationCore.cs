@@ -6,7 +6,7 @@ internal static class ProcessObservationCore
     {
         ArgumentNullException.ThrowIfNull(entry);
         if (entry.Pid == 0 || entry.CreatedAt is not DateTimeOffset created || !ValidCreatedAt(created))
-            throw new ArgumentException("Для наблюдения нужны PID и время создания выбранного процесса. Повторите сбор сведений о процессах.", nameof(entry));
+            throw new ArgumentException(AppLocalization.T("ProcessObservation.Core.FromEntry"), nameof(entry));
         return new(entry.Pid, created, entry.Name);
     }
     internal static bool ValidCreatedAt(DateTimeOffset value)
@@ -29,20 +29,20 @@ internal static class ProcessObservationCore
         var a = after.Counters; var warnings = a.Warnings.ToList();
         if (a.State != "Live" || !Matches(target, a))
         {
-            warnings.Add("Измерения процесса недоступны: " + StateText(a.State == "Live" ? "IdentityChanged" : a.State));
+            warnings.Add(AppLocalization.T("ProcessObservation.Core.MeasurementsUnavailable", StateText(a.State == "Live" ? "IdentityChanged" : a.State)));
             return new(null, null, null, null, null, null, warnings.Distinct().ToArray());
         }
         double? memory = a.WorkingSetBytes is ulong ws ? ws / 1048576d : null;
         double? commit = a.PrivateBytes is ulong pv ? pv / 1048576d : null;
-        if (memory is null) warnings.Add("Рабочая память процесса не получена.");
-        if (commit is null) warnings.Add("Частная выделенная память процесса не получена.");
+        if (memory is null) warnings.Add(AppLocalization.T("ProcessObservation.Core.WorkingSetMissing"));
+        if (commit is null) warnings.Add(AppLocalization.T("ProcessObservation.Core.PrivateMissing"));
         long? elapsed = null;
         if (before is not null && before.OffsetMs >= 0 && after.OffsetMs > before.OffsetMs && after.OffsetMs - before.OffsetMs <= intervalSeconds * 1750L
             && before.Counters.State == "Live" && Matches(target, before.Counters) && before.Counters.CreatedFileTime == a.CreatedFileTime)
             elapsed = after.OffsetMs - before.OffsetMs;
         if (elapsed is not long milliseconds)
         {
-            warnings.Add("CPU и скорости I/O: нужны два последовательных замера того же экземпляра без пропуска.");
+            warnings.Add(AppLocalization.T("ProcessObservation.Core.NeedTwo"));
             return new(null, memory, commit, null, null, null, warnings.Distinct().ToArray());
         }
         var b = before!.Counters;
@@ -54,7 +54,7 @@ internal static class ProcessObservationCore
             var value = (k + u) / (milliseconds * 10000d * a.LogicalProcessors) * 100;
             if (double.IsFinite(value) && value is >= 0 and <= 100) cpu = value;
         }
-        if (cpu is null) warnings.Add("CPU процесса: счётчик/число процессоров недоступен, изменился или дал некорректную дельту.");
+        if (cpu is null) warnings.Add(AppLocalization.T("ProcessObservation.Core.CpuMissing"));
         double? Rate(ulong? oldValue, ulong? newValue, string name)
         {
             var delta = Delta(oldValue, newValue);
@@ -63,9 +63,10 @@ internal static class ProcessObservationCore
                 var rate = bytes / 1048576d * 1000 / milliseconds;
                 if (double.IsFinite(rate)) return rate;
             }
-            warnings.Add(name + ": счётчик недоступен или уменьшился."); return null;
+            warnings.Add(AppLocalization.T("ProcessObservation.Core.CounterMissing", name)); return null;
         }
-        var read = Rate(b.ReadBytes, a.ReadBytes, "Чтение I/O"); var write = Rate(b.WriteBytes, a.WriteBytes, "Запись I/O");
+        var read = Rate(b.ReadBytes, a.ReadBytes, AppLocalization.T("ProcessObservation.Core.ReadIo"));
+        var write = Rate(b.WriteBytes, a.WriteBytes, AppLocalization.T("ProcessObservation.Core.WriteIo"));
         return new(cpu, memory, commit, read, write, milliseconds, warnings.Distinct().ToArray());
     }
     public static double? Value(ProcessObservationReading reading, ProcessMetric metric)
@@ -94,7 +95,10 @@ internal static class ProcessObservationCore
     }
     public static string StateText(string value) => value switch
     {
-        "Live" => "Тот же процесс", "Exited" => "Процесс завершён", "IdentityChanged" => "Другой экземпляр — наблюдение не переносится",
-        "AccessDenied" => "Доступ к процессу запрещён", _ => "Данные процесса недоступны"
+        "Live" => AppLocalization.T("ProcessObservation.State.Live"),
+        "Exited" => AppLocalization.T("ProcessObservation.State.Exited"),
+        "IdentityChanged" => AppLocalization.T("ProcessObservation.State.IdentityChanged"),
+        "AccessDenied" => AppLocalization.T("ProcessObservation.State.AccessDenied"),
+        _ => AppLocalization.T("ProcessObservation.State.Unavailable")
     };
 }

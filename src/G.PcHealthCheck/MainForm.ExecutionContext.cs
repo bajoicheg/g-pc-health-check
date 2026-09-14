@@ -4,7 +4,7 @@ public sealed partial class MainForm
 {
     private ExecutionContextInfo? _executionContext;
     private readonly Label _contextBanner = new() { Name = "ExecutionContextBanner", AutoSize = true, Dock = DockStyle.Fill, Padding = new Padding(8) };
-    private readonly Button _contextDetails = new() { Text = "Права и доступные действия…", AutoSize = true, Dock = DockStyle.Fill };
+    private readonly Button _contextDetails = new() { Text = AppLocalization.T("Main.ExecutionContext.Details"), AutoSize = true, Dock = DockStyle.Fill };
 
     private Control ExecutionContextPanel()
     {
@@ -14,20 +14,27 @@ public sealed partial class MainForm
         panel.Controls.Add(_contextBanner, 0, 0); panel.Controls.Add(_contextDetails, 1, 0);
         _contextDetails.Click += (_, _) => { using var form = new ExecutionContextForm(_executionContext); form.ShowDialog(this); };
         RenderExecutionContext(null);
+        ArmMainLocalization(panel);
         return panel;
     }
 
     private void RenderExecutionContext(ExecutionContextInfo? context)
     {
         _executionContext = context;
-        _contextBanner.Text = context is null ? "Права и пользователь сеанса: сведения ещё не получены."
-            : ExecutionPolicy.ModeText(context) + "\nПроцесс: " + ExecutionPolicy.Value(context.ProcessAccount)
-              + " · Сеанс " + context.SessionId + ": " + ExecutionPolicy.Value(context.SessionAccount);
+        _contextBanner.Text = context is null
+            ? AppLocalization.T("Main.ExecutionContext.NotCaptured")
+            : AppLocalization.T(
+                "Main.ExecutionContext.ProcessSession",
+                ExecutionPolicy.ModeText(context),
+                ExecutionPolicy.Value(context.ProcessAccount),
+                context.SessionId,
+                ExecutionPolicy.Value(context.SessionAccount));
         _contextBanner.ForeColor = context is null || !ExecutionPolicy.SameUser(context) ? Warn : Navy;
     }
 
     private ActionAvailability AvailabilityFor(ActionRecommendation action)
-        => !action.CanAutomate ? new("Manual", "Ручная рекомендация; программа её не выполняет.", "—")
+        => !action.CanAutomate
+            ? new("Manual", AppLocalization.T("Main.ExecutionContext.ManualReason"), "—")
             : ExecutionPolicy.For(action.Id, _executionContext ?? new ExecutionContextInfo());
 
     private void RefreshActionAvailability()
@@ -37,7 +44,7 @@ public sealed partial class MainForm
             if (row.Tag is not ActionRecommendation action) continue;
             var availability = AvailabilityFor(action);
             row.Cells["Availability"].Value = ExecutionPolicy.StateText(availability.State);
-            row.Cells["Availability"].ToolTipText = availability.Reason + "\nОбласть: " + availability.Scope;
+            row.Cells["Availability"].ToolTipText = AppLocalization.T("Main.ExecutionContext.ScopeTooltip", availability.Reason, availability.Scope);
             row.Cells["Selected"].ReadOnly = !availability.CanRequest;
             if (!availability.CanRequest) row.Cells["Selected"].Value = false;
         }
@@ -53,6 +60,9 @@ public sealed partial class MainForm
     }
 
     private static string ActionExecutionText(RemediationActionResult action)
-        => action.Message + "\nОбласть: " + ExecutionPolicy.Value(action.TargetScope)
-            + "\n" + ExecutionPolicy.Describe(action.ExecutionContext);
+        => AppLocalization.T(
+            "Main.ExecutionContext.ActionScope",
+            action.Message,
+            ExecutionPolicy.Value(action.TargetScope),
+            ExecutionPolicy.Describe(action.ExecutionContext));
 }

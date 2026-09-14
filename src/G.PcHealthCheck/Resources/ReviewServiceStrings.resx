@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Review.Startup.ScopeNote" xml:space="preserve"><value>Проверены Run/RunOnce HKCU, Run/RunOnce HKLM (32/64-bit на x64) и папки Startup текущего аккаунта и всех пользователей. Задачи, службы, расширения и другие механизмы не перечисляются. Наличие записи не доказывает включённый запуск, влияние на скорость или вредоносность. Ярлыки показаны как файлы; их цели не разрешаются.</value></data>
+  <data name="Review.Startup.AllUsers" xml:space="preserve"><value>Все пользователи</value></data>
+  <data name="Review.Startup.Progress" xml:space="preserve"><value>Читаю источник автозагрузки…</value></data>
+  <data name="Review.Startup.ElevatedIssue" xml:space="preserve"><value>Приложение повышено. HKCU и личная Startup относятся к указанному аккаунту процесса, который может отличаться от пользователя рабочего стола.</value></data>
+  <data name="Review.Startup.SourceCountLimit" xml:space="preserve"><value>Достигнут предел 32 источников.</value></data>
+  <data name="Review.Startup.UnknownSource" xml:space="preserve"><value>Источник #{0}</value></data>
+  <data name="Review.Startup.SourceItemLimit" xml:space="preserve"><value> Ограничение: первые {0} записей источника.</value></data>
+  <data name="Review.Startup.RegistryMissing" xml:space="preserve"><value>Ключ отсутствует.</value></data>
+  <data name="Review.Startup.RegistryLimit" xml:space="preserve"><value>Предел {0} записей.</value></data>
+  <data name="Review.Startup.RegistryNonString" xml:space="preserve"><value>Есть исчезнувшие или нестроковые значения; команда для них неизвестна.</value></data>
+  <data name="Review.Startup.DefaultValue" xml:space="preserve"><value>(по умолчанию)</value></data>
+  <data name="Review.Startup.CommandUnavailable" xml:space="preserve"><value>[строковая команда недоступна]</value></data>
+  <data name="Review.Startup.ValueUnavailable" xml:space="preserve"><value>[значение недоступно]</value></data>
+  <data name="Review.Startup.FolderLimit" xml:space="preserve"><value>Предел {0} записей каталога.</value></data>
+  <data name="Review.Startup.LinkSuffix" xml:space="preserve"><value> [ссылка, цель не открывалась]</value></data>
+  <data name="Review.Startup.PathSuffix" xml:space="preserve"><value> [путь, цель ярлыка не разрешалась]</value></data>
+  <data name="Review.Startup.FolderMissing" xml:space="preserve"><value>Каталог/запись отсутствует или исчезла во время сбора.</value></data>
+  <data name="Review.Temp.ProgressContext" xml:space="preserve"><value>Определяю пользователя и профиль текущего сеанса…</value></data>
+  <data name="Review.Temp.FullPathRequired" xml:space="preserve"><value>Нужен полный путь к Temp.</value></data>
+  <data name="Review.Temp.TimeLimit" xml:space="preserve"><value>Достигнуто ограничение времени {0:0.#} с. Итоги относятся только к просмотренным записям.</value></data>
+  <data name="Review.Temp.InvalidRoot" xml:space="preserve"><value>Корень не является обычным каталогом или является ссылкой/reparse point; обход не начат.</value></data>
+  <data name="Review.Temp.Missing" xml:space="preserve"><value>Каталог Temp отсутствует. Оценка очистки не требуется.</value></data>
+  <data name="Review.Temp.RootUnavailable" xml:space="preserve"><value>Корень недоступен: {0}</value></data>
+  <data name="Review.Temp.EntryLimit" xml:space="preserve"><value>Достигнут предел {0} записей. Объём является частичной оценкой.</value></data>
+  <data name="Review.Temp.Progress" xml:space="preserve"><value>Просмотрено записей: {0:N0}; кандидатов: {1:N0}…</value></data>
+</root>

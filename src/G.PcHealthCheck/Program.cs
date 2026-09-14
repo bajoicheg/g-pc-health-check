@@ -1,5 +1,3 @@
-using System.Globalization;
-
 namespace G.PcHealthCheck;
 
 internal static class Program
@@ -7,8 +5,7 @@ internal static class Program
     [STAThread]
     private static void Main(string[] args)
     {
-        CultureInfo.DefaultThreadCurrentCulture = CultureInfo.GetCultureInfo("ru-RU");
-        CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.GetCultureInfo("ru-RU");
+        AppLocalization.Initialize();
         if (args.Any(a => string.Equals(a, "--selftest", StringComparison.OrdinalIgnoreCase)))
         {
             var result = SelfTest.Run();
@@ -19,6 +16,25 @@ internal static class Program
             if (result == 0) result = MainScanProgressOwnershipSelfTest.Run();
             if (result == 0) result = MainApplyProgressOwnershipSelfTest.Run();
             if (result == 0) result = MainCardResizeRedrawSelfTest.Run();
+            if (result == 0) result = LocalizationAndSizeSelfTest.Run();
+            if (result == 0) result = PerformanceLocalizationSelfTest.Run();
+            if (result == 0) result = FileUseLocalizationSelfTest.Run();
+            if (result == 0) result = ProcessObservationLocalizationSelfTest.Run();
+            if (result == 0) result = DiagnosticBundleLocalizationSelfTest.Run();
+            if (result == 0) result = LocalizationCoverageSelfTest.Run();
+            if (result == 0) result = HumanSizePresentationSelfTest.Run();
+            if (result == 0) result = MainChromeSelfTest.Run();
+            if (result == 0) result = AnalysisAutoCollectSelfTest.Run();
+            if (result == 0) result = ServiceDeskActionRegistrySelfTest.Run();
+            if (result == 0) result = ServiceDeskBatchPlannerSelfTest.Run();
+            if (result == 0) result = WindowsRepairOperationsSelfTest.Run();
+            if (result == 0) result = NetworkRepairSelfTest.Run();
+            if (result == 0) result = PhasedWorkerSelfTest.Run();
+            if (result == 0) result = PhasedBatchExecutorSelfTest.Run();
+            if (result == 0) result = PhasedWorkerEngineSelfTest.Run();
+            if (result == 0) result = PhasedWorkerTransportSelfTest.Run();
+            if (result == 0) result = WindowsBatchRuntimeSelfTest.Run();
+            if (result == 0) result = ServiceDeskFullBatchSelfTest.Run();
             if (result == 0) result = SystemDiskSelectionSelfTest.Run();
             if (result == 0) result = PortableElevationSelfTest.Run();
             if (result == 0) result = ReadOnlyReviewSelfTest.Run();
@@ -97,12 +113,18 @@ internal static class Program
             Environment.Exit(RemediationWorker.RunBootstrap(args));
             return;
         }
+        if (args.Any(a => string.Equals(a, "--phased-worker", StringComparison.OrdinalIgnoreCase)))
+        {
+            Environment.Exit(RemediationWorker.RunPhased(args));
+            return;
+        }
         if (args.Any(a => string.Equals(a, "--worker", StringComparison.OrdinalIgnoreCase)))
         {
             Environment.Exit(RemediationWorker.Run(args));
             return;
         }
         ApplicationConfiguration.Initialize();
+        AnalysisAutoCollect.Install();
         using var main = new MainForm();
         CommonProblemsMenu.Attach(main);
         ReadOnlyReviewMenu.Attach(main);
@@ -113,6 +135,7 @@ internal static class Program
         EndpointReviewMenu.Attach(main);
         FileUseMenu.Attach(main);
         DiagnosticBundleMenu.Attach(main);
+        AppMenuChrome.Refresh(main);
         Application.Run(main);
     }
 }

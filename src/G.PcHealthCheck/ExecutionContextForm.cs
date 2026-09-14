@@ -9,7 +9,7 @@ internal sealed class ExecutionContextForm : Form
 
     public ExecutionContextForm(ExecutionContextInfo? context)
     {
-        Text = "G PC Health Check — права и контекст";
+        Text = AppLocalization.T("ExecutionContext.Form.Title");
         Size = new Size(1080, 780); MinimumSize = new Size(820, 620);
         StartPosition = FormStartPosition.CenterParent; AutoScaleMode = AutoScaleMode.Dpi;
         Font = new Font("Segoe UI", 9F);
@@ -22,23 +22,23 @@ internal sealed class ExecutionContextForm : Form
         Controls.Add(root); root.Controls.Add(_facts, 0, 0); root.Controls.Add(_matrix, 0, 1); root.Controls.Add(_detail, 0, 2);
         _facts.Text = ExecutionPolicy.Describe(context);
         _matrix.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-        _matrix.Columns.Add(new DataGridViewTextBoxColumn { Name = "Operation", HeaderText = "Проверка / действие", Width = 240 });
-        _matrix.Columns.Add(new DataGridViewTextBoxColumn { Name = "State", HeaderText = "Доступность", Width = 155 });
-        _matrix.Columns.Add(new DataGridViewTextBoxColumn { Name = "Scope", HeaderText = "Чьи данные / область", AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill });
-        foreach (var (id, title) in new[]
+        _matrix.Columns.Add(new DataGridViewTextBoxColumn { Name = "Operation", HeaderText = AppLocalization.T("ExecutionContext.Column.Operation"), Width = 240 });
+        _matrix.Columns.Add(new DataGridViewTextBoxColumn { Name = "State", HeaderText = AppLocalization.T("ExecutionContext.Column.State"), Width = 155 });
+        _matrix.Columns.Add(new DataGridViewTextBoxColumn { Name = "Scope", HeaderText = AppLocalization.T("ExecutionContext.Column.Scope"), AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill });
+        foreach (var (id, titleKey) in new[]
         {
-            ("Diagnostics", "Диагностика компьютера"), ("TempPreview", "Предпросмотр Temp пользователя сеанса"),
-            ("StartupReview", "Автозагрузка аккаунта процесса"), ("CleanTemp", "Удаление старых файлов Temp"),
-            ("FlushDns", "Очистка DNS-кэша"), ("Dism", "DISM RestoreHealth"), ("Sfc", "SFC /scannow")
+            ("Diagnostics", "ExecutionContext.Action.Diagnostics"), ("TempPreview", "ExecutionContext.Action.TempPreview"),
+            ("StartupReview", "ExecutionContext.Action.StartupReview"), ("CleanTemp", "ExecutionContext.Action.CleanTemp"),
+            ("FlushDns", "ExecutionContext.Action.FlushDns"), ("Dism", "ExecutionContext.Action.Dism"), ("Sfc", "ExecutionContext.Action.Sfc")
         })
         {
             var availability = ExecutionPolicy.For(id, context ?? new ExecutionContextInfo());
-            var row = _matrix.Rows[_matrix.Rows.Add(title, ExecutionPolicy.StateText(availability.State), availability.Scope)];
+            var row = _matrix.Rows[_matrix.Rows.Add(AppLocalization.T(titleKey), ExecutionPolicy.StateText(availability.State), availability.Scope)];
             row.Tag = availability;
         }
         // SelectionChanged can fire while CurrentRow still points at the previous cell.
         _matrix.CurrentCellChanged += (_, _) => ShowDetail();
-        var copy = new Button { Text = "Копировать сведения", AutoSize = true };
+        var copy = new Button { Text = AppLocalization.T("ExecutionContext.Copy"), AutoSize = true };
         copy.Click += (_, _) =>
         {
             try
@@ -46,10 +46,10 @@ internal sealed class ExecutionContextForm : Form
                 var lines = _matrix.Rows.Cast<DataGridViewRow>().Select(x => $"{x.Cells[0].Value}: {x.Cells[1].Value}; {x.Cells[2].Value}\r\n{((ActionAvailability)x.Tag!).Reason}");
                 Clipboard.SetText(_facts.Text + "\r\n\r\n" + string.Join("\r\n", lines));
             }
-            catch (Exception ex) { MessageBox.Show(this, ex.Message, "Копирование не выполнено", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+            catch (Exception ex) { MessageBox.Show(this, ex.Message, AppLocalization.T("ExecutionContext.CopyFailed"), MessageBoxButtons.OK, MessageBoxIcon.Warning); }
         };
         root.Controls.Add(copy, 0, 3); ShowDetail();
     }
     private void ShowDetail() => _detail.Text = (_matrix.CurrentRow?.Tag as ActionAvailability)?.Reason
-        ?? "Выберите строку. Доступность показана по сохранённому контексту; перед применением программа проверяет его заново. Политики Windows могут отклонить запрос UAC или доступ к данным.";
+        ?? AppLocalization.T("ExecutionContext.SelectRow");
 }

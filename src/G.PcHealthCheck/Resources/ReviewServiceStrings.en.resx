@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Review.Startup.ScopeNote" xml:space="preserve"><value>Checked Run/RunOnce in HKCU, Run/RunOnce in HKLM (32/64-bit on x64), and the current-account and all-users Startup folders. Scheduled tasks, services, extensions, and other mechanisms are not listed. The presence of an entry does not prove enabled startup, performance impact, or maliciousness. Shortcuts are shown as files; their targets are not resolved.</value></data>
+  <data name="Review.Startup.AllUsers" xml:space="preserve"><value>All users</value></data>
+  <data name="Review.Startup.Progress" xml:space="preserve"><value>Reading startup source…</value></data>
+  <data name="Review.Startup.ElevatedIssue" xml:space="preserve"><value>The application is elevated. HKCU and the personal Startup folder belong to the stated process account, which may differ from the interactive desktop user.</value></data>
+  <data name="Review.Startup.SourceCountLimit" xml:space="preserve"><value>The 32-source limit was reached.</value></data>
+  <data name="Review.Startup.UnknownSource" xml:space="preserve"><value>Source #{0}</value></data>
+  <data name="Review.Startup.SourceItemLimit" xml:space="preserve"><value> Limit: first {0} entries from this source.</value></data>
+  <data name="Review.Startup.RegistryMissing" xml:space="preserve"><value>Registry key is missing.</value></data>
+  <data name="Review.Startup.RegistryLimit" xml:space="preserve"><value>Limit: {0} entries.</value></data>
+  <data name="Review.Startup.RegistryNonString" xml:space="preserve"><value>Some values disappeared or are not strings; their command is unknown.</value></data>
+  <data name="Review.Startup.DefaultValue" xml:space="preserve"><value>(Default)</value></data>
+  <data name="Review.Startup.CommandUnavailable" xml:space="preserve"><value>[string command unavailable]</value></data>
+  <data name="Review.Startup.ValueUnavailable" xml:space="preserve"><value>[value unavailable]</value></data>
+  <data name="Review.Startup.FolderLimit" xml:space="preserve"><value>Folder entry limit: {0}.</value></data>
+  <data name="Review.Startup.LinkSuffix" xml:space="preserve"><value> [link, target not opened]</value></data>
+  <data name="Review.Startup.PathSuffix" xml:space="preserve"><value> [path, shortcut target not resolved]</value></data>
+  <data name="Review.Startup.FolderMissing" xml:space="preserve"><value>The folder/entry is missing or disappeared during collection.</value></data>
+  <data name="Review.Temp.ProgressContext" xml:space="preserve"><value>Determining the current session user and profile…</value></data>
+  <data name="Review.Temp.FullPathRequired" xml:space="preserve"><value>A fully qualified Temp path is required.</value></data>
+  <data name="Review.Temp.TimeLimit" xml:space="preserve"><value>The {0:0.#} s time limit was reached. Totals apply only to entries that were visited.</value></data>
+  <data name="Review.Temp.InvalidRoot" xml:space="preserve"><value>The root is not a normal directory or is a link/reparse point; traversal was not started.</value></data>
+  <data name="Review.Temp.Missing" xml:space="preserve"><value>The Temp directory is missing. No cleanup estimate is required.</value></data>
+  <data name="Review.Temp.RootUnavailable" xml:space="preserve"><value>The root is unavailable: {0}</value></data>
+  <data name="Review.Temp.EntryLimit" xml:space="preserve"><value>The {0}-entry limit was reached. The size is a partial estimate.</value></data>
+  <data name="Review.Temp.Progress" xml:space="preserve"><value>Entries visited: {0:N0}; candidates: {1:N0}…</value></data>
+</root>

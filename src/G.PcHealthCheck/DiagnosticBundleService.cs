@@ -164,11 +164,11 @@ internal sealed class DiagnosticBundleService
 
         target.StartedAt = DateTimeOffset.Now;
         target.State = "Running";
-        Report(progress, target.Category, "Starting", "Начинаю сбор выбранного источника.");
+        Report(progress, target.Category, "Starting", AppLocalization.T("Bundle.Service.Starting", SourceName(target.Category)));
         try
         {
             var payload = await collect().ConfigureAwait(false)
-                ?? throw new InvalidDataException("Источник вернул пустой снимок.");
+                ?? throw new InvalidDataException(AppLocalization.T("Bundle.Service.SourceUnavailable"));
             var state = mapState(payload);
             target.State = state;
             target.Warnings.AddRange(warnings(payload).Where(text => !string.IsNullOrWhiteSpace(text))
@@ -180,7 +180,7 @@ internal sealed class DiagnosticBundleService
         catch (OperationCanceledException) when (ct.IsCancellationRequested)
         {
             target.State = "Cancelled";
-            target.Warnings.Add("Сбор источника отменён; незавершённый вызов не считается успешным результатом.");
+            target.Warnings.Add(AppLocalization.T("Bundle.Service.CancelWarning"));
         }
         catch (Exception ex)
         {
@@ -190,7 +190,7 @@ internal sealed class DiagnosticBundleService
         finally
         {
             target.FinishedAt = DateTimeOffset.Now;
-            Report(progress, target.Category, "Finished", "Источник завершён со состоянием " + target.State + ".");
+            Report(progress, target.Category, "Finished", AppLocalization.T("Bundle.Service.Finished", SourceName(target.Category), StateText(target.State)));
         }
     }
 
@@ -207,7 +207,7 @@ internal sealed class DiagnosticBundleService
                 case BundleSourceResult<IncidentSnapshot> value: Prepare(value, requested); break;
                 case BundleSourceResult<DiskDetailsSnapshot> value: Prepare(value, requested); break;
                 case BundleSourceResult<PerformanceSessionSnapshot> value: Prepare(value, requested); break;
-                default: throw new InvalidOperationException("Неизвестный источник диагностического пакета.");
+                default: throw new InvalidOperationException(AppLocalization.T("Bundle.Core.UnknownCategory"));
             }
         }
     }
@@ -264,13 +264,13 @@ internal sealed class DiagnosticBundleService
     private static void CancelBeforeStart<T>(BundleSourceResult<T> source) where T : class
     {
         source.State = "Cancelled";
-        source.Warnings.Add("Источник был выбран, но не запущен из-за отмены пакета.");
+        source.Warnings.Add(AppLocalization.T("Bundle.Service.CancelBefore"));
     }
 
     private static void UnavailableWithoutStart<T>(BundleSourceResult<T> source) where T : class
     {
         source.State = "Unavailable";
-        source.Warnings.Add("Источник был выбран, но координатор не получил результат.");
+        source.Warnings.Add(AppLocalization.T("Bundle.Service.SourceUnavailable"));
     }
 
     private static string HealthState(DiagnosticBundleHealthPayload payload)
@@ -279,7 +279,7 @@ internal sealed class DiagnosticBundleService
 
     private static IEnumerable<string> HealthWarnings(DiagnosticBundleHealthPayload payload)
         => payload.Data.CollectionWarnings.Concat(payload.Assessment.Assessment.MissingSignals
-            .Select(signal => "Недоступный сигнал Health Check: " + signal));
+            .Select(signal => AppLocalization.T("Bundle.Service.HealthMissingSignals", signal)));
 
     private static IEnumerable<string> EventWarnings(IncidentSnapshot payload)
         => payload.Logs.SelectMany(log => log.Warnings.Select(warning => log.Log + ": " + warning));
@@ -288,7 +288,7 @@ internal sealed class DiagnosticBundleService
     {
         foreach (var warning in payload.Warnings) yield return warning;
         if (payload.Samples.Any(sample => sample.Reading.Warnings.Count > 0))
-            yield return "Часть показателей сеанса недоступна или некорректна; смотрите предупреждения отдельных замеров.";
+            yield return AppLocalization.T("Bundle.Service.PerformancePartial", PerformanceStatistics.Completeness(payload));
     }
 
     private static string StandardState(string native, bool evidence)
@@ -313,15 +313,18 @@ internal sealed class DiagnosticBundleService
         };
 
     private static string PerformanceState(PerformanceSessionSnapshot payload)
-        => payload.Outcome switch
-        {
-            "Completed" when payload.Samples.Count == 0 => "Unavailable",
-            "Completed" when PerformanceStatistics.Completeness(payload) == "Все запланированные замеры получены" => "Complete",
-            "Completed" => "Partial",
-            "Stopped" => "Cancelled",
-            "Failed" => payload.Samples.Count > 0 ? "Partial" : "Unavailable",
-            _ => payload.Samples.Count > 0 ? "Partial" : "Unavailable"
-        };
+    {
+        if (payload.Outcome == "Stopped") return "Cancelled";
+        if (payload.Outcome == "Failed") return payload.Samples.Count > 0 ? "Partial" : "Unavailable";
+        if (payload.Outcome != "Completed") return payload.Samples.Count > 0 ? "Partial" : "Unavailable";
+        if (payload.Samples.Count == 0) return "Unavailable";
+
+        var expected = payload.Options.DurationSeconds / payload.Options.IntervalSeconds;
+        var complete = payload.MissedSlots == 0
+            && payload.Samples.Count == expected
+            && Enum.GetValues<SessionMetric>().All(metric => PerformanceStatistics.For(payload, metric).Valid == payload.Samples.Count);
+        return complete ? "Complete" : "Partial";
+    }
 
     private static bool UsefulByState(string state, bool evidence)
         => state is "Complete" or "Partial" || evidence;
@@ -336,8 +339,31 @@ internal sealed class DiagnosticBundleService
         => progress?.Report(new DiagnosticBundleProgress(category, phase, message, DateTimeOffset.Now));
 
     private static string SourceError(Exception ex)
-        => (ex is UnauthorizedAccessException ? "Доступ запрещён. " : string.Empty)
-            + $"{ex.GetType().Name}; 0x{ex.HResult:X8}. Источник отмечен недоступным, остальные категории продолжаются.";
+    {
+        var prefix = ex is UnauthorizedAccessException ? AppLocalization.T("Bundle.Service.AccessDenied") + " " : string.Empty;
+        return prefix + AppLocalization.T("Bundle.Service.SourceError", ex.GetType().Name, ex.HResult.ToString("X8"));
+    }
+
+    private static string SourceName(DiagnosticBundleCategory category) => AppLocalization.T(category switch
+    {
+        DiagnosticBundleCategory.Health => "Bundle.Source.Health",
+        DiagnosticBundleCategory.Processes => "Bundle.Source.Processes",
+        DiagnosticBundleCategory.Endpoints => "Bundle.Source.Endpoints",
+        DiagnosticBundleCategory.Events => "Bundle.Source.Events",
+        DiagnosticBundleCategory.Storage => "Bundle.Source.Storage",
+        DiagnosticBundleCategory.Performance => "Bundle.Source.Performance",
+        _ => "Bundle.Source.Health"
+    });
+
+    private static string StateText(string state) => AppLocalization.T(state switch
+    {
+        "Complete" => "Bundle.State.Complete",
+        "Partial" => "Bundle.State.Partial",
+        "Unavailable" => "Bundle.State.Unavailable",
+        "Cancelled" => "Bundle.State.Cancelled",
+        "NotRequested" => "Bundle.State.NotRequested",
+        _ => "Bundle.State.Collecting"
+    });
 
     private sealed class InlineProgress<T>(Action<T> action) : IProgress<T>
     {

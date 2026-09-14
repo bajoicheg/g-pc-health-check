@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Menu.CommonProblems" xml:space="preserve"><value>Типовые проблемы: сеть, печать, устройства</value></data>
+  <data name="Menu.WindowsTools" xml:space="preserve"><value>Средства Windows</value></data>
+  <data name="Menu.Analysis" xml:space="preserve"><value>Анализ</value></data>
+  <data name="Menu.Language" xml:space="preserve"><value>Язык</value></data>
+  <data name="Menu.Help" xml:space="preserve"><value>Справка</value></data>
+  <data name="Menu.About" xml:space="preserve"><value>О программе…</value></data>
+  <data name="Menu.Windows.Network" xml:space="preserve"><value>Сеть</value></data>
+  <data name="Menu.Windows.Printing" xml:space="preserve"><value>Принтеры</value></data>
+  <data name="Menu.Windows.Devices" xml:space="preserve"><value>Устройства</value></data>
+  <data name="Menu.Windows.Storage" xml:space="preserve"><value>Хранилище</value></data>
+  <data name="Menu.Windows.Startup" xml:space="preserve"><value>Автозагрузка</value></data>
+  <data name="Menu.Windows.Updates" xml:space="preserve"><value>Обновления</value></data>
+  <data name="Menu.Windows.Apps" xml:space="preserve"><value>Приложения</value></data>
+  <data name="Language.Russian" xml:space="preserve"><value>Русский</value></data>
+  <data name="Language.English" xml:space="preserve"><value>Английский</value></data>
+  <data name="About.Title" xml:space="preserve"><value>О программе</value></data>
+  <data name="About.Version" xml:space="preserve"><value>Версия: {0}</value></data>
+  <data name="About.Purpose" xml:space="preserve"><value>Диагностика Windows 11 и контролируемые действия для Service Desk.</value></data>
+  <data name="Common.Close" xml:space="preserve"><value>Закрыть</value></data>
+  <data name="ResourceProbe.Boundary" xml:space="preserve"><value>Проверяется системное разрешение имени и прямое TCP-подключение. TLS, HTTP, вход пользователя и работоспособность приложения не проверяются. Системный HTTP-прокси не используется; маршруты/VPN выбирает ОС. Время TCP — время установления соединения, не ping и не скорость передачи.</value></data>
+  <data name="ResourceProbe.Outcome.Connected" xml:space="preserve"><value>TCP-соединение установлено</value></data>
+  <data name="ResourceProbe.Outcome.Partial" xml:space="preserve"><value>Частичный результат</value></data>
+  <data name="ResourceProbe.Outcome.Failed" xml:space="preserve"><value>Проверка неуспешна</value></data>
+  <data name="ResourceProbe.Outcome.Cancelled" xml:space="preserve"><value>Проверка отменена</value></data>
+  <data name="ResourceProbe.Outcome.Resolved" xml:space="preserve"><value>Имя разрешено</value></data>
+  <data name="ResourceProbe.Outcome.Skipped" xml:space="preserve"><value>Этап не требуется</value></data>
+  <data name="ResourceProbe.Outcome.Refused" xml:space="preserve"><value>Соединение отклонено</value></data>
+  <data name="ResourceProbe.Outcome.Timeout" xml:space="preserve"><value>Тайм-аут</value></data>
+  <data name="ResourceProbe.Outcome.Unreachable" xml:space="preserve"><value>Нет доступного маршрута/узла</value></data>
+  <data name="ResourceProbe.Outcome.Denied" xml:space="preserve"><value>Доступ запрещён ОС</value></data>
+  <data name="ResourceProbe.Outcome.Unknown" xml:space="preserve"><value>Нет результата</value></data>
+  <data name="ResourceProbe.Report.Title" xml:space="preserve"><value>G PC Health Check — проверка ресурса</value></data>
+  <data name="ResourceProbe.Report.HtmlTitle" xml:space="preserve"><value>G PC Health Check — ресурс</value></data>
+  <data name="ResourceProbe.Report.CurrentAttempt" xml:space="preserve"><value>Текущая попытка</value></data>
+  <data name="ResourceProbe.Report.PreviousAttempt" xml:space="preserve"><value>Предыдущая попытка</value></data>
+  <data name="ResourceProbe.Report.SameTarget" xml:space="preserve"><value>Повторная проверка той же цели; изменение не доказывает устранение причины.</value></data>
+  <data name="ResourceProbe.Report.DifferentTarget" xml:space="preserve"><value>Проверены разные цели; сравнение не является проверкой до/после ремонта.</value></data>
+  <data name="ResourceProbe.Report.Target" xml:space="preserve"><value>Цель: {0}; TCP-порт: {1}; результат: {2} ({3})</value></data>
+  <data name="ResourceProbe.Report.Limits" xml:space="preserve"><value>Лимиты: DNS {0} мс; TCP {1} мс/адрес; не более {2} адресов.</value></data>
+  <data name="ResourceProbe.Report.Addresses" xml:space="preserve"><value>Адреса: {0}</value></data>
+  <data name="ResourceProbe.Report.None" xml:space="preserve"><value>нет</value></data>
+  <data name="ResourceProbe.Report.Step" xml:space="preserve"><value>{0} {1}: {2}; {3:0.##} мс; {4}; исходный IP: {5}; {6}</value></data>
+  <data name="ResourceProbe.Report.Note" xml:space="preserve"><value>Примечание: {0}</value></data>
+  <data name="ResourceProbe.Report.HtmlSameTarget" xml:space="preserve"><value>Повтор той же цели; это не доказательство устранения причины.</value></data>
+  <data name="ResourceProbe.Report.HtmlDifferentTarget" xml:space="preserve"><value>Проверены разные цели; это не сравнение до/после ремонта.</value></data>
+  <data name="ResourceProbe.Report.HtmlLimits" xml:space="preserve"><value>DNS: {0} мс; TCP: {1} мс; адресов не более {2}.</value></data>
+  <data name="ResourceProbe.Report.HtmlAddresses" xml:space="preserve"><value>Полученные адреса: {0}</value></data>
+  <data name="ResourceProbe.Report.HtmlStageAddress" xml:space="preserve"><value>Этап / адрес</value></data>
+  <data name="ResourceProbe.Report.HtmlResult" xml:space="preserve"><value>Результат</value></data>
+  <data name="ResourceProbe.Report.HtmlDuration" xml:space="preserve"><value>мс</value></data>
+  <data name="ResourceProbe.Report.HtmlLocalIp" xml:space="preserve"><value>Исходный IP</value></data>
+  <data name="ResourceProbe.Report.HtmlCodeDetails" xml:space="preserve"><value>Код / подробности</value></data>
+  <data name="ExecutionContext.Form.Title" xml:space="preserve"><value>G PC Health Check — права и контекст</value></data>
+  <data name="ExecutionContext.Column.Operation" xml:space="preserve"><value>Проверка / действие</value></data>
+  <data name="ExecutionContext.Column.State" xml:space="preserve"><value>Доступность</value></data>
+  <data name="ExecutionContext.Column.Scope" xml:space="preserve"><value>Чьи данные / область</value></data>
+  <data name="ExecutionContext.Action.Diagnostics" xml:space="preserve"><value>Диагностика компьютера</value></data>
+  <data name="ExecutionContext.Action.TempPreview" xml:space="preserve"><value>Предпросмотр Temp пользователя сеанса</value></data>
+  <data name="ExecutionContext.Action.StartupReview" xml:space="preserve"><value>Автозагрузка аккаунта процесса</value></data>
+  <data name="ExecutionContext.Action.CleanTemp" xml:space="preserve"><value>Удаление старых файлов Temp</value></data>
+  <data name="ExecutionContext.Action.FlushDns" xml:space="preserve"><value>Очистка DNS-кэша</value></data>
+  <data name="ExecutionContext.Action.Dism" xml:space="preserve"><value>DISM RestoreHealth</value></data>
+  <data name="ExecutionContext.Action.Sfc" xml:space="preserve"><value>SFC /scannow</value></data>
+  <data name="ExecutionContext.Copy" xml:space="preserve"><value>Копировать сведения</value></data>
+  <data name="ExecutionContext.CopyFailed" xml:space="preserve"><value>Копирование не выполнено</value></data>
+  <data name="ExecutionContext.SelectRow" xml:space="preserve"><value>Выберите строку. Доступность показана по сохранённому контексту; перед применением программа проверяет его заново. Политики Windows могут отклонить запрос UAC или доступ к данным.</value></data>
+  <data name="ExecutionContext.Mode.Missing" xml:space="preserve"><value>Контекст не сохранён</value></data>
+  <data name="ExecutionContext.Mode.Standard" xml:space="preserve"><value>Обычный пользователь — без повышения</value></data>
+  <data name="ExecutionContext.Mode.AdministratorLimited" xml:space="preserve"><value>Администратор — без повышения</value></data>
+  <data name="ExecutionContext.Mode.AdministratorElevated" xml:space="preserve"><value>Администратор — повышенный процесс</value></data>
+  <data name="ExecutionContext.Mode.AdministratorFullToken" xml:space="preserve"><value>Администратор — полный токен без связанной пары UAC</value></data>
+  <data name="ExecutionContext.Mode.Unknown" xml:space="preserve"><value>Права процесса определены не полностью</value></data>
+  <data name="ExecutionContext.Availability.TempPreview.Unavailable" xml:space="preserve"><value>Пользователь/профиль текущего сеанса не подтверждён; чужой Temp не подставляется.</value></data>
+  <data name="ExecutionContext.Availability.TempPreview.Ready" xml:space="preserve"><value>Только чтение метаданных; повышение не является основанием для запрета. Доступ к файлам определяет Windows.</value></data>
+  <data name="ExecutionContext.Availability.CleanTemp.Ready" xml:space="preserve"><value>Удаление старых обычных файлов только в собственном Temp подтверждённого пользователя сеанса.</value></data>
+  <data name="ExecutionContext.Availability.CleanTemp.Unavailable" xml:space="preserve"><value>Для удаления нужен обычный запуск от имени пользователя текущего сеанса и подтверждённый профиль. Предпросмотр разрешён отдельно.</value></data>
+  <data name="ExecutionContext.Availability.FlushDns.Ready" xml:space="preserve"><value>Запуск с текущими правами; Windows может отказать. В административном пакетном режиме порядок дополнительно контролирует оркестратор.</value></data>
+  <data name="ExecutionContext.Availability.Diagnostics.Ready" xml:space="preserve"><value>Сбор с текущими правами. Недоступные поля не повышают процесс автоматически; полнота зависит от поставщика данных и ACL.</value></data>
+  <data name="ExecutionContext.Availability.StartupReview.Ready" xml:space="preserve"><value>HKCU и личная Startup принадлежат аккаунту процесса, а не автоматически пользователю рабочего стола.</value></data>
+  <data name="ExecutionContext.Availability.HandlerUnavailable" xml:space="preserve"><value>Фиксированный обработчик этого действия ещё не введён в исполняемый allow-list текущего этапа.</value></data>
+  <data name="ExecutionContext.Availability.AdminAlreadyActive" xml:space="preserve"><value>Административный токен уже активен; повторный UAC не требуется.</value></data>
+  <data name="ExecutionContext.Availability.NeedsUac" xml:space="preserve"><value>Фиксированный обработчик запросит UAC. Обычному пользователю нужны административные учётные данные, если разрешено политикой.</value></data>
+  <data name="ExecutionContext.Availability.RightsUnknown" xml:space="preserve"><value>Не удалось подтвердить фактические права процесса.</value></data>
+  <data name="ExecutionContext.Availability.Ready" xml:space="preserve"><value>Действие доступно в текущем подтверждённом контексте.</value></data>
+  <data name="ExecutionContext.Availability.UnknownAction" xml:space="preserve"><value>Автоматическое действие не определено в разрешённом перечне.</value></data>
+  <data name="ExecutionContext.Scope.Undefined" xml:space="preserve"><value>Не определена</value></data>
+  <data name="ExecutionContext.Scope.DnsCache" xml:space="preserve"><value>DNS-кэш компьютера</value></data>
+  <data name="ExecutionContext.Scope.Diagnostics" xml:space="preserve"><value>Компьютер; пользовательские источники имеют отдельную область</value></data>
+  <data name="ExecutionContext.Scope.RestartSpooler" xml:space="preserve"><value>Служба Print Spooler</value></data>
+  <data name="ExecutionContext.Scope.ClearPrintQueue" xml:space="preserve"><value>%SystemRoot%\System32\spool\PRINTERS и служба Spooler</value></data>
+  <data name="ExecutionContext.Scope.RestartUpdateServices" xml:space="preserve"><value>Службы wuauserv и BITS</value></data>
+  <data name="ExecutionContext.Scope.TimeResync" xml:space="preserve"><value>Windows Time на этом компьютере</value></data>
+  <data name="ExecutionContext.Scope.Windows" xml:space="preserve"><value>Windows на этом компьютере</value></data>
+  <data name="ExecutionContext.State.Ready" xml:space="preserve"><value>Доступно сейчас</value></data>
+  <data name="ExecutionContext.State.NeedsUac" xml:space="preserve"><value>Требуется UAC</value></data>
+  <data name="ExecutionContext.State.Manual" xml:space="preserve"><value>Вручную</value></data>
+  <data name="ExecutionContext.State.Unavailable" xml:space="preserve"><value>Недоступно</value></data>
+  <data name="ExecutionContext.Describe.Missing" xml:space="preserve"><value>Контекст выполнения не сохранён; права и аккаунт не восстанавливаются предположением.</value></data>
+  <data name="ExecutionContext.Describe.ProcessAccount" xml:space="preserve"><value>Аккаунт процесса: {0}; SID: {1}.</value></data>
+  <data name="ExecutionContext.Describe.SessionUser" xml:space="preserve"><value>Пользователь сеанса {0}: {1}; SID: {2}.</value></data>
+  <data name="ExecutionContext.Describe.Elevation" xml:space="preserve"><value>Повышение токена: {0}; активные административные права: {1}; SID Администраторов в токене: {2}.</value></data>
+  <data name="ExecutionContext.Describe.SessionProfile" xml:space="preserve"><value>Профиль сеанса: {0}; источник: {1}.</value></data>
+  <data name="ExecutionContext.Describe.ProcessProfile" xml:space="preserve"><value>Профиль процесса: {0}. HKCU/личная Startup относятся к аккаунту процесса.</value></data>
+  <data name="ExecutionContext.Describe.DifferentUsers" xml:space="preserve"><value>Аккаунт процесса и пользователь сеанса различаются либо соответствие не подтверждено. Их данные нельзя смешивать.</value></data>
+  <data name="ExecutionContext.Describe.NoAutoElevation" xml:space="preserve"><value>Диагностика не получает повышение автоматически. Повышение обработчика исправлений не повышает последующую диагностику в исходном окне.</value></data>
+  <data name="ExecutionContext.Describe.CapturedAt" xml:space="preserve"><value>Контекст прочитан: {0:O}. Изменение членства групп после входа не перечитывается из каталога.</value></data>
+  <data name="ExecutionContext.Value.Undefined" xml:space="preserve"><value>не определён</value></data>
+  <data name="ExecutionContext.Flag.Unknown" xml:space="preserve"><value>неизвестно</value></data>
+  <data name="ExecutionContext.Flag.Yes" xml:space="preserve"><value>да</value></data>
+  <data name="ExecutionContext.Flag.No" xml:space="preserve"><value>нет</value></data>
+</root>

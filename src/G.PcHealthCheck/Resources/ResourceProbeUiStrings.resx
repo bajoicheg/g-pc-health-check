@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="ResourceProbe.Form.Title" xml:space="preserve"><value>G PC Health Check — доступность ресурса</value></data>
+  <data name="ResourceProbe.Form.HostPlaceholder" xml:space="preserve"><value>Имя узла или IP, без https://</value></data>
+  <data name="ResourceProbe.Form.Consent" xml:space="preserve"><value>Разрешаю DNS/TCP-обращения к указанной цели. Настройки сети не изменяются.</value></data>
+  <data name="ResourceProbe.Form.Host" xml:space="preserve"><value>Узел:</value></data>
+  <data name="ResourceProbe.Form.Port" xml:space="preserve"><value>TCP-порт:</value></data>
+  <data name="ResourceProbe.Form.Timeout" xml:space="preserve"><value>TCP-тайм-аут, с:</value></data>
+  <data name="ResourceProbe.Form.Preset.Manual" xml:space="preserve"><value>Порт вручную</value></data>
+  <data name="ResourceProbe.Form.Preset.Https" xml:space="preserve"><value>HTTPS · 443</value></data>
+  <data name="ResourceProbe.Form.Preset.Http" xml:space="preserve"><value>HTTP · 80</value></data>
+  <data name="ResourceProbe.Form.Preset.Smb" xml:space="preserve"><value>SMB · 445</value></data>
+  <data name="ResourceProbe.Form.Preset.Rdp" xml:space="preserve"><value>RDP · 3389</value></data>
+  <data name="ResourceProbe.Form.Preset.Smtp" xml:space="preserve"><value>SMTP · 25</value></data>
+  <data name="ResourceProbe.Form.Run" xml:space="preserve"><value>Проверить / повторить</value></data>
+  <data name="ResourceProbe.Form.Cancel" xml:space="preserve"><value>Отменить</value></data>
+  <data name="ResourceProbe.Form.Copy" xml:space="preserve"><value>Копировать сводку</value></data>
+  <data name="ResourceProbe.Form.Export" xml:space="preserve"><value>Сохранить HTML / JSON</value></data>
+  <data name="ResourceProbe.Form.NotRun" xml:space="preserve"><value>Проверка ещё не запускалась.</value></data>
+  <data name="ResourceProbe.Column.Stage" xml:space="preserve"><value>Этап</value></data>
+  <data name="ResourceProbe.Column.Endpoint" xml:space="preserve"><value>Имя / удалённый адрес</value></data>
+  <data name="ResourceProbe.Column.Result" xml:space="preserve"><value>Результат</value></data>
+  <data name="ResourceProbe.Column.Milliseconds" xml:space="preserve"><value>мс</value></data>
+  <data name="ResourceProbe.Column.LocalIp" xml:space="preserve"><value>Исходный IP</value></data>
+  <data name="ResourceProbe.Column.Code" xml:space="preserve"><value>Код</value></data>
+  <data name="ResourceProbe.Status.CancelRequested" xml:space="preserve"><value>Запрошена отмена текущей проверки…</value></data>
+  <data name="ResourceProbe.Status.CurrentDetails" xml:space="preserve"><value>{0}. Подробности — в сводке и отчёте.</value></data>
+  <data name="ResourceProbe.Status.Stale" xml:space="preserve"><value>Поля цели изменены; показанные результаты относятся к предыдущей цели. Для новой цели запустите проверку.</value></data>
+  <data name="ResourceProbe.Validation.Valid" xml:space="preserve"><value>Цель: {0}; TCP {1}. DNS ≤5 с; до 8 адресов, TCP ≤{2} с на адрес. Предустановка порта не проверяет протокол.</value></data>
+  <data name="ResourceProbe.Validation.Invalid" xml:space="preserve"><value>Укажите одно имя или IP. URL, пути и списки адресов не принимаются.</value></data>
+  <data name="ResourceProbe.Snapshot.Running" xml:space="preserve"><value>Выполняется новая попытка: {0}, TCP {1}, начало {2:HH:mm:ss}.</value></data>
+  <data name="ResourceProbe.Snapshot.Done" xml:space="preserve"><value>{0:HH:mm:ss} — {1} · TCP {2}: {3}. Адреса: {4}</value></data>
+  <data name="ResourceProbe.Elapsed" xml:space="preserve"><value>{0:0.0} с</value></data>
+  <data name="ResourceProbe.Warning.Unhandled" xml:space="preserve"><value>Проверка не завершена: {0} (0x{1:X8}).</value></data>
+  <data name="ResourceProbe.Export.Description" xml:space="preserve"><value>Отчёт содержит имя цели и IP-адреса. Не публикуйте его без проверки.</value></data>
+  <data name="ResourceProbe.Export.Saved" xml:space="preserve"><value>Отчёт сохранён: {0}</value></data>
+  <data name="ResourceProbe.Export.Failed" xml:space="preserve"><value>Экспорт не завершён: {0}, 0x{1:X8}.</value></data>
+  <data name="ResourceProbe.ActionFailed" xml:space="preserve"><value>Действие не завершено</value></data>
+  <data name="ResourceProbe.Menu.Item" xml:space="preserve"><value>Проверить доступность ресурса (DNS/TCP)…</value></data>
+  <data name="ResourceProbe.Parser.PortRange" xml:space="preserve"><value>TCP-порт: от 1 до 65535.</value></data>
+  <data name="ResourceProbe.Parser.Invalid" xml:space="preserve"><value>Введите одно имя узла или IPv4/IPv6 без URL, пути, учётных данных и диапазона. Порт задаётся отдельно.</value></data>
+  <data name="ResourceProbe.Service.OptionsRange" xml:space="preserve"><value>Тайм-ауты 1–10000 мс, адресов 1–16.</value></data>
+  <data name="ResourceProbe.Service.IpLiteral" xml:space="preserve"><value>Задан IP-адрес: разрешение имени не требуется.</value></data>
+  <data name="ResourceProbe.Service.ProgressDns" xml:space="preserve"><value>DNS: системное разрешение имени {0}…</value></data>
+  <data name="ResourceProbe.Service.SystemResolver" xml:space="preserve"><value>Использован системный резолвер (возможны кэш, hosts и суффиксы поиска).</value></data>
+  <data name="ResourceProbe.Service.NoAddresses" xml:space="preserve"><value>Системный резолвер не вернул адресов. TCP-подключение не выполнялось.</value></data>
+  <data name="ResourceProbe.Service.InvalidAddresses" xml:space="preserve"><value>Неадресуемые или multicast-адреса исключены из TCP-проверки.</value></data>
+  <data name="ResourceProbe.Service.NoUsableAddresses" xml:space="preserve"><value>Нет пригодных адресов для TCP-подключения. Соединения не выполнялись.</value></data>
+  <data name="ResourceProbe.Service.AddressLimit" xml:space="preserve"><value>Получено пригодных адресов: {0}; проверяются только первые {1} в порядке системного резолвера.</value></data>
+  <data name="ResourceProbe.Service.ProgressTcp" xml:space="preserve"><value>TCP: проверяю {0}…</value></data>
+  <data name="ResourceProbe.Service.Cancelled" xml:space="preserve"><value>Проверка отменена. Уже выполненные обращения не отменяются задним числом; неполный результат не подтверждает доступность всех адресов.</value></data>
+  <data name="ResourceProbe.Service.TcpConnected" xml:space="preserve"><value>TCP-соединение установлено и закрыто без прикладных данных.</value></data>
+  <data name="ResourceProbe.Service.StageCancelled" xml:space="preserve"><value>Текущий этап прерван запросом отмены; его завершение не подтверждено.</value></data>
+  <data name="ResourceProbe.Service.Timeout" xml:space="preserve"><value>Не завершено за {0} мс. Это не доказывает блокировку межсетевым экраном.</value></data>
+  <data name="ResourceProbe.Service.GenericFailure" xml:space="preserve"><value>Операция не завершена. Проверьте поддержку протокола, настройки и доступность системного провайдера.</value></data>
+  <data name="ResourceProbe.Service.Refused" xml:space="preserve"><value>Соединение отклонено. Проверьте порт и слушающую службу; отказ также может исходить от сетевого устройства.</value></data>
+  <data name="ResourceProbe.Service.ExplainTimeout" xml:space="preserve"><value>Ответ не получен в срок. Проверьте маршрут, VPN, сервер и правила фильтрации; причина не установлена автоматически.</value></data>
+  <data name="ResourceProbe.Service.Unreachable" xml:space="preserve"><value>ОС сообщает недоступность сети или узла. Проверьте подключение, маршрут и VPN.</value></data>
+  <data name="ResourceProbe.Service.Denied" xml:space="preserve"><value>ОС отказала в доступе к сокету. Проверьте политики с ответственным инженером, не отключая защиту.</value></data>
+  <data name="ResourceProbe.Service.DnsFailure" xml:space="preserve"><value>Имя не удалось разрешить. Проверьте написание, корпоративный DNS/VPN и суффиксы поиска. Не подменяйте DNS публичным сервером.</value></data>
+  <data name="ResourceProbe.Service.TcpFailure" xml:space="preserve"><value>TCP-подключение не выполнено. Сопоставьте код ошибки с симптомом и конфигурацией сервиса.</value></data>
+</root>

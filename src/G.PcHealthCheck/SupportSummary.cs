@@ -42,7 +42,7 @@ internal static class SupportSummary
                 sb.AppendLine($"Ещё наблюдений: {significant.Count - MaxFindings}. Полный список — в отчёте HTML/JSON.");
         }
 
-        var recommended = scan.Actions.Where(x => x.Preselected || x.Kind == "Рекомендуется").Take(8).ToList();
+        var recommended = scan.Actions.Where(x => x.RecommendationClass == RecommendationClass.Recommended).Take(8).ToList();
         if (recommended.Count > 0)
         {
             sb.AppendLine("Рекомендуемые действия:");

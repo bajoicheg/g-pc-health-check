@@ -7,14 +7,14 @@ internal sealed class StorageReviewForm : Form
     // Closing/reopening must not accumulate background provider work.
     private static readonly SemaphoreSlim Gate = new(1, 1);
     private readonly bool _folder;
-    private readonly Button _scan = Button("Проверить / повторить", "StorageStart");
-    private readonly Button _cancel = Button("Остановить сбор", "StorageCancel");
-    private readonly Button _copy = Button("Копировать сводку", "StorageCopy");
-    private readonly Button _export = Button("Сохранить HTML / JSON", "StorageExport");
-    private readonly Button _browse = Button("Выбрать папку…", "StorageBrowse");
-    private readonly Button _close = Button("Закрыть", "StorageClose");
+    private readonly Button _scan = Button(AppLocalization.T("Storage.Form.Scan"), "StorageStart");
+    private readonly Button _cancel = Button(AppLocalization.T("Storage.Form.Cancel"), "StorageCancel");
+    private readonly Button _copy = Button(AppLocalization.T("Storage.Form.Copy"), "StorageCopy");
+    private readonly Button _export = Button(AppLocalization.T("Storage.Form.Export"), "StorageExport");
+    private readonly Button _browse = Button(AppLocalization.T("Storage.Form.Browse"), "StorageBrowse");
+    private readonly Button _close = Button(AppLocalization.T("Storage.Form.Close"), "StorageClose");
     private readonly TextBox _root = new() { Width = 660, Name = "StorageRoot" };
-    private readonly TextBox _search = new() { Width = 360, Name = "StorageSearch", PlaceholderText = "Поиск по пути, имени или идентификатору…" };
+    private readonly TextBox _search = new() { Width = 360, Name = "StorageSearch", PlaceholderText = AppLocalization.T("Storage.Form.SearchPlaceholder") };
     private readonly ComboBox _view = new() { Width = 255, Name = "StorageView", DropDownStyle = ComboBoxStyle.DropDownList };
     private readonly TextBox _overview = new() { ReadOnly = true, Multiline = true, ScrollBars = ScrollBars.Vertical, Dock = DockStyle.Fill };
     private readonly TextBox _detail = new() { ReadOnly = true, Multiline = true, ScrollBars = ScrollBars.Both, WordWrap = false, Dock = DockStyle.Fill };
@@ -25,13 +25,13 @@ internal sealed class StorageReviewForm : Form
     private CancellationTokenSource? _cancellation;
     private Stopwatch? _elapsed;
     private object? _snapshot;
-    private string _stage = "Готов к сбору.";
+    private string _stage = AppLocalization.T("Storage.Form.Ready");
     private string _rowsStatus = "";
 
     public StorageReviewForm(bool folder)
     {
         _folder = folder;
-        Text = "G PC Health Check — " + (folder ? "место по папкам" : "подробности накопителей");
+        Text = AppLocalization.T(folder ? "Storage.Form.Title.Folder" : "Storage.Form.Title.Disk");
         Name = folder ? "FolderUsage" : "DiskDetails";
         AutoScaleMode = AutoScaleMode.Dpi;
         Font = new Font("Segoe UI", 9F);
@@ -48,19 +48,17 @@ internal sealed class StorageReviewForm : Form
         layout.Controls.Add(new Label
         {
             AutoSize = true, Dock = DockStyle.Fill, Padding = new Padding(0, 0, 0, 8),
-            Text = folder
-                ? "АНАЛИЗ ПАПКИ — только метаданные, без удаления. Размеры логические, не физически занятое место.\nСсылки исключаются. Сетевой/облачный путь может вызвать обращения соответствующего поставщика; выбирайте область осознанно."
-                : "НАКОПИТЕЛИ — сведения локального Windows Storage WMI. Это не полный SMART и не тест поверхности.\nНеизвестное значение отмечено «—». Результат сбора и состояние устройства — разные понятия."
+            Text = AppLocalization.T(folder ? "Storage.Form.Intro.Folder" : "Storage.Form.Intro.Disk")
         }, 0, 0);
         var target = new FlowLayoutPanel { Dock = DockStyle.Fill, AutoSize = true, WrapContents = true, Visible = folder };
         _root.Text = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-        target.Controls.AddRange([new Label { Text = "Папка:", AutoSize = true, Padding = new Padding(0, 5, 0, 0) }, _root, _browse]);
+        target.Controls.AddRange([new Label { Text = AppLocalization.T("Storage.Form.FolderLabel"), AutoSize = true, Padding = new Padding(0, 5, 0, 0) }, _root, _browse]);
         layout.Controls.Add(target, 0, 1);
         var tools = new FlowLayoutPanel { Dock = DockStyle.Fill, AutoSize = true, WrapContents = true };
         tools.Controls.AddRange([_scan, _cancel, _copy, _export, _close, _progress]);
         layout.Controls.Add(tools, 0, 2);
         var filter = new FlowLayoutPanel { Dock = DockStyle.Fill, AutoSize = true, WrapContents = true };
-        _view.Items.AddRange(["Все папки (включая вложенные)", "Папки первого уровня", "Крупнейшие файлы"]);
+        _view.Items.AddRange([AppLocalization.T("Storage.Form.View.All"), AppLocalization.T("Storage.Form.View.First"), AppLocalization.T("Storage.Form.View.Largest")]);
         _view.SelectedIndex = 0; _view.Visible = folder;
         filter.Controls.AddRange([_view, _search]); layout.Controls.Add(filter, 0, 3);
         layout.Controls.Add(_overview, 0, 4);
@@ -69,21 +67,21 @@ internal sealed class StorageReviewForm : Form
         _grid.SelectionMode = DataGridViewSelectionMode.FullRowSelect; _grid.MultiSelect = false;
         _grid.BackgroundColor = SystemColors.Window; _grid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None; _grid.RowTemplate.Height = 27;
         layout.Controls.Add(_grid, 0, 5); layout.Controls.Add(_detail, 0, 6); layout.Controls.Add(_status, 0, 7);
-        _overview.Text = "Снимок ещё не собран. Проверка начинается только по кнопке.";
-        _detail.Text = "Выберите строку для подробностей. Экспорт сохраняет весь снимок независимо от поиска.";
+        _overview.Text = AppLocalization.T("Storage.Form.NotCollected");
+        _detail.Text = AppLocalization.T("Storage.Form.SelectRow");
         _status.Text = _stage;
         _scan.Click += async (_, _) => await ScanAsync();
         _cancel.Click += (_, _) =>
         {
             _cancellation?.Cancel();
-            _stage = "Отмена запрошена; ожидается возврат текущего вызова. Завершённые записи будут сохранены.";
+            _stage = AppLocalization.T("Storage.Form.CancelRequested");
             UpdateButtons();
         };
         _browse.Click += (_, _) => Browse();
         _copy.Click += (_, _) =>
         {
             if (_snapshot is { } snapshot)
-                TryUi(() => { Clipboard.SetText(StorageReviewReport.Summary(snapshot)); _status.Text = "Сводка всего снимка скопирована."; });
+                TryUi(() => { Clipboard.SetText(StorageReviewReport.Summary(snapshot)); _status.Text = AppLocalization.T("Storage.Form.Copied"); });
         };
         _export.Click += (_, _) => Export(); _close.Click += (_, _) => Close();
         _view.SelectedIndexChanged += (_, _) => RenderRows(); _search.TextChanged += (_, _) => RenderRows();
@@ -91,7 +89,7 @@ internal sealed class StorageReviewForm : Form
         _grid.CurrentCellChanged += (_, _) => RenderDetail();
         _timer.Tick += (_, _) =>
         {
-            if (_cancellation is not null && !IsDisposed) _status.Text = $"{_stage} · {_elapsed?.Elapsed.TotalSeconds:0.0} с";
+            if (_cancellation is not null && !IsDisposed) _status.Text = $"{_stage} · {_elapsed?.Elapsed.TotalSeconds:0.0} s";
         };
         FormClosing += (_, _) => _cancellation?.Cancel();
         AcceptButton = _scan; CancelButton = _close;
@@ -105,11 +103,11 @@ internal sealed class StorageReviewForm : Form
         if (_folder)
         {
             try { root = FolderUsageService.Validate(root, options); }
-            catch (ArgumentException ex) { MessageBox.Show(this, ex.Message, "Проверьте путь", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
+            catch (ArgumentException ex) { MessageBox.Show(this, ex.Message, AppLocalization.T("Storage.Form.PathTitle"), MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
         }
         var cancellation = new CancellationTokenSource(); _cancellation = cancellation;
         _elapsed = Stopwatch.StartNew();
-        _stage = "Ожидается доступ к сборщику. Предыдущий снимок пока остаётся на экране.";
+        _stage = AppLocalization.T("Storage.Form.WaitCollector");
         _timer.Start(); UpdateButtons();
         var progress = new Progress<string>(text =>
         {
@@ -121,7 +119,7 @@ internal sealed class StorageReviewForm : Form
             object snapshot;
             try
             {
-                _stage = _folder ? "Обхожу выбранную папку…" : "Читаю сведения и связанные счётчики накопителей…";
+                _stage = AppLocalization.T(_folder ? "Storage.Form.Stage.Folder" : "Storage.Form.Stage.Disk");
                 snapshot = await Task.Run<object>(() => _folder
                     ? FolderUsageService.Collect(root, options, new WindowsFolderUsageSource(), cancellation.Token, progress)
                     : DiskDetailsService.Collect(new WindowsDiskDetailsSource(), cancellation.Token), cancellation.Token);
@@ -131,15 +129,15 @@ internal sealed class StorageReviewForm : Form
             // Stopped snapshots keep completed records and explicitly describe incomplete data.
             DisplaySnapshot(snapshot);
             var outcome = snapshot is FolderUsageSnapshot f ? f.Outcome : ((DiskDetailsSnapshot)snapshot).Outcome;
-            _status.Text = $"{StorageReviewReport.OutcomeText(outcome)} · {_elapsed.Elapsed.TotalSeconds:0.0} с. Для файлов отчёта нажмите «Сохранить HTML / JSON».";
+            _status.Text = AppLocalization.T("Storage.Form.Done", StorageReviewReport.OutcomeText(outcome), _elapsed.Elapsed.TotalSeconds, AppLocalization.T("Storage.Form.Export"));
         }
         catch (OperationCanceledException)
         {
-            if (!IsDisposed) _status.Text = "Ожидание/запуск сбора отменён. Предыдущий снимок не заменён; смотрите его дату.";
+            if (!IsDisposed) _status.Text = AppLocalization.T("Storage.Form.Cancelled");
         }
         catch (Exception ex)
         {
-            if (!IsDisposed) _status.Text = $"Сбор не завершён: {ex.GetType().Name}, 0x{ex.HResult:X8}. Предыдущий снимок не заменён.";
+            if (!IsDisposed) _status.Text = AppLocalization.T("Storage.Form.Failed", ex.GetType().Name, ex.HResult.ToString("X8"));
         }
         finally
         {
@@ -151,7 +149,7 @@ internal sealed class StorageReviewForm : Form
     internal void DisplaySnapshot(object snapshot)
     {
         if ((_folder && snapshot is not FolderUsageSnapshot) || (!_folder && snapshot is not DiskDetailsSnapshot))
-            throw new ArgumentException("Тип снимка не соответствует окну.", nameof(snapshot));
+            throw new ArgumentException(AppLocalization.T("Storage.Form.SnapshotTypeMismatch"), nameof(snapshot));
         _snapshot = snapshot;
         _overview.Text = StorageReviewReport.Summary(snapshot).ReplaceLineEndings("\r\n");
         RenderRows(); UpdateButtons();
@@ -168,35 +166,36 @@ internal sealed class StorageReviewForm : Form
             var total = f.Folders.FirstOrDefault()?.Bytes ?? 0;
             if (_view.SelectedIndex == 2)
             {
-                Column("Bytes", "Байт", 135, typeof(long), "N0");
-                Column("Modified", "Изменён", 185, typeof(DateTimeOffset), "dd.MM.yyyy HH:mm:ss zzz");
-                Column("Path", "Полный путь", 600, typeof(string), fill: true);
+                Column("Bytes", AppLocalization.T("Storage.Column.SizeMb"), 135, typeof(double), "N1");
+                Column("Modified", AppLocalization.T("Storage.Column.Modified"), 185, typeof(DateTimeOffset), "dd.MM.yyyy HH:mm:ss zzz");
+                Column("Path", AppLocalization.T("Storage.Column.FullPath"), 600, typeof(string), fill: true);
                 var rows = f.LargestFiles.Where(x => Matches(x.Path)).ToList(); matched = rows.Count;
-                foreach (var row in rows) _grid.Rows[_grid.Rows.Add(row.Bytes, row.Modified, row.Path)].Tag = row;
+                foreach (var row in rows) _grid.Rows[_grid.Rows.Add(HumanSize.MegabytesValue(row.Bytes), row.Modified, row.Path)].Tag = row;
             }
             else
             {
-                Column("Bytes", "Всего байт", 155, typeof(decimal), "N0");
-                Column("Files", "Файлов", 95, typeof(int), "N0");
-                Column("Percent", "Доля учтённого, %", 120, typeof(decimal), "0.0");
-                Column("Scope", "Полнота", 130, typeof(string));
-                Column("Path", "Папка (размер включает подпапки)", 550, typeof(string), fill: true);
+                Column("Bytes", AppLocalization.T("Storage.Column.TotalMb"), 155, typeof(double), "N1");
+                Column("Files", AppLocalization.T("Storage.Column.Files"), 95, typeof(int), "N0");
+                Column("Percent", AppLocalization.T("Storage.Column.Percent"), 120, typeof(decimal), "0.0");
+                Column("Scope", AppLocalization.T("Storage.Column.Scope"), 130, typeof(string));
+                Column("Path", AppLocalization.T("Storage.Column.Folder"), 550, typeof(string), fill: true);
                 var rows = f.Folders.Where(x => (_view.SelectedIndex != 1 || x.ParentIndex == 0) && Matches(x.Path))
                     .OrderByDescending(x => x.Bytes).ThenBy(x => x.Path, StringComparer.Ordinal).ToList(); matched = rows.Count;
                 foreach (var row in rows.Take(2000))
                 {
                     var percent = total > 0 ? row.Bytes / total * 100m : 0m;
-                    _grid.Rows[_grid.Rows.Add(row.Bytes, row.Files, percent, row.Incomplete ? "Неполная" : "В рамках обхода", row.Path)].Tag = row;
+                    _grid.Rows[_grid.Rows.Add(HumanSize.MegabytesDecimalValue(row.Bytes), row.Files, percent,
+                        AppLocalization.T(row.Incomplete ? "Storage.Column.Incomplete" : "Storage.Column.InScope"), row.Path)].Tag = row;
                 }
             }
         }
         else if (_snapshot is DiskDetailsSnapshot d)
         {
-            Column("Attention", "Внимание", 95, typeof(string)); Column("Id", "DeviceId", 85, typeof(string));
-            Column("Name", "Накопитель", 240, typeof(string), fill: true); Column("Health", "HealthStatus Windows", 195, typeof(string));
-            Column("Size", "Размер, GiB", 110, typeof(decimal), "0.0"); Column("Temperature", "°C", 65, typeof(int));
-            Column("Wear", "Износ, %", 90, typeof(int)); Column("Hours", "Наработка, ч", 100, typeof(ulong), "N0");
-            Column("Counters", "Связанные данные", 120, typeof(string));
+            Column("Attention", AppLocalization.T("Storage.Column.Attention"), 95, typeof(string)); Column("Id", "DeviceId", 85, typeof(string));
+            Column("Name", AppLocalization.T("Storage.Column.Drive"), 240, typeof(string), fill: true); Column("Health", "HealthStatus Windows", 195, typeof(string));
+            Column("Size", AppLocalization.T("Storage.Column.SizeGiB"), 110, typeof(decimal), "0.0"); Column("Temperature", "°C", 65, typeof(int));
+            Column("Wear", AppLocalization.T("Storage.Column.Wear"), 90, typeof(int)); Column("Hours", AppLocalization.T("Storage.Column.Hours"), 100, typeof(ulong), "N0");
+            Column("Counters", AppLocalization.T("Storage.Column.Related"), 120, typeof(string));
             var rows = d.Disks.Where(x => Matches(x.Name + " " + x.DeviceId + " " + x.Firmware + " " + DiskDetailsService.BusText(x.BusType)))
                 .OrderBy(x => StorageReviewReport.Rank(DiskDetailsService.Attention(x))).ToList(); matched = rows.Count;
             foreach (var disk in rows)
@@ -212,7 +211,7 @@ internal sealed class StorageReviewForm : Form
         }
         if (_snapshot is not null && _cancellation is null)
         {
-            _rowsStatus = $"Показано {_grid.Rows.Count:N0} из {matched:N0} совпадений. Таблица ограничена 2000 строками; поиск — по всему снимку, экспорт — без фильтра.";
+            _rowsStatus = AppLocalization.T("Storage.Form.RowsStatus", _grid.Rows.Count, matched);
             RenderRowsStatus();
         }
         RenderDetail();
@@ -237,17 +236,19 @@ internal sealed class StorageReviewForm : Form
     {
         if (_snapshot is null || _cancellation is not null) return;
         _status.Text = _snapshot is FolderUsageSnapshot folder && !FolderRootMatches(folder)
-            ? $"Папка следующего сканирования изменена; показан прежний снимок «{folder.Root}». {_rowsStatus}"
+            ? AppLocalization.T("Storage.Form.RootChanged", folder.Root, _rowsStatus)
             : _rowsStatus;
     }
     private void RenderDetail()
     {
         _detail.Text = _grid.CurrentRow?.Tag switch
         {
-            FolderUsageRow f => $"{f.Path}\r\nВсего: {StorageReviewReport.Bytes(f.Bytes)}; файлов: {f.Files:N0}.\r\nНепосредственно в папке: {StorageReviewReport.Bytes(f.OwnBytes)}; файлов: {f.OwnFiles:N0}.\r\nПолнота: {(f.Incomplete ? "неполные данные" : "обработано в заявленной области")}.\r\n{StorageReviewReport.FolderScope}",
-            LargeFolderFile f => $"{f.Path}\r\n{StorageReviewReport.Bytes(f.Bytes)}\r\nИзменён: {f.Modified?.ToString("O") ?? "—"}\r\nБольшой размер не является рекомендацией удалить файл.",
+            FolderUsageRow f => AppLocalization.T("Storage.Form.Detail.Folder", f.Path, StorageReviewReport.Bytes(f.Bytes), f.Files,
+                StorageReviewReport.Bytes(f.OwnBytes), f.OwnFiles,
+                AppLocalization.T(f.Incomplete ? "Storage.Form.Detail.Incomplete" : "Storage.Form.Detail.Complete"), StorageReviewReport.FolderScope),
+            LargeFolderFile f => AppLocalization.T("Storage.Form.Detail.File", f.Path, StorageReviewReport.Bytes(f.Bytes), f.Modified?.ToString("O") ?? "—"),
             PhysicalDiskDetail d => DiskDetailsService.Describe(d).ReplaceLineEndings("\r\n"),
-            _ => "Выберите строку для полного пути и подробностей."
+            _ => AppLocalization.T("Storage.Form.Detail.Empty")
         };
     }
     private void Column(string name, string caption, int width, Type type, string format = "", bool fill = false)
@@ -263,24 +264,24 @@ internal sealed class StorageReviewForm : Form
     private void Browse()
     {
         if (_cancellation is not null) return;
-        using var dialog = new FolderBrowserDialog { Description = "Выберите папку для анализа метаданных. Файлы не удаляются.", UseDescriptionForTitle = true };
+        using var dialog = new FolderBrowserDialog { Description = AppLocalization.T("Storage.Form.BrowseDescription"), UseDescriptionForTitle = true };
         if (dialog.ShowDialog(this) == DialogResult.OK) _root.Text = dialog.SelectedPath;
     }
     private void Export()
     {
         if (_snapshot is not { } snapshot || _cancellation is not null) return;
-        using var dialog = new FolderBrowserDialog { Description = "Отчёт содержит пути и идентификаторы. Выберите папку; перед передачей проверьте данные.", UseDescriptionForTitle = true };
+        using var dialog = new FolderBrowserDialog { Description = AppLocalization.T("Storage.Form.ExportDescription"), UseDescriptionForTitle = true };
         if (dialog.ShowDialog(this) != DialogResult.OK) return;
-        try { _status.Text = "HTML и JSON сохранены: " + StorageReviewReport.Save(snapshot, dialog.SelectedPath); }
+        try { _status.Text = AppLocalization.T("Storage.Form.Saved", StorageReviewReport.Save(snapshot, dialog.SelectedPath)); }
         catch (Exception ex)
         {
             ApplyExportFailure(ex);
-            MessageBox.Show(this, ex.Message, "Действие не завершено полностью", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show(this, ex.Message, AppLocalization.T("Storage.Form.ActionFailedTitle"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
     }
     private void ApplyExportFailure(Exception ex)
     {
-        if (!IsDisposed) _status.Text = $"Экспорт не завершён: {ex.GetType().Name}, 0x{ex.HResult:X8}.";
+        if (!IsDisposed) _status.Text = AppLocalization.T("Storage.Form.ExportFailed", ex.GetType().Name, ex.HResult.ToString("X8"));
     }
     private void UpdateButtons()
     {
@@ -292,7 +293,7 @@ internal sealed class StorageReviewForm : Form
     private void TryUi(Action action)
     {
         try { action(); }
-        catch (Exception ex) { MessageBox.Show(this, ex.Message, "Действие не завершено полностью", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+        catch (Exception ex) { MessageBox.Show(this, ex.Message, AppLocalization.T("Storage.Form.ActionFailedTitle"), MessageBoxButtons.OK, MessageBoxIcon.Warning); }
     }
     protected override void Dispose(bool disposing)
     {
@@ -310,9 +311,9 @@ internal static class StorageReviewMenu
         ReadOnlyReviewMenu.Attach(main);
         var group = (ToolStripMenuItem)main.MainMenuStrip!.Items.Find("ReadOnlyInspections", false).Single();
         if (group.DropDownItems.Find("StorageFolderAnalysis", false).Length > 0) return;
-        var folder = new ToolStripMenuItem("Место по папкам…") { Name = "StorageFolderAnalysis" };
+        var folder = new ToolStripMenuItem(AppLocalization.T("Storage.Menu.Folder")) { Name = "StorageFolderAnalysis" };
         folder.Click += (_, _) => { using var window = new StorageReviewForm(true); window.ShowDialog(main); };
-        var disk = new ToolStripMenuItem("Подробности накопителей…") { Name = "StorageDiskDetails" };
+        var disk = new ToolStripMenuItem(AppLocalization.T("Storage.Menu.Disk")) { Name = "StorageDiskDetails" };
         disk.Click += (_, _) => { using var window = new StorageReviewForm(false); window.ShowDialog(main); };
         group.DropDownItems.Add(folder); group.DropDownItems.Add(disk);
     }

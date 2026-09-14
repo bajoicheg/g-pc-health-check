@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+
+  <data name="Bundle.Mode.Quick" xml:space="preserve"><value>Quick</value></data>
+  <data name="Bundle.Mode.Extended" xml:space="preserve"><value>Extended</value></data>
+  <data name="Bundle.Source.Health" xml:space="preserve"><value>Health Check</value></data>
+  <data name="Bundle.Source.Processes" xml:space="preserve"><value>Processes</value></data>
+  <data name="Bundle.Source.Endpoints" xml:space="preserve"><value>TCP/UDP</value></data>
+  <data name="Bundle.Source.Events" xml:space="preserve"><value>Events</value></data>
+  <data name="Bundle.Source.Storage" xml:space="preserve"><value>Drives</value></data>
+  <data name="Bundle.Source.Performance" xml:space="preserve"><value>Performance</value></data>
+  <data name="Bundle.State.Complete" xml:space="preserve"><value>Complete</value></data>
+  <data name="Bundle.State.Partial" xml:space="preserve"><value>Partial</value></data>
+  <data name="Bundle.State.Unavailable" xml:space="preserve"><value>Unavailable</value></data>
+  <data name="Bundle.State.Cancelled" xml:space="preserve"><value>Cancelled</value></data>
+  <data name="Bundle.State.NotRequested" xml:space="preserve"><value>Not requested</value></data>
+  <data name="Bundle.State.Ready" xml:space="preserve"><value>Ready to run</value></data>
+  <data name="Bundle.State.Done" xml:space="preserve"><value>Done</value></data>
+  <data name="Bundle.State.Collecting" xml:space="preserve"><value>Collecting…</value></data>
+
+  <data name="Bundle.Core.SelectCategory" xml:space="preserve"><value>Select at least one diagnostic bundle category.</value></data>
+  <data name="Bundle.Core.UnknownCategory" xml:space="preserve"><value>Unknown diagnostic bundle category.</value></data>
+  <data name="Bundle.Core.QuickPerformance" xml:space="preserve"><value>Performance observation is available only in Extended mode.</value></data>
+  <data name="Bundle.Core.Duration" xml:space="preserve"><value>Observation duration must be 30–60 seconds.</value></data>
+  <data name="Bundle.Core.Interval" xml:space="preserve"><value>Observation interval must be 1–5 seconds and no longer than the duration.</value></data>
+  <data name="Bundle.Core.MarkersExcluded" xml:space="preserve"><value>Symptom markers were not included because performance observation is absent or was not requested.</value></data>
+  <data name="Bundle.Core.StorageBase" xml:space="preserve"><value>Drive {0}: {1}</value></data>
+  <data name="Bundle.Core.StorageTemperature" xml:space="preserve"><value>temperature {0} °C</value></data>
+  <data name="Bundle.Core.StorageWear" xml:space="preserve"><value>wear {0}%</value></data>
+  <data name="Bundle.Core.StorageHours" xml:space="preserve"><value>power-on {0} h</value></data>
+  <data name="Bundle.Core.StorageDrive" xml:space="preserve"><value>drive</value></data>
+  <data name="Bundle.Core.MarkersAdded" xml:space="preserve"><value>Operator symptom markers added: {0}.</value></data>
+
+  <data name="Bundle.Service.Starting" xml:space="preserve"><value>{0}: starting</value></data>
+  <data name="Bundle.Service.EmptyState" xml:space="preserve"><value>{0}: source finished without an explicit state; result marked partial.</value></data>
+  <data name="Bundle.Service.CancelWarning" xml:space="preserve"><value>Collection was cancelled; completed data was preserved and missing data is not treated as normal.</value></data>
+  <data name="Bundle.Service.Finished" xml:space="preserve"><value>{0}: {1}</value></data>
+  <data name="Bundle.Service.CancelBefore" xml:space="preserve"><value>Cancelled before the source started.</value></data>
+  <data name="Bundle.Service.SourceUnavailable" xml:space="preserve"><value>Source finished without data.</value></data>
+  <data name="Bundle.Service.HealthMissingSignals" xml:space="preserve"><value>Health Check is incomplete; unavailable: {0}.</value></data>
+  <data name="Bundle.Service.PerformancePartial" xml:space="preserve"><value>Incomplete performance session: {0}.</value></data>
+  <data name="Bundle.Service.AccessDenied" xml:space="preserve"><value>Access denied.</value></data>
+  <data name="Bundle.Service.SourceError" xml:space="preserve"><value>Source: {0}, 0x{1}.</value></data>
+
+  <data name="Bundle.Form.Start" xml:space="preserve"><value>Collect bundle</value></data>
+  <data name="Bundle.Form.Stop" xml:space="preserve"><value>Stop</value></data>
+  <data name="Bundle.Form.Copy" xml:space="preserve"><value>Copy summary</value></data>
+  <data name="Bundle.Form.Save" xml:space="preserve"><value>Save bundle…</value></data>
+  <data name="Bundle.Form.Close" xml:space="preserve"><value>Close</value></data>
+  <data name="Bundle.Form.CreateZip" xml:space="preserve"><value>Create ZIP next to the folder</value></data>
+  <data name="Bundle.Form.MarkerPlaceholder" xml:space="preserve"><value>Symptom note (up to 160 characters)</value></data>
+  <data name="Bundle.Form.Mark" xml:space="preserve"><value>Mark symptom</value></data>
+  <data name="Bundle.Form.ReadyInitial" xml:space="preserve"><value>Ready to collect.</value></data>
+  <data name="Bundle.Form.Title" xml:space="preserve"><value>G PC Health Check — Service Desk bundle</value></data>
+  <data name="Bundle.Form.Column.Include" xml:space="preserve"><value>Include</value></data>
+  <data name="Bundle.Form.Column.Category" xml:space="preserve"><value>Category</value></data>
+  <data name="Bundle.Form.Column.Privacy" xml:space="preserve"><value>Collected data / sensitive content</value></data>
+  <data name="Bundle.Form.Column.State" xml:space="preserve"><value>State</value></data>
+  <data name="Bundle.Form.Intro" xml:space="preserve"><value>One read-only bundle for Service Desk. Collection uses the current process permissions and does not start remediation, active network probes, or hidden elevation. Review the contents before sharing: account/SID data, process paths and command lines, IP addresses/ports, event text, device identifiers, and notes may be present.</value></data>
+  <data name="Bundle.Form.ModeLabel" xml:space="preserve"><value>Mode:</value></data>
+  <data name="Bundle.Form.DurationLabel" xml:space="preserve"><value>Observation, s:</value></data>
+  <data name="Bundle.Form.IntervalLabel" xml:space="preserve"><value>Interval, s:</value></data>
+  <data name="Bundle.Form.ContextPending" xml:space="preserve"><value>Execution context will be captured when collection starts.</value></data>
+  <data name="Bundle.Form.SummaryEmpty" xml:space="preserve"><value>No bundle has been collected. Choose a mode and categories, then click “{0}”. Opening this window does not start collection.</value></data>
+  <data name="Bundle.Form.Elapsed" xml:space="preserve"><value>{0} · {1:0.0} s</value></data>
+  <data name="Bundle.Form.WaitSave" xml:space="preserve"><value>Wait for bundle saving to finish.</value></data>
+  <data name="Bundle.Form.Privacy.Health" xml:space="preserve"><value>Assessment, coverage, system, account/SID, and source warnings.</value></data>
+  <data name="Bundle.Form.Privacy.Processes" xml:space="preserve"><value>Process names/PIDs, paths, command lines, sessions, and memory.</value></data>
+  <data name="Bundle.Form.Privacy.Endpoints" xml:space="preserve"><value>Local/remote IP addresses, ports, PIDs, and processes.</value></data>
+  <data name="Bundle.Form.Privacy.Events" xml:space="preserve"><value>Application/System for the last hour; event text, Event IDs, and providers.</value></data>
+  <data name="Bundle.Form.Privacy.Storage" xml:space="preserve"><value>Model, DeviceId, firmware, state, and available reliability counters.</value></data>
+  <data name="Bundle.Form.Privacy.Performance" xml:space="preserve"><value>CPU/RAM/disk over time and symptom notes; Extended mode only.</value></data>
+  <data name="Bundle.Form.Reason.Mode" xml:space="preserve"><value>mode</value></data>
+  <data name="Bundle.Form.Reason.Categories" xml:space="preserve"><value>categories</value></data>
+  <data name="Bundle.Form.Reason.Timing" xml:space="preserve"><value>observation duration/interval</value></data>
+  <data name="Bundle.Form.OptionsSame" xml:space="preserve"><value>The collected bundle is displayed; selected settings match the saved bundle. Source states belong to the displayed bundle.</value></data>
+  <data name="Bundle.Form.OptionsChanged" xml:space="preserve"><value>Settings for the next collection changed ({0}); the previous collected bundle is displayed. Source states belong to the displayed bundle.</value></data>
+  <data name="Bundle.Form.Preparing" xml:space="preserve"><value>Preparing…</value></data>
+  <data name="Bundle.Form.Cancelled" xml:space="preserve"><value>Collection was cancelled before a new useful result was produced; the previous bundle is preserved in memory.</value></data>
+  <data name="Bundle.Form.Failed" xml:space="preserve"><value>Collection did not complete: {0}; 0x{1}. The previous bundle is preserved in memory.</value></data>
+  <data name="Bundle.Form.StopRequested" xml:space="preserve"><value>Cancellation requested; a provider may not return immediately.</value></data>
+  <data name="Bundle.Form.MarkerEmpty" xml:space="preserve"><value>Enter a non-empty symptom note.</value></data>
+  <data name="Bundle.Form.MarkerAdded" xml:space="preserve"><value>Marker #{0} added to the performance timeline.</value></data>
+  <data name="Bundle.Form.NoNewPayload" xml:space="preserve"><value>The new attempt produced no useful payload; the previous bundle remains displayed and is the one that will be saved.</value></data>
+  <data name="Bundle.Form.PrivacyConfirm" xml:space="preserve"><value>The bundle may contain account/SID data, process paths and command lines, IP addresses/ports, event text, device identifiers, and notes.
+
+Review the evidence before external sharing. Search/filtering is not anonymization. Continue saving?</value></data>
+  <data name="Bundle.Form.PrivacyTitle" xml:space="preserve"><value>Diagnostic bundle privacy</value></data>
+  <data name="Bundle.Form.FolderDescription" xml:space="preserve"><value>Choose a local folder for a new diagnostic bundle. Existing bundles are not overwritten.</value></data>
+  <data name="Bundle.Form.Saving" xml:space="preserve"><value>Saving bundle…</value></data>
+  <data name="Bundle.Form.SavedFolder" xml:space="preserve"><value>Saved: {0}</value></data>
+  <data name="Bundle.Form.SavedZip" xml:space="preserve"><value>Saved: {0}; ZIP: {1}</value></data>
+  <data name="Bundle.Form.SaveErrorMessage" xml:space="preserve"><value>Saving was not fully completed. If the ZIP step failed, the evidence folder that was already created may still exist.
+{0}</value></data>
+  <data name="Bundle.Form.SaveTitle" xml:space="preserve"><value>Save bundle</value></data>
+  <data name="Bundle.Form.SaveFailed" xml:space="preserve"><value>Saving did not complete: {0}, 0x{1}.</value></data>
+  <data name="Bundle.Form.Ready" xml:space="preserve"><value>Ready.</value></data>
+  <data name="Bundle.Form.ActionFailed" xml:space="preserve"><value>Action not completed</value></data>
+  <data name="Bundle.Menu.Item" xml:space="preserve"><value>Collect Service Desk bundle…</value></data>
+
+  <data name="Bundle.Report.Title" xml:space="preserve"><value>G PC Health Check — Service Desk diagnostic bundle</value></data>
+  <data name="Bundle.Report.Version" xml:space="preserve"><value>Application version: {0}</value></data>
+  <data name="Bundle.Report.Computer" xml:space="preserve"><value>Computer: {0}</value></data>
+  <data name="Bundle.Report.Mode" xml:space="preserve"><value>Mode: {0}</value></data>
+  <data name="Bundle.Report.StartEnd" xml:space="preserve"><value>Started: {0:O}; finished: {1:O}</value></data>
+  <data name="Bundle.Report.Completeness" xml:space="preserve"><value>Bundle completeness: {0}</value></data>
+  <data name="Bundle.Report.Cancel" xml:space="preserve"><value>Cancellation requested: {0}</value></data>
+  <data name="Bundle.Report.Yes" xml:space="preserve"><value>yes</value></data>
+  <data name="Bundle.Report.No" xml:space="preserve"><value>no</value></data>
+  <data name="Bundle.Report.Context" xml:space="preserve"><value>Execution context:</value></data>
+  <data name="Bundle.Report.Sources" xml:space="preserve"><value>Sources:</value></data>
+  <data name="Bundle.Report.SourceLine" xml:space="preserve"><value>{0}: {1}; requested: {2}; duration: {3} ms; warnings: {4}</value></data>
+  <data name="Bundle.Report.Excluded" xml:space="preserve"><value>Operator excluded this source.</value></data>
+  <data name="Bundle.Report.Findings" xml:space="preserve"><value>Main findings:</value></data>
+  <data name="Bundle.Report.NoFindings" xml:space="preserve"><value>No confirmed CRIT/WARN findings. This does not prove the computer is healthy; review coverage and unavailable sources.</value></data>
+  <data name="Bundle.Report.HealthNotRequested" xml:space="preserve"><value>Health Check was not requested; score/coverage are absent and are not treated as normal.</value></data>
+  <data name="Bundle.Report.HealthNoPayload" xml:space="preserve"><value>Health Check produced no payload; score/coverage are unknown.</value></data>
+  <data name="Bundle.Report.Privacy" xml:space="preserve"><value>Review the bundle before sharing: account/SID data, process paths and command lines, IP addresses/ports, event text, device identifiers, and symptom notes may be present. The bundle is never uploaded automatically.</value></data>
+  <data name="Bundle.Report.Heading" xml:space="preserve"><value>Service Desk diagnostic bundle</value></data>
+  <data name="Bundle.Report.SourceMatrix" xml:space="preserve"><value>Source matrix</value></data>
+  <data name="Bundle.Report.SourceMatrixNote" xml:space="preserve"><value>NotRequested, unavailable, and partial states are not interpreted as normal zero values.</value></data>
+  <data name="Bundle.Report.Column.Source" xml:space="preserve"><value>Source</value></data>
+  <data name="Bundle.Report.Column.Requested" xml:space="preserve"><value>Requested</value></data>
+  <data name="Bundle.Report.Column.State" xml:space="preserve"><value>State</value></data>
+  <data name="Bundle.Report.Column.Started" xml:space="preserve"><value>Started</value></data>
+  <data name="Bundle.Report.Column.Finished" xml:space="preserve"><value>Finished</value></data>
+  <data name="Bundle.Report.Column.Warnings" xml:space="preserve"><value>Warnings</value></data>
+  <data name="Bundle.Report.FindingsHeading" xml:space="preserve"><value>Key confirmed findings</value></data>
+  <data name="Bundle.Report.HealthExcluded" xml:space="preserve"><value>Health Check was excluded by the operator; score and coverage were not calculated in this bundle.</value></data>
+  <data name="Bundle.Report.HealthUnavailable" xml:space="preserve"><value>Health Check is unavailable; score and coverage are unknown.</value></data>
+  <data name="Bundle.Report.HealthScore" xml:space="preserve"><value>Health Score: {0}/100 ({1}); coverage: {2}% ({3}).</value></data>
+  <data name="Bundle.Report.HealthMissing" xml:space="preserve"><value>Unavailable signals: {0}</value></data>
+  <data name="Bundle.Report.Column.Severity" xml:space="preserve"><value>Severity</value></data>
+  <data name="Bundle.Report.Column.Category" xml:space="preserve"><value>Category</value></data>
+  <data name="Bundle.Report.Column.Finding" xml:space="preserve"><value>Finding</value></data>
+  <data name="Bundle.Report.Column.Value" xml:space="preserve"><value>Value</value></data>
+  <data name="Bundle.Report.Column.Recommendation" xml:space="preserve"><value>Recommendation</value></data>
+  <data name="Bundle.Report.Events" xml:space="preserve"><value>Application/System events</value></data>
+  <data name="Bundle.Report.EventsExcluded" xml:space="preserve"><value>Source excluded by the operator.</value></data>
+  <data name="Bundle.Report.EventsUnavailable" xml:space="preserve"><value>Events: {0}. Missing events do not mean there are no problems.</value></data>
+  <data name="Bundle.Report.EventsCount" xml:space="preserve"><value>Window: {0:O} — {1:O}; showing up to {2} events from {3} collected. An empty list does not prove that no events occurred.</value></data>
+  <data name="Bundle.Report.Column.Time" xml:space="preserve"><value>Time</value></data>
+  <data name="Bundle.Report.Column.Log" xml:space="preserve"><value>Log</value></data>
+  <data name="Bundle.Report.Column.Level" xml:space="preserve"><value>Level</value></data>
+  <data name="Bundle.Report.Column.Provider" xml:space="preserve"><value>Provider</value></data>
+  <data name="Bundle.Report.Column.Message" xml:space="preserve"><value>Message</value></data>
+  <data name="Bundle.Report.Processes" xml:space="preserve"><value>Processes</value></data>
+  <data name="Bundle.Report.ProcessesNote" xml:space="preserve"><value>Showing up to {0} processes from {1}. The list is a snapshot at collection time; owner is not queried automatically.</value></data>
+  <data name="Bundle.Report.Column.Process" xml:space="preserve"><value>Process</value></data>
+  <data name="Bundle.Report.Column.Created" xml:space="preserve"><value>Created</value></data>
+  <data name="Bundle.Report.Column.Memory" xml:space="preserve"><value>RAM, MB</value></data>
+  <data name="Bundle.Report.Endpoints" xml:space="preserve"><value>TCP/UDP endpoints</value></data>
+  <data name="Bundle.Report.EndpointsUnavailable" xml:space="preserve"><value>Endpoints: {0}. An unavailable table does not mean there are no connections or listeners.</value></data>
+  <data name="Bundle.Report.EndpointsCount" xml:space="preserve"><value>Rows: {0}; TCP: {1}; UDP: {2}; TCP LISTEN: {3}; TCP ESTABLISHED: {4}. Showing up to {5}.</value></data>
+  <data name="Bundle.Report.EndpointsNote" xml:space="preserve"><value>Snapshot of local Windows tables; remote addresses were not probed and reverse DNS was not performed.</value></data>
+  <data name="Bundle.Report.Column.Change" xml:space="preserve"><value>Observation</value></data>
+  <data name="Bundle.Report.Column.Protocol" xml:space="preserve"><value>Protocol</value></data>
+  <data name="Bundle.Report.Column.Local" xml:space="preserve"><value>Local endpoint</value></data>
+  <data name="Bundle.Report.Column.Remote" xml:space="preserve"><value>Remote endpoint</value></data>
+  <data name="Bundle.Report.Storage" xml:space="preserve"><value>Drives</value></data>
+  <data name="Bundle.Report.StorageUnavailable" xml:space="preserve"><value>Drives: {0}. Unavailable data is not treated as Healthy.</value></data>
+  <data name="Bundle.Report.StorageNote" xml:space="preserve"><value>This is Windows Storage WMI/reliability counter data, not full SMART data and not a surface test. Unknown values are not replaced with zero.</value></data>
+  <data name="Bundle.Report.Column.Drive" xml:space="preserve"><value>Drive</value></data>
+  <data name="Bundle.Report.Column.Health" xml:space="preserve"><value>HealthStatus</value></data>
+  <data name="Bundle.Report.Column.Size" xml:space="preserve"><value>Size</value></data>
+  <data name="Bundle.Report.Column.Temp" xml:space="preserve"><value>Temperature</value></data>
+  <data name="Bundle.Report.Column.Wear" xml:space="preserve"><value>Wear</value></data>
+  <data name="Bundle.Report.Column.Hours" xml:space="preserve"><value>Power-on</value></data>
+  <data name="Bundle.Report.Column.CounterState" xml:space="preserve"><value>Counters</value></data>
+  <data name="Bundle.Report.Performance" xml:space="preserve"><value>Performance</value></data>
+  <data name="Bundle.Report.PerformanceExcluded" xml:space="preserve"><value>This source is not requested in Quick mode. Missing time-series data does not mean normal load.</value></data>
+  <data name="Bundle.Report.PerformanceUnavailable" xml:space="preserve"><value>Performance: {0}. Missing samples are not replaced with zero.</value></data>
+  <data name="Bundle.Report.PerformanceMeasurements" xml:space="preserve"><value>Measurements</value></data>
+  <data name="Bundle.Report.PerformanceMarkers" xml:space="preserve"><value>Symptom markers</value></data>
+  <data name="Bundle.Report.PerformanceNoMarkers" xml:space="preserve"><value>No symptom markers.</value></data>
+  <data name="Bundle.Report.PerformanceNote" xml:space="preserve"><value>Observation is not a stress test; coincidence with a marker does not prove the cause of a problem.</value></data>
+  <data name="Bundle.Report.Files" xml:space="preserve"><value>Bundle files</value></data>
+  <data name="Bundle.Report.FilesNote" xml:space="preserve"><value>manifest.json contains the completeness matrix and safe highlights; raw/*.json contains full payloads for requested sources when available. A missing raw file is not an empty healthy result.</value></data>
+  <data name="Bundle.Report.LocalFolder" xml:space="preserve"><value>Choose an existing local destination folder.</value></data>
+  <data name="Bundle.Report.ModeQuick" xml:space="preserve"><value>Quick</value></data>
+  <data name="Bundle.Report.ModeExtended" xml:space="preserve"><value>Extended</value></data>
+  <data name="Bundle.Report.Unknown" xml:space="preserve"><value>—</value></data>
+  <data name="Bundle.Report.Bytes" xml:space="preserve"><value>{0:N0} bytes</value></data>
+  <data name="Bundle.Report.NotAvailable" xml:space="preserve"><value>unavailable</value></data>
+</root>

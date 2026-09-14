@@ -28,33 +28,32 @@ internal static class CommonProblemsMenu
     public static void Attach(Form main)
     {
         ArgumentNullException.ThrowIfNull(main);
-        if (main.MainMenuStrip is not null) return;
-        var menu = new MenuStrip { Dock = DockStyle.Top };
-        var common = new ToolStripMenuItem("Типовые проблемы: сеть, печать, устройства");
-        common.Click += (_, _) =>
+        if (main.MainMenuStrip is null)
         {
-            using var dialog = new CommonProblemsForm();
-            dialog.ShowDialog(main);
-        };
-        menu.Items.Add(common);
-        var windows = new ToolStripMenuItem("Средства Windows");
-        foreach (var (title, topic) in new[]
-        {
-            ("Сеть", "Network"), ("Принтеры", "Printing"), ("Устройства", "Devices"),
-            ("Хранилище", "Storage"), ("Автозагрузка", "Startup"), ("Обновления", "Updates"), ("Приложения", "Apps")
-        })
-        {
-            var capturedTopic = topic;
-            var item = new ToolStripMenuItem(title);
-            item.Click += (_, _) =>
+            var menu = new MenuStrip { Dock = DockStyle.Top };
+            var common = new ToolStripMenuItem { Name = "CommonProblemsOpen" };
+            common.Click += (_, _) =>
             {
-                try { CommonProblemTools.Open(capturedTopic); }
-                catch (Exception ex) { MessageBox.Show(main, ex.Message, "Не удалось открыть параметры", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+                using var dialog = new CommonProblemsForm();
+                dialog.ShowDialog(main);
             };
-            windows.DropDownItems.Add(item);
+            menu.Items.Add(common);
+            var windows = new ToolStripMenuItem { Name = "WindowsTools" };
+            foreach (var topic in new[] { "Network", "Printing", "Devices", "Storage", "Startup", "Updates", "Apps" })
+            {
+                var capturedTopic = topic;
+                var item = new ToolStripMenuItem { Name = "WindowsTopic_" + topic };
+                item.Click += (_, _) =>
+                {
+                    try { CommonProblemTools.Open(capturedTopic); }
+                    catch (Exception ex) { MessageBox.Show(main, ex.Message, AppLocalization.T("Menu.WindowsTools"), MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+                };
+                windows.DropDownItems.Add(item);
+            }
+            menu.Items.Add(windows);
+            main.MainMenuStrip = menu;
+            main.Controls.Add(menu);
         }
-        menu.Items.Add(windows);
-        main.MainMenuStrip = menu;
-        main.Controls.Add(menu);
+        AppMenuChrome.Attach(main);
     }
 }

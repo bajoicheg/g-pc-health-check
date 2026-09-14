@@ -75,7 +75,7 @@ internal static class StorageReviewReport
         if (snapshot is FolderUsageSnapshot f)
         {
             var total = f.Folders.FirstOrDefault()?.Bytes ?? 0;
-            b.Append("<section><h2>Крупнейшие папки первого уровня</h2><p class='muted'>Доли от учтённых логических байтов; это не карта свободного места диска.</p><table><tr><th>Папка</th><th>Размер</th><th>Доля</th></tr>");
+            b.Append("<section><h2>Крупнейшие папки первого уровня</h2><p class='muted'>Доли от учтённого логического объёма; это не карта свободного места диска.</p><table><tr><th>Папка</th><th>Размер, MB</th><th>Доля</th></tr>");
             foreach (var row in f.Folders.Where(x => x.ParentIndex == 0).OrderByDescending(x => x.Bytes).ThenBy(x => x.Path, StringComparer.Ordinal).Take(15))
             {
                 var percentage = total > 0 ? Math.Clamp(row.Bytes / total * 100m, 0m, 100m) : 0m;
@@ -83,11 +83,11 @@ internal static class StorageReviewReport
                     .Append(percentage.ToString("0.0", CultureInfo.InvariantCulture)).Append("%<span class='bar' style='width:")
                     .Append(percentage.ToString("0.0", CultureInfo.InvariantCulture)).Append("%'></span></td></tr>");
             }
-            b.Append("</table></section><section><h2>Все собранные папки</h2><p>Размер включает подпапки; строки пересекаются. Результат обхода указан выше.</p><div class='table'><table><tr><th>Путь</th><th>Всего байт</th><th>Файлов</th><th>Собственные байты</th><th>Полнота</th></tr>");
+            b.Append("</table></section><section><h2>Все собранные папки</h2><p>Размер включает подпапки; строки пересекаются. Результат обхода указан выше.</p><div class='table'><table><tr><th>Путь</th><th>Всего, MB</th><th>Файлов</th><th>Собственные, MB</th><th>Полнота</th></tr>");
             foreach (var row in f.Folders.OrderByDescending(x => x.Bytes).ThenBy(x => x.Path, StringComparer.Ordinal))
-                TableRow(b, row.Path, row.Bytes, row.Files, row.OwnBytes, row.Incomplete ? "Неполная" : "Собрано в заявленной области");
-            b.Append("</table></div></section><section><h2>Крупнейшие файлы просмотренной части</h2><div class='table'><table><tr><th>Путь</th><th>Байт</th><th>Изменён</th></tr>");
-            foreach (var row in f.LargestFiles) TableRow(b, row.Path, row.Bytes, row.Modified?.ToString("O") ?? "—");
+                TableRow(b, row.Path, Bytes(row.Bytes), row.Files, Bytes(row.OwnBytes), row.Incomplete ? "Неполная" : "Собрано в заявленной области");
+            b.Append("</table></div></section><section><h2>Крупнейшие файлы просмотренной части</h2><div class='table'><table><tr><th>Путь</th><th>Размер, MB</th><th>Изменён</th></tr>");
+            foreach (var row in f.LargestFiles) TableRow(b, row.Path, HumanSize.Megabytes(row.Bytes), row.Modified?.ToString("O") ?? "—");
             b.Append("</table></div></section>");
         }
         else if (snapshot is DiskDetailsSnapshot d)
@@ -138,12 +138,5 @@ internal static class StorageReviewReport
         "Completed" => "Сбор завершён в указанной области", "Partial" => "Неполные данные", "Stopped" => "Остановлено — данные неполные",
         "Failed" => "Сбор не выполнен полностью", "Unavailable" => "Данные недоступны", "Running" => "Сбор выполняется", _ => "Снимок не собран"
     };
-    public static string Bytes(decimal value)
-    {
-        if (value >= 1099511627776m) return $"{value / 1099511627776m:0.##} TiB ({value:N0} байт)";
-        if (value >= 1073741824m) return $"{value / 1073741824m:0.##} GiB ({value:N0} байт)";
-        if (value >= 1048576m) return $"{value / 1048576m:0.##} MiB ({value:N0} байт)";
-        if (value >= 1024m) return $"{value / 1024m:0.##} KiB ({value:N0} байт)";
-        return $"{value:N0} байт";
-    }
+    public static string Bytes(decimal value) => HumanSize.MegabytesDecimal(value);
 }

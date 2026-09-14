@@ -9,12 +9,12 @@ internal sealed class CommonProblemsForm : Form
     private readonly TextBox _detail = new();
     private readonly Label _status = new();
     private readonly ProgressBar _progress = new() { Style = ProgressBarStyle.Marquee, Width = 120, Visible = false };
-    private readonly Button _scan = Button("Проверить / повторить");
-    private readonly Button _cancel = Button("Отменить сбор");
-    private readonly Button _settings = Button("Открыть параметры Windows");
-    private readonly Button _copy = Button("Копировать сводку");
-    private readonly Button _export = Button("Сохранить HTML / JSON");
-    private readonly Button _dns = Button("DNS-кэш: отдельное действие");
+    private readonly Button _scan = Button(AppLocalization.T("CommonProblems.Button.Scan"));
+    private readonly Button _cancel = Button(AppLocalization.T("CommonProblems.Button.Cancel"));
+    private readonly Button _settings = Button(AppLocalization.T("CommonProblems.Button.Settings"));
+    private readonly Button _copy = Button(AppLocalization.T("CommonProblems.Button.Copy"));
+    private readonly Button _export = Button(AppLocalization.T("CommonProblems.Button.Export"));
+    private readonly Button _dns = Button(AppLocalization.T("CommonProblems.Button.Dns"));
     private CommonProblemSnapshot? _current;
     private CommonProblemSnapshot? _previous;
     private RemediationBatchResult? _lastCommand;
@@ -25,7 +25,7 @@ internal sealed class CommonProblemsForm : Form
 
     public CommonProblemsForm()
     {
-        Text = "G PC Health Check — типовые проблемы";
+        Text = AppLocalization.T("CommonProblems.Form.Title");
         Size = new Size(1180, 780); MinimumSize = new Size(880, 620);
         StartPosition = FormStartPosition.CenterParent;
         AutoScaleMode = AutoScaleMode.Dpi;
@@ -41,7 +41,7 @@ internal sealed class CommonProblemsForm : Form
         root.Controls.Add(new Label
         {
             Dock = DockStyle.Fill, AutoSize = true, Padding = new Padding(0, 0, 0, 10),
-            Text = "Дополнительные проверки сети, печати и устройств. Основной индекс здоровья не изменяется.\nСбор не выполняет исправлений. INFO — ограниченная информация; UNKNOWN — недостаток данных. Параметры Windows открываются для ручной работы инженера."
+            Text = AppLocalization.T("CommonProblems.Form.Intro")
         }, 0, 0);
         var toolbar = new FlowLayoutPanel { Dock = DockStyle.Fill, AutoSize = true, WrapContents = true };
         toolbar.Controls.AddRange([_scan, _cancel, _settings, _copy, _export, _dns, _progress]);
@@ -51,18 +51,23 @@ internal sealed class CommonProblemsForm : Form
         _grid.SelectionMode = DataGridViewSelectionMode.FullRowSelect; _grid.MultiSelect = false;
         _grid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
         _grid.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-        _grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(CommonProblemFinding.Status), HeaderText = "Статус", Width = 85 });
-        _grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(CommonProblemFinding.Title), HeaderText = "Проверка", Width = 320 });
-        _grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(CommonProblemFinding.Evidence), HeaderText = "Наблюдаемые данные", AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill, MinimumWidth = 220 });
+        _grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(CommonProblemFinding.Status), HeaderText = AppLocalization.T("CommonProblems.Column.Status"), Width = 85 });
+        _grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(CommonProblemFinding.Title), HeaderText = AppLocalization.T("CommonProblems.Column.Check"), Width = 320 });
+        _grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(CommonProblemFinding.Evidence), HeaderText = AppLocalization.T("CommonProblems.Column.Evidence"), AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill, MinimumWidth = 220 });
         // SelectionChanged can fire while CurrentRow still points at the previous cell.
         _grid.CurrentCellChanged += (_, _) => ShowDetail();
         root.Controls.Add(_grid, 0, 2);
         _detail.Dock = DockStyle.Fill; _detail.Multiline = true; _detail.ReadOnly = true; _detail.ScrollBars = ScrollBars.Vertical;
         root.Controls.Add(_detail, 0, 3);
-        _status.Dock = DockStyle.Fill; _status.AutoSize = true; _status.Text = "Готов к проверке.";
+        _status.Dock = DockStyle.Fill; _status.AutoSize = true; _status.Text = AppLocalization.T("CommonProblems.Status.Ready");
         root.Controls.Add(_status, 0, 4);
         _scan.Click += async (_, _) => await ScanAsync();
-        _cancel.Click += (_, _) => { _scanCancellation?.Cancel(); _cancel.Enabled = false; _status.Text = "Запрошена отмена; ожидается возврат текущего поставщика WMI."; };
+        _cancel.Click += (_, _) =>
+        {
+            _scanCancellation?.Cancel();
+            _cancel.Enabled = false;
+            _status.Text = AppLocalization.T("CommonProblems.Status.CancelRequested");
+        };
         _settings.Click += (_, _) =>
         {
             if (Selected() is not { } row) return;
@@ -81,7 +86,7 @@ internal sealed class CommonProblemsForm : Form
             if (_commandRunning)
             {
                 e.Cancel = true;
-                _status.Text = "Выполняется подтверждённая команда; закрытие доступно после получения результата.";
+                _status.Text = AppLocalization.T("CommonProblems.Status.CommandRunning");
             }
             else _scanCancellation?.Cancel();
         };
@@ -102,11 +107,19 @@ internal sealed class CommonProblemsForm : Form
             ReleaseProgressOwner(progressOwner);
             _previous = _current; _current = data;
             _grid.DataSource = CommonProblemsAssessment.Assess(data);
-            _status.Text = $"Снимок {data.CollectedAt:HH:mm:ss}. Повторная проверка не заменяет подтверждение симптома пользователем." + CommandStatus();
+            _status.Text = AppLocalization.T("CommonProblems.Status.Snapshot", data.CollectedAt) + CommandStatus();
             ShowDetail();
         }
-        catch (OperationCanceledException) { ReleaseProgressOwner(progressOwner); if (!IsDisposed) _status.Text = "Сбор отменён. Предыдущие результаты не заменены." + CommandStatus(); }
-        catch (Exception ex) { ReleaseProgressOwner(progressOwner); if (!IsDisposed) _status.Text = "Не удалось завершить сбор: " + ex.Message + CommandStatus(); }
+        catch (OperationCanceledException)
+        {
+            ReleaseProgressOwner(progressOwner);
+            if (!IsDisposed) _status.Text = AppLocalization.T("CommonProblems.Status.Cancelled") + CommandStatus();
+        }
+        catch (Exception ex)
+        {
+            ReleaseProgressOwner(progressOwner);
+            if (!IsDisposed) _status.Text = AppLocalization.T("CommonProblems.Status.CollectionFailed", ex.Message) + CommandStatus();
+        }
         finally
         {
             ReleaseProgressOwner(progressOwner);
@@ -119,9 +132,13 @@ internal sealed class CommonProblemsForm : Form
     {
         var current = _current;
         if (_busy || current is null || !CommonProblemsAssessment.CanOfferDnsFlush(current)) return;
-        if (MessageBox.Show(this,
-            "Используйте только при симптомах разрешения имён. Будет очищен локальный DNS-кэш; DNS-серверы, IP, proxy и VPN не меняются. Это не исправляет DHCP, отсутствие DNS или недоступность сервера. После команды будет повторно прочитана конфигурация, а обращение к проблемному ресурсу необходимо проверить отдельно. Продолжить?",
-            "Подтвердите очистку DNS-кэша", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) != DialogResult.Yes) return;
+        if (MessageBox.Show(
+                this,
+                AppLocalization.T("CommonProblems.Dns.Confirm"),
+                AppLocalization.T("CommonProblems.Dns.ConfirmTitle"),
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning,
+                MessageBoxDefaultButton.Button2) != DialogResult.Yes) return;
         _busy = true; _commandRunning = true; _lastCommand = null;
         var progressOwner = new object(); _progressOwner = progressOwner;
         UpdateButtons();
@@ -144,23 +161,44 @@ internal sealed class CommonProblemsForm : Form
         if (!IsDisposed) await ScanAsync();
     }
 
-    private string CommandStatus() => _lastCommand is null ? "" : " Последняя команда: " + string.Join("; ", _lastCommand.Actions.Select(x =>
-        $"{x.Id}: {(x.Success ? "код выполнения успешный" : "ошибка / результат не подтверждён")}; {x.Message}"));
-    private IProgress<string> Progress(object owner, CancellationToken cancellationToken = default) => new Progress<string>(message => ApplyProgress(owner, cancellationToken, message));
+    private string CommandStatus()
+    {
+        if (_lastCommand is null) return "";
+        var items = string.Join("; ", _lastCommand.Actions.Select(x =>
+            AppLocalization.T(
+                "CommonProblems.Status.CommandItem",
+                x.Id,
+                AppLocalization.T(x.Success ? "CommonProblems.Status.CommandSuccess" : "CommonProblems.Status.CommandFailed"),
+                x.Message)));
+        return AppLocalization.T("CommonProblems.Status.LastCommand", items);
+    }
+
+    private IProgress<string> Progress(object owner, CancellationToken cancellationToken = default)
+        => new Progress<string>(message => ApplyProgress(owner, cancellationToken, message));
+
     private void ApplyProgress(object owner, CancellationToken cancellationToken, string message)
     {
         if (!IsDisposed && ReferenceEquals(_progressOwner, owner) && !cancellationToken.IsCancellationRequested) _status.Text = message;
     }
+
     private void ReleaseProgressOwner(object owner)
     {
         if (ReferenceEquals(_progressOwner, owner)) _progressOwner = null;
     }
+
     private CommonProblemFinding? Selected() => _grid.CurrentRow?.DataBoundItem as CommonProblemFinding;
+
     private void ShowDetail()
     {
-        if (Selected() is { } row) _detail.Text = $"{row.Title}\r\n\r\nФакты:\r\n{row.Evidence.Replace("\n", "\r\n")}\r\n\r\nШаги инженера:\r\n{row.Resolution}";
+        if (Selected() is { } row)
+            _detail.Text = AppLocalization.T(
+                "CommonProblems.Detail",
+                row.Title,
+                row.Evidence.Replace("\n", "\r\n"),
+                row.Resolution);
         UpdateButtons();
     }
+
     private void UpdateButtons()
     {
         _scan.Enabled = !_busy;
@@ -170,30 +208,41 @@ internal sealed class CommonProblemsForm : Form
         _dns.Enabled = !_busy && _current is not null && CommonProblemsAssessment.CanOfferDnsFlush(_current);
         _progress.Visible = _busy;
     }
+
     private void Export()
     {
         var current = _current;
         if (current is null || _busy) return;
-        using var dialog = new FolderBrowserDialog { Description = "Выберите локальную папку. Отчёты содержат имена устройств/IP; не публикуйте их без проверки.", UseDescriptionForTitle = true };
+        using var dialog = new FolderBrowserDialog
+        {
+            Description = AppLocalization.T("CommonProblems.Export.Description"),
+            UseDescriptionForTitle = true
+        };
         if (dialog.ShowDialog(this) != DialogResult.OK) return;
         TryUi(() =>
         {
             var stem = Path.Combine(dialog.SelectedPath, $"CommonProblems_{DateTime.Now:yyyyMMdd_HHmmss}_{Guid.NewGuid():N}");
             WriteNew(stem + ".json", CommonProblemsReport.Json(current, _previous, _lastCommand));
             WriteNew(stem + ".html", CommonProblemsReport.Html(current, _previous, _lastCommand));
-            _status.Text = "Сохранены: " + stem + ".html и .json";
+            _status.Text = AppLocalization.T("CommonProblems.Export.Saved", stem);
         });
     }
+
     private static void WriteNew(string path, string text)
     {
         using var stream = new FileStream(path, FileMode.CreateNew, FileAccess.Write, FileShare.None);
         using var writer = new StreamWriter(stream, new UTF8Encoding(false));
         writer.Write(text);
     }
+
     private void TryUi(Action action)
     {
         try { action(); }
-        catch (Exception ex) { MessageBox.Show(this, ex.Message, "Действие не выполнено полностью", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+        catch (Exception ex)
+        {
+            MessageBox.Show(this, ex.Message, AppLocalization.T("CommonProblems.ActionFailed"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
     }
+
     private static Button Button(string text) => new() { Text = text, AutoSize = true, Padding = new Padding(5, 2, 5, 2) };
 }

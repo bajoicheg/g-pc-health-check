@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Bundle.Report.CompletenessMeaning" xml:space="preserve"><value>Это полнота сбора, а не оценка здоровья компьютера.</value></data>
+  <data name="Bundle.Report.CancelledMeaning" xml:space="preserve"><value>Отмена была запрошена; завершённые источники сохранены, если успели вернуть полезные данные.</value></data>
+  <data name="Bundle.Report.NoCriticalFindings" xml:space="preserve"><value>В существующей оценке нет CRIT/WARN; это не отменяет предупреждения о неполных источниках пакета.</value></data>
+  <data name="Bundle.Report.HealthExcludedSummary" xml:space="preserve"><value>Health Check исключён оператором; Health Score в пакет не включён.</value></data>
+  <data name="Bundle.Report.HealthUnavailableSummary" xml:space="preserve"><value>Health Check не дал полезного payload; отсутствие оценки не считается здоровым состоянием.</value></data>
+  <data name="Bundle.Report.ExternalReview" xml:space="preserve"><value>Перед внешней передачей проверьте содержимое. Поиск и фильтры не являются редактированием или обезличиванием. Автоматической отправки нет.</value></data>
+  <data name="Bundle.Report.SourceMatrixHeading" xml:space="preserve"><value>Источники и полнота</value></data>
+  <data name="Bundle.Report.SourceMatrixMeaning" xml:space="preserve"><value>Состояние источника описывает сбор evidence и не является вердиктом о здоровье.</value></data>
+  <data name="Bundle.Report.HealthFindingsHeading" xml:space="preserve"><value>Главные выводы Health Check</value></data>
+  <data name="Bundle.Report.HealthUnavailableMeaning" xml:space="preserve"><value>Отсутствующий источник не считается здоровым.</value></data>
+  <data name="Bundle.Report.EventsNote" xml:space="preserve"><value>Показаны только группы уже собранных Critical/Error/Warning. Совпадение по времени не доказывает причину сбоя.</value></data>
+  <data name="Bundle.Report.EventsNone" xml:space="preserve"><value>В собранной части нет событий уровней Critical/Error/Warning. Это относится только к фактически прочитанному интервалу и журналам.</value></data>
+  <data name="Bundle.Report.Column.Count" xml:space="preserve"><value>Количество</value></data>
+  <data name="Bundle.Report.Column.Latest" xml:space="preserve"><value>Последнее</value></data>
+  <data name="Bundle.Report.ProcessesHeading" xml:space="preserve"><value>Крупнейшие рабочие наборы</value></data>
+  <data name="Bundle.Report.ProcessesWorkingNote" xml:space="preserve"><value>Рейтинг использует только доступный WorkingSet текущего снимка. Большой рабочий набор сам по себе не делает процесс плохим и не устанавливает причину сбоя.</value></data>
+  <data name="Bundle.Report.Column.WorkingSet" xml:space="preserve"><value>Working set</value></data>
+  <data name="Bundle.Report.Column.Path" xml:space="preserve"><value>Путь</value></data>
+  <data name="Bundle.Report.Column.Command" xml:space="preserve"><value>Команда</value></data>
+  <data name="Bundle.Report.EndpointsHeading" xml:space="preserve"><value>Локальные TCP/UDP endpoints</value></data>
+  <data name="Bundle.Report.EndpointsCounts" xml:space="preserve"><value>Всего строк: {0}; TCP LISTEN: {1}; TCP ESTABLISHED: {2}; UDP bindings: {3}.</value></data>
+  <data name="Bundle.Report.EndpointsCaveat" xml:space="preserve"><value>LISTEN/BOUND не доказывают доступность извне: действуют брандмауэр, маршрутизация и политики. ESTABLISHED не доказывает здоровье или доверие приложения. UDP — локальные привязки, не список удалённых разговоров.</value></data>
+  <data name="Bundle.Report.StorageNone" xml:space="preserve"><value>Явных предупреждений в доступной Windows Storage evidence не выделено; это не полный SMART и не гарантия исправности.</value></data>
+  <data name="Bundle.Report.StorageCaveat" xml:space="preserve"><value>Данные зависят от Windows Storage, драйвера, типа подключения и прав. Отсутствующее поле остаётся неизвестным.</value></data>
+  <data name="Bundle.Report.PerformanceCharts" xml:space="preserve"><value>Графики и все измерения</value></data>
+  <data name="Bundle.Report.PerformanceJson" xml:space="preserve"><value>JSON сеанса</value></data>
+  <data name="Bundle.Report.SavePath" xml:space="preserve"><value>Нужен полный путь к папке для диагностического пакета.</value></data>
+  <data name="Bundle.State.Pending" xml:space="preserve"><value>Ожидает</value></data>
+  <data name="Bundle.State.Running" xml:space="preserve"><value>Выполняется</value></data>
+  <data name="Bundle.State.Unknown" xml:space="preserve"><value>Неизвестно ({0})</value></data>
+  <data name="Bundle.Core.MarkersExcludedCount" xml:space="preserve"><value>{0} отметок симптомов получены вне фактической временной шкалы производительности или сверх лимита и не включены.</value></data>
+</root>

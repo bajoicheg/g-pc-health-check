@@ -14,15 +14,15 @@ internal sealed class DiagnosticBundleForm : Form
         RowHeadersVisible = false, MultiSelect = false, SelectionMode = DataGridViewSelectionMode.FullRowSelect,
         AutoGenerateColumns = false, BackgroundColor = SystemColors.Window
     };
-    private readonly Button _start = Button("Собрать пакет", "BundleStart");
-    private readonly Button _stop = Button("Остановить", "BundleStop");
-    private readonly Button _copy = Button("Копировать сводку", "BundleCopy");
-    private readonly Button _save = Button("Сохранить пакет…", "BundleSave");
-    private readonly Button _close = Button("Закрыть", "BundleClose");
-    private readonly CheckBox _zip = new() { Name = "BundleCreateZip", Text = "Создать ZIP рядом с папкой", Checked = true, AutoSize = true };
+    private readonly Button _start = Button(AppLocalization.T("Bundle.Form.Start"), "BundleStart");
+    private readonly Button _stop = Button(AppLocalization.T("Bundle.Form.Stop"), "BundleStop");
+    private readonly Button _copy = Button(AppLocalization.T("Bundle.Form.Copy"), "BundleCopy");
+    private readonly Button _save = Button(AppLocalization.T("Bundle.Form.Save"), "BundleSave");
+    private readonly Button _close = Button(AppLocalization.T("Bundle.Form.Close"), "BundleClose");
+    private readonly CheckBox _zip = new() { Name = "BundleCreateZip", Text = AppLocalization.T("Bundle.Form.CreateZip"), Checked = true, AutoSize = true };
     private readonly TextBox _summary = new() { Name = "BundleSummary", Dock = DockStyle.Fill, Multiline = true, ReadOnly = true, ScrollBars = ScrollBars.Vertical };
-    private readonly TextBox _marker = new() { Name = "BundleMarkerText", Width = 300, MaxLength = 160, PlaceholderText = "Заметка о симптоме (до 160 символов)" };
-    private readonly Button _mark = Button("Отметить симптом", "BundleMarker");
+    private readonly TextBox _marker = new() { Name = "BundleMarkerText", Width = 300, MaxLength = 160, PlaceholderText = AppLocalization.T("Bundle.Form.MarkerPlaceholder") };
+    private readonly Button _mark = Button(AppLocalization.T("Bundle.Form.Mark"), "BundleMarker");
     private readonly Label _context = new() { Name = "BundleContext", AutoSize = true, Dock = DockStyle.Fill };
     private readonly Label _status = new() { Name = "BundleStatus", AutoSize = true, Dock = DockStyle.Fill };
     private readonly ProgressBar _progress = new() { Name = "BundleProgress", Style = ProgressBarStyle.Marquee, Width = 110, Visible = false };
@@ -36,23 +36,23 @@ internal sealed class DiagnosticBundleForm : Form
     private bool _busy;
     private bool _saving;
     private bool _performancePhase;
-    private string _stage = "Готово к сбору.";
+    private string _stage = AppLocalization.T("Bundle.Form.ReadyInitial");
 
     public DiagnosticBundleForm()
     {
         Name = "DiagnosticBundleForm";
-        Text = "G PC Health Check — пакет для Service Desk";
+        Text = AppLocalization.T("Bundle.Form.Title");
         Size = new Size(1180, 820); MinimumSize = new Size(900, 650); StartPosition = FormStartPosition.CenterParent;
         AutoScaleMode = AutoScaleMode.Dpi; Font = new Font("Segoe UI", 9F);
 
-        _mode.Items.AddRange(["Быстрый", "Расширенный"]); _mode.SelectedIndex = 0;
+        _mode.Items.AddRange([AppLocalization.T("Bundle.Mode.Quick"), AppLocalization.T("Bundle.Mode.Extended")]); _mode.SelectedIndex = 0;
         _duration.Items.AddRange([30, 60]); _duration.SelectedItem = 60;
         _interval.Items.AddRange([1, 2, 5]); _interval.SelectedItem = 2;
 
-        _sources.Columns.Add(new DataGridViewCheckBoxColumn { Name = "Included", HeaderText = "Включить", Width = 70 });
-        _sources.Columns.Add(new DataGridViewTextBoxColumn { Name = "Category", HeaderText = "Категория", Width = 145, ReadOnly = true });
-        _sources.Columns.Add(new DataGridViewTextBoxColumn { Name = "Privacy", HeaderText = "Что собирается / чувствительные данные", AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill, MinimumWidth = 360, ReadOnly = true });
-        _sources.Columns.Add(new DataGridViewTextBoxColumn { Name = "State", HeaderText = "Состояние", Width = 150, ReadOnly = true });
+        _sources.Columns.Add(new DataGridViewCheckBoxColumn { Name = "Included", HeaderText = AppLocalization.T("Bundle.Form.Column.Include"), Width = 70 });
+        _sources.Columns.Add(new DataGridViewTextBoxColumn { Name = "Category", HeaderText = AppLocalization.T("Bundle.Form.Column.Category"), Width = 145, ReadOnly = true });
+        _sources.Columns.Add(new DataGridViewTextBoxColumn { Name = "Privacy", HeaderText = AppLocalization.T("Bundle.Form.Column.Privacy"), AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill, MinimumWidth = 360, ReadOnly = true });
+        _sources.Columns.Add(new DataGridViewTextBoxColumn { Name = "State", HeaderText = AppLocalization.T("Bundle.Form.Column.State"), Width = 150, ReadOnly = true });
         AddSourceRows();
 
         var root = new TableLayoutPanel { Dock = DockStyle.Fill, Padding = new Padding(12), ColumnCount = 1, RowCount = 8 };
@@ -70,25 +70,25 @@ internal sealed class DiagnosticBundleForm : Form
         root.Controls.Add(new Label
         {
             AutoSize = true, Dock = DockStyle.Fill, Padding = new Padding(0, 0, 0, 8),
-            Text = "Единый read-only пакет для Service Desk. Сбор использует права текущего процесса и не запускает исправления, активные сетевые проверки или скрытое повышение. Перед передачей проверьте содержимое: возможны аккаунты/SID, пути и команды процессов, IP/порты, тексты событий, идентификаторы устройств и заметки."
+            Text = AppLocalization.T("Bundle.Form.Intro")
         }, 0, 0);
 
         var options = Flow();
         options.Controls.AddRange([
-            Label("Режим:"), _mode,
-            Label("Наблюдение, с:"), _duration,
-            Label("Интервал, с:"), _interval,
+            Label(AppLocalization.T("Bundle.Form.ModeLabel")), _mode,
+            Label(AppLocalization.T("Bundle.Form.DurationLabel")), _duration,
+            Label(AppLocalization.T("Bundle.Form.IntervalLabel")), _interval,
             _zip
         ]);
         root.Controls.Add(options, 0, 1);
-        _context.Text = "Контекст будет зафиксирован при запуске."; root.Controls.Add(_context, 0, 2);
+        _context.Text = AppLocalization.T("Bundle.Form.ContextPending"); root.Controls.Add(_context, 0, 2);
         root.Controls.Add(_sources, 0, 3);
 
         var tools = Flow(); tools.Controls.AddRange([_start, _stop, _copy, _save, _close, _progress]); root.Controls.Add(tools, 0, 4);
         var markerTools = Flow(); markerTools.Controls.AddRange([_marker, _mark]); root.Controls.Add(markerTools, 0, 5);
         root.Controls.Add(_summary, 0, 6); root.Controls.Add(_status, 0, 7);
 
-        _summary.Text = "Пакет ещё не собран. Выберите режим и категории, затем нажмите «Собрать пакет». Ничего не запускается при открытии окна.";
+        _summary.Text = AppLocalization.T("Bundle.Form.SummaryEmpty", AppLocalization.T("Bundle.Form.Start"));
         _mode.SelectedIndexChanged += (_, _) => ApplyModeDefaults();
         _duration.SelectedIndexChanged += (_, _) => NextRunOptionsChanged();
         _interval.SelectedIndexChanged += (_, _) => NextRunOptionsChanged();
@@ -107,10 +107,10 @@ internal sealed class DiagnosticBundleForm : Form
         _save.Click += async (_, _) => await SaveAsync();
         _mark.Click += (_, _) => AddMarker();
         _close.Click += (_, _) => Close();
-        _timer.Tick += (_, _) => { if (_busy) _status.Text = $"{_stage} · {_elapsed.Elapsed.TotalSeconds:0.0} с"; };
+        _timer.Tick += (_, _) => { if (_busy) _status.Text = AppLocalization.T("Bundle.Form.Elapsed", _stage, _elapsed.Elapsed.TotalSeconds); };
         FormClosing += (_, e) =>
         {
-            if (_saving) { e.Cancel = true; _status.Text = "Дождитесь окончания сохранения пакета."; return; }
+            if (_saving) { e.Cancel = true; _status.Text = AppLocalization.T("Bundle.Form.WaitSave"); return; }
             _cancellation?.Cancel();
         };
         FormClosed += (_, _) => _timer.Dispose();
@@ -120,17 +120,17 @@ internal sealed class DiagnosticBundleForm : Form
 
     private void AddSourceRows()
     {
-        Add(DiagnosticBundleCategory.Health, "Health Check", "Оценка, coverage, система, аккаунт/SID и предупреждения источников.");
-        Add(DiagnosticBundleCategory.Processes, "Процессы", "Имена/PID, пути, командные строки, сеансы и память процессов.");
-        Add(DiagnosticBundleCategory.Endpoints, "TCP/UDP", "Локальные/удалённые IP-адреса, порты, PID и процессы.");
-        Add(DiagnosticBundleCategory.Events, "События", "Application/System за последний час; тексты событий, Event ID и источники.");
-        Add(DiagnosticBundleCategory.Storage, "Накопители", "Модель, DeviceId, прошивка, состояние и доступные reliability counters.");
-        Add(DiagnosticBundleCategory.Performance, "Производительность", "CPU/RAM/диск во времени и заметки о симптомах; только Расширенный режим.");
+        Add(DiagnosticBundleCategory.Health, SourceName(DiagnosticBundleCategory.Health), AppLocalization.T("Bundle.Form.Privacy.Health"));
+        Add(DiagnosticBundleCategory.Processes, SourceName(DiagnosticBundleCategory.Processes), AppLocalization.T("Bundle.Form.Privacy.Processes"));
+        Add(DiagnosticBundleCategory.Endpoints, SourceName(DiagnosticBundleCategory.Endpoints), AppLocalization.T("Bundle.Form.Privacy.Endpoints"));
+        Add(DiagnosticBundleCategory.Events, SourceName(DiagnosticBundleCategory.Events), AppLocalization.T("Bundle.Form.Privacy.Events"));
+        Add(DiagnosticBundleCategory.Storage, SourceName(DiagnosticBundleCategory.Storage), AppLocalization.T("Bundle.Form.Privacy.Storage"));
+        Add(DiagnosticBundleCategory.Performance, SourceName(DiagnosticBundleCategory.Performance), AppLocalization.T("Bundle.Form.Privacy.Performance"));
     }
 
     private void Add(DiagnosticBundleCategory category, string name, string privacy)
     {
-        var index = _sources.Rows.Add(false, name, privacy, "Не запрашивается");
+        var index = _sources.Rows.Add(false, name, privacy, StateText("NotRequested"));
         _sources.Rows[index].Tag = category;
     }
 
@@ -144,7 +144,7 @@ internal sealed class DiagnosticBundleForm : Form
             var included = row.Cells["Included"];
             included.Value = defaults.Categories.Contains(category);
             included.ReadOnly = category == DiagnosticBundleCategory.Performance;
-            row.Cells["State"].Value = defaults.Categories.Contains(category) ? "Готово к запуску" : "Не запрашивается";
+            row.Cells["State"].Value = defaults.Categories.Contains(category) ? AppLocalization.T("Bundle.State.Ready") : StateText("NotRequested");
         }
         var extended = mode == DiagnosticBundleMode.Extended;
         _duration.Enabled = _interval.Enabled = extended;
@@ -170,19 +170,19 @@ internal sealed class DiagnosticBundleForm : Form
         if (_busy || _current is not { } current) return;
         var mode = CurrentMode();
         var reasons = new List<string>();
-        if (mode != current.Options.Mode) reasons.Add("режим");
-        if (!SelectedCategories().SetEquals(current.Options.Categories)) reasons.Add("категории");
+        if (mode != current.Options.Mode) reasons.Add(AppLocalization.T("Bundle.Form.Reason.Mode"));
+        if (!SelectedCategories().SetEquals(current.Options.Categories)) reasons.Add(AppLocalization.T("Bundle.Form.Reason.Categories"));
         if (mode == DiagnosticBundleMode.Extended && current.Options.Mode == DiagnosticBundleMode.Extended)
         {
             var duration = Convert.ToInt32(_duration.SelectedItem ?? 60);
             var interval = Convert.ToInt32(_interval.SelectedItem ?? 2);
             if (duration != current.Options.PerformanceSeconds || interval != current.Options.PerformanceIntervalSeconds)
-                reasons.Add("длительность/интервал наблюдения");
+                reasons.Add(AppLocalization.T("Bundle.Form.Reason.Timing"));
         }
 
         _status.Text = reasons.Count == 0
-            ? "Отображается собранный пакет; выбранные параметры совпадают с сохранённым пакетом. Состояния источников относятся к отображаемому пакету."
-            : $"Параметры следующего сбора изменены ({string.Join(", ", reasons)}); показан предыдущий собранный пакет. Состояния источников относятся к отображаемому пакету.";
+            ? AppLocalization.T("Bundle.Form.OptionsSame")
+            : AppLocalization.T("Bundle.Form.OptionsChanged", string.Join(", ", reasons));
     }
 
     private DiagnosticBundleOptions BuildOptions()
@@ -202,7 +202,7 @@ internal sealed class DiagnosticBundleForm : Form
         catch (Exception ex) { _status.Text = ex.Message; return; }
 
         using var cancellation = new CancellationTokenSource();
-        _cancellation = cancellation; _busy = true; _stage = "Подготовка…"; _elapsed.Restart(); _timer.Start();
+        _cancellation = cancellation; _busy = true; _stage = AppLocalization.T("Bundle.Form.Preparing"); _elapsed.Restart(); _timer.Start();
         _performanceMarkerClock.Reset(); _performancePhase = false; _pendingMarkers.Clear();
         var context = ExecutionContextService.Capture();
         _context.Text = ExecutionPolicy.Describe(context);
@@ -231,12 +231,12 @@ internal sealed class DiagnosticBundleForm : Form
         catch (OperationCanceledException)
         {
             ReleaseCollectionProgressOwner(cancellation);
-            if (!IsDisposed) _status.Text = "Сбор отменён до получения нового полезного результата; предыдущий пакет сохранён в памяти.";
+            if (!IsDisposed) _status.Text = AppLocalization.T("Bundle.Form.Cancelled");
         }
         catch (Exception ex)
         {
             ReleaseCollectionProgressOwner(cancellation);
-            if (!IsDisposed) _status.Text = $"Сбор не завершён: {ex.GetType().Name}; 0x{ex.HResult:X8}. Предыдущий пакет сохранён в памяти.";
+            if (!IsDisposed) _status.Text = AppLocalization.T("Bundle.Form.Failed", ex.GetType().Name, ex.HResult.ToString("X8"));
         }
         finally
         {
@@ -249,7 +249,7 @@ internal sealed class DiagnosticBundleForm : Form
     {
         if (IsDisposed || !ReferenceEquals(_cancellation, owner) || owner.IsCancellationRequested) return;
         _stage = SourceName(item.Category) + ": " + item.Message;
-        SetSourceState(item.Category, item.Phase == "Finished" ? "Завершено" : "Сбор…");
+        SetSourceState(item.Category, item.Phase == "Finished" ? AppLocalization.T("Bundle.State.Done") : AppLocalization.T("Bundle.State.Collecting"));
         if (item.Category == DiagnosticBundleCategory.Performance)
         {
             if (item.Phase == "Starting") { _performancePhase = true; _performanceMarkerClock.Start(item.MonotonicTimestamp); }
@@ -266,17 +266,17 @@ internal sealed class DiagnosticBundleForm : Form
     private void RequestStop()
     {
         if (_cancellation is not { IsCancellationRequested: false }) return;
-        _cancellation.Cancel(); _stage = "Отмена запрошена; поставщик может вернуть управление не сразу."; UpdateButtons();
+        _cancellation.Cancel(); _stage = AppLocalization.T("Bundle.Form.StopRequested"); UpdateButtons();
     }
 
     private void AddMarker()
     {
         if (!_busy || !_performancePhase || _pendingMarkers.Count >= 100) return;
         var note = _marker.Text.Trim();
-        if (note.Length == 0) { _status.Text = "Введите непустую заметку о симптоме."; return; }
+        if (note.Length == 0) { _status.Text = AppLocalization.T("Bundle.Form.MarkerEmpty"); return; }
         if (note.Length > 160) note = note[..160];
         _pendingMarkers.Add(new PerformanceMarker(_performanceMarkerClock.ElapsedMs(Stopwatch.GetTimestamp()), note));
-        _marker.Clear(); _status.Text = $"Отметка #{_pendingMarkers.Count} добавлена к временной шкале производительности.";
+        _marker.Clear(); _status.Text = AppLocalization.T("Bundle.Form.MarkerAdded", _pendingMarkers.Count);
         UpdateButtons();
     }
 
@@ -297,7 +297,7 @@ internal sealed class DiagnosticBundleForm : Form
             _context.Text = ExecutionPolicy.Describe(current.ExecutionContext);
             RenderSources(current);
             _summary.Text = DiagnosticBundleReport.Summary(current);
-            _status.Text = "Новая попытка не дала полезного payload; отображается и сохраняется предыдущий пакет.";
+            _status.Text = AppLocalization.T("Bundle.Form.NoNewPayload");
             return;
         }
 
@@ -310,21 +310,23 @@ internal sealed class DiagnosticBundleForm : Form
     {
         if (_busy || _current is not { } snapshot) return;
         var confirm = MessageBox.Show(this,
-            "Пакет может содержать аккаунты/SID, пути и командные строки процессов, IP/порты, тексты событий, идентификаторы устройств и заметки.\n\nПроверьте evidence перед внешней передачей. Поиск/фильтры не являются обезличиванием. Продолжить сохранение?",
-            "Конфиденциальность диагностического пакета", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+            AppLocalization.T("Bundle.Form.PrivacyConfirm"),
+            AppLocalization.T("Bundle.Form.PrivacyTitle"), MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
         if (confirm != DialogResult.OK) return;
         using var dialog = new FolderBrowserDialog
         {
-            Description = "Выберите локальную папку для нового диагностического пакета. Существующие пакеты не перезаписываются.",
+            Description = AppLocalization.T("Bundle.Form.FolderDescription"),
             UseDescriptionForTitle = true
         };
         if (dialog.ShowDialog(this) != DialogResult.OK) return;
         var request = CreateSaveRequest(snapshot, dialog.SelectedPath);
-        _saving = _busy = true; _stage = "Сохраняю пакет…"; _elapsed.Restart(); _timer.Start(); FreezeInputs(true); UpdateButtons();
+        _saving = _busy = true; _stage = AppLocalization.T("Bundle.Form.Saving"); _elapsed.Restart(); _timer.Start(); FreezeInputs(true); UpdateButtons();
         try
         {
             var saved = await request.ExecuteAsync();
-            if (!IsDisposed) _status.Text = saved.Zip is null ? "Сохранено: " + saved.Folder : $"Сохранено: {saved.Folder}; ZIP: {saved.Zip}";
+            if (!IsDisposed) _status.Text = saved.Zip is null
+                ? AppLocalization.T("Bundle.Form.SavedFolder", saved.Folder)
+                : AppLocalization.T("Bundle.Form.SavedZip", saved.Folder, saved.Zip);
         }
         catch (Exception ex)
         {
@@ -332,8 +334,8 @@ internal sealed class DiagnosticBundleForm : Form
             {
                 ApplySaveFailure(ex);
                 MessageBox.Show(this,
-                    "Сохранение не завершено полностью. Если ошибка возникла при ZIP, уже созданная папка evidence могла сохраниться.\n" + ex.Message,
-                    "Сохранение пакета", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    AppLocalization.T("Bundle.Form.SaveErrorMessage", ex.Message),
+                    AppLocalization.T("Bundle.Form.SaveTitle"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
         finally
@@ -344,7 +346,7 @@ internal sealed class DiagnosticBundleForm : Form
 
     private void ApplySaveFailure(Exception ex)
     {
-        _stage = $"Сохранение не завершено: {ex.GetType().Name}, 0x{ex.HResult:X8}.";
+        _stage = AppLocalization.T("Bundle.Form.SaveFailed", ex.GetType().Name, ex.HResult.ToString("X8"));
         _status.Text = _stage;
     }
 
@@ -380,27 +382,34 @@ internal sealed class DiagnosticBundleForm : Form
         _start.Enabled = !_busy; _stop.Enabled = _busy && !_saving && _cancellation is { IsCancellationRequested: false };
         _copy.Enabled = _save.Enabled = !_busy && _current is not null;
         _progress.Visible = _busy; _mark.Enabled = _marker.Enabled = _busy && _performancePhase && _pendingMarkers.Count < 100;
-        if (!_busy && string.IsNullOrWhiteSpace(_status.Text)) _status.Text = _lastAttempt is null ? "Готово к сбору." : "Готово.";
+        if (!_busy && string.IsNullOrWhiteSpace(_status.Text)) _status.Text = _lastAttempt is null ? AppLocalization.T("Bundle.Form.ReadyInitial") : AppLocalization.T("Bundle.Form.Ready");
     }
 
-    private static string SourceName(DiagnosticBundleCategory category) => category switch
+    private static string SourceName(DiagnosticBundleCategory category) => AppLocalization.T(category switch
     {
-        DiagnosticBundleCategory.Health => "Health Check", DiagnosticBundleCategory.Processes => "Процессы",
-        DiagnosticBundleCategory.Endpoints => "TCP/UDP", DiagnosticBundleCategory.Events => "События",
-        DiagnosticBundleCategory.Storage => "Накопители", DiagnosticBundleCategory.Performance => "Производительность",
-        _ => category.ToString()
-    };
+        DiagnosticBundleCategory.Health => "Bundle.Source.Health",
+        DiagnosticBundleCategory.Processes => "Bundle.Source.Processes",
+        DiagnosticBundleCategory.Endpoints => "Bundle.Source.Endpoints",
+        DiagnosticBundleCategory.Events => "Bundle.Source.Events",
+        DiagnosticBundleCategory.Storage => "Bundle.Source.Storage",
+        DiagnosticBundleCategory.Performance => "Bundle.Source.Performance",
+        _ => "Bundle.Source.Health"
+    });
 
     private static string StateText(string state) => state switch
     {
-        "Complete" => "Собрано", "Partial" => "Частично", "Unavailable" => "Недоступно",
-        "Cancelled" => "Отменено", "NotRequested" => "Не запрашивается", _ => state
+        "Complete" => AppLocalization.T("Bundle.State.Complete"),
+        "Partial" => AppLocalization.T("Bundle.State.Partial"),
+        "Unavailable" => AppLocalization.T("Bundle.State.Unavailable"),
+        "Cancelled" => AppLocalization.T("Bundle.State.Cancelled"),
+        "NotRequested" => AppLocalization.T("Bundle.State.NotRequested"),
+        _ => state
     };
 
     private static FlowLayoutPanel Flow() => new() { Dock = DockStyle.Fill, AutoSize = true, WrapContents = true };
     private static Label Label(string text) => new() { Text = text, AutoSize = true, Padding = new Padding(0, 6, 3, 0) };
     private static Button Button(string text, string name) => new() { Text = text, Name = name, AutoSize = true, Padding = new Padding(5, 2, 5, 2) };
-    private void TryUi(Action action) { try { action(); } catch (Exception ex) { MessageBox.Show(this, ex.Message, "Действие не завершено", MessageBoxButtons.OK, MessageBoxIcon.Warning); } }
+    private void TryUi(Action action) { try { action(); } catch (Exception ex) { MessageBox.Show(this, ex.Message, AppLocalization.T("Bundle.Form.ActionFailed"), MessageBoxButtons.OK, MessageBoxIcon.Warning); } }
 }
 
 internal static class DiagnosticBundleMenu
@@ -410,7 +419,7 @@ internal static class DiagnosticBundleMenu
         ArgumentNullException.ThrowIfNull(main); ReadOnlyReviewMenu.Attach(main);
         var group = (ToolStripMenuItem)main.MainMenuStrip!.Items.Find("ReadOnlyInspections", false).Single();
         if (group.DropDownItems.Find("DiagnosticBundleOpen", false).Length > 0) return;
-        var item = new ToolStripMenuItem("Собрать пакет для Service Desk…") { Name = "DiagnosticBundleOpen" };
+        var item = new ToolStripMenuItem(AppLocalization.T("Bundle.Menu.Item")) { Name = "DiagnosticBundleOpen" };
         item.Click += (_, _) => { using var window = new DiagnosticBundleForm(); window.ShowDialog(main); };
         group.DropDownItems.Add(item);
     }

@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.16.0 — Bilingual Service Desk actions and one-click repair
+
+- Adds persistent in-app RU/EN operator localization while keeping stable control/action IDs, JSON keys and raw provider evidence language-independent.
+- Presents human-readable file/folder sizes in MB without changing raw byte evidence in JSON.
+- Auto-collects safe read-only Analysis views with fully defined default scope once on open; target/consent-required Resource Probe, File Use and Process Observation remain idle.
+- Adds About/running-version attribution and branding cleanup.
+- Centralizes Service Desk action metadata and recommendation/risk/host semantics in one code-owned registry.
+- Adds Select All and a conservative green **Сделать хорошо / Make it better** path for currently recommended automated requestable actions.
+- Adds explicit red **Сделать всё / Do everything** with an exact fixed 14-action allow-list: CleanTemp, FlushDns, RegisterDns, DhcpReleaseRenew, WinsockReset, TcpIpReset, RestartNetworkAdapters, RestartSpooler, ClearPrintQueue, RestartUpdateServices, GpUpdate, TimeResync, Dism and Sfc.
+- Adds fixed native handlers for the approved machine repairs; no arbitrary command, executable, service or adapter interface is introduced.
+- Uses one authenticated, session/nonce-bound phased worker lifetime and one UAC prompt for administrative batches, preserving original-user actions in the parent and keeping network disruption late.
+- Preserves alternate-admin safety: the elevated worker does not impersonate the interactive user, and CleanTemp remains constrained to verified same-user/session/profile rules.
+- Preserves security boundaries: no AV/EDR/firewall weakening, Event Log clearing, credential/profile deletion, forced reboot/logoff, raw/full SMART, broad handle enumeration or stress workload.
+- Requires the red batch to be first pilot-tested only on an approved disposable/test workstation because it may sever VPN/RDP/network, delete pending print jobs, refresh policy/services and leave Windows requiring reboot.
+- Version `0.16.0`, FileVersion `0.16.0.0`. [Scope and safety notes](docs/releases/0.16.0.md).
+
 ## 0.15.0 — Service Desk diagnostic bundle
 
 - Adds **Анализ → Собрать пакет для Service Desk…**, an idle-on-open guided workflow that composes existing read-only diagnostics into one escalation package.
@@ -46,7 +62,7 @@
 - Includes literal search, protocol/state/change filters, numeric sorting, details, repeat/stop, elapsed progress and full HTML/JSON exports with collection context.
 - Distinguishes UDP local bindings and TCP listeners from remote conversations or externally reachable services. No reverse DNS, active probe, capture, connection/process modification or elevation.
 - Bounded native buffers/retries and retained rows; UI display limit does not truncate saved evidence further.
-- Adds 39 behavior and eight integration cases, including disposable IPv4/IPv6 loopback sockets. Previous tests and portable worker matrix remain enabled.
+- Adds 39 behavior and eight integration cases, including disposable IPv4/IPv6 loopback sockets. Previous suites and portable worker matrix remain enabled.
 - Preserves 0.11.0 execution-context/Temp boundaries, all prior tools, remediation commands, health model, dependencies and workflow permissions.
 - Version `0.12.0`, FileVersion `0.12.0.0`. [Scope, sources and pilot checks](docs/releases/0.12.0.md).
 

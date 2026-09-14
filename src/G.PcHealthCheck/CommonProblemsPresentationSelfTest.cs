@@ -33,7 +33,7 @@ internal static class CommonProblemsPresentationSelfTest
             CommonProblemsMenu.Attach(main);
             CommonProblemsMenu.Attach(main);
             main.PerformLayout();
-            if (main.MainMenuStrip is not { Items.Count: 2 } || main.Controls.Count != 2) return 128;
+            if (main.MainMenuStrip is not { Items.Count: 4 } || main.Controls.Count != 2) return 128;
             if (content.Top < main.MainMenuStrip.Bottom) return 129;
             using var extra = new CommonProblemsForm();
             if (extra.Controls.Count == 0 || extra.MinimumSize.Width < 800) return 130;

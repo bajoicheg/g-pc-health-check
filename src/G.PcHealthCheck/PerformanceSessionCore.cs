@@ -175,9 +175,10 @@ internal static class PerformanceStatistics
 
     public static string Completeness(PerformanceSessionSnapshot snapshot)
     {
-        if (snapshot.Samples.Count == 0 || Enum.GetValues<SessionMetric>().All(m => For(snapshot, m).Valid == 0)) return "Нет доступных измерений";
+        if (snapshot.Samples.Count == 0 || Enum.GetValues<SessionMetric>().All(m => For(snapshot, m).Valid == 0))
+            return AppLocalization.T("Performance.Completeness.None");
         var full = snapshot.Outcome == "Completed" && snapshot.MissedSlots == 0 && snapshot.Samples.Count == snapshot.Options.DurationSeconds / snapshot.Options.IntervalSeconds
             && Enum.GetValues<SessionMetric>().All(m => For(snapshot, m).Valid == snapshot.Samples.Count);
-        return full ? "Все запланированные замеры получены" : "Неполные данные — проверьте пропуски и предупреждения";
+        return AppLocalization.T(full ? "Performance.Completeness.Full" : "Performance.Completeness.Partial");
     }
 }

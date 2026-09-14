@@ -6,7 +6,7 @@ namespace G.PcHealthCheck;
 /// <summary>Read registrations, never execute/expand their commands or resolve shortcut targets.</summary>
 internal static class StartupReviewService
 {
-    public const string ScopeNote = "Проверены Run/RunOnce HKCU, Run/RunOnce HKLM (32/64-bit на x64) и папки Startup текущего аккаунта и всех пользователей. Задачи, службы, расширения и другие механизмы не перечисляются. Наличие записи не доказывает включённый запуск, влияние на скорость или вредоносность. Ярлыки показаны как файлы; их цели не разрешаются.";
+    public static string ScopeNote => AppLocalization.T("Review.Startup.ScopeNote");
     private const int SourceLimit = 2000;
 
     public static List<StartupReviewEntry> Filter(StartupReviewSnapshot snapshot, string? query)
@@ -21,6 +21,7 @@ internal static class StartupReviewService
     {
         using var identity = WindowsIdentity.GetCurrent();
         var account = identity.Name;
+        var allUsers = AppLocalization.T("Review.Startup.AllUsers");
         var providers = new List<Func<CancellationToken, (ReviewSource Source, List<StartupReviewEntry> Entries)>>();
         foreach (var keyName in new[] { "Run", "RunOnce" })
         {
@@ -29,18 +30,18 @@ internal static class StartupReviewService
             foreach (var view in Environment.Is64BitOperatingSystem ? new[] { RegistryView.Registry64, RegistryView.Registry32 } : new[] { RegistryView.Default })
             {
                 var capturedView = view;
-                providers.Add(token => RegistrySource(RegistryHive.LocalMachine, capturedView, key, "Все пользователи", token));
+                providers.Add(token => RegistrySource(RegistryHive.LocalMachine, capturedView, key, allUsers, token));
             }
         }
         providers.Add(token => FolderSource(Environment.SpecialFolder.Startup, account, token));
-        providers.Add(token => FolderSource(Environment.SpecialFolder.CommonStartup, "Все пользователи", token));
+        providers.Add(token => FolderSource(Environment.SpecialFolder.CommonStartup, allUsers, token));
         var result = CollectSources(providers.Select(provider => (Func<CancellationToken, (ReviewSource, List<StartupReviewEntry>)>)(token =>
         {
-            progress?.Report("Читаю источник автозагрузки…"); return provider(token);
+            progress?.Report(AppLocalization.T("Review.Startup.Progress")); return provider(token);
         })), ct);
         result.Account = account;
         if (DiagnosticsService.IsAdministrator())
-            result.Issues.Add("Приложение повышено. HKCU и личная Startup относятся к указанному аккаунту процесса, который может отличаться от пользователя рабочего стола.");
+            result.Issues.Add(AppLocalization.T("Review.Startup.ElevatedIssue"));
         return result;
     }
 
@@ -51,20 +52,20 @@ internal static class StartupReviewService
         foreach (var collect in sources)
         {
             ct.ThrowIfCancellationRequested();
-            if (result.Sources.Count >= 32) { result.Issues.Add("Достигнут предел 32 источников."); break; }
+            if (result.Sources.Count >= 32) { result.Issues.Add(AppLocalization.T("Review.Startup.SourceCountLimit")); break; }
             ReviewSource source; List<StartupReviewEntry> entries;
             try { (source, entries) = collect(ct); }
             catch (OperationCanceledException) { throw; }
             catch (Exception ex)
             {
-                source = new ReviewSource { Name = $"Источник #{result.Sources.Count + 1}", State = ReviewCollectionState.Unavailable, Detail = Describe(ex) };
+                source = new ReviewSource { Name = AppLocalization.T("Review.Startup.UnknownSource", result.Sources.Count + 1), State = ReviewCollectionState.Unavailable, Detail = Describe(ex) };
                 entries = [];
             }
             ct.ThrowIfCancellationRequested();
             if (entries.Count > SourceLimit)
             {
                 entries = entries.Take(SourceLimit).ToList(); source.State = ReviewCollectionState.Partial;
-                source.Detail += $" Ограничение: первые {SourceLimit} записей источника.";
+                source.Detail += AppLocalization.T("Review.Startup.SourceItemLimit", SourceLimit);
             }
             source.Items = entries.Count;
             result.Sources.Add(source); result.Entries.AddRange(entries);
@@ -89,9 +90,9 @@ internal static class StartupReviewService
             ct.ThrowIfCancellationRequested();
             using var baseKey = RegistryKey.OpenBaseKey(hive, view);
             using var key = baseKey.OpenSubKey(path, writable: false);
-            if (key is null) { source.State = ReviewCollectionState.Missing; source.Detail = "Ключ отсутствует."; return (source, entries); }
+            if (key is null) { source.State = ReviewCollectionState.Missing; source.Detail = AppLocalization.T("Review.Startup.RegistryMissing"); return (source, entries); }
             var names = key.GetValueNames();
-            if (names.Length > SourceLimit) { source.State = ReviewCollectionState.Partial; source.Detail = $"Предел {SourceLimit} записей."; }
+            if (names.Length > SourceLimit) { source.State = ReviewCollectionState.Partial; source.Detail = AppLocalization.T("Review.Startup.RegistryLimit", SourceLimit); }
             foreach (var name in names.Take(SourceLimit))
             {
                 ct.ThrowIfCancellationRequested();
@@ -102,15 +103,15 @@ internal static class StartupReviewService
                     if (command is null)
                     {
                         source.State = ReviewCollectionState.Partial;
-                        source.Detail = "Есть исчезнувшие или нестроковые значения; команда для них неизвестна.";
+                        source.Detail = AppLocalization.T("Review.Startup.RegistryNonString");
                     }
-                    entries.Add(new StartupReviewEntry { Name = name.Length == 0 ? "(по умолчанию)" : name,
-                        Command = command ?? "[строковая команда недоступна]", Scope = scope, Source = source.Name });
+                    entries.Add(new StartupReviewEntry { Name = name.Length == 0 ? AppLocalization.T("Review.Startup.DefaultValue") : name,
+                        Command = command ?? AppLocalization.T("Review.Startup.CommandUnavailable"), Scope = scope, Source = source.Name });
                 }
                 catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or System.Security.SecurityException)
                 {
                     source.State = ReviewCollectionState.Partial; source.Detail = Describe(ex);
-                    entries.Add(new StartupReviewEntry { Name = name, Source = source.Name, Scope = scope, Command = "[значение недоступно]" });
+                    entries.Add(new StartupReviewEntry { Name = name, Source = source.Name, Scope = scope, Command = AppLocalization.T("Review.Startup.ValueUnavailable") });
                 }
             }
         }
@@ -137,18 +138,18 @@ internal static class StartupReviewService
             while (iterator.MoveNext())
             {
                 ct.ThrowIfCancellationRequested();
-                if (visited++ >= SourceLimit) { source.State = ReviewCollectionState.Partial; source.Detail = $"Предел {SourceLimit} записей каталога."; break; }
+                if (visited++ >= SourceLimit) { source.State = ReviewCollectionState.Partial; source.Detail = AppLocalization.T("Review.Startup.FolderLimit", SourceLimit); break; }
                 var item = iterator.Current;
                 var attr = File.GetAttributes(item);
                 if ((attr & FileAttributes.Directory) != 0) continue;
                 if (Path.GetFileName(item).Equals("desktop.ini", StringComparison.OrdinalIgnoreCase)) continue;
                 entries.Add(new StartupReviewEntry { Name = Path.GetFileName(item), Command = item, Scope = scope,
-                    Source = source.Name + ((attr & FileAttributes.ReparsePoint) != 0 ? " [ссылка, цель не открывалась]" : " [путь, цель ярлыка не разрешалась]") });
+                    Source = source.Name + AppLocalization.T((attr & FileAttributes.ReparsePoint) != 0 ? "Review.Startup.LinkSuffix" : "Review.Startup.PathSuffix") });
             }
         }
         catch (OperationCanceledException) { throw; }
         catch (Exception ex) when (ex is FileNotFoundException or DirectoryNotFoundException)
-        { source.State = entries.Count == 0 ? ReviewCollectionState.Missing : ReviewCollectionState.Partial; source.Detail = "Каталог/запись отсутствует или исчезла во время сбора."; }
+        { source.State = entries.Count == 0 ? ReviewCollectionState.Missing : ReviewCollectionState.Partial; source.Detail = AppLocalization.T("Review.Startup.FolderMissing"); }
         catch (Exception ex) { source.State = entries.Count > 0 ? ReviewCollectionState.Partial : ReviewCollectionState.Unavailable; source.Detail = Describe(ex); }
         return (source, entries);
     }

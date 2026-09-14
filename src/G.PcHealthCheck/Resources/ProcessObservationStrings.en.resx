@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+
+  <data name="ProcessObservation.Link.Button" xml:space="preserve"><value>Observe process…</value></data>
+  <data name="ProcessObservation.Link.PanelMissing" xml:space="preserve"><value>The process panel is not prepared.</value></data>
+  <data name="ProcessObservation.Link.UnavailableTitle" xml:space="preserve"><value>Observation unavailable</value></data>
+
+  <data name="ProcessObservation.Core.FromEntry" xml:space="preserve"><value>Observation requires the selected process PID and creation time. Collect process information again.</value></data>
+  <data name="ProcessObservation.Core.MeasurementsUnavailable" xml:space="preserve"><value>Process measurements are unavailable: {0}</value></data>
+  <data name="ProcessObservation.Core.WorkingSetMissing" xml:space="preserve"><value>Process working set was not obtained.</value></data>
+  <data name="ProcessObservation.Core.PrivateMissing" xml:space="preserve"><value>Process private commit was not obtained.</value></data>
+  <data name="ProcessObservation.Core.NeedTwo" xml:space="preserve"><value>CPU and I/O rates require two consecutive samples of the same process instance without a gap.</value></data>
+  <data name="ProcessObservation.Core.CpuMissing" xml:space="preserve"><value>Process CPU: the counter or processor count is unavailable, changed, or produced an invalid delta.</value></data>
+  <data name="ProcessObservation.Core.CounterMissing" xml:space="preserve"><value>{0}: the counter is unavailable or decreased.</value></data>
+  <data name="ProcessObservation.Core.ReadIo" xml:space="preserve"><value>I/O read</value></data>
+  <data name="ProcessObservation.Core.WriteIo" xml:space="preserve"><value>I/O write</value></data>
+  <data name="ProcessObservation.State.Live" xml:space="preserve"><value>Same process</value></data>
+  <data name="ProcessObservation.State.Exited" xml:space="preserve"><value>Process exited</value></data>
+  <data name="ProcessObservation.State.IdentityChanged" xml:space="preserve"><value>Different instance — observation does not transfer</value></data>
+  <data name="ProcessObservation.State.AccessDenied" xml:space="preserve"><value>Process access denied</value></data>
+  <data name="ProcessObservation.State.Unavailable" xml:space="preserve"><value>Process data unavailable</value></data>
+
+  <data name="ProcessObservation.Service.TargetMissing" xml:space="preserve"><value>The process instance is not defined.</value></data>
+  <data name="ProcessObservation.Service.PendingMissing" xml:space="preserve"><value>No process measurement exists for the completed pair.</value></data>
+  <data name="ProcessObservation.Service.ProcessError" xml:space="preserve"><value>Process: {0}, 0x{1}.</value></data>
+  <data name="ProcessObservation.Service.IdentityMismatch" xml:space="preserve"><value>The PID/creation time does not match the selected row.</value></data>
+  <data name="ProcessObservation.Service.HostError" xml:space="preserve"><value>Computer: {0}, 0x{1}.</value></data>
+
+  <data name="ProcessObservation.Form.Start" xml:space="preserve"><value>Start / repeat</value></data>
+  <data name="ProcessObservation.Form.Stop" xml:space="preserve"><value>Stop observation</value></data>
+  <data name="ProcessObservation.Form.Mark" xml:space="preserve"><value>Mark symptom</value></data>
+  <data name="ProcessObservation.Form.Copy" xml:space="preserve"><value>Copy summary</value></data>
+  <data name="ProcessObservation.Form.Export" xml:space="preserve"><value>Save HTML / JSON</value></data>
+  <data name="ProcessObservation.Form.NoteDefault" xml:space="preserve"><value>Freeze / delay</value></data>
+  <data name="ProcessObservation.Form.Ready" xml:space="preserve"><value>Ready for observation. No data has been collected.</value></data>
+  <data name="ProcessObservation.Form.InvalidTarget" xml:space="preserve"><value>The process instance is not defined.</value></data>
+  <data name="ProcessObservation.Form.Title" xml:space="preserve"><value>G PC Health Check — process observation</value></data>
+  <data name="ProcessObservation.Form.Intro" xml:space="preserve"><value>{0} · PID {1} · created {2:O}
+One process instance is selected. After it exits, computer collection continues; another process that reuses the same PID is not substituted.</value></data>
+  <data name="ProcessObservation.Form.Duration" xml:space="preserve"><value>Duration, s</value></data>
+  <data name="ProcessObservation.Form.Interval" xml:space="preserve"><value>Interval, s</value></data>
+  <data name="ProcessObservation.Column.ProcessOffset" xml:space="preserve"><value>Process, s</value></data>
+  <data name="ProcessObservation.Column.State" xml:space="preserve"><value>Process state</value></data>
+  <data name="ProcessObservation.Column.Working" xml:space="preserve"><value>Working set, MiB</value></data>
+  <data name="ProcessObservation.Column.Read" xml:space="preserve"><value>Read, MiB/s</value></data>
+  <data name="ProcessObservation.Column.Write" xml:space="preserve"><value>Write, MiB/s</value></data>
+  <data name="ProcessObservation.Column.SystemOffset" xml:space="preserve"><value>Computer, s</value></data>
+  <data name="ProcessObservation.Column.SystemCpu" xml:space="preserve"><value>Computer CPU, %</value></data>
+  <data name="ProcessObservation.Column.SystemMemory" xml:space="preserve"><value>Computer RAM, %</value></data>
+  <data name="ProcessObservation.Column.Disk" xml:space="preserve"><value>Disks, %</value></data>
+  <data name="ProcessObservation.Column.Queue" xml:space="preserve"><value>Queue</value></data>
+  <data name="ProcessObservation.Tab.Measurements" xml:space="preserve"><value>Measurements</value></data>
+  <data name="ProcessObservation.Tab.Markers" xml:space="preserve"><value>Symptom markers</value></data>
+  <data name="ProcessObservation.Tab.Detail" xml:space="preserve"><value>Measurement details</value></data>
+  <data name="ProcessObservation.Tab.Summary" xml:space="preserve"><value>Summary and methodology</value></data>
+  <data name="ProcessObservation.Form.Overview" xml:space="preserve"><value>{0}
+
+Collection starts only when you click the button. A new session replaces the previous one in this window; export any result you need first.</value></data>
+  <data name="ProcessObservation.Form.StopRequested" xml:space="preserve"><value>Stop requested; waiting for the current system call to return. Completed pairs remain in memory.</value></data>
+  <data name="ProcessObservation.Form.Running" xml:space="preserve"><value>Observation: {0:0.0}/{1} s; completed pairs {2}; markers {3}.</value></data>
+  <data name="ProcessObservation.Form.WaitSave" xml:space="preserve"><value>Wait for file saving to finish.</value></data>
+  <data name="ProcessObservation.Form.Interrupted" xml:space="preserve"><value>The session was interrupted; available data can still be exported.</value></data>
+  <data name="ProcessObservation.Form.SavedStatus" xml:space="preserve"><value>{0} · {1:0.0} s · pairs {2}. Last process state: {3}. Export saves the data to disk.</value></data>
+  <data name="ProcessObservation.Form.NoData" xml:space="preserve"><value>no data</value></data>
+  <data name="ProcessObservation.Form.PreviousOptions" xml:space="preserve"><value>Settings for the next run changed; showing the previous observation ({0} s / {1} s). {2}</value></data>
+  <data name="ProcessObservation.Form.PreviousBusy" xml:space="preserve"><value>The previous observation is still finishing a system call. Wait for it to complete.</value></data>
+  <data name="ProcessObservation.Form.WaitFirst" xml:space="preserve"><value>Waiting for the first sample. Rates appear after the second consecutive point.</value></data>
+  <data name="ProcessObservation.Form.SessionError" xml:space="preserve"><value>Could not complete the session: {0}, 0x{1}. Data already available to the UI was preserved.</value></data>
+  <data name="ProcessObservation.Form.MarkerInvalid" xml:space="preserve"><value>Enter a note of 1–160 characters; maximum 100 markers.</value></data>
+  <data name="ProcessObservation.Form.MarkerItem" xml:space="preserve"><value>+{0:0.000} s — {1}</value></data>
+  <data name="ProcessObservation.Form.ExportDescription" xml:space="preserve"><value>Save the entire session. Names, paths, accounts, and notes may be sensitive.</value></data>
+  <data name="ProcessObservation.Form.Saving" xml:space="preserve"><value>Saving all charts and measurements…</value></data>
+  <data name="ProcessObservation.Form.Saved" xml:space="preserve"><value>Saved: {0}</value></data>
+  <data name="ProcessObservation.Form.ExportMessage" xml:space="preserve"><value>Export was not fully completed. {0}</value></data>
+  <data name="ProcessObservation.Form.ExportTitle" xml:space="preserve"><value>Export</value></data>
+  <data name="ProcessObservation.Form.SaveFailed" xml:space="preserve"><value>Saving did not complete: {0}, 0x{1}.</value></data>
+  <data name="ProcessObservation.Form.ActionFailed" xml:space="preserve"><value>Action not completed</value></data>
+
+  <data name="ProcessObservation.Report.Boundary" xml:space="preserve"><value>One selected process instance is observed, not the whole application or its child processes. PID is checked together with creation time; after exit, observation does not switch to a new process. CPU is the share of total system processor time, accounting for the number of active logical processors; it is not the share of the process affinity or quota. Working set includes shared resident pages; private commit is committed private memory, not physical RAM occupied. I/O is Windows-accounted process I/O bytes, not physical disk speed. The first sample and gaps do not produce rates. Process and computer are read sequentially with separate timestamps on one monotonic timeline; there is no atomic snapshot. Coincidence between load and a symptom does not establish cause. Measurements and the collector may affect load; no artificial load or remediation is started.</value></data>
+  <data name="ProcessObservation.Metric.Cpu" xml:space="preserve"><value>Process CPU, % of total system</value></data>
+  <data name="ProcessObservation.Metric.Working" xml:space="preserve"><value>Process working set, MiB</value></data>
+  <data name="ProcessObservation.Metric.Private" xml:space="preserve"><value>Private commit, MiB</value></data>
+  <data name="ProcessObservation.Metric.Read" xml:space="preserve"><value>Process I/O read, MiB/s</value></data>
+  <data name="ProcessObservation.Metric.Write" xml:space="preserve"><value>Process I/O write, MiB/s</value></data>
+  <data name="ProcessObservation.Report.StatsNone" xml:space="preserve"><value>{0}: no values available (0/{1}).</value></data>
+  <data name="ProcessObservation.Report.StatsLine" xml:space="preserve"><value>{0}: min {1}; median {2}; P95 {3}; max {4}; available {5}/{6}.</value></data>
+  <data name="ProcessObservation.Report.Title" xml:space="preserve"><value>G PC Health Check — process observation</value></data>
+  <data name="ProcessObservation.Report.Target" xml:space="preserve"><value>Computer: {0}; selected: {1}; PID {2}; created {3:O}.</value></data>
+  <data name="ProcessObservation.Report.StartEnd" xml:space="preserve"><value>Started: {0:O}; finished: {1:O}. {2}.</value></data>
+  <data name="ProcessObservation.Report.Plan" xml:space="preserve"><value>Plan: {0} s / {1} s; actual {2:0.000} s; completed pairs {3}; missed intervals {4}.</value></data>
+  <data name="ProcessObservation.Report.LastState" xml:space="preserve"><value>Last process state: {0}</value></data>
+  <data name="ProcessObservation.Report.StatsMeaning" xml:space="preserve"><value>Statistics use available samples, not a share of time. Missing values are not zero.</value></data>
+  <data name="ProcessObservation.Report.Computer" xml:space="preserve"><value>Computer: {0}</value></data>
+  <data name="ProcessObservation.Report.Marker" xml:space="preserve"><value>Symptom +{0:0.000} s: {1}</value></data>
+  <data name="ProcessObservation.Report.Privacy" xml:space="preserve"><value>Export saves every measurement and all nine charts; names, EXE paths, accounts, and notes may be sensitive.</value></data>
+  <data name="ProcessObservation.Report.Heading" xml:space="preserve"><value>Process observation</value></data>
+  <data name="ProcessObservation.Report.HostContext" xml:space="preserve"><value>Computer context</value></data>
+  <data name="ProcessObservation.Report.Pairs" xml:space="preserve"><value>All completed measurement pairs</value></data>
+  <data name="ProcessObservation.Report.Column.ProcessTime" xml:space="preserve"><value>Process: s / time</value></data>
+  <data name="ProcessObservation.Report.Column.State" xml:space="preserve"><value>State</value></data>
+  <data name="ProcessObservation.Report.Column.Working" xml:space="preserve"><value>Working set, MiB</value></data>
+  <data name="ProcessObservation.Report.Column.Read" xml:space="preserve"><value>Read, MiB/s</value></data>
+  <data name="ProcessObservation.Report.Column.Write" xml:space="preserve"><value>Write, MiB/s</value></data>
+  <data name="ProcessObservation.Report.Column.Interval" xml:space="preserve"><value>Interval, ms</value></data>
+  <data name="ProcessObservation.Report.Column.HostTime" xml:space="preserve"><value>Computer: s / time</value></data>
+  <data name="ProcessObservation.Report.Column.Disks" xml:space="preserve"><value>Disks, %</value></data>
+  <data name="ProcessObservation.Report.Column.Queue" xml:space="preserve"><value>Queue</value></data>
+  <data name="ProcessObservation.Report.Column.Collection" xml:space="preserve"><value>Pair collection, ms</value></data>
+  <data name="ProcessObservation.Report.Column.Warnings" xml:space="preserve"><value>Warnings</value></data>
+  <data name="ProcessObservation.Report.RawJson" xml:space="preserve"><value>Full raw counters, context, and markers (JSON)</value></data>
+  <data name="ProcessObservation.Report.NoValues" xml:space="preserve"><value>No values available — this is not zero load</value></data>
+  <data name="ProcessObservation.Report.Detail" xml:space="preserve"><value>Process: +{0:0.000} s; {1:O}
+Computer: +{2:0.000} s; {3:O}
+Pair collection: {4} ms; delta interval: {5} ms
+{6}
+EXE: {7}
+Creation FILETIME: {8}; logical processors: {9}
+
+{10}
+
+{11}</value></data>
+
+  <data name="ProcessObservation.Timeline.Accessible" xml:space="preserve"><value>Selected process timeline</value></data>
+  <data name="ProcessObservation.Timeline.NotStarted" xml:space="preserve"><value>Process observation has not started yet.</value></data>
+  <data name="ProcessObservation.Timeline.NoValues" xml:space="preserve"><value>No values are available — this does not mean zero load.</value></data>
+  <data name="ProcessObservation.Unit.Seconds" xml:space="preserve"><value>{0} s</value></data>
+</root>
