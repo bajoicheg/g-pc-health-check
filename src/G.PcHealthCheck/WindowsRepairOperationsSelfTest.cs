@@ -226,8 +226,9 @@ internal static class WindowsRepairOperationsSelfTest
             Require(Success(gpResult) && FakeProxy.Calls.Contains("RunFixedCommand:GpUpdateComputer"), "Machine GpUpdate did not use fixed computer-policy command.");
 
             var executable = ServiceDeskActionRegistry.ExecutableHandlerIds.ToHashSet(StringComparer.OrdinalIgnoreCase);
-            Require(executable.SetEquals(new[] { "CleanTemp", "FlushDns", "Dism", "Sfc", "RestartSpooler", "ClearPrintQueue", "RestartUpdateServices", "TimeResync" }),
-                "Task 6 executable set is not the approved staged non-network set.");
+            var expected = ServiceDeskActionRegistry.All.Where(x => !x.Id.Equals("GpUpdate", StringComparison.OrdinalIgnoreCase)).Select(x => x.Id).ToHashSet(StringComparer.OrdinalIgnoreCase);
+            Require(executable.SetEquals(expected) && executable.Count == 13,
+                "Task 7 executable set must include every fixed action except full GpUpdate.");
             Require(!executable.Contains("GpUpdate"), "Full GpUpdate became executable before original-user phase orchestration exists.");
         });
 
