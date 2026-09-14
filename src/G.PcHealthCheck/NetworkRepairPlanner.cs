@@ -49,11 +49,13 @@ internal static class NetworkRepairPlanner
         var evidence = new List<NetworkAdapterRepairEvidence>();
         foreach (var adapter in EligibleForRestart(inventory))
         {
+            var disableAttempted = false;
             var disabled = false;
             var reenabled = false;
             string? error = null;
             try
             {
+                disableAttempted = true;
                 disabled = setEnabled(adapter.DeviceId, false);
                 if (!disabled)
                 {
@@ -68,7 +70,9 @@ internal static class NetworkRepairPlanner
             }
             finally
             {
-                if (disabled)
+                // A disable API can partially change state before reporting a failure.
+                // Once disable was attempted, always make a best-effort recovery call.
+                if (disableAttempted)
                 {
                     try { reenabled = setEnabled(adapter.DeviceId, true); }
                     catch (Exception ex)
