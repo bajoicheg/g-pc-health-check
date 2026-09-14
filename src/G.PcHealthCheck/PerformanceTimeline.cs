@@ -12,7 +12,7 @@ internal sealed class PerformanceTimeline : Control
         ResizeRedraw = true;
         BackColor = Color.White;
         MinimumSize = new Size(400, 150);
-        AccessibleName = "График измерений по времени";
+        AccessibleName = AppLocalization.T("Performance.Timeline.AccessibleName");
     }
 
     public void Display(PerformanceSessionSnapshot snapshot, SessionMetric metric)
@@ -24,7 +24,7 @@ internal sealed class PerformanceTimeline : Control
     {
         base.OnPaint(e);
         var snapshot = _snapshot;
-        if (snapshot is null) { e.Graphics.DrawString("Запустите сеанс для наблюдения за нагрузкой.", Font, Brushes.DimGray, 14, 24); return; }
+        if (snapshot is null) { e.Graphics.DrawString(AppLocalization.T("Performance.Timeline.StartPrompt"), Font, Brushes.DimGray, 14, 24); return; }
         var g = e.Graphics; g.SmoothingMode = SmoothingMode.AntiAlias;
         var bounds = new RectangleF(64, 28, Math.Max(1, Width - 92), Math.Max(1, Height - 62));
         var segments = PerformanceStatistics.Segments(snapshot, _metric);
@@ -40,7 +40,7 @@ internal sealed class PerformanceTimeline : Control
         {
             var y = Y(ymax * i / 4);
             g.DrawLine(grid, bounds.Left, y, bounds.Right, y);
-            g.DrawString((ymax * i / 4).ToString("0.##"), Font, Brushes.DimGray, 4, y - Font.Height / 2f);
+            g.DrawString((ymax * i / 4).ToString("0.##", AppLocalization.Culture), Font, Brushes.DimGray, 4, y - Font.Height / 2f);
         }
         foreach (var marker in snapshot.Markers.Where(x => x.OffsetMs <= xmax))
             g.DrawLine(markerPen, X(marker.OffsetMs), bounds.Top, X(marker.OffsetMs), bounds.Bottom);
@@ -50,9 +50,9 @@ internal sealed class PerformanceTimeline : Control
             if (points.Length > 1) g.DrawLines(line, points);
             foreach (var point in points) g.FillEllipse(Brushes.SteelBlue, point.X - 2, point.Y - 2, 4, 4);
         }
-        if (segments.Count == 0) g.DrawString("Нет доступных значений — это не нулевая нагрузка.", Font, Brushes.DimGray, bounds.Left + 12, bounds.Top + 20);
-        g.DrawString("0 с", Font, Brushes.DimGray, bounds.Left, bounds.Bottom + 8);
-        var end = $"{xmax / 1000:0.0} с";
+        if (segments.Count == 0) g.DrawString(AppLocalization.T("Performance.Timeline.NoValues"), Font, Brushes.DimGray, bounds.Left + 12, bounds.Top + 20);
+        g.DrawString(AppLocalization.T("Performance.Unit.Seconds", "0"), Font, Brushes.DimGray, bounds.Left, bounds.Bottom + 8);
+        var end = AppLocalization.T("Performance.Unit.Seconds", (xmax / 1000).ToString("0.0", AppLocalization.Culture));
         g.DrawString(end, Font, Brushes.DimGray, bounds.Right - g.MeasureString(end, Font).Width, bounds.Bottom + 8);
     }
 }
