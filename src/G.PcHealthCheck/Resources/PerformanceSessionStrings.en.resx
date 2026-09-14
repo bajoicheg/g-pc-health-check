@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Performance.Form.Title" xml:space="preserve"><value>G PC Health Check — performance session</value></data>
+  <data name="Performance.Form.Intro" xml:space="preserve"><value>Start observation, reproduce the issue, and mark the symptom. No artificial load is generated.
+The chart uses sample acquisition time; gaps mean missing data. Coincidence with a marker does not establish the cause of a failure.</value></data>
+  <data name="Performance.Form.Duration" xml:space="preserve"><value>Duration, s</value></data>
+  <data name="Performance.Form.Interval" xml:space="preserve"><value>Interval, s</value></data>
+  <data name="Performance.Form.Start" xml:space="preserve"><value>Start observation</value></data>
+  <data name="Performance.Form.Stop" xml:space="preserve"><value>Stop and keep samples</value></data>
+  <data name="Performance.Form.Mark" xml:space="preserve"><value>Mark symptom</value></data>
+  <data name="Performance.Form.Copy" xml:space="preserve"><value>Copy summary</value></data>
+  <data name="Performance.Form.Export" xml:space="preserve"><value>Save HTML / JSON</value></data>
+  <data name="Performance.Form.NoteDefault" xml:space="preserve"><value>Freeze / delay</value></data>
+  <data name="Performance.Form.Ready" xml:space="preserve"><value>Ready. Session has not started.</value></data>
+  <data name="Performance.Form.Column.Offset" xml:space="preserve"><value>Elapsed, s</value></data>
+  <data name="Performance.Form.Column.Busy" xml:space="preserve"><value>Disks, %</value></data>
+  <data name="Performance.Form.Column.Queue" xml:space="preserve"><value>Queue</value></data>
+  <data name="Performance.Form.Column.Collection" xml:space="preserve"><value>Collection, ms</value></data>
+  <data name="Performance.Form.Column.Warnings" xml:space="preserve"><value>Warnings</value></data>
+  <data name="Performance.Form.Tab.Measurements" xml:space="preserve"><value>Measurements</value></data>
+  <data name="Performance.Form.Tab.Markers" xml:space="preserve"><value>Symptom markers</value></data>
+  <data name="Performance.Form.Tab.Details" xml:space="preserve"><value>Details and methodology</value></data>
+  <data name="Performance.Form.StopRequested" xml:space="preserve"><value>Stop requested; waiting for the current system call to finish.</value></data>
+  <data name="Performance.Form.Running" xml:space="preserve"><value>Observation: {0:0.0} / {1} s; samples: {2}; markers: {3}.</value></data>
+  <data name="Performance.Form.FailedEvidence" xml:space="preserve"><value>The session was interrupted; available evidence can still be saved.</value></data>
+  <data name="Performance.Form.SavedEvidence" xml:space="preserve"><value>{0}: {1:0.0} s; samples {2}; missed intervals {3}. {4}.</value></data>
+  <data name="Performance.Form.PreviousOptions" xml:space="preserve"><value>Settings for the next run changed; showing the previous session ({0} s / {1} s). {2}</value></data>
+  <data name="Performance.Form.PreviousBusy" xml:space="preserve"><value>The previous session is still finishing a system call. Wait for it to complete.</value></data>
+  <data name="Performance.Form.WaitingFirst" xml:space="preserve"><value>Waiting for the first sample…</value></data>
+  <data name="Performance.Form.SessionError" xml:space="preserve"><value>Could not complete the session: {0}, 0x{1}.</value></data>
+  <data name="Performance.Form.MarkerInvalid" xml:space="preserve"><value>Enter a non-empty note up to 160 characters. A session can contain at most 100 markers.</value></data>
+  <data name="Performance.Form.MarkerItem" xml:space="preserve"><value>+{0:0.000} s — {1}</value></data>
+  <data name="Performance.Form.StatsLine" xml:space="preserve"><value>{0}: median {1} · P95 {2} · max {3} · available {4}/{5} samples</value></data>
+  <data name="Performance.Form.DetailSample" xml:space="preserve"><value>Collected: {0:O}; elapsed {1} ms; collection {2} ms.
+{3}
+
+</value></data>
+  <data name="Performance.Form.ExportDescription" xml:space="preserve"><value>Save the entire session. Notes may contain sensitive information.</value></data>
+  <data name="Performance.Form.Saved" xml:space="preserve"><value>Saved: {0}</value></data>
+  <data name="Performance.Form.ExportFailed" xml:space="preserve"><value>Export did not complete: {0}, 0x{1}.</value></data>
+  <data name="Performance.Form.ActionFailedTitle" xml:space="preserve"><value>Action not completed</value></data>
+  <data name="Performance.Menu.Item" xml:space="preserve"><value>Performance session…</value></data>
+  <data name="Performance.Report.Boundary" xml:space="preserve"><value>This is observation, not a stress test. Crossing a threshold or coinciding with a marker does not prove the cause of a failure. Statistics use available samples, not a share of elapsed time; unavailable and missed values are not replaced with zero. CPU is the average between GetSystemTimes readings, RAM is physical memory, and disks are WMI PhysicalDisk _Total (100 − PercentIdleTime and current queue), not only the system volume. Metrics are read sequentially rather than atomically; WMI has its own refresh interval. Collection and other software can affect load. The health index is not changed.</value></data>
+  <data name="Performance.Report.Title" xml:space="preserve"><value>G PC Health Check — performance session</value></data>
+  <data name="Performance.Report.StartEnd" xml:space="preserve"><value>Started: {0:O}; finished: {1:O}</value></data>
+  <data name="Performance.Report.State" xml:space="preserve"><value>State: {0}; actual {1:0.0} s; plan {2} s / {3} s.</value></data>
+  <data name="Performance.Report.Counts" xml:space="preserve"><value>Samples received: {0}; missed intervals: {1}. {2}.</value></data>
+  <data name="Performance.Report.Stats" xml:space="preserve"><value>{0}: available {1}/{2}; min {3}; median {4}; P95 {5}; max {6}; samples ≥{7}: {8}/{1}.</value></data>
+  <data name="Performance.Report.Marker" xml:space="preserve"><value>Marker +{0:0.000} s: {1}</value></data>
+  <data name="Performance.Report.Warning" xml:space="preserve"><value>Warning: {0}</value></data>
+  <data name="Performance.Report.Heading" xml:space="preserve"><value>Performance session</value></data>
+  <data name="Performance.Report.AllMeasurements" xml:space="preserve"><value>All measurements</value></data>
+  <data name="Performance.Report.Column.Offset" xml:space="preserve"><value>Elapsed, s</value></data>
+  <data name="Performance.Report.Column.Time" xml:space="preserve"><value>Acquired at</value></data>
+  <data name="Performance.Report.Column.Busy" xml:space="preserve"><value>Disks, %</value></data>
+  <data name="Performance.Report.Column.Queue" xml:space="preserve"><value>Queue</value></data>
+  <data name="Performance.Report.Column.Collection" xml:space="preserve"><value>Collection, ms</value></data>
+  <data name="Performance.Report.Column.Warnings" xml:space="preserve"><value>Warnings</value></data>
+  <data name="Performance.Report.NoMeasurements" xml:space="preserve"><value>No measurements are available</value></data>
+  <data name="Performance.Metric.Memory" xml:space="preserve"><value>RAM used, %</value></data>
+  <data name="Performance.Metric.DiskBusy" xml:space="preserve"><value>Disk busy (_Total), %</value></data>
+  <data name="Performance.Metric.DiskQueue" xml:space="preserve"><value>Disk queue (_Total)</value></data>
+  <data name="Performance.Outcome.Completed" xml:space="preserve"><value>Completed</value></data>
+  <data name="Performance.Outcome.Stopped" xml:space="preserve"><value>Stopped</value></data>
+  <data name="Performance.Outcome.Running" xml:space="preserve"><value>Running</value></data>
+  <data name="Performance.Outcome.Failed" xml:space="preserve"><value>Interrupted by an error</value></data>
+  <data name="Performance.Outcome.NotStarted" xml:space="preserve"><value>Not started</value></data>
+  <data name="Performance.Completeness.None" xml:space="preserve"><value>No measurements are available</value></data>
+  <data name="Performance.Completeness.Full" xml:space="preserve"><value>All planned samples were collected</value></data>
+  <data name="Performance.Completeness.Partial" xml:space="preserve"><value>Data is incomplete — review missed intervals and warnings</value></data>
+  <data name="Performance.Timeline.AccessibleName" xml:space="preserve"><value>Measurement timeline</value></data>
+  <data name="Performance.Timeline.StartPrompt" xml:space="preserve"><value>Start a session to observe system load.</value></data>
+  <data name="Performance.Timeline.NoValues" xml:space="preserve"><value>No values are available — this does not mean zero load.</value></data>
+  <data name="Performance.Unit.Seconds" xml:space="preserve"><value>{0} s</value></data>
+</root>
