@@ -11,7 +11,8 @@ internal static class AppLocalization
     private static readonly ResourceManager[] ResourceManagers =
     [
         new("G.PcHealthCheck.Resources.Strings", typeof(AppLocalization).Assembly),
-        new("G.PcHealthCheck.Resources.MainStrings", typeof(AppLocalization).Assembly)
+        new("G.PcHealthCheck.Resources.MainStrings", typeof(AppLocalization).Assembly),
+        new("G.PcHealthCheck.Resources.AnalysisStrings", typeof(AppLocalization).Assembly)
     ];
     private static readonly object Sync = new();
     private static CultureInfo _culture = CultureFor(NormalizeLanguage(LoadLanguage()));
