@@ -1,14 +1,14 @@
-# G PC Health Check 0.15.1 — managed Windows 11 acceptance / pilot
+# G PC Health Check 0.16.0 — managed Windows 11 acceptance / pilot
 
 ## Purpose and acceptance boundary
 
-This is the manual workstation acceptance plan for the current 0.15.1 product line. It complements CI; it does not replace CI and CI does not replace this plan.
+This is the manual workstation acceptance plan for the current 0.16.0 product line. It complements CI; it does not replace CI and CI does not replace this plan.
 
-Hosted Windows CI proves source/build regressions, the published single-file EXE self-test, portable worker/security checks, package/version/checksum validation, pilot-bundle construction, evidence-analyzer behavior and supply-chain attestations. It does **not** prove interactive UAC, real Windows 11 desktop behavior, RDP/DPI behavior, corporate VPN/EDR coexistence, OEM/USB/RAID provider behavior or Service Desk usability on managed endpoints.
+Hosted Windows CI proves source/build regressions, the published single-file EXE self-test, portable worker/security checks, package/version/checksum validation, pilot-bundle construction, evidence-analyzer behavior and supply-chain attestations. It does **not** prove interactive UAC, real Windows 11 desktop behavior, RDP/DPI behavior, corporate VPN/EDR coexistence, OEM/USB/RAID provider behavior, real disruptive remediation or Service Desk usability on managed endpoints.
 
 Run this plan only on approved test workstations. Do not disable AV/EDR, Windows security controls, corporate VPN, execution policy, services or branch protections to make a case pass. A blocked or unavailable provider is evidence and must be recorded as such.
 
-Record every scenario as **PASS / FAIL / NOT RUN / NOT APPLICABLE**, with the tested EXE SHA-256, Windows build, device model, execution context and short evidence note. A pilot is not complete while a required scenario is merely assumed from CI.
+Record every scenario as **PASS / FAIL / NOT RUN / NOT APPLICABLE**, with the tested EXE SHA-256, Windows build, device/session context and short evidence note. A pilot is not complete while a required scenario is merely assumed from CI.
 
 ## 1. Pilot inventory and evidence header
 
@@ -63,7 +63,9 @@ Verify:
 - clipboard/report actions work;
 - repeated diagnosis replaces the current result cleanly;
 - final status is not overwritten by late progress from an earlier phase;
-- non-C Windows volume is identified correctly on at least one applicable machine or synthetic lab image.
+- non-C Windows volume is identified correctly on at least one applicable machine or synthetic lab image;
+- switch between RU and EN without restarting; operator text changes while stable IDs/raw provider evidence remain semantically unchanged;
+- About shows the running 0.16.0 version and attribution.
 
 If a provider is unavailable under standard-user permissions, record the limitation; do not rerun the whole application elevated merely to make the metric appear.
 
@@ -121,12 +123,47 @@ Verify:
 - the parent receives the worker result;
 - exit code/evidence is preserved in before/after reporting;
 - nonce/session/action allow-list protections remain effective;
-- `CleanTemp` is not smuggled into the elevated worker action set;
-- cancelling a combined selection does not partially perform privileged actions.
+- `CleanTemp` is not smuggled into an inappropriate elevated-user context;
+- cancelling a combined selection does not partially perform privileged actions;
+- alternate-admin elevation does not make the technician account the target user profile.
 
 DISM need not be executed merely to prove portability. Use it only when appropriate for the dedicated test machine.
 
 A mapped/UNC path is a separate environmental case: the administrative identity must independently have access. The application must not bypass Windows/share policy.
+
+## 6A. 0.16.0 red “Do everything / Сделать всё” batch — disposable workstation only
+
+**Do not run this scenario first on a production workstation.** Use only an approved disposable/test workstation with a local recovery path and no business-critical active work. Save evidence before starting.
+
+The red batch is intentionally disruptive. It may:
+
+- interrupt or sever VPN, RDP and ordinary network connectivity;
+- release/renew DHCP;
+- reset Winsock and TCP/IP state;
+- restart network adapters;
+- restart Spooler and update-related services;
+- delete pending print jobs;
+- refresh machine/user Group Policy;
+- resynchronize time;
+- run DISM RestoreHealth and SFC;
+- leave Windows indicating that a reboot is required.
+
+Before confirmation verify the UI shows the exact fixed 14-action set and the disruption/reboot warnings. The set must be exactly: `CleanTemp`, `FlushDns`, `RegisterDns`, `DhcpReleaseRenew`, `WinsockReset`, `TcpIpReset`, `RestartNetworkAdapters`, `RestartSpooler`, `ClearPrintQueue`, `RestartUpdateServices`, `GpUpdate`, `TimeResync`, `Dism`, `Sfc`.
+
+During and after the run verify:
+
+- at most one UAC approval is requested for the administrative batch;
+- cancelling UAC performs no privileged worker actions;
+- original-user work remains bound to the verified interactive user/session/profile;
+- the worker never exposes or accepts an arbitrary command/service/adapter target;
+- network-disruptive work happens after earlier non-network phases;
+- if VPN/RDP drops, the endpoint remains recoverable locally and the result is not falsely reported as a clean remote success;
+- print-queue deletion is explicitly visible in the confirmation/results and is tested only with disposable jobs;
+- before/after/result evidence records each action as run/skipped/superseded/failed as applicable;
+- a reboot requirement is reported rather than forcing reboot/logoff;
+- Defender/AV/EDR/firewall and other protective software remain enabled and are not weakened.
+
+Hosted CI uses fakes/negative tests for these mutations and is **not** evidence that this real disruptive scenario passed.
 
 ## 7. DPI, keyboard and display acceptance
 
@@ -277,10 +314,12 @@ Use one row per actual machine/session. Do not mark a row PASS from hosted CI al
 | Scenario | PASS criteria | Result | Evidence / issue |
 |---|---|---|---|
 | Standard-user baseline | no UAC for diagnosis; telemetry gaps explicit; report works | NOT RUN | |
+| RU/EN switch | language changes without restart; stable IDs/raw evidence preserved | NOT RUN | |
 | Non-C system volume | correct Windows system-volume identity | NOT RUN | |
 | Temp cleanup | old sentinel removed; fresh/junction preserved; safe context enforced | NOT RUN | |
 | Renamed portable UAC cancel | UAC reached; cancel causes no repair/orphan | NOT RUN | |
 | Positive alternate-admin UAC | result returns to parent with evidence | NOT RUN | |
+| Red 14-action batch | disposable workstation only; one-UAC phased result and recovery verified | NOT RUN | |
 | DPI 100% | primary tools usable | NOT RUN | |
 | DPI 150% | primary tools usable | NOT RUN | |
 | DPI 200% | primary tools usable | NOT RUN | |
@@ -309,8 +348,9 @@ Managed Windows 11 acceptance can be considered complete only when:
 4. VPN/EDR coexistence was covered without disabling controls;
 5. representative OEM/storage diversity was covered, including USB/RAID/VMD where available or explicitly marked N/A;
 6. Service Desk Diagnostic Bundle and the major read-only analysis workflows were exercised;
-7. every FAIL has a linked reproducible defect or an accepted/environmental limitation;
-8. the tested EXE hash/version and evidence location are recorded;
-9. no open acceptance blocker is hidden behind a hosted-CI PASS.
+7. the 0.16.0 red 14-action batch was exercised on an approved disposable/test workstation with recovery/result evidence or explicitly remains a release/pilot blocker;
+8. every FAIL has a linked reproducible defect or an accepted/environmental limitation;
+9. the tested EXE hash/version and evidence location are recorded;
+10. no open acceptance blocker is hidden behind a hosted-CI PASS.
 
-Major future ideas such as raw/full SMART, broad system-handle enumeration, general treemap, stress/stability workloads and new remediation/rollback operations are not acceptance prerequisites for 0.15.1 unless separately approved into scope.
+Major future ideas such as raw/full SMART, broad system-handle enumeration, general treemap and stress/stability workloads are not acceptance prerequisites for 0.16.0 unless separately approved into scope.
