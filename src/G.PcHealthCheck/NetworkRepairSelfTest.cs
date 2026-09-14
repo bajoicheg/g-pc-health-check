@@ -186,6 +186,27 @@ internal static class NetworkRepairSelfTest
             Require(calls.SequenceEqual(new[] { "PHYS-DHCP:False", "PHYS-DHCP:True" }), "Adapter was not re-enabled from cleanup/finally after failure.");
         });
 
+        Test("adapter restart attempts recovery after an unconfirmed disable result", () =>
+        {
+            var inventory = Inventory(physDhcp());
+            var calls = new List<string>();
+            var method = PlannerType().GetMethod("RestartEligibleAdapters", BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)
+                ?? throw new InvalidOperationException("RestartEligibleAdapters is missing.");
+            var result = method.Invoke(null,
+            [
+                inventory,
+                (Func<string, bool, bool>)((id, enabled) =>
+                {
+                    calls.Add($"{id}:{enabled}");
+                    return enabled;
+                }),
+                (Action<string>)(_ => { })
+            ]);
+            Require(result is not null, "Restart planner returned no evidence.");
+            Require(calls.SequenceEqual(new[] { "PHYS-DHCP:False", "PHYS-DHCP:True" }),
+                "Adapter recovery was not attempted after Disable returned an uncertain failure result.");
+        });
+
         Test("network handlers use only filtered synthetic adapter inventory", () =>
         {
             var inventory = Inventory(physDhcp(), physStatic(), virtualDhcp(), disabledDhcp(), disconnectedDhcp());
