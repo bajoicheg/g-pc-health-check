@@ -92,6 +92,20 @@ internal static class PerformanceSessionUiSelfTest
             interval.SelectedItem = 2; Application.DoEvents();
             Require(!state.Text.Contains("следующ", StringComparison.OrdinalIgnoreCase), "Restored interval still marks completed evidence as stale.");
         });
+        Test("performance export failure leaves terminal status", () =>
+        {
+            using var form = (Form)Activator.CreateInstance(TypeOf("PerformanceSessionForm"))!;
+            var type = TypeOf("PerformanceSessionForm"); var flags = BindingFlags.Instance | BindingFlags.NonPublic;
+            var stateField = type.GetField("_state", flags);
+            var applyFailure = type.GetMethod("ApplyExportFailure", flags);
+            Require(stateField is not null && applyFailure is not null, "Performance session export failure status boundary missing.");
+            var state = (Label)stateField!.GetValue(form)!;
+            state.Text = "Сохранено: C:\\previous";
+            applyFailure!.Invoke(form, [new IOException("synthetic export failure")]);
+            Require(state.Text.Contains("не заверш", StringComparison.OrdinalIgnoreCase), "Failed performance export still looks successful.");
+            Require(state.Text.Contains(nameof(IOException), StringComparison.Ordinal), "Performance export failure status omits exception type.");
+            Require(state.Text.Contains("0x", StringComparison.OrdinalIgnoreCase), "Performance export failure status omits HRESULT.");
+        });
         foreach (var metric in Enum.GetValues<SessionMetric>())
             Test("render graph with missing data " + metric, () =>
             {
