@@ -102,3 +102,10 @@ internal sealed record KasperskySecurityObservation(
     DateTime? DefinitionsUpdatedAt,
     string? ProductVersion,
     string Source);
+
+internal sealed record WindowsUpdateSecurityObservation(
+    DateTime? LastSuccessfulQualifyingUpdate,
+    int? PendingQualifyingUpdates,
+    bool? PendingReboot,
+    string ServiceSource,
+    string Source);
