@@ -85,7 +85,7 @@ internal static class BitLockerSecurityCollectorSelfTest
         => new("vol-os", "C:", true, false, protection, conversion, percent, "XtsAes256", ["Tpm", "NumericalPassword"], "Synthetic");
 
     private static EncryptionVolumeObservation Data(string mount, string protection, string conversion, int? percent)
-        => new("vol-" + mount.TrimEnd(':', '\\'), mount, false, true, protection, conversion, percent, "XtsAes256", ["NumericalPassword"], "Synthetic");
+        => new("vol-" + mount.TrimEnd(':'), mount, false, true, protection, conversion, percent, "XtsAes256", ["NumericalPassword"], "Synthetic");
 
     private static EncryptionVolumeObservation Excluded(string id, string source)
         => new("vol-" + id, "", false, false, "Off", "FullyDecrypted", 0, "None", [], source);
