@@ -33,17 +33,17 @@ internal static class DiagnosticBundleCore
     {
         ArgumentNullException.ThrowIfNull(options);
         if (!Enum.IsDefined(options.Mode)) throw new ArgumentOutOfRangeException(nameof(options.Mode));
-        if (options.Categories.Count == 0) throw new ArgumentException("Нужно выбрать хотя бы одну категорию диагностики.", nameof(options));
+        if (options.Categories.Count == 0) throw new ArgumentException(AppLocalization.T("Bundle.Core.SelectCategory"), nameof(options));
         if (options.Categories.Any(category => !Enum.IsDefined(category)))
-            throw new ArgumentException("Выбрана неизвестная категория диагностики.", nameof(options));
+            throw new ArgumentException(AppLocalization.T("Bundle.Core.UnknownCategory"), nameof(options));
         if (options.Mode == DiagnosticBundleMode.Quick && options.Categories.Contains(DiagnosticBundleCategory.Performance))
-            throw new ArgumentException("Быстрый режим не запускает сеанс производительности.", nameof(options));
+            throw new ArgumentException(AppLocalization.T("Bundle.Core.QuickPerformance"), nameof(options));
         if (options.Mode == DiagnosticBundleMode.Extended)
         {
             if (options.PerformanceSeconds is not (30 or 60))
-                throw new ArgumentOutOfRangeException(nameof(options.PerformanceSeconds), "Расширенный режим допускает 30 или 60 секунд наблюдения.");
+                throw new ArgumentOutOfRangeException(nameof(options.PerformanceSeconds), AppLocalization.T("Bundle.Core.Duration"));
             if (options.PerformanceIntervalSeconds is not (1 or 2 or 5))
-                throw new ArgumentOutOfRangeException(nameof(options.PerformanceIntervalSeconds), "Интервал наблюдения должен быть 1, 2 или 5 секунд.");
+                throw new ArgumentOutOfRangeException(nameof(options.PerformanceIntervalSeconds), AppLocalization.T("Bundle.Core.Interval"));
         }
     }
 
@@ -76,7 +76,7 @@ internal static class DiagnosticBundleCore
             performance.Markers.Add(marker);
         }
         if (excluded > 0)
-            performance.Warnings.Add($"{excluded} отметок симптомов получены вне фактической временной шкалы производительности или сверх лимита и не включены.");
+            performance.Warnings.Add(AppLocalization.T("Bundle.Core.MarkersExcluded", excluded));
         return excluded;
     }
 
@@ -145,7 +145,7 @@ internal static class DiagnosticBundleCore
             var attention = DiskDetailsService.Attention(disk);
             if (attention is "CRIT" or "WARN" or "UNKNOWN")
             {
-                var name = string.IsNullOrWhiteSpace(disk.Name) ? "Накопитель" : disk.Name;
+                var name = string.IsNullOrWhiteSpace(disk.Name) ? AppLocalization.T("Bundle.Core.StorageDrive") : disk.Name;
                 result.Add($"{attention}: {name}; DeviceId={disk.DeviceId}; {DiskDetailsService.HealthText(disk.Health)}.");
             }
             result.AddRange(disk.Warnings.Where(value => !string.IsNullOrWhiteSpace(value))
