@@ -22,6 +22,7 @@ internal static class Program
             if (result == 0) result = AnalysisAutoCollectSelfTest.Run();
             if (result == 0) result = ServiceDeskActionRegistrySelfTest.Run();
             if (result == 0) result = ServiceDeskBatchPlannerSelfTest.Run();
+            if (result == 0) result = WindowsRepairOperationsSelfTest.Run();
             if (result == 0) result = SystemDiskSelectionSelfTest.Run();
             if (result == 0) result = PortableElevationSelfTest.Run();
             if (result == 0) result = ReadOnlyReviewSelfTest.Run();
