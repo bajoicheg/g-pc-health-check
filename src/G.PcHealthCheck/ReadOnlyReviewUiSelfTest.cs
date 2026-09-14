@@ -23,7 +23,8 @@ internal static class ReadOnlyReviewUiSelfTest
             Test("review menu is idempotent and preserves old entries", () =>
             {
                 using var main = new Form(); CommonProblemsMenu.Attach(main); ReadOnlyReviewMenu.Attach(main); ReadOnlyReviewMenu.Attach(main);
-                Require(main.MainMenuStrip!.Items.Count == 3 && ((ToolStripMenuItem)main.MainMenuStrip.Items[2]).DropDownItems.Count == 2, "Menu duplicates or removes entries.");
+                var analysis = main.MainMenuStrip!.Items.Find("ReadOnlyInspections", false).OfType<ToolStripMenuItem>().Single();
+                Require(main.MainMenuStrip.Items.Count == 5 && analysis.DropDownItems.Count == 2, "Menu duplicates or removes entries.");
             });
             Test("Temp table sorts sizes numerically", () =>
             {
@@ -93,8 +94,6 @@ internal static class ReadOnlyReviewUiSelfTest
                 }
                 finally
                 {
-                    // SetAccessControl persists modified sections only. A freshly read,
-                    // unchanged DirectorySecurity would not restore the old DACL.
                     var restored = new DirectorySecurity();
                     restored.SetSecurityDescriptorBinaryForm(original, AccessControlSections.Access);
                     denied.SetAccessControl(restored);
