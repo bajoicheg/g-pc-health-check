@@ -98,6 +98,23 @@ jobs:
           $mdText = Get-Content $md.FullName -Raw
           if ($mdText -notmatch '\*\*Verdict:\*\* PASS') { throw 'Markdown output does not contain PASS verdict.' }
 
+      - name: Reject ambiguous evidence roots
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $source = Join-Path $env:RUNNER_TEMP 'gpchc-analyzer-pass'
+          $root = Join-Path $env:RUNNER_TEMP 'gpchc-analyzer-ambiguous'
+          $out = Join-Path $env:RUNNER_TEMP 'gpchc-analyzer-ambiguous-output'
+          Remove-Item $root,$out -Recurse -Force -ErrorAction SilentlyContinue
+          New-Item -ItemType Directory -Force -Path $root,$out | Out-Null
+          Copy-Item -LiteralPath $source -Destination (Join-Path $root 'machine-a') -Recurse
+          Copy-Item -LiteralPath $source -Destination (Join-Path $root 'machine-b') -Recurse
+
+          $p = Start-Process powershell.exe -ArgumentList @('-NoLogo','-NoProfile','-NonInteractive','-File',(Resolve-Path .\tools\e2e\Analyze-E2EEvidence.ps1).Path,'-EvidenceDirectory',$root,'-OutputDirectory',$out) -Wait -PassThru
+          if ($p.ExitCode -eq 0) { throw 'Ambiguous evidence roots were accepted as one workstation bundle.' }
+          $json = Get-ChildItem $out -Filter '*analysis-*.json' -File -ErrorAction SilentlyContinue | Select-Object -First 1
+          if ($null -ne $json) { throw 'Ambiguous evidence should be rejected before producing an analysis verdict.' }
+
       - name: Synthetic FAIL evidence
         shell: pwsh
         run: |

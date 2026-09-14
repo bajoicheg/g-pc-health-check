@@ -111,10 +111,14 @@ try {
         $sourceDescription = $bundleRoot
     }
 
-    $environmentFile = Get-ChildItem -LiteralPath $bundleRoot -Filter 'environment.json' -File -Recurse | Select-Object -First 1
-    if ($null -eq $environmentFile) {
+    $environmentFiles = @(Get-ChildItem -LiteralPath $bundleRoot -Filter 'environment.json' -File -Recurse)
+    if ($environmentFiles.Count -eq 0) {
         throw 'environment.json not found in evidence bundle.'
     }
+    if ($environmentFiles.Count -ne 1) {
+        throw "Evidence bundle is ambiguous: expected exactly one environment.json, found $($environmentFiles.Count)."
+    }
+    $environmentFile = $environmentFiles[0]
 
     $actualRoot = $environmentFile.Directory.FullName
     $environment = Read-JsonFile -Path $environmentFile.FullName
