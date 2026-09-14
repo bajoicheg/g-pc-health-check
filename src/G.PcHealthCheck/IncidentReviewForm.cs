@@ -203,8 +203,15 @@ internal sealed class IncidentReviewForm : Form
     {
         if (_busy || _current is not { } snapshot) return;
         using var dialog = new FolderBrowserDialog { Description = "Отчёт содержит сообщения событий, имена, пути и команды процессов. Не публикуйте его без проверки.", UseDescriptionForTitle = true };
-        if (dialog.ShowDialog(this) == DialogResult.OK) TryUi(() => _status.Text = "Сохранено: " + IncidentExport.Save(snapshot, Filter(), dialog.SelectedPath));
+        if (dialog.ShowDialog(this) != DialogResult.OK) return;
+        try { _status.Text = "Сохранено: " + IncidentExport.Save(snapshot, Filter(), dialog.SelectedPath); }
+        catch (Exception ex)
+        {
+            ApplyExportFailure(ex);
+            MessageBox.Show(this, ex.Message, "Действие не завершено полностью", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
     }
+    private void ApplyExportFailure(Exception ex) => _status.Text = $"Экспорт не завершён: {ex.GetType().Name}, 0x{ex.HResult:X8}.";
     private void TryUi(Action action) { try { action(); } catch (Exception ex) { MessageBox.Show(this, ex.Message, "Действие не завершено полностью", MessageBoxButtons.OK, MessageBoxIcon.Warning); } }
     private static DateTimePicker DatePicker() => new() { Width = 185, Format = DateTimePickerFormat.Custom, CustomFormat = "dd.MM.yyyy HH:mm:ss" };
     private static FlowLayoutPanel Flow() => new() { Dock = DockStyle.Fill, AutoSize = true, WrapContents = true };
