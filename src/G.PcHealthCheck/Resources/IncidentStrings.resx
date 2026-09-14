@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Incident.Form.Title.Events" xml:space="preserve"><value>G PC Health Check — события за время сбоя</value></data>
+  <data name="Incident.Form.Title.Processes" xml:space="preserve"><value>G PC Health Check — подробности процессов</value></data>
+  <data name="Incident.Form.Intro.Events" xml:space="preserve"><value>Локальные Application и System. Укажите интервал в местном времени Windows (до 7 суток).&#10;Сбор только по кнопке; максимум 1000 записей на журнал. Поиск и фильтры работают по уже полученным данным.</value></data>
+  <data name="Incident.Form.Intro.Processes" xml:space="preserve"><value>Текущий снимок процессов: PID, время запуска, путь, команда и память. Владелец запрашивается отдельно для выбранной строки.&#10;Ничего не запускается и не завершается. Недоступные сведения отмечаются; отсутствие пути не означает вредоносность.</value></data>
+  <data name="Incident.Form.SearchPlaceholder" xml:space="preserve"><value>Поиск в полученном снимке</value></data>
+  <data name="Incident.Form.WarningsOnly" xml:space="preserve"><value>Только Critical / Error / Warning</value></data>
+  <data name="Incident.Form.Run" xml:space="preserve"><value>Собрать / повторить</value></data>
+  <data name="Incident.Form.Cancel" xml:space="preserve"><value>Отменить</value></data>
+  <data name="Incident.Form.Owner" xml:space="preserve"><value>Проверить владельца</value></data>
+  <data name="Incident.Form.Copy" xml:space="preserve"><value>Копировать сводку</value></data>
+  <data name="Incident.Form.Export" xml:space="preserve"><value>Сохранить HTML / JSON</value></data>
+  <data name="Incident.Form.AllLogs" xml:space="preserve"><value>Все журналы</value></data>
+  <data name="Incident.Form.From" xml:space="preserve"><value>С:</value></data>
+  <data name="Incident.Form.To" xml:space="preserve"><value>По:</value></data>
+  <data name="Incident.Form.RecentHour" xml:space="preserve"><value>Последний час</value></data>
+  <data name="Incident.Form.EventId" xml:space="preserve"><value>Event ID (-1 = все):</value></data>
+  <data name="Incident.Form.NotCollected" xml:space="preserve"><value>Снимок ещё не собран.</value></data>
+  <data name="Incident.Form.CancelRequested" xml:space="preserve"><value>Отмена запрошена; ожидается возврат поставщика данных.</value></data>
+  <data name="Incident.Form.Timer.Cancel" xml:space="preserve"><value>Отмена запрошена… {0:0.0} с</value></data>
+  <data name="Incident.Form.Timer.Work" xml:space="preserve"><value>Ожидание / сбор… {0:0.0} с</value></data>
+  <data name="Incident.Form.TimeAmbiguous" xml:space="preserve"><value>Выбрано неоднозначное время перехода часового пояса; уточните границы интервала.</value></data>
+  <data name="Incident.Form.Collecting" xml:space="preserve"><value>Выполняется новый сбор…</value></data>
+  <data name="Incident.Form.Finished.Cancelled" xml:space="preserve"><value>Отменено за {0:0.0} с</value></data>
+  <data name="Incident.Form.Finished.Done" xml:space="preserve"><value>Завершено за {0:0.0} с</value></data>
+  <data name="Incident.Form.OwnerNotRequested" xml:space="preserve"><value>Не запрошен</value></data>
+  <data name="Incident.Form.EventSnapshot" xml:space="preserve"><value>Снимок {0:dd.MM HH:mm:ss}: {1}. Интервал {2:O} — {3:O}.&#10;{4}. Видно по фильтру: {5}.</value></data>
+  <data name="Incident.Form.LogSummary" xml:space="preserve"><value>{0}: {1}, {2} записей</value></data>
+  <data name="Incident.Form.StaleWindow" xml:space="preserve"><value>Границы изменены. Показан прежний снимок {0:HH:mm:ss}, интервал {1:O} — {2:O}. Для нового сбора нажмите кнопку.&#10;{3}</value></data>
+  <data name="Incident.Form.ProcessSnapshot" xml:space="preserve"><value>Снимок {0:dd.MM HH:mm:ss}: {1}. Сохранено {2}; видно {3}; строк с замечаниями {4}.&#10;Время и владелец относятся к текущему процессу, а не к историческому событию.</value></data>
+  <data name="Incident.Form.EventDetail" xml:space="preserve"><value>{0:O} | {1} | {2} | Event ID {3} | Record ID {4}&#13;&#10;{5} | PID издателя: {6}&#13;&#10;&#13;&#10;{7}&#13;&#10;Текст: {8}&#13;&#10;&#13;&#10;</value></data>
+  <data name="Incident.Form.ProcessDetail" xml:space="preserve"><value>PID {0} | {1} | начало {2:O}&#13;&#10;PPID {3}; session {4}; threads {5}; handles {6}; working set {7} байт&#13;&#10;&#13;&#10;Путь:&#13;&#10;{8}&#13;&#10;Команда (не исполняется):&#13;&#10;{9}&#13;&#10;&#13;&#10;{10}&#13;&#10;&#13;&#10;</value></data>
+  <data name="Incident.Form.ExportDescription" xml:space="preserve"><value>Отчёт содержит сообщения событий, имена, пути и команды процессов. Не публикуйте его без проверки.</value></data>
+  <data name="Incident.Form.ExportSaved" xml:space="preserve"><value>Сохранено: {0}</value></data>
+  <data name="Incident.Form.ExportFailed" xml:space="preserve"><value>Экспорт не завершён: {0}, 0x{1:X8}.</value></data>
+  <data name="Incident.Form.ActionFailed" xml:space="preserve"><value>Действие не завершено полностью</value></data>
+  <data name="Incident.Menu.Events" xml:space="preserve"><value>События за время сбоя…</value></data>
+  <data name="Incident.Menu.Processes" xml:space="preserve"><value>Подробности процессов…</value></data>
+  <data name="Incident.Column.LocalTime" xml:space="preserve"><value>Время (местное)</value></data>
+  <data name="Incident.Column.Log" xml:space="preserve"><value>Журнал</value></data>
+  <data name="Incident.Column.Level" xml:space="preserve"><value>Уровень</value></data>
+  <data name="Incident.Column.Provider" xml:space="preserve"><value>Источник</value></data>
+  <data name="Incident.Column.EmitterPid" xml:space="preserve"><value>PID издателя</value></data>
+  <data name="Incident.Column.Process" xml:space="preserve"><value>Процесс</value></data>
+  <data name="Incident.Column.StartedLocal" xml:space="preserve"><value>Начало (местное)</value></data>
+  <data name="Incident.Column.OwnerState" xml:space="preserve"><value>Владелец / состояние</value></data>
+  <data name="Incident.Column.Path" xml:space="preserve"><value>Путь</value></data>
+  <data name="Incident.State.Complete" xml:space="preserve"><value>Сбор завершён</value></data>
+  <data name="Incident.State.Partial" xml:space="preserve"><value>Неполные данные</value></data>
+  <data name="Incident.State.Unavailable" xml:space="preserve"><value>Данные недоступны</value></data>
+  <data name="Incident.State.Cancelled" xml:space="preserve"><value>Отменено</value></data>
+  <data name="Incident.State.Verified" xml:space="preserve"><value>Владелец подтверждён</value></data>
+  <data name="Incident.State.Stale" xml:space="preserve"><value>Процесс изменился / завершён</value></data>
+  <data name="Incident.State.Unverified" xml:space="preserve"><value>Идентичность не подтверждена</value></data>
+  <data name="Incident.State.Unknown" xml:space="preserve"><value>Не проверено</value></data>
+  <data name="Incident.Level.None" xml:space="preserve"><value>Не задан</value></data>
+  <data name="Incident.Level.Critical" xml:space="preserve"><value>Критическое</value></data>
+  <data name="Incident.Level.Error" xml:space="preserve"><value>Ошибка</value></data>
+  <data name="Incident.Level.Warning" xml:space="preserve"><value>Предупреждение</value></data>
+  <data name="Incident.Level.Information" xml:space="preserve"><value>Информация</value></data>
+  <data name="Incident.Level.Verbose" xml:space="preserve"><value>Подробно</value></data>
+  <data name="Incident.Level.Unknown" xml:space="preserve"><value>Неизвестно</value></data>
+  <data name="Incident.MessageState.Available" xml:space="preserve"><value>Доступен</value></data>
+  <data name="Incident.MessageState.Truncated" xml:space="preserve"><value>Сокращён</value></data>
+  <data name="Incident.MessageState.Unavailable" xml:space="preserve"><value>Недоступен</value></data>
+  <data name="Incident.MessageState.Unknown" xml:space="preserve"><value>Неизвестно</value></data>
+  <data name="Incident.Report.Boundary" xml:space="preserve"><value>Совпадение событий по времени не доказывает причину сбоя. PID в событии — идентификатор издателя, не обязательно сбойного приложения; его нельзя автоматически связывать с текущим процессом. Процессы — отдельный текущий снимок, не история. Полнота сбора не является оценкой здоровья. Поиск ограничен полученным снимком; отсутствующие или удалённые ранее события восстановить нельзя.</value></data>
+  <data name="Incident.Report.Title" xml:space="preserve"><value>G PC Health Check — разбор сбоя</value></data>
+  <data name="Incident.Report.Collection" xml:space="preserve"><value>Сбор: {0:O} — {1:O}; {2}</value></data>
+  <data name="Incident.Report.Interval" xml:space="preserve"><value>Интервал: {0:O} — {1:O}; лимит {2} на журнал.</value></data>
+  <data name="Incident.Report.EventCounts" xml:space="preserve"><value>Сохранено {0} событий; по текущему фильтру {1}.</value></data>
+  <data name="Incident.Report.LogCounts" xml:space="preserve"><value>{0}: {1}, записей {2}; замечаний {3}.</value></data>
+  <data name="Incident.Report.ProcessCounts" xml:space="preserve"><value>Сохранено {0} процессов; по фильтру {1}; записей с замечаниями {2}.</value></data>
+  <data name="Incident.Report.ProcessLine" xml:space="preserve"><value>PID {0} | {1} | начало {2:O} | working set {3} байт</value></data>
+  <data name="Incident.Report.ProcessBoundary" xml:space="preserve"><value>Пустой путь/команда или неизвестный владелец не являются признаком вредоносности. Команды только отображаются; запуск, завершение и изменение процессов не выполняются.</value></data>
+  <data name="Incident.Report.FullEvidence" xml:space="preserve"><value>Полные записи и замечания — в HTML/JSON; отчёт содержит весь снимок, а не только отфильтрованные строки.</value></data>
+  <data name="Incident.Report.FullSnapshot" xml:space="preserve"><value>Полный сохранённый снимок</value></data>
+  <data name="Incident.Report.Events.Headers" xml:space="preserve"><value>Время / журнал|ID / источник|Уровень / PID издателя|Сообщение</value></data>
+  <data name="Incident.Report.Process.Headers" xml:space="preserve"><value>PID / процесс|Создан / PPID / сеанс|Путь / команда|Память / потоки / дескрипторы|Замечания</value></data>
+  <data name="Incident.Report.LogWarnings" xml:space="preserve"><value>{0} — замечания</value></data>
+  <data name="Incident.Report.OwnerChecks" xml:space="preserve"><value>Проверки владельца</value></data>
+  <data name="Incident.Report.Unsupported" xml:space="preserve"><value>Неподдерживаемый снимок или фильтр.</value></data>
+  <data name="Incident.Query.InvalidWindow" xml:space="preserve"><value>Интервал должен быть положительным и не превышать 7 суток.</value></data>
+  <data name="Incident.Query.InvalidLimit" xml:space="preserve"><value>Допустимо 1–5000 записей на журнал.</value></data>
+  <data name="Incident.Query.AccessDenied" xml:space="preserve"><value>Доступ запрещён. </value></data>
+  <data name="Incident.Events.Timeout" xml:space="preserve"><value>Достигнуто 20 секунд между вызовами поставщика; журнал просмотрен не полностью.</value></data>
+  <data name="Incident.Events.Limit" xml:space="preserve"><value>Достигнут лимит {0} записей; более старые результаты не прочитаны.</value></data>
+  <data name="Incident.Events.BadTimestamp" xml:space="preserve"><value>Пропущена запись без подтверждённого времени внутри интервала.</value></data>
+  <data name="Incident.Events.MessageUnavailable" xml:space="preserve"><value>Record ID {0}: текст события недоступен полностью ({1}); метаданные сохранены.</value></data>
+  <data name="Incident.Events.Cancelled" xml:space="preserve"><value>Сбор отменён; показаны только уже полученные записи.</value></data>
+  <data name="Incident.Processes.Timeout" xml:space="preserve"><value>Достигнуто 20 секунд между вызовами WMI; список неполный.</value></data>
+  <data name="Incident.Processes.Limit" xml:space="preserve"><value>Достигнут лимит {0} процессов; список неполный.</value></data>
+  <data name="Incident.Processes.Cancelled" xml:space="preserve"><value>Сбор отменён; список может быть неполным.</value></data>
+  <data name="Incident.Owner.NoCreation" xml:space="preserve"><value>Нет времени создания: нельзя подтвердить, что PID всё ещё принадлежит выбранному процессу.</value></data>
+  <data name="Incident.Owner.Stale" xml:space="preserve"><value>Процесс завершён или PID уже принадлежит другому процессу. Обновите список.</value></data>
+  <data name="Incident.Owner.Changed" xml:space="preserve"><value>Идентичность изменилась во время проверки; полученный владелец отброшен.</value></data>
+  <data name="Incident.Owner.Unavailable" xml:space="preserve"><value>WMI не сообщил владельца.</value></data>
+  <data name="Incident.Owner.Verified" xml:space="preserve"><value>PID и CreationDate совпали до и после GetOwner. Это наблюдение на момент проверки, не постоянная связь.</value></data>
+  <data name="Incident.Owner.Cancelled" xml:space="preserve"><value>Проверка владельца отменена.</value></data>
+  <data name="Incident.Source.AllowedLogs" xml:space="preserve"><value>Разрешены только локальные Application и System.</value></data>
+  <data name="Incident.Source.MessageMissing" xml:space="preserve"><value>Поставщик не вернул текст сообщения.</value></data>
+  <data name="Incident.Source.MessageFormatFailed" xml:space="preserve"><value>Не удалось форматировать текст: {0}</value></data>
+  <data name="Incident.Source.OwnerNoResult" xml:space="preserve"><value>GetOwner не вернул результат.</value></data>
+  <data name="Incident.Source.OwnerCode" xml:space="preserve"><value>GetOwner: код {0}</value></data>
+  <data name="Incident.Source.ProcessNoPid" xml:space="preserve"><value>WMI вернул процесс без PID.</value></data>
+  <data name="Incident.Source.CreationTime" xml:space="preserve"><value>Время создания: {0}</value></data>
+  <data name="Incident.Source.WmiMissingAccess" xml:space="preserve"><value>{0}: не предоставлено WMI (возможны ограничения доступа).</value></data>
+  <data name="Incident.Source.WmiTruncated" xml:space="preserve"><value>{0}: текст сокращён до 32768 символов.</value></data>
+  <data name="Incident.Source.WmiError" xml:space="preserve"><value>{0}: {1}</value></data>
+  <data name="Incident.Source.WmiMissing" xml:space="preserve"><value>{0}: не предоставлено WMI.</value></data>
+</root>
