@@ -19,6 +19,7 @@ internal static class Program
             if (result == 0) result = MainScanProgressOwnershipSelfTest.Run();
             if (result == 0) result = MainApplyProgressOwnershipSelfTest.Run();
             if (result == 0) result = MainCardResizeRedrawSelfTest.Run();
+            if (result == 0) result = LocalizationAndSizeSelfTest.Run();
             if (result == 0) result = SystemDiskSelectionSelfTest.Run();
             if (result == 0) result = PortableElevationSelfTest.Run();
             if (result == 0) result = ReadOnlyReviewSelfTest.Run();
