@@ -187,8 +187,8 @@ internal static class ProcessObservationLink
     public static void Attach(Form owner, DataGridView grid, Button ownerQuery, bool eventsMode)
     {
         if (eventsMode || owner.Controls.Find("ObserveSelectedProcess", true).Length != 0) return;
-        var parent = ownerQuery.Parent ?? throw new InvalidOperationException("Панель процессов не подготовлена.");
-        var button = new Button { Name = "ObserveSelectedProcess", Text = "Наблюдать за процессом…", AutoSize = true, Enabled = false, Padding = new Padding(4, 2, 4, 2) }; parent.Controls.Add(button);
+        var parent = ownerQuery.Parent ?? throw new InvalidOperationException(AppLocalization.T("ProcessObservation.Link.PanelMissing"));
+        var button = new Button { Name = "ObserveSelectedProcess", Text = AppLocalization.T("ProcessObservation.Link.Button"), AutoSize = true, Enabled = false, Padding = new Padding(4, 2, 4, 2) }; parent.Controls.Add(button);
         void Refresh()
         {
             button.Enabled = ownerQuery.Enabled && grid.Enabled && grid.CurrentRow?.Tag is ProcessReviewEntry p && p.Pid > 0 && p.CreatedAt is DateTimeOffset created && ProcessObservationCore.ValidCreatedAt(created);
@@ -198,7 +198,7 @@ internal static class ProcessObservationLink
         {
             if (!button.Enabled || grid.CurrentRow?.Tag is not ProcessReviewEntry row) return;
             try { using var form = new ProcessObservationForm(ProcessObservationCore.FromEntry(row)); form.ShowDialog(owner); }
-            catch (Exception ex) { MessageBox.Show(owner, ex.Message, "Наблюдение недоступно", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+            catch (Exception ex) { MessageBox.Show(owner, ex.Message, AppLocalization.T("ProcessObservation.Link.UnavailableTitle"), MessageBoxButtons.OK, MessageBoxIcon.Warning); }
         };
         Refresh();
     }
