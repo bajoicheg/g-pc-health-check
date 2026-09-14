@@ -36,20 +36,20 @@ internal static class BitLockerSecurityCollectorSelfTest
         {
             var controls = Collect(
                 Os("On", "FullyEncrypted", 100),
-                Data("D:", "On", "FullyEncrypted", 100),
-                Data("E:", "On", "FullyEncrypted", 100));
+                Data("D", "On", "FullyEncrypted", 100),
+                Data("E", "On", "FullyEncrypted", 100));
             Require(controls["SEC-BITLOCKER-DATA"].Status == SecurityControlStatus.Pass, "All protected data volumes must pass.");
         });
 
         Test("data aggregate fails, warns, not-applicable and unknown truthfully", () =>
         {
-            Require(Collect(Os("On", "FullyEncrypted", 100), Data("D:", "Off", "FullyDecrypted", 0))["SEC-BITLOCKER-DATA"].Status == SecurityControlStatus.Fail,
+            Require(Collect(Os("On", "FullyEncrypted", 100), Data("D", "Off", "FullyDecrypted", 0))["SEC-BITLOCKER-DATA"].Status == SecurityControlStatus.Fail,
                 "One unprotected data volume must fail aggregate.");
-            Require(Collect(Os("On", "FullyEncrypted", 100), Data("D:", "On", "EncryptionInProgress", 50))["SEC-BITLOCKER-DATA"].Status == SecurityControlStatus.Warn,
+            Require(Collect(Os("On", "FullyEncrypted", 100), Data("D", "On", "EncryptionInProgress", 50))["SEC-BITLOCKER-DATA"].Status == SecurityControlStatus.Warn,
                 "Only degraded data volume must warn.");
             Require(Collect(Os("On", "FullyEncrypted", 100))["SEC-BITLOCKER-DATA"].Status == SecurityControlStatus.NotApplicable,
                 "No extra fixed data volume must be NotApplicable.");
-            Require(Collect(Os("On", "FullyEncrypted", 100), Data("D:", "Unknown", "Unknown", null))["SEC-BITLOCKER-DATA"].Status == SecurityControlStatus.Unknown,
+            Require(Collect(Os("On", "FullyEncrypted", 100), Data("D", "Unknown", "Unknown", null))["SEC-BITLOCKER-DATA"].Status == SecurityControlStatus.Unknown,
                 "Incomplete applicable data state must be Unknown.");
         });
 
@@ -67,7 +67,7 @@ internal static class BitLockerSecurityCollectorSelfTest
         Test("evidence contains protector types only and never recovery material", () =>
         {
             const string forbidden = "111111-222222-333333-444444-555555-666666-777777-888888";
-            var volume = new EncryptionVolumeObservation("vol-os", "C:", true, false, "On", "FullyEncrypted", 100, "XtsAes256", ["Tpm", "NumericalPassword"], "Synthetic");
+            var volume = new EncryptionVolumeObservation("vol-os", "C", true, false, "On", "FullyEncrypted", 100, "XtsAes256", ["Tpm", "NumericalPassword"], "Synthetic");
             var controls = Collect(volume);
             var json = JsonSerializer.Serialize(controls);
             Require(json.Contains("NumericalPassword", StringComparison.Ordinal), "Protector type should be retained.");
@@ -82,10 +82,10 @@ internal static class BitLockerSecurityCollectorSelfTest
         => BitLockerSecurityCollector.Collect(new FakeSource(volumes));
 
     private static EncryptionVolumeObservation Os(string protection, string conversion, int? percent)
-        => new("vol-os", "C:", true, false, protection, conversion, percent, "XtsAes256", ["Tpm", "NumericalPassword"], "Synthetic");
+        => new("vol-os", "C", true, false, protection, conversion, percent, "XtsAes256", ["Tpm", "NumericalPassword"], "Synthetic");
 
     private static EncryptionVolumeObservation Data(string mount, string protection, string conversion, int? percent)
-        => new("vol-" + mount.TrimEnd(':'), mount, false, true, protection, conversion, percent, "XtsAes256", ["NumericalPassword"], "Synthetic");
+        => new("vol-" + mount, mount, false, true, protection, conversion, percent, "XtsAes256", ["NumericalPassword"], "Synthetic");
 
     private static EncryptionVolumeObservation Excluded(string id, string source)
         => new("vol-" + id, "", false, false, "Off", "FullyDecrypted", 0, "None", [], source);
