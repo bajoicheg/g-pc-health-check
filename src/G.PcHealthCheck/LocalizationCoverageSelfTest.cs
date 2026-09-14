@@ -46,12 +46,16 @@ internal static class LocalizationCoverageSelfTest
             {
                 AppLocalization.SetLanguage("ru");
                 using var ru = new FormSet();
-                var ruNames = ru.Forms.ToDictionary(x => x.GetType().Name + ":" + x.Name, NamedControls);
+                var ruNames = ru.Forms
+                    .Select((form, index) => (Key: $"{index}:{form.GetType().Name}:{form.Name}", Names: NamedControls(form)))
+                    .ToDictionary(x => x.Key, x => x.Names, StringComparer.Ordinal);
                 var ruIds = ServiceDeskActionRegistry.All.Select(x => x.Id).ToArray();
 
                 AppLocalization.SetLanguage("en");
                 using var en = new FormSet();
-                var enNames = en.Forms.ToDictionary(x => x.GetType().Name + ":" + x.Name, NamedControls);
+                var enNames = en.Forms
+                    .Select((form, index) => (Key: $"{index}:{form.GetType().Name}:{form.Name}", Names: NamedControls(form)))
+                    .ToDictionary(x => x.Key, x => x.Names, StringComparer.Ordinal);
                 var enIds = ServiceDeskActionRegistry.All.Select(x => x.Id).ToArray();
 
                 Require(ruNames.Keys.OrderBy(x => x).SequenceEqual(enNames.Keys.OrderBy(x => x)), "Form identity changed with language.");
