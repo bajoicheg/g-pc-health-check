@@ -26,7 +26,7 @@ internal static class BitLockerSecurityCollector
 
         var os = volumes.FirstOrDefault(x => x.IsOsVolume);
         var osStatus = os is null ? SecurityControlStatus.Unknown : EvaluateVolume(os);
-        var osEvidence = os is null
+        IReadOnlyList<SecurityEvidence> osEvidence = os is null
             ? new[] { new SecurityEvidence("OsVolume", "NotObserved", "BitLocker") }
             : EvidenceFor(os);
 
@@ -41,7 +41,7 @@ internal static class BitLockerSecurityCollector
                 : statuses.Contains(SecurityControlStatus.Warn) ? SecurityControlStatus.Warn
                 : SecurityControlStatus.Pass;
         }
-        var dataEvidence = data.Count == 0
+        IReadOnlyList<SecurityEvidence> dataEvidence = data.Count == 0
             ? new[] { new SecurityEvidence("FixedDataVolumes", "0", "BitLocker") }
             : data.SelectMany(EvidenceFor).ToList();
 
