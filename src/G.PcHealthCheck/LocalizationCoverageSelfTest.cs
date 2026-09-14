@@ -89,9 +89,9 @@ internal static class LocalizationCoverageSelfTest
                     FinishedAt = DateTimeOffset.Parse("2026-09-14T10:00:01+00:00"),
                     Outcome = "Connected",
                     Options = new ResourceProbeOptions(5000, 3000, 8),
-                    Addresses = ["192.0.2.10"],
-                    Steps = [new ResourceProbeStep { Stage = "TCP", Endpoint = "192.0.2.10:443", Outcome = "Connected", Detail = rawDetail }]
+                    Addresses = ["192.0.2.10"]
                 };
+                snapshot.Steps.Add(new ResourceProbeStep("TCP", "192.0.2.10:443", "Connected", 1.0, "", rawDetail));
                 var summary = ResourceProbeReport.Summary(snapshot, null);
                 var html = ResourceProbeReport.Html(snapshot, null);
                 Require(!Cyrillic.IsMatch(summary.Replace(rawDetail, "", StringComparison.Ordinal)), "English Resource Probe summary still contains Russian framing: " + OneLine(summary));
