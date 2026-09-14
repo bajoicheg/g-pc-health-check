@@ -220,6 +220,7 @@ public sealed class RemediationActionResult
     public string Output { get; set; } = "";
     public double? FreedMB { get; set; }
     public long? DeletedFiles { get; set; }
+    public bool RebootRecommended { get; set; }
     public DateTime StartedAt { get; set; }
     public DateTime FinishedAt { get; set; }
 }

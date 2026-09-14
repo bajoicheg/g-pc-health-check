@@ -78,7 +78,7 @@ internal static class ServiceDeskActionRegistrySelfTest
             Require(Flag(all["RestartNetworkAdapters"], "MayBreakConnectivity") && Flag(all["DhcpReleaseRenew"], "MayBreakConnectivity"), "Connectivity disruption metadata missing.");
         });
 
-        Test("prohibited IDs stay absent while Task 6 enables only staged non-network handlers", () =>
+        Test("prohibited IDs stay absent while Task 7 stages every handler except full GpUpdate", () =>
         {
             var ids = Descriptors().Select(Id).ToHashSet(StringComparer.OrdinalIgnoreCase);
             foreach (var prohibited in new[] { "DisableDefender", "StopEDR", "DisableFirewall", "ClearEventLog", "RunCommand", "ArbitraryService" })
@@ -87,8 +87,9 @@ internal static class ServiceDeskActionRegistrySelfTest
             var executable = RegistryType().GetProperty("ExecutableHandlerIds", BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)?.GetValue(null)
                 ?? throw new InvalidOperationException("ExecutableHandlerIds metadata is missing.");
             var executableIds = ((IEnumerable)executable).Cast<object>().Select(Convert.ToString).Where(x => x is not null).Cast<string>().ToHashSet(StringComparer.Ordinal);
-            Require(executableIds.SetEquals(new[] { "CleanTemp", "FlushDns", "RestartSpooler", "ClearPrintQueue", "RestartUpdateServices", "TimeResync", "Dism", "Sfc" }),
-                "Task 6 executable set differs from the staged fixed non-network set.");
+            var expected = ExactAllSet.Where(x => !x.Equals("GpUpdate", StringComparison.Ordinal)).ToHashSet(StringComparer.Ordinal);
+            Require(executableIds.SetEquals(expected) && executableIds.Count == 13,
+                "Task 7 executable set must be every fixed action except full GpUpdate.");
             Require(!executableIds.Contains("GpUpdate"), "Full GpUpdate became executable before original-user phase orchestration.");
         });
 

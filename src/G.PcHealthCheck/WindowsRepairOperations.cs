@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Management;
 using System.ServiceProcess;
 
 namespace G.PcHealthCheck;
@@ -9,7 +10,10 @@ internal enum FixedCommand
     TimeResync,
     GpUpdateComputer,
     Dism,
-    Sfc
+    Sfc,
+    WinsockReset,
+    TcpIpReset,
+    RegisterDns
 }
 
 internal enum FixedService
@@ -25,6 +29,7 @@ internal sealed class FixedCommandSpec
     public string FileName { get; init; } = "";
     public string Arguments { get; init; } = "";
     public TimeSpan Timeout { get; init; }
+    public bool RebootRecommended { get; init; }
 }
 
 internal sealed class NativeActionResult
@@ -60,6 +65,9 @@ internal interface IWindowsRepairOperations
     ServiceStateSnapshot QueryService(FixedService service);
     NativeActionResult RestartService(FixedService service, bool startIfStopped);
     PrintQueueClearResult ClearPrintQueue();
+    IReadOnlyList<NetworkAdapterSnapshot> QueryNetworkAdapters();
+    NativeActionResult SetAdapterEnabled(string stableDeviceId, bool enabled);
+    NativeActionResult CycleDhcpLease(string stableDeviceId);
 }
 
 internal sealed class WindowsRepairOperations : IWindowsRepairOperations
@@ -75,16 +83,20 @@ internal sealed class WindowsRepairOperations : IWindowsRepairOperations
             FixedCommand.GpUpdateComputer => Spec("GpUpdate", "gpupdate.exe", "/target:computer /force /wait:60", TimeSpan.FromMinutes(3)),
             FixedCommand.Dism => Spec("Dism", "dism.exe", "/Online /Cleanup-Image /RestoreHealth", TimeSpan.FromMinutes(60)),
             FixedCommand.Sfc => Spec("Sfc", "sfc.exe", "/scannow", TimeSpan.FromMinutes(60)),
+            FixedCommand.WinsockReset => Spec("WinsockReset", "netsh.exe", "winsock reset", TimeSpan.FromMinutes(2), reboot: true),
+            FixedCommand.TcpIpReset => Spec("TcpIpReset", "netsh.exe", "int ip reset", TimeSpan.FromMinutes(2), reboot: true),
+            FixedCommand.RegisterDns => Spec("RegisterDns", "ipconfig.exe", "/registerdns", TimeSpan.FromMinutes(2)),
             _ => throw new ArgumentOutOfRangeException(nameof(command))
         };
 
-    private static FixedCommandSpec Spec(string id, string exe, string arguments, TimeSpan timeout)
+    private static FixedCommandSpec Spec(string id, string exe, string arguments, TimeSpan timeout, bool reboot = false)
         => new()
         {
             Id = id,
             FileName = Path.Combine(Environment.SystemDirectory, exe),
             Arguments = arguments,
-            Timeout = timeout
+            Timeout = timeout,
+            RebootRecommended = reboot
         };
 
     public NativeActionResult RunFixedCommand(FixedCommand command, TimeSpan timeout)
@@ -110,7 +122,8 @@ internal sealed class WindowsRepairOperations : IWindowsRepairOperations
             {
                 Id = spec.Id,
                 Success = false,
-                Message = $"Превышено время выполнения {effectiveTimeout.TotalMinutes:0.#} мин."
+                Message = $"Превышено время выполнения {effectiveTimeout.TotalMinutes:0.#} мин.",
+                RebootRecommended = spec.RebootRecommended
             };
         }
         Task.WaitAll(stdout, stderr);
@@ -122,7 +135,8 @@ internal sealed class WindowsRepairOperations : IWindowsRepairOperations
             Success = process.ExitCode == 0,
             ExitCode = process.ExitCode,
             Message = process.ExitCode == 0 ? "Команда завершена успешно." : $"Команда завершена с кодом {process.ExitCode}.",
-            Output = output
+            Output = output,
+            RebootRecommended = spec.RebootRecommended
         };
     }
 
@@ -277,6 +291,126 @@ internal sealed class WindowsRepairOperations : IWindowsRepairOperations
         catch (Exception ex) when (ex is ArgumentException or IOException or NotSupportedException) { return false; }
     }
 
+    public IReadOnlyList<NetworkAdapterSnapshot> QueryNetworkAdapters()
+    {
+        var dhcpByIndex = new Dictionary<uint, bool>();
+        using (var configSearcher = new ManagementObjectSearcher("SELECT Index, DHCPEnabled, IPEnabled FROM Win32_NetworkAdapterConfiguration"))
+        using (var configs = configSearcher.Get())
+        {
+            foreach (ManagementObject config in configs)
+            {
+                using (config)
+                {
+                    var index = WmiUInt(config["Index"]);
+                    if (index is not uint key) continue;
+                    dhcpByIndex[key] = WmiBool(config["DHCPEnabled"]) && WmiBool(config["IPEnabled"]);
+                }
+            }
+        }
+
+        var result = new List<NetworkAdapterSnapshot>();
+        using var adapterSearcher = new ManagementObjectSearcher("SELECT DeviceID, Index, Name, PhysicalAdapter, NetEnabled, NetConnectionStatus FROM Win32_NetworkAdapter");
+        using var adapters = adapterSearcher.Get();
+        foreach (ManagementObject adapter in adapters)
+        {
+            using (adapter)
+            {
+                var deviceId = Convert.ToString(adapter["DeviceID"]) ?? "";
+                if (!uint.TryParse(deviceId, out _)) continue;
+                var index = WmiUInt(adapter["Index"]);
+                var enabled = WmiBool(adapter["NetEnabled"]);
+                var connected = enabled && WmiUInt(adapter["NetConnectionStatus"]) == 2;
+                result.Add(new NetworkAdapterSnapshot
+                {
+                    DeviceId = deviceId,
+                    Name = Convert.ToString(adapter["Name"]) ?? "",
+                    Physical = WmiBool(adapter["PhysicalAdapter"]),
+                    Enabled = enabled,
+                    Connected = connected,
+                    DhcpEnabled = index is uint key && dhcpByIndex.TryGetValue(key, out var dhcp) && dhcp
+                });
+            }
+        }
+        return result;
+    }
+
+    public NativeActionResult SetAdapterEnabled(string stableDeviceId, bool enabled)
+    {
+        if (!uint.TryParse(stableDeviceId, out var expectedId))
+            return new NativeActionResult { Id = stableDeviceId, Success = false, Message = "Некорректный OS-derived DeviceID адаптера." };
+        using var searcher = new ManagementObjectSearcher("SELECT DeviceID, PhysicalAdapter, NetEnabled, NetConnectionStatus FROM Win32_NetworkAdapter");
+        using var adapters = searcher.Get();
+        foreach (ManagementObject adapter in adapters)
+        {
+            using (adapter)
+            {
+                if (WmiUInt(adapter["DeviceID"]) != expectedId) continue;
+                if (!WmiBool(adapter["PhysicalAdapter"]))
+                    return new NativeActionResult { Id = stableDeviceId, Success = false, Message = "Адаптер больше не подтверждён как PhysicalAdapter." };
+                if (!enabled && (!WmiBool(adapter["NetEnabled"]) || WmiUInt(adapter["NetConnectionStatus"]) != 2))
+                    return new NativeActionResult { Id = stableDeviceId, Success = false, Message = "Адаптер больше не является активным подключённым физическим путём; отключение не выполнено." };
+                var method = enabled ? "Enable" : "Disable";
+                var code = InvokeReturnCode(adapter, method);
+                return new NativeActionResult
+                {
+                    Id = stableDeviceId,
+                    Success = code == 0,
+                    ExitCode = code is null ? null : unchecked((int)code.Value),
+                    Message = code == 0 ? $"Адаптер {method} завершён успешно." : $"Win32_NetworkAdapter.{method} вернул код {(code?.ToString() ?? "—")}."
+                };
+            }
+        }
+        return new NativeActionResult { Id = stableDeviceId, Success = false, Message = "Адаптер с подтверждённым DeviceID больше не найден." };
+    }
+
+    public NativeActionResult CycleDhcpLease(string stableDeviceId)
+    {
+        if (!uint.TryParse(stableDeviceId, out var expectedId))
+            return new NativeActionResult { Id = stableDeviceId, Success = false, Message = "Некорректный OS-derived DeviceID адаптера." };
+        uint? adapterIndex = null;
+        using (var adapterSearcher = new ManagementObjectSearcher("SELECT DeviceID, Index, NetEnabled, NetConnectionStatus FROM Win32_NetworkAdapter"))
+        using (var adapters = adapterSearcher.Get())
+        {
+            foreach (ManagementObject adapter in adapters)
+            {
+                using (adapter)
+                {
+                    if (WmiUInt(adapter["DeviceID"]) != expectedId) continue;
+                    if (!WmiBool(adapter["NetEnabled"]) || WmiUInt(adapter["NetConnectionStatus"]) != 2)
+                        return new NativeActionResult { Id = stableDeviceId, Success = false, Message = "Адаптер больше не подключён; DHCP release/renew не выполнялся." };
+                    adapterIndex = WmiUInt(adapter["Index"]);
+                    break;
+                }
+            }
+        }
+        if (adapterIndex is not uint expectedIndex)
+            return new NativeActionResult { Id = stableDeviceId, Success = false, Message = "Не удалось подтвердить Index адаптера для DHCP." };
+
+        using var configSearcher = new ManagementObjectSearcher("SELECT Index, DHCPEnabled, IPEnabled FROM Win32_NetworkAdapterConfiguration");
+        using var configs = configSearcher.Get();
+        foreach (ManagementObject config in configs)
+        {
+            using (config)
+            {
+                if (WmiUInt(config["Index"]) != expectedIndex) continue;
+                if (!WmiBool(config["IPEnabled"]) || !WmiBool(config["DHCPEnabled"]))
+                    return new NativeActionResult { Id = stableDeviceId, Success = false, Message = "Адаптер больше не подтверждён как DHCP-enabled; статическая конфигурация не менялась." };
+                var release = InvokeReturnCode(config, "ReleaseDHCPLease");
+                var renew = InvokeReturnCode(config, "RenewDHCPLease");
+                var ok = release == 0 && renew == 0;
+                return new NativeActionResult
+                {
+                    Id = stableDeviceId,
+                    Success = ok,
+                    ExitCode = renew is null ? null : unchecked((int)renew.Value),
+                    Message = $"DHCP release={release?.ToString() ?? "—"}; renew={renew?.ToString() ?? "—"}.",
+                    Output = $"release={release?.ToString() ?? "null"}; renew={renew?.ToString() ?? "null"}"
+                };
+            }
+        }
+        return new NativeActionResult { Id = stableDeviceId, Success = false, Message = "DHCP-конфигурация подтверждённого адаптера не найдена." };
+    }
+
     private static bool StopSpooler()
     {
         var state = new WindowsRepairOperations().QueryService(FixedService.Spooler);
@@ -318,6 +452,23 @@ internal sealed class WindowsRepairOperations : IWindowsRepairOperations
         _ => throw new ArgumentOutOfRangeException(nameof(service))
     };
 
+    private static bool WmiBool(object? value) => value is bool flag && flag;
+    private static uint? WmiUInt(object? value)
+    {
+        if (value is null) return null;
+        try { return Convert.ToUInt32(value); }
+        catch (Exception ex) when (ex is FormatException or InvalidCastException or OverflowException) { return null; }
+    }
+    private static uint? InvokeReturnCode(ManagementObject target, string method)
+    {
+        try
+        {
+            var value = target.InvokeMethod(method, Array.Empty<object>());
+            return WmiUInt(value);
+        }
+        catch { return null; }
+    }
+
     private static void TryKill(Process process)
     {
         try { if (!process.HasExited) process.Kill(true); } catch { }
@@ -339,7 +490,8 @@ internal static class ServiceDeskNonNetworkHandlers
             "timeresync" => FromNative("TimeResync", operations.RunFixedCommand(FixedCommand.TimeResync, TimeSpan.FromMinutes(2))),
             "dism" => FromNative("Dism", operations.RunFixedCommand(FixedCommand.Dism, TimeSpan.FromMinutes(60))),
             "sfc" => FromNative("Sfc", operations.RunFixedCommand(FixedCommand.Sfc, TimeSpan.FromMinutes(60))),
-            _ => new RemediationActionResult { Id = id, Success = false, Message = "Действие отсутствует в фиксированном non-network handler set." }
+            _ when ServiceDeskNetworkHandlers.CanHandle(id) => ServiceDeskNetworkHandlers.Execute(id, operations),
+            _ => new RemediationActionResult { Id = id, Success = false, Message = "Действие отсутствует в фиксированном handler set." }
         };
     }
 
@@ -393,6 +545,7 @@ internal static class ServiceDeskNonNetworkHandlers
             Success = result.Success,
             ExitCode = result.ExitCode,
             Message = result.Message,
-            Output = result.Output
+            Output = result.Output,
+            RebootRecommended = result.RebootRecommended
         };
 }

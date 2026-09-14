@@ -87,17 +87,22 @@ internal static class ServiceDeskActionRegistry
     private static readonly Dictionary<string, ServiceDeskActionDescriptor> ById =
         All.ToDictionary(x => x.Id, StringComparer.OrdinalIgnoreCase);
 
-    // Task 6 adds fixed, bounded non-network repair handlers. Full GpUpdate stays
-    // staged because its original-user half requires Task 8 phased orchestration.
+    // Task 7 stages every approved fixed handler except the split GpUpdate action.
+    // Full GpUpdate becomes executable only when Task 8 can preserve original-user identity.
     public static IReadOnlySet<string> ExecutableHandlerIds { get; } =
         new HashSet<string>(
-            ["CleanTemp", "FlushDns", "RestartSpooler", "ClearPrintQueue", "RestartUpdateServices", "TimeResync", "Dism", "Sfc"],
-            StringComparer.OrdinalIgnoreCase);
+        [
+            "CleanTemp", "FlushDns", "RegisterDns", "DhcpReleaseRenew", "WinsockReset", "TcpIpReset",
+            "RestartNetworkAdapters", "RestartSpooler", "ClearPrintQueue", "RestartUpdateServices",
+            "TimeResync", "Dism", "Sfc"
+        ], StringComparer.OrdinalIgnoreCase);
 
     public static IReadOnlySet<string> WorkerExecutableHandlerIds { get; } =
         new HashSet<string>(
-            ["FlushDns", "RestartSpooler", "ClearPrintQueue", "RestartUpdateServices", "TimeResync", "Dism", "Sfc"],
-            StringComparer.OrdinalIgnoreCase);
+        [
+            "FlushDns", "RegisterDns", "DhcpReleaseRenew", "WinsockReset", "TcpIpReset", "RestartNetworkAdapters",
+            "RestartSpooler", "ClearPrintQueue", "RestartUpdateServices", "TimeResync", "Dism", "Sfc"
+        ], StringComparer.OrdinalIgnoreCase);
 
     public static ServiceDeskActionDescriptor? Find(string? id)
         => !string.IsNullOrWhiteSpace(id) && ById.TryGetValue(id, out var descriptor) ? descriptor : null;
