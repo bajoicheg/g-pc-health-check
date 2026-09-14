@@ -113,6 +113,7 @@ internal static class Program
         EndpointReviewMenu.Attach(main);
         FileUseMenu.Attach(main);
         DiagnosticBundleMenu.Attach(main);
+        AppMenuChrome.Refresh(main);
         Application.Run(main);
     }
 }

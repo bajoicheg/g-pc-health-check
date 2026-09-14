@@ -4,5 +4,23 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Menu.CommonProblems" xml:space="preserve"><value>Типовые проблемы: сеть, печать, устройства</value></data>
+  <data name="Menu.WindowsTools" xml:space="preserve"><value>Средства Windows</value></data>
   <data name="Menu.Analysis" xml:space="preserve"><value>Анализ</value></data>
+  <data name="Menu.Language" xml:space="preserve"><value>Язык</value></data>
+  <data name="Menu.Help" xml:space="preserve"><value>Справка</value></data>
+  <data name="Menu.About" xml:space="preserve"><value>О программе…</value></data>
+  <data name="Menu.Windows.Network" xml:space="preserve"><value>Сеть</value></data>
+  <data name="Menu.Windows.Printing" xml:space="preserve"><value>Принтеры</value></data>
+  <data name="Menu.Windows.Devices" xml:space="preserve"><value>Устройства</value></data>
+  <data name="Menu.Windows.Storage" xml:space="preserve"><value>Хранилище</value></data>
+  <data name="Menu.Windows.Startup" xml:space="preserve"><value>Автозагрузка</value></data>
+  <data name="Menu.Windows.Updates" xml:space="preserve"><value>Обновления</value></data>
+  <data name="Menu.Windows.Apps" xml:space="preserve"><value>Приложения</value></data>
+  <data name="Language.Russian" xml:space="preserve"><value>Русский</value></data>
+  <data name="Language.English" xml:space="preserve"><value>Английский</value></data>
+  <data name="About.Title" xml:space="preserve"><value>О программе</value></data>
+  <data name="About.Version" xml:space="preserve"><value>Версия: {0}</value></data>
+  <data name="About.Purpose" xml:space="preserve"><value>Диагностика Windows 11 и контролируемые действия для Service Desk.</value></data>
+  <data name="Common.Close" xml:space="preserve"><value>Закрыть</value></data>
 </root>

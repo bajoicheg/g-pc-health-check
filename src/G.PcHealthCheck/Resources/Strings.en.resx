@@ -4,5 +4,23 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Menu.CommonProblems" xml:space="preserve"><value>Common problems: network, printing, devices</value></data>
+  <data name="Menu.WindowsTools" xml:space="preserve"><value>Windows tools</value></data>
   <data name="Menu.Analysis" xml:space="preserve"><value>Analysis</value></data>
+  <data name="Menu.Language" xml:space="preserve"><value>Language</value></data>
+  <data name="Menu.Help" xml:space="preserve"><value>Help</value></data>
+  <data name="Menu.About" xml:space="preserve"><value>About…</value></data>
+  <data name="Menu.Windows.Network" xml:space="preserve"><value>Network</value></data>
+  <data name="Menu.Windows.Printing" xml:space="preserve"><value>Printers</value></data>
+  <data name="Menu.Windows.Devices" xml:space="preserve"><value>Devices</value></data>
+  <data name="Menu.Windows.Storage" xml:space="preserve"><value>Storage</value></data>
+  <data name="Menu.Windows.Startup" xml:space="preserve"><value>Startup</value></data>
+  <data name="Menu.Windows.Updates" xml:space="preserve"><value>Updates</value></data>
+  <data name="Menu.Windows.Apps" xml:space="preserve"><value>Apps</value></data>
+  <data name="Language.Russian" xml:space="preserve"><value>Russian</value></data>
+  <data name="Language.English" xml:space="preserve"><value>English</value></data>
+  <data name="About.Title" xml:space="preserve"><value>About</value></data>
+  <data name="About.Version" xml:space="preserve"><value>Version: {0}</value></data>
+  <data name="About.Purpose" xml:space="preserve"><value>Windows 11 diagnostics and controlled actions for Service Desk.</value></data>
+  <data name="Common.Close" xml:space="preserve"><value>Close</value></data>
 </root>
