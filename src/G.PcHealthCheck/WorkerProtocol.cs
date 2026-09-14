@@ -59,7 +59,7 @@ internal sealed class JsonWorkerMessageChannel : IWorkerMessageChannel, IDisposa
     private readonly StreamWriter _writer;
     private bool _disposed;
 
-    internal JsonWorkerMessageChannel(Stream stream, bool leaveOpen = false)
+    public JsonWorkerMessageChannel(Stream stream, bool leaveOpen = false)
     {
         ArgumentNullException.ThrowIfNull(stream);
         if (!stream.CanRead || !stream.CanWrite)
