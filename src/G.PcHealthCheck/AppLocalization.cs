@@ -16,7 +16,8 @@ internal static class AppLocalization
         new("G.PcHealthCheck.Resources.ReviewStrings", typeof(AppLocalization).Assembly),
         new("G.PcHealthCheck.Resources.ResourceProbeUiStrings", typeof(AppLocalization).Assembly),
         new("G.PcHealthCheck.Resources.ReviewServiceStrings", typeof(AppLocalization).Assembly),
-        new("G.PcHealthCheck.Resources.IncidentStrings", typeof(AppLocalization).Assembly)
+        new("G.PcHealthCheck.Resources.IncidentStrings", typeof(AppLocalization).Assembly),
+        new("G.PcHealthCheck.Resources.ProcessObservationStrings", typeof(AppLocalization).Assembly)
     ];
     private static readonly object Sync = new();
     private static CultureInfo _culture = CultureFor(NormalizeLanguage(LoadLanguage()));
@@ -41,7 +42,6 @@ internal static class AppLocalization
         {
             if (manager.GetString(key, culture) is { } localized) return localized;
         }
-
         var russian = CultureInfo.GetCultureInfo("ru-RU");
         foreach (var manager in ResourceManagers)
         {
@@ -89,10 +89,7 @@ internal static class AppLocalization
             var settings = JsonSerializer.Deserialize<Settings>(File.ReadAllText(path));
             return NormalizeLanguage(settings?.Language);
         }
-        catch
-        {
-            return "ru";
-        }
+        catch { return "ru"; }
     }
 
     private static void TrySaveLanguage(string language)
@@ -105,10 +102,7 @@ internal static class AppLocalization
             File.WriteAllText(temporary, JsonSerializer.Serialize(new Settings(language)));
             File.Move(temporary, path, overwrite: true);
         }
-        catch
-        {
-            // Language persistence is optional. Diagnostics must keep working when the profile is read-only.
-        }
+        catch { }
     }
 
     private static string SettingsPath()
