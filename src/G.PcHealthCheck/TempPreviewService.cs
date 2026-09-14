@@ -16,7 +16,7 @@ internal static class TempPreviewService
     public static TempPreviewSnapshot CollectUser(int days, CancellationToken ct, IProgress<string>? progress = null)
     {
         ct.ThrowIfCancellationRequested();
-        progress?.Report("Определяю пользователя и профиль текущего сеанса…");
+        progress?.Report(AppLocalization.T("Review.Temp.ProgressContext"));
         var context = ExecutionContextService.Capture();
         return CollectForContext(days, context, ct, progress);
     }
@@ -47,7 +47,7 @@ internal static class TempPreviewService
         IProgress<string>? progress = null)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(root);
-        if (!Path.IsPathFullyQualified(root)) throw new ArgumentException("Нужен полный путь к Temp.", nameof(root));
+        if (!Path.IsPathFullyQualified(root)) throw new ArgumentException(AppLocalization.T("Review.Temp.FullPathRequired"), nameof(root));
         if (olderThanDays is < 1 or > 30) throw new ArgumentOutOfRangeException(nameof(olderThanDays));
         if (maxEntries is < 1 or > 1000000) throw new ArgumentOutOfRangeException(nameof(maxEntries));
         if (maxRows is < 1 or > 1000) throw new ArgumentOutOfRangeException(nameof(maxRows));
@@ -70,7 +70,7 @@ internal static class TempPreviewService
             ct.ThrowIfCancellationRequested();
             if (timer.Elapsed < limit) return false;
             result.State = ReviewCollectionState.Partial;
-            Issue($"Достигнуто ограничение времени {limit.TotalSeconds:0.#} с. Итоги относятся только к просмотренным записям.");
+            Issue(AppLocalization.T("Review.Temp.TimeLimit", limit.TotalSeconds));
             return true;
         }
         TempPreviewSnapshot Finish() { ct.ThrowIfCancellationRequested(); result.CompletedAt = DateTime.Now; return result; }
@@ -80,18 +80,18 @@ internal static class TempPreviewService
             if ((attributes & FileAttributes.ReparsePoint) != 0 || (attributes & FileAttributes.Directory) == 0)
             {
                 result.State = ReviewCollectionState.Unavailable;
-                Issue("Корень не является обычным каталогом или является ссылкой/reparse point; обход не начат.");
+                Issue(AppLocalization.T("Review.Temp.InvalidRoot"));
                 return Finish();
             }
         }
         catch (Exception ex) when (ex is FileNotFoundException or DirectoryNotFoundException)
         {
-            result.State = ReviewCollectionState.Missing; Issue("Каталог Temp отсутствует. Оценка очистки не требуется."); return Finish();
+            result.State = ReviewCollectionState.Missing; Issue(AppLocalization.T("Review.Temp.Missing")); return Finish();
         }
         catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or System.Security.SecurityException)
         {
             result.State = ReviewCollectionState.Unavailable; result.Errors++;
-            Issue("Корень недоступен: " + Describe(ex)); return Finish();
+            Issue(AppLocalization.T("Review.Temp.RootUnavailable", Describe(ex))); return Finish();
         }
 
         var stack = new Stack<string>(); stack.Push(result.Root);
@@ -112,12 +112,12 @@ internal static class TempPreviewService
                     if (result.VisitedEntries >= maxEntries)
                     {
                         result.State = ReviewCollectionState.Partial;
-                        Issue($"Достигнут предел {maxEntries} записей. Объём является частичной оценкой.");
+                        Issue(AppLocalization.T("Review.Temp.EntryLimit", maxEntries));
                         return Finish();
                     }
                     result.VisitedEntries++;
                     if (result.VisitedEntries % 500 == 0)
-                        progress?.Report($"Просмотрено записей: {result.VisitedEntries:N0}; кандидатов: {result.CandidateFiles:N0}…");
+                        progress?.Report(AppLocalization.T("Review.Temp.Progress", result.VisitedEntries, result.CandidateFiles));
                     var path = iterator.Current;
                     try
                     {
