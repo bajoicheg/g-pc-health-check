@@ -109,3 +109,15 @@ internal sealed record WindowsUpdateSecurityObservation(
     bool? PendingReboot,
     string ServiceSource,
     string Source);
+
+internal sealed record EncryptionVolumeObservation(
+    string VolumeId,
+    string MountPoint,
+    bool IsOsVolume,
+    bool IsApplicableFixedData,
+    string ProtectionStatus,
+    string ConversionStatus,
+    int? EncryptionPercent,
+    string EncryptionMethod,
+    IReadOnlyList<string> ProtectorTypes,
+    string Source);

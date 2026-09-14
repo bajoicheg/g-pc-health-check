@@ -39,6 +39,7 @@ internal static class Program
             if (result == 0) result = WindowsPlatformSecurityCollectorSelfTest.Run();
             if (result == 0) result = AntivirusSecurityCollectorSelfTest.Run();
             if (result == 0) result = WindowsUpdateSecurityCollectorSelfTest.Run();
+            if (result == 0) result = BitLockerSecurityCollectorSelfTest.Run();
             if (result == 0) result = SystemDiskSelectionSelfTest.Run();
             if (result == 0) result = PortableElevationSelfTest.Run();
             if (result == 0) result = ReadOnlyReviewSelfTest.Run();
