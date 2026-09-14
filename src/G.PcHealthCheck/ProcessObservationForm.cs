@@ -8,13 +8,13 @@ internal sealed class ProcessObservationForm : Form
     private readonly ComboBox _interval = Choice([1, 2, 5], 2);
     private readonly ComboBox _processMetric = new() { Width = 300, DropDownStyle = ComboBoxStyle.DropDownList };
     private readonly ComboBox _systemMetric = new() { Width = 245, DropDownStyle = ComboBoxStyle.DropDownList };
-    private readonly Button _start = Button("Начать / повторить", "ObservationStart");
-    private readonly Button _stop = Button("Остановить наблюдение", "ObservationStop");
-    private readonly Button _mark = Button("Отметить симптом", "ObservationMark");
-    private readonly Button _copy = Button("Копировать сводку", "ObservationCopy");
-    private readonly Button _export = Button("Сохранить HTML / JSON", "ObservationExport");
-    private readonly TextBox _note = new() { Width = 220, MaxLength = 160, Text = "Зависание / задержка" };
-    private readonly Label _status = new() { Dock = DockStyle.Fill, AutoSize = true, Text = "Готов к наблюдению. Данные не собирались." };
+    private readonly Button _start = Button(AppLocalization.T("ProcessObservation.Form.Start"), "ObservationStart");
+    private readonly Button _stop = Button(AppLocalization.T("ProcessObservation.Form.Stop"), "ObservationStop");
+    private readonly Button _mark = Button(AppLocalization.T("ProcessObservation.Form.Mark"), "ObservationMark");
+    private readonly Button _copy = Button(AppLocalization.T("ProcessObservation.Form.Copy"), "ObservationCopy");
+    private readonly Button _export = Button(AppLocalization.T("ProcessObservation.Form.Export"), "ObservationExport");
+    private readonly TextBox _note = new() { Width = 220, MaxLength = 160, Text = AppLocalization.T("ProcessObservation.Form.NoteDefault") };
+    private readonly Label _status = new() { Dock = DockStyle.Fill, AutoSize = true, Text = AppLocalization.T("ProcessObservation.Form.Ready") };
     private readonly Label _stats = new() { Dock = DockStyle.Fill, AutoSize = true };
     private readonly ProgressBar _progress = new() { Width = 90, Style = ProgressBarStyle.Marquee, Visible = false };
     private readonly ProcessObservationTimeline _processChart = new() { Dock = DockStyle.Fill };
@@ -35,29 +35,29 @@ internal sealed class ProcessObservationForm : Form
     public ProcessObservationForm(ProcessObservationTarget target)
     {
         ArgumentNullException.ThrowIfNull(target); _target = target;
-        if (target.Pid == 0 || !ProcessObservationCore.ValidCreatedAt(target.CreatedAt)) throw new ArgumentException("Не определён экземпляр процесса.", nameof(target));
-        Text = "G PC Health Check — наблюдение за процессом"; AutoScaleMode = AutoScaleMode.Dpi; Font = new Font("Segoe UI", 9F);
+        if (target.Pid == 0 || !ProcessObservationCore.ValidCreatedAt(target.CreatedAt)) throw new ArgumentException(AppLocalization.T("ProcessObservation.Form.InvalidTarget"), nameof(target));
+        Text = AppLocalization.T("ProcessObservation.Form.Title"); AutoScaleMode = AutoScaleMode.Dpi; Font = new Font("Segoe UI", 9F);
         Size = new Size(1280, 930); MinimumSize = new Size(1020, 760); StartPosition = FormStartPosition.CenterParent;
         var root = new TableLayoutPanel { Dock = DockStyle.Fill, Padding = new Padding(12), ColumnCount = 1, RowCount = 7 };
         root.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
         root.RowStyles.Add(new RowStyle(SizeType.AutoSize)); root.RowStyles.Add(new RowStyle(SizeType.AutoSize)); root.RowStyles.Add(new RowStyle(SizeType.AutoSize));
         root.RowStyles.Add(new RowStyle(SizeType.Percent, 31)); root.RowStyles.Add(new RowStyle(SizeType.Percent, 31)); root.RowStyles.Add(new RowStyle(SizeType.Percent, 38)); root.RowStyles.Add(new RowStyle(SizeType.AutoSize)); Controls.Add(root);
-        root.Controls.Add(new Label { Dock = DockStyle.Fill, AutoSize = true, Padding = new Padding(0, 0, 0, 6), Text = $"{target.Name} · PID {target.Pid} · создан {target.CreatedAt:O}\nВыбран один экземпляр. После его завершения сбор компьютера продолжается; другой процесс с тем же PID не подставляется." }, 0, 0);
+        root.Controls.Add(new Label { Dock = DockStyle.Fill, AutoSize = true, Padding = new Padding(0, 0, 0, 6), Text = AppLocalization.T("ProcessObservation.Form.Intro", target.Name, target.Pid, target.CreatedAt) }, 0, 0);
         var tools = new FlowLayoutPanel { Dock = DockStyle.Fill, AutoSize = true, WrapContents = true };
-        tools.Controls.AddRange([Caption("Длительность, с"), _duration, Caption("Интервал, с"), _interval, _start, _stop, _progress]); tools.SetFlowBreak(_progress, true);
+        tools.Controls.AddRange([Caption(AppLocalization.T("ProcessObservation.Form.Duration")), _duration, Caption(AppLocalization.T("ProcessObservation.Form.Interval")), _interval, _start, _stop, _progress]); tools.SetFlowBreak(_progress, true);
         tools.Controls.AddRange([_processMetric, _systemMetric, _note, _mark, _copy, _export]); root.Controls.Add(tools, 0, 1);
         foreach (var metric in Enum.GetValues<ProcessMetric>()) _processMetric.Items.Add(ProcessObservationReport.Name(metric));
         foreach (var metric in Enum.GetValues<SessionMetric>()) _systemMetric.Items.Add(PerformanceSessionReport.Name(metric));
         _processMetric.SelectedIndex = _systemMetric.SelectedIndex = 0;
         root.Controls.Add(_stats, 0, 2); root.Controls.Add(_processChart, 0, 3); root.Controls.Add(_systemChart, 0, 4);
-        Column("ProcessOffset", "Процесс, с", typeof(double), 95, "0.000"); Column("State", "Состояние процесса", typeof(string), 170);
-        Column("ProcessCpu", "CPU, %", typeof(double), 80); Column("Working", "Рабочая, MiB", typeof(double), 110); Column("Private", "Private, MiB", typeof(double), 100);
-        Column("Read", "Чтение, MiB/с", typeof(double), 110); Column("Write", "Запись, MiB/с", typeof(double), 110); Column("SystemOffset", "Компьютер, с", typeof(double), 110, "0.000");
-        Column("SystemCpu", "CPU ПК, %", typeof(double), 95); Column("Memory", "RAM ПК, %", typeof(double), 95); Column("Disk", "Диски, %", typeof(double), 90); Column("Queue", "Очередь", typeof(double), 90);
-        var tabs = new TabControl { Dock = DockStyle.Fill }; Page(tabs, "Измерения", _grid); Page(tabs, "Отметки симптомов", _markers); Page(tabs, "Подробности измерения", _detail); Page(tabs, "Сводка и методика", _overview); root.Controls.Add(tabs, 0, 5); root.Controls.Add(_status, 0, 6);
-        _overview.Text = ProcessObservationReport.Boundary + "\r\n\r\nСбор начинается по кнопке. Новый сеанс заменяет предыдущий в окне: экспортируйте нужные результаты заранее.";
+        Column("ProcessOffset", AppLocalization.T("ProcessObservation.Column.ProcessOffset"), typeof(double), 95, "0.000"); Column("State", AppLocalization.T("ProcessObservation.Column.State"), typeof(string), 170);
+        Column("ProcessCpu", "CPU, %", typeof(double), 80); Column("Working", AppLocalization.T("ProcessObservation.Column.Working"), typeof(double), 110); Column("Private", "Private, MiB", typeof(double), 100);
+        Column("Read", AppLocalization.T("ProcessObservation.Column.Read"), typeof(double), 110); Column("Write", AppLocalization.T("ProcessObservation.Column.Write"), typeof(double), 110); Column("SystemOffset", AppLocalization.T("ProcessObservation.Column.SystemOffset"), typeof(double), 110, "0.000");
+        Column("SystemCpu", AppLocalization.T("ProcessObservation.Column.SystemCpu"), typeof(double), 95); Column("Memory", AppLocalization.T("ProcessObservation.Column.SystemMemory"), typeof(double), 95); Column("Disk", AppLocalization.T("ProcessObservation.Column.Disk"), typeof(double), 90); Column("Queue", AppLocalization.T("ProcessObservation.Column.Queue"), typeof(double), 90);
+        var tabs = new TabControl { Dock = DockStyle.Fill }; Page(tabs, AppLocalization.T("ProcessObservation.Tab.Measurements"), _grid); Page(tabs, AppLocalization.T("ProcessObservation.Tab.Markers"), _markers); Page(tabs, AppLocalization.T("ProcessObservation.Tab.Detail"), _detail); Page(tabs, AppLocalization.T("ProcessObservation.Tab.Summary"), _overview); root.Controls.Add(tabs, 0, 5); root.Controls.Add(_status, 0, 6);
+        _overview.Text = AppLocalization.T("ProcessObservation.Form.Overview", ProcessObservationReport.Boundary);
         _start.Click += async (_, _) => await RunAsync();
-        _stop.Click += (_, _) => { _cancellation?.Cancel(); _status.Text = "Остановка запрошена; ожидается возврат системного вызова. Завершённые пары останутся в памяти."; UpdateButtons(); };
+        _stop.Click += (_, _) => { _cancellation?.Cancel(); _status.Text = AppLocalization.T("ProcessObservation.Form.StopRequested"); UpdateButtons(); };
         _mark.Click += (_, _) => Mark(); _copy.Click += (_, _) => { if (_current is { } s) TryUi(() => Clipboard.SetText(ProcessObservationReport.Summary(s))); };
         _export.Click += async (_, _) => await ExportAsync();
         _duration.SelectedIndexChanged += (_, _) => SessionOptionsChanged(); _interval.SelectedIndexChanged += (_, _) => SessionOptionsChanged();
@@ -67,22 +67,22 @@ internal sealed class ProcessObservationForm : Form
         {
             if (_clock is not { } clock || _live is not { } live) return;
             live.System.ElapsedMs = clock.ElapsedMs;
-            if (_cancellation?.IsCancellationRequested != true) _status.Text = $"Наблюдение: {clock.ElapsedMs / 1000d:0.0}/{live.System.Options.DurationSeconds} с; завершённых пар {live.Samples.Count}; отметок {_marks.Count}.";
+            if (_cancellation?.IsCancellationRequested != true) _status.Text = AppLocalization.T("ProcessObservation.Form.Running", clock.ElapsedMs / 1000d, live.System.Options.DurationSeconds, live.Samples.Count, _marks.Count);
             Display();
         };
-        FormClosing += (_, e) => { if (_exporting) { e.Cancel = true; _status.Text = "Дождитесь завершения сохранения файлов."; } else _cancellation?.Cancel(); };
+        FormClosing += (_, e) => { if (_exporting) { e.Cancel = true; _status.Text = AppLocalization.T("ProcessObservation.Form.WaitSave"); } else _cancellation?.Cancel(); };
         UpdateButtons();
     }
     private PerformanceSessionOptions CurrentOptions() => new((int)_duration.SelectedItem!, (int)_interval.SelectedItem!);
     private string SavedStatusText(ProcessObservationSnapshot snapshot)
     {
-        var interrupted = snapshot.System.Warnings.Any(warning => warning.StartsWith("Не удалось завершить сеанс:", StringComparison.Ordinal));
-        var evidence = interrupted
-            ? "Сеанс прерван; доступные данные можно экспортировать."
-            : $"{PerformanceSessionReport.Outcome(snapshot.System.Outcome)} · {snapshot.System.ElapsedMs / 1000d:0.0} с · пар {snapshot.Samples.Count}. Последнее состояние процесса: {(snapshot.Samples.Count == 0 ? "нет данных" : ProcessObservationCore.StateText(snapshot.Samples[^1].Process.Counters.State))}. Экспорт сохраняет данные на диск.";
+        var evidence = snapshot.System.Outcome == "Failed"
+            ? AppLocalization.T("ProcessObservation.Form.Interrupted")
+            : AppLocalization.T("ProcessObservation.Form.SavedStatus", PerformanceSessionReport.Outcome(snapshot.System.Outcome), snapshot.System.ElapsedMs / 1000d, snapshot.Samples.Count,
+                snapshot.Samples.Count == 0 ? AppLocalization.T("ProcessObservation.Form.NoData") : ProcessObservationCore.StateText(snapshot.Samples[^1].Process.Counters.State));
         return CurrentOptions() == snapshot.System.Options
             ? evidence
-            : $"Параметры следующего запуска изменены; показаны результаты предыдущего наблюдения ({snapshot.System.Options.DurationSeconds} с / {snapshot.System.Options.IntervalSeconds} с). {evidence}";
+            : AppLocalization.T("ProcessObservation.Form.PreviousOptions", snapshot.System.Options.DurationSeconds, snapshot.System.Options.IntervalSeconds, evidence);
     }
     private void SessionOptionsChanged()
     {
@@ -91,12 +91,12 @@ internal sealed class ProcessObservationForm : Form
     private async Task RunAsync()
     {
         if (_busy || IsDisposed) return;
-        if (!Gate.Wait(0)) { _status.Text = "Предыдущее наблюдение ещё завершает системный вызов. Дождитесь его окончания."; return; }
+        if (!Gate.Wait(0)) { _status.Text = AppLocalization.T("ProcessObservation.Form.PreviousBusy"); return; }
         using var cancellation = new CancellationTokenSource(); _cancellation = cancellation; _busy = true;
         var clock = new MonotonicPerformanceClock(); _clock = clock;
         var options = CurrentOptions();
         var live = new ProcessObservationSnapshot { Target = _target, System = new() { Options = options, StartedAt = clock.Now, Outcome = "Running" } };
-        _live = live; _current = null; _marks.Clear(); _markers.Items.Clear(); _grid.Rows.Clear(); _detail.Clear(); _stats.Text = "Ожидаю первый замер. Скорости появятся после второй последовательной точки."; _timer.Start(); UpdateButtons();
+        _live = live; _current = null; _marks.Clear(); _markers.Items.Clear(); _grid.Rows.Clear(); _detail.Clear(); _stats.Text = AppLocalization.T("ProcessObservation.Form.WaitFirst"); _timer.Start(); UpdateButtons();
         try
         {
             var progress = new Progress<ProcessObservationSample>(sample =>
@@ -121,7 +121,7 @@ internal sealed class ProcessObservationForm : Form
         {
             if (IsDisposed) return;
             live.System.Outcome = cancellation.IsCancellationRequested ? "Stopped" : "Failed"; live.System.FinishedAt = clock.Now; live.System.ElapsedMs = clock.ElapsedMs;
-            live.System.Markers = _marks.ToList(); live.System.Warnings.Add($"Не удалось завершить сеанс: {ex.GetType().Name}, 0x{ex.HResult:X8}. Сохранена доступная интерфейсу часть данных.");
+            live.System.Markers = _marks.ToList(); live.System.Warnings.Add(AppLocalization.T("ProcessObservation.Form.SessionError", ex.GetType().Name, ex.HResult.ToString("X8")));
             _current = live; _live = null; _overview.Text = ProcessObservationReport.Summary(live); _status.Text = SavedStatusText(live); Display();
         }
         finally { Gate.Release(); _cancellation = null; _clock = null; _busy = false; if (!IsDisposed) { _timer.Stop(); UpdateButtons(); } }
@@ -129,8 +129,8 @@ internal sealed class ProcessObservationForm : Form
     private void Mark()
     {
         if (!_busy || _clock is null || _cancellation?.IsCancellationRequested != false) return;
-        if (!PerformanceStatistics.AddMarker(_marks, _clock.ElapsedMs, _note.Text)) { _status.Text = "Нужна заметка 1–160 символов; максимум 100 отметок."; return; }
-        var marker = _marks[^1]; _markers.Items.Add($"+{marker.OffsetMs / 1000d:0.000} с — {marker.Note}");
+        if (!PerformanceStatistics.AddMarker(_marks, _clock.ElapsedMs, _note.Text)) { _status.Text = AppLocalization.T("ProcessObservation.Form.MarkerInvalid"); return; }
+        var marker = _marks[^1]; _markers.Items.Add(AppLocalization.T("ProcessObservation.Form.MarkerItem", marker.OffsetMs / 1000d, marker.Note));
         if (_live is { } live) live.System.Markers = _marks.ToList(); Display();
     }
     private void Display()
@@ -147,23 +147,23 @@ internal sealed class ProcessObservationForm : Form
     private async Task ExportAsync()
     {
         if (_busy || _current is not { } current) return;
-        using var dialog = new FolderBrowserDialog { Description = "Сохранить весь сеанс. Имена, пути, аккаунты и заметки могут быть чувствительными.", UseDescriptionForTitle = true };
+        using var dialog = new FolderBrowserDialog { Description = AppLocalization.T("ProcessObservation.Form.ExportDescription"), UseDescriptionForTitle = true };
         if (dialog.ShowDialog(this) != DialogResult.OK) return;
-        var parent = dialog.SelectedPath; _busy = _exporting = true; _status.Text = "Сохраняю все графики и измерения…"; UpdateButtons();
-        try { var path = await Task.Run(() => ProcessObservationReport.Save(current, parent)); if (!IsDisposed) _status.Text = "Сохранено: " + path; }
+        var parent = dialog.SelectedPath; _busy = _exporting = true; _status.Text = AppLocalization.T("ProcessObservation.Form.Saving"); UpdateButtons();
+        try { var path = await Task.Run(() => ProcessObservationReport.Save(current, parent)); if (!IsDisposed) _status.Text = AppLocalization.T("ProcessObservation.Form.Saved", path); }
         catch (Exception ex)
         {
             if (!IsDisposed)
             {
                 ApplyExportFailure(ex);
-                MessageBox.Show(this, "Экспорт не завершён полностью. " + ex.Message, "Экспорт", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(this, AppLocalization.T("ProcessObservation.Form.ExportMessage", ex.Message), AppLocalization.T("ProcessObservation.Form.ExportTitle"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
         finally { _busy = _exporting = false; if (!IsDisposed) UpdateButtons(); }
     }
     private void ApplyExportFailure(Exception ex)
     {
-        _status.Text = $"Сохранение не завершено: {ex.GetType().Name}, 0x{ex.HResult:X8}.";
+        _status.Text = AppLocalization.T("ProcessObservation.Form.SaveFailed", ex.GetType().Name, ex.HResult.ToString("X8"));
     }
     private void UpdateButtons()
     {
@@ -178,7 +178,7 @@ internal sealed class ProcessObservationForm : Form
     private static Label Caption(string text) => new() { Text = text, AutoSize = true, Margin = new Padding(4, 7, 4, 3) };
     private static TextBox TextArea() => new() { Dock = DockStyle.Fill, ReadOnly = true, Multiline = true, ScrollBars = ScrollBars.Vertical };
     private static void Page(TabControl tabs, string name, Control control) { var page = new TabPage(name); page.Controls.Add(control); tabs.TabPages.Add(page); }
-    private void TryUi(Action action) { try { action(); } catch (Exception ex) { MessageBox.Show(this, ex.Message, "Действие не завершено", MessageBoxButtons.OK, MessageBoxIcon.Warning); } }
+    private void TryUi(Action action) { try { action(); } catch (Exception ex) { MessageBox.Show(this, ex.Message, AppLocalization.T("ProcessObservation.Form.ActionFailed"), MessageBoxButtons.OK, MessageBoxIcon.Warning); } }
     protected override void Dispose(bool disposing) { if (disposing) { _cancellation?.Cancel(); _timer.Dispose(); } base.Dispose(disposing); }
 }
 
