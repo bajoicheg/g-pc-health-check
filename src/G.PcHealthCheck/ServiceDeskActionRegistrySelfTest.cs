@@ -78,7 +78,7 @@ internal static class ServiceDeskActionRegistrySelfTest
             Require(Flag(all["RestartNetworkAdapters"], "MayBreakConnectivity") && Flag(all["DhcpReleaseRenew"], "MayBreakConnectivity"), "Connectivity disruption metadata missing.");
         });
 
-        Test("prohibited IDs stay absent while Task 7 stages every handler except full GpUpdate", () =>
+        Test("prohibited IDs stay absent while Task 8 enables exact 14 and legacy worker excludes split GpUpdate", () =>
         {
             var ids = Descriptors().Select(Id).ToHashSet(StringComparer.OrdinalIgnoreCase);
             foreach (var prohibited in new[] { "DisableDefender", "StopEDR", "DisableFirewall", "ClearEventLog", "RunCommand", "ArbitraryService" })
@@ -87,10 +87,13 @@ internal static class ServiceDeskActionRegistrySelfTest
             var executable = RegistryType().GetProperty("ExecutableHandlerIds", BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)?.GetValue(null)
                 ?? throw new InvalidOperationException("ExecutableHandlerIds metadata is missing.");
             var executableIds = ((IEnumerable)executable).Cast<object>().Select(Convert.ToString).Where(x => x is not null).Cast<string>().ToHashSet(StringComparer.Ordinal);
-            var expected = ExactAllSet.Where(x => !x.Equals("GpUpdate", StringComparison.Ordinal)).ToHashSet(StringComparer.Ordinal);
-            Require(executableIds.SetEquals(expected) && executableIds.Count == 13,
-                "Task 7 executable set must be every fixed action except full GpUpdate.");
-            Require(!executableIds.Contains("GpUpdate"), "Full GpUpdate became executable before original-user phase orchestration.");
+            Require(executableIds.SetEquals(ExactAllSet) && executableIds.Count == ExactAllSet.Length,
+                "Task 8 executable set must be the exact approved 14-action allow-list.");
+
+            var worker = RegistryType().GetProperty("WorkerExecutableHandlerIds", BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)?.GetValue(null)
+                ?? throw new InvalidOperationException("WorkerExecutableHandlerIds metadata is missing.");
+            var workerIds = ((IEnumerable)worker).Cast<object>().Select(Convert.ToString).Where(x => x is not null).Cast<string>().ToHashSet(StringComparer.Ordinal);
+            Require(!workerIds.Contains("GpUpdate"), "Legacy one-shot worker accepted full split GpUpdate.");
         });
 
         Test("recommendation semantics are stable and do not depend on localized Kind", () =>

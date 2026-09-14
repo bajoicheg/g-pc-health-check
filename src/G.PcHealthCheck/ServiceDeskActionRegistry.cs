@@ -87,16 +87,18 @@ internal static class ServiceDeskActionRegistry
     private static readonly Dictionary<string, ServiceDeskActionDescriptor> ById =
         All.ToDictionary(x => x.Id, StringComparer.OrdinalIgnoreCase);
 
-    // Task 7 stages every approved fixed handler except the split GpUpdate action.
-    // Full GpUpdate becomes executable only when Task 8 can preserve original-user identity.
+    // Task 8 completes the phased parent/worker orchestration, including split GpUpdate.
+    // The GUI/executor can therefore request the exact approved 14-action set.
     public static IReadOnlySet<string> ExecutableHandlerIds { get; } =
         new HashSet<string>(
         [
             "CleanTemp", "FlushDns", "RegisterDns", "DhcpReleaseRenew", "WinsockReset", "TcpIpReset",
-            "RestartNetworkAdapters", "RestartSpooler", "ClearPrintQueue", "RestartUpdateServices",
+            "RestartNetworkAdapters", "RestartSpooler", "ClearPrintQueue", "RestartUpdateServices", "GpUpdate",
             "TimeResync", "Dism", "Sfc"
         ], StringComparer.OrdinalIgnoreCase);
 
+    // Legacy one-shot --worker remains intentionally narrower: full GpUpdate is split
+    // between machine and original-user phases and is valid only in the phased protocol.
     public static IReadOnlySet<string> WorkerExecutableHandlerIds { get; } =
         new HashSet<string>(
         [

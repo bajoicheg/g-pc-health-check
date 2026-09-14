@@ -224,7 +224,7 @@ internal static class NetworkRepairSelfTest
             Require(!FakeProxy.Calls.Contains("CycleDhcpLease:PHYS-STATIC") && !FakeProxy.Calls.Contains("CycleDhcpLease:DISABLED-DHCP") && !FakeProxy.Calls.Contains("CycleDhcpLease:DISCONNECTED-DHCP"), "Static/disabled/disconnected adapter received DHCP cycle.");
         });
 
-        Test("network order reboot flags and executable staging match approved Task 7 boundary", () =>
+        Test("network order reboot flags and Task 8 full executable coverage match approved boundary", () =>
         {
             var descriptors = ServiceDeskActionRegistry.All.ToDictionary(x => x.Id, StringComparer.OrdinalIgnoreCase);
             var order = new[] { "WinsockReset", "TcpIpReset", "RestartNetworkAdapters", "DhcpReleaseRenew", "RegisterDns" }
@@ -241,8 +241,11 @@ internal static class NetworkRepairSelfTest
             Require(Success(register) && !Reboot(register), "Register DNS incorrectly requires reboot.");
 
             var executable = ServiceDeskActionRegistry.ExecutableHandlerIds.ToHashSet(StringComparer.OrdinalIgnoreCase);
-            Require(executable.Count == 13 && !executable.Contains("GpUpdate") && ServiceDeskActionRegistry.All.Where(x => !x.Id.Equals("GpUpdate", StringComparison.OrdinalIgnoreCase)).All(x => executable.Contains(x.Id)),
-                "Task 7 must stage exactly all actions except full GpUpdate.");
+            var all = ServiceDeskActionRegistry.All.Select(x => x.Id).ToHashSet(StringComparer.OrdinalIgnoreCase);
+            Require(executable.SetEquals(all) && executable.Count == 14,
+                "Task 8 must expose exact 14/14 executable coverage.");
+            Require(!ServiceDeskActionRegistry.WorkerExecutableHandlerIds.Contains("GpUpdate"),
+                "Legacy worker accepted full split GpUpdate.");
             Require(typeof(RemediationActionResult).GetProperty("RebootRecommended")?.PropertyType == typeof(bool), "Per-action reboot marker missing.");
         });
 

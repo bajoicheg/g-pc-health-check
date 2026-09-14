@@ -1,4 +1,3 @@
-using System.ComponentModel;
 using System.Diagnostics;
 using System.IO.Pipes;
 using System.Security.AccessControl;
@@ -78,96 +77,54 @@ public static class RemediationWorker
         return 48;
     }
 
-    public static async Task<RemediationBatchResult> ExecuteFromGuiAsync(
+    public static Task<RemediationBatchResult> ExecuteFromGuiAsync(
         IReadOnlyCollection<ActionRecommendation> selected,
         int tempDays,
         IProgress<string>? progress = null)
     {
-        var ids = selected.Where(x => x.CanAutomate)
+        ArgumentNullException.ThrowIfNull(selected);
+        var ids = selected
+            .Where(x => x.CanAutomate)
             .Select(x => x.Id)
-            .Where(ServiceDeskActionRegistry.IsExecutableHandler)
-            .Distinct(StringComparer.OrdinalIgnoreCase).ToList();
-        if (ids.Count == 0) throw new InvalidOperationException("Не выбрано ни одного автоматизируемого действия.");
-        NormalizeOrder(ids);
-        tempDays = Math.Clamp(tempDays, 1, 30);
+            .Where(x => !string.IsNullOrWhiteSpace(x))
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .ToList();
+        return ExecuteActionIdsAsync(ids, tempDays, progress);
+    }
 
-        // Never authorize from the GUI's saved snapshot or caller-supplied RequiresAdmin.
-        var context = await Task.Run(ExecutionContextService.Capture);
-        var unavailable = ids.Select(id => (Id: id, Availability: ExecutionPolicy.For(id, context)))
-            .Where(x => !x.Availability.CanRequest).ToList();
-        if (unavailable.Count > 0)
-            throw new InvalidOperationException("Набор не выполнен: " + string.Join("; ", unavailable.Select(x => x.Id + ": " + x.Availability.Reason)));
-        var requiresAdmin = ids.Any(RequiresAdministrator);
-        var exe = Environment.ProcessPath ?? throw new InvalidOperationException("Не удалось определить путь к EXE.");
-        if (!requiresAdmin || context.HasAdministratorToken == true)
+    internal static Task<RemediationBatchResult> ExecuteActionIdsAsync(
+        IReadOnlyCollection<string> actionIds,
+        int tempDays,
+        IProgress<string>? progress = null)
+    {
+        ArgumentNullException.ThrowIfNull(actionIds);
+        var ids = actionIds.ToArray();
+        progress?.Report("Запускаю защищённое пофазное выполнение выбранных действий…");
+        return Task.Run(() =>
         {
-            progress?.Report(requiresAdmin ? "Административные права уже активны. Выполняю выбранные действия…" : "Выполняю выбранные действия…");
-            return await Task.Run(() => Execute(Guid.NewGuid().ToString("D"), ids, tempDays));
-        }
-
-        // CleanTemp never enters the elevated worker; the original parent rechecks its
-        // current-session subject before deletion, after the worker returns a result.
-        var workerIds = ids.Where(ServiceDeskActionRegistry.IsWorkerExecutableHandler).ToList();
-        if (workerIds.Count == 0) throw new InvalidOperationException("Не выбрано административных действий для elevated worker.");
-        NormalizeOrder(workerIds);
-        var session = Guid.NewGuid().ToString("D");
-        var pipeName = PipePrefix + session;
-        var nonce = Convert.ToHexString(System.Security.Cryptography.RandomNumberGenerator.GetBytes(32));
-        progress?.Report("Запрашиваю права администратора через UAC…");
-
-        await using var pipe = CreatePipeServer(pipeName);
-        var waitForConnection = pipe.WaitForConnectionAsync();
-        var psi = CreateElevationStartInfo(exe,
-            BuildWorkerArguments("--worker", session, string.Join(',', workerIds), tempDays, pipeName, nonce));
-        Process child;
-        try { child = Process.Start(psi) ?? throw new InvalidOperationException("Не удалось запустить elevated-процесс."); }
-        catch (Win32Exception ex) when (ex.NativeErrorCode == 1223) { throw new OperationCanceledException("Запрос UAC отменён."); }
-
-        using (child)
-        {
-            var childExitTask = child.WaitForExitAsync();
-            var connectionTimeout = Task.Delay(TimeSpan.FromMinutes(2));
-            var first = await Task.WhenAny(waitForConnection, childExitTask, connectionTimeout);
-            if (first == childExitTask)
-            {
-                await childExitTask;
-                throw new InvalidOperationException($"Elevated worker завершился до подключения к каналу результата. Код: {child.ExitCode}.");
-            }
-            if (first == connectionTimeout)
-            {
-                TryKill(child);
-                throw new TimeoutException("Elevated worker не подключился к защищённому каналу результата за 2 минуты.");
-            }
-            await waitForConnection;
-            progress?.Report("Административные действия выполняются…");
-            using var reader = new StreamReader(pipe, new UTF8Encoding(false), detectEncodingFromByteOrderMarks: false, bufferSize: 16 * 1024, leaveOpen: true);
-            var readTask = reader.ReadToEndAsync();
-            var operationTimeout = Task.Delay(TimeSpan.FromMinutes(125));
-            var all = Task.WhenAll(readTask, childExitTask);
-            if (await Task.WhenAny(all, operationTimeout) == operationTimeout)
-            {
-                TryKill(child);
-                throw new TimeoutException("Превышено общее время выполнения административных действий.");
-            }
-            await all;
-            var json = await readTask;
-            if (string.IsNullOrWhiteSpace(json))
-                throw new InvalidOperationException($"Elevated worker завершился с кодом {child.ExitCode}, но не вернул результат.");
-            var envelope = JsonSerializer.Deserialize<WorkerEnvelope>(json, JsonOptions())
-                ?? throw new InvalidOperationException("Некорректный результат elevated worker.");
-            if (!FixedTimeAsciiEquals(envelope.Nonce, nonce)) throw new InvalidOperationException("Не удалось подтвердить подлинность результата elevated worker.");
-            if (!string.Equals(envelope.Result.SessionId, session, StringComparison.OrdinalIgnoreCase))
-                throw new InvalidOperationException("Session ID результата elevated worker не совпадает с запросом.");
-
-            if (ids.Contains("CleanTemp", StringComparer.OrdinalIgnoreCase))
-            {
-                progress?.Report("Административные действия завершены. Проверяю пользовательский контекст перед очисткой Temp…");
-                var localClean = await Task.Run(() => Execute(Guid.NewGuid().ToString("D"), ["CleanTemp"], tempDays));
-                MergeInto(envelope.Result, localClean);
-            }
+            var result = ExecuteActionIdsCore(ids, tempDays, new WindowsServiceDeskBatchRuntime());
             progress?.Report("Выбранные действия завершены. Запускаю автопроверку…");
-            return envelope.Result;
-        }
+            return result;
+        });
+    }
+
+    internal static RemediationBatchResult ExecuteActionIdsCore(
+        IReadOnlyCollection<string> actionIds,
+        int tempDays,
+        IServiceDeskBatchRuntime runtime)
+    {
+        ArgumentNullException.ThrowIfNull(actionIds);
+        ArgumentNullException.ThrowIfNull(runtime);
+        var ids = actionIds
+            .Where(x => !string.IsNullOrWhiteSpace(x))
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .ToList();
+        if (ids.Count == 0)
+            throw new InvalidOperationException("Не выбрано ни одного автоматизируемого действия.");
+        var invalid = ids.Where(id => !ServiceDeskActionRegistry.IsExecutableHandler(id)).ToList();
+        if (invalid.Count > 0)
+            throw new InvalidOperationException("Набор содержит действие вне фиксированного executable allow-list: " + string.Join(", ", invalid));
+        return ServiceDeskBatchExecutor.ExecuteCore(ids, Math.Clamp(tempDays, 1, 30), runtime);
     }
 
     internal static NamedPipeServerStream CreatePipeServer(string pipeName)
@@ -227,16 +184,14 @@ public static class RemediationWorker
         NormalizeOrder(actions);
         return actions.Count > 0;
     }
+
     private static bool RequiresAdministrator(string actionId)
         => ServiceDeskActionRegistry.Find(actionId)?.RequiresAdministrator == true;
+
     private static string BuildWorkerArguments(string mode, string session, string actions, int tempDays, string pipeName, string nonce)
         => $"{mode} --session {Quote(session)} --actions {Quote(actions)} --temp-days {tempDays} --pipe {Quote(pipeName)} --nonce {Quote(nonce)}";
+
     private static string Quote(string value) => "\"" + value.Replace("\"", "\\\"") + "\"";
-    private static bool FixedTimeAsciiEquals(string? actual, string expected)
-    {
-        var a = Encoding.ASCII.GetBytes(actual ?? string.Empty); var b = Encoding.ASCII.GetBytes(expected);
-        return a.Length == b.Length && System.Security.Cryptography.CryptographicOperations.FixedTimeEquals(a, b);
-    }
 
     private static RemediationBatchResult Execute(string session, IReadOnlyCollection<string> requested, int tempDays)
     {
@@ -260,8 +215,10 @@ public static class RemediationWorker
                     : ServiceDeskNonNetworkHandlers.Execute(id, operations);
             }
             catch (Exception ex) { result = new() { Id = id, Success = false, Message = ex.Message }; }
-            result.StartedAt = started; result.FinishedAt = DateTime.Now;
-            result.ExecutionContext = context; result.TargetScope = availability.Scope;
+            result.StartedAt = started;
+            result.FinishedAt = DateTime.Now;
+            result.ExecutionContext = context;
+            result.TargetScope = availability.Scope;
             batch.Actions.Add(result);
             batch.Elevated |= context.IsElevated == true || context.HasAdministratorToken == true;
         }
@@ -275,7 +232,8 @@ public static class RemediationWorker
         if (root is null)
             return new() { Id = "CleanTemp", Success = false, Message = "Очистка не запущена: нужен неповышенный процесс того же пользователя и подтверждённый профиль текущего сеанса." };
         var cutoff = DateTime.Now.AddDays(-Math.Clamp(olderThanDays, 1, 30));
-        long files = 0, bytes = 0; var errors = 0;
+        long files = 0, bytes = 0;
+        var errors = 0;
         // Directory.Exists conflates a missing path, a regular file and an access
         // failure. Only a positively identified missing directory is a no-op success.
         try
@@ -285,13 +243,18 @@ public static class RemediationWorker
                 return new() { Id = "CleanTemp", Success = false, Message = "Корень Temp не является обычной папкой; очистка не начата." };
         }
         catch (Exception ex) when (ex is FileNotFoundException or DirectoryNotFoundException)
-        { return new() { Id = "CleanTemp", Success = true, Message = "Каталог Temp отсутствует; файлы не удалялись." }; }
+        {
+            return new() { Id = "CleanTemp", Success = true, Message = "Каталог Temp отсутствует; файлы не удалялись." };
+        }
         catch (Exception ex)
-        { return new() { Id = "CleanTemp", Success = false, Message = $"Корень Temp недоступен: {ex.GetType().Name}, 0x{ex.HResult:X8}. Файлы не удалялись." }; }
+        {
+            return new() { Id = "CleanTemp", Success = false, Message = $"Корень Temp недоступен: {ex.GetType().Name}, 0x{ex.HResult:X8}. Файлы не удалялись." };
+        }
         var rootFull = Path.GetFullPath(root).TrimEnd(Path.DirectorySeparatorChar);
         if (IsReparsePoint(rootFull))
             return new() { Id = "CleanTemp", Success = false, Message = "Корень пользовательского Temp является reparse point или недоступен; очистка отменена." };
-        var stack = new Stack<string>(); stack.Push(rootFull);
+        var stack = new Stack<string>();
+        stack.Push(rootFull);
         while (stack.Count > 0)
         {
             var current = stack.Pop();
@@ -309,34 +272,35 @@ public static class RemediationWorker
                     var info = new FileInfo(entry);
                     if (info.LastWriteTime >= cutoff) continue;
                     var len = info.Length;
-                    File.Delete(entry); files++; bytes += len;
+                    File.Delete(entry);
+                    files++;
+                    bytes += len;
                 }
                 catch { errors++; }
             }
         }
         return new()
         {
-            Id = "CleanTemp", Success = true, FreedMB = Math.Round(bytes / 1024d / 1024d, 1), DeletedFiles = files,
+            Id = "CleanTemp",
+            Success = true,
+            FreedMB = Math.Round(bytes / 1024d / 1024d, 1),
+            DeletedFiles = files,
             Message = $"Temp текущего пользователя: удалено файлов {files}; освобождено {bytes / 1024d / 1024d:0.0} MB; пропущено/ошибок: {errors}."
         };
     }
 
-    private static void MergeInto(RemediationBatchResult target, RemediationBatchResult addition)
-    {
-        target.Actions.AddRange(addition.Actions); target.Elevated |= addition.Elevated;
-        if (addition.StartedAt < target.StartedAt) target.StartedAt = addition.StartedAt;
-        if (addition.FinishedAt > target.FinishedAt) target.FinishedAt = addition.FinishedAt;
-    }
     private static void WriteResult(Stream stream, WorkerEnvelope envelope)
     {
         var json = JsonSerializer.Serialize(envelope, JsonOptions());
         using var writer = new StreamWriter(stream, new UTF8Encoding(false), 16 * 1024, leaveOpen: true) { AutoFlush = true };
         writer.Write(json);
     }
+
     internal static ProcessStartInfo CreateWorkerStartInfo(string executablePath, string arguments, bool requestElevation)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(executablePath);
-        if (!Path.IsPathFullyQualified(executablePath)) throw new ArgumentException("Не удалось определить полный путь к текущему EXE.", nameof(executablePath));
+        if (!Path.IsPathFullyQualified(executablePath))
+            throw new ArgumentException("Не удалось определить полный путь к текущему EXE.", nameof(executablePath));
         if (requestElevation)
         {
             return new ProcessStartInfo
@@ -358,29 +322,41 @@ public static class RemediationWorker
             WorkingDirectory = Environment.SystemDirectory
         };
     }
+
     internal static ProcessStartInfo CreateElevationStartInfo(string executablePath, string arguments)
         => CreateWorkerStartInfo(executablePath, arguments, requestElevation: true);
+
     private static bool IsValidPipeName(string? pipeName, string session)
-        => !string.IsNullOrWhiteSpace(pipeName) && pipeName.Length <= 128 && string.Equals(pipeName, PipePrefix + session, StringComparison.OrdinalIgnoreCase);
-    private static bool IsValidNonce(string? nonce) => nonce is { Length: 64 } && nonce.All(Uri.IsHexDigit);
+        => !string.IsNullOrWhiteSpace(pipeName)
+            && pipeName.Length <= 128
+            && string.Equals(pipeName, PipePrefix + session, StringComparison.OrdinalIgnoreCase);
+
+    private static bool IsValidNonce(string? nonce)
+        => nonce is { Length: 64 } && nonce.All(Uri.IsHexDigit);
+
     private static bool IsReparsePoint(string path)
     {
         try { return (File.GetAttributes(path) & FileAttributes.ReparsePoint) != 0; }
         catch { return true; }
     }
+
     private static void NormalizeOrder(List<string> ids)
     {
         var ordered = ServiceDeskActionRegistry.OrderExecutable(ids);
         ids.Clear();
         ids.AddRange(ordered);
     }
-    private static void TryKill(Process process) { try { if (!process.HasExited) process.Kill(true); } catch { } }
+
     private static string? Arg(string[] args, string name)
     {
-        for (var i = 0; i < args.Length - 1; i++) if (args[i].Equals(name, StringComparison.OrdinalIgnoreCase)) return args[i + 1];
+        for (var i = 0; i < args.Length - 1; i++)
+            if (args[i].Equals(name, StringComparison.OrdinalIgnoreCase)) return args[i + 1];
         return null;
     }
-    private static JsonSerializerOptions JsonOptions() => new() { WriteIndented = false, PropertyNameCaseInsensitive = true };
+
+    private static JsonSerializerOptions JsonOptions()
+        => new() { WriteIndented = false, PropertyNameCaseInsensitive = true };
+
     private sealed class WorkerEnvelope
     {
         public string Nonce { get; set; } = "";

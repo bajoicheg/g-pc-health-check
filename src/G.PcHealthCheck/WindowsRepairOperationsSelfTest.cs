@@ -140,6 +140,7 @@ internal static class WindowsRepairOperationsSelfTest
             Check("FlushDns", "ipconfig.exe", "/flushdns");
             Check("TimeResync", "w32tm.exe", "/resync /rediscover");
             Check("GpUpdateComputer", "gpupdate.exe", "/target:computer /force /wait:60");
+            Check("GpUpdateUser", "gpupdate.exe", "/target:user /force /wait:60");
             Check("Dism", "dism.exe", "/Online /Cleanup-Image /RestoreHealth");
             Check("Sfc", "sfc.exe", "/scannow");
         });
@@ -214,7 +215,7 @@ internal static class WindowsRepairOperationsSelfTest
             Require(FakeProxy.Calls.Contains("RestartService:Bits:True"), "Stopped non-disabled BITS was not started.");
         });
 
-        Test("time and machine Group Policy use fixed commands while full GpUpdate stays staged", () =>
+        Test("fixed machine/user Group Policy commands coexist with exact Task 8 full coverage", () =>
         {
             var fake = Fake();
             Require(Success(Execute("TimeResync", fake)) && FakeProxy.Calls.Contains("RunFixedCommand:TimeResync"), "TimeResync did not use fixed command.");
@@ -226,10 +227,11 @@ internal static class WindowsRepairOperationsSelfTest
             Require(Success(gpResult) && FakeProxy.Calls.Contains("RunFixedCommand:GpUpdateComputer"), "Machine GpUpdate did not use fixed computer-policy command.");
 
             var executable = ServiceDeskActionRegistry.ExecutableHandlerIds.ToHashSet(StringComparer.OrdinalIgnoreCase);
-            var expected = ServiceDeskActionRegistry.All.Where(x => !x.Id.Equals("GpUpdate", StringComparison.OrdinalIgnoreCase)).Select(x => x.Id).ToHashSet(StringComparer.OrdinalIgnoreCase);
-            Require(executable.SetEquals(expected) && executable.Count == 13,
-                "Task 7 executable set must include every fixed action except full GpUpdate.");
-            Require(!executable.Contains("GpUpdate"), "Full GpUpdate became executable before original-user phase orchestration exists.");
+            var all = ServiceDeskActionRegistry.All.Select(x => x.Id).ToHashSet(StringComparer.OrdinalIgnoreCase);
+            Require(executable.SetEquals(all) && executable.Count == 14,
+                "Task 8 executable set must be the exact approved 14-action set.");
+            Require(!ServiceDeskActionRegistry.WorkerExecutableHandlerIds.Contains("GpUpdate"),
+                "Legacy one-shot worker accepted full split GpUpdate.");
         });
 
         Console.WriteLine($"Fixed non-network repair self-test: {count - failures.Count}/{count} passed.");
