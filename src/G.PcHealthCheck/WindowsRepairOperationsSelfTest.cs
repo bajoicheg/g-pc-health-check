@@ -166,6 +166,42 @@ internal static class WindowsRepairOperationsSelfTest
             Require(!Convert.ToBoolean(safe.Invoke(null, [windows, Path.Combine(exact, "..", "..", "Temp"), FileAttributes.Directory])), "Traversal path accepted as print queue.");
         });
 
+        Test("queue deletion requires a confirmed stopped Spooler and always attempts recovery", () =>
+        {
+            var core = NativeType().GetMethod("ClearPrintQueueCore", BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)
+                ?? throw new InvalidOperationException("ClearPrintQueueCore safety seam is missing.");
+            var windows = @"C:\Windows";
+            var exact = Path.Combine(windows, "System32", "spool", "PRINTERS");
+            var spool = Path.Combine(exact, "synthetic.spl");
+            var deleted = new List<string>();
+            var restarted = false;
+            var failedStop = core.Invoke(null,
+            [
+                windows, exact, FileAttributes.Directory,
+                (Func<bool>)(() => false),
+                (Func<bool>)(() => { restarted = true; return true; }),
+                (Func<IEnumerable<string>>)(() => [spool]),
+                (Func<string, FileAttributes>)(_ => FileAttributes.Normal),
+                (Action<string>)(path => deleted.Add(path))
+            ]) ?? throw new InvalidOperationException("Queue core returned no result.");
+            Require(deleted.Count == 0, "Queue file was deleted although Spooler stop failed.");
+            Require(restarted, "Spooler recovery was not attempted after failed stop.");
+            Require(!Success(failedStop), "Failed Spooler stop was reported as successful queue cleanup.");
+
+            deleted.Clear(); restarted = false;
+            var stopped = core.Invoke(null,
+            [
+                windows, exact, FileAttributes.Directory,
+                (Func<bool>)(() => true),
+                (Func<bool>)(() => { restarted = true; return true; }),
+                (Func<IEnumerable<string>>)(() => [spool]),
+                (Func<string, FileAttributes>)(_ => FileAttributes.Normal),
+                (Action<string>)(path => deleted.Add(path))
+            ]) ?? throw new InvalidOperationException("Queue core returned no result.");
+            Require(deleted.SequenceEqual([spool]), "Queue file was not deleted after a confirmed Spooler stop.");
+            Require(restarted && Success(stopped), "Successful queue cleanup did not restore Spooler/report success.");
+        });
+
         Test("RestartUpdateServices never enables a Disabled service", () =>
         {
             var fake = Fake();
