@@ -183,8 +183,16 @@ public sealed class Assessment
 
 public sealed class ActionRecommendation
 {
+    private RecommendationClass? _recommendationClass;
+
     public string Id { get; set; } = "";
+    // Display-only legacy label. Program logic must use RecommendationClass.
     public string Kind { get; set; } = "";
+    public RecommendationClass RecommendationClass
+    {
+        get => _recommendationClass ?? (CanAutomate ? (Preselected ? RecommendationClass.Recommended : RecommendationClass.Optional) : RecommendationClass.Manual);
+        set => _recommendationClass = value;
+    }
     public string Title { get; set; } = "";
     public string Reason { get; set; } = "";
     public bool CanAutomate { get; set; }
