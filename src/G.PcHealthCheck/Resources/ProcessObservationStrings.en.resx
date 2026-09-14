@@ -6,4 +6,5 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
   <data name="ProcessObservation.Link.Button" xml:space="preserve"><value>Observe process…</value></data>
   <data name="ProcessObservation.Link.PanelMissing" xml:space="preserve"><value>The process panel is not prepared.</value></data>
+  <data name="ProcessObservation.Link.UnavailableTitle" xml:space="preserve"><value>Observation unavailable</value></data>
 </root>
