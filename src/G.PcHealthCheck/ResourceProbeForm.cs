@@ -6,17 +6,17 @@ namespace G.PcHealthCheck;
 internal sealed class ResourceProbeForm : Form
 {
     private readonly ResourceProbeService _service;
-    private readonly TextBox _host = new() { Name = "ProbeHost", Width = 280, PlaceholderText = "Имя узла или IP, без https://", MaxLength = 255 };
+    private readonly TextBox _host = new() { Name = "ProbeHost", Width = 280, PlaceholderText = AppLocalization.T("ResourceProbe.Form.HostPlaceholder"), MaxLength = 255 };
     private readonly NumericUpDown _port = new() { Name = "ProbePort", Minimum = 1, Maximum = 65535, Value = 443, Width = 85 };
     private readonly NumericUpDown _timeout = new() { Minimum = 1, Maximum = 10, Value = 3, Width = 55 };
     private readonly ComboBox _presets = new() { DropDownStyle = ComboBoxStyle.DropDownList, Width = 145 };
-    private readonly CheckBox _consent = new() { Name = "ProbeConsent", AutoSize = true, Text = "Разрешаю DNS/TCP-обращения к указанной цели. Настройки сети не изменяются." };
-    private readonly Button _run = MakeButton("Проверить / повторить", "ProbeRun");
-    private readonly Button _cancel = MakeButton("Отменить", "ProbeCancel");
-    private readonly Button _copy = MakeButton("Копировать сводку", "ProbeCopy");
-    private readonly Button _export = MakeButton("Сохранить HTML / JSON", "ProbeExport");
+    private readonly CheckBox _consent = new() { Name = "ProbeConsent", AutoSize = true, Text = AppLocalization.T("ResourceProbe.Form.Consent") };
+    private readonly Button _run = MakeButton(AppLocalization.T("ResourceProbe.Form.Run"), "ProbeRun");
+    private readonly Button _cancel = MakeButton(AppLocalization.T("ResourceProbe.Form.Cancel"), "ProbeCancel");
+    private readonly Button _copy = MakeButton(AppLocalization.T("ResourceProbe.Form.Copy"), "ProbeCopy");
+    private readonly Button _export = MakeButton(AppLocalization.T("ResourceProbe.Form.Export"), "ProbeExport");
     private readonly Label _validation = new() { AutoSize = true, Dock = DockStyle.Fill };
-    private readonly Label _snapshotLabel = new() { AutoSize = true, Dock = DockStyle.Fill, Text = "Проверка ещё не запускалась." };
+    private readonly Label _snapshotLabel = new() { AutoSize = true, Dock = DockStyle.Fill, Text = AppLocalization.T("ResourceProbe.Form.NotRun") };
     private readonly Label _status = new() { AutoSize = true };
     private readonly Label _elapsed = new() { AutoSize = true };
     private readonly ProgressBar _progress = new() { Width = 90, Height = 16, Style = ProgressBarStyle.Marquee, Visible = false };
@@ -33,7 +33,7 @@ internal sealed class ResourceProbeForm : Form
     public ResourceProbeForm(IResourceProbeNetwork network)
     {
         _service = new(network);
-        Text = "G PC Health Check — доступность ресурса";
+        Text = AppLocalization.T("ResourceProbe.Form.Title");
         Size = new Size(1150, 790); MinimumSize = new Size(900, 680); AutoScaleMode = AutoScaleMode.Dpi;
         Font = new Font("Segoe UI", 9F); StartPosition = FormStartPosition.CenterParent;
         var root = new TableLayoutPanel { Dock = DockStyle.Fill, Padding = new Padding(12), ColumnCount = 1, RowCount = 8 };
@@ -43,8 +43,15 @@ internal sealed class ResourceProbeForm : Form
         Controls.Add(root);
         root.Controls.Add(new Label { Dock = DockStyle.Fill, AutoSize = true, Padding = new Padding(0, 0, 0, 10), Text = ResourceProbeReport.Boundary }, 0, 0);
         var inputs = new FlowLayoutPanel { Dock = DockStyle.Fill, AutoSize = true, WrapContents = true };
-        inputs.Controls.AddRange([Label("Узел:"), _host, Label("TCP-порт:"), _port, _presets, Label("TCP-тайм-аут, с:"), _timeout]);
-        _presets.Items.AddRange(["Порт вручную", "HTTPS · 443", "HTTP · 80", "SMB · 445", "RDP · 3389", "SMTP · 25"]); _presets.SelectedIndex = 0;
+        inputs.Controls.AddRange([Label(AppLocalization.T("ResourceProbe.Form.Host")), _host, Label(AppLocalization.T("ResourceProbe.Form.Port")), _port, _presets, Label(AppLocalization.T("ResourceProbe.Form.Timeout")), _timeout]);
+        _presets.Items.AddRange([
+            AppLocalization.T("ResourceProbe.Form.Preset.Manual"),
+            AppLocalization.T("ResourceProbe.Form.Preset.Https"),
+            AppLocalization.T("ResourceProbe.Form.Preset.Http"),
+            AppLocalization.T("ResourceProbe.Form.Preset.Smb"),
+            AppLocalization.T("ResourceProbe.Form.Preset.Rdp"),
+            AppLocalization.T("ResourceProbe.Form.Preset.Smtp")]);
+        _presets.SelectedIndex = 0;
         _presets.SelectedIndexChanged += (_, _) => { var ports = new[] { 0, 443, 80, 445, 3389, 25 }; if (_presets.SelectedIndex > 0) _port.Value = ports[_presets.SelectedIndex]; };
         root.Controls.Add(inputs, 0, 1); root.Controls.Add(_validation, 0, 2); root.Controls.Add(_consent, 0, 3);
         var buttons = new FlowLayoutPanel { Dock = DockStyle.Fill, AutoSize = true, WrapContents = true };
@@ -55,20 +62,20 @@ internal sealed class ResourceProbeForm : Form
         _grid.Dock = DockStyle.Fill; _grid.ReadOnly = true; _grid.AllowUserToAddRows = false; _grid.AllowUserToDeleteRows = false; _grid.RowHeadersVisible = false;
         _grid.SelectionMode = DataGridViewSelectionMode.FullRowSelect; _grid.MultiSelect = false; _grid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
         _grid.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-        _grid.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "Этап", Width = 65 });
-        _grid.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "Имя / удалённый адрес", Width = 250 });
-        _grid.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "Результат", Width = 195 });
-        _grid.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "мс", Width = 85, ValueType = typeof(double), DefaultCellStyle = new DataGridViewCellStyle { Format = "0.##" } });
-        _grid.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "Исходный IP", Width = 150 });
-        _grid.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "Код", AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill, MinimumWidth = 100 });
+        _grid.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = AppLocalization.T("ResourceProbe.Column.Stage"), Width = 65 });
+        _grid.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = AppLocalization.T("ResourceProbe.Column.Endpoint"), Width = 250 });
+        _grid.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = AppLocalization.T("ResourceProbe.Column.Result"), Width = 195 });
+        _grid.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = AppLocalization.T("ResourceProbe.Column.Milliseconds"), Width = 85, ValueType = typeof(double), DefaultCellStyle = new DataGridViewCellStyle { Format = "0.##" } });
+        _grid.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = AppLocalization.T("ResourceProbe.Column.LocalIp"), Width = 150 });
+        _grid.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = AppLocalization.T("ResourceProbe.Column.Code"), AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill, MinimumWidth = 100 });
         _grid.CurrentCellChanged += (_, _) => ShowDetail(); results.Controls.Add(_grid, 0, 1); root.Controls.Add(results, 0, 5); root.Controls.Add(_detail, 0, 6);
         var footer = new FlowLayoutPanel { Dock = DockStyle.Fill, AutoSize = true, WrapContents = true }; footer.Controls.AddRange([_progress, _elapsed, _status]); root.Controls.Add(footer, 0, 7);
         _host.TextChanged += (_, _) => TargetChanged(); _port.ValueChanged += (_, _) => TargetChanged(); _timeout.ValueChanged += (_, _) => TargetChanged(); _consent.CheckedChanged += (_, _) => UpdateButtons();
         _run.Click += async (_, _) => await RunAsync();
-        _cancel.Click += (_, _) => { _cancellation?.Cancel(); _cancel.Enabled = false; _status.Text = "Запрошена отмена текущей проверки…"; };
+        _cancel.Click += (_, _) => { _cancellation?.Cancel(); _cancel.Enabled = false; _status.Text = AppLocalization.T("ResourceProbe.Status.CancelRequested"); };
         _copy.Click += (_, _) => { if (_current is { } c) TryUi(() => Clipboard.SetText(ResourceProbeReport.Summary(c, _previous))); };
         _export.Click += (_, _) => Export();
-        _timer.Tick += (_, _) => _elapsed.Text = $"{_watch.Elapsed.TotalSeconds:0.0} с";
+        _timer.Tick += (_, _) => _elapsed.Text = AppLocalization.T("ResourceProbe.Elapsed", _watch.Elapsed.TotalSeconds);
         FormClosing += (_, _) => _cancellation?.Cancel(); FormClosed += (_, _) => _timer.Dispose();
         UpdateButtons(); // Intentionally no Shown/Load scan: opening makes no requests.
     }
@@ -81,8 +88,8 @@ internal sealed class ResourceProbeForm : Form
     private void RenderTargetStatus(ResourceProbeSnapshot snapshot)
     {
         _status.Text = MatchesCurrentSnapshot(snapshot)
-            ? ResourceProbeReport.OutcomeText(snapshot.Outcome) + ". Подробности — в сводке и отчёте."
-            : "Поля цели изменены; показанные результаты относятся к предыдущей цели. Для новой цели запустите проверку.";
+            ? AppLocalization.T("ResourceProbe.Status.CurrentDetails", ResourceProbeReport.OutcomeText(snapshot.Outcome))
+            : AppLocalization.T("ResourceProbe.Status.Stale");
     }
     private void TargetChanged()
     {
@@ -93,8 +100,13 @@ internal sealed class ResourceProbeForm : Form
     private void UpdateButtons()
     {
         var valid = false;
-        try { var target = ResourceTargetParser.Parse(_host.Text, (int)_port.Value); _validation.Text = $"Цель: {target.Host}; TCP {target.Port}. DNS ≤5 с; до 8 адресов, TCP ≤{_timeout.Value} с на адрес. Предустановка порта не проверяет протокол."; valid = true; }
-        catch (ArgumentException) { _validation.Text = "Укажите одно имя или IP. URL, пути и списки адресов не принимаются."; }
+        try
+        {
+            var target = ResourceTargetParser.Parse(_host.Text, (int)_port.Value);
+            _validation.Text = AppLocalization.T("ResourceProbe.Validation.Valid", target.Host, target.Port, _timeout.Value);
+            valid = true;
+        }
+        catch (ArgumentException) { _validation.Text = AppLocalization.T("ResourceProbe.Validation.Invalid"); }
         _run.Enabled = !_busy && valid && _consent.Checked; _cancel.Enabled = _busy && _cancellation is { IsCancellationRequested: false };
         _host.Enabled = _port.Enabled = _presets.Enabled = _timeout.Enabled = _consent.Enabled = !_busy;
         _copy.Enabled = _export.Enabled = !_busy && _current is not null; _progress.Visible = _busy;
@@ -106,7 +118,7 @@ internal sealed class ResourceProbeForm : Form
         try { target = ResourceTargetParser.Parse(_host.Text, (int)_port.Value); } catch (ArgumentException ex) { _status.Text = ex.Message; return; }
         var options = CurrentOptions();
         _busy = true; _cancellation = new(); var cancellation = _cancellation; var started = DateTimeOffset.Now;
-        _grid.Rows.Clear(); _detail.Clear(); _snapshotLabel.Text = $"Выполняется новая попытка: {target.Host}, TCP {target.Port}, начало {started:HH:mm:ss}.";
+        _grid.Rows.Clear(); _detail.Clear(); _snapshotLabel.Text = AppLocalization.T("ResourceProbe.Snapshot.Running", target.Host, target.Port, started);
         _watch.Restart(); _timer.Start(); UpdateButtons();
         ResourceProbeSnapshot snapshot;
         try
@@ -117,7 +129,7 @@ internal sealed class ResourceProbeForm : Form
         catch (Exception ex)
         {
             snapshot = new ResourceProbeSnapshot { Target = target, Options = options, StartedAt = started, FinishedAt = DateTimeOffset.Now, Outcome = cancellation.IsCancellationRequested ? "Cancelled" : "Failed" };
-            snapshot.Warnings.Add($"Проверка не завершена: {ex.GetType().Name} (0x{ex.HResult:X8}).");
+            snapshot.Warnings.Add(AppLocalization.T("ResourceProbe.Warning.Unhandled", ex.GetType().Name, ex.HResult));
         }
         finally
         {
@@ -130,9 +142,15 @@ internal sealed class ResourceProbeForm : Form
         {
             var row = _grid.Rows.Add(step.Stage, step.Endpoint, ResourceProbeReport.OutcomeText(step.Outcome), step.ElapsedMs, step.LocalAddress, step.ErrorCode); _grid.Rows[row].Tag = step;
         }
-        _snapshotLabel.Text = $"{snapshot.StartedAt:HH:mm:ss} — {snapshot.Target.Host} · TCP {snapshot.Target.Port}: {ResourceProbeReport.OutcomeText(snapshot.Outcome)}. Адреса: {string.Join(", ", snapshot.Addresses)}";
+        _snapshotLabel.Text = AppLocalization.T(
+            "ResourceProbe.Snapshot.Done",
+            snapshot.StartedAt,
+            snapshot.Target.Host,
+            snapshot.Target.Port,
+            ResourceProbeReport.OutcomeText(snapshot.Outcome),
+            string.Join(", ", snapshot.Addresses));
         RenderTargetStatus(snapshot);
-        _elapsed.Text = $"{_watch.Elapsed.TotalSeconds:0.0} с"; _consent.Checked = false; ShowDetail(); UpdateButtons();
+        _elapsed.Text = AppLocalization.T("ResourceProbe.Elapsed", _watch.Elapsed.TotalSeconds); _consent.Checked = false; ShowDetail(); UpdateButtons();
     }
     private void ShowDetail()
     {
@@ -143,20 +161,20 @@ internal sealed class ResourceProbeForm : Form
     private void Export()
     {
         if (_busy || _current is not { } current) return;
-        using var dialog = new FolderBrowserDialog { Description = "Отчёт содержит имя цели и IP-адреса. Не публикуйте его без проверки.", UseDescriptionForTitle = true };
+        using var dialog = new FolderBrowserDialog { Description = AppLocalization.T("ResourceProbe.Export.Description"), UseDescriptionForTitle = true };
         if (dialog.ShowDialog(this) != DialogResult.OK) return;
-        try { _status.Text = "Отчёт сохранён: " + ResourceProbeExport.Save(current, _previous, dialog.SelectedPath); }
+        try { _status.Text = AppLocalization.T("ResourceProbe.Export.Saved", ResourceProbeExport.Save(current, _previous, dialog.SelectedPath)); }
         catch (Exception ex)
         {
             ApplyExportFailure(ex);
-            MessageBox.Show(this, ex.Message, "Действие не завершено", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show(this, ex.Message, AppLocalization.T("ResourceProbe.ActionFailed"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
     }
     private void ApplyExportFailure(Exception ex)
     {
-        _status.Text = $"Экспорт не завершён: {ex.GetType().Name}, 0x{ex.HResult:X8}.";
+        _status.Text = AppLocalization.T("ResourceProbe.Export.Failed", ex.GetType().Name, ex.HResult);
     }
-    private void TryUi(Action action) { try { action(); } catch (Exception ex) { MessageBox.Show(this, ex.Message, "Действие не завершено", MessageBoxButtons.OK, MessageBoxIcon.Warning); } }
+    private void TryUi(Action action) { try { action(); } catch (Exception ex) { MessageBox.Show(this, ex.Message, AppLocalization.T("ResourceProbe.ActionFailed"), MessageBoxButtons.OK, MessageBoxIcon.Warning); } }
     private static Button MakeButton(string text, string name) => new() { Text = text, Name = name, AutoSize = true, Padding = new Padding(5, 2, 5, 2) };
     private static Label Label(string text) => new() { Text = text, AutoSize = true, Margin = new Padding(4, 7, 4, 3) };
 }
@@ -169,7 +187,7 @@ internal static class ResourceProbeMenu
         var menu = main.MainMenuStrip!;
         if (menu.Items.Find("ResourceProbe", true).Length > 0) return;
         var group = (ToolStripMenuItem)menu.Items.Find("ReadOnlyInspections", false).Single();
-        var item = new ToolStripMenuItem("Проверить доступность ресурса (DNS/TCP)…") { Name = "ResourceProbe" };
+        var item = new ToolStripMenuItem(AppLocalization.T("ResourceProbe.Menu.Item")) { Name = "ResourceProbe" };
         item.Click += (_, _) => { using var form = new ResourceProbeForm(); form.ShowDialog(main); }; group.DropDownItems.Add(item);
     }
 }
