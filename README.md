@@ -2,9 +2,15 @@
 
 Windows 11 x64 Service Desk utility for workstation diagnostics, explainable findings, before/after reporting and controlled remediation.
 
-Current project version: **0.15.0**. A self-contained single-file `G-PC-Health-Check.exe`; no installation is required. Portable copies may use any folder and filename.
+Current project version: **0.15.1**. A self-contained single-file `G-PC-Health-Check.exe`; no installation is required. Portable copies may use any folder and filename.
 
 > **Privacy:** review exports before sharing. Account names/SIDs, profile and file paths, commands, events, device identifiers, resource addresses and notes can be sensitive. Search is not redaction. See [`SECURITY.md`](SECURITY.md).
+
+## 0.15.1 — pilot hardening maintenance release
+
+0.15.1 is a pilot-focused maintenance release over 0.15.0. It keeps the same product scope and security boundaries while incorporating the accumulated reliability, evidence-state and UX fixes validated after 0.15.0: stale row/detail state, next-run options versus saved evidence, cancellation/final-status ownership, Diagnostic Bundle save/progress/timeline consistency, explicit export-failure terminal states, performance scheduling/report wording, and stricter E2E evidence-root analysis.
+
+No new remediation operation, raw/full SMART, broad system-handle enumeration, treemap or stress/stability workload is added. The managed Windows 11 acceptance matrix remains the release gate for real pilot behavior beyond hosted CI. [Maintenance scope and pilot notes](docs/releases/0.15.1.md).
 
 ## New in 0.15.0 — Service Desk diagnostic bundle
 
