@@ -37,11 +37,11 @@ internal static class ServiceDeskBatchPlanner
             recommendationsById.TryGetValue(descriptor.Id, out var recommendation);
             var availability = availabilityFor(descriptor.Id);
             if (mode == BatchMode.SelectedStrict && !availability.CanRequest)
-                throw new InvalidOperationException($"Доступность действия {descriptor.Id} изменилась: {availability.Reason}");
+                throw new InvalidOperationException(AppLocalization.T("ServiceDeskBatch.Planner.SelectedUnavailable", descriptor.Id, availability.Reason));
 
             var state = availability.CanRequest ? PlannedActionState.Run : PlannedActionState.Skipped;
             planned.Add(new(descriptor, recommendation, availability, state,
-                state == PlannedActionState.Run ? "Готово к выполнению." : availability.Reason));
+                state == PlannedActionState.Run ? AppLocalization.T("ServiceDeskBatch.Planner.Ready") : availability.Reason));
         }
 
         Coalesce(planned);
@@ -78,12 +78,12 @@ internal static class ServiceDeskBatchPlanner
         foreach (var id in selectedIds.Where(x => !string.IsNullOrWhiteSpace(x)).Distinct(StringComparer.OrdinalIgnoreCase))
         {
             if (!recommendations.TryGetValue(id, out var recommendation) || !recommendation.CanAutomate)
-                throw new InvalidOperationException($"Выбранное действие {id} больше не является автоматизируемой рекомендацией.");
+                throw new InvalidOperationException(AppLocalization.T("ServiceDeskBatch.Planner.NotAutomatable", id));
             var descriptor = ServiceDeskActionRegistry.Find(id)
-                ?? throw new InvalidOperationException($"Действие {id} отсутствует в разрешённом реестре.");
+                ?? throw new InvalidOperationException(AppLocalization.T("ServiceDeskBatch.Planner.NotAllowed", id));
             result.Add(descriptor);
         }
-        if (result.Count == 0) throw new InvalidOperationException("Не выбрано ни одного автоматизируемого действия.");
+        if (result.Count == 0) throw new InvalidOperationException(AppLocalization.T("ServiceDeskBatch.Planner.NoneSelected"));
         return result;
     }
 
@@ -99,7 +99,7 @@ internal static class ServiceDeskBatchPlanner
         actions[index] = existing with
         {
             State = PlannedActionState.Superseded,
-            Reason = "Отдельный RestartSpooler не нужен: ClearPrintQueue включает контролируемую перезагрузку Spooler."
+            Reason = AppLocalization.T("ServiceDeskBatch.Planner.RestartSpoolerSuperseded")
         };
     }
 }
