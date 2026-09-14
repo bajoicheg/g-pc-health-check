@@ -138,5 +138,5 @@ internal static class StorageReviewReport
         "Completed" => "Сбор завершён в указанной области", "Partial" => "Неполные данные", "Stopped" => "Остановлено — данные неполные",
         "Failed" => "Сбор не выполнен полностью", "Unavailable" => "Данные недоступны", "Running" => "Сбор выполняется", _ => "Снимок не собран"
     };
-    public static string Bytes(decimal value) => HumanSize.Megabytes(value);
+    public static string Bytes(decimal value) => HumanSize.MegabytesDecimal(value);
 }

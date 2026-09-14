@@ -14,5 +14,5 @@ internal static class HumanSize
     }
 
     internal static string Megabytes(long? bytes) => FormatMegabytes(bytes, AppLocalization.Culture);
-    internal static string Megabytes(decimal bytes) => MegabytesDecimalValue(bytes).ToString("N1", AppLocalization.Culture) + " MB";
+    internal static string MegabytesDecimal(decimal bytes) => MegabytesDecimalValue(bytes).ToString("N1", AppLocalization.Culture) + " MB";
 }
