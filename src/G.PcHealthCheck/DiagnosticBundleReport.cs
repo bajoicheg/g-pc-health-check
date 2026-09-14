@@ -20,32 +20,38 @@ internal static class DiagnosticBundleReport
     public static string Summary(DiagnosticBundleSnapshot snapshot)
     {
         ArgumentNullException.ThrowIfNull(snapshot);
-        var builder = new StringBuilder("G PC Health Check — диагностический пакет Service Desk\n");
-        builder.AppendLine($"Версия приложения: {Value(snapshot.ApplicationVersion)}");
-        builder.AppendLine($"Компьютер: {Value(snapshot.ComputerName)}");
-        builder.AppendLine($"Режим: {ModeText(snapshot.Options.Mode)}");
-        builder.AppendLine($"Начало: {snapshot.StartedAt:O}; завершение: {Time(snapshot.FinishedAt)}");
-        builder.AppendLine($"Полнота пакета: {OutcomeText(snapshot.Outcome)} ({snapshot.Outcome}). Это полнота сбора, а не оценка здоровья компьютера.");
-        if (snapshot.CancellationRequested) builder.AppendLine("Отмена была запрошена; завершённые источники сохранены, если успели вернуть полезные данные.");
+        var builder = new StringBuilder(AppLocalization.T("Bundle.Report.Title") + Environment.NewLine);
+        builder.AppendLine(AppLocalization.T("Bundle.Report.Version", Value(snapshot.ApplicationVersion)));
+        builder.AppendLine(AppLocalization.T("Bundle.Report.Computer", Value(snapshot.ComputerName)));
+        builder.AppendLine(AppLocalization.T("Bundle.Report.Mode", ModeText(snapshot.Options.Mode)));
+        builder.AppendLine(AppLocalization.T("Bundle.Report.StartEnd", snapshot.StartedAt, snapshot.FinishedAt));
+        builder.AppendLine(AppLocalization.T("Bundle.Report.Completeness", OutcomeText(snapshot.Outcome)) + $" ({snapshot.Outcome}). " + AppLocalization.T("Bundle.Report.CompletenessMeaning"));
+        if (snapshot.CancellationRequested) builder.AppendLine(AppLocalization.T("Bundle.Report.CancelledMeaning"));
         builder.AppendLine();
-        builder.AppendLine("Контекст выполнения:");
+        builder.AppendLine(AppLocalization.T("Bundle.Report.Context"));
         builder.AppendLine(ExecutionPolicy.Describe(snapshot.ExecutionContext));
         builder.AppendLine();
-        builder.AppendLine("Источники:");
+        builder.AppendLine(AppLocalization.T("Bundle.Report.Sources"));
         foreach (var source in snapshot.Sources)
         {
-            builder.Append("- ").Append(SourceName(source.Category)).Append(": ").Append(StateText(source.State));
-            if (!source.Requested) builder.Append("; исключён оператором");
-            else if (source.StartedAt != default) builder.Append($"; {source.StartedAt:O} — {Time(source.FinishedAt)}");
-            builder.AppendLine(".");
+            var duration = source.StartedAt != default && source.FinishedAt != default
+                ? Math.Max(0, (source.FinishedAt - source.StartedAt).TotalMilliseconds)
+                : 0;
+            builder.AppendLine("- " + AppLocalization.T("Bundle.Report.SourceLine",
+                SourceName(source.Category), StateText(source.State), YesNo(source.Requested), duration, source.Warnings.Count));
+            if (!source.Requested) builder.AppendLine("  " + AppLocalization.T("Bundle.Report.Excluded"));
             foreach (var warning in source.Warnings) builder.AppendLine("  ! " + warning);
         }
 
         builder.AppendLine();
-        builder.AppendLine("Главные выводы:");
+        builder.AppendLine(AppLocalization.T("Bundle.Report.Findings"));
         if (snapshot.Health.Payload is { } health)
         {
-            builder.AppendLine($"Health Score: {health.Assessment.Assessment.Score}; coverage: {health.Assessment.Assessment.CoveragePercent}% ({health.Assessment.Assessment.CoverageStatus}).");
+            builder.AppendLine(AppLocalization.T("Bundle.Report.HealthScore",
+                health.Assessment.Assessment.Score,
+                health.Assessment.Assessment.Status,
+                health.Assessment.Assessment.CoveragePercent,
+                health.Assessment.Assessment.CoverageStatus));
             var findings = health.Assessment.Assessment.Findings
                 .Where(item => item.Severity is "CRIT" or "WARN")
                 .OrderBy(item => item.Severity == "CRIT" ? 0 : 1)
@@ -54,19 +60,19 @@ internal static class DiagnosticBundleReport
                 .ThenBy(item => item.Title, StringComparer.OrdinalIgnoreCase)
                 .Take(8)
                 .ToArray();
-            if (findings.Length == 0) builder.AppendLine("В существующей оценке нет CRIT/WARN; это не отменяет предупреждения о неполных источниках пакета.");
+            if (findings.Length == 0) builder.AppendLine(AppLocalization.T("Bundle.Report.NoCriticalFindings"));
             foreach (var finding in findings)
                 builder.AppendLine($"{finding.Severity}: {finding.Category} — {finding.Title}; {finding.Value}. {finding.Recommendation}".TrimEnd());
         }
         else if (!snapshot.Health.Requested)
         {
-            builder.AppendLine("Health Check исключён оператором; Health Score в пакет не включён.");
+            builder.AppendLine(AppLocalization.T("Bundle.Report.HealthExcludedSummary"));
         }
         else
         {
-            builder.AppendLine("Health Check не дал полезного payload; отсутствие оценки не считается здоровым состоянием.");
+            builder.AppendLine(AppLocalization.T("Bundle.Report.HealthUnavailableSummary"));
         }
-        builder.AppendLine("Проверьте пакет перед передачей: он может содержать аккаунты/SID, пути и команды процессов, IP/порты, тексты событий, идентификаторы устройств и заметки о симптомах.");
+        builder.AppendLine(AppLocalization.T("Bundle.Report.Privacy"));
         return builder.ToString().TrimEnd();
     }
 
@@ -103,12 +109,13 @@ internal static class DiagnosticBundleReport
     public static string Html(DiagnosticBundleSnapshot snapshot)
     {
         ArgumentNullException.ThrowIfNull(snapshot);
-        var builder = new StringBuilder("<!doctype html><html lang='ru'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>");
-        builder.Append("<title>G PC Health Check — пакет Service Desk</title><style>");
+        var builder = new StringBuilder("<!doctype html><html lang='").Append(AppLocalization.Language)
+            .Append("'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>");
+        builder.Append("<title>").Append(H(AppLocalization.T("Bundle.Report.Title"))).Append("</title><style>");
         builder.Append("body{margin:0;background:#f4f7fa;color:#172432;font:14px/1.5 'Segoe UI',Arial,sans-serif}main{max-width:1350px;margin:auto;padding:24px}");
         builder.Append("section{background:#fff;border:1px solid #dce5ed;border-radius:12px;padding:20px;margin:0 0 18px}h1,h2{color:#15344f}pre{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit}");
         builder.Append("table{border-collapse:collapse;width:100%;font-size:13px}th,td{padding:8px;border-bottom:1px solid #dce5ed;text-align:left;vertical-align:top;overflow-wrap:anywhere}th{background:#f0f5f8}.table{overflow-x:auto}.muted{color:#607285}.warn{font-weight:600}.files a{display:inline-block;margin-right:12px}@media(max-width:650px){main{padding:8px}}");
-        builder.Append("</style></head><body><main><h1>G PC Health Check</h1><h2>Диагностический пакет для Service Desk</h2>");
+        builder.Append("</style></head><body><main><h1>G PC Health Check</h1><h2>").Append(H(AppLocalization.T("Bundle.Report.Heading"))).Append("</h2>");
         builder.Append("<section><pre>").Append(H(Summary(snapshot))).Append("</pre></section>");
         AppendSourceMatrix(builder, snapshot);
         AppendFindings(builder, snapshot);
@@ -118,7 +125,7 @@ internal static class DiagnosticBundleReport
         AppendStorage(builder, snapshot);
         AppendPerformance(builder, snapshot);
         AppendFiles(builder, snapshot);
-        builder.Append("<p class='muted'>Перед внешней передачей проверьте содержимое. Поиск и фильтры не являются редактированием или обезличиванием. Автоматической отправки нет.</p></main></body></html>");
+        builder.Append("<p class='muted'>").Append(H(AppLocalization.T("Bundle.Report.ExternalReview"))).Append("</p></main></body></html>");
         return builder.ToString();
     }
 
@@ -126,7 +133,7 @@ internal static class DiagnosticBundleReport
     {
         ArgumentNullException.ThrowIfNull(snapshot);
         if (string.IsNullOrWhiteSpace(parent) || !Path.IsPathFullyQualified(parent))
-            throw new ArgumentException("Нужен полный путь к папке для диагностического пакета.", nameof(parent));
+            throw new ArgumentException(AppLocalization.T("Bundle.Report.SavePath"), nameof(parent));
 
         Directory.CreateDirectory(parent);
         var name = $"G-PC-DiagnosticBundle_{DateTime.Now:yyyyMMdd_HHmmss}_{Guid.NewGuid():N}";
@@ -156,10 +163,17 @@ internal static class DiagnosticBundleReport
 
     private static void AppendSourceMatrix(StringBuilder builder, DiagnosticBundleSnapshot snapshot)
     {
-        builder.Append("<section><h2>Источники и полнота</h2><p class='muted'>Состояние источника описывает сбор evidence и не является вердиктом о здоровье.</p><div class='table'><table><tr><th>Источник</th><th>Запрошен</th><th>Состояние</th><th>Начало</th><th>Окончание</th><th>Предупреждения</th></tr>");
+        builder.Append("<section><h2>").Append(H(AppLocalization.T("Bundle.Report.SourceMatrixHeading"))).Append("</h2><p class='muted'>")
+            .Append(H(AppLocalization.T("Bundle.Report.SourceMatrixMeaning"))).Append("</p><div class='table'><table><tr><th>")
+            .Append(H(AppLocalization.T("Bundle.Report.Column.Source"))).Append("</th><th>")
+            .Append(H(AppLocalization.T("Bundle.Report.Column.Requested"))).Append("</th><th>")
+            .Append(H(AppLocalization.T("Bundle.Report.Column.State"))).Append("</th><th>")
+            .Append(H(AppLocalization.T("Bundle.Report.Column.Started"))).Append("</th><th>")
+            .Append(H(AppLocalization.T("Bundle.Report.Column.Finished"))).Append("</th><th>")
+            .Append(H(AppLocalization.T("Bundle.Report.Column.Warnings"))).Append("</th></tr>");
         foreach (var source in snapshot.Sources)
         {
-            builder.Append("<tr><td>").Append(H(SourceName(source.Category))).Append("</td><td>").Append(source.Requested ? "Да" : "Нет")
+            builder.Append("<tr><td>").Append(H(SourceName(source.Category))).Append("</td><td>").Append(H(YesNo(source.Requested)))
                 .Append("</td><td>").Append(H(StateText(source.State))).Append("</td><td>").Append(H(Time(source.StartedAt)))
                 .Append("</td><td>").Append(H(Time(source.FinishedAt))).Append("</td><td>").Append(H(string.Join("; ", source.Warnings))).Append("</td></tr>");
         }
@@ -168,21 +182,28 @@ internal static class DiagnosticBundleReport
 
     private static void AppendFindings(StringBuilder builder, DiagnosticBundleSnapshot snapshot)
     {
-        builder.Append("<section><h2>Главные выводы Health Check</h2>");
+        builder.Append("<section><h2>").Append(H(AppLocalization.T("Bundle.Report.HealthFindingsHeading"))).Append("</h2>");
         if (!snapshot.Health.Requested)
         {
-            builder.Append("<p>").Append(H("Health Check исключён оператором; Health Score в пакет не включён.")).Append("</p></section>");
+            builder.Append("<p>").Append(H(AppLocalization.T("Bundle.Report.HealthExcludedSummary"))).Append("</p></section>");
             return;
         }
         if (snapshot.Health.Payload is not { } health)
         {
-            builder.Append("<p class='warn'>").Append(H("Health Check: " + StateText(snapshot.Health.State) + ". Отсутствующий источник не считается здоровым.")).Append("</p></section>");
+            builder.Append("<p class='warn'>").Append(H(SourceName(DiagnosticBundleCategory.Health) + ": " + StateText(snapshot.Health.State) + ". " + AppLocalization.T("Bundle.Report.HealthUnavailableMeaning"))).Append("</p></section>");
             return;
         }
 
-        builder.Append("<p>Health Score: ").Append(health.Assessment.Assessment.Score).Append("; coverage: ")
-            .Append(health.Assessment.Assessment.CoveragePercent).Append("% (").Append(H(health.Assessment.Assessment.CoverageStatus)).Append(").</p>");
-        builder.Append("<div class='table'><table><tr><th>Уровень</th><th>Категория</th><th>Вывод</th><th>Evidence</th><th>Следующий шаг</th></tr>");
+        builder.Append("<p>").Append(H(AppLocalization.T("Bundle.Report.HealthScore",
+            health.Assessment.Assessment.Score,
+            health.Assessment.Assessment.Status,
+            health.Assessment.Assessment.CoveragePercent,
+            health.Assessment.Assessment.CoverageStatus))).Append("</p>");
+        builder.Append("<div class='table'><table><tr><th>").Append(H(AppLocalization.T("Bundle.Report.Column.Severity"))).Append("</th><th>")
+            .Append(H(AppLocalization.T("Bundle.Report.Column.Category"))).Append("</th><th>")
+            .Append(H(AppLocalization.T("Bundle.Report.Column.Finding"))).Append("</th><th>")
+            .Append(H(AppLocalization.T("Bundle.Report.Column.Value"))).Append("</th><th>")
+            .Append(H(AppLocalization.T("Bundle.Report.Column.Recommendation"))).Append("</th></tr>");
         foreach (var finding in health.Assessment.Assessment.Findings
             .Where(item => item.Severity is "CRIT" or "WARN")
             .OrderBy(item => item.Severity == "CRIT" ? 0 : 1)
@@ -199,18 +220,22 @@ internal static class DiagnosticBundleReport
     private static void AppendEvents(StringBuilder builder, DiagnosticBundleSnapshot snapshot)
     {
         if (!snapshot.Events.Requested) return;
-        builder.Append("<section><h2>События</h2>");
+        builder.Append("<section><h2>").Append(H(AppLocalization.T("Bundle.Report.Events"))).Append("</h2>");
         if (snapshot.Events.Payload is not { } events)
         {
-            builder.Append("<p class='warn'>События: ").Append(H(StateText(snapshot.Events.State))).Append(". Отсутствующие события не означают отсутствие проблем.</p></section>");
+            builder.Append("<p class='warn'>").Append(H(AppLocalization.T("Bundle.Report.EventsUnavailable", StateText(snapshot.Events.State)))).Append("</p></section>");
             return;
         }
-        builder.Append("<p class='muted'>Показаны только группы уже собранных Critical/Error/Warning. Совпадение по времени не доказывает причину сбоя.</p>");
+        builder.Append("<p class='muted'>").Append(H(AppLocalization.T("Bundle.Report.EventsNote"))).Append("</p>");
         var highlights = DiagnosticBundleCore.EventHighlights(events);
-        if (highlights.Count == 0) builder.Append("<p>В собранной части нет событий уровней Critical/Error/Warning. Это относится только к фактически прочитанному интервалу и журналам.</p>");
+        if (highlights.Count == 0) builder.Append("<p>").Append(H(AppLocalization.T("Bundle.Report.EventsNone"))).Append("</p>");
         else
         {
-            builder.Append("<div class='table'><table><tr><th>Уровень</th><th>Журнал</th><th>Provider</th><th>Event ID</th><th>Количество</th><th>Последнее</th></tr>");
+            builder.Append("<div class='table'><table><tr><th>").Append(H(AppLocalization.T("Bundle.Report.Column.Level"))).Append("</th><th>")
+                .Append(H(AppLocalization.T("Bundle.Report.Column.Log"))).Append("</th><th>")
+                .Append(H(AppLocalization.T("Bundle.Report.Column.Provider"))).Append("</th><th>Event ID</th><th>")
+                .Append(H(AppLocalization.T("Bundle.Report.Column.Count"))).Append("</th><th>")
+                .Append(H(AppLocalization.T("Bundle.Report.Column.Latest"))).Append("</th></tr>");
             foreach (var item in highlights) Row(builder, EventLevelText(item.Level), item.Log, item.Provider, item.EventId, item.Count, item.Latest?.ToString("O") ?? "—");
             builder.Append("</table></div>");
         }
@@ -220,14 +245,17 @@ internal static class DiagnosticBundleReport
     private static void AppendProcesses(StringBuilder builder, DiagnosticBundleSnapshot snapshot)
     {
         if (!snapshot.Processes.Requested) return;
-        builder.Append("<section><h2>Крупнейшие рабочие наборы</h2>");
+        builder.Append("<section><h2>").Append(H(AppLocalization.T("Bundle.Report.ProcessesHeading"))).Append("</h2>");
         if (snapshot.Processes.Payload is not { } processes)
         {
-            builder.Append("<p class='warn'>Процессы: ").Append(H(StateText(snapshot.Processes.State))).Append(".</p></section>");
+            builder.Append("<p class='warn'>").Append(H(SourceName(DiagnosticBundleCategory.Processes) + ": " + StateText(snapshot.Processes.State) + ".")).Append("</p></section>");
             return;
         }
-        builder.Append("<p class='muted'>Рейтинг использует только доступный WorkingSet текущего снимка. Большой рабочий набор сам по себе не делает процесс плохим и не устанавливает причину сбоя.</p>");
-        builder.Append("<div class='table'><table><tr><th>Процесс</th><th>PID</th><th>Working set</th><th>Путь</th><th>Команда</th></tr>");
+        builder.Append("<p class='muted'>").Append(H(AppLocalization.T("Bundle.Report.ProcessesWorkingNote"))).Append("</p>");
+        builder.Append("<div class='table'><table><tr><th>").Append(H(AppLocalization.T("Bundle.Report.Column.Process"))).Append("</th><th>PID</th><th>")
+            .Append(H(AppLocalization.T("Bundle.Report.Column.WorkingSet"))).Append("</th><th>")
+            .Append(H(AppLocalization.T("Bundle.Report.Column.Path"))).Append("</th><th>")
+            .Append(H(AppLocalization.T("Bundle.Report.Column.Command"))).Append("</th></tr>");
         foreach (var process in DiagnosticBundleCore.ProcessWorkingSetHighlights(processes))
             Row(builder, process.Name, process.Pid, Bytes(process.WorkingSetBytes), process.Executable, process.CommandLine);
         builder.Append("</table></div></section>");
@@ -236,59 +264,59 @@ internal static class DiagnosticBundleReport
     private static void AppendEndpoints(StringBuilder builder, DiagnosticBundleSnapshot snapshot)
     {
         if (!snapshot.Endpoints.Requested) return;
-        builder.Append("<section><h2>Локальные TCP/UDP endpoints</h2>");
+        builder.Append("<section><h2>").Append(H(AppLocalization.T("Bundle.Report.EndpointsHeading"))).Append("</h2>");
         if (snapshot.Endpoints.Payload is not { } endpoints)
         {
-            builder.Append("<p class='warn'>Endpoints: ").Append(H(StateText(snapshot.Endpoints.State))).Append(".</p></section>");
+            builder.Append("<p class='warn'>").Append(H(AppLocalization.T("Bundle.Report.EndpointsUnavailable", StateText(snapshot.Endpoints.State)))).Append("</p></section>");
             return;
         }
         var counts = DiagnosticBundleCore.EndpointCounts(endpoints);
-        builder.Append("<p>Всего строк: ").Append(counts.Total).Append("; TCP LISTEN: ").Append(counts.TcpListeners)
-            .Append("; TCP ESTABLISHED: ").Append(counts.TcpEstablished).Append("; UDP bindings: ").Append(counts.UdpBindings).Append(".</p>");
-        builder.Append("<p class='muted'>LISTEN/BOUND не доказывают доступность извне: действуют брандмауэр, маршрутизация и политики. ESTABLISHED не доказывает здоровье или доверие приложения. UDP — локальные привязки, не список удалённых разговоров.</p></section>");
+        builder.Append("<p>").Append(H(AppLocalization.T("Bundle.Report.EndpointsCounts", counts.Total, counts.TcpListeners, counts.TcpEstablished, counts.UdpBindings))).Append("</p>");
+        builder.Append("<p class='muted'>").Append(H(AppLocalization.T("Bundle.Report.EndpointsCaveat"))).Append("</p></section>");
     }
 
     private static void AppendStorage(StringBuilder builder, DiagnosticBundleSnapshot snapshot)
     {
         if (!snapshot.Storage.Requested) return;
-        builder.Append("<section><h2>Накопители</h2>");
+        builder.Append("<section><h2>").Append(H(AppLocalization.T("Bundle.Report.Storage"))).Append("</h2>");
         if (snapshot.Storage.Payload is not { } storage)
         {
-            builder.Append("<p class='warn'>Накопители: ").Append(H(StateText(snapshot.Storage.State))).Append(". Неизвестные показатели не считаются исправными.</p></section>");
+            builder.Append("<p class='warn'>").Append(H(AppLocalization.T("Bundle.Report.StorageUnavailable", StateText(snapshot.Storage.State)))).Append("</p></section>");
             return;
         }
         var highlights = DiagnosticBundleCore.StorageHighlights(storage);
-        if (highlights.Count == 0) builder.Append("<p>Явных предупреждений в доступной Windows Storage evidence не выделено; это не полный SMART и не гарантия исправности.</p>");
+        if (highlights.Count == 0) builder.Append("<p>").Append(H(AppLocalization.T("Bundle.Report.StorageNone"))).Append("</p>");
         else
         {
             builder.Append("<ul>");
             foreach (var value in highlights) builder.Append("<li>").Append(H(value)).Append("</li>");
             builder.Append("</ul>");
         }
-        builder.Append("<p class='muted'>Данные зависят от Windows Storage, драйвера, типа подключения и прав. Отсутствующее поле остаётся неизвестным.</p></section>");
+        builder.Append("<p class='muted'>").Append(H(AppLocalization.T("Bundle.Report.StorageCaveat"))).Append("</p></section>");
     }
 
     private static void AppendPerformance(StringBuilder builder, DiagnosticBundleSnapshot snapshot)
     {
         if (!snapshot.Performance.Requested) return;
-        builder.Append("<section><h2>Сеанс производительности</h2>");
+        builder.Append("<section><h2>").Append(H(AppLocalization.T("Performance.Report.Heading"))).Append("</h2>");
         if (snapshot.Performance.Payload is not { } performance)
         {
-            builder.Append("<p class='warn'>Производительность: ").Append(H(StateText(snapshot.Performance.State))).Append(".</p></section>");
+            builder.Append("<p class='warn'>").Append(H(AppLocalization.T("Bundle.Report.PerformanceUnavailable", StateText(snapshot.Performance.State)))).Append("</p></section>");
             return;
         }
         builder.Append("<pre>").Append(H(PerformanceSessionReport.Summary(performance))).Append("</pre>");
-        builder.Append("<p><a href='performance.html'>Графики и все измерения</a> · <a href='performance.json'>JSON сеанса</a></p>");
-        builder.Append("<p class='muted'>Это наблюдение, а не стресс-тест. Порог или совпадение с отметкой не доказывает причинность.</p></section>");
+        builder.Append("<p><a href='performance.html'>").Append(H(AppLocalization.T("Bundle.Report.PerformanceCharts"))).Append("</a> · <a href='performance.json'>")
+            .Append(H(AppLocalization.T("Bundle.Report.PerformanceJson"))).Append("</a></p>");
+        builder.Append("<p class='muted'>").Append(H(AppLocalization.T("Bundle.Report.PerformanceNote"))).Append("</p></section>");
     }
 
     private static void AppendFiles(StringBuilder builder, DiagnosticBundleSnapshot snapshot)
     {
-        builder.Append("<section class='files'><h2>Файлы пакета</h2><a href='manifest.json'>manifest.json</a>");
+        builder.Append("<section class='files'><h2>").Append(H(AppLocalization.T("Bundle.Report.Files"))).Append("</h2><a href='manifest.json'>manifest.json</a>");
         foreach (var source in snapshot.Sources.Where(source => source.PayloadAvailable))
             builder.Append("<a href='").Append(PayloadFile(source.Category)).Append("'>").Append(PayloadFile(source.Category)).Append("</a>");
         if (snapshot.Performance.PayloadAvailable) builder.Append("<a href='performance.html'>performance.html</a>");
-        builder.Append("</section>");
+        builder.Append("<p class='muted'>").Append(H(AppLocalization.T("Bundle.Report.FilesNote"))).Append("</p></section>");
     }
 
     private static void WritePayloads(DiagnosticBundleSnapshot snapshot, string folder)
@@ -334,43 +362,46 @@ internal static class DiagnosticBundleReport
         _ => throw new ArgumentOutOfRangeException(nameof(category))
     };
 
-    private static string SourceName(DiagnosticBundleCategory category) => category switch
+    private static string SourceName(DiagnosticBundleCategory category) => AppLocalization.T(category switch
     {
-        DiagnosticBundleCategory.Health => "Health Check",
-        DiagnosticBundleCategory.Processes => "Процессы",
-        DiagnosticBundleCategory.Endpoints => "TCP/UDP endpoints",
-        DiagnosticBundleCategory.Events => "События",
-        DiagnosticBundleCategory.Storage => "Накопители",
-        DiagnosticBundleCategory.Performance => "Производительность",
-        _ => category.ToString()
-    };
+        DiagnosticBundleCategory.Health => "Bundle.Source.Health",
+        DiagnosticBundleCategory.Processes => "Bundle.Source.Processes",
+        DiagnosticBundleCategory.Endpoints => "Bundle.Source.Endpoints",
+        DiagnosticBundleCategory.Events => "Bundle.Source.Events",
+        DiagnosticBundleCategory.Storage => "Bundle.Source.Storage",
+        DiagnosticBundleCategory.Performance => "Bundle.Source.Performance",
+        _ => "Bundle.Source.Health"
+    });
 
     private static string StateText(string state) => state switch
     {
-        "Complete" => "Полностью собрано",
-        "Partial" => "Частично",
-        "Unavailable" => "Недоступно",
-        "Cancelled" => "Отменено",
-        "NotRequested" => "Не запрошено",
-        "Pending" => "Ожидает",
-        "Running" => "Выполняется",
-        _ => "Неизвестно (" + state + ")"
+        "Complete" => AppLocalization.T("Bundle.State.Complete"),
+        "Partial" => AppLocalization.T("Bundle.State.Partial"),
+        "Unavailable" => AppLocalization.T("Bundle.State.Unavailable"),
+        "Cancelled" => AppLocalization.T("Bundle.State.Cancelled"),
+        "NotRequested" => AppLocalization.T("Bundle.State.NotRequested"),
+        "Pending" => AppLocalization.T("Bundle.State.Pending"),
+        "Running" => AppLocalization.T("Bundle.State.Running"),
+        _ => AppLocalization.T("Bundle.State.Unknown", state)
     };
 
     private static string OutcomeText(string outcome) => outcome switch
     {
-        "Complete" => "Полный по запрошенным категориям",
-        "Partial" => "Частичный",
-        "Unavailable" => "Полезные диагностические payload недоступны",
-        "Cancelled" => "Отменён до получения полезного evidence",
-        "Running" => "Сбор выполняется",
-        _ => "Не определена"
+        "Complete" => AppLocalization.T("Bundle.State.Complete"),
+        "Partial" => AppLocalization.T("Bundle.State.Partial"),
+        "Unavailable" => AppLocalization.T("Bundle.State.Unavailable"),
+        "Cancelled" or "Stopped" => AppLocalization.T("Bundle.State.Cancelled"),
+        "Running" => AppLocalization.T("Bundle.State.Running"),
+        _ => AppLocalization.T("Bundle.State.Unknown", outcome)
     };
 
-    private static string ModeText(DiagnosticBundleMode mode) => mode == DiagnosticBundleMode.Extended ? "Расширенный" : "Быстрый";
+    private static string ModeText(DiagnosticBundleMode mode) => AppLocalization.T(mode == DiagnosticBundleMode.Extended ? "Bundle.Mode.Extended" : "Bundle.Mode.Quick");
     private static string EventLevelText(int? level) => level switch { 1 => "Critical", 2 => "Error", 3 => "Warning", _ => "—" };
-    private static string Value(string? value) => string.IsNullOrWhiteSpace(value) ? "не определена" : value;
+    private static string YesNo(bool value) => AppLocalization.T(value ? "Bundle.Report.Yes" : "Bundle.Report.No");
+    private static string Value(string? value) => string.IsNullOrWhiteSpace(value) ? AppLocalization.T("Bundle.Report.NotAvailable") : value;
     private static string Time(DateTimeOffset value) => value == default ? "—" : value.ToString("O");
-    private static string Bytes(ulong? value) => value is ulong bytes ? $"{bytes / 1048576d:0.##} MiB ({bytes:N0} байт)" : "—";
+    private static string Bytes(ulong? value) => value is ulong bytes
+        ? $"{bytes / 1048576d:0.##} MiB ({AppLocalization.T("Bundle.Report.Bytes", bytes)})"
+        : "—";
     private static string H(string? value) => WebUtility.HtmlEncode(value ?? "");
 }
