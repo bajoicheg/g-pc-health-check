@@ -69,6 +69,20 @@ internal static class IncidentReviewIntegrationSelfTest
             var owner = new ProcessReview(source).Owner(row!, ct.Token);
             Require(owner.State == "Verified" && owner.Owner.EndsWith(Environment.UserName, StringComparison.OrdinalIgnoreCase), "Own process owner did not round-trip identity checks.");
         });
+        Test("export failure replaces stale success status", () =>
+        {
+            var type = Type("IncidentReviewForm");
+            using var form = (Form)Activator.CreateInstance(type, [true])!;
+            var flags = BindingFlags.Instance | BindingFlags.NonPublic;
+            var status = (Label)type.GetField("_status", flags)!.GetValue(form)!;
+            status.Text = "Сохранено: stale";
+            var apply = type.GetMethod("ApplyExportFailure", flags);
+            Require(apply is not null, "Incident export failure status boundary missing.");
+            var failure = new IOException("synthetic export failure");
+            apply!.Invoke(form, [failure]);
+            Require(status.Text.Contains("Экспорт не завершён: IOException", StringComparison.Ordinal) && status.Text.Contains($"0x{failure.HResult:X8}", StringComparison.Ordinal),
+                "Incident export failure did not replace stale success evidence.");
+        });
         Test("export has unique directory and never drops filtered rows", () =>
         {
             var root = Path.Combine(Path.GetTempPath(), "G-Incident-Test-" + Guid.NewGuid().ToString("N")); Directory.CreateDirectory(root);
