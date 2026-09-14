@@ -28,6 +28,7 @@ internal static class Program
             if (result == 0) result = PhasedBatchExecutorSelfTest.Run();
             if (result == 0) result = PhasedWorkerEngineSelfTest.Run();
             if (result == 0) result = PhasedWorkerTransportSelfTest.Run();
+            if (result == 0) result = WindowsBatchRuntimeSelfTest.Run();
             if (result == 0) result = SystemDiskSelectionSelfTest.Run();
             if (result == 0) result = PortableElevationSelfTest.Run();
             if (result == 0) result = ReadOnlyReviewSelfTest.Run();
