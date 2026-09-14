@@ -53,3 +53,28 @@ internal sealed class SecurityPostureSnapshot
     public List<SecurityControlResult> Supplemental { get; init; } = [];
     public List<string> CollectionWarnings { get; init; } = [];
 }
+
+internal enum EffectiveFirewallProviderKind
+{
+    Windows,
+    ThirdParty,
+    None,
+    Ambiguous
+}
+
+internal sealed record FirewallObservation(
+    EffectiveFirewallProviderKind EffectiveProvider,
+    bool? DomainEnabled,
+    bool? PrivateEnabled,
+    bool? PublicEnabled,
+    bool PolicyEnforced,
+    string Source);
+
+internal sealed record SecureBootObservation(string FirmwareType, bool? Enabled, string Source);
+internal sealed record UacObservation(bool? Enabled, string Source);
+internal sealed record TpmObservation(bool? Present, bool? Ready, string? SpecVersion, string Source);
+internal sealed record DeviceGuardObservation(
+    int? VirtualizationBasedSecurityStatus,
+    IReadOnlyList<int> SecurityServicesRunning,
+    IReadOnlyList<int> SecurityServicesConfigured,
+    string Source);
