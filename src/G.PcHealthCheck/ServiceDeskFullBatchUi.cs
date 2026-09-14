@@ -6,40 +6,40 @@ internal static class ServiceDeskBatchUi
     {
         ArgumentNullException.ThrowIfNull(preflight);
         if (preflight.Mode != BatchMode.AllBestEffort)
-            throw new InvalidOperationException("Полное подтверждение допустимо только для режима DoEverything.");
+            throw new InvalidOperationException(AppLocalization.T("ServiceDeskBatch.InvalidMode"));
 
         var lines = new List<string>
         {
-            "Будет запрошен полный фиксированный набор Service Desk действий:",
+            AppLocalization.T("ServiceDeskBatch.Confirmation.Intro"),
             ""
         };
         foreach (var action in preflight.Actions)
         {
             var state = action.State switch
             {
-                PlannedActionState.Run => "выполнить",
-                PlannedActionState.Superseded => "заменено эквивалентным действием",
-                _ => "пропустить"
+                PlannedActionState.Run => AppLocalization.T("ServiceDeskBatch.State.Run"),
+                PlannedActionState.Superseded => AppLocalization.T("ServiceDeskBatch.State.Superseded"),
+                _ => AppLocalization.T("ServiceDeskBatch.State.Skip")
             };
-            lines.Add($"• {action.Descriptor.Id} — {state}: {action.Reason}");
+            lines.Add(AppLocalization.T("ServiceDeskBatch.Confirmation.ActionLine", action.Descriptor.Id, state, action.Reason));
         }
 
         lines.Add("");
-        lines.Add("Важные последствия полного запуска:");
-        lines.Add(preflight.RequiresUac
-            ? "• Будет один запрос UAC для единого повышенного worker-процесса."
-            : "• Дополнительный UAC не требуется в текущем контексте.");
-        lines.Add(preflight.MayBreakConnectivity
-            ? "• Сеть будет временно прервана на поздней фазе; VPN/RDP/другие соединения могут оборваться."
-            : "• Действия не заявляют разрыв сети.");
-        lines.Add(preflight.MayDeleteUserVisibleState
-            ? "• Некоторые действия удаляют пользовательское состояние: старые Temp-файлы и/или задания очереди печати."
-            : "• Удаление пользовательского состояния не заявлено.");
-        lines.Add(preflight.MayRequireReboot
-            ? "• После Winsock/TCP-IP reset может потребоваться перезагрузка; программа сама её не выполняет."
-            : "• Перезагрузка не требуется по метаданным выбранного набора.");
+        lines.Add(AppLocalization.T("ServiceDeskBatch.Impact.Title"));
+        lines.Add(AppLocalization.T(preflight.RequiresUac
+            ? "ServiceDeskBatch.Impact.Uac.Required"
+            : "ServiceDeskBatch.Impact.Uac.NotRequired"));
+        lines.Add(AppLocalization.T(preflight.MayBreakConnectivity
+            ? "ServiceDeskBatch.Impact.Network.Break"
+            : "ServiceDeskBatch.Impact.Network.None"));
+        lines.Add(AppLocalization.T(preflight.MayDeleteUserVisibleState
+            ? "ServiceDeskBatch.Impact.State.Delete"
+            : "ServiceDeskBatch.Impact.State.None"));
+        lines.Add(AppLocalization.T(preflight.MayRequireReboot
+            ? "ServiceDeskBatch.Impact.Reboot.Possible"
+            : "ServiceDeskBatch.Impact.Reboot.None"));
         lines.Add("");
-        lines.Add("Продолжить полный запуск?");
+        lines.Add(AppLocalization.T("ServiceDeskBatch.Confirmation.Question"));
         return string.Join(Environment.NewLine, lines);
     }
 }
@@ -63,7 +63,7 @@ public sealed partial class MainForm
         BatchPreflight preflight;
         try
         {
-            Busy(true, "Проверяю полный фиксированный набор действий…");
+            Busy(true, AppLocalization.T("ServiceDeskBatch.Full.Checking"));
             var context = await Task.Run(ExecutionContextService.Capture);
             RenderExecutionContext(context);
             RefreshActionAvailability();
@@ -75,7 +75,7 @@ public sealed partial class MainForm
         }
         catch (Exception ex)
         {
-            MessageBox.Show(this, ex.Message, "Не удалось подготовить полный набор", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show(this, ex.Message, AppLocalization.T("ServiceDeskBatch.Full.PrepareFailed"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return;
         }
         finally
@@ -87,7 +87,7 @@ public sealed partial class MainForm
         if (MessageBox.Show(
                 this,
                 confirmation,
-                "Сделать всё — подтвердите полный набор",
+                AppLocalization.T("ServiceDeskBatch.Full.ConfirmTitle"),
                 MessageBoxButtons.OKCancel,
                 MessageBoxIcon.Warning,
                 MessageBoxDefaultButton.Button2) != DialogResult.OK)
@@ -99,7 +99,7 @@ public sealed partial class MainForm
             .ToList();
         if (runnable.Count == 0)
         {
-            MessageBox.Show(this, "Сейчас ни одно действие полного набора не доступно для запуска.", "Сделать всё", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(this, AppLocalization.T("ServiceDeskBatch.Full.NoneRunnable"), AppLocalization.T("Main.ServiceDesk.DoEverything"), MessageBoxButtons.OK, MessageBoxIcon.Information);
             return;
         }
 
@@ -107,7 +107,7 @@ public sealed partial class MainForm
         object? activeProgressOwner = null;
         try
         {
-            Busy(true, "Выполняю полный фиксированный набор…");
+            Busy(true, AppLocalization.T("ServiceDeskBatch.Full.Executing"));
             var remediationOwner = new object();
             activeProgressOwner = remediationOwner;
             _applyProgressOwner = remediationOwner;
@@ -120,7 +120,7 @@ public sealed partial class MainForm
             var verificationOwner = new object();
             activeProgressOwner = verificationOwner;
             _applyProgressOwner = verificationOwner;
-            _status.Text = "Повторная диагностика после полного remediation…";
+            _status.Text = AppLocalization.T("Main.Status.Verifying");
             var verificationProgress = new Progress<string>(s => ApplyOperationProgress(verificationOwner, s));
             var context = await Task.Run(ExecutionContextService.Capture);
             var afterData = await _diagnostics.CollectAsync(verificationProgress);
@@ -137,7 +137,7 @@ public sealed partial class MainForm
             var ok = batch.Actions.Count(x => x.Success);
             MessageBox.Show(
                 this,
-                $"Выполнено: {ok}/{batch.Actions.Count}. Повторная диагностика завершена.\nИндекс: {before.Assessment.Score} → {after.Assessment.Score}.\nУстранение симптома нужно подтвердить отдельно.",
+                AppLocalization.T("Main.Message.Completed", ok, batch.Actions.Count, before.Assessment.Score, after.Assessment.Score),
                 "G PC Health Check",
                 MessageBoxButtons.OK,
                 batch.Actions.All(x => x.Success) ? MessageBoxIcon.Information : MessageBoxIcon.Warning);
@@ -145,12 +145,12 @@ public sealed partial class MainForm
         catch (OperationCanceledException ex)
         {
             _applyProgressOwner = null;
-            MessageBox.Show(this, ex.Message, "Операция отменена", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(this, ex.Message, AppLocalization.T("Main.Message.Cancelled"), MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         catch (Exception ex)
         {
             _applyProgressOwner = null;
-            MessageBox.Show(this, ex.Message, "Ошибка полного remediation", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(this, ex.Message, AppLocalization.T("ServiceDeskBatch.Full.ErrorTitle"), MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         finally
         {
