@@ -9,7 +9,7 @@ internal static class ProcessObservationService
         ArgumentNullException.ThrowIfNull(target); ArgumentNullException.ThrowIfNull(process);
         ArgumentNullException.ThrowIfNull(system); ArgumentNullException.ThrowIfNull(clock);
         PerformanceValues.Validate(options);
-        if (target.Pid == 0 || !ProcessObservationCore.ValidCreatedAt(target.CreatedAt)) throw new ArgumentException("Не определён экземпляр процесса.", nameof(target));
+        if (target.Pid == 0 || !ProcessObservationCore.ValidCreatedAt(target.CreatedAt)) throw new ArgumentException(AppLocalization.T("ProcessObservation.Service.TargetMissing"), nameof(target));
         var result = new ProcessObservationSnapshot { Target = target, ExecutionContext = context };
         using var combined = new CombinedSource(target, options.IntervalSeconds, process, system, clock);
         // Synchronous sink: the scheduler commits a pair only after both reads and
@@ -22,7 +22,7 @@ internal static class ProcessObservationService
     {
         public void Report(PerformanceSample host)
         {
-            if (source.Pending is not { } pending) throw new InvalidOperationException("Нет измерения процесса для завершённой пары.");
+            if (source.Pending is not { } pending) throw new InvalidOperationException(AppLocalization.T("ProcessObservation.Service.PendingMissing"));
             var pair = new ProcessObservationSample(pending.Raw, pending.Reading, host);
             samples.Add(pair); source.Pending = null; progress?.Report(pair);
         }
@@ -39,9 +39,9 @@ internal static class ProcessObservationService
             ProcessCounters counters;
             try { counters = _terminal ?? process.Read(ct); }
             catch (OperationCanceledException) when (ct.IsCancellationRequested) { throw; }
-            catch (Exception ex) { counters = new() { Pid = target.Pid, State = "Unavailable", Warnings = [$"Процесс: {ex.GetType().Name}, 0x{ex.HResult:X8}."] }; }
+            catch (Exception ex) { counters = new() { Pid = target.Pid, State = "Unavailable", Warnings = [AppLocalization.T("ProcessObservation.Service.ProcessError", ex.GetType().Name, ex.HResult.ToString("X8"))] }; }
             if (counters.State == "Live" && !ProcessObservationCore.Matches(target, counters))
-                counters = new() { Pid = counters.Pid, CreatedFileTime = counters.CreatedFileTime, State = "IdentityChanged", Warnings = ["PID/время создания не соответствуют выбранной строке."] };
+                counters = new() { Pid = counters.Pid, CreatedFileTime = counters.CreatedFileTime, State = "IdentityChanged", Warnings = [AppLocalization.T("ProcessObservation.Service.IdentityMismatch")] };
             if (counters.State is "Exited" or "IdentityChanged") _terminal = counters;
             var raw = new ProcessCounterSample(clock.ElapsedMs, clock.Now, counters);
             var reading = ProcessObservationCore.Calculate(target, _previous, raw, interval);
@@ -50,7 +50,7 @@ internal static class ProcessObservationService
             PerformanceReading host;
             try { host = system.Read(ct); }
             catch (OperationCanceledException) when (ct.IsCancellationRequested) { throw; }
-            catch (Exception ex) { host = new(null, null, null, null, [$"Компьютер: {ex.GetType().Name}, 0x{ex.HResult:X8}."]); }
+            catch (Exception ex) { host = new(null, null, null, null, [AppLocalization.T("ProcessObservation.Service.HostError", ex.GetType().Name, ex.HResult.ToString("X8"))]); }
             ct.ThrowIfCancellationRequested(); Pending = (raw, reading);
             return host;
         }
