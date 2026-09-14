@@ -186,47 +186,81 @@ internal sealed class WindowsRepairOperations : IWindowsRepairOperations
             return new PrintQueueClearResult { Success = false, Message = $"Каталог очереди недоступен: {ex.GetType().Name}, 0x{ex.HResult:X8}." };
         }
 
+        return ClearPrintQueueCore(
+            windowsRoot,
+            queue,
+            attributes,
+            StopSpooler,
+            EnsureSpoolerRunning,
+            () => Directory.EnumerateFileSystemEntries(queue, "*", SearchOption.TopDirectoryOnly).ToArray(),
+            File.GetAttributes,
+            File.Delete);
+    }
+
+    internal static PrintQueueClearResult ClearPrintQueueCore(
+        string windowsRoot,
+        string queue,
+        FileAttributes attributes,
+        Func<bool> stopSpooler,
+        Func<bool> ensureSpoolerRunning,
+        Func<IEnumerable<string>> enumerateEntries,
+        Func<string, FileAttributes> getAttributes,
+        Action<string> deleteFile)
+    {
+        ArgumentNullException.ThrowIfNull(stopSpooler);
+        ArgumentNullException.ThrowIfNull(ensureSpoolerRunning);
+        ArgumentNullException.ThrowIfNull(enumerateEntries);
+        ArgumentNullException.ThrowIfNull(getAttributes);
+        ArgumentNullException.ThrowIfNull(deleteFile);
         if (!IsSafeSpoolDirectory(windowsRoot, queue, attributes))
             return new PrintQueueClearResult { Success = false, Message = "Фиксированный каталог очереди не прошёл проверку пути/reparse; удаление отменено." };
 
         var deleted = 0;
         var skipped = 0;
         var errors = 0;
+        var stopped = false;
         var restartSucceeded = false;
         try
         {
-            if (!StopSpooler()) errors++;
-            foreach (var entry in Directory.EnumerateFileSystemEntries(queue, "*", SearchOption.TopDirectoryOnly))
+            stopped = stopSpooler();
+            if (!stopped)
             {
-                try
+                errors++;
+            }
+            else
+            {
+                foreach (var entry in enumerateEntries())
                 {
-                    var attr = File.GetAttributes(entry);
-                    if ((attr & FileAttributes.Directory) != 0 || (attr & FileAttributes.ReparsePoint) != 0)
+                    try
                     {
-                        skipped++;
-                        continue;
+                        var attr = getAttributes(entry);
+                        if ((attr & FileAttributes.Directory) != 0 || (attr & FileAttributes.ReparsePoint) != 0)
+                        {
+                            skipped++;
+                            continue;
+                        }
+                        deleteFile(entry);
+                        deleted++;
                     }
-                    File.Delete(entry);
-                    deleted++;
+                    catch { errors++; }
                 }
-                catch { errors++; }
             }
         }
         catch { errors++; }
         finally
         {
-            restartSucceeded = EnsureSpoolerRunning();
+            restartSucceeded = ensureSpoolerRunning();
             if (!restartSucceeded) errors++;
         }
 
         return new PrintQueueClearResult
         {
-            Success = errors == 0 && restartSucceeded,
+            Success = stopped && errors == 0 && restartSucceeded,
             DeletedFiles = deleted,
             SkippedFiles = skipped,
             Errors = errors,
             SpoolerRestarted = restartSucceeded,
-            Message = $"Очередь печати: удалено {deleted}; пропущено {skipped}; ошибок {errors}; Spooler запущен: {(restartSucceeded ? "да" : "нет")}."
+            Message = $"Очередь печати: Spooler остановлен: {(stopped ? "да" : "нет")}; удалено {deleted}; пропущено {skipped}; ошибок {errors}; Spooler запущен: {(restartSucceeded ? "да" : "нет")}."
         };
     }
 
