@@ -10,7 +10,7 @@ internal static class ResourceTargetParser
     public static ResourceTarget Parse(string input, int port)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(input);
-        if (port is < 1 or > 65535) throw new ArgumentOutOfRangeException(nameof(port), "TCP-порт: от 1 до 65535.");
+        if (port is < 1 or > 65535) throw new ArgumentOutOfRangeException(nameof(port), AppLocalization.T("ResourceProbe.Parser.PortRange"));
         var host = input.Trim();
         if (host.Length > 255 || host.Any(char.IsControl)) throw Invalid();
         if (host.StartsWith('[') && host.EndsWith(']')) host = host[1..^1];
@@ -37,7 +37,7 @@ internal static class ResourceTargetParser
         if (ip.AddressFamily != AddressFamily.InterNetwork) return false;
         var b = ip.GetAddressBytes(); return b[0] is > 0 and < 224;
     }
-    private static ArgumentException Invalid() => new("Введите одно имя узла или IPv4/IPv6 без URL, пути, учётных данных и диапазона. Порт задаётся отдельно.");
+    private static ArgumentException Invalid() => new(AppLocalization.T("ResourceProbe.Parser.Invalid"));
 }
 
 internal sealed class ResourceProbeService(IResourceProbeNetwork network)
@@ -49,7 +49,7 @@ internal sealed class ResourceProbeService(IResourceProbeNetwork network)
         ArgumentNullException.ThrowIfNull(target); ArgumentNullException.ThrowIfNull(options);
         target = ResourceTargetParser.Parse(target.Host, target.Port);
         if (options.DnsTimeoutMs is < 1 or > 10000 || options.TcpTimeoutMs is < 1 or > 10000 || options.MaxAddresses is < 1 or > 16)
-            throw new ArgumentOutOfRangeException(nameof(options), "Тайм-ауты 1–10000 мс, адресов 1–16.");
+            throw new ArgumentOutOfRangeException(nameof(options), AppLocalization.T("ResourceProbe.Service.OptionsRange"));
         var result = new ResourceProbeSnapshot { Target = target, Options = options };
         try
         {
@@ -58,18 +58,18 @@ internal sealed class ResourceProbeService(IResourceProbeNetwork network)
             if (IPAddress.TryParse(target.Host, out var literal))
             {
                 addresses = [literal];
-                result.Steps.Add(new("DNS", target.Host, "Skipped", 0, "", "Задан IP-адрес: разрешение имени не требуется."));
+                result.Steps.Add(new("DNS", target.Host, "Skipped", 0, "", AppLocalization.T("ResourceProbe.Service.IpLiteral")));
             }
             else
             {
-                progress?.Report("DNS: системное разрешение имени " + target.Host + "…");
+                progress?.Report(AppLocalization.T("ResourceProbe.Service.ProgressDns", target.Host));
                 var dns = await Attempt("DNS", target.Host, options.DnsTimeoutMs, ct, async token =>
                 {
                     addresses = await _network.ResolveAsync(target.Host, token).ConfigureAwait(false);
-                    return "Использован системный резолвер (возможны кэш, hosts и суффиксы поиска).";
+                    return AppLocalization.T("ResourceProbe.Service.SystemResolver");
                 }).ConfigureAwait(false);
                 if (dns.Outcome == "Resolved" && addresses.Length == 0)
-                    dns = dns with { Outcome = "Failed", ErrorCode = "NoAddresses", Detail = "Системный резолвер не вернул адресов. TCP-подключение не выполнялось." };
+                    dns = dns with { Outcome = "Failed", ErrorCode = "NoAddresses", Detail = AppLocalization.T("ResourceProbe.Service.NoAddresses") };
                 result.Steps.Add(dns);
                 // Retain the in-flight stage, then give user cancellation priority
                 // over a provider's OperationAborted/socket failure or early return.
@@ -80,18 +80,18 @@ internal sealed class ResourceProbeService(IResourceProbeNetwork network)
             var distinct = addresses.Distinct().ToList();
             result.Addresses = distinct.Select(x => x.ToString()).ToList();
             var valid = distinct.Where(ResourceTargetParser.IsUnicast).ToList();
-            if (valid.Count != distinct.Count) result.Warnings.Add("Неадресуемые или multicast-адреса исключены из TCP-проверки.");
+            if (valid.Count != distinct.Count) result.Warnings.Add(AppLocalization.T("ResourceProbe.Service.InvalidAddresses"));
             if (valid.Count == 0)
             {
-                result.Warnings.Add("Нет пригодных адресов для TCP-подключения. Соединения не выполнялись.");
+                result.Warnings.Add(AppLocalization.T("ResourceProbe.Service.NoUsableAddresses"));
                 result.Outcome = "Failed"; return result;
             }
-            if (valid.Count > options.MaxAddresses) result.Warnings.Add($"Получено пригодных адресов: {valid.Count}; проверяются только первые {options.MaxAddresses} в порядке системного резолвера.");
+            if (valid.Count > options.MaxAddresses) result.Warnings.Add(AppLocalization.T("ResourceProbe.Service.AddressLimit", valid.Count, options.MaxAddresses));
             foreach (var address in valid.Take(options.MaxAddresses))
             {
                 ct.ThrowIfCancellationRequested();
                 var endpoint = address.AddressFamily == AddressFamily.InterNetworkV6 ? $"[{address}]:{target.Port}" : $"{address}:{target.Port}";
-                progress?.Report("TCP: проверяю " + endpoint + "…");
+                progress?.Report(AppLocalization.T("ResourceProbe.Service.ProgressTcp", endpoint));
                 result.Steps.Add(await Attempt("TCP", endpoint, options.TcpTimeoutMs, ct,
                     token => _network.ConnectAsync(address, target.Port, token)).ConfigureAwait(false));
             }
@@ -103,7 +103,7 @@ internal sealed class ResourceProbeService(IResourceProbeNetwork network)
         catch (OperationCanceledException) when (ct.IsCancellationRequested)
         {
             result.Outcome = "Cancelled";
-            result.Warnings.Add("Проверка отменена. Уже выполненные обращения не отменяются задним числом; неполный результат не подтверждает доступность всех адресов.");
+            result.Warnings.Add(AppLocalization.T("ResourceProbe.Service.Cancelled"));
         }
         finally { result.FinishedAt = DateTimeOffset.Now; }
         return result;
@@ -117,15 +117,15 @@ internal sealed class ResourceProbeService(IResourceProbeNetwork network)
         {
             var value = await operation(timeout.Token).WaitAsync(timeout.Token).ConfigureAwait(false);
             return new(stage, endpoint, stage == "DNS" ? "Resolved" : "Connected", watch.Elapsed.TotalMilliseconds, "",
-                stage == "DNS" ? value : "TCP-соединение установлено и закрыто без прикладных данных.", stage == "TCP" ? value : "");
+                stage == "DNS" ? value : AppLocalization.T("ResourceProbe.Service.TcpConnected"), stage == "TCP" ? value : "");
         }
         catch (Exception ex) when (ct.IsCancellationRequested && ex is not OutOfMemoryException)
         {
             var code = ex is SocketException socket ? $"{socket.SocketErrorCode} ({socket.NativeErrorCode})" : "UserCancelled";
-            return new(stage, endpoint, "Cancelled", watch.Elapsed.TotalMilliseconds, code, "Текущий этап прерван запросом отмены; его завершение не подтверждено.");
+            return new(stage, endpoint, "Cancelled", watch.Elapsed.TotalMilliseconds, code, AppLocalization.T("ResourceProbe.Service.StageCancelled"));
         }
         catch (OperationCanceledException)
-        { return new(stage, endpoint, "Timeout", watch.Elapsed.TotalMilliseconds, "DeadlineExceeded", $"Не завершено за {timeoutMs} мс. Это не доказывает блокировку межсетевым экраном."); }
+        { return new(stage, endpoint, "Timeout", watch.Elapsed.TotalMilliseconds, "DeadlineExceeded", AppLocalization.T("ResourceProbe.Service.Timeout", timeoutMs)); }
         catch (SocketException ex)
         {
             var outcome = ex.SocketErrorCode switch
@@ -139,15 +139,15 @@ internal sealed class ResourceProbeService(IResourceProbeNetwork network)
             return new(stage, endpoint, outcome, watch.Elapsed.TotalMilliseconds, $"{ex.SocketErrorCode} ({ex.NativeErrorCode})", Explain(outcome, stage));
         }
         catch (Exception ex) when (ex is not OutOfMemoryException)
-        { return new(stage, endpoint, "Failed", watch.Elapsed.TotalMilliseconds, $"{ex.GetType().Name} (0x{ex.HResult:X8})", "Операция не завершена. Проверьте поддержку протокола, настройки и доступность системного провайдера."); }
+        { return new(stage, endpoint, "Failed", watch.Elapsed.TotalMilliseconds, $"{ex.GetType().Name} (0x{ex.HResult:X8})", AppLocalization.T("ResourceProbe.Service.GenericFailure")); }
     }
     private static string Explain(string outcome, string stage) => outcome switch
     {
-        "Refused" => "Соединение отклонено. Проверьте порт и слушающую службу; отказ также может исходить от сетевого устройства.",
-        "Timeout" => "Ответ не получен в срок. Проверьте маршрут, VPN, сервер и правила фильтрации; причина не установлена автоматически.",
-        "Unreachable" => "ОС сообщает недоступность сети или узла. Проверьте подключение, маршрут и VPN.",
-        "Denied" => "ОС отказала в доступе к сокету. Проверьте политики с ответственным инженером, не отключая защиту.",
-        _ when stage == "DNS" => "Имя не удалось разрешить. Проверьте написание, корпоративный DNS/VPN и суффиксы поиска. Не подменяйте DNS публичным сервером.",
-        _ => "TCP-подключение не выполнено. Сопоставьте код ошибки с симптомом и конфигурацией сервиса."
+        "Refused" => AppLocalization.T("ResourceProbe.Service.Refused"),
+        "Timeout" => AppLocalization.T("ResourceProbe.Service.ExplainTimeout"),
+        "Unreachable" => AppLocalization.T("ResourceProbe.Service.Unreachable"),
+        "Denied" => AppLocalization.T("ResourceProbe.Service.Denied"),
+        _ when stage == "DNS" => AppLocalization.T("ResourceProbe.Service.DnsFailure"),
+        _ => AppLocalization.T("ResourceProbe.Service.TcpFailure")
     };
 }
