@@ -19,6 +19,7 @@ internal static class Program
             if (result == 0) result = LocalizationAndSizeSelfTest.Run();
             if (result == 0) result = PerformanceLocalizationSelfTest.Run();
             if (result == 0) result = FileUseLocalizationSelfTest.Run();
+            if (result == 0) result = ProcessObservationLocalizationSelfTest.Run();
             if (result == 0) result = LocalizationCoverageSelfTest.Run();
             if (result == 0) result = HumanSizePresentationSelfTest.Run();
             if (result == 0) result = MainChromeSelfTest.Run();
