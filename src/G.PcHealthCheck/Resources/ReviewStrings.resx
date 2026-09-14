@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Review.Form.Title.Temp" xml:space="preserve"><value>G PC Health Check — предпросмотр очистки Temp</value></data>
+  <data name="Review.Form.Title.Startup" xml:space="preserve"><value>G PC Health Check — разбор автозагрузки</value></data>
+  <data name="Review.Form.Intro.Temp" xml:space="preserve"><value>ПРЕДПРОСМОТР TEMP — только чтение. Удаление выполняется отдельно через рекомендации главного окна.</value></data>
+  <data name="Review.Form.Intro.Startup" xml:space="preserve"><value>АВТОЗАГРУЗКА — только чтение. Команды не выполняются, записи не отключаются; включение и влияние на загрузку не определяются.</value></data>
+  <data name="Review.Button.Scan" xml:space="preserve"><value>Проверить / повторить</value></data>
+  <data name="Review.Button.Cancel" xml:space="preserve"><value>Отменить сбор</value></data>
+  <data name="Review.Button.Copy" xml:space="preserve"><value>Копировать снимок</value></data>
+  <data name="Review.Button.Export" xml:space="preserve"><value>Сохранить HTML / JSON</value></data>
+  <data name="Review.Button.Close" xml:space="preserve"><value>Закрыть</value></data>
+  <data name="Review.Search.Placeholder" xml:space="preserve"><value>Название, команда, область, источник…</value></data>
+  <data name="Review.Search.Label" xml:space="preserve"><value>Поиск:</value></data>
+  <data name="Review.Column.SizeMb" xml:space="preserve"><value>Размер, MB</value></data>
+  <data name="Review.Column.Modified" xml:space="preserve"><value>Изменён</value></data>
+  <data name="Review.Column.FullPath" xml:space="preserve"><value>Полный путь — крупнейшие кандидаты</value></data>
+  <data name="Review.Column.Name" xml:space="preserve"><value>Название</value></data>
+  <data name="Review.Column.Command" xml:space="preserve"><value>Команда / путь к записи</value></data>
+  <data name="Review.Column.ScopeAccount" xml:space="preserve"><value>Область / аккаунт</value></data>
+  <data name="Review.Column.Source" xml:space="preserve"><value>Источник</value></data>
+  <data name="Review.Column.State" xml:space="preserve"><value>Включение</value></data>
+  <data name="Review.Status.Ready" xml:space="preserve"><value>Готов к проверке.</value></data>
+  <data name="Review.Status.Empty" xml:space="preserve"><value>Снимок ещё не собран.</value></data>
+  <data name="Review.Status.CancelRequested" xml:space="preserve"><value>Отмена запрошена; ожидается завершение текущего вызова поставщика данных.</value></data>
+  <data name="Review.Status.Copied" xml:space="preserve"><value>Скопирован весь сохранённый снимок, независимо от поиска.</value></data>
+  <data name="Review.Status.Collecting" xml:space="preserve"><value>Собираю новый снимок; предыдущий пока остаётся на экране…</value></data>
+  <data name="Review.Status.Complete" xml:space="preserve"><value>Сбор завершён. Состояние и ограничения указаны над таблицей; снимок не является результатом исправления.</value></data>
+  <data name="Review.Status.Cancelled" xml:space="preserve"><value>Сбор отменён. Предыдущий снимок не заменён; его дата указана выше.</value></data>
+  <data name="Review.Status.Failed" xml:space="preserve"><value>Сбор не завершён: {0}, 0x{1:X8}. Предыдущий снимок не заменён.</value></data>
+  <data name="Review.Status.Filtered" xml:space="preserve"><value>Показано {0} из {1}. Экспорт и копирование включают весь снимок.</value></data>
+  <data name="Review.SnapshotTypeMismatch" xml:space="preserve"><value>Тип снимка не соответствует окну.</value></data>
+  <data name="Review.Detail.Temp" xml:space="preserve"><value>{0}&#13;&#10;Размер: {1}&#13;&#10;Изменён: {2:O}&#13;&#10;Кандидат по возрасту, не гарантированно удаляемый файл.</value></data>
+  <data name="Review.Detail.Startup" xml:space="preserve"><value>{0}&#13;&#10;Область: {1}&#13;&#10;Источник: {2}&#13;&#10;Включение: {3}&#13;&#10;Команда / ссылка на файл (как прочитана):&#13;&#10;{4}</value></data>
+  <data name="Review.Detail.Select" xml:space="preserve"><value>Выберите строку для просмотра полного пути или команды.</value></data>
+  <data name="Review.Export.Description" xml:space="preserve"><value>Отчёты содержат пути, аккаунты и команды. Выберите папку; не публикуйте без проверки.</value></data>
+  <data name="Review.Export.Saved" xml:space="preserve"><value>HTML и JSON сохранены: {0}</value></data>
+  <data name="Review.ActionFailed" xml:space="preserve"><value>Действие не завершено полностью</value></data>
+  <data name="Review.Menu.Analysis" xml:space="preserve"><value>Анализ</value></data>
+  <data name="Review.Menu.Temp" xml:space="preserve"><value>Предпросмотр очистки Temp…</value></data>
+  <data name="Review.Menu.Startup" xml:space="preserve"><value>Разбор автозагрузки…</value></data>
+  <data name="Review.Report.Title.Temp" xml:space="preserve"><value>Предпросмотр очистки Temp</value></data>
+  <data name="Review.Report.Title.Startup" xml:space="preserve"><value>Разбор автозагрузки</value></data>
+  <data name="Review.Report.State.Complete" xml:space="preserve"><value>Сбор завершён в заявленной области</value></data>
+  <data name="Review.Report.State.Partial" xml:space="preserve"><value>Неполный сбор</value></data>
+  <data name="Review.Report.State.Missing" xml:space="preserve"><value>Каталог/источник отсутствует</value></data>
+  <data name="Review.Report.State.Unavailable" xml:space="preserve"><value>Данные недоступны</value></data>
+  <data name="Review.Report.Snapshot" xml:space="preserve"><value>{0} · снимок {1:dd.MM.yyyy HH:mm:ss zzz}</value></data>
+  <data name="Review.Report.TempOwner" xml:space="preserve"><value>Чей Temp: {0}; SID: {1}.</value></data>
+  <data name="Review.Report.Scope" xml:space="preserve"><value>Область: {0}</value></data>
+  <data name="Review.Report.Rule" xml:space="preserve"><value>Правило: LastWriteTime &lt; {0:dd.MM.yyyy HH:mm:ss zzz} (старше {1} дней).</value></data>
+  <data name="Review.Report.TempUnavailable" xml:space="preserve"><value>Кандидаты и объём: — (оценка недоступна).</value></data>
+  <data name="Review.Report.TempEstimate" xml:space="preserve"><value>Кандидатов: {0:N0}; логическая оценка объёма: {1}.</value></data>
+  <data name="Review.Report.TempVisited" xml:space="preserve"><value>Просмотрено записей: {0:N0}; пропущено ссылок: {1:N0}; ошибок: {2:N0}.</value></data>
+  <data name="Review.Report.TempLargest" xml:space="preserve"><value>В таблице: {0} крупнейших из {1:N0} кандидатов. Лимиты: {2:N0} записей / {3:0.#} с.</value></data>
+  <data name="Review.Report.TempBoundary" xml:space="preserve"><value>Это оценка, не обещание освободить указанный объём. Содержимое не читалось, файлы не удалялись. При очистке отбор выполняется заново; файл может измениться или оказаться заблокированным. Размеры логические, не занятое место на носителе.</value></data>
+  <data name="Review.Report.TempCleanupReady" xml:space="preserve"><value>Очистка доступна отдельным подтверждаемым действием CleanTemp в главном окне. Список крупнейших файлов не является планом удаления.</value></data>
+  <data name="Review.Report.TempCleanupUnavailable" xml:space="preserve"><value>Для удаления откройте программу обычным запуском от имени пользователя этого сеанса. Возможность чтения с повышением не означает возможность очистки в том же контексте.</value></data>
+  <data name="Review.Report.MoreMessages" xml:space="preserve"><value>Ещё сообщений: {0:N0}.</value></data>
+  <data name="Review.Report.StartupAccount" xml:space="preserve"><value>Аккаунт процесса: {0}; записей: {1}; источников: {2}.</value></data>
+  <data name="Review.Report.StartupBoundary" xml:space="preserve"><value>Команды показаны без запуска и подстановки переменных. Состояние включения: не определено; подпись, репутация и влияние на загрузку не проверялись.</value></data>
+  <data name="Review.Report.StartupSource" xml:space="preserve"><value>Источник: {0} | {1} | {2} | записей: {3} | {4}</value></data>
+  <data name="Review.Report.Html.TempHeaders" xml:space="preserve"><value>Размер, MB|Изменён|Путь</value></data>
+  <data name="Review.Report.Html.StartupHeaders" xml:space="preserve"><value>Название|Команда / ссылка на файл|Область|Источник|Включение</value></data>
+  <data name="Review.Report.Footer" xml:space="preserve"><value>Экспорт содержит весь сохранённый снимок, независимо от поиска в окне. Пути и команды могут содержать чувствительные данные. Не публикуйте отчёт без проверки.</value></data>
+</root>
