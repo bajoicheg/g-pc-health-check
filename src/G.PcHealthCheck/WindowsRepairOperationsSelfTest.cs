@@ -5,7 +5,7 @@ namespace G.PcHealthCheck;
 
 internal static class WindowsRepairOperationsSelfTest
 {
-    private sealed class FakeProxy : DispatchProxy
+    public class FakeProxy : DispatchProxy
     {
         internal static readonly List<string> Calls = [];
         internal static readonly Dictionary<string, (string State, string StartMode)> Services = new(StringComparer.OrdinalIgnoreCase);
