@@ -18,35 +18,35 @@ internal static class FileUseService
             if (code == 1223)
             {
                 snapshot.ErrorCode = 1223;
-                throw new OperationCanceledException("Windows отменила запрос Restart Manager.", ct);
+                throw new OperationCanceledException(AppLocalization.T("FileUse.Service.CancelledByWindows"), ct);
             }
             throw new Win32Exception(unchecked((int)code));
         }
         try
         {
-            Stage("Проверяю путь и метаданные файла…"); source.CheckFile(snapshot.TargetPath, ct); ct.ThrowIfCancellationRequested();
-            Stage("Открываю сеанс Restart Manager…"); Check(source.StartSession(out session)); started = true;
+            Stage(AppLocalization.T("FileUse.Service.Stage.CheckFile")); source.CheckFile(snapshot.TargetPath, ct); ct.ThrowIfCancellationRequested();
+            Stage(AppLocalization.T("FileUse.Service.Stage.Start")); Check(source.StartSession(out session)); started = true;
             ct.ThrowIfCancellationRequested();
-            Stage("Регистрирую выбранный файл для запроса…"); Check(source.RegisterFile(session, snapshot.TargetPath));
+            Stage(AppLocalization.T("FileUse.Service.Stage.Register")); Check(source.RegisterFile(session, snapshot.TargetPath));
             var capacity = 0;
             for (var attempt = 0; attempt < MaxAttempts; attempt++)
             {
-                ct.ThrowIfCancellationRequested(); Stage("Получаю список приложений/служб…"); snapshot.QueryAttempts++;
+                ct.ThrowIfCancellationRequested(); Stage(AppLocalization.T("FileUse.Service.Stage.List")); snapshot.QueryAttempts++;
                 var batch = source.ReadList(session, capacity);
                 if (batch.Code == 234)
                 {
                     snapshot.ReportedCount = batch.Needed;
-                    if (batch.Needed > MaxProcesses || batch.Needed <= capacity) throw new InvalidDataException("Список превышает ограничение 1024 записей либо размер ответа несогласован.");
+                    if (batch.Needed > MaxProcesses || batch.Needed <= capacity) throw new InvalidDataException(AppLocalization.T("FileUse.Service.ListTooLarge"));
                     capacity = checked((int)batch.Needed); continue;
                 }
                 Check(batch.Code);
                 if (batch.Returned > (uint)capacity || batch.Returned > MaxProcesses || batch.Returned != batch.Processes.Count)
-                    throw new InvalidDataException("Число записей Restart Manager не соответствует размеру буфера или полученным данным.");
+                    throw new InvalidDataException(AppLocalization.T("FileUse.Service.CountMismatch"));
                 snapshot.Processes = batch.Processes.ToList(); snapshot.ListCompleted = true;
                 snapshot.ReportedCount = batch.Returned; snapshot.RebootReasons = batch.RebootReasons; break;
             }
-            if (!snapshot.ListCompleted) throw new Win32Exception(234, "Список менялся во время сбора; достигнут предел повторов.");
-            ct.ThrowIfCancellationRequested(); Stage("Проверяю PID и время создания процессов…");
+            if (!snapshot.ListCompleted) throw new Win32Exception(234, AppLocalization.T("FileUse.Service.ListChanged"));
+            ct.ThrowIfCancellationRequested(); Stage(AppLocalization.T("FileUse.Service.Stage.Identity"));
             var identities = new Dictionary<uint, FileUseIdentity?>();
             for (var i = 0; i < snapshot.Processes.Count; i++)
             {
@@ -66,14 +66,14 @@ internal static class FileUseService
             }
             ct.ThrowIfCancellationRequested();
             var missing = snapshot.Processes.Count(x => x.IdentityState != "Matched");
-            if (missing > 0) snapshot.Warnings.Add($"Для {missing} записей EXE не подтверждён. Названия от Restart Manager сохранены отдельно и не подменяются текущим процессом с тем же PID.");
-            snapshot.State = "Complete"; Stage("Список получен.");
+            if (missing > 0) snapshot.Warnings.Add(AppLocalization.T("FileUse.Service.IdentityWarning", missing));
+            snapshot.State = "Complete"; Stage(AppLocalization.T("FileUse.Service.Stage.Complete"));
         }
-        catch (OperationCanceledException) { snapshot.State = "Cancelled"; snapshot.Warnings.Add("Сбор остановлен; завершённый список сохранён, если успел поступить. Отсутствие данных не означает отсутствие использования файла."); }
+        catch (OperationCanceledException) { snapshot.State = "Cancelled"; snapshot.Warnings.Add(AppLocalization.T("FileUse.Service.CancelWarning")); }
         catch (Exception ex)
         {
             snapshot.ErrorCode = ErrorCode(ex); snapshot.State = snapshot.ListCompleted ? "Partial" : "Unavailable";
-            snapshot.Warnings.Add($"{ex.GetType().Name}: {ex.Message} (код {snapshot.ErrorCode}).");
+            snapshot.Warnings.Add(AppLocalization.T("FileUse.Service.ErrorWarning", ex.GetType().Name, ex.Message, snapshot.ErrorCode));
         }
         finally
         {
@@ -82,9 +82,9 @@ internal static class FileUseService
                 try
                 {
                     snapshot.EndSessionCode = source.EndSession(session);
-                    if (snapshot.EndSessionCode != 0) snapshot.Warnings.Add($"Завершение сеанса Restart Manager не подтверждено: код {snapshot.EndSessionCode}.");
+                    if (snapshot.EndSessionCode != 0) snapshot.Warnings.Add(AppLocalization.T("FileUse.Service.EndWarning", snapshot.EndSessionCode));
                 }
-                catch (Exception ex) { snapshot.Warnings.Add($"Ошибка завершения сеанса Restart Manager: {ex.GetType().Name}, код {ErrorCode(ex)}."); }
+                catch (Exception ex) { snapshot.Warnings.Add(AppLocalization.T("FileUse.Service.EndError", ex.GetType().Name, ErrorCode(ex))); }
                 if (snapshot.EndSessionCode != 0 && snapshot.State == "Complete") snapshot.State = "Partial";
             }
             snapshot.FinishedAt = DateTimeOffset.Now;
