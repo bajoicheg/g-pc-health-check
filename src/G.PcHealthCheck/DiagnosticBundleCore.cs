@@ -76,7 +76,7 @@ internal static class DiagnosticBundleCore
             performance.Markers.Add(marker);
         }
         if (excluded > 0)
-            performance.Warnings.Add(AppLocalization.T("Bundle.Core.MarkersExcluded", excluded));
+            performance.Warnings.Add(AppLocalization.T("Bundle.Core.MarkersExcludedCount", excluded));
         return excluded;
     }
 
