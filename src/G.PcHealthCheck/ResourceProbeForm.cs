@@ -144,7 +144,17 @@ internal sealed class ResourceProbeForm : Form
     {
         if (_busy || _current is not { } current) return;
         using var dialog = new FolderBrowserDialog { Description = "Отчёт содержит имя цели и IP-адреса. Не публикуйте его без проверки.", UseDescriptionForTitle = true };
-        if (dialog.ShowDialog(this) == DialogResult.OK) TryUi(() => _status.Text = "Отчёт сохранён: " + ResourceProbeExport.Save(current, _previous, dialog.SelectedPath));
+        if (dialog.ShowDialog(this) != DialogResult.OK) return;
+        try { _status.Text = "Отчёт сохранён: " + ResourceProbeExport.Save(current, _previous, dialog.SelectedPath); }
+        catch (Exception ex)
+        {
+            ApplyExportFailure(ex);
+            MessageBox.Show(this, ex.Message, "Действие не завершено", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+    }
+    private void ApplyExportFailure(Exception ex)
+    {
+        _status.Text = $"Экспорт не завершён: {ex.GetType().Name}, 0x{ex.HResult:X8}.";
     }
     private void TryUi(Action action) { try { action(); } catch (Exception ex) { MessageBox.Show(this, ex.Message, "Действие не завершено", MessageBoxButtons.OK, MessageBoxIcon.Warning); } }
     private static Button MakeButton(string text, string name) => new() { Text = text, Name = name, AutoSize = true, Padding = new Padding(5, 2, 5, 2) };
