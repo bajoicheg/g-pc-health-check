@@ -1,8 +1,8 @@
-# G PC Health Check 0.15.0 — managed Windows 11 acceptance / pilot
+# G PC Health Check 0.15.1 — managed Windows 11 acceptance / pilot
 
 ## Purpose and acceptance boundary
 
-This is the manual workstation acceptance plan for the current 0.15.0 product line. It complements CI; it does not replace CI and CI does not replace this plan.
+This is the manual workstation acceptance plan for the current 0.15.1 product line. It complements CI; it does not replace CI and CI does not replace this plan.
 
 Hosted Windows CI proves source/build regressions, the published single-file EXE self-test, portable worker/security checks, package/version/checksum validation, pilot-bundle construction, evidence-analyzer behavior and supply-chain attestations. It does **not** prove interactive UAC, real Windows 11 desktop behavior, RDP/DPI behavior, corporate VPN/EDR coexistence, OEM/USB/RAID provider behavior or Service Desk usability on managed endpoints.
 
@@ -313,4 +313,4 @@ Managed Windows 11 acceptance can be considered complete only when:
 8. the tested EXE hash/version and evidence location are recorded;
 9. no open acceptance blocker is hidden behind a hosted-CI PASS.
 
-Major future ideas such as raw/full SMART, broad system-handle enumeration, general treemap, stress/stability workloads and new remediation/rollback operations are not acceptance prerequisites for 0.15.0 unless separately approved into scope.
+Major future ideas such as raw/full SMART, broad system-handle enumeration, general treemap, stress/stability workloads and new remediation/rollback operations are not acceptance prerequisites for 0.15.1 unless separately approved into scope.
