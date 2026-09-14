@@ -87,14 +87,17 @@ internal static class ServiceDeskActionRegistry
     private static readonly Dictionary<string, ServiceDeskActionDescriptor> ById =
         All.ToDictionary(x => x.Id, StringComparer.OrdinalIgnoreCase);
 
-    // Task 4 is metadata/refactoring only. These are the only mutating handlers
-    // that existed before 0.16.0; the remaining ten IDs stay non-executable until
-    // their later TDD tasks add fixed native-operation implementations.
+    // Task 6 adds fixed, bounded non-network repair handlers. Full GpUpdate stays
+    // staged because its original-user half requires Task 8 phased orchestration.
     public static IReadOnlySet<string> ExecutableHandlerIds { get; } =
-        new HashSet<string>(["CleanTemp", "FlushDns", "Dism", "Sfc"], StringComparer.OrdinalIgnoreCase);
+        new HashSet<string>(
+            ["CleanTemp", "FlushDns", "RestartSpooler", "ClearPrintQueue", "RestartUpdateServices", "TimeResync", "Dism", "Sfc"],
+            StringComparer.OrdinalIgnoreCase);
 
     public static IReadOnlySet<string> WorkerExecutableHandlerIds { get; } =
-        new HashSet<string>(["FlushDns", "Dism", "Sfc"], StringComparer.OrdinalIgnoreCase);
+        new HashSet<string>(
+            ["FlushDns", "RestartSpooler", "ClearPrintQueue", "RestartUpdateServices", "TimeResync", "Dism", "Sfc"],
+            StringComparer.OrdinalIgnoreCase);
 
     public static ServiceDeskActionDescriptor? Find(string? id)
         => !string.IsNullOrWhiteSpace(id) && ById.TryGetValue(id, out var descriptor) ? descriptor : null;
