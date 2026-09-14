@@ -102,6 +102,7 @@
   <data name="ProcessObservation.Report.Pairs" xml:space="preserve"><value>Все завершённые пары измерений</value></data>
   <data name="ProcessObservation.Report.Column.ProcessTime" xml:space="preserve"><value>Процесс: с / время</value></data>
   <data name="ProcessObservation.Report.Column.State" xml:space="preserve"><value>Состояние</value></data>
+  <data name="ProcessObservation.Report.Column.Exe" xml:space="preserve"><value>EXE</value></data>
   <data name="ProcessObservation.Report.Column.Working" xml:space="preserve"><value>Рабочая память, MiB</value></data>
   <data name="ProcessObservation.Report.Column.Read" xml:space="preserve"><value>Чтение, MiB/с</value></data>
   <data name="ProcessObservation.Report.Column.Write" xml:space="preserve"><value>Запись, MiB/с</value></data>
