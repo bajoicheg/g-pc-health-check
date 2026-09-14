@@ -10,8 +10,6 @@ namespace G.PcHealthCheck;
 
 public static class RemediationWorker
 {
-    private static readonly string[] Allowed = ["CleanTemp", "FlushDns", "Dism", "Sfc"];
-    private static readonly string[] WorkerAllowed = ["FlushDns", "Dism", "Sfc"];
     private const string PipePrefix = "GPcHealthCheck-";
 
     public static int Run(string[] args)
@@ -55,7 +53,7 @@ public static class RemediationWorker
     {
         var ids = selected.Where(x => x.CanAutomate)
             .Select(x => x.Id)
-            .Where(x => Allowed.Contains(x, StringComparer.OrdinalIgnoreCase))
+            .Where(ServiceDeskActionRegistry.IsExecutableHandler)
             .Distinct(StringComparer.OrdinalIgnoreCase).ToList();
         if (ids.Count == 0) throw new InvalidOperationException("Не выбрано ни одного автоматизируемого действия.");
         NormalizeOrder(ids);
@@ -77,7 +75,7 @@ public static class RemediationWorker
 
         // CleanTemp never enters the elevated worker; the original parent rechecks its
         // current-session subject before deletion, after the worker returns a result.
-        var workerIds = ids.Where(x => !x.Equals("CleanTemp", StringComparison.OrdinalIgnoreCase)).ToList();
+        var workerIds = ids.Where(ServiceDeskActionRegistry.IsWorkerExecutableHandler).ToList();
         if (workerIds.Count == 0) throw new InvalidOperationException("Не выбрано административных действий для elevated worker.");
         NormalizeOrder(workerIds);
         var session = Guid.NewGuid().ToString("D");
@@ -156,12 +154,13 @@ public static class RemediationWorker
     {
         actions = [];
         var requested = (actionsCsv ?? "").Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
-        if (requested.Length == 0 || requested.Any(a => !WorkerAllowed.Contains(a, StringComparer.OrdinalIgnoreCase))) return false;
+        if (requested.Length == 0 || requested.Any(a => !ServiceDeskActionRegistry.IsWorkerExecutableHandler(a))) return false;
         actions = requested.Distinct(StringComparer.OrdinalIgnoreCase).ToList();
+        NormalizeOrder(actions);
         return actions.Count > 0;
     }
     private static bool RequiresAdministrator(string actionId)
-        => actionId.Equals("Dism", StringComparison.OrdinalIgnoreCase) || actionId.Equals("Sfc", StringComparison.OrdinalIgnoreCase);
+        => ServiceDeskActionRegistry.Find(actionId)?.RequiresAdministrator == true;
     private static string BuildWorkerArguments(string mode, string session, string actions, int tempDays, string pipeName, string nonce)
         => $"{mode} --session {Quote(session)} --actions {Quote(actions)} --temp-days {tempDays} --pipe {Quote(pipeName)} --nonce {Quote(nonce)}";
     private static string Quote(string value) => "\"" + value.Replace("\"", "\\\"") + "\"";
@@ -173,9 +172,11 @@ public static class RemediationWorker
 
     private static RemediationBatchResult Execute(string session, IReadOnlyCollection<string> requested, int tempDays)
     {
-        var ids = requested.Where(x => Allowed.Contains(x, StringComparer.OrdinalIgnoreCase)).ToList();
+        var ids = requested.Where(ServiceDeskActionRegistry.IsExecutableHandler)
+            .Distinct(StringComparer.OrdinalIgnoreCase).ToList();
         NormalizeOrder(ids);
         var batch = new RemediationBatchResult { SessionId = session, StartedAt = DateTime.Now };
+        IWindowsRepairOperations operations = new WindowsRepairOperations();
         foreach (var id in ids)
         {
             var started = DateTime.Now;
@@ -186,14 +187,9 @@ public static class RemediationWorker
             {
                 if (availability.State != "Ready")
                     result = new() { Id = id, Success = false, Message = "Действие не запущено: " + availability.Reason };
-                else result = id.ToLowerInvariant() switch
-                {
-                    "cleantemp" => CleanTemp(context, tempDays),
-                    "flushdns" => RunCommand("FlushDns", Path.Combine(Environment.SystemDirectory, "ipconfig.exe"), "/flushdns", TimeSpan.FromMinutes(2)),
-                    "dism" => RunCommand("Dism", Path.Combine(Environment.SystemDirectory, "dism.exe"), "/Online /Cleanup-Image /RestoreHealth", TimeSpan.FromMinutes(60)),
-                    "sfc" => RunCommand("Sfc", Path.Combine(Environment.SystemDirectory, "sfc.exe"), "/scannow", TimeSpan.FromMinutes(60)),
-                    _ => new() { Id = id, Success = false, Message = "Действие не разрешено." }
-                };
+                else result = id.Equals("CleanTemp", StringComparison.OrdinalIgnoreCase)
+                    ? CleanTemp(context, tempDays)
+                    : ServiceDeskNonNetworkHandlers.Execute(id, operations);
             }
             catch (Exception ex) { result = new() { Id = id, Success = false, Message = ex.Message }; }
             result.StartedAt = started; result.FinishedAt = DateTime.Now;
@@ -257,21 +253,6 @@ public static class RemediationWorker
         };
     }
 
-    private static RemediationActionResult RunCommand(string id, string fileName, string arguments, TimeSpan timeout)
-    {
-        var psi = new ProcessStartInfo { FileName = fileName, Arguments = arguments, UseShellExecute = false, RedirectStandardOutput = true, RedirectStandardError = true, CreateNoWindow = true };
-        using var p = Process.Start(psi) ?? throw new InvalidOperationException($"Не удалось запустить {fileName}.");
-        var stdoutTask = p.StandardOutput.ReadToEndAsync(); var stderrTask = p.StandardError.ReadToEndAsync();
-        if (!p.WaitForExit((int)Math.Min(int.MaxValue, timeout.TotalMilliseconds)))
-        {
-            TryKill(p);
-            return new() { Id = id, Success = false, ExitCode = null, Message = $"Превышено время выполнения {timeout.TotalMinutes:0} мин." };
-        }
-        Task.WaitAll(stdoutTask, stderrTask);
-        var output = (stdoutTask.Result + Environment.NewLine + stderrTask.Result).Trim();
-        if (output.Length > 12000) output = output[^12000..];
-        return new() { Id = id, Success = p.ExitCode == 0, ExitCode = p.ExitCode, Message = p.ExitCode == 0 ? "Команда завершена успешно." : $"Команда завершена с кодом {p.ExitCode}.", Output = output };
-    }
     private static void MergeInto(RemediationBatchResult target, RemediationBatchResult addition)
     {
         target.Actions.AddRange(addition.Actions); target.Elevated |= addition.Elevated;
@@ -300,11 +281,9 @@ public static class RemediationWorker
     }
     private static void NormalizeOrder(List<string> ids)
     {
-        if (ids.Contains("Dism", StringComparer.OrdinalIgnoreCase) && ids.Contains("Sfc", StringComparer.OrdinalIgnoreCase))
-        {
-            ids.RemoveAll(x => x.Equals("Dism", StringComparison.OrdinalIgnoreCase) || x.Equals("Sfc", StringComparison.OrdinalIgnoreCase));
-            ids.Add("Dism"); ids.Add("Sfc");
-        }
+        var ordered = ServiceDeskActionRegistry.OrderExecutable(ids);
+        ids.Clear();
+        ids.AddRange(ordered);
     }
     private static void TryKill(Process process) { try { if (!process.HasExited) process.Kill(true); } catch { } }
     private static string? Arg(string[] args, string name)

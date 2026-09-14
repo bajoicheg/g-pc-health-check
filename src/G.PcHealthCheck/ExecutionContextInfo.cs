@@ -86,18 +86,36 @@ internal static class ExecutionPolicy
             return root is not null ? new("Ready", "Удаление старых обычных файлов только в собственном Temp подтверждённого пользователя сеанса.", root)
                 : new("Unavailable", "Для удаления нужен обычный запуск от имени пользователя текущего сеанса и подтверждённый профиль. Предпросмотр разрешён отдельно.", PreviewRoot(context) ?? "Не определена");
         }
-        if (id is "dism" or "sfc")
-            return context.HasAdministratorToken switch
-            {
-                true => new("Ready", "Административный токен уже активен; повторный UAC не требуется.", "Windows на этом компьютере"),
-                false => new("NeedsUac", "Отдельный обработчик запросит UAC. Обычному пользователю нужны административные учётные данные, если разрешено политикой.", "Windows на этом компьютере"),
-                _ => new("Unavailable", "Не удалось подтвердить фактические права процесса.", "Windows на этом компьютере")
-            };
-        if (id == "flushdns") return new("Ready", "Запуск с текущими правами; Windows может отказать. В наборе с DISM/SFC выполняется в их обработчике. Автоповтора через UAC нет.", "DNS-кэш компьютера");
+        if (id == "flushdns") return new("Ready", "Запуск с текущими правами; Windows может отказать. В административном пакетном режиме порядок дополнительно контролирует оркестратор.", "DNS-кэш компьютера");
         if (id == "diagnostics") return new("Ready", "Сбор с текущими правами. Недоступные поля не повышают процесс автоматически; полнота зависит от поставщика данных и ACL.", "Компьютер; пользовательские источники имеют отдельную область");
         if (id == "startupreview") return new("Ready", "HKCU и личная Startup принадлежат аккаунту процесса, а не автоматически пользователю рабочего стола.", context.ProcessAccount);
+
+        var descriptor = ServiceDeskActionRegistry.Find(actionId);
+        if (descriptor is not null)
+        {
+            if (!ServiceDeskActionRegistry.IsExecutableHandler(actionId))
+                return new("Unavailable", "Фиксированный обработчик этого действия ещё не введён в исполняемый allow-list текущего этапа.", Scope(descriptor.Id));
+            if (descriptor.RequiresAdministrator)
+                return context.HasAdministratorToken switch
+                {
+                    true => new("Ready", "Административный токен уже активен; повторный UAC не требуется.", Scope(descriptor.Id)),
+                    false => new("NeedsUac", "Фиксированный обработчик запросит UAC. Обычному пользователю нужны административные учётные данные, если разрешено политикой.", Scope(descriptor.Id)),
+                    _ => new("Unavailable", "Не удалось подтвердить фактические права процесса.", Scope(descriptor.Id))
+                };
+            return new("Ready", "Действие доступно в текущем подтверждённом контексте.", Scope(descriptor.Id));
+        }
         return new("Unavailable", "Автоматическое действие не определено в разрешённом перечне.", "—");
     }
+    private static string Scope(string actionId) => actionId.ToLowerInvariant() switch
+    {
+        "restartspooler" => "Служба Print Spooler",
+        "clearprintqueue" => @"%SystemRoot%\System32\spool\PRINTERS и служба Spooler",
+        "restartupdateservices" => "Службы wuauserv и BITS",
+        "timeresync" => "Windows Time на этом компьютере",
+        "dism" or "sfc" => "Windows на этом компьютере",
+        "gpupdate" => "Computer/User Group Policy",
+        _ => "Windows на этом компьютере"
+    };
     public static string StateText(string state) => state switch { "Ready" => "Доступно сейчас", "NeedsUac" => "Требуется UAC", "Manual" => "Вручную", _ => "Недоступно" };
     public static string Describe(ExecutionContextInfo? context)
     {
