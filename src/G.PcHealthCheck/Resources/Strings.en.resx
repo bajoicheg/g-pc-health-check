@@ -23,4 +23,37 @@
   <data name="About.Version" xml:space="preserve"><value>Version: {0}</value></data>
   <data name="About.Purpose" xml:space="preserve"><value>Windows 11 diagnostics and controlled actions for Service Desk.</value></data>
   <data name="Common.Close" xml:space="preserve"><value>Close</value></data>
+  <data name="ResourceProbe.Boundary" xml:space="preserve"><value>Checks system name resolution and a direct TCP connection. TLS, HTTP, user sign-in, and application health are not checked. The system HTTP proxy is not used; routes/VPN are selected by the OS. TCP time is connection-establishment time, not ping or transfer speed.</value></data>
+  <data name="ResourceProbe.Outcome.Connected" xml:space="preserve"><value>TCP connection established</value></data>
+  <data name="ResourceProbe.Outcome.Partial" xml:space="preserve"><value>Partial result</value></data>
+  <data name="ResourceProbe.Outcome.Failed" xml:space="preserve"><value>Check failed</value></data>
+  <data name="ResourceProbe.Outcome.Cancelled" xml:space="preserve"><value>Check cancelled</value></data>
+  <data name="ResourceProbe.Outcome.Resolved" xml:space="preserve"><value>Name resolved</value></data>
+  <data name="ResourceProbe.Outcome.Skipped" xml:space="preserve"><value>Stage not required</value></data>
+  <data name="ResourceProbe.Outcome.Refused" xml:space="preserve"><value>Connection refused</value></data>
+  <data name="ResourceProbe.Outcome.Timeout" xml:space="preserve"><value>Timeout</value></data>
+  <data name="ResourceProbe.Outcome.Unreachable" xml:space="preserve"><value>No reachable route/host</value></data>
+  <data name="ResourceProbe.Outcome.Denied" xml:space="preserve"><value>Access denied by the OS</value></data>
+  <data name="ResourceProbe.Outcome.Unknown" xml:space="preserve"><value>No result</value></data>
+  <data name="ResourceProbe.Report.Title" xml:space="preserve"><value>G PC Health Check — resource diagnostics</value></data>
+  <data name="ResourceProbe.Report.HtmlTitle" xml:space="preserve"><value>G PC Health Check — resource</value></data>
+  <data name="ResourceProbe.Report.CurrentAttempt" xml:space="preserve"><value>Current attempt</value></data>
+  <data name="ResourceProbe.Report.PreviousAttempt" xml:space="preserve"><value>Previous attempt</value></data>
+  <data name="ResourceProbe.Report.SameTarget" xml:space="preserve"><value>The same target was checked again; a changed result does not prove that the root cause was fixed.</value></data>
+  <data name="ResourceProbe.Report.DifferentTarget" xml:space="preserve"><value>Different targets were checked; this is not a before/after repair comparison.</value></data>
+  <data name="ResourceProbe.Report.Target" xml:space="preserve"><value>Target: {0}; TCP port: {1}; result: {2} ({3})</value></data>
+  <data name="ResourceProbe.Report.Limits" xml:space="preserve"><value>Limits: DNS {0} ms; TCP {1} ms/address; at most {2} addresses.</value></data>
+  <data name="ResourceProbe.Report.Addresses" xml:space="preserve"><value>Addresses: {0}</value></data>
+  <data name="ResourceProbe.Report.None" xml:space="preserve"><value>none</value></data>
+  <data name="ResourceProbe.Report.Step" xml:space="preserve"><value>{0} {1}: {2}; {3:0.##} ms; {4}; local IP: {5}; {6}</value></data>
+  <data name="ResourceProbe.Report.Note" xml:space="preserve"><value>Note: {0}</value></data>
+  <data name="ResourceProbe.Report.HtmlSameTarget" xml:space="preserve"><value>Same target repeated; this does not prove that the root cause was fixed.</value></data>
+  <data name="ResourceProbe.Report.HtmlDifferentTarget" xml:space="preserve"><value>Different targets were checked; this is not a before/after repair comparison.</value></data>
+  <data name="ResourceProbe.Report.HtmlLimits" xml:space="preserve"><value>DNS: {0} ms; TCP: {1} ms; at most {2} addresses.</value></data>
+  <data name="ResourceProbe.Report.HtmlAddresses" xml:space="preserve"><value>Resolved addresses: {0}</value></data>
+  <data name="ResourceProbe.Report.HtmlStageAddress" xml:space="preserve"><value>Stage / address</value></data>
+  <data name="ResourceProbe.Report.HtmlResult" xml:space="preserve"><value>Result</value></data>
+  <data name="ResourceProbe.Report.HtmlDuration" xml:space="preserve"><value>ms</value></data>
+  <data name="ResourceProbe.Report.HtmlLocalIp" xml:space="preserve"><value>Local IP</value></data>
+  <data name="ResourceProbe.Report.HtmlCodeDetails" xml:space="preserve"><value>Code / details</value></data>
 </root>
