@@ -69,13 +69,38 @@ internal static class DiagnosticBundleLocalizationSelfTest
                 Require(health.GetProperty("State").GetString() == "Unavailable", "Stable source state ID changed with language.");
                 Require(health.GetProperty("Warnings")[0].GetString() == rawWarning, "Raw diagnostic warning changed in manifest.");
             });
+
+            Check("Complete performance source stays Complete in English mode", () =>
+            {
+                var started = DateTimeOffset.Parse("2026-09-14T10:00:00Z");
+                var performance = new PerformanceSessionSnapshot
+                {
+                    Options = new PerformanceSessionOptions(30, 1),
+                    Outcome = "Completed",
+                    StartedAt = started,
+                    FinishedAt = started.AddSeconds(30),
+                    ElapsedMs = 30000,
+                    Samples = Enumerable.Range(1, 30)
+                        .Select(i => new PerformanceSample(i * 1000L, 1, started.AddSeconds(i), new PerformanceReading(10, 40, 5, 0, [])))
+                        .ToList()
+                };
+                var options = new DiagnosticBundleOptions(
+                    DiagnosticBundleMode.Extended,
+                    new HashSet<DiagnosticBundleCategory> { DiagnosticBundleCategory.Performance },
+                    PerformanceSeconds: 30,
+                    PerformanceIntervalSeconds: 1);
+                var result = new DiagnosticBundleService().CollectAsync(options, new PerformanceOnlyCollector(performance), null, null, null, default)
+                    .GetAwaiter().GetResult();
+                Require(result.Performance.State == "Complete",
+                    "Localized performance completeness changed stable bundle state: " + result.Performance.State);
+            });
         }
         finally
         {
             AppLocalization.SetLanguage(original);
         }
 
-        Console.WriteLine($"Diagnostic Bundle localization self-test: {3 - failures.Count}/3 passed.");
+        Console.WriteLine($"Diagnostic Bundle localization self-test: {4 - failures.Count}/4 passed.");
         foreach (var failure in failures) Console.Error.WriteLine("FAIL: " + failure);
         return failures.Count == 0 ? 0 : 210;
 
@@ -84,6 +109,22 @@ internal static class DiagnosticBundleLocalizationSelfTest
             try { action(); }
             catch (Exception ex) { failures.Add(name + ": " + ex.GetBaseException().Message); }
         }
+    }
+
+    private sealed class PerformanceOnlyCollector(PerformanceSessionSnapshot performance) : IDiagnosticBundleCollector
+    {
+        public Task<DiagnosticBundleHealthPayload> CollectHealthAsync(IProgress<string>? progress, CancellationToken ct)
+            => throw new InvalidOperationException("Health must not be requested.");
+        public ProcessReviewSnapshot CollectProcesses(CancellationToken ct)
+            => throw new InvalidOperationException("Processes must not be requested.");
+        public EndpointSnapshot CollectEndpoints(ExecutionContextInfo? context, IProgress<string>? progress, CancellationToken ct)
+            => throw new InvalidOperationException("Endpoints must not be requested.");
+        public IncidentSnapshot CollectEvents(IncidentWindow window, CancellationToken ct)
+            => throw new InvalidOperationException("Events must not be requested.");
+        public DiskDetailsSnapshot CollectStorage(CancellationToken ct)
+            => throw new InvalidOperationException("Storage must not be requested.");
+        public Task<PerformanceSessionSnapshot> CollectPerformanceAsync(PerformanceSessionOptions options, IProgress<PerformanceSample>? progress, CancellationToken ct)
+            => Task.FromResult(performance);
     }
 
     private static string OneLine(string text)
