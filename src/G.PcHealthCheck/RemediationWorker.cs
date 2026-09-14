@@ -40,6 +40,38 @@ public static class RemediationWorker
         catch { return 99; }
     }
 
+    public static int RunPhased(string[] args)
+    {
+        try
+        {
+            var session = Arg(args, "--session");
+            var actionsCsv = Arg(args, "--actions");
+            var pipeName = Arg(args, "--pipe");
+            var nonce = Arg(args, "--nonce");
+
+            // Reject the complete request before opening a pipe or invoking any native repair.
+            if (!Guid.TryParse(session, out _)) return 20;
+            if (!TryBuildWorkerPhasePlan(actionsCsv, out var plan)) return 21;
+            if (!IsValidPipeName(pipeName, session!)) return 24;
+            if (!IsValidNonce(nonce)) return 25;
+            var workerIds = plan.WorkerBeforeNetwork.Concat(plan.WorkerNetwork).ToList();
+            if (workerIds.Any(RequiresAdministrator) && !DiagnosticsService.IsAdministrator()) return 22;
+
+            using var client = new NamedPipeClientStream(".", pipeName!, PipeDirection.InOut, PipeOptions.None);
+            client.Connect((int)TimeSpan.FromSeconds(45).TotalMilliseconds);
+            using var channel = new JsonWorkerMessageChannel(client, leaveOpen: true);
+            var batch = ServiceDeskWorkerEngine.Execute(
+                plan,
+                session!,
+                nonce!,
+                channel,
+                new WindowsRepairOperations(),
+                ExecutionContextService.Capture());
+            return batch.Actions.All(x => x.Success) ? 0 : 2;
+        }
+        catch { return 99; }
+    }
+
     public static int RunBootstrap(string[] args)
     {
         _ = args;
@@ -138,7 +170,7 @@ public static class RemediationWorker
         }
     }
 
-    private static NamedPipeServerStream CreatePipeServer(string pipeName)
+    internal static NamedPipeServerStream CreatePipeServer(string pipeName)
     {
         var security = new PipeSecurity();
         using var identity = WindowsIdentity.GetCurrent();
@@ -146,8 +178,44 @@ public static class RemediationWorker
         if (currentSid is not null) security.AddAccessRule(new PipeAccessRule(currentSid, PipeAccessRights.FullControl, AccessControlType.Allow));
         var admins = new SecurityIdentifier(WellKnownSidType.BuiltinAdministratorsSid, null);
         security.AddAccessRule(new PipeAccessRule(admins, PipeAccessRights.FullControl, AccessControlType.Allow));
-        return NamedPipeServerStreamAcl.Create(pipeName, PipeDirection.In, 1, PipeTransmissionMode.Byte,
+        return NamedPipeServerStreamAcl.Create(pipeName, PipeDirection.InOut, 1, PipeTransmissionMode.Byte,
             PipeOptions.Asynchronous, 64 * 1024, 64 * 1024, security);
+    }
+
+    internal static bool TryBuildWorkerPhasePlan(string? actionsCsv, out ServiceDeskPhasePlan plan)
+    {
+        plan = new ServiceDeskPhasePlan();
+        var beforeAllowed = new HashSet<string>(
+            ["RestartSpooler", "ClearPrintQueue", "RestartUpdateServices", "TimeResync", "GpUpdate", "Dism", "Sfc"],
+            StringComparer.OrdinalIgnoreCase);
+        var networkAllowed = new HashSet<string>(
+            ["WinsockReset", "TcpIpReset", "RestartNetworkAdapters", "DhcpReleaseRenew", "RegisterDns"],
+            StringComparer.OrdinalIgnoreCase);
+        var requested = (actionsCsv ?? "").Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+        if (requested.Length == 0 || requested.Any(id => !beforeAllowed.Contains(id) && !networkAllowed.Contains(id))) return false;
+
+        var selected = requested.Distinct(StringComparer.OrdinalIgnoreCase).ToHashSet(StringComparer.OrdinalIgnoreCase);
+        if (selected.Contains("ClearPrintQueue")) selected.Remove("RestartSpooler");
+        var ordered = selected
+            .Select(id => ServiceDeskActionRegistry.Find(id))
+            .Where(x => x is not null)
+            .Cast<ServiceDeskActionDescriptor>()
+            .OrderBy(x => x.PhaseOrder)
+            .Select(x => x.Id)
+            .ToList();
+        if (ordered.Count != selected.Count) return false;
+
+        var before = ordered.Where(beforeAllowed.Contains).ToList();
+        var network = ordered.Where(networkAllowed.Contains).ToList();
+        if (before.Count == 0 && network.Count == 0) return false;
+        plan = new ServiceDeskPhasePlan
+        {
+            WorkerBeforeNetwork = before,
+            WorkerNetwork = network,
+            ParentBeforeNetwork = [],
+            ParentAfterWorker = []
+        };
+        return true;
     }
 
     private static bool TryParseWorkerActions(string? actionsCsv, out List<string> actions)
@@ -265,12 +333,33 @@ public static class RemediationWorker
         using var writer = new StreamWriter(stream, new UTF8Encoding(false), 16 * 1024, leaveOpen: true) { AutoFlush = true };
         writer.Write(json);
     }
-    internal static ProcessStartInfo CreateElevationStartInfo(string executablePath, string arguments)
+    internal static ProcessStartInfo CreateWorkerStartInfo(string executablePath, string arguments, bool requestElevation)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(executablePath);
         if (!Path.IsPathFullyQualified(executablePath)) throw new ArgumentException("Не удалось определить полный путь к текущему EXE.", nameof(executablePath));
-        return new ProcessStartInfo { FileName = executablePath, Arguments = arguments, UseShellExecute = true, Verb = "runas", WorkingDirectory = Environment.SystemDirectory, WindowStyle = ProcessWindowStyle.Hidden };
+        if (requestElevation)
+        {
+            return new ProcessStartInfo
+            {
+                FileName = executablePath,
+                Arguments = arguments,
+                UseShellExecute = true,
+                Verb = "runas",
+                WorkingDirectory = Environment.SystemDirectory,
+                WindowStyle = ProcessWindowStyle.Hidden
+            };
+        }
+        return new ProcessStartInfo
+        {
+            FileName = executablePath,
+            Arguments = arguments,
+            UseShellExecute = false,
+            CreateNoWindow = true,
+            WorkingDirectory = Environment.SystemDirectory
+        };
     }
+    internal static ProcessStartInfo CreateElevationStartInfo(string executablePath, string arguments)
+        => CreateWorkerStartInfo(executablePath, arguments, requestElevation: true);
     private static bool IsValidPipeName(string? pipeName, string session)
         => !string.IsNullOrWhiteSpace(pipeName) && pipeName.Length <= 128 && string.Equals(pipeName, PipePrefix + session, StringComparison.OrdinalIgnoreCase);
     private static bool IsValidNonce(string? nonce) => nonce is { Length: 64 } && nonce.All(Uri.IsHexDigit);

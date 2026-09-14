@@ -1,5 +1,6 @@
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.Json;
 
 namespace G.PcHealthCheck;
 
@@ -47,4 +48,86 @@ internal static class WorkerProtocol
         return actualBytes.Length == expectedBytes.Length
             && CryptographicOperations.FixedTimeEquals(actualBytes, expectedBytes);
     }
+}
+
+internal sealed class JsonWorkerMessageChannel : IWorkerMessageChannel, IDisposable
+{
+    private const int MaxMessageChars = 1024 * 1024;
+    private readonly Stream _stream;
+    private readonly bool _leaveOpen;
+    private readonly StreamReader _reader;
+    private readonly StreamWriter _writer;
+    private bool _disposed;
+
+    internal JsonWorkerMessageChannel(Stream stream, bool leaveOpen = false)
+    {
+        ArgumentNullException.ThrowIfNull(stream);
+        if (!stream.CanRead || !stream.CanWrite)
+            throw new ArgumentException("Worker message stream must be readable and writable.", nameof(stream));
+
+        _stream = stream;
+        _leaveOpen = leaveOpen;
+        _reader = new StreamReader(stream, new UTF8Encoding(false, true), detectEncodingFromByteOrderMarks: false, bufferSize: 4096, leaveOpen: true);
+        _writer = new StreamWriter(stream, new UTF8Encoding(false), bufferSize: 4096, leaveOpen: true)
+        {
+            AutoFlush = true,
+            NewLine = "\n"
+        };
+    }
+
+    public void Send(WorkerMessage message)
+    {
+        ObjectDisposedException.ThrowIf(_disposed, this);
+        ArgumentNullException.ThrowIfNull(message);
+        var json = JsonSerializer.Serialize(message, JsonOptions());
+        if (json.Length > MaxMessageChars)
+            throw new InvalidDataException("Worker protocol message exceeds the bounded size limit.");
+        _writer.WriteLine(json);
+    }
+
+    public WorkerMessage Receive()
+    {
+        ObjectDisposedException.ThrowIf(_disposed, this);
+        var line = ReadBoundedLine();
+        try
+        {
+            return JsonSerializer.Deserialize<WorkerMessage>(line, JsonOptions())
+                ?? throw new InvalidDataException("Worker protocol message is empty or invalid.");
+        }
+        catch (JsonException ex)
+        {
+            throw new InvalidDataException("Worker protocol JSON is invalid.", ex);
+        }
+    }
+
+    private string ReadBoundedLine()
+    {
+        var builder = new StringBuilder();
+        while (true)
+        {
+            var value = _reader.Read();
+            if (value < 0)
+            {
+                if (builder.Length == 0) throw new EndOfStreamException("Worker protocol stream closed before a message was received.");
+                break;
+            }
+            if (value == '\n') break;
+            builder.Append((char)value);
+            if (builder.Length > MaxMessageChars)
+                throw new InvalidDataException("Worker protocol message exceeds the bounded size limit.");
+        }
+        return builder.ToString();
+    }
+
+    public void Dispose()
+    {
+        if (_disposed) return;
+        _disposed = true;
+        _writer.Dispose();
+        _reader.Dispose();
+        if (!_leaveOpen) _stream.Dispose();
+    }
+
+    private static JsonSerializerOptions JsonOptions()
+        => new() { WriteIndented = false, PropertyNameCaseInsensitive = true };
 }
