@@ -36,13 +36,13 @@ internal static class ExecutionPolicy
         if (context.HasAdministratorToken != false || context.IsElevated != false) return "Unknown";
         return context.AdministratorMember switch { true => "AdministratorLimited", false => "Standard", _ => "Unknown" };
     }
-    public static string ModeText(ExecutionContextInfo? context) => context is null ? "Контекст не сохранён" : Mode(context) switch
+    public static string ModeText(ExecutionContextInfo? context) => context is null ? AppLocalization.T("ExecutionContext.Mode.Missing") : Mode(context) switch
     {
-        "Standard" => "Обычный пользователь — без повышения",
-        "AdministratorLimited" => "Администратор — без повышения",
-        "AdministratorElevated" => "Администратор — повышенный процесс",
-        "AdministratorFullToken" => "Администратор — полный токен без связанной пары UAC",
-        _ => "Права процесса определены не полностью"
+        "Standard" => AppLocalization.T("ExecutionContext.Mode.Standard"),
+        "AdministratorLimited" => AppLocalization.T("ExecutionContext.Mode.AdministratorLimited"),
+        "AdministratorElevated" => AppLocalization.T("ExecutionContext.Mode.AdministratorElevated"),
+        "AdministratorFullToken" => AppLocalization.T("ExecutionContext.Mode.AdministratorFullToken"),
+        _ => AppLocalization.T("ExecutionContext.Mode.Unknown")
     };
     public static bool SameUser(ExecutionContextInfo context)
         => !string.IsNullOrWhiteSpace(context.ProcessSid) && !string.IsNullOrWhiteSpace(context.SessionSid)
@@ -77,62 +77,68 @@ internal static class ExecutionPolicy
         if (id == "temppreview")
         {
             var root = PreviewRoot(context);
-            return root is null ? new("Unavailable", "Пользователь/профиль текущего сеанса не подтверждён; чужой Temp не подставляется.", "Не определена")
-                : new("Ready", "Только чтение метаданных; повышение не является основанием для запрета. Доступ к файлам определяет Windows.", root);
+            return root is null ? new("Unavailable", AppLocalization.T("ExecutionContext.Availability.TempPreview.Unavailable"), AppLocalization.T("ExecutionContext.Scope.Undefined"))
+                : new("Ready", AppLocalization.T("ExecutionContext.Availability.TempPreview.Ready"), root);
         }
         if (id == "cleantemp")
         {
             var root = CleanupRoot(context);
-            return root is not null ? new("Ready", "Удаление старых обычных файлов только в собственном Temp подтверждённого пользователя сеанса.", root)
-                : new("Unavailable", "Для удаления нужен обычный запуск от имени пользователя текущего сеанса и подтверждённый профиль. Предпросмотр разрешён отдельно.", PreviewRoot(context) ?? "Не определена");
+            return root is not null ? new("Ready", AppLocalization.T("ExecutionContext.Availability.CleanTemp.Ready"), root)
+                : new("Unavailable", AppLocalization.T("ExecutionContext.Availability.CleanTemp.Unavailable"), PreviewRoot(context) ?? AppLocalization.T("ExecutionContext.Scope.Undefined"));
         }
-        if (id == "flushdns") return new("Ready", "Запуск с текущими правами; Windows может отказать. В административном пакетном режиме порядок дополнительно контролирует оркестратор.", "DNS-кэш компьютера");
-        if (id == "diagnostics") return new("Ready", "Сбор с текущими правами. Недоступные поля не повышают процесс автоматически; полнота зависит от поставщика данных и ACL.", "Компьютер; пользовательские источники имеют отдельную область");
-        if (id == "startupreview") return new("Ready", "HKCU и личная Startup принадлежат аккаунту процесса, а не автоматически пользователю рабочего стола.", context.ProcessAccount);
+        if (id == "flushdns") return new("Ready", AppLocalization.T("ExecutionContext.Availability.FlushDns.Ready"), AppLocalization.T("ExecutionContext.Scope.DnsCache"));
+        if (id == "diagnostics") return new("Ready", AppLocalization.T("ExecutionContext.Availability.Diagnostics.Ready"), AppLocalization.T("ExecutionContext.Scope.Diagnostics"));
+        if (id == "startupreview") return new("Ready", AppLocalization.T("ExecutionContext.Availability.StartupReview.Ready"), context.ProcessAccount);
 
         var descriptor = ServiceDeskActionRegistry.Find(actionId);
         if (descriptor is not null)
         {
             if (!ServiceDeskActionRegistry.IsExecutableHandler(actionId))
-                return new("Unavailable", "Фиксированный обработчик этого действия ещё не введён в исполняемый allow-list текущего этапа.", Scope(descriptor.Id));
+                return new("Unavailable", AppLocalization.T("ExecutionContext.Availability.HandlerUnavailable"), Scope(descriptor.Id));
             if (descriptor.RequiresAdministrator)
                 return context.HasAdministratorToken switch
                 {
-                    true => new("Ready", "Административный токен уже активен; повторный UAC не требуется.", Scope(descriptor.Id)),
-                    false => new("NeedsUac", "Фиксированный обработчик запросит UAC. Обычному пользователю нужны административные учётные данные, если разрешено политикой.", Scope(descriptor.Id)),
-                    _ => new("Unavailable", "Не удалось подтвердить фактические права процесса.", Scope(descriptor.Id))
+                    true => new("Ready", AppLocalization.T("ExecutionContext.Availability.AdminAlreadyActive"), Scope(descriptor.Id)),
+                    false => new("NeedsUac", AppLocalization.T("ExecutionContext.Availability.NeedsUac"), Scope(descriptor.Id)),
+                    _ => new("Unavailable", AppLocalization.T("ExecutionContext.Availability.RightsUnknown"), Scope(descriptor.Id))
                 };
-            return new("Ready", "Действие доступно в текущем подтверждённом контексте.", Scope(descriptor.Id));
+            return new("Ready", AppLocalization.T("ExecutionContext.Availability.Ready"), Scope(descriptor.Id));
         }
-        return new("Unavailable", "Автоматическое действие не определено в разрешённом перечне.", "—");
+        return new("Unavailable", AppLocalization.T("ExecutionContext.Availability.UnknownAction"), "—");
     }
     private static string Scope(string actionId) => actionId.ToLowerInvariant() switch
     {
-        "restartspooler" => "Служба Print Spooler",
-        "clearprintqueue" => @"%SystemRoot%\System32\spool\PRINTERS и служба Spooler",
-        "restartupdateservices" => "Службы wuauserv и BITS",
-        "timeresync" => "Windows Time на этом компьютере",
-        "dism" or "sfc" => "Windows на этом компьютере",
+        "restartspooler" => AppLocalization.T("ExecutionContext.Scope.RestartSpooler"),
+        "clearprintqueue" => AppLocalization.T("ExecutionContext.Scope.ClearPrintQueue"),
+        "restartupdateservices" => AppLocalization.T("ExecutionContext.Scope.RestartUpdateServices"),
+        "timeresync" => AppLocalization.T("ExecutionContext.Scope.TimeResync"),
+        "dism" or "sfc" => AppLocalization.T("ExecutionContext.Scope.Windows"),
         "gpupdate" => "Computer/User Group Policy",
-        _ => "Windows на этом компьютере"
+        _ => AppLocalization.T("ExecutionContext.Scope.Windows")
     };
-    public static string StateText(string state) => state switch { "Ready" => "Доступно сейчас", "NeedsUac" => "Требуется UAC", "Manual" => "Вручную", _ => "Недоступно" };
+    public static string StateText(string state) => state switch
+    {
+        "Ready" => AppLocalization.T("ExecutionContext.State.Ready"),
+        "NeedsUac" => AppLocalization.T("ExecutionContext.State.NeedsUac"),
+        "Manual" => AppLocalization.T("ExecutionContext.State.Manual"),
+        _ => AppLocalization.T("ExecutionContext.State.Unavailable")
+    };
     public static string Describe(ExecutionContextInfo? context)
     {
-        if (context is null) return "Контекст выполнения не сохранён; права и аккаунт не восстанавливаются предположением.";
+        if (context is null) return AppLocalization.T("ExecutionContext.Describe.Missing");
         var s = new StringBuilder();
         s.AppendLine(ModeText(context));
-        s.AppendLine($"Аккаунт процесса: {Value(context.ProcessAccount)}; SID: {Value(context.ProcessSid)}.");
-        s.AppendLine($"Пользователь сеанса {context.SessionId}: {Value(context.SessionAccount)}; SID: {Value(context.SessionSid)}.");
-        s.AppendLine($"Повышение токена: {Flag(context.IsElevated)}; активные административные права: {Flag(context.HasAdministratorToken)}; SID Администраторов в токене: {Flag(context.AdministratorMember)}.");
-        s.AppendLine($"Профиль сеанса: {Value(context.SessionProfile)}; источник: {Value(context.ProfileSource)}.");
-        s.AppendLine($"Профиль процесса: {Value(context.ProcessProfile)}. HKCU/личная Startup относятся к аккаунту процесса.");
-        if (!SameUser(context)) s.AppendLine("Аккаунт процесса и пользователь сеанса различаются либо соответствие не подтверждено. Их данные нельзя смешивать.");
-        s.AppendLine("Диагностика не получает повышение автоматически. Повышение обработчика исправлений не повышает последующую диагностику в исходном окне.");
-        s.AppendLine($"Контекст прочитан: {context.CapturedAt:O}. Изменение членства групп после входа не перечитывается из каталога.");
+        s.AppendLine(AppLocalization.T("ExecutionContext.Describe.ProcessAccount", Value(context.ProcessAccount), Value(context.ProcessSid)));
+        s.AppendLine(AppLocalization.T("ExecutionContext.Describe.SessionUser", context.SessionId, Value(context.SessionAccount), Value(context.SessionSid)));
+        s.AppendLine(AppLocalization.T("ExecutionContext.Describe.Elevation", Flag(context.IsElevated), Flag(context.HasAdministratorToken), Flag(context.AdministratorMember)));
+        s.AppendLine(AppLocalization.T("ExecutionContext.Describe.SessionProfile", Value(context.SessionProfile), Value(context.ProfileSource)));
+        s.AppendLine(AppLocalization.T("ExecutionContext.Describe.ProcessProfile", Value(context.ProcessProfile)));
+        if (!SameUser(context)) s.AppendLine(AppLocalization.T("ExecutionContext.Describe.DifferentUsers"));
+        s.AppendLine(AppLocalization.T("ExecutionContext.Describe.NoAutoElevation"));
+        s.AppendLine(AppLocalization.T("ExecutionContext.Describe.CapturedAt", context.CapturedAt));
         foreach (var warning in context.Warnings) s.AppendLine("! " + warning);
         return s.ToString().TrimEnd();
     }
-    internal static string Value(string? value) => string.IsNullOrWhiteSpace(value) ? "не определён" : value;
-    internal static string Flag(bool? value) => value is null ? "неизвестно" : value.Value ? "да" : "нет";
+    internal static string Value(string? value) => string.IsNullOrWhiteSpace(value) ? AppLocalization.T("ExecutionContext.Value.Undefined") : value;
+    internal static string Flag(bool? value) => value is null ? AppLocalization.T("ExecutionContext.Flag.Unknown") : value.Value ? AppLocalization.T("ExecutionContext.Flag.Yes") : AppLocalization.T("ExecutionContext.Flag.No");
 }
