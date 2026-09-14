@@ -17,7 +17,8 @@ internal static class AppLocalization
         new("G.PcHealthCheck.Resources.ResourceProbeUiStrings", typeof(AppLocalization).Assembly),
         new("G.PcHealthCheck.Resources.ReviewServiceStrings", typeof(AppLocalization).Assembly),
         new("G.PcHealthCheck.Resources.IncidentStrings", typeof(AppLocalization).Assembly),
-        new("G.PcHealthCheck.Resources.ProcessObservationStrings", typeof(AppLocalization).Assembly)
+        new("G.PcHealthCheck.Resources.ProcessObservationStrings", typeof(AppLocalization).Assembly),
+        new("G.PcHealthCheck.Resources.PerformanceSessionStrings", typeof(AppLocalization).Assembly)
     ];
     private static readonly object Sync = new();
     private static CultureInfo _culture = CultureFor(NormalizeLanguage(LoadLanguage()));
