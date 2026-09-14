@@ -8,7 +8,11 @@ internal static class AppLocalization
 {
     private sealed record Settings(string Language);
 
-    private static readonly ResourceManager ResourceManager = new("G.PcHealthCheck.Resources.Strings", typeof(AppLocalization).Assembly);
+    private static readonly ResourceManager[] ResourceManagers =
+    [
+        new("G.PcHealthCheck.Resources.Strings", typeof(AppLocalization).Assembly),
+        new("G.PcHealthCheck.Resources.MainStrings", typeof(AppLocalization).Assembly)
+    ];
     private static readonly object Sync = new();
     private static CultureInfo _culture = CultureFor(NormalizeLanguage(LoadLanguage()));
 
@@ -28,9 +32,17 @@ internal static class AppLocalization
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(key);
         var culture = CultureFor(NormalizeLanguage(language));
-        return ResourceManager.GetString(key, culture)
-            ?? ResourceManager.GetString(key, CultureInfo.GetCultureInfo("ru-RU"))
-            ?? key;
+        foreach (var manager in ResourceManagers)
+        {
+            if (manager.GetString(key, culture) is { } localized) return localized;
+        }
+
+        var russian = CultureInfo.GetCultureInfo("ru-RU");
+        foreach (var manager in ResourceManagers)
+        {
+            if (manager.GetString(key, russian) is { } fallback) return fallback;
+        }
+        return key;
     }
 
     public static string T(string key, params object?[] args)
