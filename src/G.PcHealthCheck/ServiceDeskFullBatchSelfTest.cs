@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Reflection;
+using System.Text.RegularExpressions;
 
 namespace G.PcHealthCheck;
 
@@ -148,18 +149,8 @@ internal static class ServiceDeskFullBatchSelfTest
 
         Test("red confirmation enumerates exact fixed set and disruptive safety impacts", () =>
         {
-            var preflight = ServiceDeskBatchPlanner.Plan(
-                BatchMode.AllBestEffort,
-                Array.Empty<ActionRecommendation>(),
-                Array.Empty<string>(),
-                id => ServiceDeskActionRegistry.Find(id)!.RequiresAdministrator
-                    ? new ActionAvailability("NeedsUac", "Synthetic UAC", "Synthetic")
-                    : new ActionAvailability("Ready", "Synthetic ready", "Synthetic"));
-            var ui = typeof(MainForm).Assembly.GetType("G.PcHealthCheck.ServiceDeskBatchUi")
-                ?? throw new InvalidOperationException("ServiceDeskBatchUi is missing.");
-            var build = ui.GetMethod("BuildDoEverythingConfirmation", BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)
-                ?? throw new InvalidOperationException("ServiceDeskBatchUi.BuildDoEverythingConfirmation is missing.");
-            var text = Convert.ToString(build.Invoke(null, [preflight])) ?? "";
+            var preflight = FullPreflight();
+            var text = ServiceDeskBatchUi.BuildDoEverythingConfirmation(preflight);
             foreach (var id in ServiceDeskActionRegistry.All.Select(x => x.Id))
                 Require(text.Contains(id, StringComparison.Ordinal), "Red confirmation omitted fixed action: " + id);
             Require(text.Contains("сеть", StringComparison.OrdinalIgnoreCase), "Red confirmation omitted connectivity disruption warning.");
@@ -168,9 +159,33 @@ internal static class ServiceDeskFullBatchSelfTest
             Require(text.Contains("UAC", StringComparison.OrdinalIgnoreCase), "Red confirmation omitted UAC warning.");
         });
 
+        Test("English red confirmation localizes framing while preserving exact fixed IDs", () =>
+        {
+            var original = AppLocalization.Language;
+            try
+            {
+                AppLocalization.SetLanguage("en");
+                var text = ServiceDeskBatchUi.BuildDoEverythingConfirmation(FullPreflight());
+                foreach (var id in ServiceDeskActionRegistry.All.Select(x => x.Id))
+                    Require(text.Contains(id, StringComparison.Ordinal), "English red confirmation omitted fixed action: " + id);
+                Require(!Regex.IsMatch(text, "[А-Яа-яЁё]"), "English red confirmation still contains Russian framing: " + text.ReplaceLineEndings(" | "));
+                Require(text.Contains("UAC", StringComparison.OrdinalIgnoreCase), "English red confirmation omitted UAC warning.");
+            }
+            finally { AppLocalization.SetLanguage(original); }
+        });
+
         Console.WriteLine($"Service Desk full phased batch self-test: {count - failures.Count}/{count} passed.");
         return failures.Count == 0 ? 0 : 215;
     }
+
+    private static BatchPreflight FullPreflight()
+        => ServiceDeskBatchPlanner.Plan(
+            BatchMode.AllBestEffort,
+            Array.Empty<ActionRecommendation>(),
+            Array.Empty<string>(),
+            id => ServiceDeskActionRegistry.Find(id)!.RequiresAdministrator
+                ? new ActionAvailability("NeedsUac", "Synthetic UAC", "Synthetic")
+                : new ActionAvailability("Ready", "Synthetic ready", "Synthetic"));
 
     private static ExecutionContextInfo SameUserContext()
         => new()
