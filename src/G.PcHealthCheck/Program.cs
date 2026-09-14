@@ -104,6 +104,7 @@ internal static class Program
             return;
         }
         ApplicationConfiguration.Initialize();
+        AnalysisAutoCollect.Install();
         using var main = new MainForm();
         CommonProblemsMenu.Attach(main);
         ReadOnlyReviewMenu.Attach(main);
