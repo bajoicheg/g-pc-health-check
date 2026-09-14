@@ -12,7 +12,7 @@ Current project version: **0.16.0**. A self-contained single-file `G-PC-Health-C
 
 The main action area now has Select All plus two explicit batch paths. **Сделать хорошо / Make it better** runs only currently recommended, automated and requestable actions. **Сделать всё / Do everything** uses one fixed 14-action code-owned allow-list and an authenticated phased worker with one UAC for administrative work. Network-disruptive actions are deliberately late; the worker remains session/nonce bound and does not expose a generic command/service/adapter interface.
 
-The red batch must first be tested only on an approved disposable/test workstation. It can interrupt VPN/RDP/network connectivity, reset DHCP/Winsock/TCP-IP, restart adapters/services, delete pending print jobs, refresh Group Policy, run DISM/SFC and leave Windows requiring a reboot. Security software is never disabled or weakened. [0.16.0 scope and safety notes](docs/releases/0.16.0.md).
+The red batch must first be tested only on an approved disposable/test workstation. It can interrupt VPN/RDP/network connectivity, reset DHCP/Winsock/TCP-IP, restart adapters/services, delete pending print jobs, refresh Group Policy, run DISM/SFC and leave Windows requiring a reboot. Security software is never disabled or weakened. [0.16.0 scope and safety notes](docs/releases/0.16.0.md). [Release-candidate validation](docs/releases/0.16.0-validation.md).
 
 ## 0.15.1 — pilot hardening maintenance release
 
