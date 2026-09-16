@@ -12,7 +12,7 @@
     </stringTable>
     <presentationTable>
       <presentation id="Policy.AllowedLocalAdministrators.Presentation">
-        <multiTextBox refId="AllowedLocalAdministratorsList">$(string.Policy.AllowedLocalAdministrators.Label)</multiTextBox>
+        <multiTextBox refId="AllowedLocalAdministratorsList">One allowed principal pattern per line:</multiTextBox>
       </presentation>
     </presentationTable>
   </resources>
