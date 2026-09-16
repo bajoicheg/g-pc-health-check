@@ -44,20 +44,20 @@ internal static class SecurityHardeningWorkerSelfTest
                 Type = WorkerMessageType.Ready,
                 Namespace = WorkerActionNamespace.SecurityHardening
             };
-            WorkerProtocol.ValidateMessage(
+            WorkerProtocol.ValidateNamespacedMessage(
                 message, session, nonce, WorkerMessageType.Ready, WorkerActionNamespace.SecurityHardening);
 
             var wrongNamespace = Clone(message); wrongNamespace.Namespace = WorkerActionNamespace.ServiceDesk;
-            RequireThrows(() => WorkerProtocol.ValidateMessage(
+            RequireThrows(() => WorkerProtocol.ValidateNamespacedMessage(
                 wrongNamespace, session, nonce, WorkerMessageType.Ready, WorkerActionNamespace.SecurityHardening),
                 "Namespace substitution was accepted.");
-            RequireThrows(() => WorkerProtocol.ValidateMessage(
+            RequireThrows(() => WorkerProtocol.ValidateNamespacedMessage(
                 message, Guid.NewGuid().ToString(), nonce, WorkerMessageType.Ready, WorkerActionNamespace.SecurityHardening),
                 "Wrong worker session was accepted.");
-            RequireThrows(() => WorkerProtocol.ValidateMessage(
+            RequireThrows(() => WorkerProtocol.ValidateNamespacedMessage(
                 message, session, new string('b', 64), WorkerMessageType.Ready, WorkerActionNamespace.SecurityHardening),
                 "Wrong worker nonce was accepted.");
-            RequireThrows(() => WorkerProtocol.ValidateMessage(
+            RequireThrows(() => WorkerProtocol.ValidateNamespacedMessage(
                 message, session, nonce, WorkerMessageType.FinalResult, WorkerActionNamespace.SecurityHardening),
                 "Wrong worker phase was accepted.");
         });
