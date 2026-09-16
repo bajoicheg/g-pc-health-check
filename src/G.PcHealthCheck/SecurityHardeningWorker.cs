@@ -36,7 +36,7 @@ internal static class SecurityHardeningWorker
             client.Connect((int)TimeSpan.FromSeconds(45).TotalMilliseconds);
             using var channel = new JsonWorkerMessageChannel(client, leaveOpen: true);
             channel.Send(Message(session!, nonce!, WorkerMessageType.Ready));
-            WorkerProtocol.ValidateMessage(
+            WorkerProtocol.ValidateNamespacedMessage(
                 channel.Receive(), session!, nonce!, WorkerMessageType.Ready, WorkerActionNamespace.SecurityHardening);
 
             var result = SecurityHardeningExecutor.Execute(
