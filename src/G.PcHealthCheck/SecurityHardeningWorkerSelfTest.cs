@@ -145,15 +145,15 @@ internal static class SecurityHardeningWorkerSelfTest
 
         Test("worker CLI parsers preserve namespace isolation before opening a pipe", () =>
         {
-            Require(RemediationWorker.TryBuildSecurityWorkerPlan(
+            Require(SecurityHardeningWorker.TryBuildPlan(
                 "SecurityUpdateAvDefinitions,SecurityEnableWindowsFirewall", "Defender", out var securityPlan)
                 && securityPlan.HasRunnableActions,
                 "Approved Security worker plan was rejected.");
-            Require(!RemediationWorker.TryBuildSecurityWorkerPlan("Dism", "Defender", out _),
+            Require(!SecurityHardeningWorker.TryBuildPlan("Dism", "Defender", out _),
                 "Security worker parser accepted ServiceDesk Dism.");
             Require(!RemediationWorker.TryBuildWorkerPhasePlan("SecurityUpdateAvDefinitions", out _),
                 "ServiceDesk phased parser accepted a Security action.");
-            Require(!RemediationWorker.TryBuildSecurityWorkerPlan("SecurityEnablePrimaryRtp", "Kaspersky", out _),
+            Require(!SecurityHardeningWorker.TryBuildPlan("SecurityEnablePrimaryRtp", "Kaspersky", out _),
                 "Security worker parser accepted forbidden Kaspersky RTP execution.");
         });
 
