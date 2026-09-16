@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Security.Metric.Caption" xml:space="preserve"><value>SECURITY</value></data>
+  <data name="Security.Metric.Coverage" xml:space="preserve"><value>coverage {0}%</value></data>
+  <data name="Security.Metric.BandCoverage" xml:space="preserve"><value>{0} · coverage {1}%</value></data>
+  <data name="Security.Tab.Title" xml:space="preserve"><value>Security</value></data>
+  <data name="Security.Summary.Empty" xml:space="preserve"><value>Security posture has not been assessed yet.</value></data>
+  <data name="Security.Summary.Value" xml:space="preserve"><value>Security Score: {0} · {1} · coverage {2}% · model {3}</value></data>
+  <data name="Security.Summary.Overrides" xml:space="preserve"><value>Assessment caps: {0}</value></data>
+  <data name="Security.Column.Control" xml:space="preserve"><value>Control</value></data>
+  <data name="Security.Column.Status" xml:space="preserve"><value>Status</value></data>
+  <data name="Security.Column.Points" xml:space="preserve"><value>Points</value></data>
+  <data name="Security.Column.Evidence" xml:space="preserve"><value>Evidence / facts</value></data>
+  <data name="Security.Column.Recommendation" xml:space="preserve"><value>Recommendation</value></data>
+  <data name="Security.Column.Source" xml:space="preserve"><value>Source / coverage</value></data>
+  <data name="Security.Band.High" xml:space="preserve"><value>High</value></data>
+  <data name="Security.Band.Good" xml:space="preserve"><value>Good</value></data>
+  <data name="Security.Band.NeedsAttention" xml:space="preserve"><value>Needs attention</value></data>
+  <data name="Security.Band.Low" xml:space="preserve"><value>Low</value></data>
+  <data name="Security.Band.AssessmentIncomplete" xml:space="preserve"><value>Assessment incomplete</value></data>
+  <data name="Security.Status.Pass" xml:space="preserve"><value>Pass</value></data>
+  <data name="Security.Status.Warn" xml:space="preserve"><value>Warning</value></data>
+  <data name="Security.Status.Fail" xml:space="preserve"><value>Fail</value></data>
+  <data name="Security.Status.Unknown" xml:space="preserve"><value>Unknown</value></data>
+  <data name="Security.Status.NotApplicable" xml:space="preserve"><value>Not applicable</value></data>
+  <data name="Security.Evidence.None" xml:space="preserve"><value>Trustworthy evidence is unavailable.</value></data>
+  <data name="Security.Detail.LocalAdmin" xml:space="preserve"><value>Direct local administrator</value></data>
+  <data name="Security.Detail.Volume" xml:space="preserve"><value>Volume</value></data>
+  <data name="Security.Guidance.SEC-AV-ACTIVE" xml:space="preserve"><value>Restore active antivirus protection through the approved management channel.</value></data>
+  <data name="Security.Guidance.SEC-AV-PLATFORM" xml:space="preserve"><value>Update the active antivirus platform through enterprise management.</value></data>
+  <data name="Security.Guidance.SEC-AV-DEFINITIONS" xml:space="preserve"><value>Update antivirus definitions/signatures through the active provider's supported mechanism.</value></data>
+  <data name="Security.Guidance.SEC-AV-RTP" xml:space="preserve"><value>Restore real-time protection through the approved antivirus policy.</value></data>
+  <data name="Security.Guidance.SEC-AV-TAMPER" xml:space="preserve"><value>Review tamper protection through the enterprise antivirus policy.</value></data>
+  <data name="Security.Guidance.SEC-FIREWALL" xml:space="preserve"><value>Restore an effective firewall through approved local or centralized policy.</value></data>
+  <data name="Security.Guidance.SEC-OS-UPDATES" xml:space="preserve"><value>Install required Windows updates through the workstation's configured enterprise update source.</value></data>
+  <data name="Security.Guidance.SEC-BITLOCKER-OS" xml:space="preserve"><value>Protect the operating-system volume with BitLocker only through corporate policy with recovery-key escrow.</value></data>
+  <data name="Security.Guidance.SEC-BITLOCKER-DATA" xml:space="preserve"><value>Protect applicable internal data volumes with BitLocker through corporate policy.</value></data>
+  <data name="Security.Guidance.SEC-SECUREBOOT" xml:space="preserve"><value>Enable UEFI Secure Boot through the approved firmware-management process.</value></data>
+  <data name="Security.Guidance.SEC-BIOS-ADMIN-PASSWORD" xml:space="preserve"><value>Set the BIOS/UEFI Supervisor/Admin password through the approved OEM or centralized process.</value></data>
+  <data name="Security.Guidance.SEC-BOOT-RESTRICTIONS" xml:space="preserve"><value>Restrict external and network boot through approved BIOS/UEFI management.</value></data>
+  <data name="Security.Guidance.SEC-UAC" xml:space="preserve"><value>Restore UAC through the enterprise Windows policy.</value></data>
+  <data name="Security.Guidance.SEC-TPM" xml:space="preserve"><value>Review TPM 2.x presence and readiness; make changes only through the approved process.</value></data>
+  <data name="Security.Guidance.SEC-VBS-HVCI" xml:space="preserve"><value>Review VBS/HVCI (Memory Integrity) and enable it through an approved compatibility-aware policy.</value></data>
+  <data name="Security.Guidance.SEC-LOCAL-ADMINS" xml:space="preserve"><value>Compare direct local Administrators members with the approved allow-list and remove excess rights through the normal access process.</value></data>
+</root>
