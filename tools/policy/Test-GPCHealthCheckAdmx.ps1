@@ -5,6 +5,7 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
+$PolicyNamespace = 'http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions'
 
 function Require([bool]$Condition, [string]$Message) {
     if (-not $Condition) { throw $Message }
@@ -27,44 +28,44 @@ foreach ($path in @($admxPath, $enPath, $ruPath)) {
 
 function Load-Xml([string]$Path) {
     try {
-        return [xml][System.IO.File]::ReadAllText($Path)
+        [xml]$document = [System.IO.File]::ReadAllText($Path)
+        return ,$document
     }
     catch {
         throw "Policy XML is not well-formed: $Path :: $($_.Exception.Message)"
     }
 }
 
-function New-PolicyNamespaceManager([xml]$Xml) {
-    $manager = [System.Xml.XmlNamespaceManager]::new($Xml.NameTable)
-    $manager.AddNamespace('p', 'http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions')
-    return $manager
+function Select-PolicyNode([xml]$Xml, [string]$XPath) {
+    $match = Select-Xml -Xml $Xml -XPath $XPath -Namespace @{ p = $PolicyNamespace } | Select-Object -First 1
+    if ($null -eq $match) { return $null }
+    return $match.Node
 }
 
 $admx = Load-Xml $admxPath
-$admxNs = New-PolicyNamespaceManager $admx
-$target = $admx.SelectSingleNode('/p:policyDefinitions/p:policyNamespaces/p:target', $admxNs)
+$target = Select-PolicyNode $admx '/p:policyDefinitions/p:policyNamespaces/p:target'
 Require ($null -ne $target) 'ADMX target namespace is missing.'
 Require ($target.GetAttribute('prefix') -eq 'gpc') 'ADMX target prefix must be gpc.'
 Require ($target.GetAttribute('namespace') -eq 'G.PcHealthCheck.Policies') 'ADMX target namespace drifted.'
 
-$rootCategory = $admx.SelectSingleNode("/p:policyDefinitions/p:categories/p:category[@name='GPCHealthCheck']", $admxNs)
-$securityCategory = $admx.SelectSingleNode("/p:policyDefinitions/p:categories/p:category[@name='GPCHealthCheckSecurity']", $admxNs)
+$rootCategory = Select-PolicyNode $admx "/p:policyDefinitions/p:categories/p:category[@name='GPCHealthCheck']"
+$securityCategory = Select-PolicyNode $admx "/p:policyDefinitions/p:categories/p:category[@name='GPCHealthCheckSecurity']"
 Require ($null -ne $rootCategory) 'G PC Health Check ADMX root category is missing.'
 Require ($null -ne $securityCategory) 'Security Posture ADMX category is missing.'
-$categoryParent = $securityCategory.SelectSingleNode("p:parentCategory[@ref='GPCHealthCheck']", $admxNs)
+$categoryParent = Select-PolicyNode $admx "/p:policyDefinitions/p:categories/p:category[@name='GPCHealthCheckSecurity']/p:parentCategory[@ref='GPCHealthCheck']"
 Require ($null -ne $categoryParent) 'Security Posture category must be under G PC Health Check.'
 
-$policy = $admx.SelectSingleNode("/p:policyDefinitions/p:policies/p:policy[@name='AllowedLocalAdministrators']", $admxNs)
+$policy = Select-PolicyNode $admx "/p:policyDefinitions/p:policies/p:policy[@name='AllowedLocalAdministrators']"
 Require ($null -ne $policy) 'AllowedLocalAdministrators machine policy is missing.'
 Require ($policy.GetAttribute('class') -eq 'Machine') 'AllowedLocalAdministrators must be machine-scoped.'
 Require ($policy.GetAttribute('key') -eq 'SOFTWARE\Policies\GPCHealthCheck') 'ADMX policy Registry key drifted.'
 Require ($policy.GetAttribute('displayName') -eq '$(string.Policy.AllowedLocalAdministrators)') 'ADMX displayName resource reference drifted.'
 Require ($policy.GetAttribute('explainText') -eq '$(string.Policy.AllowedLocalAdministrators.Help)') 'ADMX explainText resource reference drifted.'
 Require ($policy.GetAttribute('presentation') -eq '$(presentation.Policy.AllowedLocalAdministrators.Presentation)') 'ADMX presentation resource reference drifted.'
-$parent = $policy.SelectSingleNode("p:parentCategory[@ref='GPCHealthCheckSecurity']", $admxNs)
+$parent = Select-PolicyNode $admx "/p:policyDefinitions/p:policies/p:policy[@name='AllowedLocalAdministrators']/p:parentCategory[@ref='GPCHealthCheckSecurity']"
 Require ($null -ne $parent) 'AllowedLocalAdministrators must live under Security Posture.'
 
-$multi = $policy.SelectSingleNode("p:elements/p:multiText[@id='AllowedLocalAdministratorsList']", $admxNs)
+$multi = Select-PolicyNode $admx "/p:policyDefinitions/p:policies/p:policy[@name='AllowedLocalAdministrators']/p:elements/p:multiText[@id='AllowedLocalAdministratorsList']"
 Require ($null -ne $multi) 'AllowedLocalAdministrators must use a multiText element.'
 Require ($multi.GetAttribute('valueName') -eq 'AllowedLocalAdministrators') 'multiText Registry value name drifted.'
 Require ($multi.GetAttribute('required') -ne 'true') 'Allow-list editor must permit an intentionally empty effective list.'
@@ -82,18 +83,18 @@ foreach ($item in @(
     @{ Path = $ruPath; Language = 'ru-RU' }
 )) {
     $adml = Load-Xml $item.Path
-    $admlNs = New-PolicyNamespaceManager $adml
     foreach ($id in $requiredStringIds) {
-        $node = $adml.SelectSingleNode("/p:policyDefinitionResources/p:resources/p:stringTable/p:string[@id='$id']", $admlNs)
+        $node = Select-PolicyNode $adml "/p:policyDefinitionResources/p:resources/p:stringTable/p:string[@id='$id']"
         Require ($null -ne $node -and -not [string]::IsNullOrWhiteSpace($node.InnerText)) "Missing $($item.Language) ADML string: $id"
     }
 
-    $presentation = $adml.SelectSingleNode("/p:policyDefinitionResources/p:resources/p:presentationTable/p:presentation[@id='Policy.AllowedLocalAdministrators.Presentation']", $admlNs)
+    $presentation = Select-PolicyNode $adml "/p:policyDefinitionResources/p:resources/p:presentationTable/p:presentation[@id='Policy.AllowedLocalAdministrators.Presentation']"
     Require ($null -ne $presentation) "Missing $($item.Language) AllowedLocalAdministrators presentation."
-    $box = $presentation.SelectSingleNode("p:multiTextBox[@refId='AllowedLocalAdministratorsList']", $admlNs)
+    $box = Select-PolicyNode $adml "/p:policyDefinitionResources/p:resources/p:presentationTable/p:presentation[@id='Policy.AllowedLocalAdministrators.Presentation']/p:multiTextBox[@refId='AllowedLocalAdministratorsList']"
     Require ($null -ne $box) "$($item.Language) presentation must bind multiTextBox to AllowedLocalAdministratorsList."
 
-    $help = $adml.SelectSingleNode("/p:policyDefinitionResources/p:resources/p:stringTable/p:string[@id='Policy.AllowedLocalAdministrators.Help']", $admlNs).InnerText
+    $helpNode = Select-PolicyNode $adml "/p:policyDefinitionResources/p:resources/p:stringTable/p:string[@id='Policy.AllowedLocalAdministrators.Help']"
+    $help = $helpNode.InnerText
     Require ($help.Contains('*')) "$($item.Language) help must document * wildcard semantics."
     Require ($help.Contains('?')) "$($item.Language) help must document ? wildcard semantics."
     Require ($help.Contains('REG_MULTI_SZ')) "$($item.Language) help must document REG_MULTI_SZ delivery."
