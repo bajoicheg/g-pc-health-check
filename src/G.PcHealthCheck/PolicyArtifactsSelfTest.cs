@@ -42,7 +42,7 @@ internal static class PolicyArtifactsSelfTest
             Require(synthetic.Configured && synthetic.Readable && synthetic.Patterns.Count == 2,
                 "Registry-backed policy load must remain independent from adjacent files.");
 
-            if (IsDotnetHost())
+            if (IsSourceBuild())
                 RunRepositoryValidator();
 
             Console.WriteLine("Policy artifacts self-test: 1/1 passed.");
@@ -55,11 +55,24 @@ internal static class PolicyArtifactsSelfTest
         }
     }
 
-    private static bool IsDotnetHost()
-        => string.Equals(
-            Path.GetFileNameWithoutExtension(Environment.ProcessPath),
-            "dotnet",
-            StringComparison.OrdinalIgnoreCase);
+    private static bool IsSourceBuild()
+    {
+        DirectoryInfo? current = new(AppContext.BaseDirectory);
+        while (current is not null)
+        {
+            if (string.Equals(current.Name, "bin", StringComparison.OrdinalIgnoreCase)
+                && current.Parent is { } projectDirectory
+                && string.Equals(projectDirectory.Name, "G.PcHealthCheck", StringComparison.OrdinalIgnoreCase)
+                && File.Exists(Path.Combine(projectDirectory.FullName, "G.PcHealthCheck.csproj")))
+            {
+                return true;
+            }
+
+            current = current.Parent;
+        }
+
+        return false;
+    }
 
     private static void RunRepositoryValidator()
     {
