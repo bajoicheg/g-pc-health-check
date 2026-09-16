@@ -234,21 +234,23 @@ internal static class SecurityHardeningPlannerSelfTest
         var snapshot = new SecurityPostureSnapshot();
         snapshot.ControlObservations["SEC-AV-ACTIVE"] = Observation(
             "SEC-AV-ACTIVE", SecurityControlStatus.Pass,
-            new("PrimaryProduct", primaryProduct, "WSC"), new("ProductState", "On", "WSC"));
+            new SecurityEvidence("PrimaryProduct", primaryProduct, "WSC"),
+            new SecurityEvidence("ProductState", "On", "WSC"));
         snapshot.ControlObservations["SEC-AV-DEFINITIONS"] = Observation(
             "SEC-AV-DEFINITIONS", definitions,
-            new("SignatureState", definitions == SecurityControlStatus.Pass ? "UpToDate" : "OutOfDate", "WSC"),
-            new("DefinitionProvider", primaryProduct, definitionSource));
+            new SecurityEvidence("SignatureState", definitions == SecurityControlStatus.Pass ? "UpToDate" : "OutOfDate", "WSC"),
+            new SecurityEvidence("DefinitionProvider", primaryProduct, definitionSource));
         snapshot.ControlObservations["SEC-AV-RTP"] = Observation(
             "SEC-AV-RTP", rtp,
-            new("RealTimeProtectionEnabled", rtpValue, primaryProduct.Contains("Kaspersky", StringComparison.OrdinalIgnoreCase) ? "KESCLI OPSWAT" : "Defender"));
+            new SecurityEvidence("RealTimeProtectionEnabled", rtpValue,
+                primaryProduct.Contains("Kaspersky", StringComparison.OrdinalIgnoreCase) ? "KESCLI OPSWAT" : "Defender"));
         snapshot.ControlObservations["SEC-FIREWALL"] = Observation(
             "SEC-FIREWALL", firewallStatus,
-            new("EffectiveProvider", firewallProvider, "WindowsFirewall/WSC"),
-            new("DomainEnabled", firewallEnabled ? "true" : "false", "WindowsFirewall/WSC"),
-            new("PrivateEnabled", firewallEnabled ? "true" : "false", "WindowsFirewall/WSC"),
-            new("PublicEnabled", firewallEnabled ? "true" : "false", "WindowsFirewall/WSC"),
-            new("PolicyEnforced", firewallPolicy ? "true" : "false", "WindowsFirewall/WSC"));
+            new SecurityEvidence("EffectiveProvider", firewallProvider, "WindowsFirewall/WSC"),
+            new SecurityEvidence("DomainEnabled", firewallEnabled ? "true" : "false", "WindowsFirewall/WSC"),
+            new SecurityEvidence("PrivateEnabled", firewallEnabled ? "true" : "false", "WindowsFirewall/WSC"),
+            new SecurityEvidence("PublicEnabled", firewallEnabled ? "true" : "false", "WindowsFirewall/WSC"),
+            new SecurityEvidence("PolicyEnforced", firewallPolicy ? "true" : "false", "WindowsFirewall/WSC"));
         return snapshot;
     }
 
