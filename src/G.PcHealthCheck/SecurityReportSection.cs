@@ -16,7 +16,7 @@ internal static class SecurityReportSection
         var sb = new StringBuilder();
         sb.Append("<section id='security-posture'><h2>").Append(H(T(language, "Security.Tab.Title"))).Append("</h2>");
         sb.Append("<p><b>").Append(H(T(language, "Security.Summary.Value",
-            assessment.Score?.ToString(CultureInfo.InvariantCulture) ?? "—",
+            ScoreText(assessment),
             BandText(language, assessment.DisplayBand),
             assessment.CoveragePercent,
             assessment.ModelVersion))).Append("</b></p>");
@@ -34,7 +34,9 @@ internal static class SecurityReportSection
         foreach (var control in assessment.Controls.Concat(assessment.Supplemental))
             AppendControlRow(sb, control, language);
 
-        sb.Append("</tbody></table></section>");
+        sb.Append("</tbody></table>");
+        AppendHardeningEvidence(sb, scan.SecurityHardening, language);
+        sb.Append("</section>");
         return sb.ToString();
     }
 
@@ -46,7 +48,7 @@ internal static class SecurityReportSection
 
         var sb = new StringBuilder();
         sb.AppendLine(T(language, "Security.Summary.Value",
-            assessment.Score?.ToString(CultureInfo.InvariantCulture) ?? "—",
+            ScoreText(assessment),
             BandText(language, assessment.DisplayBand),
             assessment.CoveragePercent,
             assessment.ModelVersion));
@@ -59,6 +61,21 @@ internal static class SecurityReportSection
             .ToList();
         foreach (var control in attention)
             sb.AppendLine($"- {control.Id}: {StatusText(language, control.Status)}; {PointsText(control)}");
+
+        if (scan.SecurityHardening is { } hardening)
+        {
+            sb.AppendLine(T(
+                language,
+                "Security.Hardening.Result.Summary",
+                hardening.Actions.Count(x => x.Success),
+                hardening.Actions.Count,
+                ScoreText(hardening.Before),
+                ScoreText(hardening.After),
+                hardening.Before.CoveragePercent,
+                hardening.After.CoveragePercent));
+            foreach (var action in hardening.Actions)
+                sb.AppendLine($"- {action.Id}: {HardeningActionStatus(language, action)}; {action.TargetScope}");
+        }
 
         return sb.ToString().TrimEnd();
     }
@@ -90,6 +107,49 @@ internal static class SecurityReportSection
             .Append(H(sources)).Append("</td></tr>");
     }
 
+    private static void AppendHardeningEvidence(StringBuilder sb, SecurityHardeningEvidence? hardening, string language)
+    {
+        if (hardening is null) return;
+
+        sb.Append("<h3>").Append(H(T(language, "Security.Hardening.Result.Title"))).Append("</h3>");
+        sb.Append("<p><b>").Append(H(T(
+            language,
+            "Security.Hardening.Result.Summary",
+            hardening.Actions.Count(x => x.Success),
+            hardening.Actions.Count,
+            ScoreText(hardening.Before),
+            ScoreText(hardening.After),
+            hardening.Before.CoveragePercent,
+            hardening.After.CoveragePercent))).Append("</b></p>");
+
+        if (hardening.Actions.Count == 0) return;
+        sb.Append("<table><thead><tr><th>")
+            .Append(H(T(language, "Security.Column.Control"))).Append("</th><th>")
+            .Append(H(T(language, "Security.Column.Status"))).Append("</th><th>")
+            .Append(H(T(language, "Security.Column.Evidence"))).Append("</th><th>")
+            .Append(H(T(language, "Security.Column.Source"))).Append("</th></tr></thead><tbody>");
+        foreach (var action in hardening.Actions)
+        {
+            var evidence = "ExitCode=" + (action.ExitCode?.ToString(CultureInfo.InvariantCulture) ?? "—")
+                + "; BlockedByPolicy=" + (action.BlockedByPolicy ? "true" : "false")
+                + "; StartedAt=" + action.StartedAt.ToString("O", CultureInfo.InvariantCulture)
+                + "; FinishedAt=" + action.FinishedAt.ToString("O", CultureInfo.InvariantCulture);
+            if (!string.IsNullOrWhiteSpace(action.Message)) evidence += "; Message=" + action.Message;
+            var pill = action.Success ? "ok" : "crit";
+            sb.Append("<tr><td>").Append(H(action.Id)).Append("</td><td><span class='pill ").Append(pill).Append("'>")
+                .Append(H(HardeningActionStatus(language, action))).Append("</span></td><td>")
+                .Append(H(evidence)).Append("</td><td>").Append(H(action.TargetScope)).Append("</td></tr>");
+        }
+        sb.Append("</tbody></table>");
+    }
+
+    private static string HardeningActionStatus(string language, SecurityHardeningActionEvidence action)
+        => action.BlockedByPolicy
+            ? T(language, "Security.Hardening.State.BlockedByPolicy")
+            : action.Success
+                ? T(language, "Security.Status.Pass")
+                : T(language, "Security.Status.Fail");
+
     private static string Guidance(string language, string guidanceCode)
     {
         var key = "Security.Guidance." + guidanceCode;
@@ -102,6 +162,9 @@ internal static class SecurityReportSection
         if (result.Status is SecurityControlStatus.Unknown or SecurityControlStatus.NotApplicable) return "—";
         return $"{result.Weight * result.EarnedFraction:0.#}/{result.Weight}";
     }
+
+    private static string ScoreText(SecurityPostureAssessment assessment)
+        => assessment.Score?.ToString(CultureInfo.InvariantCulture) ?? "—";
 
     private static string StatusText(string language, SecurityControlStatus status) => status switch
     {
