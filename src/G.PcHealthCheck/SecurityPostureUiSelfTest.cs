@@ -18,36 +18,43 @@ internal static class SecurityPostureUiSelfTest
             using var form = new MainForm();
             var type = typeof(MainForm);
             var flags = BindingFlags.Instance | BindingFlags.NonPublic;
-            var cardField = type.GetField("_securityMetricCard", flags);
-            var tabField = type.GetField("_securityTabPage", flags);
-            var tabsField = type.GetField("_tabs", flags);
-            Require(cardField is not null && tabField is not null && tabsField is not null, "Security card/tab fields are missing.");
+            var cardField = type.GetField("_securityMetricCard", flags)
+                ?? throw new InvalidOperationException("Security metric card field is missing.");
+            var tabField = type.GetField("_securityTabPage", flags)
+                ?? throw new InvalidOperationException("Security tab field is missing.");
+            var tabsField = type.GetField("_tabs", flags)
+                ?? throw new InvalidOperationException("Main tabs field is missing.");
 
-            var card = (Panel?)cardField!.GetValue(form);
-            var tab = (TabPage?)tabField!.GetValue(form);
-            var tabs = (TabControl?)tabsField!.GetValue(form);
-            Require(card is not null && tab is not null && tabs is not null, "Security card/tab were not initialized.");
+            var card = cardField.GetValue(form) as Panel
+                ?? throw new InvalidOperationException("Security card was not initialized.");
+            var tab = tabField.GetValue(form) as TabPage
+                ?? throw new InvalidOperationException("Security tab was not initialized.");
+            var tabs = tabsField.GetValue(form) as TabControl
+                ?? throw new InvalidOperationException("Main tabs were not initialized.");
             Require(card.Name == "SecurityPostureMetricCard", "Security metric card stable Name drifted.");
             Require(tab.Name == "SecurityPostureTab", "Security tab stable Name drifted.");
             Require(tabs.TabPages.Contains(tab), "Security tab is not a top-level tab.");
 
             var root = form.Controls.OfType<TableLayoutPanel>().Single(x => x.RowCount == 5 && x.ColumnCount == 1);
-            var metrics = root.GetControlFromPosition(0, 2) as TableLayoutPanel;
-            Require(metrics is not null && metrics.ColumnCount == 7 && metrics.Controls.Count == 7,
+            var metrics = root.GetControlFromPosition(0, 2) as TableLayoutPanel
+                ?? throw new InvalidOperationException("Main metric layout missing.");
+            Require(metrics.ColumnCount == 7 && metrics.Controls.Count == 7,
                 "Main metrics must contain exactly seven cards.");
             Require(ReferenceEquals(metrics.GetControlFromPosition(6, 0), card), "Security card must be the seventh metric card.");
 
-            var onClick = typeof(Control).GetMethod("OnClick", BindingFlags.Instance | BindingFlags.NonPublic);
-            Require(onClick is not null, "Control click test hook unavailable.");
-            onClick!.Invoke(card, [EventArgs.Empty]);
+            var onClick = typeof(Control).GetMethod("OnClick", BindingFlags.Instance | BindingFlags.NonPublic)
+                ?? throw new InvalidOperationException("Control click test hook unavailable.");
+            onClick.Invoke(card, [EventArgs.Empty]);
             Require(ReferenceEquals(tabs.SelectedTab, tab), "Clicking Security card must select Security tab.");
         });
 
         Test("Security grid has stable evaluation columns", () =>
         {
             using var form = new MainForm();
-            var field = typeof(MainForm).GetField("_securityGrid", BindingFlags.Instance | BindingFlags.NonPublic);
-            Require(field?.GetValue(form) is DataGridView grid, "Security grid is missing.");
+            var field = typeof(MainForm).GetField("_securityGrid", BindingFlags.Instance | BindingFlags.NonPublic)
+                ?? throw new InvalidOperationException("Security grid field is missing.");
+            var grid = field.GetValue(form) as DataGridView
+                ?? throw new InvalidOperationException("Security grid is missing.");
             var expected = new[] { "Control", "Status", "Points", "Evidence", "Recommendation", "Source" };
             Require(grid.Columns.Cast<DataGridViewColumn>().Select(x => x.Name).SequenceEqual(expected),
                 "Security grid column contract drifted.");
@@ -55,9 +62,9 @@ internal static class SecurityPostureUiSelfTest
 
         Test("security bands use fixed non-misleading colors", () =>
         {
-            var method = typeof(MainForm).GetMethod("SecurityBandColor", BindingFlags.Static | BindingFlags.NonPublic);
-            Require(method is not null, "SecurityBandColor is missing.");
-            Color ColorFor(SecurityBand band) => (Color)method!.Invoke(null, [band])!;
+            var method = typeof(MainForm).GetMethod("SecurityBandColor", BindingFlags.Static | BindingFlags.NonPublic)
+                ?? throw new InvalidOperationException("SecurityBandColor is missing.");
+            Color ColorFor(SecurityBand band) => (Color)method.Invoke(null, [band])!;
 
             Require(ColorFor(SecurityBand.High) == Color.FromArgb(23, 122, 75), "High must be green.");
             Require(ColorFor(SecurityBand.Good) == Color.FromArgb(35, 134, 192), "Good must use product blue.");
@@ -69,11 +76,11 @@ internal static class SecurityPostureUiSelfTest
 
         Test("Unknown points stay unknown and never become fake zero or full credit", () =>
         {
-            var method = typeof(MainForm).GetMethod("SecurityPointsText", BindingFlags.Static | BindingFlags.NonPublic);
-            Require(method is not null, "SecurityPointsText is missing.");
+            var method = typeof(MainForm).GetMethod("SecurityPointsText", BindingFlags.Static | BindingFlags.NonPublic)
+                ?? throw new InvalidOperationException("SecurityPointsText is missing.");
             var unknown = new SecurityControlResult("SEC-X", SecurityControlStatus.Unknown, 8, 0, "SEC-X", []);
             var pass = new SecurityControlResult("SEC-X", SecurityControlStatus.Pass, 8, 1, "SEC-X", []);
-            Require((string)method!.Invoke(null, [unknown])! == "—", "Unknown points must render as em dash.");
+            Require((string)method.Invoke(null, [unknown])! == "—", "Unknown points must render as em dash.");
             Require((string)method.Invoke(null, [pass])! == "8/8", "Pass points must render earned/configured points.");
         });
 
