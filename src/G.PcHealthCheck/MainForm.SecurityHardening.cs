@@ -76,6 +76,7 @@ public sealed partial class MainForm
                 CancellationToken.None,
                 progress);
 
+            _current.SecurityHardening = SecurityHardeningEvidence.From(verification);
             _current.Security = verification.After.Assessment;
             _current.SecuritySnapshot = verification.After.Snapshot;
             PopulateSecurity(_current);
