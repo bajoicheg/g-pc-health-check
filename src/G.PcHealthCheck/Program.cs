@@ -126,6 +126,11 @@ internal static class Program
             Environment.Exit(RemediationWorker.RunBootstrap(args));
             return;
         }
+        if (args.Any(a => string.Equals(a, "--security-worker", StringComparison.OrdinalIgnoreCase)))
+        {
+            Environment.Exit(SecurityHardeningWorker.Run(args));
+            return;
+        }
         if (args.Any(a => string.Equals(a, "--phased-worker", StringComparison.OrdinalIgnoreCase)))
         {
             Environment.Exit(RemediationWorker.RunPhased(args));
