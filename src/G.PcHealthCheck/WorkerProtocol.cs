@@ -30,12 +30,26 @@ internal sealed class WorkerMessage
 
 internal static class WorkerProtocol
 {
+    // Backward-compatible 0.16 Service Desk protocol surface. Existing reflection
+    // tests intentionally resolve this exact method name and four-argument shape.
     internal static void ValidateMessage(
         WorkerMessage message,
         string expectedSession,
         string expectedNonce,
+        WorkerMessageType expectedType)
+        => ValidateNamespacedMessage(
+            message,
+            expectedSession,
+            expectedNonce,
+            expectedType,
+            WorkerActionNamespace.ServiceDesk);
+
+    internal static void ValidateNamespacedMessage(
+        WorkerMessage message,
+        string expectedSession,
+        string expectedNonce,
         WorkerMessageType expectedType,
-        WorkerActionNamespace expectedNamespace = WorkerActionNamespace.ServiceDesk)
+        WorkerActionNamespace expectedNamespace)
     {
         ArgumentNullException.ThrowIfNull(message);
         ArgumentException.ThrowIfNullOrWhiteSpace(expectedSession);
