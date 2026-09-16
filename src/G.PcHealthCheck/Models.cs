@@ -206,6 +206,8 @@ public sealed class ScanResult
 {
     public DiagnosticData Data { get; set; } = new();
     public Assessment Assessment { get; set; } = new();
+    public SecurityPostureAssessment? Security { get; set; }
+    [JsonIgnore] internal SecurityPostureSnapshot? SecuritySnapshot { get; set; }
     public List<ActionRecommendation> Actions { get; set; } = [];
 }
 
