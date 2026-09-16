@@ -2,9 +2,33 @@
 
 Windows 11 x64 Service Desk utility for workstation diagnostics, explainable findings, before/after reporting and controlled remediation.
 
-Current project version: **0.16.0**. A self-contained single-file `G-PC-Health-Check.exe`; no installation is required. Portable copies may use any folder and filename.
+Current project version: **0.17.0**. A self-contained single-file `G-PC-Health-Check.exe`; no installation is required. Portable copies may use any folder and filename.
 
 > **Privacy:** review exports before sharing. Account names/SIDs, profile and file paths, commands, events, device identifiers, resource addresses and notes can be sensitive. Search is not redaction. See [`SECURITY.md`](SECURITY.md).
+
+## 0.17.0 — Endpoint Security Posture and safe hardening
+
+0.17.0 adds a separate **ИБ / SECURITY** score and coverage beside the existing technical Health Score. The Security tab evaluates a versioned 100-point endpoint baseline covering effective AV/EPP, definitions/RTP/tamper state, firewall ownership, Windows Update posture, BitLocker OS/data, Secure Boot, BIOS/UEFI password and boot restrictions, UAC, TPM, VBS/HVCI and direct local Administrators membership. `Unknown` is never treated as healthy; it lowers Security coverage, and coverage below 80% is shown as **Assessment incomplete / Оценка неполная**.
+
+The main action area now has three deliberately separate batches: blue **Усилить защиту / Harden security**, green **Сделать хорошо / Make it better**, red **Сделать всё / Do everything**. Blue can request only three fixed actions after a fresh raw Security/context preflight: supported Defender/Kaspersky definitions update, Defender-only RTP enablement and locally controllable Windows Firewall enablement. It uses a separate session/nonce-bound security-worker namespace, one confirmation and at most one UAC decision, followed by fresh Security recollection. Green/red semantics are unchanged; red remains the exact fixed 14-action 0.16.0 set and never absorbs blue actions.
+
+Firmware passwords/boot order/Secure Boot, BitLocker provisioning/recovery material, local Administrators membership, TPM, VBS/HVCI, UAC, Windows quality/security update installation, Kaspersky RTP, exclusions and central security/tamper policy remain manual/read-only in 0.17.0. Unsupported or ambiguous OEM/provider evidence stays `Unknown`; the tool does not install Lenovo/Dell/HP management software and never bypasses KSC/GPO/MDM/tamper protection.
+
+### Local Administrators policy / ADMX deployment
+
+The portable EXE reads the local-admin allow-list only from machine policy `HKLM\SOFTWARE\Policies\GPCHealthCheck\AllowedLocalAdministrators` as `REG_MULTI_SZ`. There is no adjacent JSON/INI/XML runtime policy file and no per-user fallback.
+
+Central Administrative Templates are supplied as:
+
+- `policy/GPCHealthCheck.admx`;
+- `policy/en-US/GPCHealthCheck.adml`;
+- `policy/ru-RU/GPCHealthCheck.adml`.
+
+Policy UI path: **Computer Configuration → Administrative Templates → G PC Health Check → Security Posture → Allowed local administrators**.
+
+Enter one allowed principal pattern per line. Matching is whole-string and case-insensitive: `*` means zero or more characters, `?` exactly one character, every other character is literal. Neutral examples include `CONTOSO\adm-*`, `LOCAL\Administrator` and `SID:S-1-5-21-*-500`. Missing/wrong-type/unreadable policy remains `Unknown`; an explicitly enabled but empty effective list permits no direct principal. The built-in Administrators group is discovered by well-known SID `S-1-5-32-544`, not by localized group name. ADMX/ADML files are deployment artifacts, not runtime dependencies.
+
+See [0.17.0 release notes](docs/releases/0.17.0.md), [validation/pilot status](docs/releases/0.17.0-validation.md) and the [managed Windows 11 acceptance plan](docs/E2E-TEST-PLAN.md).
 
 ## 0.16.0 — bilingual Service Desk actions and one-click repair
 
@@ -79,35 +103,35 @@ Startup review still reads HKCU/personal Startup of the **process account**. Rai
 | Сетевые соединения и порты (TCP/UDP)… | Local owner-PID tables, checked process-name attribution and qualified snapshot differences | No probe/reverse DNS or connection/process changes; full retained-snapshot export. [0.12.0](docs/releases/0.12.0.md) |
 | Кто использует файл… | Restart Manager application/service evidence for one selected local file, with checked executable metadata | No forced unlocking or termination; failed/empty results stay distinct. [0.13.0](docs/releases/0.13.0.md) |
 
-Read-only tools with fully defined default scope may collect once when opened in 0.16.0; target/consent-required tools such as Resource Probe, File Use and Process Observation remain idle. Collection, progress, cancellation, details and local reports preserve complete evidence rather than only a search filter. Permissions, source limits and unavailable values remain meaningful; no provider is guaranteed to return promptly. Folder sizes are logical, nested totals overlap and hard links count per name. Network/cloud paths and native name resolution may generate OS traffic.
+Read-only tools with fully defined default scope may collect once when opened (behavior introduced in 0.16.0); target/consent-required tools such as Resource Probe, File Use and Process Observation remain idle. Collection, progress, cancellation, details and local reports preserve complete evidence rather than only a search filter. Permissions, source limits and unavailable values remain meaningful; no provider is guaranteed to return promptly. Folder sizes are logical, nested totals overlap and hard links count per name. Network/cloud paths and native name resolution may generate OS traffic.
 
 ## Main diagnostics and common problems
 
-The dashboard collects CPU/RAM, logical/physical disks, Windows/build, processes, events, startup, security-product, network and update signals. Short-series medians reduce transient load findings. Disk pressure requires elevated busy and queue together; event findings consider repeated Provider/Event ID groups. Score, diagnostic coverage, findings and next steps are separate: unavailable telemetry is neither health nor a fabricated hardware fault. System-volume selection does not assume C:.
+The dashboard collects CPU/RAM, logical/physical disks, Windows/build, processes, events, startup, security-product, network and update signals. Short-series medians reduce transient load findings. Disk pressure requires elevated busy and queue together; event findings consider repeated Provider/Event ID groups. Technical score, technical coverage, Security score/coverage, findings and next steps are separate: unavailable telemetry is neither health nor a fabricated hardware/security fault. System-volume selection does not assume C:.
 
 **Типовые проблемы: сеть, печать, устройства** adds local IP/DNS configuration, printing/Spooler and PnP evidence with guided steps, repeat/cancel and export. Fixed Windows Settings shortcuts aid investigation; optional DNS flush needs separate confirmation. Configuration is not reachability, printer status is not successful printing and a command exit code is not symptom resolution.
 
-The original health thresholds and previous tools are preserved. See [`docs/ASSESSMENT-MODEL.md`](docs/ASSESSMENT-MODEL.md), [`docs/COMMON-PROBLEMS.md`](docs/COMMON-PROBLEMS.md), [`docs/KNOWN-LIMITATIONS.md`](docs/KNOWN-LIMITATIONS.md) and [`CHANGELOG.md`](CHANGELOG.md).
+The original technical health thresholds and previous tools are preserved. See [`docs/ASSESSMENT-MODEL.md`](docs/ASSESSMENT-MODEL.md), [`docs/COMMON-PROBLEMS.md`](docs/COMMON-PROBLEMS.md), [`docs/KNOWN-LIMITATIONS.md`](docs/KNOWN-LIMITATIONS.md) and [`CHANGELOG.md`](CHANGELOG.md).
 
 ## Portable remediation and execution boundaries
 
-0.16.0 centralizes remediation metadata and keeps a fixed, code-owned action set. The green **Сделать хорошо / Make it better** batch includes only currently recommended, automated and requestable actions. The red **Сделать всё / Do everything** batch is the exact fixed 14-action allow-list documented in [0.16.0 release notes](docs/releases/0.16.0.md); it cannot accept arbitrary commands, services or adapters.
+0.17.0 keeps the 0.16.0 fixed Service Desk action model and adds a separate fixed Security-hardening namespace. The green **Сделать хорошо / Make it better** batch includes only currently recommended, automated and requestable technical actions. The red **Сделать всё / Do everything** batch remains the exact fixed 14-action allow-list documented in [0.16.0 release notes](docs/releases/0.16.0.md); it cannot accept arbitrary commands, services or adapters and contains no Security action.
 
-Administrative actions use one authenticated phased worker lifetime with session/nonce-bound IPC and one UAC prompt when elevation is required. Parent-side original-user actions and worker-side machine actions remain separated; network disruption is scheduled late. Alternate-admin elevation does not impersonate the interactive user. `CleanTemp` remains limited to the verified same-user/session/profile scope.
+The blue **Усилить защиту / Harden security** batch is derived only from fresh Security posture/context evidence and cannot accept arbitrary commands, executable paths, service names, Registry paths or principals. Security and Service Desk workers use explicit action namespaces with session/nonce-bound IPC. Administrative batches use one worker/UAC decision where elevation is required. Parent-side original-user actions and worker-side machine actions remain separated; alternate-admin elevation does not impersonate the interactive user. `CleanTemp` remains limited to the verified same-user/session/profile scope.
 
 **DISM/SFC work from any EXE folder/name**, including Downloads and renamed copies. Windows access and enterprise launch policies still apply. No security software disable/stop/exclusion, Event Log clearing, credential/profile deletion, forced reboot or forced logoff is provided.
 
-The red batch is intentionally disruptive and must first be exercised only on an approved disposable/test workstation. It may interrupt VPN/RDP/network, reset DHCP/Winsock/TCP-IP, restart adapters/services, delete pending print jobs, refresh Group Policy, resynchronize time and leave Windows requiring reboot. Hosted CI validates the fixed handlers/protocol with fakes and negative tests; it does not execute those real disruptive repairs.
+The red batch is intentionally disruptive and must first be exercised only on an approved disposable/test workstation. It may interrupt VPN/RDP/network, reset DHCP/Winsock/TCP-IP, restart adapters/services, delete pending print jobs, refresh Group Policy, resynchronize time and leave Windows requiring reboot. Hosted CI validates fixed handlers/protocols with fakes and negative tests; it does not execute those real disruptive repairs or deliberately weaken Security controls.
 
 ## Build, CI and provenance
 
-`Windows EXE` uses read-only repository permissions and pinned Actions. Its gates include PowerShell parsing, deterministic branding, transitive NuGet audit, warnings-as-errors build, source and single-EXE self-tests, portable worker tests, exact FileVersion, SHA-256 and pilot metadata/UTF-8. Successful main builds trigger release publication and supply-chain attestations for the exact tested SHA/run. Existing releases are not overwritten. See [`docs/SUPPLY-CHAIN.md`](docs/SUPPLY-CHAIN.md).
+`Windows EXE` uses read-only repository permissions and pinned Actions. Its gates include PowerShell parsing, deterministic branding, transitive NuGet audit, warnings-as-errors build, source and single-EXE self-tests, portable worker/security tests, exact FileVersion, SHA-256 and pilot metadata/UTF-8. Successful main builds trigger release publication and supply-chain attestations for the exact tested SHA/run. Existing releases are not overwritten. See [`docs/SUPPLY-CHAIN.md`](docs/SUPPLY-CHAIN.md).
 
 ```powershell
 gh attestation verify G-PC-Health-Check.exe --repo bajoicheg/g-pc-health-check
 ```
 
-PR builds are not releases. Hosted Windows Server tests are not a substitute for real corporate Windows 11 standard/admin/other-account/RDP contexts, redirected profiles, OEM disks, VPN/proxy/DNS, GUI/DPI, interactive UAC and actual remediation. See [`docs/E2E-TEST-PLAN.md`](docs/E2E-TEST-PLAN.md) and version-specific notes.
+PR builds are not releases. Hosted Windows Server tests are not a substitute for real corporate Windows 11 standard/admin/other-account/RDP contexts, redirected profiles, AV/EDR providers, enterprise update source, firmware/OEM telemetry, BitLocker, ADMX/GPO delivery, VPN/proxy/DNS, GUI/DPI, interactive UAC and actual remediation/hardening. See [`docs/E2E-TEST-PLAN.md`](docs/E2E-TEST-PLAN.md) and version-specific notes.
 
 ## Building locally
 
