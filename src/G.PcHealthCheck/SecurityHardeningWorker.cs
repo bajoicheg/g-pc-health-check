@@ -57,8 +57,7 @@ internal static class SecurityHardeningWorker
     {
         plan = new SecurityHardeningPlan { NoRunnableReasonCode = "SecurityHardening.InvalidWorkerRequest" };
         if (!Enum.TryParse<SecurityPrimaryProvider>(providerText, ignoreCase: true, out var provider)
-            || !Enum.IsDefined(typeof(SecurityPrimaryProvider), provider)
-            || provider == SecurityPrimaryProvider.Unknown)
+            || !Enum.IsDefined(typeof(SecurityPrimaryProvider), provider))
             return false;
 
         var requested = (actionsCsv ?? "")
