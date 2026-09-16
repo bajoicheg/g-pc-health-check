@@ -149,6 +149,10 @@ internal static class SecurityHardeningWorkerSelfTest
                 "SecurityUpdateAvDefinitions,SecurityEnableWindowsFirewall", "Defender", out var securityPlan)
                 && securityPlan.HasRunnableActions,
                 "Approved Security worker plan was rejected.");
+            Require(SecurityHardeningWorker.TryBuildPlan(
+                "SecurityEnableWindowsFirewall", "Unknown", out var firewallOnly)
+                && firewallOnly.HasRunnableActions,
+                "Firewall-only worker plan must not depend on AV provider availability.");
             Require(!SecurityHardeningWorker.TryBuildPlan("Dism", "Defender", out _),
                 "Security worker parser accepted ServiceDesk Dism.");
             Require(!RemediationWorker.TryBuildWorkerPhasePlan("SecurityUpdateAvDefinitions", out _),
