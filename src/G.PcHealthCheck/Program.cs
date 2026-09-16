@@ -42,6 +42,7 @@ internal static class Program
             if (result == 0) result = BitLockerSecurityCollectorSelfTest.Run();
             if (result == 0) result = FirmwareSecurityCollectorSelfTest.Run();
             if (result == 0) result = LocalAdministratorsSelfTest.Run();
+            if (result == 0) result = SecurityPostureIntegrationSelfTest.Run();
             if (result == 0) result = SystemDiskSelectionSelfTest.Run();
             if (result == 0) result = PortableElevationSelfTest.Run();
             if (result == 0) result = ReadOnlyReviewSelfTest.Run();
