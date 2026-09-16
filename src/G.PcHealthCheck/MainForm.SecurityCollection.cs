@@ -2,7 +2,7 @@ namespace G.PcHealthCheck;
 
 public sealed partial class MainForm
 {
-    private static async Task AttachSecurityPostureAsync(
+    private async Task AttachSecurityPostureAsync(
         ScanResult scan,
         IProgress<string>? progress,
         CancellationToken cancellationToken = default)
@@ -15,6 +15,7 @@ public sealed partial class MainForm
                 progress);
             scan.Security = security.Assessment;
             scan.SecuritySnapshot = security.Snapshot;
+            PopulateSecurity(scan);
         }
         catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
         {
@@ -25,6 +26,7 @@ public sealed partial class MainForm
             var unavailable = SecurityPostureCollector.Unavailable("SecurityPosture: " + ex.GetType().Name);
             scan.Security = unavailable.Assessment;
             scan.SecuritySnapshot = unavailable.Snapshot;
+            PopulateSecurity(scan);
         }
     }
 }
