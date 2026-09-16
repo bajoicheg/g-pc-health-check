@@ -46,4 +46,27 @@
   <data name="Security.Guidance.SEC-TPM" xml:space="preserve"><value>Review TPM 2.x presence and readiness; make changes only through the approved process.</value></data>
   <data name="Security.Guidance.SEC-VBS-HVCI" xml:space="preserve"><value>Review VBS/HVCI (Memory Integrity) and enable it through an approved compatibility-aware policy.</value></data>
   <data name="Security.Guidance.SEC-LOCAL-ADMINS" xml:space="preserve"><value>Compare direct local Administrators members with the approved allow-list and remove excess rights through the normal access process.</value></data>
+  <data name="Security.Hardening.Button" xml:space="preserve"><value>Harden security</value></data>
+  <data name="Security.Hardening.Title" xml:space="preserve"><value>Harden security</value></data>
+  <data name="Security.Hardening.Checking" xml:space="preserve"><value>Checking current security posture and safe automatic actions…</value></data>
+  <data name="Security.Hardening.Executing" xml:space="preserve"><value>Running the confirmed security hardening actions…</value></data>
+  <data name="Security.Hardening.Verifying" xml:space="preserve"><value>Recollecting security posture after the changes…</value></data>
+  <data name="Security.Hardening.WaitingWorker" xml:space="preserve"><value>Waiting for the protected security hardening worker…</value></data>
+  <data name="Security.Hardening.NoRunnable" xml:space="preserve"><value>No safe automatic security hardening action is currently available. Reason: {0}</value></data>
+  <data name="Security.Hardening.ReadyHint" xml:space="preserve"><value>Safe automatic security hardening actions are available.</value></data>
+  <data name="Security.Hardening.UnavailableHint" xml:space="preserve"><value>Safe automatic security hardening actions are unavailable: {0}</value></data>
+  <data name="Security.Hardening.Confirmation.Intro" xml:space="preserve"><value>Only the fixed safe security action set will be considered. Unavailable or policy-blocked actions will not run.</value></data>
+  <data name="Security.Hardening.Confirmation.Risk" xml:space="preserve"><value>Risk: protection settings will change; centralized policy and tamper protection will not be bypassed.</value></data>
+  <data name="Security.Hardening.Confirmation.Uac" xml:space="preserve"><value>UAC</value></data>
+  <data name="Security.Hardening.Confirmation.UacRequired" xml:space="preserve"><value>one elevation prompt will be required</value></data>
+  <data name="Security.Hardening.Confirmation.UacNotRequired" xml:space="preserve"><value>no additional elevation prompt is required</value></data>
+  <data name="Security.Hardening.Confirmation.PostRescan" xml:space="preserve"><value>After execution, the application will recollect Security Posture and show the before / after state.</value></data>
+  <data name="Security.Hardening.State.Ready" xml:space="preserve"><value>ready to run</value></data>
+  <data name="Security.Hardening.State.NeedsUac" xml:space="preserve"><value>will run after UAC</value></data>
+  <data name="Security.Hardening.State.BlockedByPolicy" xml:space="preserve"><value>blocked by policy</value></data>
+  <data name="Security.Hardening.State.Unavailable" xml:space="preserve"><value>unavailable / skipped</value></data>
+  <data name="Security.Hardening.Result.Title" xml:space="preserve"><value>Security hardening complete</value></data>
+  <data name="Security.Hardening.Result.Summary" xml:space="preserve"><value>Completed: {0}/{1}. Security Score: {2} → {3}. Coverage: {4}% → {5}%. The result is based on a new posture collection after the changes.</value></data>
+  <data name="Security.Hardening.Cancelled" xml:space="preserve"><value>Security hardening was cancelled.</value></data>
+  <data name="Security.Hardening.Failed" xml:space="preserve"><value>Security hardening could not be completed.</value></data>
 </root>
