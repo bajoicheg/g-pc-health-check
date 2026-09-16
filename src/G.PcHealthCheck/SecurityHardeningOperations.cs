@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Text.Json.Serialization;
 
 namespace G.PcHealthCheck;
 
@@ -9,6 +10,7 @@ internal sealed class SecurityActionResult
     public bool BlockedByPolicy { get; init; }
     public int? ExitCode { get; init; }
     public string Message { get; init; } = "";
+    [JsonIgnore]
     public string Output { get; init; } = "";
     public DateTime StartedAt { get; set; }
     public DateTime FinishedAt { get; set; }
