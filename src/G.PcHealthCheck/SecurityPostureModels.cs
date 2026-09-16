@@ -121,3 +121,26 @@ internal sealed record EncryptionVolumeObservation(
     string EncryptionMethod,
     IReadOnlyList<string> ProtectorTypes,
     string Source);
+
+internal sealed record FirmwareBootObservation(
+    bool? UefiMode,
+    bool? WindowsBootManagerEffective,
+    bool? UsbBootEnabled,
+    bool? PxeBootEnabled,
+    bool? OpticalBootEnabled,
+    bool? SdBootEnabled,
+    bool? OneTimeExternalBootEnabled,
+    bool? ExternalBootEffective,
+    bool TrustedFirmwareEvidence,
+    string Source)
+{
+    public static FirmwareBootObservation Unknown(string source)
+        => new(null, null, null, null, null, null, null, null, false, source);
+}
+
+internal sealed record FirmwareSecurityObservation(
+    bool? AdminPasswordSet,
+    bool? PowerOnPasswordSet,
+    bool? DrivePasswordSet,
+    FirmwareBootObservation Boot,
+    string Source);
