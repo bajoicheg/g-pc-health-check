@@ -4,6 +4,12 @@ using System.Text.Json;
 
 namespace G.PcHealthCheck;
 
+internal enum WorkerActionNamespace
+{
+    ServiceDesk = 0,
+    SecurityHardening = 1
+}
+
 internal enum WorkerMessageType
 {
     Ready,
@@ -17,7 +23,9 @@ internal sealed class WorkerMessage
     public string SessionId { get; set; } = "";
     public string Nonce { get; set; } = "";
     public WorkerMessageType Type { get; set; }
+    public WorkerActionNamespace Namespace { get; set; } = WorkerActionNamespace.ServiceDesk;
     public RemediationBatchResult? Result { get; set; }
+    public SecurityHardeningBatchResult? SecurityResult { get; set; }
 }
 
 internal static class WorkerProtocol
@@ -26,11 +34,14 @@ internal static class WorkerProtocol
         WorkerMessage message,
         string expectedSession,
         string expectedNonce,
-        WorkerMessageType expectedType)
+        WorkerMessageType expectedType,
+        WorkerActionNamespace expectedNamespace = WorkerActionNamespace.ServiceDesk)
     {
         ArgumentNullException.ThrowIfNull(message);
         ArgumentException.ThrowIfNullOrWhiteSpace(expectedSession);
         ArgumentException.ThrowIfNullOrWhiteSpace(expectedNonce);
+        if (!Enum.IsDefined(typeof(WorkerActionNamespace), expectedNamespace))
+            throw new InvalidDataException("Worker action namespace is invalid.");
 
         if (!string.Equals(message.SessionId, expectedSession, StringComparison.OrdinalIgnoreCase))
             throw new InvalidDataException("Session ID сообщения worker не совпадает с текущей сессией.");
@@ -38,6 +49,33 @@ internal static class WorkerProtocol
             throw new InvalidDataException("Nonce сообщения worker не прошёл проверку.");
         if (message.Type != expectedType)
             throw new InvalidOperationException($"Нарушен порядок фаз worker: ожидалась {expectedType}, получена {message.Type}.");
+        if (!Enum.IsDefined(typeof(WorkerActionNamespace), message.Namespace) || message.Namespace != expectedNamespace)
+            throw new InvalidDataException($"Worker namespace mismatch: expected {expectedNamespace}, received {message.Namespace}.");
+    }
+
+    internal static void ValidateActionIds(WorkerActionNamespace actionNamespace, IReadOnlyCollection<string> actionIds)
+    {
+        ArgumentNullException.ThrowIfNull(actionIds);
+        if (!Enum.IsDefined(typeof(WorkerActionNamespace), actionNamespace))
+            throw new InvalidDataException("Worker action namespace is invalid.");
+        if (actionIds.Count == 0)
+            throw new InvalidOperationException("Worker action list is empty.");
+
+        var seen = new HashSet<string>(StringComparer.Ordinal);
+        foreach (var id in actionIds)
+        {
+            if (string.IsNullOrWhiteSpace(id) || !seen.Add(id))
+                throw new InvalidOperationException("Worker action list contains an empty or duplicate action ID.");
+
+            var allowed = actionNamespace switch
+            {
+                WorkerActionNamespace.ServiceDesk => ServiceDeskActionRegistry.Find(id) is not null,
+                WorkerActionNamespace.SecurityHardening => SecurityHardeningActionRegistry.Find(id) is not null,
+                _ => false
+            };
+            if (!allowed)
+                throw new InvalidOperationException($"Action ID is not allowed in {actionNamespace} namespace: {id}.");
+        }
     }
 
     internal static bool FixedTimeAsciiEquals(string? actual, string expected)
