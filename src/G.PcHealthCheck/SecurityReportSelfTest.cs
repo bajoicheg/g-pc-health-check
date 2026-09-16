@@ -72,6 +72,59 @@ internal static class SecurityReportSelfTest
             Require(summary.Contains("SEC-LOCAL-ADMINS", StringComparison.Ordinal), "Clipboard summary omitted actionable Security control ID.");
         });
 
+        Test("hardening before-after and action evidence persist in HTML and public JSON without raw output", () =>
+        {
+            var scan = SyntheticScan();
+            scan.SecurityHardening = new SecurityHardeningEvidence
+            {
+                Before = new SecurityPostureAssessment
+                {
+                    Score = 54,
+                    CoveragePercent = 82,
+                    RawBand = SecurityBand.NeedsAttention,
+                    DisplayBand = SecurityBand.NeedsAttention,
+                    Controls = [new("SEC-AV-DEFINITIONS", SecurityControlStatus.Fail, 8, 0, "SEC-AV-DEFINITIONS", [])]
+                },
+                After = scan.Security!,
+                StartedAt = new DateTime(2026, 9, 16, 12, 30, 0),
+                FinishedAt = new DateTime(2026, 9, 16, 12, 30, 10),
+                Elevated = true,
+                Actions =
+                [
+                    new SecurityHardeningActionEvidence
+                    {
+                        Id = "SecurityUpdateAvDefinitions",
+                        Success = true,
+                        BlockedByPolicy = false,
+                        ExitCode = 0,
+                        Message = "Definitions update completed",
+                        TargetScope = "PrimaryAvDefinitions",
+                        StartedAt = new DateTime(2026, 9, 16, 12, 30, 1),
+                        FinishedAt = new DateTime(2026, 9, 16, 12, 30, 5)
+                    }
+                ]
+            };
+
+            var html = SecurityReportSection.BuildHtml(scan, "en");
+            var json = JsonSerializer.Serialize(scan);
+            foreach (var output in new[] { html, json })
+            {
+                Require(output.Contains("SecurityUpdateAvDefinitions", StringComparison.Ordinal), "Hardening action ID missing from persisted evidence.");
+                Require(output.Contains("54", StringComparison.Ordinal) && output.Contains("71", StringComparison.Ordinal), "Hardening before/after scores missing from persisted evidence.");
+                Require(output.Contains("PrimaryAvDefinitions", StringComparison.Ordinal), "Hardening action scope missing from persisted evidence.");
+                Require(!output.Contains(RecoverySecret, StringComparison.Ordinal), "Recovery secret leaked through hardening evidence.");
+                Require(!output.Contains(BiosSecret, StringComparison.Ordinal), "BIOS secret leaked through hardening evidence.");
+                Require(!output.Contains(TokenSecret, StringComparison.Ordinal), "Token secret leaked through hardening evidence.");
+            }
+
+            using var document = JsonDocument.Parse(json);
+            var hardening = document.RootElement.GetProperty("SecurityHardening");
+            Require(hardening.GetProperty("Before").GetProperty("Score").GetInt32() == 54, "JSON before score drifted.");
+            Require(hardening.GetProperty("After").GetProperty("Score").GetInt32() == 71, "JSON after score drifted.");
+            Require(hardening.GetProperty("Actions")[0].GetProperty("Id").GetString() == "SecurityUpdateAvDefinitions", "JSON hardening action evidence drifted.");
+            Require(!json.Contains("Output", StringComparison.Ordinal), "Raw native hardening Output property leaked into public JSON.");
+        });
+
         Test("raw snapshot secrets never leak to HTML JSON or clipboard", () =>
         {
             var scan = SyntheticScan();
@@ -90,7 +143,7 @@ internal static class SecurityReportSelfTest
             }
         });
 
-        Console.WriteLine($"Security report self-test: {5 - failures}/5 passed.");
+        Console.WriteLine($"Security report self-test: {6 - failures}/6 passed.");
         return failures == 0 ? 0 : 1;
     }
 
