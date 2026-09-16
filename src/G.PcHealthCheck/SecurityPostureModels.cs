@@ -52,6 +52,7 @@ internal sealed class SecurityPostureSnapshot
     public Dictionary<string, SecurityControlObservation> ControlObservations { get; init; } = new(StringComparer.Ordinal);
     public List<SecurityControlResult> Supplemental { get; init; } = [];
     public List<string> CollectionWarnings { get; init; } = [];
+    public LocalAdministratorsCollectionResult? LocalAdministrators { get; set; }
 }
 
 internal enum EffectiveFirewallProviderKind
