@@ -32,6 +32,8 @@ internal static class ServiceDeskWorkerEngine
         ArgumentNullException.ThrowIfNull(workerContext);
 
         ValidateWorkerPlan(plan);
+        var allWorkerIds = plan.WorkerBeforeNetwork.Concat(plan.WorkerNetwork).ToArray();
+        WorkerProtocol.ValidateActionIds(WorkerActionNamespace.ServiceDesk, allWorkerIds);
         if (!Guid.TryParse(sessionId, out _))
             throw new InvalidDataException("Worker session ID имеет некорректный формат.");
         if (nonce.Length != 64 || !nonce.All(Uri.IsHexDigit))
@@ -39,12 +41,14 @@ internal static class ServiceDeskWorkerEngine
 
         var started = DateTime.Now;
         channel.Send(Message(sessionId, nonce, WorkerMessageType.Ready));
-        WorkerProtocol.ValidateMessage(channel.Receive(), sessionId, nonce, WorkerMessageType.Ready);
+        WorkerProtocol.ValidateMessage(
+            channel.Receive(), sessionId, nonce, WorkerMessageType.Ready, WorkerActionNamespace.ServiceDesk);
 
         var before = ExecutePhase(plan.WorkerBeforeNetwork, sessionId, operations, workerContext);
         channel.Send(Message(sessionId, nonce, WorkerMessageType.BeforeNetwork, before));
 
-        WorkerProtocol.ValidateMessage(channel.Receive(), sessionId, nonce, WorkerMessageType.ContinueNetwork);
+        WorkerProtocol.ValidateMessage(
+            channel.Receive(), sessionId, nonce, WorkerMessageType.ContinueNetwork, WorkerActionNamespace.ServiceDesk);
 
         var network = ExecutePhase(plan.WorkerNetwork, sessionId, operations, workerContext);
         channel.Send(Message(sessionId, nonce, WorkerMessageType.FinalResult, network));
@@ -147,6 +151,7 @@ internal static class ServiceDeskWorkerEngine
             SessionId = sessionId,
             Nonce = nonce,
             Type = type,
+            Namespace = WorkerActionNamespace.ServiceDesk,
             Result = result
         };
 }
