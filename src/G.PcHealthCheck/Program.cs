@@ -49,6 +49,8 @@ internal static class Program
             if (result == 0) result = SecurityHardeningPlannerSelfTest.Run();
             if (result == 0) result = SecurityHardeningWorkerSelfTest.Run();
             if (result == 0) result = SecurityHardeningUiSelfTest.Run();
+            if (result == 0) result = SecurityLocalizationCoverageSelfTest.Run();
+            if (result == 0) result = SecurityEvidenceSafetySelfTest.Run();
             if (result == 0) result = SystemDiskSelectionSelfTest.Run();
             if (result == 0) result = PortableElevationSelfTest.Run();
             if (result == 0) result = ReadOnlyReviewSelfTest.Run();
