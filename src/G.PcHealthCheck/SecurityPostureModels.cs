@@ -144,3 +144,18 @@ internal sealed record FirmwareSecurityObservation(
     bool? DrivePasswordSet,
     FirmwareBootObservation Boot,
     string Source);
+
+internal sealed record LocalAdminPolicy(
+    bool Configured,
+    bool Readable,
+    IReadOnlyList<string> Patterns,
+    string Source);
+
+internal sealed record LocalAdminMember(
+    string? Name,
+    string? Sid,
+    string Type,
+    string Source,
+    string Result,
+    string? MatchedRule,
+    string Reason);
