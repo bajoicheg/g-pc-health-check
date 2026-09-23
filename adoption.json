@@ -1,0 +1,9 @@
+{
+  "schema": "cdc-adoption/v1",
+  "adopted_skill_version": "2.3.3",
+  "source_head": "f037bece0272814f9b0f069aaf1de17be369b626",
+  "pinned_pilot_ref": "refs/heads/pilot/0.17.0-rc-f037bece",
+  "pinned_pilot_sha": "f037bece0272814f9b0f069aaf1de17be369b626",
+  "pre_adoption_provider_usage": "unknown_not_reset",
+  "note": "CDC accounting starts at adoption; historical CI/compute evidence remains in the PR/checkpoint and does not imply restored provider quota."
+}

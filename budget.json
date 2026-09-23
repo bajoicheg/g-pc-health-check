@@ -1,0 +1,28 @@
+{
+  "schema": "budget-ledger/v1",
+  "task_id": "g-pc-health-check-0.17.0-pre-integration",
+  "wake_ids": [
+    "adoption-2026-09-23"
+  ],
+  "policy": {
+    "task_limits": {
+      "compute_starts": null,
+      "ci_starts": 1,
+      "agent_starts": 4
+    },
+    "wake_limits": {
+      "compute_starts": 4,
+      "status_polls": null,
+      "tool_calls": 40
+    },
+    "max_parallel_agents": 2,
+    "checkpoint_reserve": {
+      "tokens": 4000,
+      "tool_calls": 8
+    },
+    "provider_max_age_seconds": 300,
+    "actions_budget": "conserve"
+  },
+  "policy_digest": "sha256:0c3ef8e7b5e0de86784fc90a3f637cf0117496a71486fdeeb7b64ad911d31b21",
+  "events": []
+}
