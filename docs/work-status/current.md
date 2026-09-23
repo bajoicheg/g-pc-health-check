@@ -4,7 +4,7 @@ repository: bajoicheg/g-pc-health-check
 branch: design/0.17.0-security-posture
 policy_revision: 2026-09-23-cdc-2.3.3-tool-budget-80
 policy_digest: 27d868e1e3be5a0eab1985843c0045ad3cd8b42cd1c27c8be70ebcb995f327ef
-observed_at_utc: '2026-09-23T19:55:00Z'
+observed_at_utc: '2026-09-23T20:03:00Z'
 orchestration_origin: chat
 active_executor: none
 lease_state: released
@@ -17,7 +17,7 @@ operation_intent_ref: null
 operation_key: null
 control:
   execution_lease_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/lease.json
-  execution_lease_revision: a020adeb890cf8bd49eb5a2b378a58d45b1eb2c8
+  execution_lease_revision: bf7dd5173fb3a84961e253c67d262d45c7a889c1
   executor_id: null
   lease_generation: 0
   budget_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/budget.json
