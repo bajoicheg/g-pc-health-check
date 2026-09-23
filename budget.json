@@ -13,7 +13,7 @@
     "wake_limits": {
       "compute_starts": 4,
       "status_polls": null,
-      "tool_calls": 40
+      "tool_calls": 80
     },
     "max_parallel_agents": 2,
     "checkpoint_reserve": {
@@ -23,6 +23,6 @@
     "provider_max_age_seconds": 300,
     "actions_budget": "conserve"
   },
-  "policy_digest": "sha256:0c3ef8e7b5e0de86784fc90a3f637cf0117496a71486fdeeb7b64ad911d31b21",
+  "policy_digest": "sha256:b36d1cfcfab9d1511fe7ea7f799244a604660660a12836154322857623c9f6ff",
   "events": []
 }
