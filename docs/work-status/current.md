@@ -2,9 +2,9 @@
 schema: development-work-status/v3
 repository: bajoicheg/g-pc-health-check
 branch: design/0.17.0-security-posture
-policy_revision: 2026-09-23-cdc-2.3.3-adoption-1
-policy_digest: 31f60c3dd4936d0fd7dbdbd7ce54d00b9fe24b0f7f88ae98859dfcf1e99ac576
-observed_at_utc: '2026-09-23T06:57:54Z'
+policy_revision: 2026-09-23-cdc-2.3.3-tool-budget-80
+policy_digest: 27d868e1e3be5a0eab1985843c0045ad3cd8b42cd1c27c8be70ebcb995f327ef
+observed_at_utc: '2026-09-23T19:55:00Z'
 orchestration_origin: chat
 active_executor: none
 lease_state: released

@@ -29,7 +29,7 @@ The remaining product gate is the managed Windows 11 pilot plus explicit owner i
 
 - Codex Compute: at most 4 starts per wake; capacity is not a target.
 - Status polls: no count ceiling; use 30s initial backoff, cap 300s, and adapter phase deadlines.
-- Tool calls: 40 per wake, reserving 8 calls and 4000 tokens for handoff.
+- Tool calls: 80 per wake, reserving 8 calls and 4000 tokens for handoff.
 - Agents: task cap 4; max 2 parallel where runtime permits.
 - GitHub Actions: `conserve`; at most one full run per new task/candidate. Do not launch Actions merely to check watchdog health.
 - Historical pre-adoption usage is not zero and does not establish provider remaining quota.

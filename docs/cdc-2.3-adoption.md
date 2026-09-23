@@ -10,7 +10,7 @@ Adopted 2026-09-23 as a process-only change on the active 0.17.0 development PR.
 - Codex-first with fail-closed unconfigured backend until binding is verified.
 - Codex Compute starts: **4 per wake**.
 - Status polls: **no arbitrary count ceiling**; time/backoff/deadline governed.
-- Tool calls: 40/wake; checkpoint reserve 8 calls + 4000 tokens.
+- Tool calls: 80/wake; checkpoint reserve 8 calls + 4000 tokens.
 - Agents: 4/task, max 2 parallel where runtime permits.
 - GitHub Actions: `conserve`, one full run per new task/candidate; no inferred budget restoration.
 
