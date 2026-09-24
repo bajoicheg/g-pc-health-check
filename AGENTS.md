@@ -1,6 +1,6 @@
 # Development instructions — G PC Health Check
 
-Read this file and `docs/DEVELOPMENT.md` before changing the project. These instructions organize legitimate development; they do not override tool restrictions, safety checks, user approvals or repository protections.
+Read this file, `docs/DEVELOPMENT.md`, and `.agents/skills/continuous-development-cycle/SKILL.md` before changing the project. These instructions organize legitimate development; they do not override tool restrictions, safety checks, user approvals or repository protections.
 
 ## Resume from evidence, not a conversation recap
 
@@ -64,3 +64,14 @@ Project-specific product/security rules above remain authoritative constraints. 
 - Hourly watchdog obeys the same concurrency/budget/product gates and never disables itself because a wake is blocked.
 - Treat the task-linked conversation as an operational dependency and never invent or silently replace an unknown/missing binding.
 - The 0.17.0 pilot candidate remains pinned on `pilot/0.17.0-rc-f037bece`; process-only CDC commits are not a newly tested product binary.
+
+
+## CDC 2.5 validation
+
+When CDC package/control-plane policy changes, validate:
+- `python -B .agents/skills/continuous-development-cycle/scripts/validate_package.py`
+- `python -B .agents/skills/continuous-development-cycle/scripts/validate_adapter.py docs/development-cycle.yaml`
+- `python -B .agents/skills/continuous-development-cycle/scripts/validate_checkpoint_24.py docs/work-status/current.md --adapter docs/development-cycle.yaml`
+- `python -B -m unittest discover -s .agents/skills/continuous-development-cycle/tests -v`
+
+These CDC checks do not replace Windows/.NET Quick/Full, product CI, managed Windows 11 pilot, review, release or provenance gates.

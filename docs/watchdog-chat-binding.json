@@ -8,16 +8,16 @@
     "date": "2026-09-23",
     "summary": "Adopt CDC skill with watchdog and continue development"
   },
-  "observed_at_utc": "2026-09-24T01:20:00Z",
+  "observed_at_utc": "2026-09-24T19:46:30Z",
   "observed_enabled": true,
   "schedule": "RRULE:FREQ=HOURLY",
   "timezone": "Europe/Moscow",
-  "last_run_time": "2026-09-24T00:30:51.872235Z",
+  "last_run_time": "2026-09-24T19:02:53.099892Z",
   "conversation_id": null,
   "conversation_availability": "unknown",
   "archive_state": "unknown",
   "recovery_state": "normal",
-  "evidence_reference": "foreground scheduler readback 2026-09-24",
-  "latest_completed_run_reference": "scheduler last_run_time",
-  "next_action": "On foreground status/recovery, reconcile scheduler state and exact conversation binding if exposed. Ordinary wakes do not mutate the scheduler."
+  "evidence_reference": "foreground scheduler readback 2026-09-24T19:39Z",
+  "latest_completed_run_reference": "scheduler last_run_time 2026-09-24T19:02:53.099892Z",
+  "next_action": "Continue under CDC 2.5; reconcile exact conversation binding if exposed. Ordinary wakes do not mutate the scheduler."
 }

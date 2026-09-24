@@ -2,7 +2,7 @@
 
 ## Current state
 
-CDC 2.3.5 prefers Codex Compute for eligible exact-SHA validation, but this repository currently has no independently verified Codex environment/user binding. Therefore `compute.codex_backend.enabled=false` and `configuration_status=unconfigured` are intentional fail-closed values.
+CDC 2.5.0 prefers Codex Compute for eligible exact-SHA validation, but this repository currently has no independently verified Codex environment/user binding. Therefore `compute.codex_backend.enabled=false` and `configuration_status=unconfigured` are intentional fail-closed values.
 
 The 2026-09-23 CDC adoption authorizes project configuration and future use subject to the adapter. It does not prove that a provider environment exists and does not authorize fabricated environment IDs or provider quota.
 
@@ -25,3 +25,8 @@ Eligible categories: build, unit/regression, lint, schema, deterministic contrac
 - Unknown submission outcome blocks replay until reconciled.
 
 No Codex start is required merely for CDC adoption. The current product candidate is already pinned at `f037bece0272814f9b0f069aaf1de17be369b626`; the remaining managed Windows 11 pilot cannot be replaced by Codex.
+
+
+## CDC 2.5 capability routing
+
+Before choosing Codex or another validation backend, describe required OS/runtime/network/device/toolchain properties as `capability-request/v1` and route against the fresh coordination backend registry. Routing is recommendation-only and does not enable an unconfigured Codex backend or grant launch permission. Exact-SHA COMPUTE_ONLY, budget, operation-intent, lease and platform-integrity gates remain mandatory.

@@ -1,3 +1,5 @@
+> Historical migration record. Superseded by CDC 2.5.0. Current policy is `docs/development-cycle.yaml`; current adoption is `docs/cdc-2.5-active-branch-adoption.md`.
+
 # CDC 2.3.5 adoption - G PC Health Check
 
 Adopted 2026-09-23 as a process-only change on the active 0.17.0 development PR.

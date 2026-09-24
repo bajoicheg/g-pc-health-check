@@ -1,4 +1,4 @@
-# Development watchdog - CDC 2.3.5
+# Development watchdog - CDC 2.5.0
 
 The project watchdog follows `.agents/skills/continuous-development-cycle` and `docs/development-cycle.yaml`.
 
@@ -44,3 +44,12 @@ Desired scheduler state, observed scheduler state and current-wake execution eli
 An ordinary scheduled wake must not call scheduler update/delete/create operations or change its DTSTART/cadence. Disabling or rescheduling requires an explicit current owner instruction for this automation; a later verified owner/UI pause overrides older enabled state. An observed disabled state with unknown actor is drift to diagnose, not permission to assume an owner decision.
 
 Foreground status/recovery must reconcile the canonical scheduler record and `docs/watchdog-chat-binding.json`: enabled state, preserved hourly schedule/timezone, last completed run, and the linked conversation when the platform exposes it. The linked chat is an operational dependency and must be protected from bulk cleanup/archiving. If conversation ID/access/archive state is not observable, keep it `unknown`; do not fabricate an ID, silently rebind the watchdog or create a duplicate. A scheduler repair is not complete until a fresh post-repair run finishes, its result is visible in the intended destination, the chat is accessible where inspectable, and the recurring task remains enabled.
+
+
+## CDC 2.5 continuation and routing
+
+At each wake, inspect the durable continuation queue before falling back to polling. Event claims coordinate delivery only; they never grant ownership, launch authority or product-write authority. The hourly watchdog remains the mandatory scheduler fallback.
+
+Before selecting compute/CI, form a `capability-request/v1` and route it against fresh `backend-capability-registry/v1` evidence. A backend name is not capability evidence and a route is recommendation-only. Known diagnoses use deterministic allow-listed recovery recipes before open-ended RCA; normal authorization, lease, guard and budget gates remain mandatory.
+
+New shared-write ownership uses invocation-bound `execution-lease/v2`. An owning wake must finish through hard execution continuity and transactional finalization `active → draining → checkpointed → reconciled → ready → release`; primitive status/poll/heartbeat work is not a terminal boundary when runnable work exists.
