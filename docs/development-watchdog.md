@@ -1,4 +1,4 @@
-# Development watchdog - CDC 2.3.3
+# Development watchdog - CDC 2.3.5
 
 The project watchdog follows `.agents/skills/continuous-development-cycle` and `docs/development-cycle.yaml`.
 
@@ -35,3 +35,12 @@ The remaining product gate is the managed Windows 11 pilot plus explicit owner i
 - Historical pre-adoption usage is not zero and does not establish provider remaining quota.
 
 Near the wake budget limit, persist a resumable checkpoint and release ownership rather than creating another wake/external start to evade caps.
+
+
+## Scheduler lifecycle and chat dependency
+
+Desired scheduler state, observed scheduler state and current-wake execution eligibility are separate. The recurring watchdog remains enabled through product BLOCKED states, foreign ownership, external guards, budget exhaustion, runtime limits and unchanged work. Those conditions stop or constrain only the current wake.
+
+An ordinary scheduled wake must not call scheduler update/delete/create operations or change its DTSTART/cadence. Disabling or rescheduling requires an explicit current owner instruction for this automation; a later verified owner/UI pause overrides older enabled state. An observed disabled state with unknown actor is drift to diagnose, not permission to assume an owner decision.
+
+Foreground status/recovery must reconcile the canonical scheduler record and `docs/watchdog-chat-binding.json`: enabled state, preserved hourly schedule/timezone, last completed run, and the linked conversation when the platform exposes it. The linked chat is an operational dependency and must be protected from bulk cleanup/archiving. If conversation ID/access/archive state is not observable, keep it `unknown`; do not fabricate an ID, silently rebind the watchdog or create a duplicate. A scheduler repair is not complete until a fresh post-repair run finishes, its result is visible in the intended destination, the chat is accessible where inspectable, and the recurring task remains enabled.

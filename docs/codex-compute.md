@@ -2,7 +2,7 @@
 
 ## Current state
 
-CDC 2.3.3 prefers Codex Compute for eligible exact-SHA validation, but this repository currently has no independently verified Codex environment/user binding. Therefore `compute.codex_backend.enabled=false` and `configuration_status=unconfigured` are intentional fail-closed values.
+CDC 2.3.5 prefers Codex Compute for eligible exact-SHA validation, but this repository currently has no independently verified Codex environment/user binding. Therefore `compute.codex_backend.enabled=false` and `configuration_status=unconfigured` are intentional fail-closed values.
 
 The 2026-09-23 CDC adoption authorizes project configuration and future use subject to the adapter. It does not prove that a provider environment exists and does not authorize fabricated environment IDs or provider quota.
 

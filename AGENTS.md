@@ -42,7 +42,7 @@ Record separately: prepared locally / committed / tested / reviewed / merged / p
 - Preserve read-only PR permissions, pinned Actions, independent required checks and the exact-main-build publication/attestation chain. No bypass merges or disabling failing checks.
 - Hosted Windows Server tests are not interactive Windows 11/UAC/RDP/DPI acceptance. A source review by the implementing agent is not an independent reviewer.
 
-## Continuous Development Cycle 2.3.3
+## Continuous Development Cycle 2.3.5
 
 This repository uses the vendored `.agents/skills/continuous-development-cycle` as the orchestration core. On every development/watchdog resume, read `docs/development-cycle.yaml` and `docs/work-status/current.md` after this file and before shared writes or external starts.
 
@@ -56,4 +56,7 @@ Project-specific product/security rules above remain authoritative constraints. 
 - Current wake cap: 4 Codex Compute starts; status polling has no count ceiling and uses bounded backoff/deadlines.
 - Actions policy is `conserve`; do not spend a full run on policy/status-only changes.
 - Hourly watchdog obeys the same concurrency/budget/product gates. An explicit kick bypasses only idle guard.
+- Keep desired scheduler state separate from current-wake eligibility: BLOCKED, another writer, an external guard, exhausted budget, runtime limit or quiet notifications end/limit only the wake and never authorize disabling the recurring watchdog.
+- Ordinary watchdog wakes must not update/delete/reschedule the automation. Scheduler changes require an explicit current owner request; honor a later verified owner/UI pause.
+- Treat the task-linked conversation as an operational dependency. Reconcile `docs/watchdog-chat-binding.json` during foreground status/recovery, protect verified linked chats from cleanup, and never invent or silently replace an unknown/missing chat binding.
 - The 0.17.0 pilot candidate remains pinned on `pilot/0.17.0-rc-f037bece`; process-only CDC commits are not a newly tested product binary.
