@@ -36,6 +36,7 @@ class OrchestrationPolicyTests(unittest.TestCase):
         data["orchestration"] = configuration()
         data["policy"]["skill_min_version"] = "2.3.0"
         data["checkpoint"]["schema"] = "development-work-status/v3"
+        # Legacy v2.2/v2.3 compatibility tests must not inherit the v2.4 write schema.
         return data
 
     def test_v22_adapter_stays_compatible_without_new_section(self):
