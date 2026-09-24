@@ -190,4 +190,4 @@ orchestration:
       tokens: 4000
       tool_calls: 8
     provider_max_age_seconds: 300
-    actions_budget: conserve
+    actions_budget: normal
