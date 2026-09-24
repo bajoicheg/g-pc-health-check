@@ -22,6 +22,10 @@ from watchdog_health import assess as assess_watchdog_health
 from capability_router import validate_registry, validate_request, route as route_backend
 from recovery_recipes import validate_catalog, validate_diagnosis, select as select_recovery_recipe
 from continuation_queue import validate_event, validate_queue, ingest as ingest_continuation
+from progress_slo import validate_policy as validate_slo_policy, validate_observation as validate_progress_observation, classify as classify_progress
+from version_convergence import validate_target as validate_convergence_target, validate_snapshot as validate_convergence_snapshot, assess as assess_convergence
+from control_plane_audit import validate as validate_audit_log, append as append_audit
+from fleet_supervisor import validate_registry as validate_fleet_registry, validate_snapshot as validate_fleet_snapshot, assess_fleet
 
 ROOT = Path(__file__).resolve().parents[1]
 REQUIRED = [
@@ -67,6 +71,17 @@ REQUIRED = [
     'templates/continuation-event.json', 'templates/continuation-queue.json',
     'tests/test_capability_router.py', 'tests/test_recovery_recipes.py',
     'tests/test_continuation_queue.py', 'tests/test_v250_guidance.py',
+    'references/fleet-supervision.md', 'references/version-convergence.md',
+    'references/progress-slo.md', 'references/control-plane-audit.md',
+    'scripts/fleet_supervisor.py', 'scripts/version_convergence.py',
+    'scripts/progress_slo.py', 'scripts/control_plane_audit.py',
+    'templates/fleet-registry.json', 'templates/fleet-project-snapshot.json',
+    'templates/version-convergence-target.json', 'templates/version-convergence-snapshot.json',
+    'templates/progress-slo-policy.json', 'templates/progress-observation.json',
+    'templates/control-plane-audit-log.json',
+    'tests/test_fleet_supervisor.py', 'tests/test_version_convergence.py',
+    'tests/test_progress_slo.py', 'tests/test_control_plane_audit.py',
+    'tests/test_v260_guidance.py', 'tests/test_v26_policy.py',
 ]
 
 
@@ -136,6 +151,30 @@ def validate():
     queued, delivery = ingest_continuation(queue, event)
     if not delivery['wake_required'] or delivery['authorizes_side_effects'] or queued['generation'] != 1:
         raise ContractError('invalid continuation event/queue templates')
+    slo_policy = json.loads((ROOT / 'templates/progress-slo-policy.json').read_text())
+    progress_observation = json.loads((ROOT / 'templates/progress-observation.json').read_text())
+    validate_slo_policy(slo_policy); validate_progress_observation(progress_observation)
+    if classify_progress(slo_policy, progress_observation)['state'] != 'HEALTHY':
+        raise ContractError('invalid progress SLO template')
+    convergence_target = json.loads((ROOT / 'templates/version-convergence-target.json').read_text())
+    convergence_snapshot = json.loads((ROOT / 'templates/version-convergence-snapshot.json').read_text())
+    validate_convergence_target(convergence_target); validate_convergence_snapshot(convergence_snapshot)
+    if assess_convergence(convergence_target, convergence_snapshot)['state'] != 'CONVERGED':
+        raise ContractError('invalid convergence templates')
+    audit_log = json.loads((ROOT / 'templates/control-plane-audit-log.json').read_text())
+    validate_audit_log(audit_log)
+    audit_log, audit_event = append_audit(audit_log, occurred_at_utc='2026-01-01T00:00:00Z',
+                                          actor_invocation_id='template-validation',
+                                          event_type='fleet_assessment', object_ref='fleet:template',
+                                          outcome='healthy', details_digest='sha256:' + '1' * 64)
+    validate_audit_log(audit_log)
+    fleet_registry = json.loads((ROOT / 'templates/fleet-registry.json').read_text())
+    fleet_snapshot = json.loads((ROOT / 'templates/fleet-project-snapshot.json').read_text())
+    validate_fleet_registry(fleet_registry); validate_fleet_snapshot(fleet_snapshot)
+    fleet_assessment = assess_fleet(fleet_registry, [fleet_snapshot], '2026-01-01T00:11:00Z')
+    if fleet_assessment['overall'] != 'HEALTHY' or any(fleet_assessment[name] for name in (
+            'authorizes_product_write', 'authorizes_takeover', 'authorizes_merge', 'authorizes_external_start')):
+        raise ContractError('invalid fleet supervision template/authority contract')
     health = assess_watchdog_health(json.loads((ROOT / 'templates/watchdog-health.json').read_text()))
     if health['overall'] != 'HEALTHY' or any(health[name] for name in ('authorizes_takeover', 'authorizes_external_start', 'authorizes_product_write')):
         raise ContractError('invalid watchdog health template/authority contract')

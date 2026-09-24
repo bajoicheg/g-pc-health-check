@@ -5,7 +5,11 @@ from contracts import ContractError, load_yaml
 from validate_adapter import validate_adapter
 
 class Tests(unittest.TestCase):
- def template(self):return load_yaml(ROOT/"templates/development-cycle.yaml")
+ def template(self):
+  d=load_yaml(ROOT/"templates/development-cycle.yaml")
+  d["policy"]["skill_min_version"]="2.5.0"
+  for name in ("fleet","convergence","progress_slo","audit"):d.pop(name,None)
+  return d
  def test_v25_template_valid(self):validate_adapter(self.template(),"2.5.0")
  def test_v25_requires_all_three_control_sections(self):
   for name in ("routing","recovery_recipes","continuation"):

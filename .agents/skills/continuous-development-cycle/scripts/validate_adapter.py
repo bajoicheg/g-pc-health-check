@@ -150,6 +150,45 @@ def validate_v25_controls(data):
         "claim_ttl_seconds": positive,
     }, "adapter.continuation")
 
+def validate_v26_controls(data):
+    check(data["fleet"], {
+        "snapshot_ref": nonempty,
+        "snapshot_schema": ("fleet-project-snapshot/v1",),
+        "supervisor_authority": ("control_plane_only",),
+        "product_write_authority": FALSE,
+        "takeover_authority": FALSE,
+        "external_start_authority": FALSE,
+        "merge_authority": FALSE,
+        "assessment_max_age_seconds": positive,
+    }, "adapter.fleet")
+    check(data["convergence"], {
+        "target_version": nonempty,
+        "target_package_fingerprint_ref": nonempty,
+        "exact_package_fingerprint_required": TRUE,
+        "safe_boundary_required": TRUE,
+    }, "adapter.convergence")
+    target = semver(data["convergence"]["target_version"])
+    lower = semver(data["policy"]["skill_min_version"])
+    upper = semver(data["policy"]["skill_max_version_exclusive"])
+    if not lower <= target < upper:
+        raise ContractError("convergence target_version must fit policy version range")
+    check(data["progress_slo"], {
+        "policy_ref": nonempty,
+        "degraded_after_seconds": positive,
+        "stalled_after_seconds": positive,
+        "primitive_activity_is_progress": FALSE,
+        "blocked_pauses_clock": TRUE,
+        "waiting_external_pauses_clock": TRUE,
+    }, "adapter.progress_slo")
+    if data["progress_slo"]["stalled_after_seconds"] <= data["progress_slo"]["degraded_after_seconds"]:
+        raise ContractError("progress SLO stalled threshold must exceed degraded threshold")
+    check(data["audit"], {
+        "log_ref": nonempty,
+        "schema": ("control-plane-audit-log/v1",),
+        "append_only": TRUE,
+        "hash_chain_required": TRUE,
+    }, "adapter.audit")
+
 def validate_adapter(data, skill_version=None):
     if isinstance(data, dict) and data.get("schema") in (
             "continuous-development-cycle/v1", "continuous-development-cycle/v2"):
@@ -158,7 +197,7 @@ def validate_adapter(data, skill_version=None):
     schema = dict(SCHEMA)
     if isinstance(data, dict) and "orchestration" in data:
         schema["orchestration"] = dict
-    for name in ("routing", "recovery_recipes", "continuation"):
+    for name in ("routing", "recovery_recipes", "continuation", "fleet", "convergence", "progress_slo", "audit"):
         if isinstance(data, dict) and name in data:
             schema[name] = dict
     check(data, schema)
@@ -181,6 +220,14 @@ def validate_adapter(data, skill_version=None):
         raise ContractError("CDC 2.5+ policy requires routing, recovery_recipes and continuation")
     if all(v25_present):
         validate_v25_controls(data)
+    v26_names = ("fleet", "convergence", "progress_slo", "audit")
+    v26_present = [name in data for name in v26_names]
+    if any(v26_present) and lower < (2, 6, 0):
+        raise ContractError("CDC 2.6 controls require skill_min_version >= 2.6.0")
+    if lower >= (2, 6, 0) and not all(v26_present):
+        raise ContractError("CDC 2.6+ policy requires fleet, convergence, progress_slo and audit")
+    if all(v26_present):
+        validate_v26_controls(data)
     if "orchestration" in data:
         if lower < (2, 3, 0):
             raise ContractError("orchestration controls require skill_min_version >= 2.3.0")

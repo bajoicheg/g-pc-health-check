@@ -1,4 +1,4 @@
-# Continuous Development Cycle v2.5.0
+# Continuous Development Cycle v2.6.0
 
 Installable ChatGPT/Codex/agent skill for recoverable, long-running software development.
 
@@ -73,3 +73,13 @@ Read `references/control-plane-v2.4.md`. Validate with `python -B scripts/valida
 - A durable continuation queue deduplicates CI/compute/backend/scheduler/policy events, binds delivery to an invocation, and requests immediate wakes when supported; the recurring watchdog remains the fallback.
 
 Read `references/capability-routing.md`, `references/deterministic-recovery.md` and `references/event-driven-continuation.md`.
+
+
+## v2.6 fleet control plane
+
+- Fleet Supervisor aggregates exact project snapshots without becoming a product writer.
+- Version convergence binds version + package fingerprint + checkpoint schema and waits for safe ownership boundaries.
+- Meaningful-progress SLO distinguishes real progress from heartbeats/status/polls and classifies degraded/stalled work.
+- Hash-chained append-only audit records control-plane transitions and exposes tampering/drift.
+
+Read `references/fleet-supervision.md`, `references/version-convergence.md`, `references/progress-slo.md` and `references/control-plane-audit.md`.

@@ -2,9 +2,9 @@
 
 Read this file, `docs/DEVELOPMENT.md`, and the vendored `.agents/skills/continuous-development-cycle/SKILL.md` before changing the project. Higher-priority tool, safety, repository-protection and user-authorization rules still apply.
 
-## Continuous Development Cycle v2.5
+## Continuous Development Cycle v2.6
 
-This repository uses CDC 2.4.0.
+This repository uses CDC 2.6.0.
 
 On resume, validate the project policy/checkpoint and reconcile live repository, PR, CI, coordination and external-operation state. Remote evidence wins over stale chat/checkpoint text.
 
@@ -35,3 +35,12 @@ Before selecting compute/CI, express required platform/runtime/network/device ca
 For known operational diagnoses use deterministic recovery recipes before open-ended RCA. Recipe steps are allow-listed control-plane actions and still require normal ownership/authorization gates.
 
 Consume durable continuation events before falling back to polling. Event delivery/claim is not ownership. Immediate event wakes are preferred when supported; the recurring watchdog remains the required scheduler fallback.
+
+
+## CDC 2.6 fleet supervision, convergence, progress SLO and audit
+
+Publish/refresh a fleet project snapshot on authorized control-plane state changes. Fleet assessment is read/control-plane only: it cannot write product code, take ownership, start external work, merge, release, or mutate schedulers.
+
+Convergence requires version + exact package fingerprint + checkpoint schema. Active owners or guards defer adoption to a safe boundary. Meaningful-progress SLO ignores heartbeats/status/polls/reports and distinguishes DEGRADED/STALLED from real BLOCKED/waiting_external state.
+
+Append important control-plane transitions to the hash-chained audit log; audit evidence is not authority.

@@ -1,8 +1,8 @@
 ---
 schema: development-work-status/v4
 repository: bajoicheg/g-pc-health-check
-branch: cdc/2.5.0-routing-events
-policy_revision: "2026-09-24-cdc-2.5.0-routing-events"
+branch: cdc/2.6.0-fleet-validation
+policy_revision: "2026-09-24-cdc-2.6.0-fleet-control-plane"
 policy_digest: null
 observed_at_utc: ""
 orchestration_origin: chat
@@ -23,8 +23,8 @@ control:
   budget_ref: "refs/heads/cdc/coordination:budget.json"
   recovery_snapshot_ref: null
   external_wait_ref: null
-active_change: "cdc-2.5-adoption"
-current_task: "CDC 2.5 package and project binding validation"
+active_change: "cdc-2.6-validation"
+current_task: "CDC 2.6 package and project binding validation"
 phase: recovery
 implementation_sha: ""
 candidate_sha: ""
@@ -37,8 +37,8 @@ last_ci_status: ""
 release_version: "0.13.0"
 release_candidate_sha: ""
 release_state: "not-started"
-blocker: "coordination backend not initialized"
-next_action: "Validate CDC 2.5 package and project binding, then initialize control-plane routing/continuation state without changing product release state."
+blocker: "cdc_2_6_validation_pending"
+next_action: "Validate CDC 2.6 package, regression suite and project binding. Do not change product state."
 resume_capsule_ref: "refs/heads/cdc/coordination:resume.json"
 execution_continuity:
   invocation_id: null
@@ -49,6 +49,6 @@ execution_continuity:
   last_progress_ref: null
 ---
 
-# CDC 2.5 adoption checkpoint
+# CDC 2.6 validation checkpoint
 
-Policy-only adoption state. Application version, product binaries and existing release evidence are unchanged.
+Policy-only validation state. Product binaries, active feature candidate and release evidence are unchanged.
