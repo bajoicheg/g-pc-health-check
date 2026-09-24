@@ -1,6 +1,6 @@
 # CDC 2.5 adoption
 
-Source package: exact canonical commit `ac80cfce5eb4b425916bb8cf4728d69717f21f31`.
+Source package: exact canonical commit `116d0a6ae6c3f35a22fc6170a25eece3e011eff5`.
 
 This adoption builds on the verified CDC 2.4 control plane and adds all CDC 2.5 scope:
 

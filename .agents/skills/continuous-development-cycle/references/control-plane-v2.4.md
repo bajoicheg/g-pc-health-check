@@ -31,3 +31,8 @@ These controls serialize cooperative orchestration; they do not bypass repositor
 ## Hard finalization coupling
 
 The `ready` lease transition consumes an allowed execution-continuity decision bound to the exact invocation and records its completion reason in the release evidence. A failed finalization can restart from `draining` and repeat checkpoint/reconciliation; failure is recoverable but never silently bypassed. Resume-capsule fast paths bind skill version, policy revision and policy digest in addition to repository/ref/HEAD/checkpoint/lease revision.
+
+
+## Historical v1 migration anomalies
+
+Released v1 coordination may contain historical records created before strict UUID enforcement. CDC 2.5 migration records an auditable `legacy_migration` marker with the source digest, migration generation and exact digests of any noncanonical historical claims/legacy takeover evidence. Those anomalies remain readable only as pre-migration history; new claims and takeover evidence stay strict v2. An owned v1 record still cannot migrate.

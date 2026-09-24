@@ -13,11 +13,12 @@ import operation_intent as op
 import execution_lease as legacy
 
 V1_FIELDS = set(legacy.FIELDS)
-FIELDS = V1_FIELDS | {"invocation", "finalization"}
+FIELDS = V1_FIELDS | {"invocation", "finalization", "legacy_migration"}
 SURFACES = {"chat", "watchdog", "work", "codex", "api", "unknown"}
 FINALIZATION_STATES = {"active", "draining", "checkpointed", "reconciled", "ready", "failed"}
 RECONCILIATION_STATES = {"pending", "none", "terminal_reconciled", "unknown_preserved"}
 QUIESCENCE_EFFECTS = {"none", "reconciled", "preserved_unknown"}
+LEGACY_DUMMY_OWNER = "00000000-0000-4000-8000-000000000000"
 
 def _uuid(value, name="owner_id"):
     if not isinstance(value, str) or str(uuid.UUID(value)) != value:
@@ -86,13 +87,64 @@ def _validate_release(value, generation):
     if value["generation"] > generation:
         raise ValueError("release generation exceeds persistent generation")
 
-def _legacy_projection(record):
+def _legacy_projection(record, *, sanitize_migrated=False):
     projected = {name: copy.deepcopy(record[name]) for name in V1_FIELDS}
     projected["schema"] = "execution-lease/v1"
     release = projected.get("last_release")
     if isinstance(release, dict) and "invocation_id" in release:
         projected["last_release"] = {key: release[key] for key in ("owner_id", "generation", "at_utc")}
+    marker = record.get("legacy_migration")
+    if sanitize_migrated and marker is not None:
+        allowed = set(marker["noncanonical_claim_digests"])
+        for claim in projected["submission_claims"]:
+            if op._hash(claim) in allowed:
+                claim["owner_id"] = LEGACY_DUMMY_OWNER
     return projected
+
+def _noncanonical_claim_digests(record):
+    result = []
+    for claim in record.get("submission_claims", []):
+        try:
+            _uuid(claim.get("owner_id"), "claim owner_id")
+        except (ValueError, AttributeError):
+            op._text(claim.get("owner_id"), "legacy claim owner_id")
+            result.append(op._hash(claim))
+    return result
+
+def _validate_legacy_migration(record):
+    marker = record["legacy_migration"]
+    op._object(marker, {"from_schema", "migrated_at_utc", "migrated_generation",
+                        "source_digest", "noncanonical_claim_digests",
+                        "legacy_takeover_evidence_digest"}, "legacy_migration")
+    if marker["from_schema"] != "execution-lease/v1":
+        raise ValueError("legacy migration source schema mismatch")
+    op._timestamp(marker["migrated_at_utc"], "migration time")
+    _generation(marker["migrated_generation"])
+    if marker["migrated_generation"] > record["generation"]:
+        raise ValueError("migration generation exceeds lease generation")
+    op._digest(marker["source_digest"], "legacy source digest")
+    if not isinstance(marker["noncanonical_claim_digests"], list):
+        raise ValueError("noncanonical_claim_digests must be a list")
+    for value in marker["noncanonical_claim_digests"]:
+        op._digest(value, "legacy claim digest")
+    if len(set(marker["noncanonical_claim_digests"])) != len(marker["noncanonical_claim_digests"]):
+        raise ValueError("duplicate legacy claim digest")
+    if marker["legacy_takeover_evidence_digest"] is not None:
+        op._digest(marker["legacy_takeover_evidence_digest"], "legacy takeover evidence digest")
+    observed = _noncanonical_claim_digests(record)
+    if set(observed) != set(marker["noncanonical_claim_digests"]):
+        raise ValueError("legacy noncanonical claim set changed after migration")
+    projected = _legacy_projection(record, sanitize_migrated=True)
+    legacy.validate(projected)
+    if record["generation"] == marker["migrated_generation"]:
+        if op._hash(_legacy_projection(record)) != marker["source_digest"]:
+            raise ValueError("migrated v1 source digest changed before first v2 acquisition")
+        takeover = record["takeover_evidence"]
+        expected = marker["legacy_takeover_evidence_digest"]
+        actual = op._hash(takeover) if takeover is not None else None
+        if actual != expected:
+            raise ValueError("legacy takeover evidence changed during migration")
+    return marker
 
 def validate(record):
     if not isinstance(record, dict):
@@ -102,7 +154,10 @@ def validate(record):
     op._object(record, FIELDS, "lease")
     if record["schema"] != "execution-lease/v2":
         raise ValueError("unsupported lease schema")
-    legacy.validate(_legacy_projection(record))
+    if record["legacy_migration"] is None:
+        legacy.validate(_legacy_projection(record))
+    else:
+        _validate_legacy_migration(record)
     if record["owner_id"] is None:
         if record["invocation"] is not None or record["finalization"] is not None:
             raise ValueError("released v2 lease cannot retain live invocation/finalization")
@@ -117,19 +172,31 @@ def validate(record):
         _validate_release(record["last_release"], record["generation"])
     takeover = record["takeover_evidence"]
     if takeover is not None:
-        op._object(takeover, {"owner_id", "generation", "repository", "source_ref",
-                              "invocation_id", "kind", "reference",
-                              "pending_shared_writes", "external_effects_state"}, "quiescence evidence")
-        _uuid(takeover["owner_id"])
-        _generation(takeover["generation"])
-        for name in ("repository", "source_ref", "invocation_id", "reference"):
-            op._text(takeover[name], name)
-        if takeover["kind"] != "executor_stopped":
-            raise ValueError("quiescence evidence must establish prior executor stopped")
-        if takeover["pending_shared_writes"] is not False:
-            raise ValueError("takeover requires no pending shared writes")
-        if takeover["external_effects_state"] not in QUIESCENCE_EFFECTS:
-            raise ValueError("invalid external effects state")
+        v2_fields = {"owner_id", "generation", "repository", "source_ref",
+                     "invocation_id", "kind", "reference",
+                     "pending_shared_writes", "external_effects_state"}
+        legacy_fields = {"owner_id", "generation", "repository", "source_ref", "kind", "reference"}
+        if set(takeover) == v2_fields:
+            _uuid(takeover["owner_id"])
+            _generation(takeover["generation"])
+            for name in ("repository", "source_ref", "invocation_id", "reference"):
+                op._text(takeover[name], name)
+            if takeover["kind"] != "executor_stopped":
+                raise ValueError("quiescence evidence must establish prior executor stopped")
+            if takeover["pending_shared_writes"] is not False:
+                raise ValueError("takeover requires no pending shared writes")
+            if takeover["external_effects_state"] not in QUIESCENCE_EFFECTS:
+                raise ValueError("invalid external effects state")
+        elif set(takeover) == legacy_fields and record["legacy_migration"] is not None:
+            for name in ("owner_id", "repository", "source_ref", "kind", "reference"):
+                op._text(takeover[name], "legacy takeover " + name)
+            _generation(takeover["generation"])
+            if takeover["generation"] > record["legacy_migration"]["migrated_generation"]:
+                raise ValueError("legacy takeover evidence exceeds migration generation")
+            if op._hash(takeover) != record["legacy_migration"]["legacy_takeover_evidence_digest"]:
+                raise ValueError("legacy takeover evidence digest mismatch")
+        else:
+            raise ValueError("unsupported takeover_evidence shape")
     return record
 
 def initialize(repository, source_ref):
@@ -137,16 +204,34 @@ def initialize(repository, source_ref):
     record["schema"] = "execution-lease/v2"
     record["invocation"] = None
     record["finalization"] = None
+    record["legacy_migration"] = None
     return validate(record)
 
-def migrate_v1(record):
-    legacy.validate(record)
-    if record["owner_id"] is not None:
+def migrate_v1(record, at):
+    if not isinstance(record, dict) or record.get("schema") != "execution-lease/v1":
+        raise ValueError("migration requires execution-lease/v1")
+    op._timestamp(at, "migration time")
+    if record.get("owner_id") is not None:
         raise ValueError("owned v1 lease cannot migrate; release/recover the legacy owner first")
+    noncanonical = _noncanonical_claim_digests(record)
+    sanitized = copy.deepcopy(record)
+    allowed = set(noncanonical)
+    for claim in sanitized.get("submission_claims", []):
+        if op._hash(claim) in allowed:
+            claim["owner_id"] = LEGACY_DUMMY_OWNER
+    legacy.validate(sanitized)
     result = copy.deepcopy(record)
     result["schema"] = "execution-lease/v2"
     result["invocation"] = None
     result["finalization"] = None
+    result["legacy_migration"] = {
+        "from_schema": "execution-lease/v1",
+        "migrated_at_utc": at,
+        "migrated_generation": record["generation"],
+        "source_digest": op._hash(record),
+        "noncanonical_claim_digests": noncanonical,
+        "legacy_takeover_evidence_digest": op._hash(record["takeover_evidence"]) if record["takeover_evidence"] is not None else None,
+    }
     if result["last_release"] is not None:
         release = result["last_release"]
         result["last_release"] = dict(release, invocation_id=None, checkpoint_ref=None,
@@ -310,15 +395,14 @@ def set_guard(record, owner_id, generation, invocation_id, at, intent, intent_re
     _owner(record, owner_id, generation, invocation_id, at)
     if record["finalization"]["state"] != "active":
         raise ValueError("cannot start/update external work after finalization begins")
-    projected = legacy.set_guard(_legacy_projection(record), owner_id, generation, at, intent, intent_reference)
+    projected = legacy.set_guard(_legacy_projection(record, sanitize_migrated=True), owner_id, generation, at, intent, intent_reference)
     result = copy.deepcopy(record)
     result["external_guard"] = projected["external_guard"]
-    result["submission_claims"] = projected["submission_claims"]
     return validate(result)
 
 def clear_guard(record, owner_id, generation, invocation_id, at, observation, evidence_reference):
     _owner(record, owner_id, generation, invocation_id, at)
-    projected = legacy.clear_guard(_legacy_projection(record), owner_id, generation, at,
+    projected = legacy.clear_guard(_legacy_projection(record, sanitize_migrated=True), owner_id, generation, at,
                                    observation, evidence_reference)
     result = copy.deepcopy(record)
     result["external_guard"] = projected["external_guard"]
@@ -395,7 +479,7 @@ def _mutate(store, expected, repository, source_ref, command, request):
             raise ValueError("migration requires existing record and no extra arguments")
         if record["repository"] != repository or record["source_ref"] != source_ref:
             raise ValueError("exact repository/source-ref binding mismatch")
-        result = migrate_v1(record)
+        result = migrate_v1(record, request.pop("at"))
     else:
         if record is None or record["repository"] != repository or record["source_ref"] != source_ref:
             raise ValueError("exact repository/source-ref binding mismatch")
