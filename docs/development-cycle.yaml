@@ -1,8 +1,8 @@
 schema: continuous-development-cycle/v3
 
 policy:
-  revision: "2026-09-24-cdc-2.4.0-control-plane"
-  skill_min_version: "2.4.0"
+  revision: "2026-09-24-cdc-2.5.0-routing-events"
+  skill_min_version: "2.5.0"
   skill_max_version_exclusive: "3.0.0"
   approved_exceptions: []
 

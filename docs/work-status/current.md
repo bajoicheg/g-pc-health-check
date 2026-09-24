@@ -49,6 +49,6 @@ execution_continuity:
   last_progress_ref: null
 ---
 
-# CDC 2.4 adoption checkpoint
+# CDC 2.5 adoption checkpoint
 
 Policy-only adoption state. Application version, product binaries and existing release evidence are unchanged.
