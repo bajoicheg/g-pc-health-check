@@ -1,6 +1,6 @@
 # CDC 2.4 adoption
 
-Source package: exact commit `2e96e2503cc262b1fd8ce9f4b8648e691da33e49` from the canonical CDC 2.4 control-plane branch.
+Source package: exact commit `225a8e3bc89927d9bc921a88380d7332da049f7a` from the canonical CDC 2.4 control-plane branch.
 
 This adoption installs the complete vendored skill, checkpoint v4 binding, invocation-bound lease-v2 protocol, resume capsule, hard execution-continuity gate and transactional finalization. It does not change application version, product code, release artifacts, Windows acceptance requirements or repository protection.
 
