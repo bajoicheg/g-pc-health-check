@@ -80,3 +80,10 @@ During long attended work report factual milestones roughly every 2–4 minutes.
 - https://help.openai.com/en/articles/6614161-how-can-i-contact-support
 
 The SDK pin controls compiler selection, not dependency reproducibility by itself. Caching, narrower application test selection, dependency locking and release-pipeline refactoring need separate measured/reviewed changes. No percentage speedup or permanent fix to connector evaluation is claimed.
+
+
+## CDC 2.4 control plane
+
+The repository-local CDC package lives at `.agents/skills/continuous-development-cycle/`. CDC policy/checkpoint validation is cross-platform Python and is separate from application validation. Run package tests when the CDC package or control-plane policy changes. Product changes still require the Windows/.NET Quick/Full and remote gates described above.
+
+New control-plane writes use checkpoint v4 and invocation-bound lease v2. An owned legacy lease is never converted in place. Resume capsules reduce recovery reads only after an exact fresh binding check. Primitive-only status/health/lease/poll/report activity is not task progress and cannot close a runnable invocation.

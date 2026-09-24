@@ -1,0 +1,16 @@
+name: Continuous Development Cycle
+description: Recoverable development with capability routing, deterministic recovery and durable continuation events.
+version: 2.5.0
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true
+interface:
+  display_name: Continuous Development Cycle
+  short_description: Durable development with routing, recipes and event continuation
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+  default_prompt: Use $continuous-development-cycle to continue durable development through CDC 2.5 routing, recovery and continuation controls.
