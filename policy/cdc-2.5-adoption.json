@@ -1,0 +1,15 @@
+{
+  "schema": "cdc-adoption-evidence/v1",
+  "version": "2.5.0",
+  "main_merge": "9cc97f577921969f7e09a5bb2234327319e8b32c",
+  "active_branch_head": "36b197995ca3dc6c911a013504cc407f262d84f1",
+  "package_tree": "0a5d673f6f0a9456655a59b607cba6ee774e5219",
+  "main_validation_run": "36043606449",
+  "policy_digest": "sha256:91ab8cf8408a4cf2cb8f758b3397a33dc90a1eba40b3de45e3bb7db5cf2c1bc5",
+  "previous_lease_blob": "a020adeb890cf8bd49eb5a2b378a58d45b1eb2c8",
+  "migrated_lease_blob": "bb1013617c859bc52ec9ab2e5ef4da344c3a50ce",
+  "generation": 0,
+  "recorded_at_utc": "2026-09-24T19:05:31Z",
+  "product_candidate": "f037bece0272814f9b0f069aaf1de17be369b626",
+  "product_evidence_unchanged": true
+}

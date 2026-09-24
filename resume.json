@@ -1,0 +1,47 @@
+{
+  "schema": "resume-capsule/v1",
+  "updated_at_utc": "2026-09-24T19:05:31Z",
+  "repository": "bajoicheg/g-pc-health-check",
+  "source_ref": "refs/heads/design/0.17.0-security-posture",
+  "head_sha": "36b197995ca3dc6c911a013504cc407f262d84f1",
+  "policy_version": "2.5.0",
+  "policy_revision": "2026-09-24-cdc-2.5.0-routing-events",
+  "policy_digest": "sha256:91ab8cf8408a4cf2cb8f758b3397a33dc90a1eba40b3de45e3bb7db5cf2c1bc5",
+  "checkpoint_ref": "docs/work-status/current.md",
+  "checkpoint_digest": "ae7c8a9b8e6b92f7ff7d8f8667d4e07394e64caf0e97670cf7d2f8c98842635c",
+  "task": {
+    "phase": "blocked",
+    "current_task": "Managed Windows 11 pilot and pre-integration acceptance",
+    "next_action": "Use the retained pilot bundle from run 35152451989 on approved managed/disposable Windows 11 endpoints. Do not merge PR #92 or enable auto-merge. If source changes, create a new exact-SHA candidate and re-run the required gates under CDC budgets.",
+    "blocker": "managed_windows_11_pilot_pending; explicit_owner_integration_approval_required"
+  },
+  "ownership": {
+    "lease_schema": "execution-lease/v2",
+    "owner_id": null,
+    "invocation_id": null,
+    "generation": 0,
+    "revision": "bb1013617c859bc52ec9ab2e5ef4da344c3a50ce"
+  },
+  "external": null,
+  "validation": {
+    "candidate_sha": "f037bece0272814f9b0f069aaf1de17be369b626",
+    "last_green_sha": "f037bece0272814f9b0f069aaf1de17be369b626",
+    "last_green_evidence": "PR #92 runs 35142227790, 35142227782, 35142227765; retained pilot run 35152451989",
+    "missing_gates": [
+      "managed Windows 11 pilot",
+      "explicit owner integration approval"
+    ]
+  },
+  "health": {
+    "state": "UNKNOWN",
+    "fingerprint": null
+  },
+  "budget": {
+    "ref": "https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/budget.json",
+    "summary": "Actions conserve; CDC policy migration spent no product Actions run; retained pilot evidence unchanged."
+  },
+  "recovery": {
+    "recommended_action": "resume_next_action",
+    "reason": "CDC 2.5 active-branch policy bound; remaining blocker is the pre-existing managed endpoint pilot/owner approval."
+  }
+}

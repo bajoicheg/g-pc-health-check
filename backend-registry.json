@@ -1,0 +1,27 @@
+{
+  "schema": "backend-capability-registry/v1",
+  "observed_at_utc": "2026-09-24T19:05:31Z",
+  "backends": [
+    {
+      "backend_id": "github-actions-windows",
+      "kind": "github_actions",
+      "enabled": true,
+      "state": "ready",
+      "rank": 50,
+      "capabilities": [
+        "os:windows",
+        "pwsh:7",
+        "dotnet:8.0.425",
+        "feature:portable-exe",
+        "feature:required-pr-checks"
+      ],
+      "configuration_digest": "sha256:2d375a9c75472471e60653a18f4391651c04f75d6d0ec7b0652127a402638b3b",
+      "last_verified_at_utc": "2026-09-24T19:05:31Z",
+      "evidence_refs": [
+        "run:35142227790",
+        "run:35142227782",
+        "run:35142227765"
+      ]
+    }
+  ]
+}

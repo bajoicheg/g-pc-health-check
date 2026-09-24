@@ -1,5 +1,5 @@
 {
-  "schema": "execution-lease/v1",
+  "schema": "execution-lease/v2",
   "repository": "bajoicheg/g-pc-health-check",
   "source_ref": "refs/heads/design/0.17.0-security-posture",
   "generation": 0,
@@ -12,5 +12,15 @@
   "last_release": null,
   "takeover_evidence": null,
   "last_terminal": null,
-  "submission_claims": []
+  "submission_claims": [],
+  "invocation": null,
+  "finalization": null,
+  "legacy_migration": {
+    "from_schema": "execution-lease/v1",
+    "migrated_at_utc": "2026-09-24T19:05:31Z",
+    "migrated_generation": 0,
+    "source_digest": "sha256:57517d5e26f1862a4f5f7e3221f19ca45f265a48ea99be84e8c13e558682054d",
+    "noncanonical_claim_digests": [],
+    "legacy_takeover_evidence_digest": null
+  }
 }
