@@ -1,0 +1,38 @@
+version: 2.3.9
+contract: execution_continuity
+
+completion_gate:
+  required_one_of:
+    - meaningful_repository_progress
+    - durable_external_binding
+    - resumable_blocker
+
+forbidden_only_completion:
+  - status_read
+  - health_check
+  - lease_check
+  - poll_without_transition
+  - report_only
+
+primitive_step:
+  counts_as_progress: false
+  consecutive_limit_when_runnable: 1
+
+checkpoint:
+  required_fields:
+    execution_continuity:
+      - runnable_next_action
+      - meaningful_progress
+      - primitive_steps_since_progress
+      - completion_gate
+
+finalization:
+  required:
+    - durable_checkpoint
+    - next_action
+    - external_reconciliation
+    - owned_state_release
+
+scope:
+  diagnostic_only: true
+  bypass_repository_protection: false
