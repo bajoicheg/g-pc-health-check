@@ -1,6 +1,6 @@
 name: Continuous Development Cycle
-description: Recoverable development with invocation-bound ownership, durable resume and hard completion gates.
-version: 2.4.0
+description: Recoverable development with capability routing, deterministic recovery and durable continuation events.
+version: 2.5.0
 policy:
   products:
   - chatgpt
@@ -10,7 +10,7 @@ policy:
   allow_implicit_invocation: true
 interface:
   display_name: Continuous Development Cycle
-  short_description: Durable autonomous development with hard continuity gates
+  short_description: Durable development with routing, recipes and event continuation
   icon_small: assets/icon.svg
   icon_large: assets/icon.svg
-  default_prompt: Use $continuous-development-cycle to continue durable development through CDC 2.4 completion gates.
+  default_prompt: Use $continuous-development-cycle to continue durable development through CDC 2.5 routing, recovery and continuation controls.

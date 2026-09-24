@@ -1,8 +1,8 @@
 ---
 schema: development-work-status/v4
 repository: bajoicheg/g-pc-health-check
-branch: cdc/2.4.0-control-plane
-policy_revision: "2026-09-24-cdc-2.4.0-control-plane"
+branch: cdc/2.5.0-routing-events
+policy_revision: "2026-09-24-cdc-2.5.0-routing-events"
 policy_digest: null
 observed_at_utc: ""
 orchestration_origin: chat
@@ -23,8 +23,8 @@ control:
   budget_ref: "refs/heads/cdc/coordination:budget.json"
   recovery_snapshot_ref: null
   external_wait_ref: null
-active_change: "cdc-2.4-adoption"
-current_task: "CDC 2.4 package and project binding validation"
+active_change: "cdc-2.5-adoption"
+current_task: "CDC 2.5 package and project binding validation"
 phase: recovery
 implementation_sha: ""
 candidate_sha: ""
@@ -38,7 +38,7 @@ release_version: "0.13.0"
 release_candidate_sha: ""
 release_state: "not-started"
 blocker: "coordination backend not initialized"
-next_action: "Validate CDC 2.4 package, then initialize released v2 coordination state without changing product release state."
+next_action: "Validate CDC 2.5 package and project binding, then initialize control-plane routing/continuation state without changing product release state."
 resume_capsule_ref: "refs/heads/cdc/coordination:resume.json"
 execution_continuity:
   invocation_id: null

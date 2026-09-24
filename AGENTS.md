@@ -2,7 +2,7 @@
 
 Read this file, `docs/DEVELOPMENT.md`, and the vendored `.agents/skills/continuous-development-cycle/SKILL.md` before changing the project. Higher-priority tool, safety, repository-protection and user-authorization rules still apply.
 
-## Continuous Development Cycle v2.4
+## Continuous Development Cycle v2.5
 
 This repository uses CDC 2.4.0.
 
@@ -26,3 +26,12 @@ Validate with:
 - `python -B -m unittest discover -s .agents/skills/continuous-development-cycle/tests -v`
 
 CDC validation does not replace the Windows/.NET Quick, Full, CI, review, release or security gates in `docs/DEVELOPMENT.md`.
+
+
+## CDC 2.5 routing, deterministic recovery and event continuation
+
+Before selecting compute/CI, express required platform/runtime/network/device capabilities explicitly and route them through fresh backend evidence with `.agents/skills/continuous-development-cycle/scripts/capability_router.py`. A selected backend is a recommendation, never launch authority.
+
+For known operational diagnoses use deterministic recovery recipes before open-ended RCA. Recipe steps are allow-listed control-plane actions and still require normal ownership/authorization gates.
+
+Consume durable continuation events before falling back to polling. Event delivery/claim is not ownership. Immediate event wakes are preferred when supported; the recurring watchdog remains the required scheduler fallback.

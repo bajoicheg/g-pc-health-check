@@ -19,6 +19,9 @@ from resume_capsule import validate as validate_resume_capsule
 from budget import validate_ledger
 from recovery import validate_wait_state, decide_recovery
 from watchdog_health import assess as assess_watchdog_health
+from capability_router import validate_registry, validate_request, route as route_backend
+from recovery_recipes import validate_catalog, validate_diagnosis, select as select_recovery_recipe
+from continuation_queue import validate_event, validate_queue, ingest as ingest_continuation
 
 ROOT = Path(__file__).resolve().parents[1]
 REQUIRED = [
@@ -56,6 +59,14 @@ REQUIRED = [
     'tests/test_execution_lease_v2.py', 'tests/test_execution_continuity.py',
     'tests/test_resume_capsule.py', 'tests/test_checkpoint_v4.py',
     'tests/test_v240_guidance.py',
+    'references/capability-routing.md', 'references/deterministic-recovery.md',
+    'references/event-driven-continuation.md',
+    'scripts/capability_router.py', 'scripts/recovery_recipes.py', 'scripts/continuation_queue.py',
+    'templates/backend-registry.json', 'templates/capability-request.json',
+    'templates/recovery-recipes.json', 'templates/recovery-diagnosis.json',
+    'templates/continuation-event.json', 'templates/continuation-queue.json',
+    'tests/test_capability_router.py', 'tests/test_recovery_recipes.py',
+    'tests/test_continuation_queue.py', 'tests/test_v250_guidance.py',
 ]
 
 
@@ -105,6 +116,26 @@ def validate():
     recovery = decide_recovery(snapshot, probe, snapshot['observed_at_utc'])
     if not recovery['fast_path']:
         raise ContractError('invalid recovery template: ' + '; '.join(recovery['reasons']))
+    registry = json.loads((ROOT / 'templates/backend-registry.json').read_text())
+    request = json.loads((ROOT / 'templates/capability-request.json').read_text())
+    validate_registry(registry); validate_request(request)
+    routed = route_backend(registry, request, '2026-01-01T00:00:01Z')
+    if routed['action'] != 'route' or routed['authorizes_external_start']:
+        raise ContractError('invalid capability routing template')
+    catalog = json.loads((ROOT / 'templates/recovery-recipes.json').read_text())
+    diagnosis = json.loads((ROOT / 'templates/recovery-diagnosis.json').read_text())
+    validate_catalog(catalog); validate_diagnosis(diagnosis)
+    recipe = select_recovery_recipe(catalog, diagnosis)
+    if recipe['action'] != 'apply_recipe' or any(recipe[name] for name in (
+            'authorizes_takeover', 'authorizes_product_write', 'authorizes_external_start',
+            'authorizes_scheduler_mutation')):
+        raise ContractError('invalid deterministic recovery template')
+    event = json.loads((ROOT / 'templates/continuation-event.json').read_text())
+    queue = json.loads((ROOT / 'templates/continuation-queue.json').read_text())
+    validate_event(event); validate_queue(queue)
+    queued, delivery = ingest_continuation(queue, event)
+    if not delivery['wake_required'] or delivery['authorizes_side_effects'] or queued['generation'] != 1:
+        raise ContractError('invalid continuation event/queue templates')
     health = assess_watchdog_health(json.loads((ROOT / 'templates/watchdog-health.json').read_text()))
     if health['overall'] != 'HEALTHY' or any(health[name] for name in ('authorizes_takeover', 'authorizes_external_start', 'authorizes_product_write')):
         raise ContractError('invalid watchdog health template/authority contract')

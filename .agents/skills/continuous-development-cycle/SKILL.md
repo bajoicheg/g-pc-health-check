@@ -3,7 +3,7 @@ name: continuous-development-cycle
 description: Use when substantial software development must continue across long sessions, interruptions, CI runs, repository migrations, watchdog resumes, development chat cleanup, Work/Codex orchestration, Codex Compute setup or failures, or limited compute budgets.
 ---
 
-# Continuous Development Cycle v2.4.0
+# Continuous Development Cycle v2.5.0
 
 Durable repository state is the project state. Sessions, agents and schedulers are disposable. Apply the instruction hierarchy, preserve the source/scope of existing user authorization, and reconcile repository policy. Live remote facts override stale checkpoint/chat claims. A spinner, lease or submitted request is not progress evidence.
 
@@ -48,6 +48,14 @@ Use `scripts/resume_capsule.py` to validate the compact durable resume capsule. 
 Use `scripts/execution_continuity.py` as the hard pre-final-response gate. The execution FSM is `BOOTSTRAP → RECONCILE → OWNERSHIP → EXECUTE → VALIDATE → CHECKPOINT → CONTINUE` with explicit `WAIT_EXTERNAL`, `BLOCKED` and `COMPLETE` outcomes. A runnable invocation cannot terminate on status/health/lease/poll/report/heartbeat activity alone. Valid terminal boundaries are meaningful durable progress, a durable external binding, a resumable blocker with exact next action, or verified task/scope completion.
 
 Lease v2 and checkpoint v4 are forward write formats. Legacy lease v1 and checkpoint v3 remain readable for migration; do not mutate an owned v1 lease merely to upgrade it. See `references/control-plane-v2.4.md`.
+
+## CDC 2.5 capability router, deterministic recovery and continuation queue
+
+Before selecting a validation/compute backend, express the task as `capability-request/v1` and route it against fresh evidenced `backend-capability-registry/v1` using `scripts/capability_router.py`. Capabilities are explicit tokens; never infer Windows, JDK, Android SDK, emulator, network or other requirements from a backend name. Routing is recommendation-only and never grants ownership, budget, provider or launch authority. No compatible ready backend becomes a durable waiting/blocker state rather than a blind launch. Read `references/capability-routing.md`.
+
+Known operational failures use deterministic recovery before open-ended reasoning. Normalize the observed failure to `recovery-diagnosis/v1`, select an allow-listed recipe from `recovery-recipe-catalog/v1` with `scripts/recovery_recipes.py`, and execute each step through its normal authority gate. No recipe grants takeover, writes, starts or scheduler mutation. If no exact recipe matches, preserve a blocker and escalate rather than inventing a destructive recovery. Read `references/deterministic-recovery.md`.
+
+External terminal results, CI terminal results, backend recovery, scheduler recovery, policy changes and explicit kicks may enter the durable `continuation-queue/v1`. Use `scripts/continuation_queue.py` for exact binding, dedupe, invocation-bound delivery claims and acknowledgement. A new event should request an immediate continuation wake when the platform supports one; the recurring watchdog remains the mandatory scheduler fallback and drains the same queue. Queue claims coordinate delivery only and never replace the execution lease, external guard or budget gates. Read `references/event-driven-continuation.md`.
 
 ## Execute and verify
 

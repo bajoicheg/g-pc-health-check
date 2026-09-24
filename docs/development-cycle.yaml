@@ -191,3 +191,26 @@ orchestration:
       tool_calls: 8
     provider_max_age_seconds: 300
     actions_budget: normal
+
+routing:
+  capability_registry_ref: "coordination:backend-registry.json"
+  request_schema: capability-request/v1
+  backend_kind_preference: [codex_compute, local, other_compute, github_actions]
+  require_fresh_registry: true
+  no_match_state: waiting_external
+  router_authority: recommendation_only
+  max_registry_age_seconds: 900
+
+recovery_recipes:
+  catalog_ref: ".agents/skills/continuous-development-cycle/templates/recovery-recipes.json"
+  diagnosis_schema: recovery-diagnosis/v1
+  deterministic_selection: true
+  recipe_authority: recommendation_only
+
+continuation:
+  queue_ref: "coordination:continuation-queue.json"
+  event_schema: continuation-event/v1
+  event_wake_is_authority: false
+  scheduler_fallback_required: true
+  dedupe_required: true
+  claim_ttl_seconds: 900
