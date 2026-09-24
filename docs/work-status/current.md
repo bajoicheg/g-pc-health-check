@@ -3,7 +3,7 @@ schema: development-work-status/v4
 repository: bajoicheg/g-pc-health-check
 branch: design/0.17.0-security-posture
 policy_revision: 2026-09-24-cdc-2.5.0-routing-events
-policy_digest: null
+policy_digest: 91ab8cf8408a4cf2cb8f758b3397a33dc90a1eba40b3de45e3bb7db5cf2c1bc5
 observed_at_utc: '2026-09-24T19:05:31Z'
 orchestration_origin: chat
 active_executor: none
@@ -22,10 +22,10 @@ execution_continuity:
   meaningful_progress: true
   primitive_steps_since_progress: 0
   completion_gate: resumable_blocker
-  last_progress_ref: 'main-cdc-2.5:9cc97f577921969f7e09a5bb2234327319e8b32c'
+  last_progress_ref: 'cdc-2.5-package-tree:0a5d673f6f0a9456655a59b607cba6ee774e5219'
 control:
   execution_lease_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/lease.json
-  execution_lease_revision: bf7dd5173fb3a84961e253c67d262d45c7a889c1
+  execution_lease_revision: bb1013617c859bc52ec9ab2e5ef4da344c3a50ce
   executor_id: null
   lease_generation: 0
   budget_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/budget.json
@@ -33,7 +33,7 @@ control:
   external_wait_ref: null
 active_change: 0.17.0-security-posture
 current_task: Managed Windows 11 pilot and pre-integration acceptance
-phase: recovery
+phase: blocked
 implementation_sha: 2a7b1b78180773563fea7f4d10be86021f90d17f
 candidate_sha: f037bece0272814f9b0f069aaf1de17be369b626
 last_green_sha: f037bece0272814f9b0f069aaf1de17be369b626
@@ -45,13 +45,13 @@ last_ci_status: success
 release_version: 0.17.0
 release_candidate_sha: f037bece0272814f9b0f069aaf1de17be369b626
 release_state: blocked
-blocker: cdc_2_5_active_branch_policy_binding_reconciliation; managed_windows_11_pilot_pending; explicit_owner_integration_approval_required
-next_action: Validate the exact CDC 2.5 active-branch package/adapter/checkpoint without spending the product Actions budget, bind the semantic policy digest, migrate the released generation-0 coordination lease v1→v2, initialize backend/continuation/resume records, then restore the managed Windows 11 pilot blocker and keep PR #92 unmerged.
+blocker: managed_windows_11_pilot_pending; explicit_owner_integration_approval_required
+next_action: Use the retained pilot bundle from run 35152451989 on approved managed/disposable Windows 11 endpoints. Do not merge PR #92 or enable auto-merge. If source changes, create a new exact-SHA candidate and re-run the required gates under CDC budgets.
 ---
 
-# CDC 2.5 active-branch migration checkpoint
+# CDC 2.5 active-branch binding complete
 
-The 0.17.0 product/pilot SHA, retained Windows evidence and explicit no-merge-without-owner-approval rule remain unchanged. This process-only migration temporarily uses recovery phase until the branch-specific semantic policy digest and released coordination migration are durably bound.
+The exact vendored 2.5 package subtree matches validated `main` byte-for-byte (`0a5d673f6f0a9456655a59b607cba6ee774e5219`). Branch-specific adapter semantic digest is `91ab8cf8408a4cf2cb8f758b3397a33dc90a1eba40b3de45e3bb7db5cf2c1bc5`. The 0.17.0 product/pilot SHA, retained Windows evidence and explicit no-merge-without-owner-approval rule remain unchanged.
 
 # Current work status
 
