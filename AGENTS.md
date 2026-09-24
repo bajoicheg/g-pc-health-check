@@ -1,54 +1,28 @@
 # Development instructions — G PC Health Check
 
-Read this file and `docs/DEVELOPMENT.md` before changing the project. These instructions organize legitimate development; they do not override tool restrictions, safety checks, user approvals or repository protections.
+Read this file, `docs/DEVELOPMENT.md`, and the vendored `.agents/skills/continuous-development-cycle/SKILL.md` before changing the project. Higher-priority tool, safety, repository-protection and user-authorization rules still apply.
 
-## CDC 2.3.9 Execution Continuity
+## Continuous Development Cycle v2.4
 
-This project adopts CDC 2.3.9 execution continuity rules.
+This repository uses CDC 2.4.0.
 
-A wake/invocation must not complete after only diagnostic work when a runnable next action exists.
+On resume, validate the project policy/checkpoint and reconcile live repository, PR, CI, coordination and external-operation state. Remote evidence wins over stale chat/checkpoint text.
 
-Forbidden completion pattern:
+Use invocation-bound `execution-lease/v2` for new ownership. An owner mutation is bound to repository/ref + executor UUID + generation + exact invocation ID. Never rewrite an actively owned v1 lease merely to upgrade it.
 
-- status read
-- health check
-- lease check
-- polling without transition
-- report only
+Use the durable `resume-capsule/v1` only for exact-match fast resume. Repository/ref/HEAD, skill version, policy revision/digest, checkpoint digest and lease revision must all match a fresh complete probe; otherwise do normal reconciliation.
 
-Required completion outcome:
+A wake cannot terminate after only status, health, lease, polling, report, heartbeat or lease-renewal work while a runnable next action exists. Before final response, pass `scripts/execution_continuity.py`. Allowed terminal boundaries are meaningful durable progress, durable external binding, a resumable blocker with exact next action, or verified task/scope completion.
 
-- meaningful repository progress; or
-- durable external operation binding; or
-- resumable blocker with exact next action.
+If the invocation owns a v2 lease, finalization is transactional:
+`active → draining → checkpointed → reconciled → ready → release`.
+The `ready` transition itself requires an allowed continuity decision bound to the exact invocation. Final response while still owning the lease is a defect.
 
-Diagnostic actions are not progress. Heartbeats, unchanged polling, lease renewal and status reports do not satisfy completion continuity.
+Validate with:
 
-Before final response or handoff:
+- `python -B .agents/skills/continuous-development-cycle/scripts/validate_package.py`
+- `python -B .agents/skills/continuous-development-cycle/scripts/validate_adapter.py docs/development-cycle.yaml`
+- `python -B .agents/skills/continuous-development-cycle/scripts/validate_checkpoint_24.py docs/work-status/current.md --adapter docs/development-cycle.yaml`
+- `python -B -m unittest discover -s .agents/skills/continuous-development-cycle/tests -v`
 
-- update durable checkpoint;
-- preserve exact next action;
-- reconcile external operations;
-- release owned coordination state.
-
-The completion gate is diagnostic policy enforcement only. It does not grant permission to bypass repository protection, ownership, CI requirements or review.
-
-## CDC 2.3.9 Runtime Contract
-
-Checkpoint state should include:
-
-```yaml
-execution_continuity:
-  runnable_next_action:
-  meaningful_progress:
-  primitive_steps_since_progress:
-  completion_gate:
-    allowed:
-    reason:
-```
-
-A second consecutive primitive-only wake while runnable work exists is a continuity failure and requires recovery diagnosis.
-
-## Existing development rules
-
-Preserve all existing Windows, build, release, validation and security rules below.
+CDC validation does not replace the Windows/.NET Quick, Full, CI, review, release or security gates in `docs/DEVELOPMENT.md`.

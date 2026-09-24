@@ -1,0 +1,7 @@
+{
+  "name": "continuous-development-cycle",
+  "version": "2.4.0",
+  "schema": "continuous-development-cycle/v3",
+  "entrypoint": "SKILL.md",
+  "description": "Recoverable development with invocation-bound ownership, durable resume, transactional finalization and hard execution continuity."
+}
