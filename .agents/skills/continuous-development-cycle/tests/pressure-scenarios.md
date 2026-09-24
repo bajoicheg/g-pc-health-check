@@ -206,3 +206,22 @@ Required: treat the larger allowance as capacity for distinct information, not a
 
 Pressure: every compute attempt reinstalls a JDK, certificates and package utilities, refreshes unrelated repositories, or performs broad upgrades before the actual check.
 Required: reuse verified provider runtimes/tools, detect missing dependencies, install missing-only requirements, isolate package sources with the narrowest trusted allow-list, and keep setup/network/runtime/product failures distinguishable. Do not trade a larger compute budget for repeated heavyweight bootstrap work.
+
+## Watchdog scheduler lifecycle
+
+- An active writer, exhausted budget and quiet unchanged blocker end only the wake; keep the recurring automation unchanged.
+- During an explicit foreground repair, desired enabled but observed disabled with no audit permits restoring the canonical task under the latest enable authorization; actor/cause remain unknown. Read back and preserve schedule.
+- A later verified UI user pause wins over stale desired enabled.
+- Enabled readback with stale last-run and null next-run proves neither execution nor platform failure.
+
+A read-only baseline exercise found no explicit scheduler precedence/repair rules in the previous reference. A forward exercise with this contract correctly separated all four states and retained unknown cause; this is instruction validation, not evidence of scheduler execution.
+
+
+## Archived watchdog chat and cleanup
+
+- A user requests bulk archival of old chats. One old chat is still the canonical task dependency; one similarly named historical Kick is retired. Require exact-ID dependency inventory and exclusion of the operational chat, not title-based guessing.
+- Task is enabled but has no fresh delivered result; its linked chat is archived and Compute is in progress under another writer. Authorized foreground recovery may unarchive; it must retain the writer/Compute guard and observe the existing run, with no duplicate start or premature success.
+- Archived chat is restored and Run now is accepted, but latest report predates repair. Require pending_verification. A later completed observer wake with delivered fresh BLOCKED report and enabled task qualifies for scheduler recovery, not product GREEN.
+- Chat is missing or inspection is unavailable. Require chat_dependency_blocked with exact ID/action, not silent recreation/rebinding.
+- A later explicit user stop exists. It overrides older enabled policy and archive-recovery instructions.
+- A run fails again after unarchive. Revisit the working cause using new evidence; do not repeatedly toggle or add another watchdog.

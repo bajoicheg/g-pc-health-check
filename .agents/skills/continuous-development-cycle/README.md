@@ -1,4 +1,4 @@
-# Continuous Development Cycle v2.3.3
+# Continuous Development Cycle v2.3.4
 
 Installable ChatGPT/Codex/agent skill for recoverable, long-running software development.
 
@@ -49,3 +49,7 @@ Use `references/orchestration-controls.md` to connect these controls. Existing a
 - Higher Codex start capacity is spent for information gain, not identical retries.
 - Compute failures are classified as setup, network, runtime or product before another start.
 - Environment preparation reuses provider runtimes and uses missing-only dependencies, narrow package-source allow-lists and bounded provisioning instead of repeated heavyweight normalization.
+
+## v2.3.4 watchdog lifecycle
+
+Separate scheduler state from wake eligibility. Preserve recurring schedules through blockers and budget limits, honor verified user pauses, and audit unexplained drift without inventing its cause.

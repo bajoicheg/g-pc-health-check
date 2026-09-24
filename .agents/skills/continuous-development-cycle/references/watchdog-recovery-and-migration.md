@@ -17,6 +17,115 @@ An explicit kick bypasses only an idle threshold. It never bypasses concurrency,
 
 Watchdog subagent policy is inherited from the runtime that executes the wake: ordinary chat means no subagents; Work/Codex orchestration explicitly enables useful delegation by default with adaptive effort and no per-launch approval, subject to higher-priority restrictions. Prefer configured Codex Compute for eligible candidate checks and follow `codex-compute.md` for setup, task binding and fallback.
 
+## Scheduler lifecycle and drift
+
+Keep three independent states: desired scheduler state authorized by the user,
+observed scheduler state, and execution eligibility for the current wake.
+BLOCKED, an active writer, an external guard, an exhausted budget, a runtime
+limit, unchanged work, quiet notifications, or completion of one task ends or
+limits this wake; none authorizes pausing/deleting the recurring automation.
+Use the lease to prevent competing writers; never pause the scheduler for manual
+work. Disabling requires explicit current user authorization for that automation
+or an explicit previously authorized stop condition that is actually satisfied.
+
+Resolve the canonical automation ID before an update; never resume historical
+duplicates or completed one-shot kicks. Honor a later verified user pause,
+including a verified UI action, over older repository enabled:true. Conversely,
+observed enabled:false with unknown actor does not prove a user pause. Old
+checkpoint flags do not revoke newer user authorization.
+
+Normal wakes do not mutate scheduler state or reschedule themselves. During an
+explicitly authorized repair, inspect the latest user decision and actual task,
+update only requested fields, preserve cadence/timezone/triggers, then read back.
+A scheduler tool's unavailable audit remains unavailable: record actor/cause as
+unknown, do not manufacture attribution or assume platform auto-disable. Do not
+fight a known user pause or repeatedly toggle against an unexplained concurrent
+writer. Report recurrent drift for diagnosis.
+
+Keep a small scheduler observation/audit record on an authorized durable path:
+canonical ID, desired state and authorization reference, observed_at, enabled,
+schedule/timezone, last_run_time, update time, before/after for a change,
+reason and actor (unknown if not exposed), result/readback, next action. Do not
+move an in-flight source HEAD or take over a writer merely to record it.
+A new scheduler-state drift is a changed blocker even when the product blocker
+is unchanged; do not suppress it as a duplicate notification.
+
+Report enabled, requested run, observed execution and product progress separately.
+An enabled flag or accepted run request is not execution evidence. A null
+next_run_time alone is not proof of a broken schedule. A disabled watchdog cannot
+repair itself; repair during an authorized foreground/status session. Do not
+promise self-healing or add a second watchdog without user authorization.
+
+## Chat dependencies: archive prevention and recovery
+
+Treat a chat-bound watchdog's conversation as an operational dependency. Track
+four separate states: desired scheduler state, observed scheduler state,
+conversation availability, and execution eligibility. An archived chat is a
+recovery suspect; it is not proof of a platform-wide cause or a user stop order.
+If the owner accepts it as the incident's working cause, record that decision
+separately from observed facts and unavailable provider audit.
+
+### Prevent accidental archiving
+
+Maintain a project watchdog binding record outside disposable chat history:
+canonical automation ID; conversation ID/observed URL from live task metadata;
+other verified control/delivery chat dependencies and their roles; desired state
+and authorization; last verification time; archive state (`active`, `archived`,
+`missing`, or `unknown`); evidence reference; latest completed-run/report reference;
+recovery state and one next action. Use a separate project runbook/JSON record,
+not unsupported fields in the strict adapter. An unknown value stays unknown.
+
+Before archiving, deleting, moving, or bulk-cleaning chats, inventory live
+automations and compare exact conversation IDs. Exclude operational dependencies
+and chats with unresolved executor/provider work. Age, a completed product slice,
+quiet notifications, or a paused flag with unknown actor does not remove protection.
+Mark protected chats clearly in the project runbook; a pin or title is only a
+visual aid, not a technical lock. Do not claim the platform prevents user archiving.
+Retire/migrate a protected chat only after an explicit user decision and verified
+replacement delivery; preserve the old-to-new mapping and avoid two active tasks.
+
+During each foreground project status/resume, cheaply reconcile the task's live
+conversation binding. Inspect actual chat availability after binding changes,
+chat cleanup, or failed/missing/stale runs; prioritize this before another run
+request or a compute retry. Ordinary wakes read/report drift and do not repair
+the scheduler themselves. A disabled or inaccessible watchdog needs foreground
+recovery; it cannot guarantee its own recovery.
+
+### Recover the same watchdog
+
+1. Resolve the canonical task and its actual conversation ID, latest user stop
+   decision, current run/owner/guard and freshest result. Preserve schedule,
+   timezone, triggers, prompt, desired state and before/after evidence. A spinner
+   or stale `last_run_time` alone is inconclusive; compare Scheduled results and
+   concrete repository/provider activity. Diagnose an overdue run using existing
+   phase deadlines, retaining all guards.
+2. Open the exact linked chat via supported tools/UI. If archived and recovery is
+   authorized, unarchive only that dependency; read back its active/access state.
+   If missing, inaccessible, or archive state cannot be inspected, report
+   `chat_dependency_blocked` with the exact ID and required action. Do not invent
+   a chat, rebind a task, change account, or create a replacement silently.
+3. If no later explicit stop overrides recovery authorization, resume the same
+   canonical task when needed; patch only required fields and read back. If a
+   watchdog run is already active or uncertain, observe/reconcile it first.
+   Otherwise use the next scheduled run; request at most one Run now only when
+   the user has authorized an immediate run for this repair. This does not authorize another Compute/Actions start,
+   clear an external guard, or transfer branch ownership.
+4. Mark recovery `pending_verification` until a post-repair run completes, its
+   fresh result is visible at the intended destination, the chat is accessible,
+   and the recurring task remains enabled on the preserved schedule. A completed
+   observer/BLOCKED wake can verify delivery; product GREEN is a separate gate.
+   Enabled, an accepted request, or an old report is insufficient.
+5. If the next run fails or the task pauses again, record the new error/timestamps
+   and revisit the working cause; stop repeated toggling or re-submission. Keep
+   one resumable next action, not another watchdog. Preserve raw facts when the
+   provider exposes no actor/reason. Unarchive success alone is not scheduler
+   recovery success.
+
+Persist observations through an authorized coordination path without moving a
+guarded product HEAD. During long waits, show separately: chat access, task
+enabled, actual run state, fresh delivery, and product progress. Preserve polling
+backoff and phase deadlines; do not replace them with a fixed poll-count ceiling.
+
 ## Execution lease and heartbeat
 
 Use the conditional ownership or designated single-writer protocol in `references/execution-ownership.md`. Checkpoint timestamps alone do not prevent concurrent writers or prove background activity. Apply the complete sequence in `references/orchestration-controls.md`.

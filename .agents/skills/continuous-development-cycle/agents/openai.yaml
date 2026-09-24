@@ -1,7 +1,7 @@
 name: Continuous Development Cycle
 description: Recoverable development with priority Codex Compute and default Work/Codex
   subagents.
-version: 2.3.3
+version: 2.3.5
 policy:
   products:
   - chatgpt
