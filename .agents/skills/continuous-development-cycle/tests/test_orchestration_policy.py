@@ -35,6 +35,9 @@ class OrchestrationPolicyTests(unittest.TestCase):
         data = load_yaml(ROOT / "templates/development-cycle.yaml")
         data["orchestration"] = configuration()
         data["policy"]["skill_min_version"] = "2.3.0"
+        data["checkpoint"]["schema"] = "development-work-status/v3"
+        for name in ("routing", "recovery_recipes", "continuation"):
+            data.pop(name, None)
         return data
 
     def test_v22_adapter_stays_compatible_without_new_section(self):

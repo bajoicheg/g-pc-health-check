@@ -17,6 +17,68 @@ An explicit kick bypasses only an idle threshold. It never bypasses concurrency,
 
 Watchdog subagent policy is inherited from the runtime that executes the wake: ordinary chat means no subagents; Work/Codex orchestration explicitly enables useful delegation by default with adaptive effort and no per-launch approval, subject to higher-priority restrictions. Prefer configured Codex Compute for eligible candidate checks and follow `codex-compute.md` for setup, task binding and fallback.
 
+## Six-signal watchdog health vector
+
+Do not reduce watchdog health to one timestamp, spinner or `enabled` flag. Build
+a fresh `watchdog-health-probe/v1` with exactly six independent signals and
+classify it with `scripts/watchdog_health.py`:
+
+| Signal | States | Meaning |
+|---|---|---|
+| scheduler | `ok / drift / overdue / unknown` | desired vs observed canonical recurring task and expected delivery cadence |
+| chat | `active / archived / missing / unknown` | exact bound control/delivery conversation availability |
+| invocation | `idle / running / completed / unknown` | actual execution state of the exact watchdog invocation, not an inferred spinner |
+| lease | `released / fresh / stale / expired / unknown` | live coordination owner/generation and heartbeat/TTL state |
+| external | `none / queued / running / unknown / terminal_unreconciled / terminal_reconciled` | durable guard plus provider task state |
+| progress | `fresh / stale / none / unknown` | meaningful repository/provider/checkpoint progress, excluding polling and heartbeat-only writes |
+
+Projects define their scheduler-overdue and meaningful-progress windows in the
+project runbook. Never invent freshness from missing timestamps. A heartbeat,
+poll, accepted request, scheduler readback or unchanged checkpoint is not
+meaningful product progress.
+
+The classifier returns `HEALTHY`, `DEGRADED`, `STALLED`, `BLOCKED`, or
+`RECOVERY_REQUIRED`, a reason list, a primary recovery action and a stable
+fingerprint. The summary is **diagnostic only**. All side-effect booleans remain
+false: health never grants takeover, product writes, external starts, scheduler
+mutation, budget restoration, merge or release authority. Apply the normal
+ownership/external/budget gates after health diagnosis.
+
+Important contradictions are first-class incidents. Examples:
+- completed/idle invocation plus an owned lease => orphan-lease recovery candidate;
+- desired-enabled scheduler plus observed-disabled => scheduler drift;
+- archived/missing bound chat => chat-dependency recovery;
+- active external work => `BLOCKED`/observe rather than a competing start;
+- no meaningful progress while no legitimate external wait exists => `STALLED`;
+- incomplete observations => `DEGRADED`, never fabricated health.
+
+Persist the probe/assessment on an authorized coordination path when it improves
+handoff or diagnosis, without moving a guarded product HEAD. Compare the
+assessment fingerprint to the previous snapshot: unchanged health may stay quiet;
+a changed overall state, signal, blocker, recovery action, scheduler/chat drift or
+progress freshness is meaningful. `HEALTHY` means the watchdog control path is
+coherent, not that product validation/release gates are complete.
+
+## Silent-dead-end recovery
+
+A completed watchdog invocation with a runnable next action, no legitimate
+external wait/guard and no real blocker must not be treated as healthy merely
+because the scheduler ran and the lease was released. Tool discovery, reading
+status, or deciding which backend to use is not meaningful progress. The wake
+must either execute the runnable action, switch to an authorized fallback in the
+same invocation, or persist an explicit blocker/handoff.
+
+When diagnosing “I see no work”, distinguish:
+- **execution visibility** — which chat/destination receives watchdog reports;
+- **scheduler delivery** — whether the canonical recurring invocation actually ran;
+- **meaningful development progress** — commits/evidence/task transitions;
+- **ownership state** — live coordination, not stale checkpoint liveness fields.
+
+A quiet notification policy may hide a successful wake from the foreground chat;
+it must never be used as evidence that development is active. Conversely, a
+fresh scheduler timestamp with no meaningful progress and a runnable next action
+eventually becomes stale under the project progress threshold.
+
 ## Scheduler lifecycle and drift
 
 Keep three independent states: desired scheduler state authorized by the user,
@@ -139,8 +201,10 @@ Default reusable policy:
 - before remote compute/CI waits, persist `waiting_external`, exact candidate SHA, and the external task/comment/run identifier;
 - while that exact external work is actually queued/in-progress, it remains a concurrency guard even if the lease TTL expires;
 - a terminal external result does not renew owner activity; stale heartbeat or expired TTL requests diagnosis, never takeover by itself. Require explicit release or verified previous-executor quiescence, including pending writes and provider calls;
-- on handoff, blocker, runtime/tool stop, or normal session exit, explicitly release ownership and persist one exact next action;
-- explicit kicks bypass idle guard only, never a fresh heartbeat or genuinely in-flight external operation;
+- before a normal invocation returns its final response while it still owns the lease, drain shared writes, retain any unresolved external guard, explicitly release ownership, and persist one exact next action; a completed invocation must not leave a lease that merely waits for TTL;
+- on foreground recovery or an explicit kick, actively resolve the live owner's invocation state. Independently verified completion of the exact owning invocation plus drained pending effects qualifies as `executor_stopped` quiescence even if its last heartbeat is still fresh or TTL has not expired. If the owner invocation cannot be bound and proven finished, remain observer-only;
+- explicit kicks bypass the idle guard only; they never bypass a genuinely running/unverified owner, unknown/submitting external work, budget, or validation gates;
+- silence, elapsed TTL, stale heartbeat, or scheduler `last_run_time` alone never proves executor completion;
 - legacy long leases should be normalized at the next safe checkpoint rather than honored as unconditional locks.
 
 A repository may override the numeric windows, but the semantic distinction between **ownership heartbeat** and **external work state** must remain.

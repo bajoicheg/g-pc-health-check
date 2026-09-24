@@ -30,7 +30,7 @@ SCHEMA = {
         "branch_policy": ("checkpoint_or_discover",), "pr_policy": ("active_or_discover",)},
     "planning": {"active_change_policy": ("exactly_one",), "specification_root": str,
                  "strict_validation_command": str},
-    "checkpoint": {"path": nonempty, "schema": ("development-work-status/v3",)},
+    "checkpoint": {"path": nonempty, "schema": ("development-work-status/v3", "development-work-status/v4")},
     "validation": {"quick": str, "full": str, "release": str, "final_platform": nonempty,
         "final_remote_required": bool, "evidence_schema": ("command-evidence/v1",),
         "check_plan": str},
@@ -121,6 +121,35 @@ def validate_orchestration(value, actions_budget):
         raise ContractError("orchestration budget must match ci.actions_budget; reconcile policy drift")
 
 
+def validate_v25_controls(data):
+    check(data["routing"], {
+        "capability_registry_ref": nonempty,
+        "request_schema": ("capability-request/v1",),
+        "backend_kind_preference": [nonempty],
+        "require_fresh_registry": TRUE,
+        "no_match_state": ("waiting_external",),
+        "router_authority": ("recommendation_only",),
+        "max_registry_age_seconds": positive,
+    }, "adapter.routing")
+    kinds = data["routing"]["backend_kind_preference"]
+    allowed = {"codex_compute", "local", "other_compute", "github_actions"}
+    if not kinds or len(set(kinds)) != len(kinds) or not set(kinds) <= allowed:
+        raise ContractError("routing backend_kind_preference is invalid or duplicated")
+    check(data["recovery_recipes"], {
+        "catalog_ref": nonempty,
+        "diagnosis_schema": ("recovery-diagnosis/v1",),
+        "deterministic_selection": TRUE,
+        "recipe_authority": ("recommendation_only",),
+    }, "adapter.recovery_recipes")
+    check(data["continuation"], {
+        "queue_ref": nonempty,
+        "event_schema": ("continuation-event/v1",),
+        "event_wake_is_authority": FALSE,
+        "scheduler_fallback_required": TRUE,
+        "dedupe_required": TRUE,
+        "claim_ttl_seconds": positive,
+    }, "adapter.continuation")
+
 def validate_adapter(data, skill_version=None):
     if isinstance(data, dict) and data.get("schema") in (
             "continuous-development-cycle/v1", "continuous-development-cycle/v2"):
@@ -129,6 +158,9 @@ def validate_adapter(data, skill_version=None):
     schema = dict(SCHEMA)
     if isinstance(data, dict) and "orchestration" in data:
         schema["orchestration"] = dict
+    for name in ("routing", "recovery_recipes", "continuation"):
+        if isinstance(data, dict) and name in data:
+            schema[name] = dict
     check(data, schema)
     policy = data["policy"]
     version = semver(skill_version or (ROOT / "VERSION").read_text().strip())
@@ -137,6 +169,18 @@ def validate_adapter(data, skill_version=None):
         raise ContractError("policy skill version range is incompatible with installed skill")
     if lower < (2, 2, 0):
         raise ContractError("adapter v3 requires skill_min_version >= 2.2.0")
+    if data["checkpoint"]["schema"] == "development-work-status/v4" and lower < (2, 4, 0):
+        raise ContractError("checkpoint v4 requires skill_min_version >= 2.4.0")
+    if lower >= (2, 4, 0) and data["checkpoint"]["schema"] != "development-work-status/v4":
+        raise ContractError("CDC 2.4+ policy must use checkpoint v4")
+    v25_names = ("routing", "recovery_recipes", "continuation")
+    v25_present = [name in data for name in v25_names]
+    if any(v25_present) and lower < (2, 5, 0):
+        raise ContractError("CDC 2.5 controls require skill_min_version >= 2.5.0")
+    if lower >= (2, 5, 0) and not all(v25_present):
+        raise ContractError("CDC 2.5+ policy requires routing, recovery_recipes and continuation")
+    if all(v25_present):
+        validate_v25_controls(data)
     if "orchestration" in data:
         if lower < (2, 3, 0):
             raise ContractError("orchestration controls require skill_min_version >= 2.3.0")

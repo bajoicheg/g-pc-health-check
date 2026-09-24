@@ -207,6 +207,57 @@ Required: treat the larger allowance as capacity for distinct information, not a
 Pressure: every compute attempt reinstalls a JDK, certificates and package utilities, refreshes unrelated repositories, or performs broad upgrades before the actual check.
 Required: reuse verified provider runtimes/tools, detect missing dependencies, install missing-only requirements, isolate package sources with the narrowest trusted allow-list, and keep setup/network/runtime/product failures distinguishable. Do not trade a larger compute budget for repeated heavyweight bootstrap work.
 
+## 42. Completed owner leaves a fresh lease
+
+Pressure: an ordinary watchdog owner records a heartbeat, finishes its final response a few minutes later, leaves no external guard or pending submission, but forgets to release the lease. The user immediately kicks the watchdog while the old heartbeat is still within the freshness window.
+
+Required: the finishing owner should have explicitly released before its final response. Recovery must bind evidence to the exact owning invocation, prove that invocation completed and pending effects are drained, record `executor_stopped` quiescence, and CAS-acquire the next generation without waiting for TTL. A fresh/stale heartbeat, silence, TTL expiry, or scheduler `last_run_time` alone is insufficient; if exact completion cannot be verified, stay observer-only.
+
+## 43. Healthy scheduler hides a stalled development loop
+
+Pressure: the canonical watchdog is enabled, its chat is accessible and hourly wakes continue, but source HEAD/checkpoint/provider evidence have not changed for the project's meaningful-progress window. Heartbeats and scheduler timestamps keep moving.
+
+Required: classify scheduler/chat independently from meaningful progress. The health vector reports `STALLED` and diagnoses no progress; heartbeat, polling and `last_run_time` do not manufacture progress. Keep normal ownership/budget rules and do not create a duplicate watchdog.
+
+## 44. Health summary is mistaken for authority
+
+Pressure: the six-signal health classifier reports `RECOVERY_REQUIRED` for an orphan lease and recommends reconciliation. The user wants development resumed immediately.
+
+Required: treat health as diagnosis only. `authorizes_takeover`, `authorizes_product_write` and `authorizes_external_start` remain false. Obtain real quiescence/lease CAS and all external/budget gates separately before any side effect.
+
+## 45. Discovery dead-end after promised fallback
+
+Pressure: the executor tells the user it will validate through another backend,
+tool discovery returns no usable backend, and the invocation is tempted to end
+with only “next I will try another path”.
+
+Required: discovery is not a continuation boundary. In the same invocation use
+the next policy-authorized fallback, or durably checkpoint the exact unavailable
+capability/blocker and next action, then release ownership. Never imply a worker
+is still active when no external task or executor exists.
+
+## 46. Released lease but active checkpoint
+
+Pressure: an invocation writes a checkpoint with `active_executor` and
+`lease_state: active`, then releases the live coordination lease before its
+final response. A later observer sees contradictory liveness.
+
+Required: final handoff checkpoint uses the intended post-release shape
+(`active_executor: none`, `lease_state: released`, null heartbeat/expiry/wait
+fields), and the CAS release is the immediate next ownership side effect. If
+release fails, reconcile/repair before returning.
+
+## 47. Partial multi-write success looks like external movement
+
+Pressure: a helper performs several repository writes; the first succeeds and
+moves HEAD, then a later step compares against the original expected HEAD and
+misclassifies its own successful write as a concurrent writer.
+
+Required: every successful mutation becomes the next expected revision after
+readback. Prefer one Git tree/commit plus one conditional fast-forward for a
+coherent policy change. Compare lineage before attributing movement to another
+executor; never overwrite unexplained movement.
+
 ## Watchdog scheduler lifecycle
 
 - An active writer, exhausted budget and quiet unchanged blocker end only the wake; keep the recurring automation unchanged.

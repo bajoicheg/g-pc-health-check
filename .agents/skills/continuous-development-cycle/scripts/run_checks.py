@@ -21,7 +21,7 @@ import xml.etree.ElementTree as ET
 
 PLAN_SCHEMA = "command-check-plan/v1"
 EVIDENCE_SCHEMA = "command-evidence/v1"
-SKILL_VERSION = "2.3.0"
+SKILL_VERSION = "2.5.0"
 SHA_PATTERN = re.compile(r"(?:[0-9a-f]{40}|[0-9a-f]{64})\Z")
 KINDS = {"build", "test", "lint", "schema", "check"}
 

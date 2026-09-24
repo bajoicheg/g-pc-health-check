@@ -42,21 +42,25 @@ Record separately: prepared locally / committed / tested / reviewed / merged / p
 - Preserve read-only PR permissions, pinned Actions, independent required checks and the exact-main-build publication/attestation chain. No bypass merges or disabling failing checks.
 - Hosted Windows Server tests are not interactive Windows 11/UAC/RDP/DPI acceptance. A source review by the implementing agent is not an independent reviewer.
 
-## Continuous Development Cycle 2.3.5
+## Continuous Development Cycle 2.5.0
 
-This repository uses the vendored `.agents/skills/continuous-development-cycle` as the orchestration core. On every development/watchdog resume, read `docs/development-cycle.yaml` and `docs/work-status/current.md` after this file and before shared writes or external starts.
+This repository uses the vendored `.agents/skills/continuous-development-cycle` **2.5.0** as the orchestration core. On every development/watchdog resume, read `docs/development-cycle.yaml` and `docs/work-status/current.md` after this file and before shared writes or external starts.
 
 Project-specific product/security rules above remain authoritative constraints. CDC adds recovery, ownership, budget, external-operation and continuity controls; it does not weaken UAC/security boundaries, required Windows gates, repository protections, or owner approvals.
 
 - Canonical coordination backend: `refs/heads/cdc/coordination`.
-- Acquire a valid lease before shared writes/external starts; expiry alone is not takeover permission.
+- New ownership uses invocation-bound `execution-lease/v2`; expiry alone is never takeover permission.
+- Finalization is transactional: `active → draining → checkpointed → reconciled → ready → release`; the `ready` transition requires an allowed hard execution-continuity decision bound to the exact invocation.
+- Primitive status/health/lease/poll/report/heartbeat work is not meaningful progress and cannot terminate runnable work.
+- Resume-capsule fast path requires exact repository/ref/HEAD, skill version, policy revision/digest, checkpoint digest and lease-revision agreement.
+- Before selecting compute/CI/backend, form an explicit `capability-request/v1` and route it through fresh `backend-capability-registry/v1`; backend names do not prove platform/runtime capability and a route never grants launch authority.
+- Known operational failure classes use deterministic allow-listed recovery recipes before open-ended RCA; recipe steps retain all normal authorization gates.
+- Durable `continuation-queue/v1` events are deduplicated and invocation-claimed for delivery only. Immediate event wake is preferred when supported; the hourly watchdog remains the mandatory scheduler fallback.
 - Persist/read back operation intent before external submit and reconcile unknown outcomes before resubmission.
 - Ordinary ChatGPT runs without subagents. Work/Codex orchestration may delegate within writer-isolation and budget rules.
 - Prefer configured compatible Codex COMPUTE_ONLY for eligible exact-SHA validation; it never edits/commits/pushes/merges and never substitutes for managed Windows 11 acceptance.
 - Current wake cap: 4 Codex Compute starts; status polling has no count ceiling and uses bounded backoff/deadlines.
-- Actions policy is `conserve`; do not spend a full run on policy/status-only changes.
-- Hourly watchdog obeys the same concurrency/budget/product gates. An explicit kick bypasses only idle guard.
-- Keep desired scheduler state separate from current-wake eligibility: BLOCKED, another writer, an external guard, exhausted budget, runtime limit or quiet notifications end/limit only the wake and never authorize disabling the recurring watchdog.
-- Ordinary watchdog wakes must not update/delete/reschedule the automation. Scheduler changes require an explicit current owner request; honor a later verified owner/UI pause.
-- Treat the task-linked conversation as an operational dependency. Reconcile `docs/watchdog-chat-binding.json` during foreground status/recovery, protect verified linked chats from cleanup, and never invent or silently replace an unknown/missing chat binding.
+- Actions policy is `conserve`; do not spend a full product run on policy/status-only changes.
+- Hourly watchdog obeys the same concurrency/budget/product gates and never disables itself because a wake is blocked.
+- Treat the task-linked conversation as an operational dependency and never invent or silently replace an unknown/missing binding.
 - The 0.17.0 pilot candidate remains pinned on `pilot/0.17.0-rc-f037bece`; process-only CDC commits are not a newly tested product binary.

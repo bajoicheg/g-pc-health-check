@@ -1,4 +1,4 @@
-# Continuous Development Cycle v2.3.4
+# Continuous Development Cycle v2.5.0
 
 Installable ChatGPT/Codex/agent skill for recoverable, long-running software development.
 
@@ -53,3 +53,23 @@ Use `references/orchestration-controls.md` to connect these controls. Existing a
 ## v2.3.4 watchdog lifecycle
 
 Separate scheduler state from wake eligibility. Preserve recurring schedules through blockers and budget limits, honor verified user pauses, and audit unexplained drift without inventing its cause.
+
+
+## v2.4 durable control plane
+
+- Invocation-bound execution lease v2 prevents a different wake from renewing or releasing an owner's lease.
+- Transactional finalization enforces drain → checkpoint → reconcile → ready → release before a final response.
+- A durable resume capsule makes a chat/invocation/backend disposable while requiring exact live-probe agreement before fast resume.
+- A hard execution-continuity FSM rejects primitive-only status/health/lease/poll/report completion while runnable work exists.
+- Checkpoint v4 records execution continuity; v3 and released lease v1 remain readable for explicit migration.
+
+Read `references/control-plane-v2.4.md`. Validate with `python -B scripts/validate_package.py` and `python -B -m unittest discover -s tests`.
+
+
+## v2.5 routing and event continuation
+
+- Capability-based routing chooses only freshly evidenced, compatible backends and never treats a route as launch authority.
+- Deterministic recovery recipes turn known health/failure diagnoses into allow-listed bounded control-plane steps without repeated improvised RCA.
+- A durable continuation queue deduplicates CI/compute/backend/scheduler/policy events, binds delivery to an invocation, and requests immediate wakes when supported; the recurring watchdog remains the fallback.
+
+Read `references/capability-routing.md`, `references/deterministic-recovery.md` and `references/event-driven-continuation.md`.

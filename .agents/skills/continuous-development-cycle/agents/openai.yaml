@@ -1,7 +1,6 @@
 name: Continuous Development Cycle
-description: Recoverable development with priority Codex Compute and default Work/Codex
-  subagents.
-version: 2.3.5
+description: Recoverable development with capability routing, deterministic recovery and durable continuation events.
+version: 2.5.0
 policy:
   products:
   - chatgpt
@@ -11,8 +10,7 @@ policy:
   allow_implicit_invocation: true
 interface:
   display_name: Continuous Development Cycle
-  short_description: Codex-first checks and recoverable Work/Codex development
+  short_description: Durable development with routing, recipes and event continuation
   icon_small: assets/icon.svg
   icon_large: assets/icon.svg
-  default_prompt: Use $continuous-development-cycle to continue development with priority
-    Codex Compute and default Work/Codex subagents.
+  default_prompt: Use $continuous-development-cycle to continue durable development through CDC 2.5 routing, recovery and continuation controls.
