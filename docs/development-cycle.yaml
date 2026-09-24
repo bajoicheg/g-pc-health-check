@@ -1,7 +1,7 @@
 schema: continuous-development-cycle/v3
 policy:
-  revision: 2026-09-23-cdc-2.3.3-tool-budget-80
-  skill_min_version: 2.3.3
+  revision: 2026-09-24-cdc-2.3.5-watchdog-lifecycle
+  skill_min_version: 2.3.5
   skill_max_version_exclusive: 3.0.0
   approved_exceptions: []
 repository:

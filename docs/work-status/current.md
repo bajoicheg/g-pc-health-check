@@ -2,9 +2,9 @@
 schema: development-work-status/v3
 repository: bajoicheg/g-pc-health-check
 branch: design/0.17.0-security-posture
-policy_revision: 2026-09-23-cdc-2.3.3-tool-budget-80
-policy_digest: 27d868e1e3be5a0eab1985843c0045ad3cd8b42cd1c27c8be70ebcb995f327ef
-observed_at_utc: '2026-09-23T20:03:00Z'
+policy_revision: 2026-09-24-cdc-2.3.5-watchdog-lifecycle
+policy_digest: a209c72ce0543d5cef31bce0a57230b68d8d67b99b84638b1e88b2c5e91aacfe
+observed_at_utc: '2026-09-24T01:20:00Z'
 orchestration_origin: chat
 active_executor: none
 lease_state: released
@@ -43,7 +43,7 @@ next_action: Use the retained pilot bundle from run 35152451989 on approved mana
 
 # Current work status
 
-CDC 2.3.3 is process-only state. The existing product candidate remains pinned at `pilot/0.17.0-rc-f037bece` -> `f037bece0272814f9b0f069aaf1de17be369b626`.
+CDC 2.3.5 is process-only state. Scheduler lifecycle and chat-dependency protections are active; BLOCKED or budget/runtime limits end only the current wake and do not authorize disabling the recurring watchdog. The existing product candidate remains pinned at `pilot/0.17.0-rc-f037bece` -> `f037bece0272814f9b0f069aaf1de17be369b626`.
 
 The retained pilot EXE has FileVersion `0.17.0.0` and SHA-256 `0cb8de4247ddcd42348b39dd673d4791956795a5d365eb5abc9c178442b74759`. Hosted/manual CI is not the managed Windows 11 acceptance gate.
 
