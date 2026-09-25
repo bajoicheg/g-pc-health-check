@@ -3,7 +3,7 @@ schema: development-work-status/v4
 repository: bajoicheg/g-pc-health-check
 branch: cdc/2.6.0-active-adoption
 policy_revision: 2026-09-25-cdc-2.6.0-fleet-control-plane
-policy_digest: null
+policy_digest: 362b598cafef3ca535f0f2a097ba6c50877bcb03a388fead08c59fc0e2a4fa97
 observed_at_utc: '2026-09-25T05:12:00Z'
 orchestration_origin: chat
 active_executor: none
