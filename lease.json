@@ -3,10 +3,10 @@
   "repository": "bajoicheg/g-pc-health-check",
   "source_ref": "refs/heads/design/0.17.0-security-posture",
   "generation": 4,
-  "owner_id": "27000000-0925-4270-8445-000000000004",
-  "acquired_at_utc": "2026-09-25T08:45:00Z",
-  "heartbeat_at_utc": "2026-09-25T08:45:00Z",
-  "expires_at_utc": "2026-09-25T09:05:00Z",
+  "owner_id": null,
+  "acquired_at_utc": null,
+  "heartbeat_at_utc": null,
+  "expires_at_utc": null,
   "activity_refs": [
     "merge:4d42c155a6e2fecbd0808db341908b748301562f",
     "pr-comment:5821138767",
@@ -15,32 +15,23 @@
     "cdc26:fleet-refresh:audit",
     "cdc26:fleet-refresh:resume",
     "cdc26:fleet-refresh:release",
-    "cdc27:rollout:pc-health:acquire"
+    "cdc27:rollout:pc-health:acquire",
+    "cdc27:rollout:pc-health:commit:45b3129a45931fe8d0e3d83f784ae62dcbc651af"
   ],
   "external_guard": null,
   "last_release": {
-    "owner_id": "6d2814bb-ff4d-4d66-9838-fb235b0436a1",
-    "generation": 3,
-    "invocation_id": "chat-2026-09-25T07:03:35Z-terminal-state",
-    "at_utc": "2026-09-25T07:11:30Z",
-    "checkpoint_ref": "git:92e03babf3a63797852d7cb331af0629950a5793",
+    "owner_id": "27000000-0925-4270-8445-000000000004",
+    "generation": 4,
+    "invocation_id": "chat-2026-09-25T084500Z-cdc27-rollout-pc-health",
+    "at_utc": "2026-09-25T08:49:00Z",
+    "checkpoint_ref": "git:45b3129a45931fe8d0e3d83f784ae62dcbc651af",
     "external_reconciliation": "none",
-    "completion_reason": "resumable_blocker"
+    "completion_reason": "meaningful_repository_progress"
   },
-  "takeover_evidence": {
-    "kind": "explicit_release",
-    "generation": 3,
-    "owner_id": null,
-    "reference": "lease.last_release@2026-09-25T07:11:30Z"
-  },
+  "takeover_evidence": null,
   "last_terminal": null,
   "submission_claims": [],
-  "invocation": {
-    "invocation_id": "chat-2026-09-25T084500Z-cdc27-rollout-pc-health",
-    "runtime": "chatgpt",
-    "task": "cdc-2.7-consumer-rollout",
-    "started_at_utc": "2026-09-25T08:45:00Z"
-  },
+  "invocation": null,
   "finalization": null,
   "legacy_migration": {
     "from_schema": "execution-lease/v1",
