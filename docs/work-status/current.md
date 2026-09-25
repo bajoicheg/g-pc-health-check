@@ -1,10 +1,10 @@
 ---
 schema: development-work-status/v4
 repository: bajoicheg/g-pc-health-check
-branch: cdc/2.6.0-active-adoption
+branch: design/0.17.0-security-posture
 policy_revision: 2026-09-25-cdc-2.6.0-fleet-control-plane
 policy_digest: 362b598cafef3ca535f0f2a097ba6c50877bcb03a388fead08c59fc0e2a4fa97
-observed_at_utc: '2026-09-25T05:12:00Z'
+observed_at_utc: '2026-09-25T05:31:00Z'
 orchestration_origin: chat
 active_executor: none
 lease_state: released
@@ -22,7 +22,7 @@ execution_continuity:
   meaningful_progress: true
   primitive_steps_since_progress: 0
   completion_gate: resumable_blocker
-  last_progress_ref: 'cdc26-package:git-tree:e2cf6199eb60ca998012184b460c9a05c9f33b80'
+  last_progress_ref: 'cdc26-integration:a5e6263a9fa2ec68e5825f85cc0dd9086bf3693b'
 control:
   execution_lease_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/lease.json
   execution_lease_revision: 9f11462c4ac4af7bcf40fe5980794d4d234ac1b7
