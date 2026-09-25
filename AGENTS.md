@@ -59,11 +59,11 @@ Project-specific product/security rules above remain authoritative constraints. 
 - Persist/read back operation intent before external submit and reconcile unknown outcomes before resubmission.
 - Ordinary ChatGPT runs without subagents. Work/Codex orchestration may delegate within writer-isolation and budget rules.
 - Prefer configured compatible Codex COMPUTE_ONLY for eligible exact-SHA validation; it never edits/commits/pushes/merges and never substitutes for managed Windows 11 acceptance.
-- Current wake cap: 4 Codex Compute starts; status polling has no count ceiling and uses bounded backoff/deadlines.
+- Current wake cap: 4 Codex Compute starts; status polling has no count ceiling and uses bounded backoff/deadlines. Missing execution transport/API methods are not human approval gates; prefer safe durable event routes before asking for a mechanical user action.
 - Actions policy is `conserve`; do not spend a full product run on policy/status-only changes.
 - Hourly watchdog obeys the same concurrency/budget/product gates and never disables itself because a wake is blocked.
 - Treat the task-linked conversation as an operational dependency and never invent or silently replace an unknown/missing binding.
-- The 0.17.0 pilot candidate remains pinned on `pilot/0.17.0-rc-f037bece`; process-only CDC commits are not a newly tested product binary.
+- The current automated pilot evidence is pinned by `pilot/0.17.0-rc-6a66e8c4` at exact marker SHA `cbd20da8822f321df0d6404a955bf2cea9e553bb`; process-only CDC commits do not change that retained binary evidence.
 
 
 ## CDC 2.5 validation
