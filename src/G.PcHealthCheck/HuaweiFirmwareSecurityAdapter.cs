@@ -71,7 +71,7 @@ internal static class HuaweiSmbiosHardwareSecurityReader
             if (written != required)
                 throw new InvalidDataException("Raw SMBIOS table length changed during collection.");
 
-            var raw = new byte[written];
+            var raw = new byte[checked((int)written)];
             Marshal.Copy(buffer, raw, 0, checked((int)written));
             return ParseRawSmbios(raw);
         }
@@ -94,7 +94,7 @@ internal static class HuaweiSmbiosHardwareSecurityReader
 
         var tableLength = BitConverter.ToUInt32(raw, 4);
         var available = raw.Length - RawSmbiosHeaderLength;
-        if (tableLength > available)
+        if (tableLength > (uint)available)
             return (null, null);
 
         var offset = RawSmbiosHeaderLength;
@@ -311,6 +311,7 @@ internal static class HuaweiFirmwareBootReader
 
     private static List<string> ExtractIds(string block)
         => Identifier.Matches(block)
+            .Cast<Match>()
             .Select(x => x.Value.ToLowerInvariant())
             .ToList();
 

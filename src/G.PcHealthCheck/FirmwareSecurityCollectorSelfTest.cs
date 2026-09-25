@@ -62,6 +62,15 @@ internal static class FirmwareSecurityCollectorSelfTest
             var unknown = HuaweiSmbiosHardwareSecurityReader.ParseHardwareSecurityByte(0xCC);
             Require(unknown.AdminPasswordSet is null, "SMBIOS Type 24 Unknown administrator-password state must remain Unknown.");
             Require(unknown.PowerOnPasswordSet is null, "SMBIOS Type 24 Unknown power-on state must remain Unknown.");
+
+            var raw = new byte[]
+            {
+                0, 3, 9, 0, 7, 0, 0, 0,
+                24, 5, 1, 0, 0x44, 0, 0
+            };
+            var parsedRaw = HuaweiSmbiosHardwareSecurityReader.ParseRawSmbios(raw);
+            Require(parsedRaw.AdminPasswordSet == true && parsedRaw.PowerOnPasswordSet == true,
+                "Raw SMBIOS parser must locate Type 24 and decode only its status byte.");
         });
 
         Test("Huawei adapter exposes SMBIOS admin password and never invents drive password", () =>
@@ -75,6 +84,7 @@ internal static class FirmwareSecurityCollectorSelfTest
             Require(observation.AdminPasswordSet == true, "Huawei SMBIOS admin-password evidence must surface.");
             Require(observation.PowerOnPasswordSet == false, "Huawei SMBIOS power-on evidence must surface.");
             Require(observation.DrivePasswordSet is null, "SMBIOS Type 24 does not prove drive-password state.");
+            Require(!HasDeclaredInstallMethod(typeof(HuaweiFirmwareSecurityAdapter)), "Huawei adapter must not install PC Manager/provider/tooling.");
             var controls = FirmwareSecurityCollector.Collect("HUAWEI", [adapter]);
             Require(controls["SEC-BIOS-ADMIN-PASSWORD"].Status == SecurityControlStatus.Pass,
                 "Confirmed Huawei administrator password must contribute known Security coverage.");
@@ -92,7 +102,7 @@ displayorder            {bootmgr}
 Windows Boot Manager
 --------------------
 identifier              {bootmgr}
-path                    \\EFI\\Microsoft\\Boot\\bootmgfw.efi
+path                    \EFI\Microsoft\Boot\bootmgfw.efi
 description             Windows Boot Manager
 
 EFI USB Device
