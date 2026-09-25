@@ -1,0 +1,18 @@
+{
+  "schema": "control-plane-audit-log/v1",
+  "repository": "bajoicheg/g-pc-health-check",
+  "source_ref": "refs/heads/design/0.17.0-security-posture",
+  "entries": [
+    {
+      "sequence": 1,
+      "occurred_at_utc": "2026-09-25T05:35:00Z",
+      "actor_invocation_id": "chat-cdc-2.6-rollout-20260925",
+      "event_type": "policy_adopt",
+      "object_ref": "git:1d89c1d9156c1f8dc3bd0e88cf5e4d28c7cde3de",
+      "outcome": "converged",
+      "details_digest": "sha256:ab501f3fc36da6f7d627daf0fa807b9db2f973a79ac4d96f193d8c8b8f74142a",
+      "previous_hash": null,
+      "event_hash": "sha256:0d5ea25aa45eda192546611dc616095994bf49c4e75cc3a96856598cdc1e60c8"
+    }
+  ]
+}

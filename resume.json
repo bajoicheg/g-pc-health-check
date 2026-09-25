@@ -1,26 +1,26 @@
 {
   "schema": "resume-capsule/v1",
-  "updated_at_utc": "2026-09-24T19:49:36Z",
+  "updated_at_utc": "2026-09-25T05:35:00Z",
   "repository": "bajoicheg/g-pc-health-check",
   "source_ref": "refs/heads/design/0.17.0-security-posture",
-  "head_sha": "93f46355ade150b41dcad50224cdfec586259da9",
-  "policy_version": "2.5.0",
-  "policy_revision": "2026-09-24-cdc-2.5.0-routing-events",
-  "policy_digest": "sha256:91ab8cf8408a4cf2cb8f758b3397a33dc90a1eba40b3de45e3bb7db5cf2c1bc5",
+  "head_sha": "1d89c1d9156c1f8dc3bd0e88cf5e4d28c7cde3de",
+  "policy_version": "2.6.0",
+  "policy_revision": "2026-09-25-cdc-2.6.0-fleet-control-plane",
+  "policy_digest": "sha256:362b598cafef3ca535f0f2a097ba6c50877bcb03a388fead08c59fc0e2a4fa97",
   "checkpoint_ref": "docs/work-status/current.md",
-  "checkpoint_digest": "fb2400ad20faa26d85176f2e385f48c8db34563b5c4cd375a6675a1bcc46e375",
+  "checkpoint_digest": "31e615eff22be2880fb4c5755b33dfdd9bd22e05c4c7a06699e3fc2050f65dce",
   "task": {
     "phase": "blocked",
     "current_task": "Managed Windows 11 pilot and pre-integration acceptance",
-    "next_action": "Use the retained pilot bundle from run 35152451989 on approved managed/disposable Windows 11 endpoints. Do not merge PR #92 or enable auto-merge. If source changes, create a new exact-SHA candidate and re-run the required gates under CDC budgets.",
+    "next_action": "Use retained pilot bundle from run 35152451989 on approved managed/disposable Windows 11 endpoints. Do not merge PR #92 or enable auto-merge without explicit owner integration approval.",
     "blocker": "managed_windows_11_pilot_pending; explicit_owner_integration_approval_required"
   },
   "ownership": {
     "lease_schema": "execution-lease/v2",
-    "owner_id": "687bb324-4b83-4bc1-a4ff-8d54939b39f1",
-    "invocation_id": "chat-2026-09-24T19:42:16Z-cdc25-sync-36b19799",
+    "owner_id": null,
+    "invocation_id": null,
     "generation": 1,
-    "revision": "f3d5cc04a2eea054372242d16cf7128fb19352b8"
+    "revision": "9f11462c4ac4af7bcf40fe5980794d4d234ac1b7"
   },
   "external": null,
   "validation": {
@@ -33,15 +33,15 @@
     ]
   },
   "health": {
-    "state": "UNKNOWN",
-    "fingerprint": null
+    "state": "BLOCKED",
+    "fingerprint": "sha256:1b2a04138a7d3f9ecf8c6e07cb3caacfd59ecebf70f8afa9fe744a606d25e016"
   },
   "budget": {
     "ref": "https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/budget.json",
-    "summary": "Actions conserve; CDC 2.5 reconciliation used only process/control-plane writes and no new product Actions run."
+    "summary": "Actions conserve; CDC 2.6 adoption is process/control-plane only."
   },
   "recovery": {
     "recommended_action": "resume_next_action",
-    "reason": "CDC 2.5 main lineage reconciled; remaining product blocker is the managed Windows 11 pilot plus explicit owner integration approval."
+    "reason": "CDC 2.6 converged; external pilot/approval blocker pauses progress SLO."
   }
 }

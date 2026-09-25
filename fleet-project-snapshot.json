@@ -1,0 +1,35 @@
+{
+  "schema": "fleet-project-snapshot/v1",
+  "repository": "bajoicheg/g-pc-health-check",
+  "source_ref": "refs/heads/design/0.17.0-security-posture",
+  "observed_at_utc": "2026-09-25T05:35:00Z",
+  "product_head": "1d89c1d9156c1f8dc3bd0e88cf5e4d28c7cde3de",
+  "cdc_version": "2.6.0",
+  "package_fingerprint": "git-tree:e2cf6199eb60ca998012184b460c9a05c9f33b80",
+  "checkpoint_schema": "development-work-status/v4",
+  "policy_revision": "2026-09-25-cdc-2.6.0-fleet-control-plane",
+  "watchdog": {
+    "enabled": true,
+    "last_run_at_utc": "2026-09-25T03:32:04Z"
+  },
+  "coordination": {
+    "lease_schema": "execution-lease/v2",
+    "generation": 1,
+    "owner_active": false,
+    "guard_present": false
+  },
+  "progress": {
+    "schema": "progress-observation/v1",
+    "observed_at_utc": "2026-09-25T05:35:00Z",
+    "last_meaningful_progress_at_utc": "2026-09-25T05:31:00Z",
+    "last_activity_at_utc": "2026-09-25T05:34:19Z",
+    "primitive_steps_since_progress": 0,
+    "blocker": true,
+    "waiting_external": true,
+    "phase": "blocked",
+    "evidence_refs": [
+      "git:1d89c1d9156c1f8dc3bd0e88cf5e4d28c7cde3de",
+      "checkpoint:06283edb13889254d02e74b44f14ec0020c517d8"
+    ]
+  }
+}
