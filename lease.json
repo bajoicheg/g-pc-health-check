@@ -2,11 +2,11 @@
   "schema": "execution-lease/v2",
   "repository": "bajoicheg/g-pc-health-check",
   "source_ref": "refs/heads/design/0.17.0-security-posture",
-  "generation": 8,
-  "owner_id": null,
-  "acquired_at_utc": null,
-  "heartbeat_at_utc": null,
-  "expires_at_utc": null,
+  "generation": 9,
+  "owner_id": "f9a5e4f4-6d10-4dc5-b842-927fa7c73917",
+  "acquired_at_utc": "2026-09-25T14:28:20Z",
+  "heartbeat_at_utc": "2026-09-25T14:28:20Z",
+  "expires_at_utc": "2026-09-25T14:48:20Z",
   "activity_refs": [],
   "external_guard": null,
   "last_release": {
@@ -21,8 +21,22 @@
   "takeover_evidence": null,
   "last_terminal": null,
   "submission_claims": [],
-  "invocation": null,
-  "finalization": null,
+  "invocation": {
+    "invocation_id": "chat-2026-09-25T142820Z-cdc272-adoption",
+    "automation_id": null,
+    "conversation_id": null,
+    "execution_surface": "chat",
+    "started_at_utc": "2026-09-25T14:28:20Z"
+  },
+  "finalization": {
+    "state": "active",
+    "pending_shared_writes": false,
+    "checkpoint_ref": null,
+    "external_reconciliation": "none",
+    "completion_reason": null,
+    "updated_at_utc": "2026-09-25T14:28:20Z",
+    "failure": null
+  },
   "legacy_migration": {
     "from_schema": "execution-lease/v1",
     "migrated_at_utc": "2026-09-24T19:05:31Z",
