@@ -37,12 +37,12 @@
     "started_at_utc": "2026-09-25T07:03:35Z"
   },
   "finalization": {
-    "state": "reconciled",
+    "state": "ready",
     "pending_shared_writes": false,
     "checkpoint_ref": "git:92e03babf3a63797852d7cb331af0629950a5793",
     "external_reconciliation": "none",
-    "completion_reason": null,
-    "updated_at_utc": "2026-09-25T07:10:30Z",
+    "completion_reason": "resumable_blocker",
+    "updated_at_utc": "2026-09-25T07:11:00Z",
     "failure": null
   },
   "legacy_migration": {
