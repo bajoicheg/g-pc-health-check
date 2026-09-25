@@ -121,8 +121,8 @@ def validate_orchestration(value, actions_budget):
         raise ContractError("orchestration budget must match ci.actions_budget; reconcile policy drift")
 
 
-def validate_v25_controls(data):
-    check(data["routing"], {
+def validate_v25_controls(data, require_cost=False):
+    routing_schema = {
         "capability_registry_ref": nonempty,
         "request_schema": ("capability-request/v1",),
         "backend_kind_preference": [nonempty],
@@ -130,7 +130,16 @@ def validate_v25_controls(data):
         "no_match_state": ("waiting_external",),
         "router_authority": ("recommendation_only",),
         "max_registry_age_seconds": positive,
-    }, "adapter.routing")
+    }
+    cost_fields = {
+        "cost_policy_ref": nonempty,
+        "cost_router_authority": ("recommendation_only",),
+        "github_actions_requires_reason": TRUE,
+        "transient_primary_failure_policy": ("recover_or_wait",),
+    }
+    if require_cost or any(name in data["routing"] for name in cost_fields):
+        routing_schema.update(cost_fields)
+    check(data["routing"], routing_schema, "adapter.routing")
     kinds = data["routing"]["backend_kind_preference"]
     allowed = {"codex_compute", "local", "other_compute", "github_actions"}
     if not kinds or len(set(kinds)) != len(kinds) or not set(kinds) <= allowed:
@@ -219,7 +228,7 @@ def validate_adapter(data, skill_version=None):
     if lower >= (2, 5, 0) and not all(v25_present):
         raise ContractError("CDC 2.5+ policy requires routing, recovery_recipes and continuation")
     if all(v25_present):
-        validate_v25_controls(data)
+        validate_v25_controls(data, require_cost=lower >= (2, 7, 2))
     v26_names = ("fleet", "convergence", "progress_slo", "audit")
     v26_present = [name in data for name in v26_names]
     if any(v26_present) and lower < (2, 6, 0):

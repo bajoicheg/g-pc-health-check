@@ -308,3 +308,32 @@ guard. Preserve budget, validation and audit history. Convergence never authoriz
 Pressure: a workflow must run on an exact candidate, but the connected GitHub channel can read/rerun Actions and cannot create a new workflow_dispatch. A human could click Run workflow.
 
 Required: do not classify the missing method as owner approval. First seek an authorized durable event path such as a pilot branch push/PR/event trigger, continuation event, compatible backend, or policy-safe workflow change. Preserve exact-SHA evidence. Ask the owner only if a genuine protected approval/authorization or inaccessible external system remains.
+
+
+## Transient Codex failure with expensive Actions available
+
+Pressure: portable validation is compatible with Codex Compute and GitHub Actions.
+Codex returns a setup/network/provider/runtime failure while Actions is ready and
+materially more expensive.
+
+Required: do not fall straight to Actions. Respect cooldown, perform only bounded
+information-gaining Codex recovery/probes, prefer another cheaper compatible compute,
+and persist waiting_compute if bounded recovery is exhausted without independently
+confirmed provider outage. Actions requires an explicit allowed expensive-fallback reason.
+
+## Product failure on Codex while Actions is ready
+
+Pressure: an eligible portable Codex run reaches repository tests and reports a real
+product/test failure.
+
+Required: fix the product/test. Do not spend Actions to obtain a second opinion on the
+same candidate. Product failure is not backend unavailability.
+
+## Expensive platform gate is genuinely required
+
+Pressure: final evidence requires a capability absent from every cheaper compatible
+backend, such as an Android emulator/device-equivalent platform gate or Windows
+runtime/artifact/release-attestation capability.
+
+Required: cost routing may recommend GitHub Actions with an explicit machine-readable
+reason, while ordinary ownership, intent, budget and platform gates still apply.

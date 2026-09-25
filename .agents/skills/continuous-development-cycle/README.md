@@ -1,4 +1,4 @@
-# Continuous Development Cycle v2.7.1
+# Continuous Development Cycle v2.7.2
 
 Installable ChatGPT/Codex/agent skill for recoverable, long-running software development.
 
@@ -103,3 +103,14 @@ Read `references/canonical-source-and-release.md`. Validate consumer pins with
 - Git lease storage is schema-aware and rejects malformed v2 ownership before CAS.
 - A missing connector method is a capability gap, not a human approval gate.
 - Mechanical execution should route through durable event triggers, compatible backends or policy-safe workflow changes before escalating to the owner.
+
+
+## v2.7.2 cost-aware compute routing
+
+- Codex Compute is the default low-cost primary backend for eligible portable checks.
+- GitHub Actions is an expensive fallback and requires an explicit machine-readable reason.
+- Transient/setup/provider Codex failures trigger bounded recovery/probe or `waiting_compute`, not automatic Actions spend.
+- Another cheaper compatible backend is preferred before Actions.
+- Product/test failure on Codex requires a product/test fix, not an expensive CI second opinion.
+- Required platform capability, artifact production, release attestation, or independently confirmed provider outage can justify Actions.
+- Backend degraded/unavailable state is re-probed after cooldown and can recover to ready.

@@ -42,9 +42,9 @@ Record separately: prepared locally / committed / tested / reviewed / merged / p
 - Preserve read-only PR permissions, pinned Actions, independent required checks and the exact-main-build publication/attestation chain. No bypass merges or disabling failing checks.
 - Hosted Windows Server tests are not interactive Windows 11/UAC/RDP/DPI acceptance. A source review by the implementing agent is not an independent reviewer.
 
-## Continuous Development Cycle 2.7.1
+## Continuous Development Cycle 2.7.2
 
-This repository uses the vendored `.agents/skills/continuous-development-cycle` **2.7.1** as the orchestration core. Missing connector/API capability is a transport gap, not owner approval; exhaust safe authorized durable routes before asking for a mechanical click/run/copy/upload. On every development/watchdog resume, read `docs/development-cycle.yaml` and `docs/work-status/current.md` after this file and before shared writes or external starts.
+This repository uses the vendored `.agents/skills/continuous-development-cycle` **2.7.2** as the orchestration core. Missing connector/API capability is a transport gap, not owner approval; exhaust safe authorized durable routes before asking for a mechanical click/run/copy/upload. On every development/watchdog resume, read `docs/development-cycle.yaml` and `docs/work-status/current.md` after this file and before shared writes or external starts.
 
 Project-specific product/security rules above remain authoritative constraints. CDC adds recovery, ownership, budget, external-operation and continuity controls; it does not weaken UAC/security boundaries, required Windows gates, repository protections, or owner approvals.
 
@@ -79,20 +79,32 @@ These CDC checks do not replace Windows/.NET Quick/Full, product CI, managed Win
 
 ## CDC fleet controls
 
-Validated package fingerprint: `git-tree:a78b8e7df4bfdd5a067f9e9da5a3a8a4b33394fc` from canonical CDC 2.7.1 release.
+Validated package fingerprint: `git-tree:6e22d252374634662c95488ba9e7245febf6771a` from canonical CDC 2.7.2 release.
 
 Fleet Supervisor is read/control-plane only and never gains product-write, takeover, external-start, merge, release or scheduler authority. Project snapshots, convergence, progress SLO and audit recommendations still pass all project ownership/security/approval gates.
 
-Convergence requires version `2.7.1` + exact package fingerprint + checkpoint v4. Meaningful-progress SLO ignores heartbeat/status/poll/report activity; default thresholds are 20 min DEGRADED and 60 min STALLED, while real blocker/waiting_external pauses the clock. Important control-plane transitions are recorded in the hash-chained audit log.
+Convergence requires version `2.7.2` + exact package fingerprint + checkpoint v4. Meaningful-progress SLO ignores heartbeat/status/poll/report activity; default thresholds are 20 min DEGRADED and 60 min STALLED, while real blocker/waiting_external pauses the clock. Important control-plane transitions are recorded in the hash-chained audit log.
 
 
 ## CDC 2.7 canonical release binding
 
-This branch vendors the immutable canonical CDC 2.7.1 release from
-`bajoicheg/g-cdc`, ref `refs/heads/release/v2.7.1`, release commit
-`8e97192ef89bf37657a4444a954530f22e8b2267`, exact package tree
-`a78b8e7df4bfdd5a067f9e9da5a3a8a4b33394fc`.
+This branch vendors the immutable canonical CDC 2.7.2 release from
+`bajoicheg/g-cdc`, ref `refs/heads/release/v2.7.2`, release commit
+`9f68f150a46dcd2de6933d0469ab12a07dc1fd74`, exact package tree
+`6e22d252374634662c95488ba9e7245febf6771a`.
 
 The binding is recorded in `docs/cdc-consumer-lock.json`. Version equality alone
 is not sufficient: the vendored subtree must match the locked package tree exactly.
 Product-specific policy/checkpoint/security gates remain project-local and unchanged.
+
+
+## CDC 2.7.2 cost-aware compute routing
+
+For eligible portable validation, Codex Compute is the low-cost primary when configured
+and compatible. A setup/network/provider/runtime Codex failure does not automatically
+justify GitHub Actions. Apply bounded information-gaining Codex recovery/probe, cooldown
+and cheaper compatible alternatives; without confirmed provider outage, prefer durable
+`waiting_compute` over expensive CI. Product/test failures are fixed rather than
+rechecked on Actions. GitHub Actions requires an explicit reason: required capability,
+final-platform evidence, artifact production, release attestation, or confirmed provider
+outage. This does not weaken the managed Windows 11 acceptance or release/provenance gates.

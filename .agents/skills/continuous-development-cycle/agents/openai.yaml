@@ -1,6 +1,6 @@
 name: Continuous Development Cycle
-description: Recoverable development with schema-aware lease v2 CAS, canonical-source releases, immutable consumer locks and audited fleet control planes.
-version: 2.7.1
+description: Cost-aware recoverable development with Codex-first compute economics, schema-aware lease CAS and audited fleet control.
+version: 2.7.2
 policy:
   products:
   - chatgpt
@@ -10,7 +10,7 @@ policy:
   allow_implicit_invocation: true
 interface:
   display_name: Continuous Development Cycle
-  short_description: Durable canonical-source development with immutable consumer release locks
+  short_description: Cost-aware durable development with Codex-first compute routing
   icon_small: assets/icon.svg
   icon_large: assets/icon.svg
-  default_prompt: Use $continuous-development-cycle to continue durable development through CDC 2.7 canonical-source, release-lock, fleet and audit controls.
+  default_prompt: Use $continuous-development-cycle to continue durable development through CDC 2.7.2 cost-aware Codex-first routing, release-lock, fleet and audit controls.

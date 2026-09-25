@@ -20,6 +20,7 @@ from budget import validate_ledger
 from recovery import validate_wait_state, decide_recovery
 from watchdog_health import assess as assess_watchdog_health
 from capability_router import validate_registry, validate_request, route as route_backend
+from cost_router import validate_policy as validate_cost_policy, validate_context as validate_cost_context, route as route_cost
 from recovery_recipes import validate_catalog, validate_diagnosis, select as select_recovery_recipe
 from continuation_queue import validate_event, validate_queue, ingest as ingest_continuation
 from progress_slo import validate_policy as validate_slo_policy, validate_observation as validate_progress_observation, classify as classify_progress
@@ -86,6 +87,9 @@ REQUIRED = [
     'references/canonical-source-and-release.md', 'scripts/consumer_lock.py',
     'templates/consumer-lock.json', 'tests/test_consumer_lock.py',
     'tests/test_v270_guidance.py', 'tests/test_git_lease_store_v2.py',
+    'references/cost-aware-routing.md', 'scripts/cost_router.py',
+    'templates/cost-routing-policy.json', 'templates/cost-routing-context.json',
+    'tests/test_cost_router.py', 'tests/test_v272_guidance.py',
 ]
 
 
@@ -141,6 +145,14 @@ def validate():
     routed = route_backend(registry, request, '2026-01-01T00:00:01Z')
     if routed['action'] != 'route' or routed['authorizes_external_start']:
         raise ContractError('invalid capability routing template')
+    cost_policy = json.loads((ROOT / 'templates/cost-routing-policy.json').read_text())
+    cost_context = json.loads((ROOT / 'templates/cost-routing-context.json').read_text())
+    validate_cost_policy(cost_policy); validate_cost_context(cost_context)
+    cost_route = route_cost(registry, request, cost_policy, cost_context, '2026-01-01T00:00:01Z')
+    if cost_route['action'] != 'route' or cost_route['backend_kind'] != 'codex_compute' or any(
+            cost_route[name] for name in ('authorizes_external_start','authorizes_product_write',
+                                          'authorizes_takeover','authorizes_scheduler_mutation')):
+        raise ContractError('invalid cost-aware routing templates')
     catalog = json.loads((ROOT / 'templates/recovery-recipes.json').read_text())
     diagnosis = json.loads((ROOT / 'templates/recovery-diagnosis.json').read_text())
     validate_catalog(catalog); validate_diagnosis(diagnosis)
