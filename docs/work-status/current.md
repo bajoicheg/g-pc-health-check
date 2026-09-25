@@ -1,15 +1,15 @@
 ---
 schema: development-work-status/v4
 repository: bajoicheg/g-pc-health-check
-branch: design/0.17.0-security-posture
-policy_revision: 2026-09-24-cdc-2.5.0-routing-events
-policy_digest: 91ab8cf8408a4cf2cb8f758b3397a33dc90a1eba40b3de45e3bb7db5cf2c1bc5
-observed_at_utc: '2026-09-24T19:46:30Z'
+branch: cdc/2.6.0-active-adoption
+policy_revision: 2026-09-25-cdc-2.6.0-fleet-control-plane
+policy_digest: null
+observed_at_utc: '2026-09-25T05:12:00Z'
 orchestration_origin: chat
-active_executor: 687bb324-4b83-4bc1-a4ff-8d54939b39f1
-lease_state: active
-executor_heartbeat_at_utc: '2026-09-24T19:46:30Z'
-execution_lease_until_utc: '2026-09-24T20:06:30Z'
+active_executor: none
+lease_state: released
+executor_heartbeat_at_utc: null
+execution_lease_until_utc: null
 waiting_external_kind: managed-windows-11-pilot
 waiting_external_id: pilot/0.17.0-rc-f037bece
 waiting_external_sha: f037bece0272814f9b0f069aaf1de17be369b626
@@ -17,16 +17,16 @@ operation_intent_ref: null
 operation_key: null
 resume_capsule_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/resume.json
 execution_continuity:
-  invocation_id: chat-2026-09-24T19:42:16Z-cdc25-sync-36b19799
+  invocation_id: null
   runnable_next_action: false
   meaningful_progress: true
   primitive_steps_since_progress: 0
   completion_gate: resumable_blocker
-  last_progress_ref: 'merge:4d42c155a6e2fecbd0808db341908b748301562f'
+  last_progress_ref: 'cdc26-package:git-tree:e2cf6199eb60ca998012184b460c9a05c9f33b80'
 control:
   execution_lease_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/lease.json
-  execution_lease_revision: c1946cea0d57078b729b80cc04ed7002ec405ff3
-  executor_id: 687bb324-4b83-4bc1-a4ff-8d54939b39f1
+  execution_lease_revision: 9f11462c4ac4af7bcf40fe5980794d4d234ac1b7
+  executor_id: null
   lease_generation: 1
   budget_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/budget.json
   recovery_snapshot_ref: null

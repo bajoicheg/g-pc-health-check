@@ -42,9 +42,9 @@ Record separately: prepared locally / committed / tested / reviewed / merged / p
 - Preserve read-only PR permissions, pinned Actions, independent required checks and the exact-main-build publication/attestation chain. No bypass merges or disabling failing checks.
 - Hosted Windows Server tests are not interactive Windows 11/UAC/RDP/DPI acceptance. A source review by the implementing agent is not an independent reviewer.
 
-## Continuous Development Cycle 2.5.0
+## Continuous Development Cycle 2.6.0
 
-This repository uses the vendored `.agents/skills/continuous-development-cycle` **2.5.0** as the orchestration core. On every development/watchdog resume, read `docs/development-cycle.yaml` and `docs/work-status/current.md` after this file and before shared writes or external starts.
+This repository uses the vendored `.agents/skills/continuous-development-cycle` **2.6.0** as the orchestration core. On every development/watchdog resume, read `docs/development-cycle.yaml` and `docs/work-status/current.md` after this file and before shared writes or external starts.
 
 Project-specific product/security rules above remain authoritative constraints. CDC adds recovery, ownership, budget, external-operation and continuity controls; it does not weaken UAC/security boundaries, required Windows gates, repository protections, or owner approvals.
 
@@ -75,3 +75,12 @@ When CDC package/control-plane policy changes, validate:
 - `python -B -m unittest discover -s .agents/skills/continuous-development-cycle/tests -v`
 
 These CDC checks do not replace Windows/.NET Quick/Full, product CI, managed Windows 11 pilot, review, release or provenance gates.
+
+
+## CDC 2.6 fleet controls
+
+Validated package fingerprint: `git-tree:e2cf6199eb60ca998012184b460c9a05c9f33b80` from exact validation commit `1e20edd807e3bae60b82aafdb2b9daa503e37715`.
+
+Fleet Supervisor is read/control-plane only and never gains product-write, takeover, external-start, merge, release or scheduler authority. Project snapshots, convergence, progress SLO and audit recommendations still pass all project ownership/security/approval gates.
+
+Convergence requires version `2.6.0` + exact package fingerprint + checkpoint v4. Meaningful-progress SLO ignores heartbeat/status/poll/report activity; default thresholds are 20 min DEGRADED and 60 min STALLED, while real blocker/waiting_external pauses the clock. Important control-plane transitions are recorded in the hash-chained audit log.

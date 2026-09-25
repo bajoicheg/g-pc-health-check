@@ -3,7 +3,7 @@ name: continuous-development-cycle
 description: Use when substantial software development must continue across long sessions, interruptions, CI runs, repository migrations, watchdog resumes, development chat cleanup, Work/Codex orchestration, Codex Compute setup or failures, or limited compute budgets.
 ---
 
-# Continuous Development Cycle v2.5.0
+# Continuous Development Cycle v2.6.0
 
 Durable repository state is the project state. Sessions, agents and schedulers are disposable. Apply the instruction hierarchy, preserve the source/scope of existing user authorization, and reconcile repository policy. Live remote facts override stale checkpoint/chat claims. A spinner, lease or submitted request is not progress evidence.
 
@@ -56,6 +56,16 @@ Before selecting a validation/compute backend, express the task as `capability-r
 Known operational failures use deterministic recovery before open-ended reasoning. Normalize the observed failure to `recovery-diagnosis/v1`, select an allow-listed recipe from `recovery-recipe-catalog/v1` with `scripts/recovery_recipes.py`, and execute each step through its normal authority gate. No recipe grants takeover, writes, starts or scheduler mutation. If no exact recipe matches, preserve a blocker and escalate rather than inventing a destructive recovery. Read `references/deterministic-recovery.md`.
 
 External terminal results, CI terminal results, backend recovery, scheduler recovery, policy changes and explicit kicks may enter the durable `continuation-queue/v1`. Use `scripts/continuation_queue.py` for exact binding, dedupe, invocation-bound delivery claims and acknowledgement. A new event should request an immediate continuation wake when the platform supports one; the recurring watchdog remains the mandatory scheduler fallback and drains the same queue. Queue claims coordinate delivery only and never replace the execution lease, external guard or budget gates. Read `references/event-driven-continuation.md`.
+
+## CDC 2.6 Fleet Supervisor, version convergence, progress SLO and control-plane audit
+
+Fleet supervision is read/control-plane orchestration, **never a super-writer**. Projects publish exact-bound `fleet-project-snapshot/v1` records and a fleet registry binds required repository/source refs, watchdog IDs, the target CDC version/package fingerprint and meaningful-progress SLO. Use `scripts/fleet_supervisor.py` for HEALTHY / DEGRADED / STALLED / BLOCKED / RECOVERY_REQUIRED assessments. Recommendations never grant product writes, takeover, external starts, merges, releases or scheduler mutation. Read `references/fleet-supervision.md`.
+
+Use `scripts/version_convergence.py` to compare stable version **and exact package fingerprint/checkpoint schema**. Version equality with package drift is not convergence. An active owner or unresolved guard makes adoption wait for a safe boundary; convergence output is not merge/write authority. Read `references/version-convergence.md`.
+
+Use `scripts/progress_slo.py` to measure age from the last meaningful durable progress, not heartbeat/status/poll/report activity. Default template thresholds are 20 minutes to DEGRADED and 60 minutes to STALLED. Durable blockers and waiting_external pause the stall clock and remain BLOCKED. SLO state is diagnostic only. Read `references/progress-slo.md`.
+
+Record important control-plane transitions in an append-only hash-chained `control-plane-audit-log/v1` with `scripts/control_plane_audit.py`. The chain makes mutation/reordering/deletion visible but does not create authority. Read `references/control-plane-audit.md`.
 
 ## Execute and verify
 

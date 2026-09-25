@@ -2,7 +2,7 @@ schema: continuous-development-cycle/v3
 
 policy:
   revision: "1"
-  skill_min_version: "2.5.0"
+  skill_min_version: "2.6.0"
   skill_max_version_exclusive: "3.0.0"
   approved_exceptions: []
 
@@ -215,3 +215,34 @@ continuation:
   scheduler_fallback_required: true
   dedupe_required: true
   claim_ttl_seconds: 900
+
+# CDC 2.6 fleet/member observability and convergence controls.
+fleet:
+  snapshot_ref: "coordination:fleet-project-snapshot.json"
+  snapshot_schema: fleet-project-snapshot/v1
+  supervisor_authority: control_plane_only
+  product_write_authority: false
+  takeover_authority: false
+  external_start_authority: false
+  merge_authority: false
+  assessment_max_age_seconds: 900
+
+convergence:
+  target_version: "2.6.0"
+  target_package_fingerprint_ref: "coordination:fleet-target.json"
+  exact_package_fingerprint_required: true
+  safe_boundary_required: true
+
+progress_slo:
+  policy_ref: "coordination:progress-slo-policy.json"
+  degraded_after_seconds: 1200
+  stalled_after_seconds: 3600
+  primitive_activity_is_progress: false
+  blocked_pauses_clock: true
+  waiting_external_pauses_clock: true
+
+audit:
+  log_ref: "coordination:control-plane-audit.json"
+  schema: control-plane-audit-log/v1
+  append_only: true
+  hash_chain_required: true
