@@ -4,7 +4,7 @@ repository: bajoicheg/g-pc-health-check
 branch: design/0.17.0-security-posture
 policy_revision: 2026-09-25-cdc-2.6.0-fleet-control-plane
 policy_digest: 362b598cafef3ca535f0f2a097ba6c50877bcb03a388fead08c59fc0e2a4fa97
-observed_at_utc: '2026-09-25T05:31:00Z'
+observed_at_utc: '2026-09-25T05:36:00Z'
 orchestration_origin: chat
 active_executor: none
 lease_state: released
@@ -33,7 +33,7 @@ control:
   external_wait_ref: null
 active_change: 0.17.0-security-posture
 current_task: Managed Windows 11 pilot and pre-integration acceptance
-phase: recovery
+phase: blocked
 implementation_sha: 2a7b1b78180773563fea7f4d10be86021f90d17f
 candidate_sha: f037bece0272814f9b0f069aaf1de17be369b626
 last_green_sha: f037bece0272814f9b0f069aaf1de17be369b626
