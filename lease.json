@@ -5,10 +5,11 @@
   "generation": 10,
   "owner_id": "9e7df183-f401-4af8-a803-cb739412d5d0",
   "acquired_at_utc": "2026-09-25T19:21:00Z",
-  "heartbeat_at_utc": "2026-09-25T19:28:27Z",
-  "expires_at_utc": "2026-09-25T19:48:27Z",
+  "heartbeat_at_utc": "2026-09-25T20:27:21Z",
+  "expires_at_utc": "2026-09-25T20:47:21Z",
   "activity_refs": [
-    "fix:79d70a217221371b00de8dd45db8cbf5c827c528"
+    "fix:79d70a217221371b00de8dd45db8cbf5c827c528",
+    "review:79d70a217221371b00de8dd45db8cbf5c827c528:huawei-source-readback"
   ],
   "external_guard": null,
   "last_release": {
