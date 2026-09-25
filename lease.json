@@ -5,8 +5,8 @@
   "generation": 5,
   "owner_id": "1b709a92-4e0c-4dd4-8aba-5d55f1b7da31",
   "acquired_at_utc": "2026-09-25T09:20:00Z",
-  "heartbeat_at_utc": "2026-09-25T09:20:00Z",
-  "expires_at_utc": "2026-09-25T09:40:00Z",
+  "heartbeat_at_utc": "2026-09-25T09:28:04Z",
+  "expires_at_utc": "2026-09-25T09:48:04Z",
   "activity_refs": [
     "merge:4d42c155a6e2fecbd0808db341908b748301562f",
     "pr-comment:5821138767",
@@ -16,7 +16,8 @@
     "cdc26:fleet-refresh:resume",
     "cdc26:fleet-refresh:release",
     "cdc27:rollout:pc-health:acquire",
-    "cdc27:rollout:pc-health:commit:45b3129a45931fe8d0e3d83f784ae62dcbc651af"
+    "cdc27:rollout:pc-health:commit:45b3129a45931fe8d0e3d83f784ae62dcbc651af",
+    "test:ee3c06fb73003a63dd5f49b940cd9582450012f2"
   ],
   "external_guard": null,
   "last_release": {
