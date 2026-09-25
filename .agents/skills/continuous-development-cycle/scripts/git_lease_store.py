@@ -9,7 +9,35 @@ import re
 import subprocess
 
 import execution_lease
+import execution_lease_v2
 import operation_intent as op
+
+
+def validate_coordination_record(record):
+    if not isinstance(record, dict):
+        raise ValueError('lease must be an object')
+    schema = record.get('schema')
+    if schema == 'execution-lease/v2':
+        return execution_lease_v2.validate(record)
+    if schema == 'execution-lease/v1':
+        return execution_lease.validate(record)
+    raise ValueError('unsupported lease schema')
+
+
+def validate_coordination_transition(previous, record):
+    validate_coordination_record(record)
+    if previous is None:
+        return record
+    validate_coordination_record(previous)
+    if any(previous[key] != record[key] for key in ('repository', 'source_ref')):
+        raise ValueError('coordination binding is immutable')
+    if previous.get('schema') == 'execution-lease/v2' and record.get('schema') != 'execution-lease/v2':
+        raise ValueError('execution-lease/v2 cannot downgrade to v1')
+    if record['submission_claims'][:len(previous['submission_claims'])] != previous['submission_claims']:
+        raise ValueError('consumed submission history cannot be removed or rewritten')
+    if record['generation'] < previous['generation']:
+        raise ValueError('lease generation cannot decrease')
+    return record
 
 
 class GitLeaseStore:
@@ -55,7 +83,7 @@ class GitLeaseStore:
         if self._git('cat-file', '-t', revision) != 'commit':
             raise ValueError('coordination ref must point to a commit')
         record = json.loads(self._git('show', revision + ':lease.json'), object_pairs_hook=op._unique_object)
-        execution_lease.validate(record)
+        validate_coordination_record(record)
         if record['source_ref'] == self.ref:
             raise ValueError('coordination ref must differ from product source ref')
         if self._git('ls-remote', '--refs', self.remote, self.ref).splitlines() != rows:
@@ -63,19 +91,13 @@ class GitLeaseStore:
         return revision, record
 
     def compare_and_swap(self, expected_revision, record):
-        execution_lease.validate(record)
+        validate_coordination_record(record)
         if record['source_ref'] == self.ref:
             raise ValueError('coordination ref must differ from product source ref')
         current, previous = self.read()
         if current != expected_revision:
             raise ValueError('stale expected coordination revision')
-        if previous is not None:
-            if any(previous[key] != record[key] for key in ('repository', 'source_ref')):
-                raise ValueError('coordination binding is immutable')
-            if record['submission_claims'][:len(previous['submission_claims'])] != previous['submission_claims']:
-                raise ValueError('consumed submission history cannot be removed or rewritten')
-            if record['generation'] < previous['generation']:
-                raise ValueError('lease generation cannot decrease')
+        validate_coordination_transition(previous, record)
         blob = self._git('hash-object', '-w', '--stdin', input=op._canonical(record).decode() + '\n')
         tree = self._git('mktree', input=f'100644 blob {blob}\tlease.json\n')
         parent = ['-p', expected_revision] if expected_revision else []

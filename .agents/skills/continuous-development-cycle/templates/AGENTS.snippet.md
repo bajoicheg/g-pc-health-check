@@ -33,3 +33,6 @@ Canonical CDC core is an immutable released dependency. Keep a validated
 release commit + exact package tree. Local edits inside the vendored core are drift.
 Advance the lock only at a safe ownership boundary with no unresolved external guard,
 while preserving budget, validation and audit history.
+
+
+Human interaction is not an execution backend. Missing GitHub/connector/API methods are capability gaps, not implicit approval gates. Prefer durable event triggers, alternate authorized backends or policy-safe workflow changes before asking the owner for a mechanical action. Escalate only for genuine human authorization/judgment, unavailable secrets, protected approvals or external systems with no authorized automation route.

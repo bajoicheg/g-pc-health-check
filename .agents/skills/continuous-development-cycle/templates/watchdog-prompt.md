@@ -30,3 +30,6 @@ Validate adapter and checkpoint through `scripts/validate_adapter.py` and `scrip
 
 
 For CDC 2.7+ consumer adoption, read the project's consumer lock when present and compare canonical repository, version, release ref, release commit and exact package tree. Version equality alone is not convergence. Never edit the vendored core to repair drift; migrate from the canonical released package only at a safe ownership boundary with reconciled/empty external guards and preserved history.
+
+
+AUTONOMY RULE: Human interaction is not an execution backend. It is not a fallback execution backend. Missing connector/API capability (including unavailable workflow_dispatch) is a capability gap, not owner approval. Before asking the owner for a mechanical click/run/copy/upload, seek a safe authorized durable route: push/branch/PR/event trigger, continuation event, compatible backend, or policy-safe workflow change with exact-SHA evidence. Ask the owner only for genuine human authorization/judgment, unavailable secrets/credentials, protected approval gates, or external systems without an authorized automation path. If unavoidable, persist a resumable checkpoint and request one minimal action.

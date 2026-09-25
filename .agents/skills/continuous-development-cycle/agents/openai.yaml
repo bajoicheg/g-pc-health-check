@@ -1,6 +1,6 @@
 name: Continuous Development Cycle
-description: Recoverable development with canonical-source releases, immutable consumer locks and audited fleet control planes.
-version: 2.7.0
+description: Recoverable development with schema-aware lease v2 CAS, canonical-source releases, immutable consumer locks and audited fleet control planes.
+version: 2.7.1
 policy:
   products:
   - chatgpt

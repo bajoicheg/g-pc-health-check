@@ -3,7 +3,7 @@ name: continuous-development-cycle
 description: Use when substantial software development must continue across long sessions, interruptions, CI runs, repository migrations, watchdog resumes, development chat cleanup, Work/Codex orchestration, Codex Compute setup or failures, or limited compute budgets.
 ---
 
-# Continuous Development Cycle v2.7.0
+# Continuous Development Cycle v2.7.1
 
 Durable repository state is the project state. Sessions, agents and schedulers are disposable. Apply the instruction hierarchy, preserve the source/scope of existing user authorization, and reconcile repository policy. Live remote facts override stale checkpoint/chat claims. A spinner, lease or submitted request is not progress evidence.
 
@@ -33,6 +33,8 @@ Adapter v3 remains the policy envelope. Checkpoint v4 is the CDC 2.4 write forma
 
 Read `references/execution-ownership.md` and `references/control-plane-v2.4.md`. New ownership mutations use invocation-bound `execution-lease/v2`: a unique executor UUID plus the exact invocation ID, monotonically increasing generation and conditional updates to a separate coordination ref. Existing owned v1 leases are never rewritten in place; migrate only after explicit release or verified quiescence at a safe boundary. Refetch/check ownership and expected revision immediately before each shared write/external start. Renew only after a new observed owner action.
 
+**Lease v2 writes are fail-closed.** The Git coordination store validates the record according to its actual schema before every read/CAS: v1 through the legacy validator, v2 through the invocation-bound v2 validator. Never hand-edit only `owner_id`, `generation` or ownership timestamps in a v2 record. An owned v2 record without valid `invocation` and `finalization` is a control-plane incident: reconcile provider/guard evidence and perform bounded recovery; do not renew it or start external work. Once migrated to v2, coordination cannot downgrade to v1.
+
 A timestamp or local atomic file replacement is not a distributed lock. Git coordination uses ordinary conditional fast-forward pushes, never force-push. Where conditional storage is unavailable, only the explicitly designated executor may write; others observe. Expiry alone never authorizes takeover: require release or verified previous-executor quiescence, including pending effects. CAS ownership does not fence arbitrary downstream writes.
 
 **Invocation finalization is an ownership boundary.** An ordinary ChatGPT/watchdog invocation cannot remain a live executor after its final response. CDC 2.4 makes this transactional: `active → draining → checkpointed → reconciled → ready → release`. Before returning a final response while it owns the lease, drain shared writes, persist/read back the checkpoint or resume capsule, reconcile or durably preserve any unresolved external guard, pass the hard execution-continuity gate, mark finalization ready, and explicitly release the exact invocation-bound lease. A final response that leaves an owned lease is an orphan-lease defect.
@@ -48,6 +50,12 @@ Use `scripts/resume_capsule.py` to validate the compact durable resume capsule. 
 Use `scripts/execution_continuity.py` as the hard pre-final-response gate. The execution FSM is `BOOTSTRAP → RECONCILE → OWNERSHIP → EXECUTE → VALIDATE → CHECKPOINT → CONTINUE` with explicit `WAIT_EXTERNAL`, `BLOCKED` and `COMPLETE` outcomes. A runnable invocation cannot terminate on status/health/lease/poll/report/heartbeat activity alone. Valid terminal boundaries are meaningful durable progress, a durable external binding, a resumable blocker with exact next action, or verified task/scope completion.
 
 Lease v2 and checkpoint v4 are forward write formats. Legacy lease v1 and checkpoint v3 remain readable for migration; do not mutate an owned v1 lease merely to upgrade it. See `references/control-plane-v2.4.md`.
+
+## Human interaction is not an execution backend
+
+A missing connector/API method is a capability gap, **not** a manual approval requirement. Before asking the owner to click, dispatch, copy, upload or otherwise perform a mechanical execution step, first exhaust safe durable alternatives already within authorization: event-triggered workflows, branch/push/PR triggers, continuation events, an alternate compatible backend, or a policy-safe workflow/control-plane change. Prefer a path that preserves exact-SHA binding and evidence.
+
+Escalate to the human only when the remaining step genuinely requires human judgment/authorization, a secret/credential not available to the authorized runtime, a protected approval/environment gate, or an external system with no authorized automation path. When escalation is unavoidable, persist the exact resumable checkpoint and request one minimal concrete action. Never translate `workflow_dispatch unavailable`, `connector method missing`, or equivalent transport gaps into owner approval.
 
 ## CDC 2.5 capability router, deterministic recovery and continuation queue
 

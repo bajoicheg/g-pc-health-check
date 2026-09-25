@@ -1,7 +1,7 @@
 {
   "name": "continuous-development-cycle",
-  "version": "2.7.0",
+  "version": "2.7.1",
   "schema": "continuous-development-cycle/v3",
   "entrypoint": "SKILL.md",
-  "description": "Recoverable development with canonical-source releases, independent bootstrap evidence, immutable consumer locks, fleet supervision and audited control planes."
+  "description": "Recoverable development with schema-aware lease v2 CAS, canonical-source releases, immutable consumer locks, fleet supervision and audited control planes."
 }

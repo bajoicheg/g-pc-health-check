@@ -85,7 +85,7 @@ REQUIRED = [
     'tests/test_v260_guidance.py', 'tests/test_v26_policy.py',
     'references/canonical-source-and-release.md', 'scripts/consumer_lock.py',
     'templates/consumer-lock.json', 'tests/test_consumer_lock.py',
-    'tests/test_v270_guidance.py',
+    'tests/test_v270_guidance.py', 'tests/test_git_lease_store_v2.py',
 ]
 
 

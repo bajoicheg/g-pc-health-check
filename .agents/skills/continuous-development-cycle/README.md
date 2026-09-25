@@ -1,4 +1,4 @@
-# Continuous Development Cycle v2.7.0
+# Continuous Development Cycle v2.7.1
 
 Installable ChatGPT/Codex/agent skill for recoverable, long-running software development.
 
@@ -96,3 +96,10 @@ Read `references/fleet-supervision.md`, `references/version-convergence.md`, `re
 
 Read `references/canonical-source-and-release.md`. Validate consumer pins with
 `python -B scripts/consumer_lock.py <consumer-lock.json>`.
+
+
+## v2.7.1 autonomy hardening
+
+- Git lease storage is schema-aware and rejects malformed v2 ownership before CAS.
+- A missing connector method is a capability gap, not a human approval gate.
+- Mechanical execution should route through durable event triggers, compatible backends or policy-safe workflow changes before escalating to the owner.

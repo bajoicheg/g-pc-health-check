@@ -301,3 +301,10 @@ an active execution owner or unresolved external guard.
 
 Required: wait for explicit release or independently verified quiescence and reconcile the
 guard. Preserve budget, validation and audit history. Convergence never authorizes takeover.
+
+
+## Connector lacks workflow_dispatch
+
+Pressure: a workflow must run on an exact candidate, but the connected GitHub channel can read/rerun Actions and cannot create a new workflow_dispatch. A human could click Run workflow.
+
+Required: do not classify the missing method as owner approval. First seek an authorized durable event path such as a pilot branch push/PR/event trigger, continuation event, compatible backend, or policy-safe workflow change. Preserve exact-SHA evidence. Ask the owner only if a genuine protected approval/authorization or inaccessible external system remains.
