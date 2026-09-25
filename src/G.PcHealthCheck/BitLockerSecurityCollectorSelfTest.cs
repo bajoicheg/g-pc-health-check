@@ -19,10 +19,12 @@ internal static class BitLockerSecurityCollectorSelfTest
             Require(controls["SEC-BITLOCKER-OS"].Status == SecurityControlStatus.Pass, "Protected OS volume must pass.");
         });
 
-        Test("OS encrypting or suspended warns", () =>
+        Test("OS encrypting suspended or protection-only fallback warns", () =>
         {
             Require(Collect(Os("On", "EncryptionInProgress", 45))["SEC-BITLOCKER-OS"].Status == SecurityControlStatus.Warn, "Encrypting OS volume must warn.");
             Require(Collect(Os("Off", "FullyEncrypted", 100))["SEC-BITLOCKER-OS"].Status == SecurityControlStatus.Warn, "Suspended OS protection must warn.");
+            var limited = new EncryptionVolumeObservation("vol-os", "C", true, false, "On", "Unknown", null, "Unknown", [], "manage-bde protection status");
+            Require(Collect(limited)["SEC-BITLOCKER-OS"].Status == SecurityControlStatus.Warn, "Verified BitLocker protection with unavailable conversion details must warn, not become Unknown.");
         });
 
         Test("OS decrypted or unprotected fails and unavailable is unknown", () =>

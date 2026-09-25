@@ -1,3 +1,5 @@
+using System.Runtime.InteropServices;
+
 namespace G.PcHealthCheck;
 
 internal static class AntivirusSecurityCollectorSelfTest
@@ -90,7 +92,21 @@ internal static class AntivirusSecurityCollectorSelfTest
             Require(result["SEC-AV-ACTIVE"].Status == SecurityControlStatus.Unknown, "Unknown product state must remain Unknown.");
         });
 
-        Console.WriteLine($"Antivirus security self-test: {7 - failures}/7 passed.");
+        Test("WSC COM failure recovers from strong Kaspersky provider evidence", () =>
+        {
+            var source = new FakeSource
+            {
+                ThrowProductEnumeration = true,
+                Kaspersky = new(true, now.AddHours(-4), "12.12.0", "KESCLI OPSWAT"),
+                Defender = new(false, false, false, false, true, 1, "4.18.0", "Defender")
+            };
+            var result = AntivirusSecurityCollector.Collect(source, now);
+            Require(result["SEC-AV-ACTIVE"].Status == SecurityControlStatus.Pass, "Strong Kaspersky evidence must recover AV active when WSC enumeration fails.");
+            Require(result["SEC-AV-RTP"].Status == SecurityControlStatus.Pass, "Kaspersky RTP evidence must survive WSC failure.");
+            Require(result["SEC-AV-DEFINITIONS"].Status == SecurityControlStatus.Pass, "Kaspersky definition evidence must survive WSC failure.");
+        });
+
+        Console.WriteLine($"Antivirus security self-test: {8 - failures}/8 passed.");
         return failures == 0 ? 0 : 1;
     }
 
@@ -109,7 +125,9 @@ internal static class AntivirusSecurityCollectorSelfTest
         public IReadOnlyList<SecurityCenterProduct> Products { get; set; } = [];
         public DefenderSecurityObservation Defender { get; set; } = new(null, null, null, null, null, null, null, "Synthetic");
         public KasperskySecurityObservation Kaspersky { get; set; } = new(null, null, null, "Synthetic");
-        public IReadOnlyList<SecurityCenterProduct> ReadSecurityCenterProducts() => Products;
+        public bool ThrowProductEnumeration { get; set; }
+        public IReadOnlyList<SecurityCenterProduct> ReadSecurityCenterProducts()
+            => ThrowProductEnumeration ? throw new COMException("synthetic WSC failure") : Products;
         public DefenderSecurityObservation ReadDefender() => Defender;
         public KasperskySecurityObservation ReadKaspersky() => Kaspersky;
     }

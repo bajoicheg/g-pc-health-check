@@ -43,6 +43,13 @@ internal static class WindowsUpdateSecurityCollectorSelfTest
             Require(result.Status == SecurityControlStatus.Unknown, "Missing qualifying history must be Unknown.");
         });
 
+        Test("fresh history with unavailable pending search warns instead of becoming unknown or pass", () =>
+        {
+            var result = WindowsUpdateSecurityCollector.Collect(new FakeSource(new(now.AddDays(-10), null, false, "ManagedService", "WUA")), now);
+            Require(result.Status == SecurityControlStatus.Warn, "Fresh installed-update evidence with unresolved pending updates must conservatively warn.");
+            Require(result.Status != SecurityControlStatus.Pass, "Unresolved pending updates must never pass.");
+        });
+
         Test("source failure is unknown, never healthy", () =>
         {
             var result = WindowsUpdateSecurityCollector.Collect(new ThrowingSource(), now);
@@ -57,7 +64,7 @@ internal static class WindowsUpdateSecurityCollectorSelfTest
             Require(result.Evidence.Any(x => x.Key == "UpdateService" && x.Value == "ManagedService"), "Configured service evidence missing.");
         });
 
-        Console.WriteLine($"Windows Update security self-test: {7 - failures}/7 passed.");
+        Console.WriteLine($"Windows Update security self-test: {8 - failures}/8 passed.");
         return failures == 0 ? 0 : 1;
     }
 

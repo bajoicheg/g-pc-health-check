@@ -46,6 +46,7 @@ internal static class WindowsPlatformSecurityCollectorSelfTest
             Require(Status(new FakeSource { Tpm = new(true, false, "2.0", "Synthetic") }, "SEC-TPM") == SecurityControlStatus.Warn, "Present TPM not ready must warn.");
             Require(Status(new FakeSource { Tpm = new(false, false, null, "Synthetic") }, "SEC-TPM") == SecurityControlStatus.Fail, "Missing TPM must fail.");
             Require(Status(new FakeSource { Tpm = new(true, true, "1.2", "Synthetic") }, "SEC-TPM") == SecurityControlStatus.Fail, "TPM below 2.x must fail.");
+            Require(Status(new FakeSource { Tpm = new(true, null, "2.0", "TBS") }, "SEC-TPM") == SecurityControlStatus.Warn, "TPM 2.x presence with unresolved readiness must warn, not pass or disappear from coverage.");
             Require(Status(new FakeSource { Tpm = new(null, null, null, "Synthetic") }, "SEC-TPM") == SecurityControlStatus.Unknown, "Unresolved TPM must be unknown.");
         });
 
