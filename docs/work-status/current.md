@@ -4,12 +4,12 @@ repository: bajoicheg/g-pc-health-check
 branch: design/0.17.0-security-posture
 policy_revision: 2026-09-25-cdc-2.6.0-fleet-control-plane
 policy_digest: 362b598cafef3ca535f0f2a097ba6c50877bcb03a388fead08c59fc0e2a4fa97
-observed_at_utc: '2026-09-25T09:32:42Z'
+observed_at_utc: '2026-09-25T11:20:00Z'
 orchestration_origin: chat
-active_executor: 1b709a92-4e0c-4dd4-8aba-5d55f1b7da31
+active_executor: d665904f-e88a-4f59-80e0-d56ce2193058
 lease_state: active
-executor_heartbeat_at_utc: '2026-09-25T09:28:04Z'
-execution_lease_until_utc: '2026-09-25T09:48:04Z'
+executor_heartbeat_at_utc: '2026-09-25T11:16:14Z'
+execution_lease_until_utc: '2026-09-25T11:36:14Z'
 waiting_external_kind: null
 waiting_external_id: null
 waiting_external_sha: null
@@ -17,36 +17,36 @@ operation_intent_ref: null
 operation_key: null
 resume_capsule_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/resume.json
 execution_continuity:
-  invocation_id: chat-2026-09-25T09:20:00Z-pilot-performance-coverage
+  invocation_id: chat-2026-09-25T111614Z-pilot-artifact-autonomy
   runnable_next_action: true
   meaningful_progress: true
   primitive_steps_since_progress: 0
   completion_gate: continue_execution
-  last_progress_ref: 'fix:ad436c50a00cc40b0f291696a4ab56fa4344de09'
+  last_progress_ref: 'actions:36128619572:success'
 control:
   execution_lease_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/lease.json
-  execution_lease_revision: a21031c5b49b97f53b8cf361c44a9dbcdec4b96b
-  executor_id: 1b709a92-4e0c-4dd4-8aba-5d55f1b7da31
-  lease_generation: 5
+  execution_lease_revision: 8a98465cc580ed175bd69a13295c22b563cb519c
+  executor_id: d665904f-e88a-4f59-80e0-d56ce2193058
+  lease_generation: 6
   budget_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/budget.json
   recovery_snapshot_ref: null
   external_wait_ref: null
 active_change: 0.17.0-security-posture
-current_task: Pilot regression fix — bounded Windows Update latency and trustworthy Security coverage fallbacks
+current_task: Pilot artifact automation complete; managed Windows 11 acceptance remains
 phase: validating
-implementation_sha: ad436c50a00cc40b0f291696a4ab56fa4344de09
-candidate_sha: ad436c50a00cc40b0f291696a4ab56fa4344de09
-last_green_sha: f037bece0272814f9b0f069aaf1de17be369b626
-last_green_evidence: PR #92 runs 35142227790, 35142227782, 35142227765; retained pilot run 35152451989
+implementation_sha: 2fcf4413a96af6758222ec06285e380c1d362eb6
+candidate_sha: cbd20da8822f321df0d6404a955bf2cea9e553bb
+last_green_sha: cbd20da8822f321df0d6404a955bf2cea9e553bb
+last_green_evidence: auto pilot push run 36128619572 success; artifacts 10861076525 (EXE) and 10860941608 (pilot E2E)
 active_compute: none
 active_ci_run_id: ''
-last_ci_run_id: '35152451989'
+last_ci_run_id: '36128619572'
 last_ci_status: success
 release_version: 0.17.0
-release_candidate_sha: f037bece0272814f9b0f069aaf1de17be369b626
+release_candidate_sha: cbd20da8822f321df0d6404a955bf2cea9e553bb
 release_state: blocked
-blocker: exact_head_windows_ci_pending; managed_windows_11_retest_pending; explicit_owner_integration_approval_required
-next_action: Run the full Windows PR gate once on the new exact head. If GREEN, produce a new exact-SHA pilot artifact and repeat the managed Windows 11 baseline, measuring the Windows Update Security stage and recovered Security coverage. Do not merge PR #92 or enable auto-merge.
+blocker: managed_windows_11_retest_pending; explicit_owner_integration_approval_required
+next_action: Use the automatically retained artifacts from run 36128619572 for the managed Windows 11 baseline retest, measuring Windows Update Security stage latency and recovered Security coverage. No manual workflow_dispatch/Run workflow is required. Do not merge PR #92 or enable auto-merge without explicit owner integration approval.
 ---
 
 # CDC 2.5 active-branch binding complete
@@ -86,3 +86,18 @@ does not grant merge/integration approval.
 Real pilot evidence on a managed Windows 11 Huawei endpoint found Security coverage 15% and repeated Windows Update Security stage delays above 60 seconds (total scans about 90s and 242s). Tests-first corrective work is now on code candidate `ad436c50a00cc40b0f291696a4ab56fa4344de09`: bounded 5-second pending-WUA child probe, conservative QFE fallback, provider-specific AV fallback after WSC COM failure, native TBS TPM fallback and read-only manage-bde BitLocker protection fallback. No security remediation surface was expanded. Local-admin missing-policy and unsupported Huawei firmware remain Unknown by design.
 
 The current repository head that includes this checkpoint must pass the full Windows PR gate before it can become a new pilot candidate. The managed endpoint must then be retested; the Windows Update Security stage acceptance target is <=8 seconds and any increase in coverage must come only from explicit trusted evidence, not Unknown-to-Pass coercion.
+
+
+## Autonomous pilot artifact path — 2026-09-25
+
+`.github/workflows/build.yml` now treats `pilot/**` push events as first-class
+Windows EXE build triggers while retaining the existing rule that pull-request runs
+do not upload binary artifacts. The pilot marker
+`cbd20da8822f321df0d6404a955bf2cea9e553bb` triggered run
+`36128619572` automatically and completed GREEN. GitHub retained both
+`g-pc-health-check-windows-x64` (artifact 10861076525) and
+`g-pc-health-check-pilot-e2e` (artifact 10860941608).
+
+This removes `workflow_dispatch` availability and a human “Run workflow” click
+from the normal CDC execution path. Release and supply-chain workflows remain
+protected because they require successful push builds on `main`.
