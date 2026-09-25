@@ -23,7 +23,8 @@ internal static class FirmwareSecurityCollector
         [
             new LenovoFirmwareSecurityAdapter(),
             new DellFirmwareSecurityAdapter(),
-            new HpFirmwareSecurityAdapter()
+            new HpFirmwareSecurityAdapter(),
+            new HuaweiFirmwareSecurityAdapter()
         ];
 
         var adapter = adapters.FirstOrDefault(x => x.Supports(manufacturer));
