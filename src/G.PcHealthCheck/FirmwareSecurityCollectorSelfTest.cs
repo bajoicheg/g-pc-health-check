@@ -134,7 +134,7 @@ description             UEFI PXE IPv4
 Windows Boot Manager
 --------------------
 identifier              {bootmgr}
-path                    \\EFI\\Microsoft\\Boot\\bootmgfw.efi
+path                    \EFI\Microsoft\Boot\bootmgfw.efi
 """;
             var failed = HuaweiFirmwareBootReader.ParseFirmwareEnumeration(externalFirst, uefiMode: true);
             Require(failed.PxeBootEnabled == true && failed.ExternalBootEffective == true,
@@ -152,7 +152,7 @@ displayorder            {bootmgr}
 Windows Boot Manager
 --------------------
 identifier              {bootmgr}
-path                    \\EFI\\Microsoft\\Boot\\bootmgfw.efi
+path                    \EFI\Microsoft\Boot\bootmgfw.efi
 """;
             var incomplete = HuaweiFirmwareBootReader.ParseFirmwareEnumeration(windowsOnly, uefiMode: true);
             Require(!incomplete.TrustedFirmwareEvidence,

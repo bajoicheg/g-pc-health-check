@@ -161,9 +161,19 @@ Use representative hardware where available:
 - Lenovo with the already-present supported BIOS WMI provider;
 - Dell with an already-present supported provider/Command Monitor surface;
 - HP with an already-present supported Instrumented BIOS/provider;
+- Huawei with standard read-only SMBIOS Type 24 Hardware Security evidence plus conservative UEFI firmware-boot enumeration;
 - at least one unsupported/absent OEM provider case.
 
-Verify BIOS admin-password and boot-restriction status only when trusted provider telemetry is sufficient. The unsupported/absent provider must return `Unknown`, not install OEM tooling and not guess from BCD alone. Never enter/read/store/export a BIOS password. No firmware setting is automatically changed.
+Huawei acceptance:
+
+- `SEC-BIOS-ADMIN-PASSWORD` may become known from SMBIOS Type 24 **Administrator Password Status**. Only the status bits are read; the product never reads, requests, stores or exports the password itself;
+- SMBIOS Type 24 **Power-on Password Status** remains supplemental evidence; it never substitutes for the administrator-password control;
+- Huawei drive-password state remains `Unknown` because Type 24 does not prove it;
+- boot enumeration is read-only and bounded. A positively observed USB/PXE/optical/SD firmware entry contributes risk evidence: external-first => `Fail`; Windows Boot Manager first with an observed external entry => `Warn`;
+- absence of visible external firmware entries never proves BIOS external boot is disabled, so Huawei boot remains `Unknown` rather than false `Pass`;
+- if the standard-user context cannot enumerate firmware BCD/UEFI state, record `Unknown`; do not elevate the whole diagnosis or install Huawei PC Manager/tooling merely to improve coverage.
+
+Verify BIOS admin-password and boot-restriction status only when trusted provider/firmware telemetry is sufficient. Unsupported/ambiguous evidence must remain `Unknown`. Never enter/read/store/export a BIOS password. No firmware setting is automatically changed.
 
 ## 3E. Local Administrators ADMX/GPO matrix
 
