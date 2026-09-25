@@ -41,12 +41,12 @@
     "started_at_utc": "2026-09-25T09:19:52Z"
   },
   "finalization": {
-    "state": "checkpointed",
+    "state": "reconciled",
     "pending_shared_writes": false,
     "checkpoint_ref": "https://github.com/bajoicheg/g-pc-health-check/pull/92#issuecomment-5830256007",
-    "external_reconciliation": "pending",
+    "external_reconciliation": "none",
     "completion_reason": null,
-    "updated_at_utc": "2026-09-25T09:42:30Z",
+    "updated_at_utc": "2026-09-25T10:18:30Z",
     "failure": null
   },
   "legacy_migration": {
