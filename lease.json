@@ -37,12 +37,12 @@
     "started_at_utc": "2026-09-25T07:03:35Z"
   },
   "finalization": {
-    "state": "draining",
+    "state": "checkpointed",
     "pending_shared_writes": false,
-    "checkpoint_ref": null,
+    "checkpoint_ref": "git:92e03babf3a63797852d7cb331af0629950a5793",
     "external_reconciliation": "pending",
     "completion_reason": null,
-    "updated_at_utc": "2026-09-25T07:09:30Z",
+    "updated_at_utc": "2026-09-25T07:10:00Z",
     "failure": null
   },
   "legacy_migration": {
