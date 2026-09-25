@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - 'cdc/2.6.0-fleet-validation'
+      - main
     paths:
       - '.agents/skills/continuous-development-cycle/**'
       - 'AGENTS.md'

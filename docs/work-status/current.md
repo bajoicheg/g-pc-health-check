@@ -1,10 +1,10 @@
 ---
 schema: development-work-status/v4
 repository: bajoicheg/g-pc-health-check
-branch: cdc/2.6.0-fleet-validation
+branch: main
 policy_revision: "2026-09-24-cdc-2.6.0-fleet-control-plane"
 policy_digest: null
-observed_at_utc: ""
+observed_at_utc: '2026-09-25T05:58:00Z'
 orchestration_origin: chat
 active_executor: none
 lease_state: released
@@ -23,8 +23,8 @@ control:
   budget_ref: "refs/heads/cdc/coordination:budget.json"
   recovery_snapshot_ref: null
   external_wait_ref: null
-active_change: "cdc-2.6-validation"
-current_task: "CDC 2.6 package and project binding validation"
+active_change: "stable-cdc-baseline"
+current_task: "CDC 2.6 stable baseline"
 phase: recovery
 implementation_sha: ""
 candidate_sha: ""
@@ -37,18 +37,18 @@ last_ci_status: ""
 release_version: "0.13.0"
 release_candidate_sha: ""
 release_state: "not-started"
-blocker: "cdc_2_6_validation_pending"
-next_action: "Validate CDC 2.6 package, regression suite and project binding. Do not change product state."
+blocker: "no_active_product_work_on_main; active development uses designated feature branches"
+next_action: "When creating or resuming development from main, discover the active branch/PR and bind live coordination before product work."
 resume_capsule_ref: "refs/heads/cdc/coordination:resume.json"
 execution_continuity:
   invocation_id: null
   runnable_next_action: false
-  meaningful_progress: false
+  meaningful_progress: true
   primitive_steps_since_progress: 0
   completion_gate: resumable_blocker
-  last_progress_ref: null
+  last_progress_ref: 'cdc26-validation:36051402864'
 ---
 
-# CDC 2.6 validation checkpoint
+# CDC 2.6 stable-main baseline
 
-Policy-only validation state. Product binaries, active feature candidate and release evidence are unchanged.
+Validated policy/package baseline only. Product binaries, active feature candidate and release evidence are unchanged. Exact package fingerprint: `git-tree:e2cf6199eb60ca998012184b460c9a05c9f33b80`; validation run `36051402864` passed package validation, 233/233 tests and project binding.
