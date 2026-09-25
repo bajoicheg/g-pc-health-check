@@ -2,11 +2,11 @@
   "schema": "execution-lease/v2",
   "repository": "bajoicheg/g-pc-health-check",
   "source_ref": "refs/heads/design/0.17.0-security-posture",
-  "generation": 3,
-  "owner_id": null,
-  "acquired_at_utc": null,
-  "heartbeat_at_utc": null,
-  "expires_at_utc": null,
+  "generation": 4,
+  "owner_id": "27000000-0925-4270-8445-000000000004",
+  "acquired_at_utc": "2026-09-25T08:45:00Z",
+  "heartbeat_at_utc": "2026-09-25T08:45:00Z",
+  "expires_at_utc": "2026-09-25T09:05:00Z",
   "activity_refs": [
     "merge:4d42c155a6e2fecbd0808db341908b748301562f",
     "pr-comment:5821138767",
@@ -14,7 +14,8 @@
     "cdc26:fleet-refresh:snapshot",
     "cdc26:fleet-refresh:audit",
     "cdc26:fleet-refresh:resume",
-    "cdc26:fleet-refresh:release"
+    "cdc26:fleet-refresh:release",
+    "cdc27:rollout:pc-health:acquire"
   ],
   "external_guard": null,
   "last_release": {
@@ -26,10 +27,20 @@
     "external_reconciliation": "none",
     "completion_reason": "resumable_blocker"
   },
-  "takeover_evidence": null,
+  "takeover_evidence": {
+    "kind": "explicit_release",
+    "generation": 3,
+    "owner_id": null,
+    "reference": "lease.last_release@2026-09-25T07:11:30Z"
+  },
   "last_terminal": null,
   "submission_claims": [],
-  "invocation": null,
+  "invocation": {
+    "invocation_id": "chat-2026-09-25T084500Z-cdc27-rollout-pc-health",
+    "runtime": "chatgpt",
+    "task": "cdc-2.7-consumer-rollout",
+    "started_at_utc": "2026-09-25T08:45:00Z"
+  },
   "finalization": null,
   "legacy_migration": {
     "from_schema": "execution-lease/v1",
