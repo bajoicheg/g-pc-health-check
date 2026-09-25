@@ -2,9 +2,9 @@
 schema: development-work-status/v4
 repository: bajoicheg/g-pc-health-check
 branch: design/0.17.0-security-posture
-policy_revision: 2026-09-25-cdc-2.6.0-fleet-control-plane
-policy_digest: 362b598cafef3ca535f0f2a097ba6c50877bcb03a388fead08c59fc0e2a4fa97
-observed_at_utc: '2026-09-25T11:57:07Z'
+policy_revision: 2026-09-25-cdc-2.7.1-autonomy-lease-hardening
+policy_digest: 0550cb93b1f895e50af09d268965604dd8c2dfa74cab5ddd62c286c329ed0fbf
+observed_at_utc: '2026-09-25T12:04:00Z'
 orchestration_origin: chat
 active_executor: none
 lease_state: released
@@ -17,24 +17,24 @@ operation_intent_ref: null
 operation_key: null
 resume_capsule_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/resume.json
 execution_continuity:
-  invocation_id: chat-2026-09-25T115338Z-cdc271-adoption
+  invocation_id: chat-2026-09-25T120258Z-cdc271-policy-convergence
   runnable_next_action: false
   meaningful_progress: true
   primitive_steps_since_progress: 0
   completion_gate: resumable_blocker
-  last_progress_ref: 'git:6b1b6ba7b530188f3e568152acb82a06faec24b0'
+  last_progress_ref: 'git:e20b8487a3d84e557c0886f59d8ed7704be2fb09'
 control:
   execution_lease_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/lease.json
   execution_lease_revision: 8a98465cc580ed175bd69a13295c22b563cb519c
   executor_id: null
-  lease_generation: 7
+  lease_generation: 8
   budget_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/budget.json
   recovery_snapshot_ref: null
   external_wait_ref: null
 active_change: 0.17.0-security-posture
-current_task: CDC 2.7.1 autonomy/lease hardening adopted; managed Windows 11 acceptance remains
+current_task: CDC 2.7.1 core and project policy converged; managed Windows 11 acceptance remains
 phase: blocked
-implementation_sha: 6b1b6ba7b530188f3e568152acb82a06faec24b0
+implementation_sha: e20b8487a3d84e557c0886f59d8ed7704be2fb09
 candidate_sha: cbd20da8822f321df0d6404a955bf2cea9e553bb
 last_green_sha: cbd20da8822f321df0d6404a955bf2cea9e553bb
 last_green_evidence: auto pilot push run 36128619572 success; artifacts 10861076525 (EXE) and 10860941608 (pilot E2E)
@@ -122,3 +122,16 @@ This process-only adoption does not satisfy the managed Windows 11 acceptance ga
 does not grant PR merge/integration approval. The autonomous pilot artifact evidence
 remains run `36128619572` at exact pilot SHA
 `cbd20da8822f321df0d6404a955bf2cea9e553bb`.
+
+
+## CDC 2.7.1 project policy convergence — 2026-09-25
+
+Project adapter now requires CDC >=2.7.1 and targets convergence 2.7.1. The semantic
+adapter digest was independently recalculated with the CDC canonical JSON digest
+algorithm: `0550cb93b1f895e50af09d268965604dd8c2dfa74cab5ddd62c286c329ed0fbf`.
+The digest matches this checkpoint. Exact vendored package tree remains
+`a78b8e7df4bfdd5a067f9e9da5a3a8a4b33394fc`.
+
+The project therefore no longer has formal 2.6 target drift. Product acceptance remains
+blocked only on the real managed-Windows-11 retest and explicit integration approval,
+not on CDC transport or policy convergence.
