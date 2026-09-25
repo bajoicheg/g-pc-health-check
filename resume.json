@@ -1,47 +1,48 @@
 {
   "schema": "resume-capsule/v1",
-  "updated_at_utc": "2026-09-25T05:48:00Z",
+  "updated_at_utc": "2026-09-25T09:41:30Z",
   "repository": "bajoicheg/g-pc-health-check",
   "source_ref": "refs/heads/design/0.17.0-security-posture",
-  "head_sha": "e589a0ea9db22f9c573b2d202e497a0d131becf2",
-  "policy_version": "2.6.0",
+  "head_sha": "6a66e8c4378f8d64f05537083786d18c87f76083",
+  "policy_version": "2.7.0",
   "policy_revision": "2026-09-25-cdc-2.6.0-fleet-control-plane",
   "policy_digest": "sha256:362b598cafef3ca535f0f2a097ba6c50877bcb03a388fead08c59fc0e2a4fa97",
   "checkpoint_ref": "docs/work-status/current.md",
   "checkpoint_digest": "b918fb67f96ed1040653554d351d474aef8c976c6c8e6f2e88622f5b2c97460e",
   "task": {
     "phase": "blocked",
-    "current_task": "Managed Windows 11 pilot and pre-integration acceptance",
-    "next_action": "Use retained pilot bundle from run 35152451989 on approved managed/disposable Windows 11 endpoints. Do not merge PR #92 or enable auto-merge without explicit owner integration approval.",
-    "blocker": "managed_windows_11_pilot_pending; explicit_owner_integration_approval_required"
+    "current_task": "Managed Windows pilot regression retest — bounded Windows Update latency and trustworthy Security coverage fallbacks",
+    "next_action": "Manually dispatch Windows EXE on pilot/0.17.0-rc-6a66e8c4 to retain the exact-SHA pilot artifact, then rerun the managed Windows 11 baseline. Verify Windows Update Security stage <=8 seconds and inspect recovered AV/WUA/TPM/BitLocker evidence. Do not merge PR #92 without explicit owner approval.",
+    "blocker": "manual_workflow_dispatch_required_for_retained_pilot_artifact; managed_windows_11_retest_pending; explicit_owner_integration_approval_required"
   },
   "ownership": {
     "lease_schema": "execution-lease/v2",
-    "owner_id": null,
-    "invocation_id": null,
-    "generation": 2,
-    "revision": "62cf0c8d7fa8c8b036b0221cc63efe193c93aa2b"
+    "owner_id": "1b709a92-4e0c-4dd4-8aba-5d55f1b7da31",
+    "invocation_id": "chat-2026-09-25T09:20:00Z-pilot-performance-coverage",
+    "generation": 5,
+    "revision": "4ab509be89c080ee3ff710bc2acb7974bd5ec94e"
   },
   "external": null,
   "validation": {
-    "candidate_sha": "f037bece0272814f9b0f069aaf1de17be369b626",
-    "last_green_sha": "f037bece0272814f9b0f069aaf1de17be369b626",
-    "last_green_evidence": "PR #92 runs 35142227790, 35142227782, 35142227765; retained pilot run 35152451989",
+    "candidate_sha": "6a66e8c4378f8d64f05537083786d18c87f76083",
+    "last_green_sha": "6a66e8c4378f8d64f05537083786d18c87f76083",
+    "last_green_evidence": "Windows EXE 36119153108; E2E Evidence Analyzer 36119152954; Supply Chain Smoke 36119152988",
     "missing_gates": [
-      "managed Windows 11 pilot",
+      "retained workflow_dispatch pilot artifact",
+      "managed Windows 11 regression retest",
       "explicit owner integration approval"
     ]
   },
   "health": {
     "state": "BLOCKED",
-    "fingerprint": "sha256:1b2a04138a7d3f9ecf8c6e07cb3caacfd59ecebf70f8afa9fe744a606d25e016"
+    "fingerprint": null
   },
   "budget": {
     "ref": "https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/budget.json",
-    "summary": "Actions conserve; no product CI start for CDC 2.6 fleet refresh."
+    "summary": "Actions conserve: one PR validation suite spent for pilot regression correction; no duplicate rerun. Retained artifact requires manual workflow_dispatch on the pinned pilot ref."
   },
   "recovery": {
     "recommended_action": "resume_next_action",
-    "reason": "CDC 2.6 exact package and fleet snapshot bind the current status-only head; external pilot/approval blocker remains unchanged."
+    "reason": "Source candidate is CI GREEN and pinned; binary retention and real managed endpoint retest require external workflow dispatch/operator evidence."
   }
 }
