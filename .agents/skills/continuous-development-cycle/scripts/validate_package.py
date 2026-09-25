@@ -26,6 +26,7 @@ from progress_slo import validate_policy as validate_slo_policy, validate_observ
 from version_convergence import validate_target as validate_convergence_target, validate_snapshot as validate_convergence_snapshot, assess as assess_convergence
 from control_plane_audit import validate as validate_audit_log, append as append_audit
 from fleet_supervisor import validate_registry as validate_fleet_registry, validate_snapshot as validate_fleet_snapshot, assess_fleet
+from consumer_lock import validate as validate_consumer_lock
 
 ROOT = Path(__file__).resolve().parents[1]
 REQUIRED = [
@@ -82,6 +83,9 @@ REQUIRED = [
     'tests/test_fleet_supervisor.py', 'tests/test_version_convergence.py',
     'tests/test_progress_slo.py', 'tests/test_control_plane_audit.py',
     'tests/test_v260_guidance.py', 'tests/test_v26_policy.py',
+    'references/canonical-source-and-release.md', 'scripts/consumer_lock.py',
+    'templates/consumer-lock.json', 'tests/test_consumer_lock.py',
+    'tests/test_v270_guidance.py',
 ]
 
 
@@ -175,6 +179,7 @@ def validate():
     if fleet_assessment['overall'] != 'HEALTHY' or any(fleet_assessment[name] for name in (
             'authorizes_product_write', 'authorizes_takeover', 'authorizes_merge', 'authorizes_external_start')):
         raise ContractError('invalid fleet supervision template/authority contract')
+    validate_consumer_lock(json.loads((ROOT / 'templates/consumer-lock.json').read_text()))
     health = assess_watchdog_health(json.loads((ROOT / 'templates/watchdog-health.json').read_text()))
     if health['overall'] != 'HEALTHY' or any(health[name] for name in ('authorizes_takeover', 'authorizes_external_start', 'authorizes_product_write')):
         raise ContractError('invalid watchdog health template/authority contract')

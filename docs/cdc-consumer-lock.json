@@ -1,0 +1,11 @@
+{
+  "schema": "cdc-consumer-lock/v1",
+  "canonical_repository": "bajoicheg/g-cdc",
+  "version": "2.7.0",
+  "release_ref": "refs/heads/release/v2.7.0",
+  "release_commit": "5b84c89596e04d8411bf6cc24d8aa882a24c483a",
+  "package_tree": "a667549d48c2e93cba36359335c1b1ff4534ac86",
+  "checkpoint_schema": "development-work-status/v4",
+  "safe_boundary_required": true,
+  "local_core_modifications_allowed": false
+}

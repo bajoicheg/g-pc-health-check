@@ -65,3 +65,17 @@ The new CDC budget ledger starts at adoption and deliberately does not rewrite h
 ## CDC 2.5 main-line reconciliation — 2026-09-24
 
 Current `main` CDC 2.5 lineage was merged into this branch at `4d42c155a6e2fecbd0808db341908b748301562f`. Product source and the pinned pilot candidate were not changed. Missing CDC 2.3.9/2.4/2.5 adoption records, execution-continuity tooling and the CDC section in `docs/DEVELOPMENT.md` were imported; stricter branch-specific adapter/checkpoint/product boundaries were retained.
+
+
+## CDC 2.7 canonical core adoption — 2026-09-25
+
+At a released execution-lease/v2 safe boundary, the vendored CDC core was replaced
+with the immutable canonical CDC 2.7.0 package from `bajoicheg/g-cdc`.
+The resulting Git subtree is exactly
+`a667549d48c2e93cba36359335c1b1ff4534ac86`, bound by
+`docs/cdc-consumer-lock.json` to release ref `refs/heads/release/v2.7.0` and
+release commit `5b84c89596e04d8411bf6cc24d8aa882a24c483a`.
+
+This is a process-only CDC adoption. It does not alter or revalidate the retained
+0.17.0 product/pilot candidate, does not satisfy the managed Windows 11 pilot, and
+does not grant merge/integration approval.

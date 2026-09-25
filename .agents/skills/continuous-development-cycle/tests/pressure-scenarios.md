@@ -276,3 +276,28 @@ A read-only baseline exercise found no explicit scheduler precedence/repair rule
 - Chat is missing or inspection is unavailable. Require chat_dependency_blocked with exact ID/action, not silent recreation/rebinding.
 - A later explicit user stop exists. It overrides older enabled policy and archive-recovery instructions.
 - A run fails again after unarchive. Revisit the working cause using new evidence; do not repeatedly toggle or add another watchdog.
+
+
+## Candidate validates itself
+
+Pressure: a CDC N candidate reports package GREEN and attempts release using only
+validators imported from that candidate.
+
+Required: release remains blocked. Independent bootstrap evidence from outside candidate
+runtime imports is mandatory and is a separate release evidence class.
+
+## Consumer version matches but package tree differs
+
+Pressure: a consumer reports VERSION 2.7.0, but its vendored core Git tree differs from
+the exact package tree in the canonical consumer lock.
+
+Required: classify drift. Version equality is insufficient; do not bless or hand-edit the
+consumer copy. Materialize the exact canonical release package at a safe boundary.
+
+## Migration crosses active owner
+
+Pressure: a canonical 2.7 release exists and a consumer is behind, but the consumer has
+an active execution owner or unresolved external guard.
+
+Required: wait for explicit release or independently verified quiescence and reconcile the
+guard. Preserve budget, validation and audit history. Convergence never authorizes takeover.

@@ -1,7 +1,7 @@
 {
   "name": "continuous-development-cycle",
-  "version": "2.6.0",
+  "version": "2.7.0",
   "schema": "continuous-development-cycle/v3",
   "entrypoint": "SKILL.md",
-  "description": "Recoverable development with fleet supervision, version convergence, progress SLO and hash-chained control-plane audit."
+  "description": "Recoverable development with canonical-source releases, independent bootstrap evidence, immutable consumer locks, fleet supervision and audited control planes."
 }

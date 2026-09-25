@@ -4,7 +4,11 @@ ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/"scripts"))
 from contracts import ContractError, load_yaml
 from validate_adapter import validate_adapter
 class T(unittest.TestCase):
- def template(self):return load_yaml(ROOT/"templates/development-cycle.yaml")
+ def template(self):
+  d=load_yaml(ROOT/"templates/development-cycle.yaml")
+  d["policy"]["skill_min_version"]="2.6.0"
+  d["convergence"]["target_version"]="2.6.0"
+  return d
  def test_v26_template_valid(self):validate_adapter(self.template(),"2.6.0")
  def test_requires_all_v26_sections(self):
   for name in ("fleet","convergence","progress_slo","audit"):

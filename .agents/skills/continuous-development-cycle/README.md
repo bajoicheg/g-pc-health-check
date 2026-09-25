@@ -1,4 +1,4 @@
-# Continuous Development Cycle v2.6.0
+# Continuous Development Cycle v2.7.0
 
 Installable ChatGPT/Codex/agent skill for recoverable, long-running software development.
 
@@ -83,3 +83,16 @@ Read `references/capability-routing.md`, `references/deterministic-recovery.md` 
 - Hash-chained append-only audit records control-plane transitions and exposes tampering/drift.
 
 Read `references/fleet-supervision.md`, `references/version-convergence.md`, `references/progress-slo.md` and `references/control-plane-audit.md`.
+
+
+## v2.7 canonical source and independently bootstrapped releases
+
+- One canonical CDC source repository owns release identity; product repositories are consumers, not alternative CDC source trees.
+- Stable CDC N-1 develops N. A candidate may never be its only release validator.
+- Release evidence is separated into bootstrap, package, compatibility, fault-injection and multi-consumer classes.
+- Consumers pin canonical repository + version + immutable release ref + exact release commit + exact package Git tree.
+- Local edits inside the vendored core are drift; product-specific policy remains outside the core package.
+- Adoption waits for released or independently verified quiescent ownership and a reconciled/empty external guard.
+
+Read `references/canonical-source-and-release.md`. Validate consumer pins with
+`python -B scripts/consumer_lock.py <consumer-lock.json>`.

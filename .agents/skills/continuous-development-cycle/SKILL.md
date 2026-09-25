@@ -3,7 +3,7 @@ name: continuous-development-cycle
 description: Use when substantial software development must continue across long sessions, interruptions, CI runs, repository migrations, watchdog resumes, development chat cleanup, Work/Codex orchestration, Codex Compute setup or failures, or limited compute budgets.
 ---
 
-# Continuous Development Cycle v2.6.0
+# Continuous Development Cycle v2.7.0
 
 Durable repository state is the project state. Sessions, agents and schedulers are disposable. Apply the instruction hierarchy, preserve the source/scope of existing user authorization, and reconcile repository policy. Live remote facts override stale checkpoint/chat claims. A spinner, lease or submitted request is not progress evidence.
 
@@ -66,6 +66,14 @@ Use `scripts/version_convergence.py` to compare stable version **and exact packa
 Use `scripts/progress_slo.py` to measure age from the last meaningful durable progress, not heartbeat/status/poll/report activity. Default template thresholds are 20 minutes to DEGRADED and 60 minutes to STALLED. Durable blockers and waiting_external pause the stall clock and remain BLOCKED. SLO state is diagnostic only. Read `references/progress-slo.md`.
 
 Record important control-plane transitions in an append-only hash-chained `control-plane-audit-log/v1` with `scripts/control_plane_audit.py`. The chain makes mutation/reordering/deletion visible but does not create authority. Read `references/control-plane-audit.md`.
+
+## CDC 2.7 canonical source, independent release and consumer locks
+
+Treat the CDC core as an immutable released dependency. Development of CDC N happens only in its canonical source repository under independently validated stable CDC N-1 policy. A candidate runtime is never its only release validator: bootstrap evidence must be produced without importing candidate runtime code, and package/compatibility/fault-injection/consumer evidence remain distinct release classes. Read `references/canonical-source-and-release.md`.
+
+Consumer repositories pin a `cdc-consumer-lock/v1` binding: canonical repository, semantic version, immutable release ref, exact release commit and exact package Git tree. Validate it with `scripts/consumer_lock.py`. Version equality alone is not convergence. A vendored core whose Git tree differs from the lock is drift; do not normalize it by editing the consumer copy. Product-specific AGENTS, adapter/checkpoint and coordination state remain outside the immutable core.
+
+Adoption never crosses an active owner or unresolved external guard. Require an explicit release or independently verified quiescent owner, a reconciled/empty guard, preserved budget/validation/audit history and the exact released package identity before advancing a consumer lock. Self-hosting advances only after the new CDC version has independently reached released state.
 
 ## Execute and verify
 
