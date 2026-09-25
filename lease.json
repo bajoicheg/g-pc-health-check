@@ -2,11 +2,11 @@
   "schema": "execution-lease/v2",
   "repository": "bajoicheg/g-pc-health-check",
   "source_ref": "refs/heads/design/0.17.0-security-posture",
-  "generation": 9,
-  "owner_id": "f9a5e4f4-6d10-4dc5-b842-927fa7c73917",
-  "acquired_at_utc": "2026-09-25T14:28:20Z",
-  "heartbeat_at_utc": "2026-09-25T14:28:20Z",
-  "expires_at_utc": "2026-09-25T14:48:20Z",
+  "generation": 10,
+  "owner_id": "9e7df183-f401-4af8-a803-cb739412d5d0",
+  "acquired_at_utc": "2026-09-25T19:21:00Z",
+  "heartbeat_at_utc": "2026-09-25T19:21:00Z",
+  "expires_at_utc": "2026-09-25T19:41:00Z",
   "activity_refs": [],
   "external_guard": null,
   "last_release": {
@@ -18,23 +18,33 @@
     "external_reconciliation": "none",
     "completion_reason": "resumable_blocker"
   },
-  "takeover_evidence": null,
+  "takeover_evidence": {
+    "owner_id": "f9a5e4f4-6d10-4dc5-b842-927fa7c73917",
+    "generation": 9,
+    "repository": "bajoicheg/g-pc-health-check",
+    "source_ref": "refs/heads/design/0.17.0-security-posture",
+    "invocation_id": "chat-2026-09-25T142820Z-cdc272-adoption",
+    "kind": "executor_stopped",
+    "reference": "github:verified-quiescence/2026-09-25T19:18:54Z/head-stable-no-running-actions-no-external-guard-empty-continuation-queue",
+    "pending_shared_writes": false,
+    "external_effects_state": "none"
+  },
   "last_terminal": null,
   "submission_claims": [],
   "invocation": {
-    "invocation_id": "chat-2026-09-25T142820Z-cdc272-adoption",
+    "invocation_id": "chat-2026-09-25T192100Z-huawei-firmware",
     "automation_id": null,
     "conversation_id": null,
     "execution_surface": "chat",
-    "started_at_utc": "2026-09-25T14:28:20Z"
+    "started_at_utc": "2026-09-25T19:20:30Z"
   },
   "finalization": {
     "state": "active",
     "pending_shared_writes": false,
     "checkpoint_ref": null,
-    "external_reconciliation": "none",
+    "external_reconciliation": "pending",
     "completion_reason": null,
-    "updated_at_utc": "2026-09-25T14:28:20Z",
+    "updated_at_utc": "2026-09-25T19:21:00Z",
     "failure": null
   },
   "legacy_migration": {
