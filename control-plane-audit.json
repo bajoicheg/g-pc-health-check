@@ -13,6 +13,17 @@
       "details_digest": "sha256:ab501f3fc36da6f7d627daf0fa807b9db2f973a79ac4d96f193d8c8b8f74142a",
       "previous_hash": null,
       "event_hash": "sha256:0d5ea25aa45eda192546611dc616095994bf49c4e75cc3a96856598cdc1e60c8"
+    },
+    {
+      "sequence": 2,
+      "occurred_at_utc": "2026-09-25T05:48:00Z",
+      "actor_invocation_id": "chat-2026-09-25T05:47:00Z-cdc26-fleet-refresh-pc",
+      "event_type": "fleet_assessment",
+      "object_ref": "git:e589a0ea9db22f9c573b2d202e497a0d131becf2",
+      "outcome": "converged",
+      "details_digest": "sha256:88b64b1dc4d2d9a0403725f53a217b75dcc97f1ddce5766c2d48e252e655ce15",
+      "previous_hash": "sha256:0d5ea25aa45eda192546611dc616095994bf49c4e75cc3a96856598cdc1e60c8",
+      "event_hash": "sha256:e0455a78365ea8cea0f245e801c5f61285a21670554b14e44f541918e6a5ad1b"
     }
   ]
 }

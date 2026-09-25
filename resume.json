@@ -1,14 +1,14 @@
 {
   "schema": "resume-capsule/v1",
-  "updated_at_utc": "2026-09-25T05:35:00Z",
+  "updated_at_utc": "2026-09-25T05:48:00Z",
   "repository": "bajoicheg/g-pc-health-check",
   "source_ref": "refs/heads/design/0.17.0-security-posture",
-  "head_sha": "1d89c1d9156c1f8dc3bd0e88cf5e4d28c7cde3de",
+  "head_sha": "e589a0ea9db22f9c573b2d202e497a0d131becf2",
   "policy_version": "2.6.0",
   "policy_revision": "2026-09-25-cdc-2.6.0-fleet-control-plane",
   "policy_digest": "sha256:362b598cafef3ca535f0f2a097ba6c50877bcb03a388fead08c59fc0e2a4fa97",
   "checkpoint_ref": "docs/work-status/current.md",
-  "checkpoint_digest": "31e615eff22be2880fb4c5755b33dfdd9bd22e05c4c7a06699e3fc2050f65dce",
+  "checkpoint_digest": "b918fb67f96ed1040653554d351d474aef8c976c6c8e6f2e88622f5b2c97460e",
   "task": {
     "phase": "blocked",
     "current_task": "Managed Windows 11 pilot and pre-integration acceptance",
@@ -19,8 +19,8 @@
     "lease_schema": "execution-lease/v2",
     "owner_id": null,
     "invocation_id": null,
-    "generation": 1,
-    "revision": "9f11462c4ac4af7bcf40fe5980794d4d234ac1b7"
+    "generation": 2,
+    "revision": "62cf0c8d7fa8c8b036b0221cc63efe193c93aa2b"
   },
   "external": null,
   "validation": {
@@ -38,10 +38,10 @@
   },
   "budget": {
     "ref": "https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/budget.json",
-    "summary": "Actions conserve; CDC 2.6 adoption is process/control-plane only."
+    "summary": "Actions conserve; no product CI start for CDC 2.6 fleet refresh."
   },
   "recovery": {
     "recommended_action": "resume_next_action",
-    "reason": "CDC 2.6 converged; external pilot/approval blocker pauses progress SLO."
+    "reason": "CDC 2.6 exact package and fleet snapshot bind the current status-only head; external pilot/approval blocker remains unchanged."
   }
 }
