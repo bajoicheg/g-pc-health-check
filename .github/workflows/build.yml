@@ -2,7 +2,9 @@ name: Windows EXE
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
+      - 'pilot/**'
   pull_request:
   workflow_dispatch:
 
