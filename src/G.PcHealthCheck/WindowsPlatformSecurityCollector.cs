@@ -101,6 +101,7 @@ internal static class WindowsPlatformSecurityCollector
         else if (value.Ready == false) status = SecurityControlStatus.Warn;
         else if (TryTpmMajor(value.SpecVersion, out var major) && major < 2) status = SecurityControlStatus.Fail;
         else if (value.Ready == true && major >= 2) status = SecurityControlStatus.Pass;
+        else if (value.Present == true && TryTpmMajor(value.SpecVersion, out major) && major >= 2) status = SecurityControlStatus.Warn;
         else status = SecurityControlStatus.Unknown;
 
         return new SecurityControlObservation(
@@ -205,13 +206,42 @@ internal sealed class WindowsPlatformSecuritySource : IWindowsPlatformSecuritySo
 
     public TpmObservation ReadTpm()
     {
-        using var searcher = new ManagementObjectSearcher(@"root\CIMV2\Security\MicrosoftTpm", "SELECT IsEnabled_InitialValue,IsActivated_InitialValue,SpecVersion FROM Win32_Tpm");
-        using var item = searcher.Get().Cast<ManagementObject>().FirstOrDefault();
-        if (item is null) return new(false, false, null, "Win32_Tpm");
-        var enabled = NullableBool(item["IsEnabled_InitialValue"]);
-        var activated = NullableBool(item["IsActivated_InitialValue"]);
-        bool? ready = enabled is null || activated is null ? null : enabled.Value && activated.Value;
-        return new(true, ready, Convert.ToString(item["SpecVersion"]), "Win32_Tpm");
+        try
+        {
+            using var searcher = new ManagementObjectSearcher(@"root\CIMV2\Security\MicrosoftTpm", "SELECT IsEnabled_InitialValue,IsActivated_InitialValue,SpecVersion FROM Win32_Tpm");
+            using var item = searcher.Get().Cast<ManagementObject>().FirstOrDefault();
+            if (item is null) return new(false, false, null, "Win32_Tpm");
+            var enabled = NullableBool(item["IsEnabled_InitialValue"]);
+            var activated = NullableBool(item["IsActivated_InitialValue"]);
+            bool? ready = enabled is null || activated is null ? null : enabled.Value && activated.Value;
+            return new(true, ready, Convert.ToString(item["SpecVersion"]), "Win32_Tpm");
+        }
+        catch (ManagementException) { return ReadTpmViaTbs(); }
+        catch (UnauthorizedAccessException) { return ReadTpmViaTbs(); }
+        catch (COMException) { return ReadTpmViaTbs(); }
+    }
+
+    private static TpmObservation ReadTpmViaTbs()
+    {
+        try
+        {
+            var info = new TpmDeviceInfo { StructVersion = TpmVersion20 };
+            var result = Tbsi_GetDeviceInfo((uint)Marshal.SizeOf<TpmDeviceInfo>(), ref info);
+            if (result == TbsSuccess)
+            {
+                var version = info.TpmVersion switch
+                {
+                    TpmVersion12 => "1.2",
+                    TpmVersion20 => "2.0",
+                    _ => null
+                };
+                return new(true, null, version, "TBS Tbsi_GetDeviceInfo");
+            }
+            if (result == TbsTpmNotFound) return new(false, false, null, "TBS Tbsi_GetDeviceInfo");
+            return new(null, null, null, $"TBS error 0x{result:X8}");
+        }
+        catch (DllNotFoundException) { return new(null, null, null, "TBS unavailable"); }
+        catch (EntryPointNotFoundException) { return new(null, null, null, "TBS unavailable"); }
     }
 
     public DeviceGuardObservation ReadDeviceGuard()
@@ -282,6 +312,19 @@ internal sealed class WindowsPlatformSecuritySource : IWindowsPlatformSecuritySo
         return result;
     }
 
+    [StructLayout(LayoutKind.Sequential)]
+    private struct TpmDeviceInfo
+    {
+        public uint StructVersion;
+        public uint TpmVersion;
+        public uint TpmInterfaceType;
+        public uint TpmImpRevision;
+    }
+
+    private const uint TbsSuccess = 0;
+    private const uint TbsTpmNotFound = 0x8028400F;
+    private const uint TpmVersion12 = 1;
+    private const uint TpmVersion20 = 2;
     private const uint FirmwareTypeBios = 1;
     private const uint FirmwareTypeUefi = 2;
 
@@ -291,4 +334,7 @@ internal sealed class WindowsPlatformSecuritySource : IWindowsPlatformSecuritySo
 
     [DllImport("wscapi.dll")]
     private static extern int WscGetSecurityProviderHealth(int providers, out int health);
+
+    [DllImport("tbs.dll")]
+    private static extern uint Tbsi_GetDeviceInfo(uint size, ref TpmDeviceInfo info);
 }

@@ -17,7 +17,7 @@ internal static class AntivirusSecurityCollector
         try { products = source.ReadSecurityCenterProducts(); }
         catch (Exception ex)
         {
-            return UnknownSet("WSC product enumeration failed: " + ex.GetType().Name);
+            return CollectWithoutWsc(source, at, "WSC product enumeration failed: " + ex.GetType().Name);
         }
 
         var antivirus = products.Where(x => x.Provider.Equals("Antivirus", StringComparison.OrdinalIgnoreCase)).ToList();
@@ -96,6 +96,91 @@ internal static class AntivirusSecurityCollector
         }
 
         return output;
+    }
+
+
+    private static Dictionary<string, SecurityControlObservation> CollectWithoutWsc(
+        IAntivirusSecuritySource source,
+        DateTime now,
+        string reason)
+    {
+        DefenderSecurityObservation? defender = null;
+        KasperskySecurityObservation? kaspersky = null;
+        try { defender = source.ReadDefender(); } catch { }
+        try { kaspersky = source.ReadKaspersky(); } catch { }
+
+        var defenderActive = defender?.AntivirusEnabled == true;
+        var kasperskyActive = kaspersky?.RealTimeProtectionEnabled == true;
+
+        if (defenderActive && kasperskyActive)
+        {
+            var ambiguous = UnknownSet(reason + "; multiple provider-specific sources report active protection");
+            ambiguous["SEC-AV-ACTIVE"] = Observation(
+                "SEC-AV-ACTIVE",
+                SecurityControlStatus.Pass,
+                [
+                    new("ActiveProducts", "Microsoft Defender Antivirus; Kaspersky Endpoint Security", "Provider fallback"),
+                    new("FallbackReason", reason, "Collector")
+                ]);
+            return ambiguous;
+        }
+
+        if (kasperskyActive && kaspersky is not null)
+        {
+            var primary = new SecurityCenterProduct(
+                "Kaspersky Endpoint Security",
+                "Antivirus",
+                "On",
+                kaspersky.DefinitionsUpdatedAt is null ? "Unknown" : "UpToDate",
+                null,
+                kaspersky.Source);
+            var output = UnknownSet(reason);
+            output["SEC-AV-ACTIVE"] = Observation(
+                "SEC-AV-ACTIVE",
+                SecurityControlStatus.Pass,
+                [
+                    new("PrimaryProduct", primary.Name, primary.Source),
+                    new("ProductState", "On", primary.Source),
+                    new("FallbackReason", reason, "Collector")
+                ]);
+            output["SEC-AV-DEFINITIONS"] = DefinitionObservation(primary, null, kaspersky.DefinitionsUpdatedAt, now, kaspersky.Source);
+            output["SEC-AV-RTP"] = BooleanObservation("SEC-AV-RTP", kaspersky.RealTimeProtectionEnabled, "RealTimeProtectionEnabled", kaspersky.Source);
+            output["SEC-AV-TAMPER"] = Observation("SEC-AV-TAMPER", SecurityControlStatus.Unknown,
+                [new("Provider", primary.Name, primary.Source), new("FallbackReason", reason, "Collector")]);
+            if (!string.IsNullOrWhiteSpace(kaspersky.ProductVersion))
+                output["SEC-AV-PLATFORM"] = Observation("SEC-AV-PLATFORM", SecurityControlStatus.Unknown,
+                    [new("PlatformVersion", kaspersky.ProductVersion!, kaspersky.Source), new("FallbackReason", reason, "Collector")]);
+            return output;
+        }
+
+        if (defenderActive && defender is not null)
+        {
+            var primary = new SecurityCenterProduct(
+                "Microsoft Defender Antivirus",
+                "Antivirus",
+                "On",
+                "Unknown",
+                null,
+                defender.Source);
+            var output = UnknownSet(reason);
+            output["SEC-AV-ACTIVE"] = Observation(
+                "SEC-AV-ACTIVE",
+                SecurityControlStatus.Pass,
+                [
+                    new("PrimaryProduct", primary.Name, primary.Source),
+                    new("ProductState", "On", primary.Source),
+                    new("FallbackReason", reason, "Collector")
+                ]);
+            output["SEC-AV-DEFINITIONS"] = DefinitionObservation(primary, defender.SignatureAgeDays, null, now, defender.Source);
+            output["SEC-AV-RTP"] = DefenderRtp(defender);
+            output["SEC-AV-TAMPER"] = BooleanObservation("SEC-AV-TAMPER", defender.TamperProtected, "TamperProtected", defender.Source);
+            if (!string.IsNullOrWhiteSpace(defender.PlatformVersion))
+                output["SEC-AV-PLATFORM"] = Observation("SEC-AV-PLATFORM", SecurityControlStatus.Unknown,
+                    [new("PlatformVersion", defender.PlatformVersion!, defender.Source), new("FallbackReason", reason, "Collector")]);
+            return output;
+        }
+
+        return UnknownSet(reason + "; provider-specific fallback did not prove active protection");
     }
 
     private static Dictionary<string, SecurityControlObservation> MergeActive(

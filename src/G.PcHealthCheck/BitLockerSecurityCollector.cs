@@ -1,5 +1,5 @@
-using System.Management;
-
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 namespace G.PcHealthCheck;
 
 internal interface IBitLockerSecuritySource
@@ -54,9 +54,14 @@ internal static class BitLockerSecurityCollector
 
     internal static SecurityControlStatus EvaluateVolume(EncryptionVolumeObservation volume)
     {
-        if (volume.ProtectionStatus.Equals("Unknown", StringComparison.OrdinalIgnoreCase)
-            || volume.ConversionStatus.Equals("Unknown", StringComparison.OrdinalIgnoreCase))
+        if (volume.ProtectionStatus.Equals("Unknown", StringComparison.OrdinalIgnoreCase))
             return SecurityControlStatus.Unknown;
+
+        if (volume.ConversionStatus.Equals("Unknown", StringComparison.OrdinalIgnoreCase))
+            return volume.ProtectionStatus.Equals("On", StringComparison.OrdinalIgnoreCase)
+                || volume.ProtectionStatus.Equals("Off", StringComparison.OrdinalIgnoreCase)
+                ? SecurityControlStatus.Warn
+                : SecurityControlStatus.Unknown;
 
         if (volume.ConversionStatus is "EncryptionInProgress" or "EncryptionPaused" or "DecryptionInProgress" or "DecryptionPaused")
             return SecurityControlStatus.Warn;
@@ -91,6 +96,14 @@ internal sealed class BitLockerSecuritySource : IBitLockerSecuritySource
 {
     public IReadOnlyList<EncryptionVolumeObservation> ReadVolumes()
     {
+        try { return ReadVolumesViaWmi(); }
+        catch (ManagementException) { return ReadVolumesViaManageBde(); }
+        catch (UnauthorizedAccessException) { return ReadVolumesViaManageBde(); }
+        catch (COMException) { return ReadVolumesViaManageBde(); }
+    }
+
+    private static IReadOnlyList<EncryptionVolumeObservation> ReadVolumesViaWmi()
+    {
         var volumeMetadata = ReadVolumeMetadata();
         var systemDrive = Path.GetPathRoot(Environment.GetFolderPath(Environment.SpecialFolder.Windows))?.TrimEnd('\\') ?? "";
         var result = new List<EncryptionVolumeObservation>();
@@ -123,6 +136,63 @@ internal sealed class BitLockerSecuritySource : IBitLockerSecuritySource
             }
         }
         return result;
+    }
+
+
+    private static IReadOnlyList<EncryptionVolumeObservation> ReadVolumesViaManageBde()
+    {
+        var windowsDrive = Path.GetPathRoot(Environment.GetFolderPath(Environment.SpecialFolder.Windows))?.TrimEnd('\\') ?? "";
+        var result = new List<EncryptionVolumeObservation>();
+        foreach (var drive in DriveInfo.GetDrives())
+        {
+            try
+            {
+                if (drive.DriveType != DriveType.Fixed || !drive.IsReady) continue;
+                var mount = drive.Name.TrimEnd('\\');
+                var isOs = mount.Equals(windowsDrive, StringComparison.OrdinalIgnoreCase);
+                var protection = ReadManageBdeProtection(mount);
+                result.Add(new EncryptionVolumeObservation(
+                    mount,
+                    mount,
+                    isOs,
+                    !isOs,
+                    protection,
+                    "Unknown",
+                    null,
+                    "Unknown",
+                    [],
+                    "manage-bde protection status"));
+            }
+            catch { }
+        }
+        return result;
+    }
+
+    private static string ReadManageBdeProtection(string mount)
+    {
+        var path = Path.Combine(Environment.SystemDirectory, "manage-bde.exe");
+        if (!File.Exists(path)) return "Unknown";
+        var psi = new ProcessStartInfo
+        {
+            FileName = path,
+            UseShellExecute = false,
+            CreateNoWindow = true
+        };
+        psi.ArgumentList.Add("-status");
+        psi.ArgumentList.Add(mount);
+        psi.ArgumentList.Add("-protectionaserrorlevel");
+        try
+        {
+            using var process = Process.Start(psi);
+            if (process is null) return "Unknown";
+            if (!process.WaitForExit(3000))
+            {
+                try { process.Kill(entireProcessTree: true); } catch { }
+                return "Unknown";
+            }
+            return process.ExitCode switch { 0 => "On", 1 => "Off", _ => "Unknown" };
+        }
+        catch { return "Unknown"; }
     }
 
     private sealed record VolumeMetadata(int DriveType, bool BootVolume, bool SystemVolume, string Label);

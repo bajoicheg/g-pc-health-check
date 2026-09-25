@@ -1,5 +1,7 @@
 using Microsoft.Win32;
-using System.Runtime.InteropServices;
+using System.Diagnostics;
+using System.Globalization;
+using System.Management;
 
 namespace G.PcHealthCheck;
 
@@ -21,7 +23,7 @@ internal static class WindowsUpdateSecurityCollector
             return new SecurityControlObservation(
                 "SEC-OS-UPDATES",
                 SecurityControlStatus.Unknown,
-                [new SecurityEvidence("CollectionError", ex.GetType().Name, "WUA")],
+                [new SecurityEvidence("CollectionError", ex.GetType().Name, "WindowsUpdate")],
                 "SEC-OS-UPDATES");
         }
 
@@ -33,112 +35,132 @@ internal static class WindowsUpdateSecurityCollector
             new("UpdateService", string.IsNullOrWhiteSpace(value.ServiceSource) ? "Unknown" : value.ServiceSource, value.Source)
         };
 
-        if (value.LastSuccessfulQualifyingUpdate is not DateTime last || value.PendingQualifyingUpdates is null)
+        if (value.LastSuccessfulQualifyingUpdate is not DateTime last)
             return new SecurityControlObservation("SEC-OS-UPDATES", SecurityControlStatus.Unknown, evidence, "SEC-OS-UPDATES");
 
         var ageDays = Math.Max(0, (int)Math.Floor((at - last).TotalDays));
-        evidence.Add(new SecurityEvidence("UpdateAgeDays", ageDays.ToString(), value.Source));
+        evidence.Add(new SecurityEvidence("UpdateAgeDays", ageDays.ToString(CultureInfo.InvariantCulture), value.Source));
 
         var status = ageDays > 60
             ? SecurityControlStatus.Fail
-            : value.PendingQualifyingUpdates.Value > 0 || ageDays >= 46
+            : value.PendingQualifyingUpdates is null
                 ? SecurityControlStatus.Warn
-                : SecurityControlStatus.Pass;
+                : value.PendingQualifyingUpdates.Value > 0 || ageDays >= 46
+                    ? SecurityControlStatus.Warn
+                    : SecurityControlStatus.Pass;
         return new SecurityControlObservation("SEC-OS-UPDATES", status, evidence, "SEC-OS-UPDATES");
     }
 }
 
 internal sealed class WindowsUpdateSecuritySource : IWindowsUpdateSecuritySource
 {
-    private const int MaxHistoryEntries = 200;
+    private static readonly TimeSpan PendingSearchTimeout = TimeSpan.FromSeconds(5);
+
+    private const string PendingSearchScript =
+        "$ErrorActionPreference='Stop';" +
+        "$ids=@('0FA1201D-4330-4FA8-8AE9-B877473B6441','E6CF1350-C01B-414D-A61F-263D14D133B4','28BC880E-0592-4CBF-8F95-C79B17911D5F','CD5FFD1E-E932-4E3A-BF74-18BF0B1BBD83','68C5B0A3-D1A6-4553-AE49-01D3A7827828');" +
+        "$s=New-Object -ComObject Microsoft.Update.Session;" +
+        "$q=$s.CreateUpdateSearcher();" +
+        "$r=$q.Search(\"IsInstalled=0 and Type='Software' and IsHidden=0\");" +
+        "$n=0;" +
+        "for($i=0;$i -lt $r.Updates.Count;$i++){" +
+        "$u=$r.Updates.Item($i);$match=$false;" +
+        "for($j=0;$j -lt $u.Categories.Count;$j++){" +
+        "$id=[string]$u.Categories.Item($j).CategoryID;if($ids -contains $id){$match=$true;break}}" +
+        "if($match){$n++}}" +
+        "[Console]::Out.Write($n)";
 
     public WindowsUpdateSecurityObservation Read()
     {
-        var sessionType = Type.GetTypeFromProgID("Microsoft.Update.Session", throwOnError: false)
-            ?? throw new PlatformNotSupportedException("Windows Update Agent COM session is unavailable.");
-        object? rawSession = null;
-        object? rawSearcher = null;
-        try
-        {
-            rawSession = Activator.CreateInstance(sessionType) ?? throw new InvalidOperationException("Cannot create Windows Update session.");
-            dynamic session = rawSession;
-            rawSearcher = session.CreateUpdateSearcher();
-            dynamic searcher = rawSearcher;
+        DateTime? last = null;
+        try { last = ReadLastInstalledWindowsUpdate(); } catch { }
 
-            var service = DescribeService(searcher);
-            var last = ReadLastSuccessfulQualifyingUpdate(searcher);
-            var pending = ReadPendingQualifyingUpdates(searcher);
-            return new WindowsUpdateSecurityObservation(last, pending, ReadPendingReboot(), service, "Windows Update Agent");
-        }
-        finally
-        {
-            ReleaseCom(rawSearcher);
-            ReleaseCom(rawSession);
-        }
+        int? pending = null;
+        try { pending = ReadPendingQualifyingUpdatesBounded(); } catch { }
+
+        return new WindowsUpdateSecurityObservation(
+            last,
+            pending,
+            ReadPendingReboot(),
+            DescribeService(),
+            "QFE + bounded WUA");
     }
 
-    private static DateTime? ReadLastSuccessfulQualifyingUpdate(dynamic searcher)
+    private static DateTime? ReadLastInstalledWindowsUpdate()
     {
-        var total = Convert.ToInt32(searcher.GetTotalHistoryCount());
-        if (total <= 0) return null;
-        var count = Math.Min(total, MaxHistoryEntries);
-        object? rawHistory = null;
+        DateTime? latest = null;
+        using var searcher = new ManagementObjectSearcher(
+            "root\\CIMV2",
+            "SELECT HotFixID,InstalledOn,Description FROM Win32_QuickFixEngineering");
+        using var collection = searcher.Get();
+        foreach (ManagementObject item in collection)
+        {
+            using (item)
+            {
+                var hotfixId = Convert.ToString(item["HotFixID"]) ?? "";
+                if (string.IsNullOrWhiteSpace(hotfixId)) continue;
+                var date = ParseInstalledOn(item["InstalledOn"]);
+                if (date is null) continue;
+                if (latest is null || date.Value > latest.Value) latest = date.Value;
+            }
+        }
+        return latest;
+    }
+
+    private static DateTime? ParseInstalledOn(object? value)
+    {
+        if (value is DateTime date) return date;
+        var raw = Convert.ToString(value);
+        if (string.IsNullOrWhiteSpace(raw)) return null;
+        if (DateTime.TryParse(raw, CultureInfo.CurrentCulture, DateTimeStyles.AllowWhiteSpaces, out date)) return date;
+        if (DateTime.TryParse(raw, CultureInfo.InvariantCulture, DateTimeStyles.AllowWhiteSpaces, out date)) return date;
         try
         {
-            rawHistory = searcher.QueryHistory(0, count);
-            dynamic history = rawHistory;
-            var historyCount = Convert.ToInt32(history.Count);
-            for (var i = 0; i < historyCount; i++)
-            {
-                object? rawEntry = null;
-                try
-                {
-                    rawEntry = history.Item(i);
-                    dynamic entry = rawEntry;
-                    var operation = Convert.ToInt32(entry.Operation);
-                    var resultCode = Convert.ToInt32(entry.ResultCode);
-                    var title = Convert.ToString(entry.Title) ?? "";
-                    if (operation != 1 || (resultCode != 2 && resultCode != 3) || !IsQualifyingOsUpdate(title)) continue;
-                    return Convert.ToDateTime(entry.Date);
-                }
-                finally { ReleaseCom(rawEntry); }
-            }
+            var dmtf = ManagementDateTimeConverter.ToDateTime(raw);
+            return dmtf.Year >= 2000 ? dmtf : null;
+        }
+        catch { return null; }
+    }
+
+    private static int? ReadPendingQualifyingUpdatesBounded()
+    {
+        var windows = Environment.GetFolderPath(Environment.SpecialFolder.Windows);
+        if (string.IsNullOrWhiteSpace(windows)) return null;
+        var powershell = Path.Combine(windows, "System32", "WindowsPowerShell", "v1.0", "powershell.exe");
+        if (!File.Exists(powershell)) return null;
+
+        var psi = new ProcessStartInfo
+        {
+            FileName = powershell,
+            UseShellExecute = false,
+            RedirectStandardOutput = true,
+            RedirectStandardError = true,
+            CreateNoWindow = true
+        };
+        psi.ArgumentList.Add("-NoLogo");
+        psi.ArgumentList.Add("-NoProfile");
+        psi.ArgumentList.Add("-NonInteractive");
+        psi.ArgumentList.Add("-Command");
+        psi.ArgumentList.Add(PendingSearchScript);
+
+        using var process = Process.Start(psi);
+        if (process is null) return null;
+        var stdout = process.StandardOutput.ReadToEndAsync();
+        var stderr = process.StandardError.ReadToEndAsync();
+        if (!process.WaitForExit((int)PendingSearchTimeout.TotalMilliseconds))
+        {
+            try { process.Kill(entireProcessTree: true); } catch { }
+            try { process.WaitForExit(1000); } catch { }
             return null;
         }
-        finally { ReleaseCom(rawHistory); }
-    }
 
-    private static int? ReadPendingQualifyingUpdates(dynamic searcher)
-    {
-        object? rawSearchResult = null;
-        object? rawUpdates = null;
-        try
-        {
-            rawSearchResult = searcher.Search("IsInstalled=0 and Type='Software' and IsHidden=0");
-            dynamic searchResult = rawSearchResult;
-            rawUpdates = searchResult.Updates;
-            dynamic updates = rawUpdates;
-            var count = Convert.ToInt32(updates.Count);
-            var qualifying = 0;
-            for (var i = 0; i < count; i++)
-            {
-                object? rawUpdate = null;
-                try
-                {
-                    rawUpdate = updates.Item(i);
-                    dynamic update = rawUpdate;
-                    var title = Convert.ToString(update.Title) ?? "";
-                    if (IsQualifyingOsUpdate(title)) qualifying++;
-                }
-                finally { ReleaseCom(rawUpdate); }
-            }
-            return qualifying;
-        }
-        finally
-        {
-            ReleaseCom(rawUpdates);
-            ReleaseCom(rawSearchResult);
-        }
+        var output = stdout.GetAwaiter().GetResult().Trim();
+        _ = stderr.GetAwaiter().GetResult();
+        return process.ExitCode == 0
+            && int.TryParse(output, NumberStyles.Integer, CultureInfo.InvariantCulture, out var count)
+            && count >= 0
+            ? count
+            : null;
     }
 
     internal static bool IsQualifyingOsUpdate(string title)
@@ -159,16 +181,18 @@ internal sealed class WindowsUpdateSecuritySource : IWindowsUpdateSecuritySource
             || title.Contains("Quality Update", StringComparison.OrdinalIgnoreCase);
     }
 
-    private static string DescribeService(dynamic searcher)
+    private static string DescribeService()
     {
         try
         {
-            var serviceId = Convert.ToString(searcher.ServiceID);
-            if (!string.IsNullOrWhiteSpace(serviceId)) return "ServiceID:" + serviceId;
+            using var au = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU");
+            var raw = au?.GetValue("UseWUServer");
+            var useWsus = raw switch { int i => i != 0, uint u => u != 0, _ => false };
+            if (useWsus) return "WSUS policy";
+            if (raw is not null) return "Windows Update policy";
         }
         catch { }
-        try { return "ServerSelection:" + Convert.ToInt32(searcher.ServerSelection); }
-        catch { return "Configured Windows Update service"; }
+        return "Windows Update default/policy";
     }
 
     private static bool ReadPendingReboot()
@@ -186,10 +210,5 @@ internal sealed class WindowsUpdateSecuritySource : IWindowsUpdateSecuritySource
             return key?.GetValue("PendingFileRenameOperations") is not null;
         }
         catch { return false; }
-    }
-
-    private static void ReleaseCom(object? value)
-    {
-        if (value is not null && Marshal.IsComObject(value)) Marshal.FinalReleaseComObject(value);
     }
 }
