@@ -4,7 +4,7 @@ repository: bajoicheg/g-pc-health-check
 branch: design/0.17.0-security-posture
 policy_revision: 2026-09-25-cdc-2.6.0-fleet-control-plane
 policy_digest: 362b598cafef3ca535f0f2a097ba6c50877bcb03a388fead08c59fc0e2a4fa97
-observed_at_utc: '2026-09-25T11:20:00Z'
+observed_at_utc: '2026-09-25T11:57:07Z'
 orchestration_origin: chat
 active_executor: none
 lease_state: released
@@ -17,24 +17,24 @@ operation_intent_ref: null
 operation_key: null
 resume_capsule_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/resume.json
 execution_continuity:
-  invocation_id: chat-2026-09-25T111614Z-pilot-artifact-autonomy
+  invocation_id: chat-2026-09-25T115338Z-cdc271-adoption
   runnable_next_action: false
   meaningful_progress: true
   primitive_steps_since_progress: 0
   completion_gate: resumable_blocker
-  last_progress_ref: 'actions:36128619572:success'
+  last_progress_ref: 'git:6b1b6ba7b530188f3e568152acb82a06faec24b0'
 control:
   execution_lease_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/lease.json
   execution_lease_revision: 8a98465cc580ed175bd69a13295c22b563cb519c
   executor_id: null
-  lease_generation: 6
+  lease_generation: 7
   budget_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/budget.json
   recovery_snapshot_ref: null
   external_wait_ref: null
 active_change: 0.17.0-security-posture
-current_task: Pilot artifact automation complete; managed Windows 11 acceptance remains
+current_task: CDC 2.7.1 autonomy/lease hardening adopted; managed Windows 11 acceptance remains
 phase: blocked
-implementation_sha: 2fcf4413a96af6758222ec06285e380c1d362eb6
+implementation_sha: 6b1b6ba7b530188f3e568152acb82a06faec24b0
 candidate_sha: cbd20da8822f321df0d6404a955bf2cea9e553bb
 last_green_sha: cbd20da8822f321df0d6404a955bf2cea9e553bb
 last_green_evidence: auto pilot push run 36128619572 success; artifacts 10861076525 (EXE) and 10860941608 (pilot E2E)
@@ -101,3 +101,24 @@ do not upload binary artifacts. The pilot marker
 This removes `workflow_dispatch` availability and a human “Run workflow” click
 from the normal CDC execution path. Release and supply-chain workflows remain
 protected because they require successful push builds on `main`.
+
+
+## CDC 2.7.1 autonomy and lease-v2 hardening — 2026-09-25
+
+At released/no-guard ownership boundary, the vendored CDC core was advanced to
+canonical CDC 2.7.1 from `bajoicheg/g-cdc`. Exact package subtree:
+`a78b8e7df4bfdd5a067f9e9da5a3a8a4b33394fc`; immutable release ref
+`refs/heads/release/v2.7.1`; release commit
+`8e97192ef89bf37657a4444a954530f22e8b2267`. The binding is recorded in
+`docs/cdc-consumer-lock.json`.
+
+CDC now treats missing connector/API operations (including unavailable
+`workflow_dispatch`) as an execution-transport capability gap, not implicit owner
+approval. Safe durable event triggers/compatible backends are attempted before asking
+for a mechanical user action. The same release also makes Git lease storage schema-aware
+and rejects malformed owned v2 records without valid invocation/finalization before CAS.
+
+This process-only adoption does not satisfy the managed Windows 11 acceptance gate and
+does not grant PR merge/integration approval. The autonomous pilot artifact evidence
+remains run `36128619572` at exact pilot SHA
+`cbd20da8822f321df0d6404a955bf2cea9e553bb`.
