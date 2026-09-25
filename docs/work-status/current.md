@@ -33,7 +33,7 @@ control:
   external_wait_ref: null
 active_change: 0.17.0-security-posture
 current_task: Managed Windows 11 pilot and pre-integration acceptance
-phase: blocked
+phase: recovery
 implementation_sha: 2a7b1b78180773563fea7f4d10be86021f90d17f
 candidate_sha: f037bece0272814f9b0f069aaf1de17be369b626
 last_green_sha: f037bece0272814f9b0f069aaf1de17be369b626
