@@ -94,6 +94,7 @@ Verify:
 
 - active Kaspersky is selected as primary and passive Defender does not create a false AV failure;
 - fixed read-only KESCLI/OPSWAT state is shown only when the installed interface is actually available;
+- if Windows Security Center COM product enumeration fails, strong read-only KESCLI evidence may recover AV active/RTP/definitions without inventing platform/tamper state; passive Defender must not override an active Kaspersky fallback;
 - Kaspersky definitions update is the only Kaspersky automatic blue candidate and only when the fixed supported local interface/policy permits it;
 - Kaspersky RTP remains read-only/manual and no `SecurityEnableKasperskyRtp` action exists;
 - KSC/tamper/policy refusal is reported as blocked/unavailable/failure rather than bypassed.
@@ -122,13 +123,23 @@ On an endpoint using the organization's normal configured update source, record:
 - last successful qualifying update evidence;
 - applicable pending qualifying update if present;
 - pending reboot evidence;
-- configured source/service context.
+- configured source/service context;
+- elapsed time from the progress message `ИБ: проверяю обновления Windows…` until the next Security stage begins.
+
+Pilot regression acceptance after the 2026-09-25 managed-endpoint finding:
+
+- the Windows Update Security stage must complete in **8 seconds or less** on the test endpoint, including a slow/unresponsive WUA search;
+- the network-backed pending-update probe has a hard 5-second child-process budget and must not block the GUI scan indefinitely;
+- locally installed Windows update history remains usable when the pending WUA search times out/fails;
+- fresh installed-update evidence plus unresolved pending-update state is conservatively `Warn`, never `Pass`; severely stale installed-update evidence may still `Fail`;
+- pending-update classification uses stable Windows Update classification IDs rather than relying only on localized title text;
+- the product must not change WSUS/Windows Update source, trigger update installation or weaken update policy.
 
 Do not change WSUS/update source for the test. A newly pending qualifying update should not be presented as the same severity as a severely stale endpoint. 0.17.0 must not install Windows quality/security updates automatically.
 
 ### Secure Boot / TPM / VBS-HVCI / UAC
 
-Record real runtime evidence on supported Windows 11 hardware. Missing or inaccessible WMI/firmware evidence must remain `Unknown`. The blue batch must not change these controls.
+Record real runtime evidence on supported Windows 11 hardware. If TPM WMI is denied/unavailable under the standard-user context, the read-only Windows TBS device-info fallback may prove TPM presence/version; presence of TPM 2.0 with readiness unresolved is `Warn`, never `Pass`. If neither trusted source is available, TPM remains `Unknown`. The blue batch must not change these controls.
 
 ## 3C. BitLocker and fixed-data-volume Security matrix
 
@@ -141,7 +152,7 @@ Cover where available:
 - a disposable/lab unprotected or transitional volume case;
 - removable/EFI/recovery/optical exclusions.
 
-Verify per-volume evidence identifies the applicable volume and protection/conversion state but never recovery material. OS/data controls are assessment/manual-remediation only in 0.17.0; the blue batch must not enable/provision BitLocker.
+Verify per-volume evidence identifies the applicable volume and protection/conversion state but never recovery material. If BitLocker WMI is denied/unavailable, a bounded read-only `manage-bde -status <drive> -protectionaserrorlevel` fallback may prove protection on/off only; because conversion/encryption details remain unresolved, that limited evidence is `Warn`, never `Pass`. OS/data controls are assessment/manual-remediation only in 0.17.0; the blue batch must not enable/provision BitLocker.
 
 ## 3D. Firmware/OEM Security matrix
 
