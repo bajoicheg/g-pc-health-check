@@ -6,10 +6,10 @@ policy_revision: 2026-09-25-cdc-2.6.0-fleet-control-plane
 policy_digest: 362b598cafef3ca535f0f2a097ba6c50877bcb03a388fead08c59fc0e2a4fa97
 observed_at_utc: '2026-09-25T11:20:00Z'
 orchestration_origin: chat
-active_executor: d665904f-e88a-4f59-80e0-d56ce2193058
-lease_state: active
-executor_heartbeat_at_utc: '2026-09-25T11:16:14Z'
-execution_lease_until_utc: '2026-09-25T11:36:14Z'
+active_executor: none
+lease_state: released
+executor_heartbeat_at_utc: null
+execution_lease_until_utc: null
 waiting_external_kind: null
 waiting_external_id: null
 waiting_external_sha: null
@@ -18,22 +18,22 @@ operation_key: null
 resume_capsule_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/resume.json
 execution_continuity:
   invocation_id: chat-2026-09-25T111614Z-pilot-artifact-autonomy
-  runnable_next_action: true
+  runnable_next_action: false
   meaningful_progress: true
   primitive_steps_since_progress: 0
-  completion_gate: continue_execution
+  completion_gate: resumable_blocker
   last_progress_ref: 'actions:36128619572:success'
 control:
   execution_lease_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/lease.json
   execution_lease_revision: 8a98465cc580ed175bd69a13295c22b563cb519c
-  executor_id: d665904f-e88a-4f59-80e0-d56ce2193058
+  executor_id: null
   lease_generation: 6
   budget_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/budget.json
   recovery_snapshot_ref: null
   external_wait_ref: null
 active_change: 0.17.0-security-posture
 current_task: Pilot artifact automation complete; managed Windows 11 acceptance remains
-phase: validating
+phase: blocked
 implementation_sha: 2fcf4413a96af6758222ec06285e380c1d362eb6
 candidate_sha: cbd20da8822f321df0d6404a955bf2cea9e553bb
 last_green_sha: cbd20da8822f321df0d6404a955bf2cea9e553bb
