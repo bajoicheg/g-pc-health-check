@@ -147,9 +147,13 @@ jobs:
           rm -f .github/workflows/cdc-adopt-2.8.2.yml
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          chmod +x .agents/skills/continuous-development-cycle/scripts/{capability_router.py,continuation_queue.py,control_plane_audit.py,execution_continuity.py,execution_lease.py,fleet_supervisor.py,operation_intent.py,progress_slo.py,recovery.py,recovery_recipes.py,resume_capsule.py,run_checks.py,validate_checkpoint.py,validate_checkpoint_24.py,validate_evidence.py,version_convergence.py,watchdog_health.py}
           git add -A
+          git add -f .agents/skills/continuous-development-cycle
           TREE="$(git write-tree)"
-          test "$(git rev-parse "${TREE}:.agents/skills/continuous-development-cycle")" = "${CDC_PACKAGE_TREE}"
+          ACTUAL="$(git rev-parse "${TREE}:.agents/skills/continuous-development-cycle")"
+          echo "CDC_SUBTREE=${ACTUAL}"
+          test "${ACTUAL}" = "${CDC_PACKAGE_TREE}"
           git commit -m "chore(cdc): adopt canonical CDC 2.8.2 [skip ci]"
           git push origin HEAD:cdc/adopt-2.8.2
           test -z "$(git status --porcelain)"
