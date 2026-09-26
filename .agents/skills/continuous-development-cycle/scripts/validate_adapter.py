@@ -121,7 +121,7 @@ def validate_orchestration(value, actions_budget):
         raise ContractError("orchestration budget must match ci.actions_budget; reconcile policy drift")
 
 
-def validate_v25_controls(data, require_cost=False):
+def validate_v25_controls(data, require_cost=False, require_visibility=False):
     routing_schema = {
         "capability_registry_ref": nonempty,
         "request_schema": ("capability-request/v1",),
@@ -139,6 +139,8 @@ def validate_v25_controls(data, require_cost=False):
     }
     if require_cost or any(name in data["routing"] for name in cost_fields):
         routing_schema.update(cost_fields)
+    if require_visibility or "repository_visibility" in data["routing"]:
+        routing_schema["repository_visibility"] = ("public","private","internal")
     check(data["routing"], routing_schema, "adapter.routing")
     kinds = data["routing"]["backend_kind_preference"]
     allowed = {"codex_compute", "local", "other_compute", "github_actions"}
@@ -198,6 +200,59 @@ def validate_v26_controls(data):
         "hash_chain_required": TRUE,
     }, "adapter.audit")
 
+def validate_v28_controls(data):
+    check(data["autonomy"], {
+        "terminal_state_schema": ("terminal-state/v2",),
+        "no_idle_invariant": TRUE,
+        "execution_channel_supervisor": TRUE,
+        "max_channel_failovers": positive,
+        "concurrent_writer_reconciliation": TRUE,
+        "force_push_on_reconcile": FALSE,
+    }, "adapter.autonomy")
+    check(data["publication"], {
+        "inventory_schema": ("publication-inventory/v1",),
+        "sensitive_context_policy_ref": nonempty,
+        "scan_all_refs_required": TRUE,
+        "scan_conversations_required": TRUE,
+        "scan_artifacts_required": TRUE,
+        "control_plane_externalized": TRUE,
+        "direct_visibility_toggle_requires_guard_green": TRUE,
+        "sanitized_export_on_findings": TRUE,
+    }, "adapter.publication")
+
+def validate_v281_controls(data):
+    check(data["hardening"], {
+        "watchdog_repair_schema": ("watchdog-repair-state/v1",),
+        "watchdog_self_repair": TRUE,
+        "ref_inventory_schema": ("ref-inventory/v1",),
+        "ref_hygiene_authority": ("plan_only",),
+        "coordination_retention_schema": ("coordination-retention/v1",),
+        "coordination_retention_authority": ("plan_only",),
+        "blocker_proof_schema": ("blocked-state-proof/v1",),
+        "blocker_proof_required": TRUE,
+        "decision_request_schema": ("decision-request/v1",),
+        "decision_authority_must_preexist": TRUE,
+        "evidence_stream_schema": ("evidence-stream/v1",),
+        "canonical_evidence_schema": ("canonical-evidence/v1",),
+        "compact_evidence_required": TRUE,
+        "progress_enforcement_schema": ("progress-enforcement/v1",),
+        "stalled_requires_recovery_action": TRUE,
+    }, "adapter.hardening")
+
+def validate_v282_controls(data):
+    check(data["maturity"], {
+        "fleet_control_schema": ("fleet-control-input/v1",),
+        "project_independent_fleet_control": TRUE,
+        "stuck_state_schema": ("stuck-state-input/v1",),
+        "stuck_requires_strategy_change": TRUE,
+        "counterfactual_recovery_schema": ("counterfactual-recovery/v1",),
+        "repeat_failed_strategy_forbidden": TRUE,
+        "public_export_schema": ("public-export-request/v1",),
+        "new_public_history_required": TRUE,
+        "dogfood_schema": ("cdc-dogfood-input/v1",),
+        "dogfood_is_authority": FALSE,
+    }, "adapter.maturity")
+
 def validate_adapter(data, skill_version=None):
     if isinstance(data, dict) and data.get("schema") in (
             "continuous-development-cycle/v1", "continuous-development-cycle/v2"):
@@ -206,7 +261,7 @@ def validate_adapter(data, skill_version=None):
     schema = dict(SCHEMA)
     if isinstance(data, dict) and "orchestration" in data:
         schema["orchestration"] = dict
-    for name in ("routing", "recovery_recipes", "continuation", "fleet", "convergence", "progress_slo", "audit"):
+    for name in ("routing", "recovery_recipes", "continuation", "fleet", "convergence", "progress_slo", "audit", "autonomy", "publication", "hardening", "maturity"):
         if isinstance(data, dict) and name in data:
             schema[name] = dict
     check(data, schema)
@@ -228,7 +283,7 @@ def validate_adapter(data, skill_version=None):
     if lower >= (2, 5, 0) and not all(v25_present):
         raise ContractError("CDC 2.5+ policy requires routing, recovery_recipes and continuation")
     if all(v25_present):
-        validate_v25_controls(data, require_cost=lower >= (2, 7, 2))
+        validate_v25_controls(data, require_cost=lower >= (2, 7, 2), require_visibility=lower >= (2, 7, 3))
     v26_names = ("fleet", "convergence", "progress_slo", "audit")
     v26_present = [name in data for name in v26_names]
     if any(v26_present) and lower < (2, 6, 0):
@@ -237,6 +292,26 @@ def validate_adapter(data, skill_version=None):
         raise ContractError("CDC 2.6+ policy requires fleet, convergence, progress_slo and audit")
     if all(v26_present):
         validate_v26_controls(data)
+    v28_names = ("autonomy", "publication")
+    v28_present = [name in data for name in v28_names]
+    if any(v28_present) and lower < (2, 8, 0):
+        raise ContractError("CDC 2.8 controls require skill_min_version >= 2.8.0")
+    if lower >= (2, 8, 0) and not all(v28_present):
+        raise ContractError("CDC 2.8+ policy requires autonomy and publication controls")
+    if all(v28_present):
+        validate_v28_controls(data)
+    if "hardening" in data and lower < (2, 8, 1):
+        raise ContractError("CDC 2.8.1 hardening controls require skill_min_version >= 2.8.1")
+    if lower >= (2, 8, 1) and "hardening" not in data:
+        raise ContractError("CDC 2.8.1+ policy requires hardening controls")
+    if "hardening" in data:
+        validate_v281_controls(data)
+    if "maturity" in data and lower < (2, 8, 2):
+        raise ContractError("CDC 2.8.2 maturity controls require skill_min_version >= 2.8.2")
+    if lower >= (2, 8, 2) and "maturity" not in data:
+        raise ContractError("CDC 2.8.2+ policy requires maturity controls")
+    if "maturity" in data:
+        validate_v282_controls(data)
     if "orchestration" in data:
         if lower < (2, 3, 0):
             raise ContractError("orchestration controls require skill_min_version >= 2.3.0")
