@@ -20,12 +20,42 @@ from budget import validate_ledger
 from recovery import validate_wait_state, decide_recovery
 from watchdog_health import assess as assess_watchdog_health
 from capability_router import validate_registry, validate_request, route as route_backend
+from cost_router import validate_policy as validate_cost_policy, validate_context as validate_cost_context, route as route_cost
 from recovery_recipes import validate_catalog, validate_diagnosis, select as select_recovery_recipe
 from continuation_queue import validate_event, validate_queue, ingest as ingest_continuation
 from progress_slo import validate_policy as validate_slo_policy, validate_observation as validate_progress_observation, classify as classify_progress
 from version_convergence import validate_target as validate_convergence_target, validate_snapshot as validate_convergence_snapshot, assess as assess_convergence
 from control_plane_audit import validate as validate_audit_log, append as append_audit
 from fleet_supervisor import validate_registry as validate_fleet_registry, validate_snapshot as validate_fleet_snapshot, assess_fleet
+from consumer_lock import validate as validate_consumer_lock
+from terminal_state_v2 import evaluate as evaluate_terminal_state
+from execution_channel_supervisor import validate as validate_channel_supervision
+from concurrent_writer import reconcile as reconcile_writer
+from sensitive_context import validate_policy as validate_sensitive_context_policy
+from publication_guard import assess as assess_publication
+from watchdog_self_repair import plan as plan_watchdog_repair
+from ref_hygiene import assess as assess_ref_hygiene
+from coordination_retention import assess as assess_coordination_retention
+from blocker_proof import assess as assess_blocker_proof
+from decision_authority import classify as classify_decision
+from evidence_compactor import compact as compact_evidence
+from progress_enforcer import enforce as enforce_progress
+from fleet_controller import plan as plan_fleet_control
+from stuck_state import detect as detect_stuck
+from counterfactual_recovery import choose as choose_counterfactual
+from public_export_planner import plan as plan_public_export
+from dogfood_metrics import measure as measure_dogfood
+from package_transport import validate_manifest as validate_transport_manifest
+from convergence_vector import normalize as normalize_convergence_vector
+from ci_evidence_classifier import classify as classify_ci_evidence
+from policy_migration import plan as plan_policy_migration
+from checkpoint_builder import build as build_typed_checkpoint
+from migration_transaction import plan as plan_migration_transaction
+from provider_reconciliation import reconcile as reconcile_provider_terminal
+from continuation_cycle import decide as decide_continuation_cycle
+from command_timestamp import render as render_command_timestamp
+from rca_feedback import disposition as disposition_rca_feedback
+from fleet_improvement import harvest as harvest_fleet_improvement
 
 ROOT = Path(__file__).resolve().parents[1]
 REQUIRED = [
@@ -82,6 +112,67 @@ REQUIRED = [
     'tests/test_fleet_supervisor.py', 'tests/test_version_convergence.py',
     'tests/test_progress_slo.py', 'tests/test_control_plane_audit.py',
     'tests/test_v260_guidance.py', 'tests/test_v26_policy.py',
+    'references/canonical-source-and-release.md', 'scripts/consumer_lock.py',
+    'templates/consumer-lock.json', 'tests/test_consumer_lock.py',
+    'tests/test_v270_guidance.py', 'tests/test_git_lease_store_v2.py',
+    'references/cost-aware-routing.md', 'scripts/cost_router.py',
+    'templates/cost-routing-policy.json', 'templates/cost-routing-context.json',
+    'tests/test_cost_router.py', 'tests/test_v272_guidance.py', 'tests/test_v273_guidance.py',
+    'references/autonomous-continuity-and-isolation.md', 'references/publication-safety.md',
+    'scripts/terminal_state_v2.py', 'scripts/execution_channel_supervisor.py',
+    'scripts/concurrent_writer.py', 'scripts/sensitive_context.py', 'scripts/publication_guard.py',
+    'templates/terminal-state-v2.json', 'templates/channel-supervision.json',
+    'templates/writer-reconciliation.json', 'templates/sensitive-context-policy.json',
+    'templates/publication-inventory.json',
+    'tests/test_terminal_state_v2.py', 'tests/test_execution_channel_supervisor.py',
+    'tests/test_concurrent_writer.py', 'tests/test_sensitive_context.py',
+    'tests/test_publication_guard.py', 'tests/test_v280_guidance.py',
+    'references/operational-hardening.md', 'references/decision-authority.md',
+    'scripts/watchdog_self_repair.py', 'scripts/ref_hygiene.py',
+    'scripts/coordination_retention.py', 'scripts/blocker_proof.py',
+    'scripts/decision_authority.py', 'scripts/evidence_compactor.py',
+    'scripts/progress_enforcer.py',
+    'templates/watchdog-repair-state.json', 'templates/ref-inventory.json',
+    'templates/coordination-retention.json', 'templates/blocked-state-proof.json',
+    'templates/decision-request.json', 'templates/evidence-stream.json',
+    'templates/progress-enforcement.json',
+    'tests/test_watchdog_self_repair.py', 'tests/test_ref_hygiene.py',
+    'tests/test_coordination_retention.py', 'tests/test_blocker_proof.py',
+    'tests/test_decision_authority.py', 'tests/test_evidence_compactor.py',
+    'tests/test_progress_enforcer.py', 'tests/test_v281_guidance.py',
+    'references/fleet-and-publication-maturity.md',
+    'scripts/fleet_controller.py', 'scripts/stuck_state.py',
+    'scripts/counterfactual_recovery.py', 'scripts/public_export_planner.py',
+    'scripts/dogfood_metrics.py',
+    'templates/fleet-control-input.json', 'templates/stuck-state-input.json',
+    'templates/counterfactual-recovery.json', 'templates/public-export-request.json',
+    'templates/cdc-dogfood-input.json',
+    'tests/test_fleet_controller.py', 'tests/test_stuck_state.py',
+    'tests/test_counterfactual_recovery.py', 'tests/test_public_export_planner.py',
+    'tests/test_dogfood_metrics.py', 'tests/test_v282_guidance.py',
+    'references/deterministic-distribution-and-convergence.md',
+    'scripts/package_transport.py', 'scripts/convergence_vector.py',
+    'scripts/ci_evidence_classifier.py',
+    'templates/package-transport.json', 'templates/convergence-observation.json',
+    'templates/ci-execution-observation.json',
+    'tests/test_package_transport.py', 'tests/test_convergence_vector.py',
+    'tests/test_ci_evidence_classifier.py', 'tests/test_v290_guidance.py',
+    'references/transactional-migration-and-provider-reconciliation.md',
+    'scripts/policy_migration.py', 'scripts/checkpoint_builder.py',
+    'scripts/migration_transaction.py', 'scripts/provider_reconciliation.py',
+    'templates/policy-migration-request.json', 'templates/typed-checkpoint-build.json',
+    'templates/migration-transaction.json', 'templates/provider-terminal-observation.json',
+    'tests/test_policy_migration.py', 'tests/test_checkpoint_builder.py',
+    'tests/test_migration_transaction.py', 'tests/test_provider_reconciliation.py',
+    'tests/test_v291_guidance.py',
+    'references/continuous-autonomy-and-learning.md',
+    'scripts/continuation_cycle.py', 'scripts/command_timestamp.py',
+    'scripts/rca_feedback.py', 'scripts/fleet_improvement.py',
+    'templates/continuation-cycle.json', 'templates/command-timestamp-request.json',
+    'templates/rca-feedback.json', 'templates/fleet-improvement-harvest.json',
+    'tests/test_continuation_cycle.py', 'tests/test_command_timestamp.py',
+    'tests/test_rca_feedback.py', 'tests/test_fleet_improvement.py',
+    'tests/test_v292_guidance.py',
 ]
 
 
@@ -137,6 +228,14 @@ def validate():
     routed = route_backend(registry, request, '2026-01-01T00:00:01Z')
     if routed['action'] != 'route' or routed['authorizes_external_start']:
         raise ContractError('invalid capability routing template')
+    cost_policy = json.loads((ROOT / 'templates/cost-routing-policy.json').read_text())
+    cost_context = json.loads((ROOT / 'templates/cost-routing-context.json').read_text())
+    validate_cost_policy(cost_policy); validate_cost_context(cost_context)
+    cost_route = route_cost(registry, request, cost_policy, cost_context, '2026-01-01T00:00:01Z')
+    if cost_route['action'] != 'route' or cost_route['backend_kind'] != 'codex_compute' or any(
+            cost_route[name] for name in ('authorizes_external_start','authorizes_product_write',
+                                          'authorizes_takeover','authorizes_scheduler_mutation')):
+        raise ContractError('invalid cost-aware routing templates')
     catalog = json.loads((ROOT / 'templates/recovery-recipes.json').read_text())
     diagnosis = json.loads((ROOT / 'templates/recovery-diagnosis.json').read_text())
     validate_catalog(catalog); validate_diagnosis(diagnosis)
@@ -175,9 +274,96 @@ def validate():
     if fleet_assessment['overall'] != 'HEALTHY' or any(fleet_assessment[name] for name in (
             'authorizes_product_write', 'authorizes_takeover', 'authorizes_merge', 'authorizes_external_start')):
         raise ContractError('invalid fleet supervision template/authority contract')
+    validate_consumer_lock(json.loads((ROOT / 'templates/consumer-lock.json').read_text()))
     health = assess_watchdog_health(json.loads((ROOT / 'templates/watchdog-health.json').read_text()))
     if health['overall'] != 'HEALTHY' or any(health[name] for name in ('authorizes_takeover', 'authorizes_external_start', 'authorizes_product_write')):
         raise ContractError('invalid watchdog health template/authority contract')
+    terminal = evaluate_terminal_state(json.loads((ROOT / 'templates/terminal-state-v2.json').read_text()))
+    if not terminal['allowed'] or not terminal['final_response_allowed'] or terminal['reason'] != 'proven_resumable_blocker':
+        raise ContractError('invalid CDC 2.8 terminal-state template')
+    validate_channel_supervision(json.loads((ROOT / 'templates/channel-supervision.json').read_text()))
+    writer = reconcile_writer(json.loads((ROOT / 'templates/writer-reconciliation.json').read_text()))
+    if writer['action'] != 'PROCEED' or writer['force_push_allowed']:
+        raise ContractError('invalid concurrent-writer reconciliation template')
+    sensitive = json.loads((ROOT / 'templates/sensitive-context-policy.json').read_text())
+    validate_sensitive_context_policy(sensitive)
+    publication = assess_publication(json.loads((ROOT / 'templates/publication-inventory.json').read_text()), sensitive)
+    if not publication['pass'] or publication['authorizes_visibility_change']:
+        raise ContractError('invalid publication-safety template')
+    watchdog_repair = plan_watchdog_repair(json.loads((ROOT / 'templates/watchdog-repair-state.json').read_text()))
+    if watchdog_repair['action'] != 'HEALTHY' or watchdog_repair['authorizes_scheduler_mutation']:
+        raise ContractError('invalid watchdog self-repair template')
+    ref_plan = assess_ref_hygiene(json.loads((ROOT / 'templates/ref-inventory.json').read_text()))
+    if ref_plan['delete_candidates'] or ref_plan['authorizes_delete']:
+        raise ContractError('invalid ref hygiene template')
+    retention = assess_coordination_retention(json.loads((ROOT / 'templates/coordination-retention.json').read_text()))
+    if retention['delete_candidates'] or retention['archive_candidates'] or retention['authorizes_delete'] or retention['authorizes_archive']:
+        raise ContractError('invalid coordination retention template')
+    blocker = assess_blocker_proof(json.loads((ROOT / 'templates/blocked-state-proof.json').read_text()), '2026-01-01T00:05:00Z')
+    if not blocker['terminal_boundary_valid'] or blocker['state'] != 'BLOCKED':
+        raise ContractError('invalid blocker proof template')
+    decision = classify_decision(json.loads((ROOT / 'templates/decision-request.json').read_text()))
+    if decision['decision'] != 'AUTO_EXECUTE' or decision['creates_authority']:
+        raise ContractError('invalid decision-authority template')
+    compacted = compact_evidence(json.loads((ROOT / 'templates/evidence-stream.json').read_text()))
+    if compacted['source_event_count'] != 1 or compacted['details_retained']:
+        raise ContractError('invalid evidence compaction template')
+    progress_plan = enforce_progress(json.loads((ROOT / 'templates/progress-enforcement.json').read_text()))
+    if progress_plan['action'] != 'NOOP' or not progress_plan['final_response_allowed']:
+        raise ContractError('invalid progress enforcement template')
+    fleet_plan = plan_fleet_control(json.loads((ROOT / 'templates/fleet-control-input.json').read_text()))
+    if fleet_plan['projects'][0]['action'] != 'NOOP' or fleet_plan['project_specific_code_required']:
+        raise ContractError('invalid fleet control template')
+    stuck = detect_stuck(json.loads((ROOT / 'templates/stuck-state-input.json').read_text()))
+    if stuck['stuck']:
+        raise ContractError('invalid stuck-state template')
+    counterfactual = choose_counterfactual(json.loads((ROOT / 'templates/counterfactual-recovery.json').read_text()))
+    if counterfactual['action'] != 'TRY_NEW_STRATEGY' or counterfactual['authorizes_external_start']:
+        raise ContractError('invalid counterfactual recovery template')
+    export = plan_public_export(json.loads((ROOT / 'templates/public-export-request.json').read_text()))
+    if export['action'] != 'EXPORT_NEW_HISTORY' or export['authorizes_visibility_change'] or export['authorizes_push']:
+        raise ContractError('invalid public export template')
+    dogfood = measure_dogfood(json.loads((ROOT / 'templates/cdc-dogfood-input.json').read_text()))
+    if dogfood['compliance_percent'] != 100.0 or dogfood['authorizes_release'] or dogfood['authorizes_policy_change']:
+        raise ContractError('invalid dogfood metrics template')
+    transport = validate_transport_manifest(json.loads((ROOT / 'templates/package-transport.json').read_text()))
+    if transport['version'] != version:
+        raise ContractError('invalid package transport template version')
+    vector = normalize_convergence_vector(json.loads((ROOT / 'templates/convergence-observation.json').read_text()))
+    if not vector['integrated'] or vector['adoption_state'] != 'integrated' or vector['blockers']:
+        raise ContractError('invalid convergence vector template')
+    ci_class = classify_ci_evidence(json.loads((ROOT / 'templates/ci-execution-observation.json').read_text()))
+    if ci_class['class'] != 'terminal_success' or ci_class['source_change_allowed']:
+        raise ContractError('invalid CI evidence classification template')
+    policy_req = json.loads((ROOT / 'templates/policy-migration-request.json').read_text())
+    policy_plan = plan_policy_migration(policy_req)
+    if policy_plan['action'] != 'APPLY' or policy_plan['authorizes_product_write']:
+        raise ContractError('invalid policy migration template')
+    policy_req['current_policy_yaml'] = policy_plan['rendered_policy_yaml']
+    if plan_policy_migration(policy_req)['action'] != 'NOOP':
+        raise ContractError('policy migration template is not idempotent')
+    built_checkpoint = build_typed_checkpoint(
+        load_yaml(ROOT / 'templates/work-status-v4.md', frontmatter=True),
+        json.loads((ROOT / 'templates/typed-checkpoint-build.json').read_text()), adapter)
+    validate_checkpoint_24(built_checkpoint, adapter)
+    migration_plan = plan_migration_transaction(json.loads((ROOT / 'templates/migration-transaction.json').read_text()))
+    if migration_plan['action'] != 'APPLY_BATCH' or migration_plan['authorizes_ref_move']:
+        raise ContractError('invalid migration transaction template')
+    provider_plan = reconcile_provider_terminal(json.loads((ROOT / 'templates/provider-terminal-observation.json').read_text()))
+    if provider_plan['action'] != 'REENTER_RECONCILIATION' or not provider_plan['wake_required'] or provider_plan['authorizes_takeover']:
+        raise ContractError('invalid provider reconciliation template')
+    continuation = decide_continuation_cycle(json.loads((ROOT / 'templates/continuation-cycle.json').read_text()))
+    if continuation['action'] != 'CONTINUE_NOW' or continuation['final_response_allowed'] or continuation['progress_is_terminal']:
+        raise ContractError('invalid continuation cycle template')
+    timestamp = render_command_timestamp(json.loads((ROOT / 'templates/command-timestamp-request.json').read_text()))
+    if timestamp['action'] != 'EMIT_ONCE' or timestamp['display'] != '[19:31 26.09]' or timestamp['authorizes_anything']:
+        raise ContractError('invalid command timestamp template')
+    rca = disposition_rca_feedback(json.loads((ROOT / 'templates/rca-feedback.json').read_text()))
+    if rca['action'] != 'REINFORCE_EXISTING' or rca['authorizes_roadmap_write']:
+        raise ContractError('invalid RCA feedback template')
+    improvement = harvest_fleet_improvement(json.loads((ROOT / 'templates/fleet-improvement-harvest.json').read_text()))
+    if improvement['proposal_count'] != 1 or improvement['action'] != 'REINFORCE_EXISTING' or improvement['authorizes_roadmap_write']:
+        raise ContractError('invalid fleet improvement template')
     for path in ROOT.rglob('*.md'):
         content = path.read_text()
         # Only portable package paths; repository paths in examples remain project-specific inputs.

@@ -1,5 +1,5 @@
 <!-- continuous-development-cycle-v2:start -->
-## Continuous Development Cycle v2.6
+## Continuous Development Cycle v2.7
 
 For substantial implementation, resume, release, repository migration, or watchdog work, load the installed/repo-local `continuous-development-cycle` skill.
 
@@ -26,3 +26,18 @@ Publish/refresh a `fleet-project-snapshot/v1` on the coordination plane when pro
 Before chat cleanup or watchdog recovery, reconcile the canonical task-to-conversation binding. Protect its verified chat dependencies; follow the archive prevention/recovery procedure in `references/watchdog-recovery-and-migration.md`. A successful unarchive or enabled flag alone is not recovery: require a fresh completed run, visible result, and preserved enabled schedule.
 For watchdog/status/resume, build the six-signal health vector (scheduler, chat, invocation, lease, external operation and meaningful progress) with `scripts/watchdog_health.py`. Treat its result as diagnostic only; it never grants takeover, writes, external starts, scheduler mutation or budget restoration. Persist a changed health fingerprint only on an authorized coordination path without moving a guarded product HEAD.
 <!-- continuous-development-cycle-v2:end -->
+
+
+Canonical CDC core is an immutable released dependency. Keep a validated
+`cdc-consumer-lock/v1` binding to canonical repository + version + release ref +
+release commit + exact package tree. Local edits inside the vendored core are drift.
+Advance the lock only at a safe ownership boundary with no unresolved external guard,
+while preserving budget, validation and audit history.
+
+
+Human interaction is not an execution backend. Missing GitHub/connector/API methods are capability gaps, not implicit approval gates. Prefer durable event triggers, alternate authorized backends or policy-safe workflow changes before asking the owner for a mechanical action. Escalate only for genuine human authorization/judgment, unavailable secrets, protected approvals or external systems with no authorized automation route.
+
+
+Bare user continuation commands such as «продолжай», «продолжи» or “continue” mean continue the current authorized scope to terminal state. Do not stop after one status/read/commit/compute step. Terminal state is verified scope completion or a real durable blocker/handoff with exact evidence and next action. Explicit narrower user qualifiers and all normal guards still apply.
+
+Cost routing is visibility-aware. Public repositories may classify standard GitHub-hosted Actions as unmetered/normal compute; private/internal repositories retain Codex-first economics and expensive-Actions fallback controls.

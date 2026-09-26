@@ -1,6 +1,6 @@
 name: Continuous Development Cycle
-description: Recoverable development with fleet supervision, convergence, progress SLO and audited control-plane state.
-version: 2.6.0
+description: Continuous CDC autonomy with exact command timestamps, RCA feedback closure and fleet improvement harvesting.
+version: 2.9.2
 policy:
   products:
   - chatgpt
@@ -10,7 +10,7 @@ policy:
   allow_implicit_invocation: true
 interface:
   display_name: Continuous Development Cycle
-  short_description: Durable fleet-supervised development with audited control planes
+  short_description: Continuous autonomy, timestamps and learning feedback
   icon_small: assets/icon.svg
   icon_large: assets/icon.svg
-  default_prompt: Use $continuous-development-cycle to continue durable development through CDC 2.6 fleet, convergence, SLO and audit controls.
+  default_prompt: Use $continuous-development-cycle to continue durable development through CDC 2.9.2 continuous autonomy and learning controls.

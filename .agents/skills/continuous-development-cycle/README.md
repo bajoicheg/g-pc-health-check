@@ -1,4 +1,4 @@
-# Continuous Development Cycle v2.6.0
+# Continuous Development Cycle v2.9.2
 
 Installable ChatGPT/Codex/agent skill for recoverable, long-running software development.
 
@@ -83,3 +83,100 @@ Read `references/capability-routing.md`, `references/deterministic-recovery.md` 
 - Hash-chained append-only audit records control-plane transitions and exposes tampering/drift.
 
 Read `references/fleet-supervision.md`, `references/version-convergence.md`, `references/progress-slo.md` and `references/control-plane-audit.md`.
+
+
+## v2.7 canonical source and independently bootstrapped releases
+
+- One canonical CDC source repository owns release identity; product repositories are consumers, not alternative CDC source trees.
+- Stable CDC N-1 develops N. A candidate may never be its only release validator.
+- Release evidence is separated into bootstrap, package, compatibility, fault-injection and multi-consumer classes.
+- Consumers pin canonical repository + version + immutable release ref + exact release commit + exact package Git tree.
+- Local edits inside the vendored core are drift; product-specific policy remains outside the core package.
+- Adoption waits for released or independently verified quiescent ownership and a reconciled/empty external guard.
+
+Read `references/canonical-source-and-release.md`. Validate consumer pins with
+`python -B scripts/consumer_lock.py <consumer-lock.json>`.
+
+
+## v2.7.1 autonomy hardening
+
+- Git lease storage is schema-aware and rejects malformed v2 ownership before CAS.
+- A missing connector method is a capability gap, not a human approval gate.
+- Mechanical execution should route through durable event triggers, compatible backends or policy-safe workflow changes before escalating to the owner.
+
+
+## v2.7.2 cost-aware compute routing
+
+- Codex Compute is the default low-cost primary backend for eligible portable checks.
+- GitHub Actions is an expensive fallback and requires an explicit machine-readable reason.
+- Transient/setup/provider Codex failures trigger bounded recovery/probe or `waiting_compute`, not automatic Actions spend.
+- Another cheaper compatible backend is preferred before Actions.
+- Product/test failure on Codex requires a product/test fix, not an expensive CI second opinion.
+- Required platform capability, artifact production, release attestation, or independently confirmed provider outage can justify Actions.
+- Backend degraded/unavailable state is re-probed after cooldown and can recover to ready.
+
+
+## v2.7.3 terminal continuation and visibility-aware cost
+
+- Bare «продолжай» / «продолжи» / “continue” means continue the current authorized scope to terminal state, not one primitive step.
+- TS is verified completion or a real durable blocker/handoff with exact next action.
+- Repository visibility is part of compute economics.
+- Public repositories may treat standard GitHub-hosted Actions as unmetered and route to them normally.
+- Private/internal repositories retain Codex-first cost controls and expensive-Actions fallback reasoning.
+
+
+## v2.8.0 Autonomous Continuity & Isolation
+
+- Terminal-State v2 makes No-Idle executable: runnable work forbids terminal response.
+- Execution-channel supervision automatically fails over across compatible authorized backends.
+- Concurrent-writer reconciliation replays non-overlapping fast-forwards on fresh HEAD and never force-pushes.
+- Sensitive-context scanning covers organization/domain/topology leaks that secret scanners miss.
+- Publication guard covers tree, refs, conversations, artifacts and control-plane paths.
+- Internal control-plane state is excluded from the publishable product surface; findings require sanitized export.
+
+
+## v2.8.1 Operational Hardening
+
+- Watchdog self-repair restores delivery paths instead of accepting scheduler/chat drift.
+- Ref hygiene and coordination retention bound temporary operational state.
+- Blocker proof rejects stale or evidence-free BLOCKED terminal states.
+- Decision authority removes unnecessary human prompts while preserving real human boundaries.
+- Evidence compaction preserves durable refs and source digest.
+- Progress enforcement turns degraded/stalled states into concrete continuation actions.
+
+
+## v2.8.2 Fleet & Publication Maturity
+
+- Project-independent fleet control drives normalized projects without becoming a super-writer.
+- Stuck-state detection prevents repeated no-progress loops.
+- Counterfactual recovery requires a new information-gaining strategy.
+- Public publication uses sanitized export into new history, not direct visibility switching of internal development history.
+- Dogfooding metrics measure CDC's own compliance without granting release authority.
+
+
+## v2.9.0 Deterministic Distribution & Convergence
+
+- Carrier-neutral package transport binds an independently trusted release version/commit/tree to path, Git mode and blob identity.
+- Directory verification proves transported bytes; Git-subtree verification proves the consumer's vendored package tree is exactly canonical.
+- The fleet convergence vector binds exact HEAD, package tree, consumer lock, semantic policy digest, checkpoint, lease, guard and adoption state.
+- CI evidence is classified before remediation so pre-run/setup failures cannot be mistaken for product RED.
+- Version equality alone can never produce integrated fleet state.
+
+Read references/deterministic-distribution-and-convergence.md.
+
+
+## v2.9.1 Transactional Migration & Provider Reconciliation
+
+- Fresh-HEAD section-aware migration replaces canonical policy sections instead of appending duplicate keys.
+- Schema-typed checkpoint builders validate v4 state before commit boundaries.
+- Migration transactions reserve tool operations, chunk Git objects through detached trees and keep product refs unchanged until exact convergence.
+- Terminal-provider reconciliation wakes the exact guarded operation while terminal provider state or TTL never grants takeover.
+
+
+## v2.9.2 Continuous Autonomy & Learning
+
+- Progress reports never terminate runnable work; execution continues until Terminal-State v2 permits a real boundary.
+- Every user command in every CDC-managed chat gets one freshly observed Moscow timestamp in exact format `[HH:MM DD.MM]`; timestamps are never extrapolated from previous messages.
+- Material RCA closes through one deduplicated, sanitized systemic fix disposition.
+- Every Fleet Watcher run returns exactly one evidence-based improvement proposal or reinforcement.
+- Dogfooding measures timestamp accuracy, premature-stop avoidance, feedback closure and improvement harvesting without granting authority.
