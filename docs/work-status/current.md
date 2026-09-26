@@ -2,9 +2,9 @@
 schema: development-work-status/v4
 repository: bajoicheg/g-pc-health-check
 branch: design/0.17.0-security-posture
-policy_revision: 2026-09-25-cdc-2.7.1-autonomy-lease-hardening
-policy_digest: 0550cb93b1f895e50af09d268965604dd8c2dfa74cab5ddd62c286c329ed0fbf
-observed_at_utc: '2026-09-25T12:04:00Z'
+policy_revision: 2026-09-26-cdc-2.8.2-fleet-adoption
+policy_digest: cf838783316d918a00a6355fc596547187447cc847571086cd60d9c6928f8436
+observed_at_utc: '2026-09-26T11:11:09Z'
 orchestration_origin: chat
 active_executor: none
 lease_state: released
@@ -135,3 +135,12 @@ The digest matches this checkpoint. Exact vendored package tree remains
 The project therefore no longer has formal 2.6 target drift. Product acceptance remains
 blocked only on the real managed-Windows-11 retest and explicit integration approval,
 not on CDC transport or policy convergence.
+
+
+## CDC 2.8.2 fleet adoption — 2026-09-26
+
+Process-only convergence advanced this active design line to canonical CDC 2.8.2.
+Exact vendored subtree: `bdf18b8dedb2f0cf62728935d92e6260b4a64ef0`.
+Semantic adapter digest: `cf838783316d918a00a6355fc596547187447cc847571086cd60d9c6928f8436`.
+The retained managed-Windows pilot evidence, product candidate, managed-Windows retest
+blocker, and explicit owner integration approval gate are unchanged.
