@@ -2,9 +2,9 @@
 schema: development-work-status/v4
 repository: bajoicheg/g-pc-health-check
 branch: design/0.17.0-security-posture
-policy_revision: 2026-09-26-cdc-2.8.2-fleet-adoption
-policy_digest: cf838783316d918a00a6355fc596547187447cc847571086cd60d9c6928f8436
-observed_at_utc: '2026-09-26T11:11:09Z'
+policy_revision: 2026-09-26-cdc-2.9.2-continuous-autonomy
+policy_digest: 75e56c5e888ed4cbd0c4da2c1faa04d55e01879ddea802d6d0ad02f0d1ab00d7
+observed_at_utc: '2026-09-26T18:52:47Z'
 orchestration_origin: chat
 active_executor: none
 lease_state: released
@@ -22,7 +22,7 @@ execution_continuity:
   meaningful_progress: true
   primitive_steps_since_progress: 0
   completion_gate: resumable_blocker
-  last_progress_ref: 'git:e20b8487a3d84e557c0886f59d8ed7704be2fb09'
+  last_progress_ref: 'cdc-adoption:2.9.2@9c94432ddc292981'
 control:
   execution_lease_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/lease.json
   execution_lease_revision: 8a98465cc580ed175bd69a13295c22b563cb519c
@@ -32,7 +32,7 @@ control:
   recovery_snapshot_ref: null
   external_wait_ref: null
 active_change: 0.17.0-security-posture
-current_task: CDC 2.7.1 core and project policy converged; managed Windows 11 acceptance remains
+current_task: CDC 2.9.2 process convergence complete; managed Windows 11 acceptance remains
 phase: blocked
 implementation_sha: e20b8487a3d84e557c0886f59d8ed7704be2fb09
 candidate_sha: cbd20da8822f321df0d6404a955bf2cea9e553bb
@@ -144,3 +144,17 @@ Exact vendored subtree: `bdf18b8dedb2f0cf62728935d92e6260b4a64ef0`.
 Semantic adapter digest: `cf838783316d918a00a6355fc596547187447cc847571086cd60d9c6928f8436`.
 The retained managed-Windows pilot evidence, product candidate, managed-Windows retest
 blocker, and explicit owner integration approval gate are unchanged.
+
+
+## CDC 2.9.2 convergence — 2026-09-26
+
+Process-only CDC convergence advanced this active design line from released CDC 2.8.2
+to canonical CDC 2.9.2. Exact vendored package tree is
+`f9087eacbffee774c143eabf854c2cf08d610ec7`, release commit
+`0dd30a888be852d2820f690be04dbd374d732c06`, and adapter policy digest
+`75e56c5e888ed4cbd0c4da2c1faa04d55e01879ddea802d6d0ad02f0d1ab00d7`.
+
+Public CDC Policy Validation run `36264086934` proved package 2.9.2, consumer lock
+and exact subtree identity before this checkpoint rebind. The existing
+`managed_windows_11_retest_pending; explicit_owner_integration_approval_required`
+product blocker remains unchanged; this adoption does not grant merge or release authority.
