@@ -2,8 +2,8 @@
 schema: development-work-status/v4
 repository: bajoicheg/g-pc-health-check
 branch: design/0.17.0-security-posture
-policy_revision: 2026-09-26-cdc-2.9.2-continuous-autonomy
-policy_digest: 75e56c5e888ed4cbd0c4da2c1faa04d55e01879ddea802d6d0ad02f0d1ab00d7
+policy_revision: 2026-09-28-cdc-2.11.1-fleet-adoption
+policy_digest: 0e5b2d4a93034ff79c1be3a73e6dbf347402c727d52249df021c071f0475baf5
 observed_at_utc: '2026-09-26T18:52:47Z'
 orchestration_origin: chat
 active_executor: none
@@ -21,8 +21,8 @@ execution_continuity:
   runnable_next_action: false
   meaningful_progress: true
   primitive_steps_since_progress: 0
-  completion_gate: resumable_blocker
-  last_progress_ref: 'cdc-adoption:2.9.2@9c94432ddc292981'
+  completion_gate: continue
+  last_progress_ref: cdc-adoption:2.9.2@9c94432ddc292981
 control:
   execution_lease_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/lease.json
   execution_lease_revision: 8a98465cc580ed175bd69a13295c22b563cb519c
@@ -32,12 +32,14 @@ control:
   recovery_snapshot_ref: null
   external_wait_ref: null
 active_change: 0.17.0-security-posture
-current_task: CDC 2.9.2 process convergence complete; managed Windows 11 acceptance remains
+current_task: CDC 2.9.2 process convergence complete; managed Windows 11 acceptance
+  remains
 phase: blocked
 implementation_sha: e20b8487a3d84e557c0886f59d8ed7704be2fb09
 candidate_sha: cbd20da8822f321df0d6404a955bf2cea9e553bb
 last_green_sha: cbd20da8822f321df0d6404a955bf2cea9e553bb
-last_green_evidence: auto pilot push run 36128619572 success; artifacts 10861076525 (EXE) and 10860941608 (pilot E2E)
+last_green_evidence: auto pilot push run 36128619572 success; artifacts 10861076525
+  (EXE) and 10860941608 (pilot E2E)
 active_compute: none
 active_ci_run_id: ''
 last_ci_run_id: '36128619572'
@@ -46,8 +48,14 @@ release_version: 0.17.0
 release_candidate_sha: cbd20da8822f321df0d6404a955bf2cea9e553bb
 release_state: blocked
 blocker: managed_windows_11_retest_pending; explicit_owner_integration_approval_required
-next_action: Use the automatically retained artifacts from run 36128619572 for the managed Windows 11 baseline retest, measuring Windows Update Security stage latency and recovered Security coverage. No manual workflow_dispatch/Run workflow is required. Do not merge PR #92 or enable auto-merge without explicit owner integration approval.
+next_action: Apply this prepared CDC adoption only after the prior owning invocation
+  explicitly releases or independently verified exact executor quiescence and guard
+  reconciliation; then resume the preserved product task.
 ---
+
+## CDC 2.11.1 adoption
+
+PREPARED ONLY: this branch is an adoption proposal. The active product ref and its owner/guard have not been changed. Re-read the live lease before integration.
 
 # CDC 2.5 active-branch binding complete
 
@@ -158,3 +166,4 @@ Public CDC Policy Validation run `36264086934` proved package 2.9.2, consumer lo
 and exact subtree identity before this checkpoint rebind. The existing
 `managed_windows_11_retest_pending; explicit_owner_integration_approval_required`
 product blocker remains unchanged; this adoption does not grant merge or release authority.
+
