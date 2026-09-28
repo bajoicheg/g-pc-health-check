@@ -1,0 +1,35 @@
+{
+  "schema": "execution-continuity/v1",
+  "invocation_id": "work-20260928-cdc2111-recovery-g-pc-health-check",
+  "current_state": "COMPLETE",
+  "requested_terminal_outcome": "scope_complete",
+  "runnable_next_action": false,
+  "meaningful_progress_refs": [
+    "https://github.com/bajoicheg/g-pc-health-check/commit/7aba823fd6103f416b291a944cd012eea78687b0"
+  ],
+  "primitive_steps": [],
+  "external_binding": null,
+  "blocker": null,
+  "checkpoint_ref": "https://github.com/bajoicheg/g-pc-health-check/blob/7aba823fd6103f416b291a944cd012eea78687b0/docs/work-status/current.md",
+  "next_action": null,
+  "lease_release_required": true,
+  "lease_released": true,
+  "terminal_state": {
+    "schema": "terminal-state/v2",
+    "invocation_id": "work-20260928-cdc2111-recovery-g-pc-health-check",
+    "scope_id": "CDC 2.11.1 adoption for bajoicheg/g-pc-health-check",
+    "observed_head": "7aba823fd6103f416b291a944cd012eea78687b0",
+    "decision": "COMPLETE",
+    "runnable_actions": [],
+    "pending_external": null,
+    "blocker": null,
+    "meaningful_progress_refs": [
+      "https://github.com/bajoicheg/g-pc-health-check/commit/7aba823fd6103f416b291a944cd012eea78687b0"
+    ],
+    "completion_evidence_refs": [
+      "https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/adoptions/cdc-2.11.1.json"
+    ],
+    "checkpoint_ref": "https://github.com/bajoicheg/g-pc-health-check/blob/7aba823fd6103f416b291a944cd012eea78687b0/docs/work-status/current.md",
+    "lease_released": true
+  }
+}

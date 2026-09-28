@@ -1,34 +1,20 @@
 {
-  "acquired_at_utc": "2026-09-28T14:11:37Z",
+  "acquired_at_utc": null,
   "activity_refs": [],
-  "expires_at_utc": "2026-09-28T14:31:37Z",
+  "expires_at_utc": null,
   "external_guard": null,
-  "finalization": {
-    "state": "ready",
-    "pending_shared_writes": false,
+  "finalization": null,
+  "generation": 14,
+  "heartbeat_at_utc": null,
+  "invocation": null,
+  "last_release": {
+    "owner_id": "4aacc2c7-3a71-44ac-aa16-ff8114d1633f",
+    "generation": 14,
+    "invocation_id": "work-20260928-cdc2111-recovery-g-pc-health-check",
+    "at_utc": "2026-09-28T14:15:53Z",
     "checkpoint_ref": "https://github.com/bajoicheg/g-pc-health-check/blob/7aba823fd6103f416b291a944cd012eea78687b0/docs/work-status/current.md",
     "external_reconciliation": "none",
-    "completion_reason": "scope_complete",
-    "updated_at_utc": "2026-09-28T14:15:53Z",
-    "failure": null
-  },
-  "generation": 14,
-  "heartbeat_at_utc": "2026-09-28T14:11:37Z",
-  "invocation": {
-    "invocation_id": "work-20260928-cdc2111-recovery-g-pc-health-check",
-    "automation_id": null,
-    "conversation_id": null,
-    "execution_surface": "work",
-    "started_at_utc": "2026-09-28T14:11:37Z"
-  },
-  "last_release": {
-    "at_utc": "2026-09-25T12:04:14Z",
-    "checkpoint_ref": "docs/work-status/current.md@5afac455f6d4d10a0f8e71258c0250ecdbb1fb1a",
-    "completion_reason": "resumable_blocker",
-    "external_reconciliation": "none",
-    "generation": 8,
-    "invocation_id": "chat-2026-09-25T120258Z-cdc271-policy-convergence",
-    "owner_id": "0e38a1af-98c9-46c9-92d2-93dc4b3d4b5f"
+    "completion_reason": "scope_complete"
   },
   "last_terminal": null,
   "legacy_migration": {
@@ -39,7 +25,7 @@
     "noncanonical_claim_digests": [],
     "source_digest": "sha256:57517d5e26f1862a4f5f7e3221f19ca45f265a48ea99be84e8c13e558682054d"
   },
-  "owner_id": "4aacc2c7-3a71-44ac-aa16-ff8114d1633f",
+  "owner_id": null,
   "repository": "bajoicheg/g-pc-health-check",
   "schema": "execution-lease/v2",
   "source_ref": "refs/heads/design/0.17.0-security-posture",
