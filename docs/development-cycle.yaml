@@ -1,7 +1,7 @@
 schema: continuous-development-cycle/v3
 policy:
-  revision: 2026-09-26-cdc-2.9.2-continuous-autonomy
-  skill_min_version: "2.9.2"
+  revision: 2026-09-28-cdc-2.11.1-fleet-adoption
+  skill_min_version: 2.11.1
   skill_max_version_exclusive: 3.0.0
   approved_exceptions: []
 repository:
@@ -119,7 +119,7 @@ progress:
   anti_silence_minutes: 5
   do_not_stream_trivial_tool_calls: true
 watchdog:
-  enabled: true
+  enabled: false
   cadence: hourly
   idle_guard_minutes: 60
   explicit_kick_bypasses_idle_guard_only: true
@@ -177,37 +177,37 @@ orchestration:
       tool_calls: 8
     provider_max_age_seconds: 300
     actions_budget: conserve
-
 routing:
   repository_visibility: public
-  capability_registry_ref: "https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/backend-registry.json"
+  capability_registry_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/backend-registry.json
   request_schema: capability-request/v1
-  backend_kind_preference: [codex_compute, local, other_compute, github_actions]
+  backend_kind_preference:
+  - codex_compute
+  - local
+  - other_compute
+  - github_actions
   require_fresh_registry: true
   no_match_state: waiting_external
   router_authority: recommendation_only
   max_registry_age_seconds: 900
-  cost_policy_ref: ".agents/skills/continuous-development-cycle/templates/cost-routing-policy.json"
+  cost_policy_ref: .agents/skills/continuous-development-cycle/templates/cost-routing-policy.json
   cost_router_authority: recommendation_only
   github_actions_requires_reason: true
   transient_primary_failure_policy: recover_or_wait
-
 recovery_recipes:
-  catalog_ref: ".agents/skills/continuous-development-cycle/templates/recovery-recipes.json"
+  catalog_ref: .agents/skills/continuous-development-cycle/templates/recovery-recipes.json
   diagnosis_schema: recovery-diagnosis/v1
   deterministic_selection: true
   recipe_authority: recommendation_only
-
 continuation:
-  queue_ref: "https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/continuation-queue.json"
+  queue_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/continuation-queue.json
   event_schema: continuation-event/v1
   event_wake_is_authority: false
   scheduler_fallback_required: true
   dedupe_required: true
   claim_ttl_seconds: 900
-
 fleet:
-  snapshot_ref: "https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/fleet-project-snapshot.json"
+  snapshot_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/fleet-project-snapshot.json
   snapshot_schema: fleet-project-snapshot/v1
   supervisor_authority: control_plane_only
   product_write_authority: false
@@ -215,28 +215,23 @@ fleet:
   external_start_authority: false
   merge_authority: false
   assessment_max_age_seconds: 900
-
 convergence:
-  target_version: "2.9.2"
-  target_package_fingerprint_ref: "https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/fleet-target.json"
+  target_version: 2.11.1
+  target_package_fingerprint_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/fleet-target.json
   exact_package_fingerprint_required: true
   safe_boundary_required: true
-
 progress_slo:
-  policy_ref: "https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/progress-slo-policy.json"
+  policy_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/progress-slo-policy.json
   degraded_after_seconds: 1200
   stalled_after_seconds: 3600
   primitive_activity_is_progress: false
   blocked_pauses_clock: true
   waiting_external_pauses_clock: true
-
 audit:
-  log_ref: "https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/control-plane-audit.json"
+  log_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/control-plane-audit.json
   schema: control-plane-audit-log/v1
   append_only: true
   hash_chain_required: true
-
-# CDC 2.8 autonomous continuity and publication isolation.
 autonomy:
   terminal_state_schema: terminal-state/v2
   no_idle_invariant: true
@@ -244,19 +239,15 @@ autonomy:
   max_channel_failovers: 3
   concurrent_writer_reconciliation: true
   force_push_on_reconcile: false
-
 publication:
   inventory_schema: publication-inventory/v1
-  sensitive_context_policy_ref: "templates/sensitive-context-policy.json"
+  sensitive_context_policy_ref: templates/sensitive-context-policy.json
   scan_all_refs_required: true
   scan_conversations_required: true
   scan_artifacts_required: true
   control_plane_externalized: true
   direct_visibility_toggle_requires_guard_green: true
   sanitized_export_on_findings: true
-
-
-# CDC 2.8.1 operational hardening.
 hardening:
   watchdog_repair_schema: watchdog-repair-state/v1
   watchdog_self_repair: true
@@ -273,9 +264,6 @@ hardening:
   compact_evidence_required: true
   progress_enforcement_schema: progress-enforcement/v1
   stalled_requires_recovery_action: true
-
-
-# CDC 2.8.2 fleet/publication maturity.
 maturity:
   fleet_control_schema: fleet-control-input/v1
   project_independent_fleet_control: true
