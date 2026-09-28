@@ -4,12 +4,12 @@ repository: bajoicheg/g-pc-health-check
 branch: design/0.17.0-security-posture
 policy_revision: 2026-09-28-cdc-2.11.1-fleet-adoption
 policy_digest: 0e5b2d4a93034ff79c1be3a73e6dbf347402c727d52249df021c071f0475baf5
-observed_at_utc: '2026-09-26T18:52:47Z'
-orchestration_origin: chat
-active_executor: none
-lease_state: released
-executor_heartbeat_at_utc: null
-execution_lease_until_utc: null
+observed_at_utc: '2026-09-28T14:13:13Z'
+orchestration_origin: work
+active_executor: 4aacc2c7-3a71-44ac-aa16-ff8114d1633f
+lease_state: active
+executor_heartbeat_at_utc: '2026-09-28T14:11:37Z'
+execution_lease_until_utc: '2026-09-28T14:31:37Z'
 waiting_external_kind: null
 waiting_external_id: null
 waiting_external_sha: null
@@ -17,24 +17,23 @@ operation_intent_ref: null
 operation_key: null
 resume_capsule_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/resume.json
 execution_continuity:
-  invocation_id: chat-2026-09-25T120258Z-cdc271-policy-convergence
-  runnable_next_action: false
+  invocation_id: work-20260928-cdc2111-recovery-g-pc-health-check
+  runnable_next_action: true
   meaningful_progress: true
   primitive_steps_since_progress: 0
   completion_gate: continue
-  last_progress_ref: cdc-adoption:2.9.2@9c94432ddc292981
+  last_progress_ref: docs/cdc-adoption-2.11.1.md
 control:
   execution_lease_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/lease.json
-  execution_lease_revision: 8a98465cc580ed175bd69a13295c22b563cb519c
-  executor_id: null
-  lease_generation: 8
+  execution_lease_revision: 5c1f4a75512ee04c58987e9e553f97044d362fc5
+  executor_id: 4aacc2c7-3a71-44ac-aa16-ff8114d1633f
+  lease_generation: 14
   budget_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/budget.json
   recovery_snapshot_ref: null
   external_wait_ref: null
 active_change: 0.17.0-security-posture
-current_task: CDC 2.9.2 process convergence complete; managed Windows 11 acceptance
-  remains
-phase: blocked
+current_task: CDC 2.11.1 adoption; final result and release on cdc/coordination
+phase: recovery
 implementation_sha: e20b8487a3d84e557c0886f59d8ed7704be2fb09
 candidate_sha: cbd20da8822f321df0d6404a955bf2cea9e553bb
 last_green_sha: cbd20da8822f321df0d6404a955bf2cea9e553bb
@@ -47,15 +46,16 @@ last_ci_status: success
 release_version: 0.17.0
 release_candidate_sha: cbd20da8822f321df0d6404a955bf2cea9e553bb
 release_state: blocked
-blocker: managed_windows_11_retest_pending; explicit_owner_integration_approval_required
-next_action: Apply this prepared CDC adoption only after the prior owning invocation
-  explicitly releases or independently verified exact executor quiescence and guard
-  reconciliation; then resume the preserved product task.
+blocker: none
+next_action: Read live cdc/coordination lease.json, adoptions/cdc-2.11.1.json and
+  execution-continuity/cdc-2.11.1-adoption.json for completed adoption and actual
+  release. Resume product work only under its separate authorization; preserve scheduler
+  pause.
 ---
 
 ## CDC 2.11.1 adoption
 
-PREPARED ONLY: this branch is an adoption proposal. The active product ref and its owner/guard have not been changed. Re-read the live lease before integration.
+CDC 2.11.1 process-only adoption under owner-attested recovery. The previous owner is quiescent by current user confirmation and fresh provider reconciliation. This checkpoint records the adoption invocation at integration; final adoption evidence and actual ownership release are authoritative on cdc/coordination. Product source, prior platform evidence, release gates, budget history and scheduler pause are preserved.
 
 # CDC 2.5 active-branch binding complete
 
