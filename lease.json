@@ -1,7 +1,9 @@
 {
   "acquired_at_utc": "2026-09-30T17:58:00Z",
-  "activity_refs": [],
-  "expires_at_utc": "2026-09-30T18:18:00Z",
+  "activity_refs": [
+    "canonical-package-blobs:7a7a7faa75b7fc9160d912d8fb507c6b9573d17f"
+  ],
+  "expires_at_utc": "2026-09-30T18:25:00Z",
   "external_guard": null,
   "finalization": {
     "state": "active",
@@ -13,7 +15,7 @@
     "failure": null
   },
   "generation": 15,
-  "heartbeat_at_utc": "2026-09-30T17:58:00Z",
+  "heartbeat_at_utc": "2026-09-30T18:05:00Z",
   "invocation": {
     "invocation_id": "chat-20260930-cdc2112-adoption-g-pc-health-check",
     "automation_id": null,
