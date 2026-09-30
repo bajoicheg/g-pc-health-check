@@ -1,28 +1,25 @@
 {
-  "acquired_at_utc": "2026-09-30T17:58:00Z",
-  "activity_refs": [
-    "canonical-package-blobs:7a7a7faa75b7fc9160d912d8fb507c6b9573d17f",
-    "consumer-policy-validation:36756774276"
-  ],
-  "expires_at_utc": "2026-09-30T18:34:00Z",
+  "acquired_at_utc": "2026-09-30T22:20:00Z",
+  "activity_refs": [],
+  "expires_at_utc": "2026-09-30T22:40:00Z",
   "external_guard": null,
   "finalization": {
-    "state": "checkpointed",
+    "state": "active",
     "pending_shared_writes": false,
-    "checkpoint_ref": "https://github.com/bajoicheg/g-pc-health-check/blob/f86cdd5a68b99df08d1907c68a1216bfd9dc3bbf/docs/work-status/current.md",
+    "checkpoint_ref": null,
     "external_reconciliation": "pending",
     "completion_reason": null,
-    "updated_at_utc": "2026-09-30T18:15:10Z",
+    "updated_at_utc": "2026-09-30T22:20:00Z",
     "failure": null
   },
-  "generation": 15,
-  "heartbeat_at_utc": "2026-09-30T18:14:00Z",
+  "generation": 16,
+  "heartbeat_at_utc": "2026-09-30T22:20:00Z",
   "invocation": {
-    "invocation_id": "chat-20260930-cdc2112-adoption-g-pc-health-check",
+    "invocation_id": "chat-20261001-cdc2112-recovery-g-pc-health-check",
     "automation_id": null,
     "conversation_id": null,
     "execution_surface": "chat",
-    "started_at_utc": "2026-09-30T17:57:40Z"
+    "started_at_utc": "2026-09-30T22:20:00Z"
   },
   "last_release": {
     "owner_id": "4aacc2c7-3a71-44ac-aa16-ff8114d1633f",
@@ -42,10 +39,20 @@
     "noncanonical_claim_digests": [],
     "source_digest": "sha256:57517d5e26f1862a4f5f7e3221f19ca45f265a48ea99be84e8c13e558682054d"
   },
-  "owner_id": "6af4443b-1afa-4608-9622-5bee9b62a045",
+  "owner_id": "40f2c73e-2b75-4a0c-9e21-271f64c2e801",
   "repository": "bajoicheg/g-pc-health-check",
   "schema": "execution-lease/v2",
   "source_ref": "refs/heads/design/0.17.0-security-posture",
   "submission_claims": [],
-  "takeover_evidence": null
+  "takeover_evidence": {
+    "owner_id": "6af4443b-1afa-4608-9622-5bee9b62a045",
+    "generation": 15,
+    "repository": "bajoicheg/g-pc-health-check",
+    "source_ref": "refs/heads/design/0.17.0-security-posture",
+    "invocation_id": "chat-20260930-cdc2112-adoption-g-pc-health-check",
+    "kind": "executor_stopped",
+    "reference": "owner-confirmed all ChatGPT/Scheduled execution channels stopped; exact prior policy validation run 36756774276 is terminal success; source f86cdd5a68b99df08d1907c68a1216bfd9dc3bbf has exact 2.11.2 subtree; pending_shared_writes=false; external_guard=null; no generation-15 submissions",
+    "pending_shared_writes": false,
+    "external_effects_state": "reconciled"
+  }
 }
