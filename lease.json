@@ -7,12 +7,12 @@
   "expires_at_utc": "2026-09-30T18:34:00Z",
   "external_guard": null,
   "finalization": {
-    "state": "active",
+    "state": "draining",
     "pending_shared_writes": false,
     "checkpoint_ref": null,
     "external_reconciliation": "pending",
     "completion_reason": null,
-    "updated_at_utc": "2026-09-30T17:58:00Z",
+    "updated_at_utc": "2026-09-30T18:15:00Z",
     "failure": null
   },
   "generation": 15,
