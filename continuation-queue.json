@@ -2,7 +2,7 @@
   "schema": "continuation-queue/v1",
   "repository": "bajoicheg/g-pc-health-check",
   "source_ref": "refs/heads/design/0.17.0-security-posture",
-  "generation": 1,
+  "generation": 2,
   "items": [
     {
       "event": {
@@ -22,8 +22,12 @@
         ],
         "dedupe_key": "sha256:c42bd1109c1774f5d4bf6502833ca8a91406e185c441333ab4983c54104330d1"
       },
-      "state": "pending",
-      "claim": null,
+      "state": "claimed",
+      "claim": {
+        "invocation_id": "chat-20261001-cdc2112-recovery-g-pc-health-check",
+        "claimed_at_utc": "2026-09-30T22:22:00Z",
+        "expires_at_utc": "2026-09-30T22:37:00Z"
+      },
       "ack": null
     }
   ]
