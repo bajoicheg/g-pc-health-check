@@ -3,7 +3,7 @@ schema: development-work-status/v4
 repository: bajoicheg/g-pc-health-check
 branch: design/0.17.0-security-posture
 policy_revision: 2026-09-30-cdc-2.11.2-fleet-adoption
-policy_digest: 8c96e744b171b2a49c7145895f1454887136616e0bb384ed85ec2f67c94ac9d1
+policy_digest: 77b0da8bf1930862064fcc24e676395b1e2e949e0ebfe7ed0b0b39a256c1d5ab
 observed_at_utc: '2026-09-30T18:05:00Z'
 orchestration_origin: chat
 active_executor: 6af4443b-1afa-4608-9622-5bee9b62a045
@@ -52,7 +52,7 @@ next_action: Finalize CDC 2.11.2 adoption evidence on cdc/coordination, verify e
 
 ## CDC 2.11.2 process-only adoption — 2026-09-30
 
-At a fresh released/no-guard execution-lease/v2 boundary, this active design line advances its vendored CDC core from canonical 2.11.1 to canonical **2.11.2**. Immutable release ref: `refs/heads/release/v2.11.2`; release commit: `48e637b230e7640d0dcd13da60d712f38f59a2b6`; exact package tree: `7a7a7faa75b7fc9160d912d8fb507c6b9573d17f`. Consumer lock and adapter convergence target are updated together; semantic adapter digest is `8c96e744b171b2a49c7145895f1454887136616e0bb384ed85ec2f67c94ac9d1`.
+At a fresh released/no-guard execution-lease/v2 boundary, this active design line advances its vendored CDC core from canonical 2.11.1 to canonical **2.11.2**. Immutable release ref: `refs/heads/release/v2.11.2`; release commit: `48e637b230e7640d0dcd13da60d712f38f59a2b6`; exact package tree: `7a7a7faa75b7fc9160d912d8fb507c6b9573d17f`. Consumer lock and adapter convergence target are updated together; semantic adapter digest is `77b0da8bf1930862064fcc24e676395b1e2e949e0ebfe7ed0b0b39a256c1d5ab`.
 
 This is process-only CDC convergence. It changes no product source, does not replace or revalidate retained managed-Windows evidence, does not grant PR/product integration approval, and performs no scheduler mutation. The owner's scheduler pause remains authoritative.
 
