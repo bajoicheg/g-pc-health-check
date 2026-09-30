@@ -1,0 +1,24 @@
+{
+  "schema": "systematic-rca/v1",
+  "incident_id": "g-pc-health-check-cdc2112-orphan-lease-g15",
+  "observed_at_utc": "2026-09-30T22:21:00Z",
+  "repository": "bajoicheg/g-pc-health-check",
+  "symptom": "Completed 2.11.2 adoption remained owned by a stopped ordinary-chat invocation in checkpointed finalization, so fleet state could still appear active.",
+  "root_cause": "Same orphan-lease runtime-enforcement gap as canonical CDC issue #81; this recurrence stopped after checkpoint but before reconcile/ready/release.",
+  "evidence": {
+    "prior_generation": 15,
+    "prior_owner_id": "6af4443b-1afa-4608-9622-5bee9b62a045",
+    "prior_invocation_id": "chat-20260930-cdc2112-adoption-g-pc-health-check",
+    "prior_finalization_state": "checkpointed",
+    "external_guard": null,
+    "submission_claims": 0,
+    "policy_run_36756774276": "completed/success",
+    "source_head": "f86cdd5a68b99df08d1907c68a1216bfd9dc3bbf",
+    "exact_package_tree": "7a7a7faa75b7fc9160d912d8fb507c6b9573d17f"
+  },
+  "systemic_disposition": {
+    "fix_key": "orphan-lease-runtime-enforcement",
+    "backlog_ref": "https://github.com/bajoicheg/g-cdc/issues/81",
+    "action": "existing_fix_reinforced"
+  }
+}
