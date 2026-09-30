@@ -2,14 +2,14 @@
 schema: development-work-status/v4
 repository: bajoicheg/g-pc-health-check
 branch: design/0.17.0-security-posture
-policy_revision: 2026-09-28-cdc-2.11.1-fleet-adoption
-policy_digest: 0e5b2d4a93034ff79c1be3a73e6dbf347402c727d52249df021c071f0475baf5
-observed_at_utc: '2026-09-28T14:13:13Z'
-orchestration_origin: work
-active_executor: 4aacc2c7-3a71-44ac-aa16-ff8114d1633f
+policy_revision: 2026-09-30-cdc-2.11.2-fleet-adoption
+policy_digest: 8c96e744b171b2a49c7145895f1454887136616e0bb384ed85ec2f67c94ac9d1
+observed_at_utc: '2026-09-30T18:05:00Z'
+orchestration_origin: chat
+active_executor: 6af4443b-1afa-4608-9622-5bee9b62a045
 lease_state: active
-executor_heartbeat_at_utc: '2026-09-28T14:11:37Z'
-execution_lease_until_utc: '2026-09-28T14:31:37Z'
+executor_heartbeat_at_utc: '2026-09-30T18:05:00Z'
+execution_lease_until_utc: '2026-09-30T18:25:00Z'
 waiting_external_kind: null
 waiting_external_id: null
 waiting_external_sha: null
@@ -17,22 +17,22 @@ operation_intent_ref: null
 operation_key: null
 resume_capsule_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/resume.json
 execution_continuity:
-  invocation_id: work-20260928-cdc2111-recovery-g-pc-health-check
+  invocation_id: chat-20260930-cdc2112-adoption-g-pc-health-check
   runnable_next_action: true
   meaningful_progress: true
   primitive_steps_since_progress: 0
   completion_gate: continue
-  last_progress_ref: docs/cdc-adoption-2.11.1.md
+  last_progress_ref: docs/cdc-adoption-2.11.2.md
 control:
   execution_lease_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/lease.json
-  execution_lease_revision: 5c1f4a75512ee04c58987e9e553f97044d362fc5
-  executor_id: 4aacc2c7-3a71-44ac-aa16-ff8114d1633f
-  lease_generation: 14
+  execution_lease_revision: 5d75105d6b33ed1b7546d3bf09b96ca45ebfbfb1
+  executor_id: 6af4443b-1afa-4608-9622-5bee9b62a045
+  lease_generation: 15
   budget_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/budget.json
   recovery_snapshot_ref: null
   external_wait_ref: null
 active_change: 0.17.0-security-posture
-current_task: CDC 2.11.1 adoption; final result and release on cdc/coordination
+current_task: CDC 2.11.2 process-only adoption; final result and release on cdc/coordination
 phase: recovery
 implementation_sha: e20b8487a3d84e557c0886f59d8ed7704be2fb09
 candidate_sha: cbd20da8822f321df0d6404a955bf2cea9e553bb
@@ -47,11 +47,14 @@ release_version: 0.17.0
 release_candidate_sha: cbd20da8822f321df0d6404a955bf2cea9e553bb
 release_state: blocked
 blocker: none
-next_action: Read live cdc/coordination lease.json, adoptions/cdc-2.11.1.json and
-  execution-continuity/cdc-2.11.1-adoption.json for completed adoption and actual
-  release. Resume product work only under its separate authorization; preserve scheduler
-  pause.
+next_action: Finalize CDC 2.11.2 adoption evidence on cdc/coordination, verify exact vendored subtree and policy/checkpoint bindings, then release generation 15. Product work remains separate; preserve scheduler pause.
 ---
+
+## CDC 2.11.2 process-only adoption — 2026-09-30
+
+At a fresh released/no-guard execution-lease/v2 boundary, this active design line advances its vendored CDC core from canonical 2.11.1 to canonical **2.11.2**. Immutable release ref: `refs/heads/release/v2.11.2`; release commit: `48e637b230e7640d0dcd13da60d712f38f59a2b6`; exact package tree: `7a7a7faa75b7fc9160d912d8fb507c6b9573d17f`. Consumer lock and adapter convergence target are updated together; semantic adapter digest is `8c96e744b171b2a49c7145895f1454887136616e0bb384ed85ec2f67c94ac9d1`.
+
+This is process-only CDC convergence. It changes no product source, does not replace or revalidate retained managed-Windows evidence, does not grant PR/product integration approval, and performs no scheduler mutation. The owner's scheduler pause remains authoritative.
 
 ## CDC 2.11.1 adoption
 
