@@ -4,12 +4,12 @@
   "expires_at_utc": "2026-09-30T22:40:00Z",
   "external_guard": null,
   "finalization": {
-    "state": "checkpointed",
+    "state": "reconciled",
     "pending_shared_writes": false,
     "checkpoint_ref": "https://github.com/bajoicheg/g-pc-health-check/blob/f86cdd5a68b99df08d1907c68a1216bfd9dc3bbf/docs/work-status/current.md",
-    "external_reconciliation": "pending",
+    "external_reconciliation": "terminal_reconciled",
     "completion_reason": null,
-    "updated_at_utc": "2026-09-30T22:23:01Z",
+    "updated_at_utc": "2026-09-30T22:23:02Z",
     "failure": null
   },
   "generation": 16,
