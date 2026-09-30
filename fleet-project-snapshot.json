@@ -2,34 +2,36 @@
   "schema": "fleet-project-snapshot/v1",
   "repository": "bajoicheg/g-pc-health-check",
   "source_ref": "refs/heads/design/0.17.0-security-posture",
-  "observed_at_utc": "2026-09-25T05:48:00Z",
-  "product_head": "e589a0ea9db22f9c573b2d202e497a0d131becf2",
-  "cdc_version": "2.6.0",
-  "package_fingerprint": "git-tree:e2cf6199eb60ca998012184b460c9a05c9f33b80",
+  "observed_at_utc": "2026-09-30T22:23:04Z",
+  "product_head": "f86cdd5a68b99df08d1907c68a1216bfd9dc3bbf",
+  "cdc_version": "2.11.2",
+  "package_fingerprint": "git-tree:7a7a7faa75b7fc9160d912d8fb507c6b9573d17f",
   "checkpoint_schema": "development-work-status/v4",
-  "policy_revision": "2026-09-25-cdc-2.6.0-fleet-control-plane",
+  "policy_revision": "2026-09-30-cdc-2.11.2-fleet-adoption",
   "watchdog": {
     "enabled": true,
     "last_run_at_utc": "2026-09-25T03:32:04Z"
   },
   "coordination": {
     "lease_schema": "execution-lease/v2",
-    "generation": 2,
+    "generation": 16,
     "owner_active": false,
     "guard_present": false
   },
   "progress": {
     "schema": "progress-observation/v1",
-    "observed_at_utc": "2026-09-25T05:48:00Z",
-    "last_meaningful_progress_at_utc": "2026-09-25T05:36:00Z",
-    "last_activity_at_utc": "2026-09-25T05:48:00Z",
+    "observed_at_utc": "2026-09-30T22:23:04Z",
+    "last_meaningful_progress_at_utc": "2026-09-30T22:23:04Z",
+    "last_activity_at_utc": "2026-09-30T22:23:04Z",
     "primitive_steps_since_progress": 0,
-    "blocker": true,
-    "waiting_external": true,
-    "phase": "blocked",
+    "blocker": false,
+    "waiting_external": false,
+    "phase": "recovery",
     "evidence_refs": [
-      "git:e589a0ea9db22f9c573b2d202e497a0d131becf2",
-      "checkpoint:f31d6a304c5014ef19ac08a3bb3150efb6d7d4e9"
+      "git:f86cdd5a68b99df08d1907c68a1216bfd9dc3bbf",
+      "adoptions/cdc-2.11.2.json",
+      "actions:36756774276",
+      "rca/orphan-lease-generation-15.json"
     ]
   }
 }

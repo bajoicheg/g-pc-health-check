@@ -12,8 +12,8 @@
   "blocker": null,
   "checkpoint_ref": "https://github.com/bajoicheg/g-pc-health-check/blob/f86cdd5a68b99df08d1907c68a1216bfd9dc3bbf/docs/work-status/current.md",
   "next_action": null,
-  "lease_release_required": false,
-  "lease_released": false,
+  "lease_release_required": true,
+  "lease_released": true,
   "terminal_state": {
     "schema": "terminal-state/v2",
     "invocation_id": "chat-20261001-cdc2112-recovery-g-pc-health-check",
@@ -31,6 +31,6 @@
       "https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/rca/orphan-lease-generation-15.json"
     ],
     "checkpoint_ref": "https://github.com/bajoicheg/g-pc-health-check/blob/f86cdd5a68b99df08d1907c68a1216bfd9dc3bbf/docs/work-status/current.md",
-    "lease_released": false
+    "lease_released": true
   }
 }
