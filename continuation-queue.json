@@ -2,6 +2,29 @@
   "schema": "continuation-queue/v1",
   "repository": "bajoicheg/g-pc-health-check",
   "source_ref": "refs/heads/design/0.17.0-security-posture",
-  "generation": 0,
-  "items": []
+  "generation": 1,
+  "items": [
+    {
+      "event": {
+        "schema": "continuation-event/v1",
+        "event_id": "cdc-2.11.2-live-target-20260930",
+        "event_type": "policy_changed",
+        "repository": "bajoicheg/g-pc-health-check",
+        "source_ref": "refs/heads/design/0.17.0-security-posture",
+        "candidate_sha": "f86cdd5a68b99df08d1907c68a1216bfd9dc3bbf",
+        "operation_key": null,
+        "task_id": "cdc-2.11.2-adoption",
+        "observed_at_utc": "2026-09-30T21:41:40Z",
+        "source": "bajoicheg-private/g-supervisor:refs/heads/cdc/fleet",
+        "evidence_refs": [
+          "fleet/target.json@2.11.2",
+          "fleet/target-release.json@48e637b230e7640d0dcd13da60d712f38f59a2b6"
+        ],
+        "dedupe_key": "sha256:c42bd1109c1774f5d4bf6502833ca8a91406e185c441333ab4983c54104330d1"
+      },
+      "state": "pending",
+      "claim": null,
+      "ack": null
+    }
+  ]
 }
