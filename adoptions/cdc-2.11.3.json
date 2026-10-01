@@ -1,0 +1,42 @@
+{
+  "schema": "cdc-consumer-adoption-evidence/v1",
+  "repository": "bajoicheg/g-pc-health-check",
+  "source_ref": "refs/heads/design/0.17.0-security-posture",
+  "source_head": "38b00741642cf11afb879767ebd41901daf5d9bb",
+  "source_base": "f86cdd5a68b99df08d1907c68a1216bfd9dc3bbf",
+  "release": {
+    "schema": "live-target-release/v1",
+    "version": "2.11.3",
+    "canonical_repository": "bajoicheg/g-cdc",
+    "release_ref": "refs/heads/release/v2.11.3",
+    "release_commit": "ed8256d1b80cc3f5424890e5488d5fbbcb57a304",
+    "package_tree": "39f733127ac130de4f647cf9e5ec55afcca0769c"
+  },
+  "package_tree": "39f733127ac130de4f647cf9e5ec55afcca0769c",
+  "policy_digest": "820cd6cb39a7dfb11d324d437f7fb668513b15a4e1f3aafa2398d72823c3582c",
+  "checkpoint_schema": "development-work-status/v4",
+  "status": "applied_verified",
+  "observed_at_utc": "2026-10-01T18:20:34.225167Z",
+  "safe_boundary": {
+    "prior_generation": 16,
+    "prior_explicitly_released": true,
+    "prior_guard": null,
+    "recovery_kind": "released_safe_boundary",
+    "adopting_generation": 17,
+    "invocation_id": "managed-terminal:c95f7df2db375eacdbd41eee5df8d1f6c8695a847f6a8cdaeb5f477383e6e127"
+  },
+  "checks": {
+    "exact_package_subtree": "PASS",
+    "consumer_lock": "PASS",
+    "adapter_semantic_digest": "PASS",
+    "checkpoint_v4_readback": "PASS",
+    "changed_path_containment": "PASS: vendored CDC, AGENTS.md and docs only",
+    "product_source_changes": 0,
+    "detached_tree_before_ref_move": "PASS",
+    "atomic_conditional_fast_forward": "PASS",
+    "published_readback": "PASS"
+  },
+  "scheduler_mutations": 0,
+  "product_scope_preserved": "0.17.0-security-posture",
+  "next_action": "Resume the pre-existing product task under CDC 2.11.3; scheduler pause remains authoritative."
+}
