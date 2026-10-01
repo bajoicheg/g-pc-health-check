@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>G PC Health Check policy resources</displayName>
+  <description>Administrative Template resources for G PC Health Check.</description>
+  <resources>
+    <stringTable>
+      <string id="Category.GPCHealthCheck">G PC Health Check</string>
+      <string id="Category.SecurityPosture">Security Posture</string>
+      <string id="Policy.AllowedLocalAdministrators">Allowed local administrators</string>
+      <string id="Policy.AllowedLocalAdministrators.Help">Defines the direct users and groups permitted in the local Windows Administrators group. The policy writes one pattern per line to HKLM\SOFTWARE\Policies\GPCHealthCheck\AllowedLocalAdministrators as REG_MULTI_SZ. Matching is case-insensitive and covers the whole normalized principal. Use * for zero or more characters and ? for exactly one character. Other characters are literal; regular expressions and environment-variable expansion are not supported. Neutral examples: CONTOSO\adm-*, LOCAL\Administrator, SID:S-1-5-21-*-500. An enabled policy with an intentionally empty effective list permits no direct principal. Nested membership of a permitted group is governed outside this local check.</string>
+      <string id="Policy.AllowedLocalAdministrators.Label">One allowed principal pattern per line:</string>
+    </stringTable>
+    <presentationTable>
+      <presentation id="Policy.AllowedLocalAdministrators.Presentation">
+        <multiTextBox refId="AllowedLocalAdministratorsList">One allowed principal pattern per line:</multiTextBox>
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

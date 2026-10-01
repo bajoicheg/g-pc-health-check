@@ -265,7 +265,9 @@ public sealed partial class MainForm : Form
             var progress = new Progress<string>(s => ApplyScanProgress(progressOwner, s));
             var data = await _diagnostics.CollectAsync(progress);
             StampExecutionContext(data, context);
-            _current = _assessment.Assess(data);
+            var scan = _assessment.Assess(data);
+            await AttachSecurityPostureAsync(scan, progress);
+            _current = scan;
             var saved = _reports.SaveScan(_current);
             _latestReport = saved.Html;
             Populate(_current);
@@ -330,9 +332,10 @@ public sealed partial class MainForm : Form
             var verificationProgress = new Progress<string>(s => ApplyOperationProgress(verificationOwner, s));
             var context = await Task.Run(ExecutionContextService.Capture);
             var afterData = await _diagnostics.CollectAsync(verificationProgress);
-            if (ReferenceEquals(_applyProgressOwner, verificationOwner)) _applyProgressOwner = null;
             StampExecutionContext(afterData, context);
             var after = _assessment.Assess(afterData);
+            await AttachSecurityPostureAsync(after, verificationProgress);
+            if (ReferenceEquals(_applyProgressOwner, verificationOwner)) _applyProgressOwner = null;
             var verification = new VerificationResult { Before = before, After = after, Remediation = batch };
             var saved = _reports.SaveVerification(verification);
             _latestReport = saved.Html;

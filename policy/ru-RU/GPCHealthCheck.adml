@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>Ресурсы политик G PC Health Check</displayName>
+  <description>Ресурсы административных шаблонов G PC Health Check.</description>
+  <resources>
+    <stringTable>
+      <string id="Category.GPCHealthCheck">G PC Health Check</string>
+      <string id="Category.SecurityPosture">Состояние защиты</string>
+      <string id="Policy.AllowedLocalAdministrators">Разрешённые локальные администраторы</string>
+      <string id="Policy.AllowedLocalAdministrators.Help">Определяет прямых пользователей и группы, которым разрешено состоять в локальной группе Windows Administrators. Политика записывает по одному шаблону на строку в HKLM\SOFTWARE\Policies\GPCHealthCheck\AllowedLocalAdministrators как REG_MULTI_SZ. Сопоставление выполняется без учёта регистра по всей нормализованной строке субъекта. Символ * означает ноль или более символов, а ? — ровно один символ. Остальные символы являются литералами; регулярные выражения и подстановка переменных среды не поддерживаются. Нейтральные примеры: CONTOSO\adm-*, LOCAL\Administrator, SID:S-1-5-21-*-500. Включённая политика с намеренно пустым итоговым списком не разрешает ни одного прямого субъекта. Вложенное членство разрешённой группы управляется вне этой локальной проверки.</string>
+      <string id="Policy.AllowedLocalAdministrators.Label">По одному разрешённому шаблону субъекта на строку:</string>
+    </stringTable>
+    <presentationTable>
+      <presentation id="Policy.AllowedLocalAdministrators.Presentation">
+        <multiTextBox refId="AllowedLocalAdministratorsList">По одному разрешённому шаблону субъекта на строку:</multiTextBox>
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

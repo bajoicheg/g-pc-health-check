@@ -20,6 +20,11 @@ internal static class SupportSummary
         sb.AppendLine($"Пользователь: {d.System.UserName}");
         sb.AppendLine($"Статус: {a.Status}; индекс: {a.Score}/100");
         sb.AppendLine($"Покрытие: {a.CoveragePercent}% ({a.CoverageStatus})");
+        if (scan.Security is not null)
+        {
+            sb.AppendLine(AppLocalization.T("Security.Tab.Title") + ":");
+            sb.AppendLine(SecurityReportSection.BuildClipboardSummary(scan, AppLocalization.Language));
+        }
         sb.AppendLine($"Triage: {triage.Title}");
         sb.AppendLine($"Следующий шаг: {triage.NextAction}");
         sb.AppendLine($"CPU: {Format(d.Performance.CpuPercent, "%")}; RAM: {Format(d.Performance.MemoryUsedPercent, "%")}; {SystemDiskSelection.CurrentDriveId ?? "Системный диск"} {(systemDrive is null ? "—" : $"{systemDrive.FreeGB:0.#} GB свободно")}; uptime: {d.System.UptimeDays:0.#} дн.");
