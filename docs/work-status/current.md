@@ -2,14 +2,14 @@
 schema: development-work-status/v4
 repository: bajoicheg/g-pc-health-check
 branch: design/0.17.0-security-posture
-policy_revision: 2026-09-30-cdc-2.11.2-fleet-adoption
-policy_digest: 77b0da8bf1930862064fcc24e676395b1e2e949e0ebfe7ed0b0b39a256c1d5ab
-observed_at_utc: '2026-09-30T18:05:00Z'
+policy_revision: 2026-10-01-cdc-2.11.3-managed-adoption
+policy_digest: 820cd6cb39a7dfb11d324d437f7fb668513b15a4e1f3aafa2398d72823c3582c
+observed_at_utc: '2026-10-01T18:20:05.823564Z'
 orchestration_origin: chat
-active_executor: 6af4443b-1afa-4608-9622-5bee9b62a045
-lease_state: active
-executor_heartbeat_at_utc: '2026-09-30T18:05:00Z'
-execution_lease_until_utc: '2026-09-30T18:25:00Z'
+active_executor: none
+lease_state: released
+executor_heartbeat_at_utc: null
+execution_lease_until_utc: null
 waiting_external_kind: null
 waiting_external_id: null
 waiting_external_sha: null
@@ -17,17 +17,17 @@ operation_intent_ref: null
 operation_key: null
 resume_capsule_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/resume.json
 execution_continuity:
-  invocation_id: chat-20260930-cdc2112-adoption-g-pc-health-check
+  invocation_id: null
   runnable_next_action: true
   meaningful_progress: true
   primitive_steps_since_progress: 0
   completion_gate: continue
-  last_progress_ref: docs/cdc-adoption-2.11.2.md
+  last_progress_ref: docs/cdc-adoption-2.11.3.md
 control:
   execution_lease_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/lease.json
-  execution_lease_revision: 5d75105d6b33ed1b7546d3bf09b96ca45ebfbfb1
-  executor_id: 6af4443b-1afa-4608-9622-5bee9b62a045
-  lease_generation: 15
+  execution_lease_revision: null
+  executor_id: null
+  lease_generation: 17
   budget_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/budget.json
   recovery_snapshot_ref: null
   external_wait_ref: null
@@ -37,8 +37,7 @@ phase: recovery
 implementation_sha: e20b8487a3d84e557c0886f59d8ed7704be2fb09
 candidate_sha: cbd20da8822f321df0d6404a955bf2cea9e553bb
 last_green_sha: cbd20da8822f321df0d6404a955bf2cea9e553bb
-last_green_evidence: auto pilot push run 36128619572 success; artifacts 10861076525
-  (EXE) and 10860941608 (pilot E2E)
+last_green_evidence: auto pilot push run 36128619572 success; artifacts 10861076525 (EXE) and 10860941608 (pilot E2E)
 active_compute: none
 active_ci_run_id: ''
 last_ci_run_id: '36128619572'
@@ -49,6 +48,10 @@ release_state: blocked
 blocker: none
 next_action: Finalize CDC 2.11.2 adoption evidence on cdc/coordination, verify exact vendored subtree and policy/checkpoint bindings, then release generation 15. Product work remains separate; preserve scheduler pause.
 ---
+## CDC 2.11.3 process-only adoption — managed atomic publication
+
+This branch now binds canonical CDC **2.11.3** at `refs/heads/release/v2.11.3`, release commit `ed8256d1b80cc3f5424890e5488d5fbbcb57a304`, package tree `39f733127ac130de4f647cf9e5ec55afcca0769c`. The migration was assembled detached and is published only after exact package/policy/checkpoint/provenance validation. Product gates and scheduler state are unchanged.
+
 
 ## CDC 2.11.2 process-only adoption — 2026-09-30
 
