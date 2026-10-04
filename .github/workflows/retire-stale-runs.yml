@@ -52,7 +52,13 @@ jobs:
                   raise RuntimeError("Current project owner/guard is active; preserve historical queue")
           for item in expected:
               quiescent()
-              run = api(f"actions/runs/{item['id']}")
+              try:
+                  run = api(f"actions/runs/{item['id']}")
+              except ApiError as error:
+                  if error.status == 404:
+                      print("ALREADY_REMOVED", item["id"])
+                      continue
+                  raise
               assert run["head_sha"] == item["sha"] and run["workflow_id"] == item["workflow_id"]
               assert run["path"] == item["path"] and run["created_at"] == item["created_at"]
               assert run["event"] == "workflow_run" and run["head_branch"] == "main"
@@ -75,7 +81,30 @@ jobs:
                   assert all(current[key] == run[key] for key in ("head_sha", "workflow_id", "path", "created_at", "event", "head_branch"))
                   if current["status"] != "queued":
                       raise RuntimeError("Run began executing after normal cancellation; preserve it")
-                  api(f"actions/runs/{item['id']}/force-cancel", method="POST")
+                  try:
+                      api(f"actions/runs/{item['id']}/force-cancel", method="POST")
+                  except ApiError as force_error:
+                      print("FORCE_CANCEL_ERROR", item["id"], str(force_error), flush=True)
+                      if force_error.status != 409 or "has not been queued yet" not in str(error) or "has not been queued yet" not in str(force_error):
+                          raise
+                      jobs = api(f"actions/runs/{item['id']}/jobs?per_page=100")
+                      artifacts = api(f"actions/runs/{item['id']}/artifacts?per_page=100")
+                      if jobs["total_count"] != 0 or artifacts["total_count"] != 0:
+                          raise RuntimeError("Historical queue has execution/output evidence; preserve it")
+                      quiescent()
+                      final = api(f"actions/runs/{item['id']}")
+                      assert all(final[key] == run[key] for key in ("head_sha", "workflow_id", "path", "created_at", "event", "head_branch"))
+                      if final["status"] != "queued":
+                          raise RuntimeError("Historical run changed state; preserve it")
+                      api(f"actions/runs/{item['id']}", method="DELETE")
+                      try:
+                          api(f"actions/runs/{item['id']}")
+                      except ApiError as removed:
+                          if removed.status == 404:
+                              print("REMOVED_EMPTY_HISTORICAL_RUN", item["id"], flush=True)
+                              continue
+                          raise
+                      raise RuntimeError("Deleted run still visible; reconcile existing deletion")
               for attempt in range(15):
                   observed = api(f"actions/runs/{item['id']}")
                   if observed["status"] == "completed":
