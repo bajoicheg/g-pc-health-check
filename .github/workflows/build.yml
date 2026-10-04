@@ -235,7 +235,7 @@ jobs:
           name: g-pc-health-check-windows-x64
           path: artifacts/final/*
           if-no-files-found: error
-          retention-days: 30
+          retention-days: 14
 
       - name: Upload pilot E2E bundle
         if: github.event_name != 'pull_request'
@@ -244,4 +244,4 @@ jobs:
           name: g-pc-health-check-pilot-e2e
           path: artifacts/pilot/G-PC-Health-Check-*-pilot.zip
           if-no-files-found: error
-          retention-days: 30
+          retention-days: 14
