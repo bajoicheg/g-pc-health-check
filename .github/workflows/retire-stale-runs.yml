@@ -1,0 +1,70 @@
+name: Retire verified historical queue
+
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/retire-stale-runs.yml']
+  pull_request:
+    branches: [main]
+    paths: ['.github/workflows/retire-stale-runs.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: write
+
+concurrency:
+  group: retire-verified-historical-queue
+  cancel-in-progress: false
+
+jobs:
+  retire:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Retire only pinned superseded queued runs
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          EVENT_NAME: ${{ github.event_name }}
+          STALE_RUNS: '[{"id":34749490482,"sha":"e55317cc417b6220435d11fee61110f47f285821","workflow_id":354932321,"path":".github/workflows/release.yml","created_at":"2026-09-13T09:25:39Z"},{"id":34749490551,"sha":"e55317cc417b6220435d11fee61110f47f285821","workflow_id":355588567,"path":".github/workflows/supply-chain.yml","created_at":"2026-09-13T09:25:39Z"},{"id":34748755997,"sha":"c6722159027eb27370bdbeac85ad9da5f31e5851","workflow_id":354932321,"path":".github/workflows/release.yml","created_at":"2026-09-13T08:59:03Z"},{"id":34748756005,"sha":"c6722159027eb27370bdbeac85ad9da5f31e5851","workflow_id":355588567,"path":".github/workflows/supply-chain.yml","created_at":"2026-09-13T08:59:03Z"}]'
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > "$RUNNER_TEMP/retire_stale_runs.py" <<'PY'
+          import base64, json, os, subprocess, time
+          repo = os.environ["REPO"]
+          expected = json.loads(os.environ["STALE_RUNS"])
+          def api(path, method="GET"):
+              r = subprocess.run(["gh","api","--method",method,f"/repos/{repo}/{path}"],check=True,text=True,capture_output=True)
+              return json.loads(r.stdout) if r.stdout.strip() else None
+          def quiescent():
+              f = api("contents/lease.json?ref=cdc%2Fcoordination")
+              lease = json.loads(base64.b64decode(f["content"]))
+              if lease["owner_id"] is not None or lease["external_guard"] is not None:
+                  raise RuntimeError("Current project owner/guard is active; preserve historical queue")
+          for item in expected:
+              quiescent()
+              run = api(f"actions/runs/{item['id']}")
+              assert run["head_sha"] == item["sha"] and run["workflow_id"] == item["workflow_id"]
+              assert run["path"] == item["path"] and run["created_at"] == item["created_at"]
+              assert run["event"] == "workflow_run" and run["head_branch"] == "main"
+              if run["status"] == "completed":
+                  print("ALREADY_TERMINAL", item["id"], run["conclusion"])
+                  continue
+              if run["status"] != "queued":
+                  raise RuntimeError("Historical run is no longer queued; do not cancel an executing run")
+              api(f"actions/runs/{item['id']}/cancel", method="POST")
+              for attempt in range(15):
+                  observed = api(f"actions/runs/{item['id']}")
+                  if observed["status"] == "completed":
+                      print("RETIRED_RUN", item["id"], observed["conclusion"])
+                      break
+                  time.sleep(2)
+              else:
+                  raise RuntimeError("Cancellation not yet terminal; reconcile existing request")
+          PY
+          python -m py_compile "$RUNNER_TEMP/retire_stale_runs.py"
+          if [[ "$EVENT_NAME" != "pull_request" ]]; then
+            python "$RUNNER_TEMP/retire_stale_runs.py"
+          fi
