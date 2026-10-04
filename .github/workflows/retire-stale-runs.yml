@@ -32,11 +32,18 @@ jobs:
         run: |
           set -euo pipefail
           cat > "$RUNNER_TEMP/retire_stale_runs.py" <<'PY'
-          import base64, json, os, subprocess, time
+          import base64, json, os, re, subprocess, time
           repo = os.environ["REPO"]
           expected = json.loads(os.environ["STALE_RUNS"])
+          class ApiError(RuntimeError):
+              def __init__(self, path, result):
+                  match = re.search(r"HTTP (\d{3})", result.stderr)
+                  self.status = int(match.group(1)) if match else None
+                  super().__init__(f"GitHub API {path}: {result.stderr.strip()}")
           def api(path, method="GET"):
-              r = subprocess.run(["gh","api","--method",method,f"/repos/{repo}/{path}"],check=True,text=True,capture_output=True)
+              r = subprocess.run(["gh","api","--method",method,f"/repos/{repo}/{path}"],check=False,text=True,capture_output=True)
+              if r.returncode:
+                  raise ApiError(path, r)
               return json.loads(r.stdout) if r.stdout.strip() else None
           def quiescent():
               f = api("contents/lease.json?ref=cdc%2Fcoordination")
@@ -54,7 +61,21 @@ jobs:
                   continue
               if run["status"] != "queued":
                   raise RuntimeError("Historical run is no longer queued; do not cancel an executing run")
-              api(f"actions/runs/{item['id']}/cancel", method="POST")
+              try:
+                  api(f"actions/runs/{item['id']}/cancel", method="POST")
+              except ApiError as error:
+                  print("NORMAL_CANCEL_ERROR", item["id"], str(error), flush=True)
+                  if error.status != 409:
+                      raise
+                  quiescent()
+                  current = api(f"actions/runs/{item['id']}")
+                  if current["status"] == "completed":
+                      print("ALREADY_TERMINAL", item["id"], current["conclusion"])
+                      continue
+                  assert all(current[key] == run[key] for key in ("head_sha", "workflow_id", "path", "created_at", "event", "head_branch"))
+                  if current["status"] != "queued":
+                      raise RuntimeError("Run began executing after normal cancellation; preserve it")
+                  api(f"actions/runs/{item['id']}/force-cancel", method="POST")
               for attempt in range(15):
                   observed = api(f"actions/runs/{item['id']}")
                   if observed["status"] == "completed":
