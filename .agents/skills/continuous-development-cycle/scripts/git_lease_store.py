@@ -28,7 +28,7 @@ def validate_coordination_record(record):
     raise ValueError('unsupported lease schema')
 
 
-def _validate_submission_resolution_transition(previous, record):
+def _validate_submission_resolution_transition(previous, record, *, expected_revision=None):
     prev_res=previous.get("submission_resolutions",[])
     curr_res=record.get("submission_resolutions",[])
     appended=curr_res[len(prev_res):]
@@ -59,10 +59,17 @@ def _validate_submission_resolution_transition(previous, record):
         for name in all_fields-allowed:
             if previous.get(name)!=record.get(name):
                 raise ValueError("terminal submission resolution CAS contains unrelated mutation")
-        expected=execution_lease_v2.clear_guard(
-            previous,
-            previous["owner_id"],previous["generation"],previous["invocation"]["invocation_id"],
-            terminal["at_utc"],terminal["observation"],terminal["evidence_reference"])
+        if previous["owner_id"] is None:
+            from submission_recovery import resolve_released_guard
+            if expected_revision is not None and terminal["observation"].get("lease_revision") != expected_revision:
+                raise ValueError("taskless proof does not bind exact CAS lease revision")
+            expected=resolve_released_guard(previous,terminal["observation"],
+                                            terminal["evidence_reference"],terminal["at_utc"])
+        else:
+            expected=execution_lease_v2.clear_guard(
+                previous,
+                previous["owner_id"],previous["generation"],previous["invocation"]["invocation_id"],
+                terminal["at_utc"],terminal["observation"],terminal["evidence_reference"])
         if expected!=record:
             raise ValueError("submission resolution must equal the canonical terminal guard reconciliation")
     elif prev_claim is not None and guard_cleared:
@@ -70,7 +77,7 @@ def _validate_submission_resolution_transition(previous, record):
     return record
 
 
-def validate_coordination_transition(previous, record, *, ownership_capability=None):
+def validate_coordination_transition(previous, record, *, ownership_capability=None, expected_revision=None):
     validate_coordination_record(record)
     if previous is None:
         return record
@@ -83,6 +90,15 @@ def validate_coordination_transition(previous, record, *, ownership_capability=N
                 or record['owner_id']!=previous['owner_id']):
             raise ValueError('new execution-lease/v1 ownership is disabled; migrate to managed v2')
     if prev_schema=='execution-lease/v2' and new_schema=='execution-lease/v2':
+        if previous['owner_id'] is None and record['owner_id'] is None and record != previous:
+            if not (previous['external_guard'] is not None
+                    and previous['external_guard']['submission_claim'] is not None
+                    and record['external_guard'] is None
+                    and len(record.get('submission_resolutions', [])) == len(previous.get('submission_resolutions', [])) + 1):
+                raise ValueError('released v2 state is sealed except for canonical guarded resolution')
+        if (record.get('last_release') != previous.get('last_release')
+                and not (previous['owner_id'] is not None and record['owner_id'] is None)):
+            raise ValueError('release history can change only through canonical owner release')
         ownership_changed=(record['owner_id']!=previous['owner_id']
                            or record['generation']!=previous['generation'])
         if record['owner_id'] is not None and ownership_changed:
@@ -109,7 +125,7 @@ def validate_coordination_transition(previous, record, *, ownership_capability=N
         raise ValueError('execution-lease/v2 cannot downgrade to v1')
     if record['submission_claims'][:len(previous['submission_claims'])] != previous['submission_claims']:
         raise ValueError('consumed submission history cannot be removed or rewritten')
-    _validate_submission_resolution_transition(previous, record)
+    _validate_submission_resolution_transition(previous, record, expected_revision=expected_revision)
     previous_resolutions=previous.get('submission_resolutions', [])
     current_resolutions=record.get('submission_resolutions', [])
     if current_resolutions[:len(previous_resolutions)] != previous_resolutions:
@@ -140,19 +156,38 @@ class GitLeaseStore:
         if remote_identity(self.repo, self.remote) != self.store_id:
             raise ValueError('lease coordination remote identity drift')
 
-    def _git(self, *args, input=None):
+    def _git(self, *args, input=None, raw=False):
         environment = git_object_environment(GIT_TERMINAL_PROMPT='0',
                            GIT_AUTHOR_NAME='CDC coordination', GIT_AUTHOR_EMAIL='cdc@example.invalid',
                            GIT_COMMITTER_NAME='CDC coordination', GIT_COMMITTER_EMAIL='cdc@example.invalid')
         try:
             result = subprocess.run(['git', '-C', str(self.repo), *args], input=input,
-                                    text=True, capture_output=True, env=environment, check=False)
+                                    text=not raw, capture_output=True, env=environment, check=False)
         except OSError as exc:
             raise ValueError('Git coordination unavailable') from exc
         if result.returncode:
             # Do not echo transport stderr: URLs or helper diagnostics may contain credentials.
             raise ValueError(f'Git coordination {args[0]} failed (exit {result.returncode})')
-        return result.stdout.strip()
+        return result.stdout if raw else result.stdout.strip()
+
+    def _lease_entry(self, revision):
+        rows = self._git('ls-tree', '--full-tree', '-z', revision, '--', 'lease.json', raw=True).split(b'\0')
+        rows = [row for row in rows if row]
+        if len(rows) != 1:
+            raise ValueError('coordination tree requires one regular lease.json')
+        metadata, name = rows[0].split(b'\t', 1)
+        mode, kind, blob = metadata.split(b' ')
+        if name != b'lease.json' or mode not in {b'100644', b'100755'} or kind != b'blob':
+            raise ValueError('coordination lease.json must be a regular file')
+        return mode.decode('ascii'), blob.decode('ascii')
+
+    def _read_record(self, revision):
+        _, blob = self._lease_entry(revision)
+        record = json.loads(self._git('cat-file', 'blob', blob), object_pairs_hook=op._unique_object)
+        validate_coordination_record(record)
+        if record['source_ref'] == self.ref:
+            raise ValueError('coordination ref must differ from product source ref')
+        return record
 
     def read(self):
         self._assert_remote_identity()
@@ -168,10 +203,7 @@ class GitLeaseStore:
         self._git(*config, 'fetch', '--no-tags', '--no-write-fetch-head', '--refmap=', remote, self.ref)
         if self._git('cat-file', '-t', revision) != 'commit':
             raise ValueError('coordination ref must point to a commit')
-        record = json.loads(self._git('show', revision + ':lease.json'), object_pairs_hook=op._unique_object)
-        validate_coordination_record(record)
-        if record['source_ref'] == self.ref:
-            raise ValueError('coordination ref must differ from product source ref')
+        record = self._read_record(revision)
         self._assert_remote_identity()
         if self._git('ls-remote', '--refs', self.remote, self.ref).splitlines() != rows:
             raise ValueError('coordination ref moved during read; refetch before acting')
@@ -192,13 +224,7 @@ class GitLeaseStore:
             raise ValueError('historical revision is not in authoritative coordination ancestry') from None
         if base != revision:
             raise ValueError('historical revision is not in authoritative coordination ancestry')
-        if self._git('ls-tree', '--name-only', revision).splitlines() != ['lease.json']:
-            raise ValueError('historical coordination tree must contain only lease.json')
-        record = json.loads(self._git('show', revision + ':lease.json'), object_pairs_hook=op._unique_object)
-        validate_coordination_record(record)
-        if record['source_ref'] == self.ref:
-            raise ValueError('coordination ref must differ from product source ref')
-        return record
+        return self._read_record(revision)
 
     def find_invocation_ownership(self, repository, source_ref, invocation_id):
         """Find exact authoritative owned generation for a managed invocation."""
@@ -208,8 +234,7 @@ class GitLeaseStore:
         revisions = self._git("rev-list", "--first-parent", current).splitlines()
         matches = []
         for revision in revisions[:10000]:
-            record = json.loads(self._git("show", revision + ":lease.json"), object_pairs_hook=op._unique_object)
-            validate_coordination_record(record)
+            record = self._read_record(revision)
             invocation = record.get("invocation")
             if (record.get("schema") == "execution-lease/v2" and record.get("repository") == repository
                     and record.get("source_ref") == source_ref and record.get("owner_id") is not None
@@ -229,8 +254,7 @@ class GitLeaseStore:
             raise ValueError('coordination history is absent')
         revisions = self._git('rev-list', '--first-parent', current).splitlines()
         for revision in revisions[:10000]:
-            record = json.loads(self._git('show', revision + ':lease.json'), object_pairs_hook=op._unique_object)
-            validate_coordination_record(record)
+            record = self._read_record(revision)
             release = record.get('last_release')
             if (record.get('owner_id') is None and isinstance(release, dict)
                     and release.get('owner_id') == owner_id and release.get('generation') == generation
@@ -247,9 +271,18 @@ class GitLeaseStore:
         current, previous = self.read()
         if current != expected_revision:
             raise ValueError('stale expected coordination revision')
-        validate_coordination_transition(previous, record, ownership_capability=ownership_capability)
+        validate_coordination_transition(previous, record, ownership_capability=ownership_capability,
+                                         expected_revision=expected_revision)
         blob = self._git('hash-object', '-w', '--stdin', input=op._canonical(record).decode() + '\n')
-        tree = self._git('mktree', input=f'100644 blob {blob}\tlease.json\n')
+        mode = '100644'
+        neighbors = []
+        if current is not None:
+            mode, _ = self._lease_entry(current)
+            # Git names are bytes: text decoding also normalizes CR/LF sequences.
+            neighbors = [row for row in self._git('ls-tree', '--full-tree', '-z', current, raw=True).split(b'\0')
+                         if row and row.split(b'\t', 1)[1] != b'lease.json']
+        entries = neighbors + [f'{mode} blob {blob}\tlease.json'.encode('ascii')]
+        tree = self._git('mktree', '-z', input=b'\0'.join(entries) + b'\0', raw=True).decode('ascii').strip()
         parent = ['-p', expected_revision] if expected_revision else []
         commit = self._git('commit-tree', tree, *parent,
                            input='Update cooperative execution ownership\n\nCAS proposal: ' + secrets.token_hex(32) + '\n')

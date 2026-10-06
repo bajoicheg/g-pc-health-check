@@ -2,8 +2,8 @@
 schema: development-work-status/v4
 repository: bajoicheg/g-pc-health-check
 branch: design/0.17.0-security-posture
-policy_revision: 2026-10-01-cdc-2.11.3-managed-adoption
-policy_digest: 820cd6cb39a7dfb11d324d437f7fb668513b15a4e1f3aafa2398d72823c3582c
+policy_revision: 2026-10-06-cdc-2.11.6-managed-adoption
+policy_digest: 9bfa2d4db76045fcc97bd2bfd72b2c1c505a9fc3ee6585258841001ed5acb7f6
 observed_at_utc: '2026-10-01T18:20:05.823564Z'
 orchestration_origin: chat
 active_executor: none
@@ -37,7 +37,8 @@ phase: recovery
 implementation_sha: e20b8487a3d84e557c0886f59d8ed7704be2fb09
 candidate_sha: cbd20da8822f321df0d6404a955bf2cea9e553bb
 last_green_sha: cbd20da8822f321df0d6404a955bf2cea9e553bb
-last_green_evidence: auto pilot push run 36128619572 success; artifacts 10861076525 (EXE) and 10860941608 (pilot E2E)
+last_green_evidence: auto pilot push run 36128619572 success; artifacts 10861076525
+  (EXE) and 10860941608 (pilot E2E)
 active_compute: none
 active_ci_run_id: ''
 last_ci_run_id: '36128619572'
@@ -46,8 +47,15 @@ release_version: 0.17.0
 release_candidate_sha: cbd20da8822f321df0d6404a955bf2cea9e553bb
 release_state: blocked
 blocker: none
-next_action: Finalize CDC 2.11.2 adoption evidence on cdc/coordination, verify exact vendored subtree and policy/checkpoint bindings, then release generation 15. Product work remains separate; preserve scheduler pause.
+next_action: Finalize CDC 2.11.2 adoption evidence on cdc/coordination, verify exact
+  vendored subtree and policy/checkpoint bindings, then release generation 15. Product
+  work remains separate; preserve scheduler pause.
 ---
+
+# CDC 2.11.6 process adoption
+
+This candidate binds released source `b3b517fb70e2deea4006e265f708f29881377885`, immutable `refs/heads/release/v2.11.6`, exact 329-file package tree `79257a06c40de6f514f9b059be05d610885a50e7`. Product validation and blockers, historical evidence, budgets and scheduler pause remain unchanged. The frontmatter records the last observed product state; the managed adoption publication and release must be read back from their separate coordination receipts. This prepared candidate does not claim a future publication or release.
+
 ## CDC 2.11.3 process-only adoption — managed atomic publication
 
 This branch now binds canonical CDC **2.11.3** at `refs/heads/release/v2.11.3`, release commit `ed8256d1b80cc3f5424890e5488d5fbbcb57a304`, package tree `39f733127ac130de4f647cf9e5ec55afcca0769c`. The migration was assembled detached and is published only after exact package/policy/checkpoint/provenance validation. Product gates and scheduler state are unchanged.

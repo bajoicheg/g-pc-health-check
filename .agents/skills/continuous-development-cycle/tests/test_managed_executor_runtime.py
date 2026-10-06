@@ -100,17 +100,23 @@ class RuntimeTests(unittest.TestCase):
                 break
             time.sleep(.03)
 
-    def worker(self, task, delay=.5, fail=False):
+    def worker(self, task, delay=.5, fail=False, barrier=None):
         # A real interval plus a real committed result; no synthetic backend events.
         code = '''import json, pathlib, subprocess, time, sys
 p=pathlib.Path("src")/sys.argv[1]; p.mkdir(parents=True)
-start=time.monotonic(); time.sleep(float(sys.argv[2])); end=time.monotonic()
+start=time.monotonic()
+if sys.argv[4] != "-":
+    barrier=pathlib.Path(sys.argv[4])
+    barrier.with_name(barrier.name+"."+sys.argv[1]+".ready").touch()
+    while not barrier.exists(): time.sleep(.01)
+time.sleep(float(sys.argv[2])); end=time.monotonic()
 (p/"interval.json").write_text(json.dumps([start,end]))
 if sys.argv[3]=="fail": sys.exit(7)
 subprocess.run(["git","add",str(p)],check=True)
 subprocess.run(["git","commit","-qm","worker result"],check=True)
 '''
-        return [sys.executable, "-c", code, task, str(delay), "fail" if fail else "ok"]
+        return [sys.executable, "-c", code, task, str(delay), "fail" if fail else "ok",
+                str(barrier) if barrier is not None else "-"]
 
     def launch(self, task="a", argv=None):
         rev, _ = self.store.read()
@@ -282,7 +288,8 @@ subprocess.run(["git","commit","-qm","worker result"],check=True)
         self.assertEqual(final["status"],"succeeded");self.assertTrue(final["quiescent"])
 
     def test_owned_marker_is_recovered_after_controller_crash_post_acquire_cas(self):
-        self.launch("a", self.worker("a", 2.0))
+        barrier = self.root / "acquire-recovery-worker-go"
+        self.launch("a", self.worker("a", 0, barrier=barrier))
         end=time.monotonic()+4
         while time.monotonic()<end:
             observed=self.rt.observe("a","a1")
@@ -303,6 +310,7 @@ subprocess.run(["git","commit","-qm","worker result"],check=True)
             lease_store,lease_revision,"test/project","refs/heads/integration",owner,at,
             terminal_capability=capability)
         invocation_id=acquired["invocation"]["invocation_id"]
+        barrier.touch()
         paths=runtime._terminal_hold_paths(self.rt._terminal_hold_directory("a","a1"))
         self.assertFalse(paths["owned"].exists())
 
@@ -345,7 +353,8 @@ subprocess.run(["git","commit","-qm","worker result"],check=True)
         self.assertEqual(final["status"],"succeeded");self.assertTrue(final["quiescent"])
 
     def test_terminal_hold_aborts_only_when_authoritative_history_proves_no_acquire(self):
-        self.launch("a", self.worker("a", .4))
+        barrier = self.root / "no-acquire-worker-go"
+        self.launch("a", self.worker("a", 0, barrier=barrier))
         end=time.monotonic()+4
         while time.monotonic()<end:
             observed=self.rt.observe("a","a1")
@@ -363,11 +372,13 @@ subprocess.run(["git","commit","-qm","worker result"],check=True)
         self.rt._mark_terminal_acquire_done(capability,"error")
         reconciled=self.rt.reconcile_execution_lease_hold(lease_store,"a","a1")
         self.assertEqual(reconciled["status"],"aborted")
+        barrier.touch()
         final=self.wait("a")
         self.assertEqual(final["status"],"succeeded");self.assertTrue(final["quiescent"])
 
     def test_release_marker_is_recovered_after_controller_crash_post_release_cas(self):
-        self.launch("a", self.worker("a", 2.0))
+        barrier = self.root / "release-recovery-worker-go"
+        self.launch("a", self.worker("a", 0, barrier=barrier))
         end=time.monotonic()+4
         while time.monotonic()<end:
             observed=self.rt.observe("a","a1")
@@ -383,6 +394,7 @@ subprocess.run(["git","commit","-qm","worker result"],check=True)
         acquired=self.rt.acquire_execution_lease(
             lease_store,lease_revision,"test/project","refs/heads/integration",owner,"a","a1",at)
         invocation_id=acquired["invocation"]["invocation_id"]
+        barrier.touch()
         revision=acquired["revision"];record=acquired["record"]
 
         end=time.monotonic()+4
@@ -428,8 +440,15 @@ subprocess.run(["git","commit","-qm","worker result"],check=True)
         self.assertEqual(final["status"],"succeeded");self.assertTrue(final["quiescent"])
 
     def test_two_workers_really_overlap_and_commit_in_isolated_worktrees(self):
-        self.launch("a", self.worker("a", .8))
-        self.launch("b", self.worker("b", .8))
+        barrier = self.root / "overlap-workers-go"
+        self.launch("a", self.worker("a", 0, barrier=barrier))
+        self.launch("b", self.worker("b", 0, barrier=barrier))
+        end = time.monotonic() + 5
+        ready = [barrier.with_name(barrier.name + "." + task + ".ready") for task in ("a", "b")]
+        while not all(path.exists() for path in ready) and time.monotonic() < end:
+            time.sleep(.01)
+        self.assertTrue(all(path.exists() for path in ready), "both real workers must reach the barrier")
+        barrier.touch()
         for task in ("a", "b"):
             receipt = self.wait(task)
             self.assertEqual(receipt["status"], "succeeded")
@@ -685,16 +704,29 @@ subprocess.run(["git","commit","-qm","worker result"],check=True)
 
 
     def test_worker_exit_does_not_end_descendant_observation(self):
-        self.plan["tasks"][0]["max_runtime_seconds"] = .4
-        self.configure_fresh_pool()
+        # Observe root exit while a detached descendant is still live. A tiny
+        # timeout races slow observers against correct descendant termination;
+        # the separate timeout regression covers that termination path.
         marker = self.root / "root-exited-child-writing"
         argv = self.descendant_worker(marker)
         argv[2] = argv[2].replace("; time.sleep(60)", "")
         self.launch("a", argv)
         self.wait_file(marker)
+        receipt_path = next((self.root / "journal").glob("*/receipt.json"))
+        end = time.monotonic() + 4
+        while time.monotonic() < end:
+            receipt = json.loads(receipt_path.read_text())
+            worker_pid = receipt.get("worker_pid")
+            if worker_pid is not None and not Path("/proc", str(worker_pid)).exists():
+                break
+            time.sleep(.01)
+        else:
+            self.fail("root worker did not exit before descendant observation")
         observed = self.rt.observe("a", "a1")
         self.assertFalse(observed["quiescent"])
-        self.assertEqual(self.wait("a")["status"], "timed_out")
+        self.assertEqual(observed["status"], "running")
+        self.rt.cancel("a", "a1")
+        self.assertEqual(self.wait("a")["status"], "cancelled")
         before = marker.read_text()
         time.sleep(.1)
         self.assertEqual(marker.read_text(), before)

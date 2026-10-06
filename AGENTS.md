@@ -1,3 +1,7 @@
+## Current CDC authority — 2.11.6
+
+Use canonical `bajoicheg/g-cdc` CDC **2.11.6**, immutable `refs/heads/release/v2.11.6`, release commit `b3b517fb70e2deea4006e265f708f29881377885`, exact 329-file package tree `79257a06c40de6f514f9b059be05d610885a50e7`. The complete package is vendored at `.agents/skills/continuous-development-cycle/`. Earlier version statements below are historical when they conflict. Use the verified released `scripts/managed_host_bridge.py`; ordinary Work is observer/orchestrator-only. Preserve product gates, budgets, append-only coordination and the owner scheduler pause. Fleet adoption is separate; this project update does not assert fleet convergence.
+
 ## CDC 2.11.3 authoritative provenance
 
 Use canonical `bajoicheg/g-cdc` **v2.11.3**, release `refs/heads/release/v2.11.3`, commit `ed8256d1b80cc3f5424890e5488d5fbbcb57a304`, exact package tree `39f733127ac130de4f647cf9e5ec55afcca0769c`. The immutable package is vendored at `.agents/skills/continuous-development-cycle/`; lower-version CDC statements below are historical. This process-only convergence changes no product acceptance gate and performs no scheduler mutation.
@@ -132,4 +136,5 @@ and cheaper compatible alternatives; without confirmed provider outage, prefer d
 rechecked on Actions. GitHub Actions requires an explicit reason: required capability,
 final-platform evidence, artifact production, release attestation, or confirmed provider
 outage. This does not weaken the managed Windows 11 acceptance or release/provenance gates.
+
 

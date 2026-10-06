@@ -1,3 +1,7 @@
+## Current CDC authority — 2.11.6
+
+Use canonical `bajoicheg/g-cdc` CDC **2.11.6**, immutable `refs/heads/release/v2.11.6`, release commit `b3b517fb70e2deea4006e265f708f29881377885`, exact 329-file package tree `79257a06c40de6f514f9b059be05d610885a50e7`. The complete package is vendored at `.agents/skills/continuous-development-cycle/`. Earlier version statements below are historical when they conflict. Use the verified released `scripts/managed_host_bridge.py`; ordinary Work is observer/orchestrator-only. Preserve product gates, budgets, append-only coordination and the owner scheduler pause. Fleet adoption is separate; this project update does not assert fleet convergence.
+
 # Development without losing work between sessions
 
 This workflow addresses the connector interruptions seen while preparing 0.10.0 and 0.13.0. It reduces avoidable round trips and preserves evidence; it does not fix or disable OpenAI's internal tool evaluation or expand GitHub permissions. Application version 0.13.0 is unchanged by this maintenance update.
