@@ -32,11 +32,11 @@ control:
   recovery_snapshot_ref: null
   external_wait_ref: null
 active_change: g-pc-health-rebranding
-current_task: Review prepared branding on canonical CDC 2.11.6; managed publication
-  and exact-head Windows checks pending
-phase: implementation
+current_task: Branding implementation reviewed; documentation and host budget adapter
+  review before managed publication
+phase: blocked
 implementation_sha: 36a62146ed90cd4236e0aaf4a6826a1c6df4cf0a
-candidate_sha: 36a62146ed90cd4236e0aaf4a6826a1c6df4cf0a
+candidate_sha: ''
 last_green_sha: cbd20da8822f321df0d6404a955bf2cea9e553bb
 last_green_evidence: auto pilot push run 36128619572 success; artifacts 10861076525
   (EXE) and 10860941608 (pilot E2E)
@@ -47,15 +47,16 @@ last_ci_status: success
 release_version: 0.17.0
 release_candidate_sha: cbd20da8822f321df0d6404a955bf2cea9e553bb
 release_state: blocked
-blocker: review_pending; managed_publication_pending; Windows_checks_not_run; managed_windows_11_retest_pending;
-  explicit_owner_integration_approval_required
-next_action: Independent review of local candidate, then authorized managed bridge
-  publication and one PR synchronize CI cycle. Preserve scheduler pause.
+blocker: host_adapter_review_pending; managed_publication_pending; Windows_checks_not_run;
+  managed_windows_11_retest_pending; explicit_owner_integration_approval_required
+next_action: Read exact final publication candidate from external immutable host journal;
+  after adapter review, fresh gates and durable budget CAS precede managed bridge
+  start.
 ---
 
 # Branding review candidate on CDC 2.11.6
 
-Only branding commit 788e6683df7398e3445d4008d2b99c26c2a7f70b was ported. CDC 2.11.4 process commits were excluded. ZIP/account intake is resolved. No Windows validation, shared publication or new lease is claimed.
+Only branding commit 788e6683df7398e3445d4008d2b99c26c2a7f70b was ported. CDC 2.11.4 process commits were excluded. ZIP/account intake is resolved. No Windows validation, shared publication or new lease is claimed. The implementation SHA identifies tested implementation evidence, not the final documentation tip. Final publication candidate identity is recorded in the external host journal after commit creation, without a circular self-SHA.
 
 
 # CDC 2.11.6 process adoption
