@@ -38,7 +38,7 @@
   <data name="ProcessObservation.Form.NoteDefault" xml:space="preserve"><value>Зависание / задержка</value></data>
   <data name="ProcessObservation.Form.Ready" xml:space="preserve"><value>Готов к наблюдению. Данные не собирались.</value></data>
   <data name="ProcessObservation.Form.InvalidTarget" xml:space="preserve"><value>Не определён экземпляр процесса.</value></data>
-  <data name="ProcessObservation.Form.Title" xml:space="preserve"><value>G PC Health Check — наблюдение за процессом</value></data>
+  <data name="ProcessObservation.Form.Title" xml:space="preserve"><value>G PC Health — наблюдение за процессом</value></data>
   <data name="ProcessObservation.Form.Intro" xml:space="preserve"><value>{0} · PID {1} · создан {2:O}
 Выбран один экземпляр. После его завершения сбор компьютера продолжается; другой процесс с тем же PID не подставляется.</value></data>
   <data name="ProcessObservation.Form.Duration" xml:space="preserve"><value>Длительность, с</value></data>
@@ -88,7 +88,7 @@
   <data name="ProcessObservation.Metric.Write" xml:space="preserve"><value>Запись I/O процесса, MiB/с</value></data>
   <data name="ProcessObservation.Report.StatsNone" xml:space="preserve"><value>{0}: нет доступных значений (0/{1}).</value></data>
   <data name="ProcessObservation.Report.StatsLine" xml:space="preserve"><value>{0}: min {1}; медиана {2}; P95 {3}; max {4}; доступно {5}/{6}.</value></data>
-  <data name="ProcessObservation.Report.Title" xml:space="preserve"><value>G PC Health Check — наблюдение за процессом</value></data>
+  <data name="ProcessObservation.Report.Title" xml:space="preserve"><value>G PC Health — наблюдение за процессом</value></data>
   <data name="ProcessObservation.Report.Target" xml:space="preserve"><value>Компьютер: {0}; выбран: {1}; PID {2}; создание {3:O}.</value></data>
   <data name="ProcessObservation.Report.StartEnd" xml:space="preserve"><value>Начало: {0:O}; завершение: {1:O}. {2}.</value></data>
   <data name="ProcessObservation.Report.Plan" xml:space="preserve"><value>План: {0} с / {1} с; фактически {2:0.000} с; завершённых пар {3}; пропущено интервалов {4}.</value></data>

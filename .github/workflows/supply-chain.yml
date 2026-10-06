@@ -87,9 +87,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          EXE=artifacts/final/G-PC-Health-Check.exe
-          CHECKSUM=artifacts/final/G-PC-Health-Check.exe.sha256
-          PILOT=$(find artifacts/pilot -maxdepth 1 -type f -name 'G-PC-Health-Check-*-pilot.zip' -print -quit)
+          EXE=artifacts/final/G-PC-Health.exe
+          CHECKSUM=artifacts/final/G-PC-Health.exe.sha256
+          PILOT=$(find artifacts/pilot -maxdepth 1 -type f -name 'G-PC-Health-*-pilot.zip' -print -quit)
           test -s "$EXE"
           test -s "$CHECKSUM"
           test -n "$PILOT" && test -s "$PILOT"
@@ -137,7 +137,7 @@ jobs:
             -b "$GITHUB_WORKSPACE/artifacts/final" \
             -bc "$GITHUB_WORKSPACE" \
             -m "$GITHUB_WORKSPACE/artifacts/sbom" \
-            -pn "G PC Health Check" \
+            -pn "G PC Health" \
             -pv "$VERSION" \
             -ps "Organization: G" \
             -nsb "https://github.com/$REPO" \
@@ -145,7 +145,7 @@ jobs:
 
           GENERATED=$(find artifacts/sbom -type f -name 'manifest.spdx.json' -print -quit)
           test -n "$GENERATED" && test -s "$GENERATED"
-          FINAL="artifacts/sbom/G-PC-Health-Check-$VERSION.spdx.json"
+          FINAL="artifacts/sbom/G-PC-Health-$VERSION.spdx.json"
           cp "$GENERATED" "$FINAL"
 
           jq -e '.spdxVersion == "SPDX-2.2"' "$FINAL" >/dev/null

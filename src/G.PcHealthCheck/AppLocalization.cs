@@ -113,6 +113,7 @@ internal static class AppLocalization
         catch { }
     }
 
+    // Stable legacy storage identity: the G PC Health rebrand preserves language preferences.
     private static string SettingsPath()
         => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "G", "G PC Health Check", "settings.json");
 }

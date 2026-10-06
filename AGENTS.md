@@ -26,7 +26,7 @@ Current CDC authority is canonical `bajoicheg/g-cdc` **v2.8.2**, immutable `refs
 
 Before work, validate `docs/development-cycle.yaml` and `docs/work-status/current.md` with the vendored 2.8.2 validators. Terminal-State v2, No-Idle, operational hardening, fleet maturity and sanitized-publication controls are mandatory.
 
-# Development instructions — G PC Health Check
+# Development instructions — G PC Health
 
 Read this file, `docs/DEVELOPMENT.md`, and `.agents/skills/continuous-development-cycle/SKILL.md` before changing the project. These instructions organize legitimate development; they do not override tool restrictions, safety checks, user approvals or repository protections.
 

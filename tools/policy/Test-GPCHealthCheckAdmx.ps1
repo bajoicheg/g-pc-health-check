@@ -50,10 +50,10 @@ Require ($target.GetAttribute('namespace') -eq 'G.PcHealthCheck.Policies') 'ADMX
 
 $rootCategory = Select-PolicyNode $admx "/p:policyDefinitions/p:categories/p:category[@name='GPCHealthCheck']"
 $securityCategory = Select-PolicyNode $admx "/p:policyDefinitions/p:categories/p:category[@name='GPCHealthCheckSecurity']"
-Require ($null -ne $rootCategory) 'G PC Health Check ADMX root category is missing.'
+Require ($null -ne $rootCategory) 'G PC Health ADMX root category is missing.'
 Require ($null -ne $securityCategory) 'Security Posture ADMX category is missing.'
 $categoryParent = Select-PolicyNode $admx "/p:policyDefinitions/p:categories/p:category[@name='GPCHealthCheckSecurity']/p:parentCategory[@ref='GPCHealthCheck']"
-Require ($null -ne $categoryParent) 'Security Posture category must be under G PC Health Check.'
+Require ($null -ne $categoryParent) 'Security Posture category must be under G PC Health.'
 
 $policy = Select-PolicyNode $admx "/p:policyDefinitions/p:policies/p:policy[@name='AllowedLocalAdministrators']"
 Require ($null -ne $policy) 'AllowedLocalAdministrators machine policy is missing.'
@@ -105,4 +105,4 @@ foreach ($organizationSpecific in @('gradient.ru', 'градиент', 'indaspac
     Require (-not $allText.Contains($organizationSpecific)) "Organization-specific text is forbidden in policy artifacts: $organizationSpecific"
 }
 
-Write-Host 'G PC Health Check ADMX/ADML contract: PASS'
+Write-Host 'G PC Health ADMX/ADML contract: PASS'

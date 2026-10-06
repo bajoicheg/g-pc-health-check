@@ -15,7 +15,7 @@ internal static class SupportSummary
         var systemDrive = SystemDiskSelection.Find(d);
         var sb = new StringBuilder();
 
-        sb.AppendLine("G PC Health Check");
+        sb.AppendLine("G PC Health");
         sb.AppendLine($"Компьютер: {d.System.ComputerName}");
         sb.AppendLine($"Пользователь: {d.System.UserName}");
         sb.AppendLine($"Статус: {a.Status}; индекс: {a.Score}/100");

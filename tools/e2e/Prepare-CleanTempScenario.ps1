@@ -20,8 +20,8 @@ New-Item -ItemType Directory -Path $root -Force | Out-Null
 
 $oldFile = Join-Path $root 'old-delete-me.txt'
 $freshFile = Join-Path $root 'fresh-must-stay.txt'
-$oldContent = "G PC Health Check E2E OLD sentinel $([guid]::NewGuid())"
-$freshContent = "G PC Health Check E2E FRESH sentinel $([guid]::NewGuid())"
+$oldContent = "G PC Health E2E OLD sentinel $([guid]::NewGuid())"
+$freshContent = "G PC Health E2E FRESH sentinel $([guid]::NewGuid())"
 
 Set-Content -LiteralPath $oldFile -Value $oldContent -Encoding UTF8
 Set-Content -LiteralPath $freshFile -Value $freshContent -Encoding UTF8
@@ -97,7 +97,7 @@ $manifestPath = Join-Path $root 'e2e-manifest.json'
 $manifest | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath $manifestPath -Encoding UTF8
 
 Write-Host ''
-Write-Host 'G PC Health Check — CleanTemp E2E prepared' -ForegroundColor Green
+Write-Host 'G PC Health — CleanTemp E2E prepared' -ForegroundColor Green
 Write-Host "Root:      $root"
 Write-Host "OLD:       $oldFile  (must be deleted)"
 Write-Host "FRESH:     $freshFile  (must remain unchanged)"
@@ -107,4 +107,4 @@ if ($junctionEnabled) {
 }
 Write-Host "Manifest:  $manifestPath"
 Write-Host ''
-Write-Host 'Next: run G-PC-Health-Check.exe as a normal user, select CleanTemp, confirm the action (no UAC), then run Verify-CleanTempScenario.ps1.'
+Write-Host 'Next: run G-PC-Health.exe as a normal user, select CleanTemp, confirm the action (no UAC), then run Verify-CleanTempScenario.ps1.'

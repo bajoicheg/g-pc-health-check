@@ -1,8 +1,10 @@
-# G PC Health Check
+# G PC Health
 
 Windows 11 x64 Service Desk utility for workstation diagnostics, explainable findings, before/after reporting and controlled remediation.
 
-Current project version: **0.17.0**. A self-contained single-file `G-PC-Health-Check.exe`; no installation is required. Portable copies may use any folder and filename.
+**G PC Health** is the new product name. The GitHub repository, source namespace, existing settings/report locations and GPO Registry keys retain their stable identities. See [rebranding and current next steps](docs/REBRANDING.md).
+
+Current development version: **0.17.0** (PR #92; managed Windows 11 acceptance pending). Latest published release: **0.16.0**. Rebranded builds produce a self-contained single-file `G-PC-Health.exe`; no installation is required. Portable copies may use any folder and filename.
 
 > **Privacy:** review exports before sharing. Account names/SIDs, profile and file paths, commands, events, device identifiers, resource addresses and notes can be sensitive. Search is not redaction. See [`SECURITY.md`](SECURITY.md).
 
@@ -24,7 +26,7 @@ Central Administrative Templates are supplied as:
 - `policy/en-US/GPCHealthCheck.adml`;
 - `policy/ru-RU/GPCHealthCheck.adml`.
 
-Policy UI path: **Computer Configuration → Administrative Templates → G PC Health Check → Security Posture → Allowed local administrators**.
+Policy UI path: **Computer Configuration → Administrative Templates → G PC Health → Security Posture → Allowed local administrators**.
 
 Enter one allowed principal pattern per line. Matching is whole-string and case-insensitive: `*` means zero or more characters, `?` exactly one character, every other character is literal. Neutral examples include `CONTOSO\adm-*`, `LOCAL\Administrator` and `SID:S-1-5-21-*-500`. Missing/wrong-type/unreadable policy remains `Unknown`; an explicitly enabled but empty effective list permits no direct principal. The built-in Administrators group is discovered by well-known SID `S-1-5-32-544`, not by localized group name. ADMX/ADML files are deployment artifacts, not runtime dependencies.
 
@@ -128,7 +130,7 @@ The red batch is intentionally disruptive and must first be exercised only on an
 `Windows EXE` uses read-only repository permissions and pinned Actions. Its gates include PowerShell parsing, deterministic branding, transitive NuGet audit, warnings-as-errors build, source and single-EXE self-tests, portable worker/security tests, exact FileVersion, SHA-256 and pilot metadata/UTF-8. Successful main builds trigger release publication and supply-chain attestations for the exact tested SHA/run. Existing releases are not overwritten. See [`docs/SUPPLY-CHAIN.md`](docs/SUPPLY-CHAIN.md).
 
 ```powershell
-gh attestation verify G-PC-Health-Check.exe --repo bajoicheg/g-pc-health-check
+gh attestation verify G-PC-Health.exe --repo bajoicheg/g-pc-health-check
 ```
 
 PR builds are not releases. Hosted Windows Server tests are not a substitute for real corporate Windows 11 standard/admin/other-account/RDP contexts, redirected profiles, AV/EDR providers, enterprise update source, firmware/OEM telemetry, BitLocker, ADMX/GPO delivery, VPN/proxy/DNS, GUI/DPI, interactive UAC and actual remediation/hardening. See [`docs/E2E-TEST-PLAN.md`](docs/E2E-TEST-PLAN.md) and version-specific notes.

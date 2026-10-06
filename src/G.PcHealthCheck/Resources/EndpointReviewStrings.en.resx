@@ -11,7 +11,7 @@
   <data name="Endpoint.Form.Close" xml:space="preserve"><value>Close</value></data>
   <data name="Endpoint.Form.Search" xml:space="preserve"><value>Process, PID, IP, port, or state…</value></data>
   <data name="Endpoint.Form.Ready" xml:space="preserve"><value>Ready to collect.</value></data>
-  <data name="Endpoint.Form.Title" xml:space="preserve"><value>G PC Health Check — network connections and ports</value></data>
+  <data name="Endpoint.Form.Title" xml:space="preserve"><value>G PC Health — network connections and ports</value></data>
   <data name="Endpoint.Form.Intro" xml:space="preserve"><value>LOCAL TCP/UDP — read-only, without probing remote ports or reverse DNS.
 UDP shows local bindings; LISTEN does not prove external reachability. Snapshot comparison is not an event trace.</value></data>
   <data name="Endpoint.Filter.All" xml:space="preserve"><value>All records</value></data>

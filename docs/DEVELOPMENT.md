@@ -36,7 +36,7 @@ Quick skips four expensive stages during edits: publish, published-EXE self-test
 
 Restore/audit may contact configured package sources. Existing tests use the documented synthetic/native fixtures, not real repairs. Review the test code before running on a machine with valuable data.
 
-Every run writes to a unique ignored `artifacts/dev/<UTC-time>-<id>/` directory. Per-stage stdout/stderr and `summary.json` record Git SHA, branch, dirty-worktree flag, SDK, profile, timestamps, durations, stage states and exit codes. Full adds `publish/G-PC-Health-Check.exe` and its checksum. `Dirty=true` means the tested workspace differs from its recorded SHA; it must not be claimed as exact-commit validation.
+Every run writes to a unique ignored `artifacts/dev/<UTC-time>-<id>/` directory. Per-stage stdout/stderr and `summary.json` record Git SHA, branch, dirty-worktree flag, SDK, profile, timestamps, durations, stage states and exit codes. Full adds `publish/G-PC-Health.exe` and its checksum. `Dirty=true` means the tested workspace differs from its recorded SHA; it must not be claimed as exact-commit validation.
 
 The summary is replaced atomically before/after each step. A killed runner may leave `Running` or `NotRun`, never an inferred pass. This is progress preservation, not automatic resume: rerun verification after restarting. Native calls have no hard local timeout. Ctrl+C or shell closure may leave child work running; inspect owned processes before another run. CI job timeouts remain in force. The runner does not forcibly terminate other processes.
 

@@ -1,4 +1,4 @@
-# Codex Compute - G PC Health Check
+# Codex Compute - G PC Health
 
 ## Current state
 

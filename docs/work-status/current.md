@@ -3,8 +3,8 @@ schema: development-work-status/v4
 repository: bajoicheg/g-pc-health-check
 branch: design/0.17.0-security-posture
 policy_revision: 2026-10-06-cdc-2.11.6-managed-adoption
-policy_digest: 9bfa2d4db76045fcc97bd2bfd72b2c1c505a9fc3ee6585258841001ed5acb7f6
-observed_at_utc: '2026-10-01T18:20:05.823564Z'
+policy_digest: 4a9b5800ff7605ac48f57f4e31c55fdd756407b6dc03c9c6cd5bcbce5a976dab
+observed_at_utc: '2026-10-06T14:09:25.072161Z'
 orchestration_origin: chat
 active_executor: none
 lease_state: released
@@ -22,20 +22,21 @@ execution_continuity:
   meaningful_progress: true
   primitive_steps_since_progress: 0
   completion_gate: continue
-  last_progress_ref: docs/cdc-adoption-2.11.3.md
+  last_progress_ref: docs/REBRANDING.md
 control:
   execution_lease_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/lease.json
-  execution_lease_revision: null
+  execution_lease_revision: c7811cd7ed2ecf32efcce10d17b9cbb4be89b7dd
   executor_id: null
-  lease_generation: 17
+  lease_generation: 19
   budget_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/budget.json
   recovery_snapshot_ref: null
   external_wait_ref: null
-active_change: 0.17.0-security-posture
-current_task: CDC 2.11.2 process-only adoption; final result and release on cdc/coordination
-phase: recovery
-implementation_sha: e20b8487a3d84e557c0886f59d8ed7704be2fb09
-candidate_sha: cbd20da8822f321df0d6404a955bf2cea9e553bb
+active_change: g-pc-health-rebranding
+current_task: Review prepared branding on canonical CDC 2.11.6; managed publication
+  and exact-head Windows checks pending
+phase: blocked
+implementation_sha: ''
+candidate_sha: ''
 last_green_sha: cbd20da8822f321df0d6404a955bf2cea9e553bb
 last_green_evidence: auto pilot push run 36128619572 success; artifacts 10861076525
   (EXE) and 10860941608 (pilot E2E)
@@ -46,11 +47,16 @@ last_ci_status: success
 release_version: 0.17.0
 release_candidate_sha: cbd20da8822f321df0d6404a955bf2cea9e553bb
 release_state: blocked
-blocker: none
-next_action: Finalize CDC 2.11.2 adoption evidence on cdc/coordination, verify exact
-  vendored subtree and policy/checkpoint bindings, then release generation 15. Product
-  work remains separate; preserve scheduler pause.
+blocker: review_pending; managed_publication_pending; Windows_checks_not_run; managed_windows_11_retest_pending;
+  explicit_owner_integration_approval_required
+next_action: Independent review of local candidate, then authorized managed bridge
+  publication and one PR synchronize CI cycle. Preserve scheduler pause.
 ---
+
+# Branding review candidate on CDC 2.11.6
+
+Only branding commit 788e6683df7398e3445d4008d2b99c26c2a7f70b was ported. CDC 2.11.4 process commits were excluded. ZIP/account intake is resolved. No Windows validation, shared publication or new lease is claimed.
+
 
 # CDC 2.11.6 process adoption
 

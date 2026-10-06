@@ -72,7 +72,7 @@ public sealed class ReportService
     private static string BuildScanHtml(ScanResult scan)
     {
         var d = scan.Data;
-        var sb = Begin("G PC Health Check — " + d.System.ComputerName);
+        var sb = Begin("G PC Health — " + d.System.ComputerName);
         Header(sb, "Диагностика рабочего места Service Desk", d.System.CollectedAt);
         Hero(sb, scan.Assessment.Score, scan.Assessment.Status, d.System.ComputerName + " · " + d.System.UserName + " · " + d.System.Model);
         Triage(sb, scan);
@@ -96,7 +96,7 @@ public sealed class ReportService
 
     private static string BuildVerificationHtml(VerificationResult v)
     {
-        var sb = Begin("G PC Health Check — автопроверка");
+        var sb = Begin("G PC Health — автопроверка");
         Header(sb, "Автопроверка после remediation", DateTime.Now);
         Hero(sb, v.After.Assessment.Score, v.After.Assessment.Status, $"{v.After.Data.System.ComputerName} · было {v.Before.Assessment.Score}/100 → стало {v.After.Assessment.Score}/100");
         Triage(sb, v.After);
@@ -133,7 +133,7 @@ public sealed class ReportService
 
     private static void Header(StringBuilder sb, string subtitle, DateTime stamp)
     {
-        sb.Append("<header><div class='brand'>").Append(ShieldSvg()).Append("<div><h1>G PC Health Check</h1><div class='muted'>").Append(H(subtitle)).Append("</div></div></div><div class='stamp'>").Append(H(stamp.ToString("dd.MM.yyyy HH:mm:ss"))).Append("</div></header><main>");
+        sb.Append("<header><div class='brand'>").Append(ShieldSvg()).Append("<div><h1>G PC Health</h1><div class='muted'>").Append(H(subtitle)).Append("</div></div></div><div class='stamp'>").Append(H(stamp.ToString("dd.MM.yyyy HH:mm:ss"))).Append("</div></header><main>");
     }
 
     private static void Hero(StringBuilder sb, int score, string status, string detail)

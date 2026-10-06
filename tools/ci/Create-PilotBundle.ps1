@@ -39,7 +39,7 @@ if ($checksumLine -notmatch '^(?<hash>[0-9a-fA-F]{64})\s+\*?(?<name>[^\r\n]+)$')
 }
 $expectedHash = $Matches['hash'].ToLowerInvariant()
 $checksumName = $Matches['name'].Trim()
-if ($checksumName -ne 'G-PC-Health-Check.exe') {
+if ($checksumName -ne 'G-PC-Health.exe') {
     throw "Unexpected filename in checksum: $checksumName"
 }
 
@@ -70,7 +70,7 @@ foreach ($file in $requiredFiles) {
 
 New-Item -ItemType Directory -Force -Path $OutputDirectory | Out-Null
 $outputRoot = (Resolve-Path -LiteralPath $OutputDirectory).Path
-$bundleName = "G-PC-Health-Check-$version-pilot"
+$bundleName = "G-PC-Health-$version-pilot"
 $stage = Join-Path $outputRoot $bundleName
 $zip = Join-Path $outputRoot "$bundleName.zip"
 
@@ -78,8 +78,8 @@ if (Test-Path -LiteralPath $stage) { Remove-Item -LiteralPath $stage -Recurse -F
 if (Test-Path -LiteralPath $zip) { Remove-Item -LiteralPath $zip -Force }
 New-Item -ItemType Directory -Force -Path $stage,(Join-Path $stage 'e2e'),(Join-Path $stage 'docs') | Out-Null
 
-Copy-Item -LiteralPath $exe -Destination (Join-Path $stage 'G-PC-Health-Check.exe')
-Copy-Item -LiteralPath $checksum -Destination (Join-Path $stage 'G-PC-Health-Check.exe.sha256')
+Copy-Item -LiteralPath $exe -Destination (Join-Path $stage 'G-PC-Health.exe')
+Copy-Item -LiteralPath $checksum -Destination (Join-Path $stage 'G-PC-Health.exe.sha256')
 Copy-Item -LiteralPath '.\docs\E2E-TEST-PLAN.md' -Destination (Join-Path $stage 'docs\E2E-TEST-PLAN.md')
 Copy-Item -LiteralPath '.\docs\EVIDENCE-ANALYSIS.md' -Destination (Join-Path $stage 'docs\EVIDENCE-ANALYSIS.md')
 Copy-Item -LiteralPath '.\docs\SECURITY.md' -Destination (Join-Path $stage 'docs\SECURITY.md')
@@ -89,7 +89,7 @@ Get-ChildItem -LiteralPath '.\tools\e2e' -Filter '*.ps1' -File | ForEach-Object 
 
 $manifest = [ordered]@{
     schemaVersion = 1
-    product = 'G PC Health Check'
+    product = 'G PC Health'
     version = $version
     fileVersion = $fileVersion.ToString()
     architecture = 'win-x64'
@@ -104,8 +104,8 @@ $manifest = [ordered]@{
     cleanTempElevated = $false
     bootstrapFromDownloads = $false
     contents = [ordered]@{
-        executable = 'G-PC-Health-Check.exe'
-        checksum = 'G-PC-Health-Check.exe.sha256'
+        executable = 'G-PC-Health.exe'
+        checksum = 'G-PC-Health.exe.sha256'
         e2eTools = @((Get-ChildItem -LiteralPath (Join-Path $stage 'e2e') -Filter '*.ps1' -File | Sort-Object Name).Name)
         documentation = @((Get-ChildItem -LiteralPath (Join-Path $stage 'docs') -File | Sort-Object Name).Name)
     }
@@ -113,11 +113,11 @@ $manifest = [ordered]@{
 $manifest | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath (Join-Path $stage 'package-manifest.json') -Encoding UTF8
 
 $startHere = @"
-G PC Health Check $version — PILOT / E2E
+G PC Health $version — PILOT / E2E
 
 1. Сверьте SHA-256:
-   Get-FileHash .\G-PC-Health-Check.exe -Algorithm SHA256
-   Get-Content .\G-PC-Health-Check.exe.sha256
+   Get-FileHash .\G-PC-Health.exe -Algorithm SHA256
+   Get-Content .\G-PC-Health.exe.sha256
    После переименования EXE укажите его новое имя в Get-FileHash; значение хэша не меняется.
 
 2. Прочитайте:
@@ -154,7 +154,7 @@ if (-not $roundTrip.Contains('Сверьте SHA-256') -or -not $roundTrip.Conta
 }
 
 # Verify the staged executable again before archiving.
-$stagedExe = Join-Path $stage 'G-PC-Health-Check.exe'
+$stagedExe = Join-Path $stage 'G-PC-Health.exe'
 $stagedHash = (Get-FileHash -LiteralPath $stagedExe -Algorithm SHA256).Hash.ToLowerInvariant()
 if (-not [string]::Equals($stagedHash, $actualHash, [StringComparison]::Ordinal)) {
     throw 'Staged EXE hash changed before packaging.'

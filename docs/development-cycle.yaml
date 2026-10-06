@@ -5,7 +5,7 @@ policy:
   skill_max_version_exclusive: 3.0.0
   approved_exceptions: []
 repository:
-  name: G PC Health Check
+  name: G PC Health
   remote: bajoicheg/g-pc-health-check
   identity_must_match_before_push: true
   branch_policy: checkpoint_or_discover

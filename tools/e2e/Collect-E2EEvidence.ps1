@@ -106,7 +106,7 @@ try {
     }
 
     $readme = @"
-G PC Health Check — E2E evidence bundle
+G PC Health — E2E evidence bundle
 Generated: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss K')
 Machine:   $env:COMPUTERNAME
 User:      $([Security.Principal.WindowsIdentity]::GetCurrent().Name)
@@ -115,14 +115,14 @@ Contents:
 - environment.json: OS / machine / EXE version and SHA-256 evidence
 - e2e-manifest.json: deterministic CleanTemp test input, if prepared
 - e2e-verification.json: automated CleanTemp verification, if executed
-- reports/: latest PC Health Check HTML/JSON/ZIP reports
+- reports/: latest G PC Health HTML/JSON/ZIP reports
 
 This bundle may contain workstation/user names and diagnostic information. Treat it as internal support evidence.
 "@
     Set-Content -LiteralPath (Join-Path $work 'README.txt') -Value $readme -Encoding UTF8
 
     $safeMachine = ($env:COMPUTERNAME -replace '[^A-Za-z0-9_.-]','_')
-    $zip = Join-Path $OutputDirectory "G-PC-Health-Check-E2E-$safeMachine-$timestamp.zip"
+    $zip = Join-Path $OutputDirectory "G-PC-Health-E2E-$safeMachine-$timestamp.zip"
     if (Test-Path -LiteralPath $zip) { Remove-Item -LiteralPath $zip -Force }
     Compress-Archive -Path (Join-Path $work '*') -DestinationPath $zip -CompressionLevel Optimal
 

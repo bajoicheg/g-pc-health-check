@@ -1,4 +1,4 @@
-# G PC Health Check 0.17.0 — managed Windows 11 acceptance / pilot
+# G PC Health 0.17.0 — managed Windows 11 acceptance / pilot
 
 ## Purpose and acceptance boundary
 
@@ -37,8 +37,8 @@ Evidence may contain usernames, SIDs/domain names, device identifiers, paths, IP
 Use the EXE/checksum from one tested source. Verify SHA-256 before opening it. If copied or renamed, hash the resulting file and confirm the same bytes.
 
 ```powershell
-Get-FileHash -LiteralPath '.\G-PC-Health-Check.exe' -Algorithm SHA256
-Get-Content -LiteralPath '.\G-PC-Health-Check.exe.sha256'
+Get-FileHash -LiteralPath '.\G-PC-Health.exe' -Algorithm SHA256
+Get-Content -LiteralPath '.\G-PC-Health.exe.sha256'
 ```
 
 Exercise at least these local layouts when policy permits:
@@ -185,7 +185,7 @@ Deploy the supplied Administrative Templates in an approved test GPO/lab policy 
 
 Policy path:
 
-`Computer Configuration -> Administrative Templates -> G PC Health Check -> Security Posture -> Allowed local administrators`
+`Computer Configuration -> Administrative Templates -> G PC Health -> Security Posture -> Allowed local administrators`
 
 The endpoint must read only `HKLM\SOFTWARE\Policies\GPCHealthCheck\AllowedLocalAdministrators` as `REG_MULTI_SZ`.
 

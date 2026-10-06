@@ -55,7 +55,7 @@
   <data name="Bundle.Form.MarkerPlaceholder" xml:space="preserve"><value>Заметка о симптоме (до 160 символов)</value></data>
   <data name="Bundle.Form.Mark" xml:space="preserve"><value>Отметить симптом</value></data>
   <data name="Bundle.Form.ReadyInitial" xml:space="preserve"><value>Готово к сбору.</value></data>
-  <data name="Bundle.Form.Title" xml:space="preserve"><value>G PC Health Check — пакет для Service Desk</value></data>
+  <data name="Bundle.Form.Title" xml:space="preserve"><value>G PC Health — пакет для Service Desk</value></data>
   <data name="Bundle.Form.Column.Include" xml:space="preserve"><value>Включить</value></data>
   <data name="Bundle.Form.Column.Category" xml:space="preserve"><value>Категория</value></data>
   <data name="Bundle.Form.Column.Privacy" xml:space="preserve"><value>Что собирается / чувствительные данные</value></data>
@@ -102,7 +102,7 @@
   <data name="Bundle.Form.ActionFailed" xml:space="preserve"><value>Действие не завершено</value></data>
   <data name="Bundle.Menu.Item" xml:space="preserve"><value>Собрать пакет для Service Desk…</value></data>
 
-  <data name="Bundle.Report.Title" xml:space="preserve"><value>G PC Health Check — диагностический пакет Service Desk</value></data>
+  <data name="Bundle.Report.Title" xml:space="preserve"><value>G PC Health — диагностический пакет Service Desk</value></data>
   <data name="Bundle.Report.Version" xml:space="preserve"><value>Версия приложения: {0}</value></data>
   <data name="Bundle.Report.Computer" xml:space="preserve"><value>Компьютер: {0}</value></data>
   <data name="Bundle.Report.Mode" xml:space="preserve"><value>Режим: {0}</value></data>
