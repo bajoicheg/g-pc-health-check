@@ -34,9 +34,9 @@ control:
 active_change: g-pc-health-rebranding
 current_task: Review prepared branding on canonical CDC 2.11.6; managed publication
   and exact-head Windows checks pending
-phase: blocked
-implementation_sha: ''
-candidate_sha: ''
+phase: implementation
+implementation_sha: 36a62146ed90cd4236e0aaf4a6826a1c6df4cf0a
+candidate_sha: 36a62146ed90cd4236e0aaf4a6826a1c6df4cf0a
 last_green_sha: cbd20da8822f321df0d6404a955bf2cea9e553bb
 last_green_evidence: auto pilot push run 36128619572 success; artifacts 10861076525
   (EXE) and 10860941608 (pilot E2E)
