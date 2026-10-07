@@ -2,8 +2,8 @@
 schema: development-work-status/v4
 repository: bajoicheg/g-pc-health-check
 branch: design/0.17.0-security-posture
-policy_revision: 2026-10-06-cdc-2.11.6-managed-adoption
-policy_digest: 4a9b5800ff7605ac48f57f4e31c55fdd756407b6dc03c9c6cd5bcbce5a976dab
+policy_revision: 2026-10-07-cdc-2.11.8-atomic-adoption
+policy_digest: 9ac14f6f69f0a4a2873dbb18719cdb36bcec60a5f3254fc91d0de55d41b58624
 observed_at_utc: '2026-10-06T14:09:25.072161Z'
 orchestration_origin: chat
 active_executor: none
@@ -188,3 +188,8 @@ and exact subtree identity before this checkpoint rebind. The existing
 `managed_windows_11_retest_pending; explicit_owner_integration_approval_required`
 product blocker remains unchanged; this adoption does not grant merge or release authority.
 
+
+
+## CDC 2.11.8 atomic process adoption
+
+Canonical immutable release 97706dd78a82cfb9ff9e1ce9191d21a42222db37, package 38a05d37af38d8a42f30e9e59dfa8af8d985d40e. Only policy bindings change in frontmatter; existing product state/evidence/platform blockers remain historical facts. This complete detached assembly does not claim publication, new product tests or a future ownership release. Actual managed publication and terminal release receipts are authoritative on separate control refs. Schedulers remain paused.
