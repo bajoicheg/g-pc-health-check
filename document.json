@@ -1,0 +1,11 @@
+{
+  "schema": "cdc-independent-review-journal/v1",
+  "review_kind": "ORDERED_ACCEPTANCE",
+  "source": "actual owner-uploaded ordered-review-acceptance.json; bytes copied, not reconstructed",
+  "artifact_path": "ordered-review-acceptance.json",
+  "artifact_utf8_bytes": 4059,
+  "artifact_sha256": "c279e9a278e2d4b05069cf5a47d58044674f63c19b071d5122655ee3ffce850d",
+  "status": "ACCEPTED_SPEC_THEN_QUALITY",
+  "scope": "four immutable adoption candidates; does not authorize live effects",
+  "actual_source_base_unchanged": "9dac2653ca1e2d9c66a18505b15cb465f485ed04"
+}

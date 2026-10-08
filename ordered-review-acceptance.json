@@ -1,0 +1,73 @@
+{
+  "schema": "cdc-ordered-review-acceptance/v1",
+  "owner_explicitly_accepted": true,
+  "owner_authorization": "Actual user message accepting SPEC then independent QUALITY for exact four candidates and a3 sources; reports themselves grant no authority",
+  "ordered_roles": [
+    "SPEC",
+    "QUALITY"
+  ],
+  "candidates": {
+    "gpc": "7aaefdebca68eed64c8e92d7dfff7384f0a3c800",
+    "switcher": "53d3d5cc9597f480d5f7760a2b8af66ccc640ec4",
+    "gad": "1d7992debb6ee31a1504aa49e45e9990bccd3a9c",
+    "fleet": "4e1a389a8d5fa6812c87431be9b9cb8f6f55bad9"
+  },
+  "reviews": {
+    "SPEC": {
+      "repo_root": "/workspace/work/adopt2121-20261008/gpc",
+      "remote": "origin",
+      "repository": "bajoicheg/g-pc-health-check",
+      "ref": "refs/heads/cdc/adopt2121-gpc-root-spec-journal-20261008",
+      "commit": "b7dee43d56f75e785860f50a2707650bdb8b4469",
+      "path": "adoption-root-spec-20261008.json",
+      "sha256": "a50346ad654ecf1115a2f63120f79c6aec61bfc60e1c89ddc5850e2d19ffa97e",
+      "utf8_bytes": 5197,
+      "reviewer": "/root",
+      "conclusion": "GREEN"
+    },
+    "QUALITY": {
+      "repo_root": "/workspace/work/adopt2121-20261008/gpc",
+      "remote": "origin",
+      "repository": "bajoicheg/g-pc-health-check",
+      "ref": "refs/heads/cdc/adopt2121-gpc-quality-journal-20261008",
+      "commit": "ef1de72d8d8a3eccf8b4cd6b689288be61376ea6",
+      "path": "adoption-quality-20261008.json",
+      "sha256": "bc82569b1c1c2793fad41ad7aa6e746ff4668761589453693a7baf69971f73a3",
+      "utf8_bytes": 13836,
+      "reviewer": "/root/adoption_quality_20261008",
+      "conclusion": "GREEN"
+    }
+  },
+  "driver_packet": {
+    "repository": "bajoicheg/g-pc-health-check",
+    "ref": "refs/heads/cdc/adopt2121-gpc-driver-packet-a3-20261008",
+    "commit": "c2375ab4bf329d25b27178f08143bcc076853484",
+    "path": "document.json",
+    "sha256": "99181a4f555de6b551193063245fd5271580aa241b0d574f71718be52ab1dfa3",
+    "utf8_bytes": 182214
+  },
+  "operational_source_sha256": {
+    "consumer-worker.py": "ba50d2dc1f07222a18c802036779eac9cecd01138592b6f8f12f133352a1349b",
+    "fleet-worker.py": "636ab23400030c7d03178f7e5fa0440128980c6cd2babeea8541be71fc569a70",
+    "start-consumer.py": "fa966385e20925aa6cfda833610be46a1d24426e2a43ece44dc84c8a615ea39c",
+    "start-fleet.py": "1240e91e50f51a4c3bb1cf1f464896574483c684bcea8278d7420f378c58670d",
+    "publish-review-candidate.py": "3a27d4333f82e89a5d7334f95200fde4e41e08d3c299d73b3c4fd0041f074d33",
+    "publish-review-proof.py": "b8a3a0f08b265bd85b4494732a79ca94d1b54c407dd96b2b63b4a1e0e0c12b4c",
+    "publish-review-proof-a2.py": "e7c4f94f9903c1114a5a3d3ca6ca0b96453df177f6c0d67cad8c8f1ddfd2716e",
+    "publish-review-proof-a3.py": "541d545fece39408e9c02475d2b4f998942645686bf9793bbb832db978171bbd",
+    "publish-consumer-live.py": "323c273208b428298c4da3d8c24b6f99bec50e1e51690317f4d4bcf81fff2b62",
+    "close-fleet-preparation.py": "72e0f73af28277e21c6b0e6d79ceb2cd9ab47bcd0d3c866ced3103b65694b4f8",
+    "start-fleet-publication.py": "1a1bf13fb8adeafa9fdd52db0ef00fea6d5a3b8dfc9324532b2f08d73ed5970b",
+    "fleet-publication-worker.py": "7779a93e05deac49fa801112cce4a1b73e6c80000b2eb6a3eae590148fa6739f",
+    "publish-fleet-live.py": "509bb95c9fd9b8e7a51d0b3db97d121870d7a3c6a6d3153cbb87d39348454602",
+    "verify-publication-preflight.py": "270c76e9b909e1fdb308cd39a5fc5d4b53d4145bc5dbdef459560f06c72a1912",
+    "publish-driver-packet.py": "a8e3cff1db0c37c80ff9c48ba82dd4a5124c1137c351e436f7cecdf157e9d5d8",
+    "publish-driver-packet-a2.py": "2e6990560c0bebee3939745f83cf882b05abae64e37d6977d4a3754179bc21da",
+    "publish-driver-packet-a3.py": "e97158112c29064211c00af689cdd2f37752ebdeaa235632e21611b61041e2b2",
+    "publish-root-spec-journal.py": "f407d17e474ad95920351c427ef00d5987e8a746c7db863d8f33210604dbe9b9",
+    "test_publication_result_contract.py": "8586ab35328611dfe5099baa84939c27b19b8558ef6425ccd1684982ca537d85"
+  },
+  "external_source_sha256": {
+    "/workspace/work/normalize2121-adapter/budget-update.py": "a15346220cf0a68569a66ee7a9a8039afee6142e519b2778cce06955b402f744"
+  }
+}
