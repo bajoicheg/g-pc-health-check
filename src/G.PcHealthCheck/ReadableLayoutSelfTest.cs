@@ -19,7 +19,7 @@ internal static class ReadableLayoutSelfTest
                     AppLocalization.SetLanguage(language);
                     using var form = new MainForm(false);
                     var workArea = new Rectangle(0, 0, area.Width, area.Height);
-                    form.Show(); ReadableWindowLayout.Fit(form, workArea); form.Size = area; form.PerformLayout();
+                    form.Show(); form.Location = new Point(300, 70); form.Size = area; ReadableWindowLayout.Fit(form, workArea); form.PerformLayout();
                     Require(workArea.Contains(form.Bounds), "window exceeds narrow/short available work area");
                     var metrics = Descendants(form).OfType<TableLayoutPanel>().Single(x => x.Name == "AdaptiveMetrics");
                     var cards = metrics.Controls.OfType<Panel>().ToArray();

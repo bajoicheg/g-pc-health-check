@@ -1,6 +1,6 @@
 schema: continuous-development-cycle/v3
 policy:
-  revision: 2026-10-08-four-stage-cap10-ci7-spec-recovery
+  revision: 2026-10-08-DRAFT-cap18-parallel4-CI10-conserve-route-exception
   skill_min_version: 2.12.1
   skill_max_version_exclusive: 3.0.0
   approved_exceptions: []
@@ -66,7 +66,7 @@ ci:
   required_final_green: true
   actions_budget: conserve
   actions_budget_restore_requires_explicit_confirmation: true
-  max_full_runs_per_task_when_conserve: 1
+  max_full_runs_per_task_when_conserve: 10
   exhausted_forbids_launch_rerun_retry_dispatch_probe: true
   skip_ci_marker: '[skip ci]'
   skip_ci_allowed_for:
@@ -165,13 +165,13 @@ orchestration:
   budget:
     task_limits:
       compute_starts: null
-      ci_starts: 7
-      agent_starts: 10
+      ci_starts: 10
+      agent_starts: 18
     wake_limits:
       compute_starts: 4
       status_polls: null
       tool_calls: 80
-    max_parallel_agents: 2
+    max_parallel_agents: 4
     checkpoint_reserve:
       tokens: 4000
       tool_calls: 8
