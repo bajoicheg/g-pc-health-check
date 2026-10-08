@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.17.1 — readable UI candidate
+
+- Findings first, compact actions and copyable scrollable details; adaptive seven metrics with visible security coverage and known low-RAM warning.
+- Exact fourteen RU/EN newline corrections, proportional/minimum panes and resizable About/toolbar layout.
+- Execution/security identities unchanged; prepared source and Linux checks are separate from pending Windows build/pilot/integration acceptance.
+
 ## Unreleased — G PC Health rebranding
 
 - Renames the product to **G PC Health** in the dashboard, About window, RU/EN analysis windows, reports and Administrative Templates display resources.

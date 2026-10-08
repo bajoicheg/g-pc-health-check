@@ -2,14 +2,14 @@
 schema: development-work-status/v4
 repository: bajoicheg/g-pc-health-check
 branch: design/0.17.0-security-posture
-policy_revision: 2026-10-08-cdc-2.12.1-atomic-adoption
-policy_digest: f0c53ad7e35b3f11d30ec831dec6231b9b2e3b7bd19227d849f95d9783bc27c2
-observed_at_utc: '2026-10-06T14:09:25.072161Z'
+policy_revision: 2026-10-08-four-stage-cap9-ci7-reviewed-recovery
+policy_digest: 3c52a0ef44aaaad2319c54e8ee16895c8b04f2b18c2814d14c54fca61c59489d
+observed_at_utc: '2026-10-08T10:57:28.426460Z'
 orchestration_origin: chat
-active_executor: none
-lease_state: released
-executor_heartbeat_at_utc: null
-execution_lease_until_utc: null
+active_executor: ef2bbf99-7ef4-43c3-bad8-e01b054219b9
+lease_state: active
+executor_heartbeat_at_utc: '2026-10-08T10:57:28.426460Z'
+execution_lease_until_utc: '2026-10-08T11:17:28.426460Z'
 waiting_external_kind: null
 waiting_external_id: null
 waiting_external_sha: null
@@ -17,42 +17,54 @@ operation_intent_ref: null
 operation_key: null
 resume_capsule_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/resume.json
 execution_continuity:
-  invocation_id: null
+  invocation_id: managed-terminal:27d8df7f88e7a642a683d8a1bfcaa0dbc6e77c940cde53046ca32bafb2c0c070
   runnable_next_action: true
   meaningful_progress: true
   primitive_steps_since_progress: 0
   completion_gate: continue
-  last_progress_ref: docs/REBRANDING.md
+  last_progress_ref: git:b2bf6017d2870ec695d4c6e9f8c6cb4b2c83a866
 control:
   execution_lease_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/lease.json
-  execution_lease_revision: c7811cd7ed2ecf32efcce10d17b9cbb4be89b7dd
-  executor_id: null
-  lease_generation: 19
+  execution_lease_revision: 19a5a13a5aea1fd2500d1004aab68f26457492af
+  executor_id: ef2bbf99-7ef4-43c3-bad8-e01b054219b9
+  lease_generation: 27
   budget_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/budget.json
   recovery_snapshot_ref: null
   external_wait_ref: null
-active_change: g-pc-health-rebranding
-current_task: Branding implementation reviewed; documentation and host budget adapter
-  review before managed publication
-phase: blocked
-implementation_sha: 36a62146ed90cd4236e0aaf4a6826a1c6df4cf0a
-candidate_sha: ''
-last_green_sha: cbd20da8822f321df0d6404a955bf2cea9e553bb
-last_green_evidence: auto pilot push run 36128619572 success; artifacts 10861076525
-  (EXE) and 10860941608 (pilot E2E)
+active_change: gpc-0.17.1-readable-ui
+current_task: 0.17.1 reviewed-source candidate; independent ordered requirements then
+  quality review pending
+phase: review
+implementation_sha: b2bf6017d2870ec695d4c6e9f8c6cb4b2c83a866
+candidate_sha: b2bf6017d2870ec695d4c6e9f8c6cb4b2c83a866
+last_green_sha: b2bf6017d2870ec695d4c6e9f8c6cb4b2c83a866
+last_green_evidence: Portable layout200/200 and existing localization21/21 GREEN;
+  Linux Windows-target compilation0warnings0errors; Windows runtime NOT_RUN
 active_compute: none
 active_ci_run_id: ''
 last_ci_run_id: '36128619572'
 last_ci_status: success
-release_version: 0.17.0
-release_candidate_sha: cbd20da8822f321df0d6404a955bf2cea9e553bb
-release_state: blocked
-blocker: host_adapter_review_pending; managed_publication_pending; Windows_checks_not_run;
-  managed_windows_11_retest_pending; explicit_owner_integration_approval_required
-next_action: Read exact final publication candidate from external immutable host journal;
-  after adapter review, fresh gates and durable budget CAS precede managed bridge
-  start.
+release_version: 0.17.1
+release_candidate_sha: b2bf6017d2870ec695d4c6e9f8c6cb4b2c83a866
+release_state: candidate
+blocker: ordered_root_requirements_and_independent_quality_review_pending; exact_head_WindowsCI_not_run;
+  retained_artifact_pending; real_Windows11_pilot_and_explicit_integration_approval_required
+next_action: Root requirements review exact external-journal final candidate, then
+  independently dispatched quality reviewer; canonical publication only after both
+  accepted. One PR cycle per stage; one final all-four-SHA artifact producer, no duplicate
+  intermediate pilot/dispatch.
 ---
+
+## 0.17.1 readable UI — prepared managed candidate, 2026-10-08
+
+Implementation evidence is bound to `b2bf6017d2870ec695d4c6e9f8c6cb4b2c83a866`; this documentation tip is not self-referenced. Final publication candidate SHA/tree and exact immutable evidence are tracked in the external stage journal/bundle. CDC2.12.1 provenance and prior historical sections remain below. The supervised writer holds gen27; publication/CI are pending ordered independent requirements/quality acceptance.
+
+Seven adaptive metrics retain visible security coverage; findings occupy the primary pane, selected finding/action facts remain copyable and scrollable, compact actions preserve execution IDs/UAC/worker/Temp semantics. Fourteen exact resource values use real newlines. RAM warning uses the existing known available-memory threshold. About resize defect is corrected; other auxiliary dialogs were source-audited, with no fabricated interactive DPI/RDP acceptance.
+
+Budget policy migration preserves every historical event and setup-failed charge: agent cap9, total concurrency2 only one writer plus one Root read-only reviewer; CI cap7 equals two historical cycles, four stage PR cycles and one final artifact producer covering all four immutable stage SHAs. Final producer requires a separately reviewed 0.19 scoped workflow/tool plan before start. No CI submitted here. Actual provider quotas/tokens remain unknown. Scheduler stays paused.
+
+Portable geometry RED143/200→GREEN200/200; existing localization/runtime-resource check RED exit237→GREEN21/21. SDK8.0.425 Linux cross-target compilation0warnings0errors,36XML parsed; Windows generator/EXE/GUI/UAC/nativeDPI/RDP and Windows11 acceptance are NOT_RUN. Root SPEC then a genuine independent quality review are required, not executor self-review.
+
 
 ## CDC 2.12.1 atomic process adoption
 
