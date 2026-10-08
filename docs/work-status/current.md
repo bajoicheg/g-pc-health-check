@@ -4,12 +4,12 @@ repository: bajoicheg/g-pc-health-check
 branch: design/0.17.0-security-posture
 policy_revision: 2026-10-08-DRAFT-cap18-parallel4-CI10-conserve-route-exception
 policy_digest: 107c1bee9552e27a9cc9d7d396ca8eea86dfe8574ddd628ac097d3f35092ed01
-observed_at_utc: '2026-10-08T19:56:40.244652Z'
+observed_at_utc: '2026-10-08T20:38:24.947994Z'
 orchestration_origin: chat
-active_executor: 4567e41b-8c0d-4327-a462-4bc53ae66fad
+active_executor: 506fbf43-3587-4d1e-82b9-87e8187f0404
 lease_state: active
-executor_heartbeat_at_utc: '2026-10-08T19:56:40.244652Z'
-execution_lease_until_utc: '2026-10-08T20:16:40.244652Z'
+executor_heartbeat_at_utc: '2026-10-08T20:38:24.947994Z'
+execution_lease_until_utc: '2026-10-08T20:58:24.947994Z'
 waiting_external_kind: null
 waiting_external_id: null
 waiting_external_sha: null
@@ -17,41 +17,55 @@ operation_intent_ref: null
 operation_key: null
 resume_capsule_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/resume.json
 execution_continuity:
-  invocation_id: managed-terminal:1a5159d82303e3db78726546429bb10a12a1d4734789ee501d867a3cc12f98f6
+  invocation_id: managed-terminal:49901a64d3103151cc2b8c168dabdf355ef37715f40455cbb01efb8512b6520e
   runnable_next_action: true
   meaningful_progress: true
   primitive_steps_since_progress: 0
   completion_gate: continue
-  last_progress_ref: git:c469765400cdf7bd7c6eba9cebd0d5f5b7e8ed5a
+  last_progress_ref: git:154bee9c17a316d4e7f0076e559f28cb7b924fe0
 control:
   execution_lease_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/lease.json
-  execution_lease_revision: 7ef91c0fd6787e22cf27d9205f67fba75a411cc4
-  executor_id: 4567e41b-8c0d-4327-a462-4bc53ae66fad
-  lease_generation: 29
+  execution_lease_revision: 5bd875b2c9278a0da0a43fc8d740fffc86b3fa74
+  executor_id: 506fbf43-3587-4d1e-82b9-87e8187f0404
+  lease_generation: 30
   budget_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/budget.json
   recovery_snapshot_ref: null
   external_wait_ref: null
-active_change: gpc-0.17.1-readable-ui
-current_task: 0.17.1 Q5 limited cycle3 fixture correction and approved recovery policy;
-  exact candidate Root SPEC then bounded independent QUALITY pending
+active_change: gpc-0171-0172-combined-recovery
+current_task: 0.17.1 limited cycle4 retention/docs correction in live combined 0171/0172
+  writer; ordered Root SPEC and distinct bounded product QUALITY pending
 phase: review
-implementation_sha: c469765400cdf7bd7c6eba9cebd0d5f5b7e8ed5a
-candidate_sha: c469765400cdf7bd7c6eba9cebd0d5f5b7e8ed5a
-last_green_sha: c469765400cdf7bd7c6eba9cebd0d5f5b7e8ed5a
-last_green_evidence: Fresh analytical Q5 RED11/12 -> GREEN12/12; SDK8.0.425 Linux
-  Windows-target compile0warnings0errors; nativeWindows/render/UAC/RDP/pilot NOT_RUN
-active_compute: none
+implementation_sha: 154bee9c17a316d4e7f0076e559f28cb7b924fe0
+candidate_sha: 154bee9c17a316d4e7f0076e559f28cb7b924fe0
+last_green_sha: 154bee9c17a316d4e7f0076e559f28cb7b924fe0
+last_green_evidence: Fresh SDK8.0.425 cross-target build exit0; prepared extracted
+  retention helpers8/8 original provenance. Native render/Windows11 NOT_RUN
+active_compute: managed writer
 active_ci_run_id: ''
 last_ci_run_id: '36128619572'
 last_ci_status: success
 release_version: 0.17.1
-release_candidate_sha: c469765400cdf7bd7c6eba9cebd0d5f5b7e8ed5a
+release_candidate_sha: 154bee9c17a316d4e7f0076e559f28cb7b924fe0
 release_state: candidate
-blocker: ordered_Root_SPEC_and_bounded_independent_product_QUALITY_pending; exactWindowsPRCI_and_retainedEXE_not_run;
-  manualWindows11_and_ownerintegration_required
-next_action: Root SPEC exact external finalcandidate; separately admitted bounded
-  independent product QUALITY; no sourcepublication orCI before gates
+blocker: Root_SPEC_then_distinct_bounded_product_QUALITY_pending; CI_caller_review_pending;
+  nativeWindows_and_manualpilot_NOT_RUN
+next_action: Root SPEC clean exact frozen0171 candidate; actual bounded QUALITY after
+  durable admission; worker stays running awaiting corrections and both stage gates
 ---
+
+## Current 0.17.1 limited cycle4 retention and combined live writer
+
+Tested implementation `154bee9c17a316d4e7f0076e559f28cb7b924fe0` descends from exact prior df760 and c050; final documentation candidate is tracked externally after commit, never as a circular self-SHA. Root engineering accepted exact writer packet547b0fa569143c80aca2b22fda1975a8630a2cce and limited strategy `git:refs/heads/cdc/migration-gpc-cap13-Q5-20261008@046e2c012afb69def757c2eec9700f09cfb71a5a#combined_writer_Root_acceptance_CURRENT`. Prior three cycles remain spent; max_validation_cycles2 is unchanged. The actual canonical evaluator allows this limited changed-input validation with that strategy reference, without granting external effects.
+
+Current managed owner `506fbf43-3587-4d1e-82b9-87e8187f0404`, generation30, invocation `managed-terminal:49901a64d3103151cc2b8c168dabdf355ef37715f40455cbb01efb8512b6520e` and immutable combined claim supersede the historical gen29 checkpoint below. One separate charged start12 of18; UNKNOWN2 remain charged, CI2of10 unchanged. Worker stays live through ordered Root SPEC and distinct genuine bounded QUALITY for each of0171 and0172, then required native/artifact gates. Stage0171 remains ancestor of final0172. No source publication/CI has occurred; scheduler remains paused.
+
+Retention is confined to synthetic layout selftest. Explicit GPC_LAYOUT_EVIDENCE_DIR takes precedence; only genuine GITHUB_ACTIONS=true defaults to bounded repository artifacts/final/readable-layout. The selftest requires16 current-invocation images, per-file SHA256 and actual rendered DPI labels. Existing upload glob retains the folder; no workflow change. Actual Windows render/16PNGs/EXE delivery remain NOT_RUN. Prepared extracted C# path/manifest8/8 evidence is reused with original provenance, not relabelled native execution. Fresh changed-code cross-target build exit0,0warnings/errors; prior identical restore assets reused honestly.
+
+Two routes per stage are separate: immutable pilot push produces exact candidate EXE; PR validation covers actual integration checkout with candidate/source head, tested SHA/tree and merge/base identities independently recorded. PR merge SHA/tree is not assumed equal to candidate. Four PR plus four single-SHA EXE and two historical cycles total10. No unimplemented final four-SHA producer. Windows11/RDP/UAC/manual pilot and explicit owner integration approval remain pending; main/merge/production release not authorized.
+
+All earlier sections below are HISTORICAL observations, including prior owner, cycle3 and independent-stage0172 wording. Product QUALITY is PENDING, never inferred from policy review or Root acceptance of worker preparation.
+
+
 
 ## Current 0.17.1 Q5 cycle3 and approved four-stage recovery
 
