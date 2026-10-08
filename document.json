@@ -1,0 +1,447 @@
+{
+  "schema": "cdc-consumer-adoption-review-ready/v1",
+  "scope": "2026-10-08T09:04:33Z",
+  "implementation_candidate": "7aaefdebca68eed64c8e92d7dfff7384f0a3c800",
+  "live_publication_hold": "independent SPEC then independent QUALITY required",
+  "preparation": {
+    "repository": "bajoicheg/g-pc-health-check",
+    "source_ref": "refs/heads/design/0.17.0-security-posture",
+    "base": "9dac2653ca1e2d9c66a18505b15cb465f485ed04",
+    "candidate": "7aaefdebca68eed64c8e92d7dfff7384f0a3c800",
+    "root_tree": "885ce1b65ea13abd0259d094362686101448601a",
+    "package_tree": "9c45d98c3254e9658d452c505d8c97698e3fc9a7",
+    "file_count": 352,
+    "manifest": [
+      {
+        "path": ".agents/skills/continuous-development-cycle",
+        "object_type": "tree",
+        "object_sha1": "9c45d98c3254e9658d452c505d8c97698e3fc9a7"
+      },
+      {
+        "path": "docs/cdc-consumer-lock.json",
+        "object_type": "blob",
+        "object_sha1": "0511a373af020c76b743ba148da1af0a0bb63c51"
+      },
+      {
+        "path": "docs/development-cycle.yaml",
+        "object_type": "blob",
+        "object_sha1": "8355a9b1fa675b45d6d69d0f5411b0be468fb3cb"
+      },
+      {
+        "path": "docs/work-status/current.md",
+        "object_type": "blob",
+        "object_sha1": "97685a6b3149bb8250a2786bd86422d65127bea2"
+      },
+      {
+        "path": "docs/cdc-adoption-2.12.1.md",
+        "object_type": "blob",
+        "object_sha1": "c21fe8b8950c8e2024823584104d073412c36bcb"
+      },
+      {
+        "path": "AGENTS.md",
+        "object_type": "blob",
+        "object_sha1": "a1cdb0a52dab29d0d0964b686904db5ea71a6507"
+      }
+    ],
+    "changed_paths": [
+      ".agents/skills/continuous-development-cycle/SKILL.md",
+      ".agents/skills/continuous-development-cycle/VERSION",
+      ".agents/skills/continuous-development-cycle/agents/openai.yaml",
+      ".agents/skills/continuous-development-cycle/manifest.json",
+      ".agents/skills/continuous-development-cycle/references/behavioral-tdd-and-verification.md",
+      ".agents/skills/continuous-development-cycle/references/quality-levels.md",
+      ".agents/skills/continuous-development-cycle/references/runtime-routing-and-subagents.md",
+      ".agents/skills/continuous-development-cycle/references/specification-review-and-finishing.md",
+      ".agents/skills/continuous-development-cycle/scripts/behavioral_eval.py",
+      ".agents/skills/continuous-development-cycle/scripts/branch_finish.py",
+      ".agents/skills/continuous-development-cycle/scripts/evidence_reuse.py",
+      ".agents/skills/continuous-development-cycle/scripts/quality_levels.py",
+      ".agents/skills/continuous-development-cycle/scripts/review_pipeline.py",
+      ".agents/skills/continuous-development-cycle/scripts/validate_adapter.py",
+      ".agents/skills/continuous-development-cycle/scripts/validate_package.py",
+      ".agents/skills/continuous-development-cycle/scripts/verification_gate.py",
+      ".agents/skills/continuous-development-cycle/templates/behavioral-quality-suite.json",
+      ".agents/skills/continuous-development-cycle/templates/branch-finish-v2.json",
+      ".agents/skills/continuous-development-cycle/templates/development-cycle.yaml",
+      ".agents/skills/continuous-development-cycle/templates/evidence-reuse.json",
+      ".agents/skills/continuous-development-cycle/templates/package-transport.json",
+      ".agents/skills/continuous-development-cycle/templates/quality-assessment.json",
+      ".agents/skills/continuous-development-cycle/templates/review-pipeline-v2.json",
+      ".agents/skills/continuous-development-cycle/templates/validation-cycle.json",
+      ".agents/skills/continuous-development-cycle/templates/verification-gate-v2.json",
+      ".agents/skills/continuous-development-cycle/tests/test_branch_finish_levels.py",
+      ".agents/skills/continuous-development-cycle/tests/test_evidence_reuse.py",
+      ".agents/skills/continuous-development-cycle/tests/test_package_transport.py",
+      ".agents/skills/continuous-development-cycle/tests/test_quality_behavior.py",
+      ".agents/skills/continuous-development-cycle/tests/test_quality_levels.py",
+      ".agents/skills/continuous-development-cycle/tests/test_quality_package.py",
+      ".agents/skills/continuous-development-cycle/tests/test_review_levels.py",
+      ".agents/skills/continuous-development-cycle/tests/test_validation_cycles.py",
+      "AGENTS.md",
+      "docs/cdc-adoption-2.12.1.md",
+      "docs/cdc-consumer-lock.json",
+      "docs/development-cycle.yaml",
+      "docs/work-status/current.md"
+    ],
+    "validators": [
+      {
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "-B",
+          ".agents/skills/continuous-development-cycle/scripts/validate_package.py"
+        ],
+        "exit": 0,
+        "stdout": "PASS: continuous-development-cycle 2.12.1, 340 files and parsed templates\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "-B",
+          ".agents/skills/continuous-development-cycle/scripts/validate_adapter.py",
+          "docs/development-cycle.yaml",
+          "--json"
+        ],
+        "exit": 0,
+        "stdout": "{\"policy_digest\": \"f0c53ad7e35b3f11d30ec831dec6231b9b2e3b7bd19227d849f95d9783bc27c2\", \"policy_revision\": \"2026-10-08-cdc-2.12.1-atomic-adoption\", \"schema\": \"continuous-development-cycle/v3\"}\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "-B",
+          ".agents/skills/continuous-development-cycle/scripts/validate_checkpoint_24.py",
+          "docs/work-status/current.md",
+          "--adapter",
+          "docs/development-cycle.yaml"
+        ],
+        "exit": 0,
+        "stdout": "PASS: CDC 2.4 checkpoint v4; remote observations still required\n",
+        "stderr": ""
+      }
+    ],
+    "adapter_binding": {
+      "schema": "continuous-development-cycle/v3",
+      "policy_revision": "2026-10-08-cdc-2.12.1-atomic-adoption",
+      "policy_digest": "f0c53ad7e35b3f11d30ec831dec6231b9b2e3b7bd19227d849f95d9783bc27c2"
+    },
+    "policy_nonmigration_semantics_unchanged": true,
+    "checkpoint_product_semantics_unchanged": true,
+    "AGENTS_historical_bytes_preserved": true,
+    "product_files_unchanged": true,
+    "quality_level": "FULL",
+    "CI_reuse": "canonical package exact9c45; consumer root does not acquire exact-SHA CI",
+    "new_FULL_or_Windows": false,
+    "assembly_record": {
+      "schema": "migration-assembly-record/v1",
+      "transaction_id": "gpc-cdc2121-20261008",
+      "source_head": "9dac2653ca1e2d9c66a18505b15cb465f485ed04",
+      "target_ref": "refs/heads/design/0.17.0-security-posture",
+      "target_version": "2.12.1",
+      "target_release_ref": "refs/heads/release/v2.12.1",
+      "target_release_commit": "9b38bd4d9f5fb113ec10bdbca9fbe33908619a54",
+      "final_tree_sha": "885ce1b65ea13abd0259d094362686101448601a",
+      "expected_subtree_tree": "9c45d98c3254e9658d452c505d8c97698e3fc9a7",
+      "manifest": [
+        {
+          "path": ".agents/skills/continuous-development-cycle",
+          "object_type": "tree",
+          "object_sha1": "9c45d98c3254e9658d452c505d8c97698e3fc9a7"
+        },
+        {
+          "path": "docs/cdc-consumer-lock.json",
+          "object_type": "blob",
+          "object_sha1": "0511a373af020c76b743ba148da1af0a0bb63c51"
+        },
+        {
+          "path": "docs/development-cycle.yaml",
+          "object_type": "blob",
+          "object_sha1": "8355a9b1fa675b45d6d69d0f5411b0be468fb3cb"
+        },
+        {
+          "path": "docs/work-status/current.md",
+          "object_type": "blob",
+          "object_sha1": "97685a6b3149bb8250a2786bd86422d65127bea2"
+        },
+        {
+          "path": "docs/cdc-adoption-2.12.1.md",
+          "object_type": "blob",
+          "object_sha1": "c21fe8b8950c8e2024823584104d073412c36bcb"
+        },
+        {
+          "path": "AGENTS.md",
+          "object_type": "blob",
+          "object_sha1": "a1cdb0a52dab29d0d0964b686904db5ea71a6507"
+        }
+      ],
+      "manifest_digest": "sha256:c95e0f823bf2fabbe246d342c31428eae567d35637b1509df3919776276a52e8",
+      "completed_at_utc": "2026-10-08T09:18:53.705642Z"
+    }
+  },
+  "proofs": {
+    "validator-proofs.json": [
+      {
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "-B",
+          ".agents/skills/continuous-development-cycle/scripts/validate_package.py"
+        ],
+        "exit": 0,
+        "stdout": "PASS: continuous-development-cycle 2.12.1, 340 files and parsed templates\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "-B",
+          ".agents/skills/continuous-development-cycle/scripts/validate_adapter.py",
+          "docs/development-cycle.yaml",
+          "--json"
+        ],
+        "exit": 0,
+        "stdout": "{\"policy_digest\": \"f0c53ad7e35b3f11d30ec831dec6231b9b2e3b7bd19227d849f95d9783bc27c2\", \"policy_revision\": \"2026-10-08-cdc-2.12.1-atomic-adoption\", \"schema\": \"continuous-development-cycle/v3\"}\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "-B",
+          ".agents/skills/continuous-development-cycle/scripts/validate_checkpoint_24.py",
+          "docs/work-status/current.md",
+          "--adapter",
+          "docs/development-cycle.yaml"
+        ],
+        "exit": 0,
+        "stdout": "PASS: CDC 2.4 checkpoint v4; remote observations still required\n",
+        "stderr": ""
+      }
+    ],
+    "strict-package-verification.json": {
+      "schema": "active-package-verification/v1",
+      "version": "2.12.1",
+      "expected_package_tree": "9c45d98c3254e9658d452c505d8c97698e3fc9a7",
+      "canonical_tree": "9c45d98c3254e9658d452c505d8c97698e3fc9a7",
+      "installed_tree": "9c45d98c3254e9658d452c505d8c97698e3fc9a7",
+      "matched": true,
+      "errors": [],
+      "normalizations": [],
+      "ignored_generated_files": [],
+      "byte_identical_files": 352,
+      "proves_agent_behavior": false
+    },
+    "migration-transaction.json": {
+      "schema": "migration-transaction/v1",
+      "transaction_id": "gpc-cdc2121-20261008",
+      "source_head": "9dac2653ca1e2d9c66a18505b15cb465f485ed04",
+      "target_ref": "refs/heads/design/0.17.0-security-posture",
+      "items": [
+        {
+          "path": ".agents/skills/continuous-development-cycle",
+          "object_type": "tree",
+          "object_sha1": "9c45d98c3254e9658d452c505d8c97698e3fc9a7"
+        },
+        {
+          "path": "docs/cdc-consumer-lock.json",
+          "object_type": "blob",
+          "object_sha1": "0511a373af020c76b743ba148da1af0a0bb63c51"
+        },
+        {
+          "path": "docs/development-cycle.yaml",
+          "object_type": "blob",
+          "object_sha1": "8355a9b1fa675b45d6d69d0f5411b0be468fb3cb"
+        },
+        {
+          "path": "docs/work-status/current.md",
+          "object_type": "blob",
+          "object_sha1": "97685a6b3149bb8250a2786bd86422d65127bea2"
+        },
+        {
+          "path": "docs/cdc-adoption-2.12.1.md",
+          "object_type": "blob",
+          "object_sha1": "c21fe8b8950c8e2024823584104d073412c36bcb"
+        },
+        {
+          "path": "AGENTS.md",
+          "object_type": "blob",
+          "object_sha1": "a1cdb0a52dab29d0d0964b686904db5ea71a6507"
+        }
+      ],
+      "completed_paths": [
+        ".agents/skills/continuous-development-cycle",
+        "docs/cdc-consumer-lock.json",
+        "docs/development-cycle.yaml",
+        "docs/work-status/current.md",
+        "docs/cdc-adoption-2.12.1.md",
+        "AGENTS.md"
+      ],
+      "operation_budget": 376,
+      "per_item_operations": 1,
+      "batch_overhead_operations": 1,
+      "finalization_reserve_operations": 20,
+      "detached_checkpoints": [
+        {
+          "completed_count": 6,
+          "tree_sha": "885ce1b65ea13abd0259d094362686101448601a"
+        }
+      ],
+      "final_tree_sha": "885ce1b65ea13abd0259d094362686101448601a",
+      "expected_subtree_tree": "9c45d98c3254e9658d452c505d8c97698e3fc9a7",
+      "observed_subtree_tree": "9c45d98c3254e9658d452c505d8c97698e3fc9a7",
+      "policy_reconciled": true
+    },
+    "assembly-authority.json": {
+      "schema": "migration-assembly-authority/v1",
+      "store_ref": "refs/heads/cdc/adopt2121-gpc-assembly-20261008",
+      "store_id": "sha256:e9c5798b2e5857d11563b10845ae993ed5b0e7b040ffd6611bdbd1a36aad08d3",
+      "revision": "e9a9e7a97b6c96d8dec0274940a60ced36b7c0ea",
+      "transaction_id": "gpc-cdc2121-20261008",
+      "manifest_digest": "sha256:c95e0f823bf2fabbe246d342c31428eae567d35637b1509df3919776276a52e8"
+    },
+    "review-ready-publication.json": {
+      "candidate_ref": "refs/heads/cdc/adopt2121-gpc-candidate-20261008",
+      "candidate": "7aaefdebca68eed64c8e92d7dfff7384f0a3c800",
+      "native_argv": [
+        "git",
+        "push",
+        "origin",
+        "7aaefdebca68eed64c8e92d7dfff7384f0a3c800:refs/heads/cdc/adopt2121-gpc-candidate-20261008"
+      ],
+      "exit_code": 0,
+      "readback": "7aaefdebca68eed64c8e92d7dfff7384f0a3c800",
+      "source_base_unchanged": "9dac2653ca1e2d9c66a18505b15cb465f485ed04",
+      "claim": {
+        "revision": "170602793679731f3e84feaf6852f405a7a6d7f1",
+        "grant": {
+          "grant_id": "d19bf805-c6ff-4385-8063-8dfc0799858a",
+          "owner_id": "bb41abbc-4b1f-470b-8aaf-1ecdf2e53747",
+          "generation": 25,
+          "operation_key": "sha256:050f219c2ff23e98cba36ab470928798da847ae089552ef7be61329d42d388e6",
+          "attempt_id": "adopt2121-gpc-a1-review-publication",
+          "intent_digest": "sha256:796a22f0a701fd2d769dc474923527be5cb18838e2d6836bc30edf9ed7fc66ef",
+          "claimed_at_utc": "2026-10-08T09:31:13.022487Z"
+        }
+      },
+      "guard_resolution_revision": "39a0b7cae2bfac0163baa0532bc4ae2efe130684",
+      "at_utc": "2026-10-08T09:31:44.641117Z"
+    },
+    "start-receipt.json": {
+      "schema": "managed-host-handle/v1",
+      "handle_id": "a284994c-3294-5008-9511-a8853d6c0785",
+      "state": "running",
+      "task_id": "atomic-adoption",
+      "attempt_id": "adopt2121-gpc-a1",
+      "owner_id": "bb41abbc-4b1f-470b-8aaf-1ecdf2e53747",
+      "generation": 25,
+      "invocation_id": "managed-terminal:2b42dc1c97800d70753b079d24c2934b35b0ce18ec1c53b1adf8ab3ed6ad4e9f",
+      "lease_revision": "ff75b509e78870c774af60d74fc27bc500fed12c",
+      "publication_ref": "refs/heads/cdc/managed-host-publish-a284994c329450089511a8853d6c0785"
+    },
+    "consumer-publication-state.json": {
+      "schema": "consumer-adoption-publication/v1",
+      "source_head": "9dac2653ca1e2d9c66a18505b15cb465f485ed04",
+      "target_ref": "refs/heads/design/0.17.0-security-posture",
+      "target_version": "2.12.1",
+      "target_release_ref": "refs/heads/release/v2.12.1",
+      "target_release_commit": "9b38bd4d9f5fb113ec10bdbca9fbe33908619a54",
+      "target_package_tree": "9c45d98c3254e9658d452c505d8c97698e3fc9a7",
+      "required_paths": [
+        ".agents/skills/continuous-development-cycle",
+        "docs/cdc-consumer-lock.json",
+        "docs/development-cycle.yaml",
+        "docs/work-status/current.md",
+        "docs/cdc-adoption-2.12.1.md",
+        "AGENTS.md"
+      ],
+      "prepared_paths": [
+        ".agents/skills/continuous-development-cycle",
+        "docs/cdc-consumer-lock.json",
+        "docs/development-cycle.yaml",
+        "docs/work-status/current.md",
+        "docs/cdc-adoption-2.12.1.md",
+        "AGENTS.md"
+      ],
+      "assembly_manifest": [
+        {
+          "path": ".agents/skills/continuous-development-cycle",
+          "object_type": "tree",
+          "object_sha1": "9c45d98c3254e9658d452c505d8c97698e3fc9a7"
+        },
+        {
+          "path": "docs/cdc-consumer-lock.json",
+          "object_type": "blob",
+          "object_sha1": "0511a373af020c76b743ba148da1af0a0bb63c51"
+        },
+        {
+          "path": "docs/development-cycle.yaml",
+          "object_type": "blob",
+          "object_sha1": "8355a9b1fa675b45d6d69d0f5411b0be468fb3cb"
+        },
+        {
+          "path": "docs/work-status/current.md",
+          "object_type": "blob",
+          "object_sha1": "97685a6b3149bb8250a2786bd86422d65127bea2"
+        },
+        {
+          "path": "docs/cdc-adoption-2.12.1.md",
+          "object_type": "blob",
+          "object_sha1": "c21fe8b8950c8e2024823584104d073412c36bcb"
+        },
+        {
+          "path": "AGENTS.md",
+          "object_type": "blob",
+          "object_sha1": "a1cdb0a52dab29d0d0964b686904db5ea71a6507"
+        }
+      ],
+      "assembly_authority": {
+        "schema": "migration-assembly-authority/v1",
+        "store_ref": "refs/heads/cdc/adopt2121-gpc-assembly-20261008",
+        "store_id": "sha256:e9c5798b2e5857d11563b10845ae993ed5b0e7b040ffd6611bdbd1a36aad08d3",
+        "revision": "e9a9e7a97b6c96d8dec0274940a60ced36b7c0ea",
+        "transaction_id": "gpc-cdc2121-20261008",
+        "manifest_digest": "sha256:c95e0f823bf2fabbe246d342c31428eae567d35637b1509df3919776276a52e8"
+      },
+      "final_tree_sha": "885ce1b65ea13abd0259d094362686101448601a",
+      "observed_package_tree": "9c45d98c3254e9658d452c505d8c97698e3fc9a7",
+      "candidate_commit": "7aaefdebca68eed64c8e92d7dfff7384f0a3c800",
+      "live_source_head": "9dac2653ca1e2d9c66a18505b15cb465f485ed04",
+      "publication_claim": {
+        "effect_id": "sha256:be0be0b4b8014b22fcbe355a4c01b0dbefafa38a39fa765b053ee6b7679552fa",
+        "expected_head": "9dac2653ca1e2d9c66a18505b15cb465f485ed04",
+        "intended_head": "7aaefdebca68eed64c8e92d7dfff7384f0a3c800",
+        "target_ref": "refs/heads/design/0.17.0-security-posture",
+        "manifest_digest": "sha256:c95e0f823bf2fabbe246d342c31428eae567d35637b1509df3919776276a52e8",
+        "assembly_store_ref": "refs/heads/cdc/adopt2121-gpc-assembly-20261008",
+        "assembly_store_id": "sha256:e9c5798b2e5857d11563b10845ae993ed5b0e7b040ffd6611bdbd1a36aad08d3",
+        "assembly_revision": "e9a9e7a97b6c96d8dec0274940a60ced36b7c0ea",
+        "transaction_id": "gpc-cdc2121-20261008"
+      },
+      "published_head": null,
+      "readback_package_tree": null
+    },
+    "proof-publication-failed-a1.json": {
+      "actual_push_exit_code": 1,
+      "stderr": "not retained by previous subprocess wrapper; cause unknown",
+      "remote_ref_absent": true,
+      "read_only_dry_run_exit_code": 0,
+      "submission_not_replayed": true,
+      "guard_resolution_revision": "ca1f236f239d9fe7d951046b1e7f241f48e71fe2",
+      "terminal_intent_revision": "0ce90806619c0b9a9a0cb8c009395d5d544aa454"
+    },
+    "proof-publication-failed-a2.json": {
+      "actual_error": {
+        "argv": [
+          "git",
+          "push",
+          "origin",
+          "2af0040d8523f06ccd6b9f5fffd21844e99e691f:refs/heads/cdc/adopt2121-gpc-review-proof-a2-20261008"
+        ],
+        "exit_code": 1,
+        "stderr": "remote: error: GH007: Your push would publish a private email address.        \nremote: You can make your email public or disable this protection by visiting:        \nremote: https://github.com/settings/emails        \nTo https://github.com/bajoicheg/g-pc-health-check.git\n ! [remote rejected] 2af0040d8523f06ccd6b9f5fffd21844e99e691f -> cdc/adopt2121-gpc-review-proof-a2-20261008 (push declined due to email privacy restrictions)\nerror: failed to push some refs to 'https://github.com/bajoicheg/g-pc-health-check.git'\n"
+      },
+      "remote_absent": true,
+      "guard_resolution_revision": "36c37a47d3d2567782334767e99ae64618581cd7",
+      "terminal_intent_revision": "19ada02bac60b9bec7a7aa977ae0343b50e8008a"
+    },
+    "prior_quiescence_provenance": "fresh canonical released unowned source lease before actual admission"
+  }
+}
