@@ -1,0 +1,1082 @@
+{
+  "schema": "cdc-adoption-operational-driver-review/v1",
+  "scope": "2026-10-08T09:04:33Z",
+  "implementation_candidate": "7aaefdebca68eed64c8e92d7dfff7384f0a3c800",
+  "live_publication_hold": "independent SPEC then independent QUALITY required",
+  "preparation": {
+    "repository": "bajoicheg/g-pc-health-check",
+    "source_ref": "refs/heads/design/0.17.0-security-posture",
+    "base": "9dac2653ca1e2d9c66a18505b15cb465f485ed04",
+    "candidate": "7aaefdebca68eed64c8e92d7dfff7384f0a3c800",
+    "root_tree": "885ce1b65ea13abd0259d094362686101448601a",
+    "package_tree": "9c45d98c3254e9658d452c505d8c97698e3fc9a7",
+    "file_count": 352,
+    "manifest": [
+      {
+        "path": ".agents/skills/continuous-development-cycle",
+        "object_type": "tree",
+        "object_sha1": "9c45d98c3254e9658d452c505d8c97698e3fc9a7"
+      },
+      {
+        "path": "docs/cdc-consumer-lock.json",
+        "object_type": "blob",
+        "object_sha1": "0511a373af020c76b743ba148da1af0a0bb63c51"
+      },
+      {
+        "path": "docs/development-cycle.yaml",
+        "object_type": "blob",
+        "object_sha1": "8355a9b1fa675b45d6d69d0f5411b0be468fb3cb"
+      },
+      {
+        "path": "docs/work-status/current.md",
+        "object_type": "blob",
+        "object_sha1": "97685a6b3149bb8250a2786bd86422d65127bea2"
+      },
+      {
+        "path": "docs/cdc-adoption-2.12.1.md",
+        "object_type": "blob",
+        "object_sha1": "c21fe8b8950c8e2024823584104d073412c36bcb"
+      },
+      {
+        "path": "AGENTS.md",
+        "object_type": "blob",
+        "object_sha1": "a1cdb0a52dab29d0d0964b686904db5ea71a6507"
+      }
+    ],
+    "changed_paths": [
+      ".agents/skills/continuous-development-cycle/SKILL.md",
+      ".agents/skills/continuous-development-cycle/VERSION",
+      ".agents/skills/continuous-development-cycle/agents/openai.yaml",
+      ".agents/skills/continuous-development-cycle/manifest.json",
+      ".agents/skills/continuous-development-cycle/references/behavioral-tdd-and-verification.md",
+      ".agents/skills/continuous-development-cycle/references/quality-levels.md",
+      ".agents/skills/continuous-development-cycle/references/runtime-routing-and-subagents.md",
+      ".agents/skills/continuous-development-cycle/references/specification-review-and-finishing.md",
+      ".agents/skills/continuous-development-cycle/scripts/behavioral_eval.py",
+      ".agents/skills/continuous-development-cycle/scripts/branch_finish.py",
+      ".agents/skills/continuous-development-cycle/scripts/evidence_reuse.py",
+      ".agents/skills/continuous-development-cycle/scripts/quality_levels.py",
+      ".agents/skills/continuous-development-cycle/scripts/review_pipeline.py",
+      ".agents/skills/continuous-development-cycle/scripts/validate_adapter.py",
+      ".agents/skills/continuous-development-cycle/scripts/validate_package.py",
+      ".agents/skills/continuous-development-cycle/scripts/verification_gate.py",
+      ".agents/skills/continuous-development-cycle/templates/behavioral-quality-suite.json",
+      ".agents/skills/continuous-development-cycle/templates/branch-finish-v2.json",
+      ".agents/skills/continuous-development-cycle/templates/development-cycle.yaml",
+      ".agents/skills/continuous-development-cycle/templates/evidence-reuse.json",
+      ".agents/skills/continuous-development-cycle/templates/package-transport.json",
+      ".agents/skills/continuous-development-cycle/templates/quality-assessment.json",
+      ".agents/skills/continuous-development-cycle/templates/review-pipeline-v2.json",
+      ".agents/skills/continuous-development-cycle/templates/validation-cycle.json",
+      ".agents/skills/continuous-development-cycle/templates/verification-gate-v2.json",
+      ".agents/skills/continuous-development-cycle/tests/test_branch_finish_levels.py",
+      ".agents/skills/continuous-development-cycle/tests/test_evidence_reuse.py",
+      ".agents/skills/continuous-development-cycle/tests/test_package_transport.py",
+      ".agents/skills/continuous-development-cycle/tests/test_quality_behavior.py",
+      ".agents/skills/continuous-development-cycle/tests/test_quality_levels.py",
+      ".agents/skills/continuous-development-cycle/tests/test_quality_package.py",
+      ".agents/skills/continuous-development-cycle/tests/test_review_levels.py",
+      ".agents/skills/continuous-development-cycle/tests/test_validation_cycles.py",
+      "AGENTS.md",
+      "docs/cdc-adoption-2.12.1.md",
+      "docs/cdc-consumer-lock.json",
+      "docs/development-cycle.yaml",
+      "docs/work-status/current.md"
+    ],
+    "validators": [
+      {
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "-B",
+          ".agents/skills/continuous-development-cycle/scripts/validate_package.py"
+        ],
+        "exit": 0,
+        "stdout": "PASS: continuous-development-cycle 2.12.1, 340 files and parsed templates\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "-B",
+          ".agents/skills/continuous-development-cycle/scripts/validate_adapter.py",
+          "docs/development-cycle.yaml",
+          "--json"
+        ],
+        "exit": 0,
+        "stdout": "{\"policy_digest\": \"f0c53ad7e35b3f11d30ec831dec6231b9b2e3b7bd19227d849f95d9783bc27c2\", \"policy_revision\": \"2026-10-08-cdc-2.12.1-atomic-adoption\", \"schema\": \"continuous-development-cycle/v3\"}\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "-B",
+          ".agents/skills/continuous-development-cycle/scripts/validate_checkpoint_24.py",
+          "docs/work-status/current.md",
+          "--adapter",
+          "docs/development-cycle.yaml"
+        ],
+        "exit": 0,
+        "stdout": "PASS: CDC 2.4 checkpoint v4; remote observations still required\n",
+        "stderr": ""
+      }
+    ],
+    "adapter_binding": {
+      "schema": "continuous-development-cycle/v3",
+      "policy_revision": "2026-10-08-cdc-2.12.1-atomic-adoption",
+      "policy_digest": "f0c53ad7e35b3f11d30ec831dec6231b9b2e3b7bd19227d849f95d9783bc27c2"
+    },
+    "policy_nonmigration_semantics_unchanged": true,
+    "checkpoint_product_semantics_unchanged": true,
+    "AGENTS_historical_bytes_preserved": true,
+    "product_files_unchanged": true,
+    "quality_level": "FULL",
+    "CI_reuse": "canonical package exact9c45; consumer root does not acquire exact-SHA CI",
+    "new_FULL_or_Windows": false,
+    "assembly_record": {
+      "schema": "migration-assembly-record/v1",
+      "transaction_id": "gpc-cdc2121-20261008",
+      "source_head": "9dac2653ca1e2d9c66a18505b15cb465f485ed04",
+      "target_ref": "refs/heads/design/0.17.0-security-posture",
+      "target_version": "2.12.1",
+      "target_release_ref": "refs/heads/release/v2.12.1",
+      "target_release_commit": "9b38bd4d9f5fb113ec10bdbca9fbe33908619a54",
+      "final_tree_sha": "885ce1b65ea13abd0259d094362686101448601a",
+      "expected_subtree_tree": "9c45d98c3254e9658d452c505d8c97698e3fc9a7",
+      "manifest": [
+        {
+          "path": ".agents/skills/continuous-development-cycle",
+          "object_type": "tree",
+          "object_sha1": "9c45d98c3254e9658d452c505d8c97698e3fc9a7"
+        },
+        {
+          "path": "docs/cdc-consumer-lock.json",
+          "object_type": "blob",
+          "object_sha1": "0511a373af020c76b743ba148da1af0a0bb63c51"
+        },
+        {
+          "path": "docs/development-cycle.yaml",
+          "object_type": "blob",
+          "object_sha1": "8355a9b1fa675b45d6d69d0f5411b0be468fb3cb"
+        },
+        {
+          "path": "docs/work-status/current.md",
+          "object_type": "blob",
+          "object_sha1": "97685a6b3149bb8250a2786bd86422d65127bea2"
+        },
+        {
+          "path": "docs/cdc-adoption-2.12.1.md",
+          "object_type": "blob",
+          "object_sha1": "c21fe8b8950c8e2024823584104d073412c36bcb"
+        },
+        {
+          "path": "AGENTS.md",
+          "object_type": "blob",
+          "object_sha1": "a1cdb0a52dab29d0d0964b686904db5ea71a6507"
+        }
+      ],
+      "manifest_digest": "sha256:c95e0f823bf2fabbe246d342c31428eae567d35637b1509df3919776276a52e8",
+      "completed_at_utc": "2026-10-08T09:18:53.705642Z"
+    }
+  },
+  "proofs": {
+    "validator-proofs.json": [
+      {
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "-B",
+          ".agents/skills/continuous-development-cycle/scripts/validate_package.py"
+        ],
+        "exit": 0,
+        "stdout": "PASS: continuous-development-cycle 2.12.1, 340 files and parsed templates\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "-B",
+          ".agents/skills/continuous-development-cycle/scripts/validate_adapter.py",
+          "docs/development-cycle.yaml",
+          "--json"
+        ],
+        "exit": 0,
+        "stdout": "{\"policy_digest\": \"f0c53ad7e35b3f11d30ec831dec6231b9b2e3b7bd19227d849f95d9783bc27c2\", \"policy_revision\": \"2026-10-08-cdc-2.12.1-atomic-adoption\", \"schema\": \"continuous-development-cycle/v3\"}\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "-B",
+          ".agents/skills/continuous-development-cycle/scripts/validate_checkpoint_24.py",
+          "docs/work-status/current.md",
+          "--adapter",
+          "docs/development-cycle.yaml"
+        ],
+        "exit": 0,
+        "stdout": "PASS: CDC 2.4 checkpoint v4; remote observations still required\n",
+        "stderr": ""
+      }
+    ],
+    "strict-package-verification.json": {
+      "schema": "active-package-verification/v1",
+      "version": "2.12.1",
+      "expected_package_tree": "9c45d98c3254e9658d452c505d8c97698e3fc9a7",
+      "canonical_tree": "9c45d98c3254e9658d452c505d8c97698e3fc9a7",
+      "installed_tree": "9c45d98c3254e9658d452c505d8c97698e3fc9a7",
+      "matched": true,
+      "errors": [],
+      "normalizations": [],
+      "ignored_generated_files": [],
+      "byte_identical_files": 352,
+      "proves_agent_behavior": false
+    },
+    "migration-transaction.json": {
+      "schema": "migration-transaction/v1",
+      "transaction_id": "gpc-cdc2121-20261008",
+      "source_head": "9dac2653ca1e2d9c66a18505b15cb465f485ed04",
+      "target_ref": "refs/heads/design/0.17.0-security-posture",
+      "items": [
+        {
+          "path": ".agents/skills/continuous-development-cycle",
+          "object_type": "tree",
+          "object_sha1": "9c45d98c3254e9658d452c505d8c97698e3fc9a7"
+        },
+        {
+          "path": "docs/cdc-consumer-lock.json",
+          "object_type": "blob",
+          "object_sha1": "0511a373af020c76b743ba148da1af0a0bb63c51"
+        },
+        {
+          "path": "docs/development-cycle.yaml",
+          "object_type": "blob",
+          "object_sha1": "8355a9b1fa675b45d6d69d0f5411b0be468fb3cb"
+        },
+        {
+          "path": "docs/work-status/current.md",
+          "object_type": "blob",
+          "object_sha1": "97685a6b3149bb8250a2786bd86422d65127bea2"
+        },
+        {
+          "path": "docs/cdc-adoption-2.12.1.md",
+          "object_type": "blob",
+          "object_sha1": "c21fe8b8950c8e2024823584104d073412c36bcb"
+        },
+        {
+          "path": "AGENTS.md",
+          "object_type": "blob",
+          "object_sha1": "a1cdb0a52dab29d0d0964b686904db5ea71a6507"
+        }
+      ],
+      "completed_paths": [
+        ".agents/skills/continuous-development-cycle",
+        "docs/cdc-consumer-lock.json",
+        "docs/development-cycle.yaml",
+        "docs/work-status/current.md",
+        "docs/cdc-adoption-2.12.1.md",
+        "AGENTS.md"
+      ],
+      "operation_budget": 376,
+      "per_item_operations": 1,
+      "batch_overhead_operations": 1,
+      "finalization_reserve_operations": 20,
+      "detached_checkpoints": [
+        {
+          "completed_count": 6,
+          "tree_sha": "885ce1b65ea13abd0259d094362686101448601a"
+        }
+      ],
+      "final_tree_sha": "885ce1b65ea13abd0259d094362686101448601a",
+      "expected_subtree_tree": "9c45d98c3254e9658d452c505d8c97698e3fc9a7",
+      "observed_subtree_tree": "9c45d98c3254e9658d452c505d8c97698e3fc9a7",
+      "policy_reconciled": true
+    },
+    "assembly-authority.json": {
+      "schema": "migration-assembly-authority/v1",
+      "store_ref": "refs/heads/cdc/adopt2121-gpc-assembly-20261008",
+      "store_id": "sha256:e9c5798b2e5857d11563b10845ae993ed5b0e7b040ffd6611bdbd1a36aad08d3",
+      "revision": "e9a9e7a97b6c96d8dec0274940a60ced36b7c0ea",
+      "transaction_id": "gpc-cdc2121-20261008",
+      "manifest_digest": "sha256:c95e0f823bf2fabbe246d342c31428eae567d35637b1509df3919776276a52e8"
+    },
+    "review-ready-publication.json": {
+      "candidate_ref": "refs/heads/cdc/adopt2121-gpc-candidate-20261008",
+      "candidate": "7aaefdebca68eed64c8e92d7dfff7384f0a3c800",
+      "native_argv": [
+        "git",
+        "push",
+        "origin",
+        "7aaefdebca68eed64c8e92d7dfff7384f0a3c800:refs/heads/cdc/adopt2121-gpc-candidate-20261008"
+      ],
+      "exit_code": 0,
+      "readback": "7aaefdebca68eed64c8e92d7dfff7384f0a3c800",
+      "source_base_unchanged": "9dac2653ca1e2d9c66a18505b15cb465f485ed04",
+      "claim": {
+        "revision": "170602793679731f3e84feaf6852f405a7a6d7f1",
+        "grant": {
+          "grant_id": "d19bf805-c6ff-4385-8063-8dfc0799858a",
+          "owner_id": "bb41abbc-4b1f-470b-8aaf-1ecdf2e53747",
+          "generation": 25,
+          "operation_key": "sha256:050f219c2ff23e98cba36ab470928798da847ae089552ef7be61329d42d388e6",
+          "attempt_id": "adopt2121-gpc-a1-review-publication",
+          "intent_digest": "sha256:796a22f0a701fd2d769dc474923527be5cb18838e2d6836bc30edf9ed7fc66ef",
+          "claimed_at_utc": "2026-10-08T09:31:13.022487Z"
+        }
+      },
+      "guard_resolution_revision": "39a0b7cae2bfac0163baa0532bc4ae2efe130684",
+      "at_utc": "2026-10-08T09:31:44.641117Z"
+    },
+    "start-receipt.json": {
+      "schema": "managed-host-handle/v1",
+      "handle_id": "a284994c-3294-5008-9511-a8853d6c0785",
+      "state": "running",
+      "task_id": "atomic-adoption",
+      "attempt_id": "adopt2121-gpc-a1",
+      "owner_id": "bb41abbc-4b1f-470b-8aaf-1ecdf2e53747",
+      "generation": 25,
+      "invocation_id": "managed-terminal:2b42dc1c97800d70753b079d24c2934b35b0ce18ec1c53b1adf8ab3ed6ad4e9f",
+      "lease_revision": "ff75b509e78870c774af60d74fc27bc500fed12c",
+      "publication_ref": "refs/heads/cdc/managed-host-publish-a284994c329450089511a8853d6c0785"
+    },
+    "consumer-publication-state.json": {
+      "schema": "consumer-adoption-publication/v1",
+      "source_head": "9dac2653ca1e2d9c66a18505b15cb465f485ed04",
+      "target_ref": "refs/heads/design/0.17.0-security-posture",
+      "target_version": "2.12.1",
+      "target_release_ref": "refs/heads/release/v2.12.1",
+      "target_release_commit": "9b38bd4d9f5fb113ec10bdbca9fbe33908619a54",
+      "target_package_tree": "9c45d98c3254e9658d452c505d8c97698e3fc9a7",
+      "required_paths": [
+        ".agents/skills/continuous-development-cycle",
+        "docs/cdc-consumer-lock.json",
+        "docs/development-cycle.yaml",
+        "docs/work-status/current.md",
+        "docs/cdc-adoption-2.12.1.md",
+        "AGENTS.md"
+      ],
+      "prepared_paths": [
+        ".agents/skills/continuous-development-cycle",
+        "docs/cdc-consumer-lock.json",
+        "docs/development-cycle.yaml",
+        "docs/work-status/current.md",
+        "docs/cdc-adoption-2.12.1.md",
+        "AGENTS.md"
+      ],
+      "assembly_manifest": [
+        {
+          "path": ".agents/skills/continuous-development-cycle",
+          "object_type": "tree",
+          "object_sha1": "9c45d98c3254e9658d452c505d8c97698e3fc9a7"
+        },
+        {
+          "path": "docs/cdc-consumer-lock.json",
+          "object_type": "blob",
+          "object_sha1": "0511a373af020c76b743ba148da1af0a0bb63c51"
+        },
+        {
+          "path": "docs/development-cycle.yaml",
+          "object_type": "blob",
+          "object_sha1": "8355a9b1fa675b45d6d69d0f5411b0be468fb3cb"
+        },
+        {
+          "path": "docs/work-status/current.md",
+          "object_type": "blob",
+          "object_sha1": "97685a6b3149bb8250a2786bd86422d65127bea2"
+        },
+        {
+          "path": "docs/cdc-adoption-2.12.1.md",
+          "object_type": "blob",
+          "object_sha1": "c21fe8b8950c8e2024823584104d073412c36bcb"
+        },
+        {
+          "path": "AGENTS.md",
+          "object_type": "blob",
+          "object_sha1": "a1cdb0a52dab29d0d0964b686904db5ea71a6507"
+        }
+      ],
+      "assembly_authority": {
+        "schema": "migration-assembly-authority/v1",
+        "store_ref": "refs/heads/cdc/adopt2121-gpc-assembly-20261008",
+        "store_id": "sha256:e9c5798b2e5857d11563b10845ae993ed5b0e7b040ffd6611bdbd1a36aad08d3",
+        "revision": "e9a9e7a97b6c96d8dec0274940a60ced36b7c0ea",
+        "transaction_id": "gpc-cdc2121-20261008",
+        "manifest_digest": "sha256:c95e0f823bf2fabbe246d342c31428eae567d35637b1509df3919776276a52e8"
+      },
+      "final_tree_sha": "885ce1b65ea13abd0259d094362686101448601a",
+      "observed_package_tree": "9c45d98c3254e9658d452c505d8c97698e3fc9a7",
+      "candidate_commit": "7aaefdebca68eed64c8e92d7dfff7384f0a3c800",
+      "live_source_head": "9dac2653ca1e2d9c66a18505b15cb465f485ed04",
+      "publication_claim": {
+        "effect_id": "sha256:be0be0b4b8014b22fcbe355a4c01b0dbefafa38a39fa765b053ee6b7679552fa",
+        "expected_head": "9dac2653ca1e2d9c66a18505b15cb465f485ed04",
+        "intended_head": "7aaefdebca68eed64c8e92d7dfff7384f0a3c800",
+        "target_ref": "refs/heads/design/0.17.0-security-posture",
+        "manifest_digest": "sha256:c95e0f823bf2fabbe246d342c31428eae567d35637b1509df3919776276a52e8",
+        "assembly_store_ref": "refs/heads/cdc/adopt2121-gpc-assembly-20261008",
+        "assembly_store_id": "sha256:e9c5798b2e5857d11563b10845ae993ed5b0e7b040ffd6611bdbd1a36aad08d3",
+        "assembly_revision": "e9a9e7a97b6c96d8dec0274940a60ced36b7c0ea",
+        "transaction_id": "gpc-cdc2121-20261008"
+      },
+      "published_head": null,
+      "readback_package_tree": null
+    },
+    "proof-publication-failed-a1.json": {
+      "actual_push_exit_code": 1,
+      "stderr": "not retained by previous subprocess wrapper; cause unknown",
+      "remote_ref_absent": true,
+      "read_only_dry_run_exit_code": 0,
+      "submission_not_replayed": true,
+      "guard_resolution_revision": "ca1f236f239d9fe7d951046b1e7f241f48e71fe2",
+      "terminal_intent_revision": "0ce90806619c0b9a9a0cb8c009395d5d544aa454"
+    },
+    "proof-publication-failed-a2.json": {
+      "actual_error": {
+        "argv": [
+          "git",
+          "push",
+          "origin",
+          "2af0040d8523f06ccd6b9f5fffd21844e99e691f:refs/heads/cdc/adopt2121-gpc-review-proof-a2-20261008"
+        ],
+        "exit_code": 1,
+        "stderr": "remote: error: GH007: Your push would publish a private email address.        \nremote: You can make your email public or disable this protection by visiting:        \nremote: https://github.com/settings/emails        \nTo https://github.com/bajoicheg/g-pc-health-check.git\n ! [remote rejected] 2af0040d8523f06ccd6b9f5fffd21844e99e691f -> cdc/adopt2121-gpc-review-proof-a2-20261008 (push declined due to email privacy restrictions)\nerror: failed to push some refs to 'https://github.com/bajoicheg/g-pc-health-check.git'\n"
+      },
+      "remote_absent": true,
+      "guard_resolution_revision": "36c37a47d3d2567782334767e99ae64618581cd7",
+      "terminal_intent_revision": "19ada02bac60b9bec7a7aa977ae0343b50e8008a"
+    },
+    "prior_quiescence_provenance": "fresh canonical released unowned source lease before actual admission"
+  },
+  "candidate_scopes": {
+    "gpc": {
+      "repository": "bajoicheg/g-pc-health-check",
+      "source_ref": "refs/heads/design/0.17.0-security-posture",
+      "base": "9dac2653ca1e2d9c66a18505b15cb465f485ed04",
+      "candidate": "7aaefdebca68eed64c8e92d7dfff7384f0a3c800",
+      "root_tree": "885ce1b65ea13abd0259d094362686101448601a",
+      "package_tree": "9c45d98c3254e9658d452c505d8c97698e3fc9a7",
+      "file_count": 352,
+      "manifest": [
+        {
+          "path": ".agents/skills/continuous-development-cycle",
+          "object_type": "tree",
+          "object_sha1": "9c45d98c3254e9658d452c505d8c97698e3fc9a7"
+        },
+        {
+          "path": "docs/cdc-consumer-lock.json",
+          "object_type": "blob",
+          "object_sha1": "0511a373af020c76b743ba148da1af0a0bb63c51"
+        },
+        {
+          "path": "docs/development-cycle.yaml",
+          "object_type": "blob",
+          "object_sha1": "8355a9b1fa675b45d6d69d0f5411b0be468fb3cb"
+        },
+        {
+          "path": "docs/work-status/current.md",
+          "object_type": "blob",
+          "object_sha1": "97685a6b3149bb8250a2786bd86422d65127bea2"
+        },
+        {
+          "path": "docs/cdc-adoption-2.12.1.md",
+          "object_type": "blob",
+          "object_sha1": "c21fe8b8950c8e2024823584104d073412c36bcb"
+        },
+        {
+          "path": "AGENTS.md",
+          "object_type": "blob",
+          "object_sha1": "a1cdb0a52dab29d0d0964b686904db5ea71a6507"
+        }
+      ],
+      "changed_paths": [
+        ".agents/skills/continuous-development-cycle/SKILL.md",
+        ".agents/skills/continuous-development-cycle/VERSION",
+        ".agents/skills/continuous-development-cycle/agents/openai.yaml",
+        ".agents/skills/continuous-development-cycle/manifest.json",
+        ".agents/skills/continuous-development-cycle/references/behavioral-tdd-and-verification.md",
+        ".agents/skills/continuous-development-cycle/references/quality-levels.md",
+        ".agents/skills/continuous-development-cycle/references/runtime-routing-and-subagents.md",
+        ".agents/skills/continuous-development-cycle/references/specification-review-and-finishing.md",
+        ".agents/skills/continuous-development-cycle/scripts/behavioral_eval.py",
+        ".agents/skills/continuous-development-cycle/scripts/branch_finish.py",
+        ".agents/skills/continuous-development-cycle/scripts/evidence_reuse.py",
+        ".agents/skills/continuous-development-cycle/scripts/quality_levels.py",
+        ".agents/skills/continuous-development-cycle/scripts/review_pipeline.py",
+        ".agents/skills/continuous-development-cycle/scripts/validate_adapter.py",
+        ".agents/skills/continuous-development-cycle/scripts/validate_package.py",
+        ".agents/skills/continuous-development-cycle/scripts/verification_gate.py",
+        ".agents/skills/continuous-development-cycle/templates/behavioral-quality-suite.json",
+        ".agents/skills/continuous-development-cycle/templates/branch-finish-v2.json",
+        ".agents/skills/continuous-development-cycle/templates/development-cycle.yaml",
+        ".agents/skills/continuous-development-cycle/templates/evidence-reuse.json",
+        ".agents/skills/continuous-development-cycle/templates/package-transport.json",
+        ".agents/skills/continuous-development-cycle/templates/quality-assessment.json",
+        ".agents/skills/continuous-development-cycle/templates/review-pipeline-v2.json",
+        ".agents/skills/continuous-development-cycle/templates/validation-cycle.json",
+        ".agents/skills/continuous-development-cycle/templates/verification-gate-v2.json",
+        ".agents/skills/continuous-development-cycle/tests/test_branch_finish_levels.py",
+        ".agents/skills/continuous-development-cycle/tests/test_evidence_reuse.py",
+        ".agents/skills/continuous-development-cycle/tests/test_package_transport.py",
+        ".agents/skills/continuous-development-cycle/tests/test_quality_behavior.py",
+        ".agents/skills/continuous-development-cycle/tests/test_quality_levels.py",
+        ".agents/skills/continuous-development-cycle/tests/test_quality_package.py",
+        ".agents/skills/continuous-development-cycle/tests/test_review_levels.py",
+        ".agents/skills/continuous-development-cycle/tests/test_validation_cycles.py",
+        "AGENTS.md",
+        "docs/cdc-adoption-2.12.1.md",
+        "docs/cdc-consumer-lock.json",
+        "docs/development-cycle.yaml",
+        "docs/work-status/current.md"
+      ],
+      "validators": [
+        {
+          "argv": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "-B",
+            ".agents/skills/continuous-development-cycle/scripts/validate_package.py"
+          ],
+          "exit": 0,
+          "stdout": "PASS: continuous-development-cycle 2.12.1, 340 files and parsed templates\n",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "-B",
+            ".agents/skills/continuous-development-cycle/scripts/validate_adapter.py",
+            "docs/development-cycle.yaml",
+            "--json"
+          ],
+          "exit": 0,
+          "stdout": "{\"policy_digest\": \"f0c53ad7e35b3f11d30ec831dec6231b9b2e3b7bd19227d849f95d9783bc27c2\", \"policy_revision\": \"2026-10-08-cdc-2.12.1-atomic-adoption\", \"schema\": \"continuous-development-cycle/v3\"}\n",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "-B",
+            ".agents/skills/continuous-development-cycle/scripts/validate_checkpoint_24.py",
+            "docs/work-status/current.md",
+            "--adapter",
+            "docs/development-cycle.yaml"
+          ],
+          "exit": 0,
+          "stdout": "PASS: CDC 2.4 checkpoint v4; remote observations still required\n",
+          "stderr": ""
+        }
+      ],
+      "adapter_binding": {
+        "schema": "continuous-development-cycle/v3",
+        "policy_revision": "2026-10-08-cdc-2.12.1-atomic-adoption",
+        "policy_digest": "f0c53ad7e35b3f11d30ec831dec6231b9b2e3b7bd19227d849f95d9783bc27c2"
+      },
+      "policy_nonmigration_semantics_unchanged": true,
+      "checkpoint_product_semantics_unchanged": true,
+      "AGENTS_historical_bytes_preserved": true,
+      "product_files_unchanged": true,
+      "quality_level": "FULL",
+      "CI_reuse": "canonical package exact9c45; consumer root does not acquire exact-SHA CI",
+      "new_FULL_or_Windows": false,
+      "assembly_record": {
+        "schema": "migration-assembly-record/v1",
+        "transaction_id": "gpc-cdc2121-20261008",
+        "source_head": "9dac2653ca1e2d9c66a18505b15cb465f485ed04",
+        "target_ref": "refs/heads/design/0.17.0-security-posture",
+        "target_version": "2.12.1",
+        "target_release_ref": "refs/heads/release/v2.12.1",
+        "target_release_commit": "9b38bd4d9f5fb113ec10bdbca9fbe33908619a54",
+        "final_tree_sha": "885ce1b65ea13abd0259d094362686101448601a",
+        "expected_subtree_tree": "9c45d98c3254e9658d452c505d8c97698e3fc9a7",
+        "manifest": [
+          {
+            "path": ".agents/skills/continuous-development-cycle",
+            "object_type": "tree",
+            "object_sha1": "9c45d98c3254e9658d452c505d8c97698e3fc9a7"
+          },
+          {
+            "path": "docs/cdc-consumer-lock.json",
+            "object_type": "blob",
+            "object_sha1": "0511a373af020c76b743ba148da1af0a0bb63c51"
+          },
+          {
+            "path": "docs/development-cycle.yaml",
+            "object_type": "blob",
+            "object_sha1": "8355a9b1fa675b45d6d69d0f5411b0be468fb3cb"
+          },
+          {
+            "path": "docs/work-status/current.md",
+            "object_type": "blob",
+            "object_sha1": "97685a6b3149bb8250a2786bd86422d65127bea2"
+          },
+          {
+            "path": "docs/cdc-adoption-2.12.1.md",
+            "object_type": "blob",
+            "object_sha1": "c21fe8b8950c8e2024823584104d073412c36bcb"
+          },
+          {
+            "path": "AGENTS.md",
+            "object_type": "blob",
+            "object_sha1": "a1cdb0a52dab29d0d0964b686904db5ea71a6507"
+          }
+        ],
+        "manifest_digest": "sha256:c95e0f823bf2fabbe246d342c31428eae567d35637b1509df3919776276a52e8",
+        "completed_at_utc": "2026-10-08T09:18:53.705642Z"
+      }
+    },
+    "switcher": {
+      "repository": "bajoicheg/g-switcher",
+      "source_ref": "refs/heads/release/2.0.1",
+      "base": "8ad780a9f733dc13f474c1227dcb1d2c5f486187",
+      "candidate": "53d3d5cc9597f480d5f7760a2b8af66ccc640ec4",
+      "root_tree": "06b9e4557737d29d8b768ecb15c227731d2f2bc6",
+      "package_tree": "9c45d98c3254e9658d452c505d8c97698e3fc9a7",
+      "file_count": 352,
+      "manifest": [
+        {
+          "path": ".agents/skills/continuous-development-cycle",
+          "object_type": "tree",
+          "object_sha1": "9c45d98c3254e9658d452c505d8c97698e3fc9a7"
+        },
+        {
+          "path": "docs/cdc-consumer-lock.json",
+          "object_type": "blob",
+          "object_sha1": "0511a373af020c76b743ba148da1af0a0bb63c51"
+        },
+        {
+          "path": "docs/development-cycle.yaml",
+          "object_type": "blob",
+          "object_sha1": "faf400493b4789f28589f6556b5239cdf53d03ca"
+        },
+        {
+          "path": "docs/work-status/current.md",
+          "object_type": "blob",
+          "object_sha1": "95de24d5ad940a589cce9fa83affc9ec6bf9b037"
+        },
+        {
+          "path": "docs/cdc-adoption-2.12.1.md",
+          "object_type": "blob",
+          "object_sha1": "afe61064e6ae18450e9b10487767603f57a34577"
+        },
+        {
+          "path": "AGENTS.md",
+          "object_type": "blob",
+          "object_sha1": "54e7549dc38c7486457a5cd2e59c41797bf50d48"
+        }
+      ],
+      "changed_paths": [
+        ".agents/skills/continuous-development-cycle/SKILL.md",
+        ".agents/skills/continuous-development-cycle/VERSION",
+        ".agents/skills/continuous-development-cycle/agents/openai.yaml",
+        ".agents/skills/continuous-development-cycle/manifest.json",
+        ".agents/skills/continuous-development-cycle/references/runtime-routing-and-subagents.md",
+        ".agents/skills/continuous-development-cycle/scripts/evidence_reuse.py",
+        ".agents/skills/continuous-development-cycle/templates/package-transport.json",
+        ".agents/skills/continuous-development-cycle/tests/test_evidence_reuse.py",
+        ".agents/skills/continuous-development-cycle/tests/test_package_transport.py",
+        "AGENTS.md",
+        "docs/cdc-adoption-2.12.1.md",
+        "docs/cdc-consumer-lock.json",
+        "docs/development-cycle.yaml",
+        "docs/work-status/current.md"
+      ],
+      "validators": [
+        {
+          "argv": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "-B",
+            ".agents/skills/continuous-development-cycle/scripts/validate_package.py"
+          ],
+          "exit": 0,
+          "stdout": "PASS: continuous-development-cycle 2.12.1, 340 files and parsed templates\n",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "-B",
+            ".agents/skills/continuous-development-cycle/scripts/validate_adapter.py",
+            "docs/development-cycle.yaml",
+            "--json"
+          ],
+          "exit": 0,
+          "stdout": "{\"policy_digest\": \"4d5cfce31717243266089b4c5d1ea052d965c3db96712902a8b5c9c97b061692\", \"policy_revision\": \"2026-10-08-cdc-2.12.1-atomic-adoption\", \"schema\": \"continuous-development-cycle/v3\"}\n",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "-B",
+            ".agents/skills/continuous-development-cycle/scripts/validate_checkpoint_24.py",
+            "docs/work-status/current.md",
+            "--adapter",
+            "docs/development-cycle.yaml"
+          ],
+          "exit": 0,
+          "stdout": "PASS: CDC 2.4 checkpoint v4; remote observations still required\n",
+          "stderr": ""
+        }
+      ],
+      "adapter_binding": {
+        "schema": "continuous-development-cycle/v3",
+        "policy_revision": "2026-10-08-cdc-2.12.1-atomic-adoption",
+        "policy_digest": "4d5cfce31717243266089b4c5d1ea052d965c3db96712902a8b5c9c97b061692"
+      },
+      "policy_nonmigration_semantics_unchanged": true,
+      "checkpoint_product_semantics_unchanged": true,
+      "AGENTS_historical_bytes_preserved": true,
+      "product_files_unchanged": true,
+      "quality_level": "FULL",
+      "CI_reuse": "canonical package exact9c45; consumer root does not acquire exact-SHA CI",
+      "new_FULL_or_Windows": false,
+      "assembly_record": {
+        "schema": "migration-assembly-record/v1",
+        "transaction_id": "switcher-cdc2121-20261008",
+        "source_head": "8ad780a9f733dc13f474c1227dcb1d2c5f486187",
+        "target_ref": "refs/heads/release/2.0.1",
+        "target_version": "2.12.1",
+        "target_release_ref": "refs/heads/release/v2.12.1",
+        "target_release_commit": "9b38bd4d9f5fb113ec10bdbca9fbe33908619a54",
+        "final_tree_sha": "06b9e4557737d29d8b768ecb15c227731d2f2bc6",
+        "expected_subtree_tree": "9c45d98c3254e9658d452c505d8c97698e3fc9a7",
+        "manifest": [
+          {
+            "path": ".agents/skills/continuous-development-cycle",
+            "object_type": "tree",
+            "object_sha1": "9c45d98c3254e9658d452c505d8c97698e3fc9a7"
+          },
+          {
+            "path": "docs/cdc-consumer-lock.json",
+            "object_type": "blob",
+            "object_sha1": "0511a373af020c76b743ba148da1af0a0bb63c51"
+          },
+          {
+            "path": "docs/development-cycle.yaml",
+            "object_type": "blob",
+            "object_sha1": "faf400493b4789f28589f6556b5239cdf53d03ca"
+          },
+          {
+            "path": "docs/work-status/current.md",
+            "object_type": "blob",
+            "object_sha1": "95de24d5ad940a589cce9fa83affc9ec6bf9b037"
+          },
+          {
+            "path": "docs/cdc-adoption-2.12.1.md",
+            "object_type": "blob",
+            "object_sha1": "afe61064e6ae18450e9b10487767603f57a34577"
+          },
+          {
+            "path": "AGENTS.md",
+            "object_type": "blob",
+            "object_sha1": "54e7549dc38c7486457a5cd2e59c41797bf50d48"
+          }
+        ],
+        "manifest_digest": "sha256:6459071295817d7fadf21d9d6fdb94d33de9febaf39e4639a2cb0f4b994e40f0",
+        "completed_at_utc": "2026-10-08T09:20:43.842030Z"
+      }
+    },
+    "gad": {
+      "repository": "bajoicheg-private/g-ad-control",
+      "source_ref": "refs/heads/codex/build-0.2.0-engineer-attribute-workflow",
+      "base": "b51173b54e5097cfe1a6cb531d523c178e051412",
+      "candidate": "1d7992debb6ee31a1504aa49e45e9990bccd3a9c",
+      "root_tree": "151941efce35d8256aed2321e47f79e2125a8d0c",
+      "package_tree": "9c45d98c3254e9658d452c505d8c97698e3fc9a7",
+      "file_count": 352,
+      "manifest": [
+        {
+          "path": ".agents/skills/continuous-development-cycle",
+          "object_type": "tree",
+          "object_sha1": "9c45d98c3254e9658d452c505d8c97698e3fc9a7"
+        },
+        {
+          "path": "docs/cdc-consumer-lock.json",
+          "object_type": "blob",
+          "object_sha1": "0511a373af020c76b743ba148da1af0a0bb63c51"
+        },
+        {
+          "path": "docs/development-cycle.yaml",
+          "object_type": "blob",
+          "object_sha1": "c1f139886e78eb6bd5b734159d1c363f38af8436"
+        },
+        {
+          "path": "docs/work-status/current.md",
+          "object_type": "blob",
+          "object_sha1": "05ffd4c42041fd6439b4ec7d35bce6cc653a0513"
+        },
+        {
+          "path": "docs/cdc-adoption-2.12.1.md",
+          "object_type": "blob",
+          "object_sha1": "7db6708706cbffb0a1d948b82cfb1f9736aa31ae"
+        },
+        {
+          "path": "AGENTS.md",
+          "object_type": "blob",
+          "object_sha1": "753e39c81339164b8e275a103562338193394481"
+        }
+      ],
+      "changed_paths": [
+        ".agents/skills/continuous-development-cycle/SKILL.md",
+        ".agents/skills/continuous-development-cycle/VERSION",
+        ".agents/skills/continuous-development-cycle/agents/openai.yaml",
+        ".agents/skills/continuous-development-cycle/manifest.json",
+        ".agents/skills/continuous-development-cycle/references/runtime-routing-and-subagents.md",
+        ".agents/skills/continuous-development-cycle/scripts/evidence_reuse.py",
+        ".agents/skills/continuous-development-cycle/templates/package-transport.json",
+        ".agents/skills/continuous-development-cycle/tests/test_evidence_reuse.py",
+        ".agents/skills/continuous-development-cycle/tests/test_package_transport.py",
+        "AGENTS.md",
+        "docs/cdc-adoption-2.12.1.md",
+        "docs/cdc-consumer-lock.json",
+        "docs/development-cycle.yaml",
+        "docs/work-status/current.md"
+      ],
+      "validators": [
+        {
+          "argv": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "-B",
+            ".agents/skills/continuous-development-cycle/scripts/validate_package.py"
+          ],
+          "exit": 0,
+          "stdout": "PASS: continuous-development-cycle 2.12.1, 340 files and parsed templates\n",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "-B",
+            ".agents/skills/continuous-development-cycle/scripts/validate_adapter.py",
+            "docs/development-cycle.yaml",
+            "--json"
+          ],
+          "exit": 0,
+          "stdout": "{\"policy_digest\": \"5443d2144a73e07df91462b51d65f120436660efe1bb4907ea58c0404189343a\", \"policy_revision\": \"2026-10-08-cdc-2.12.1-atomic-adoption\", \"schema\": \"continuous-development-cycle/v3\"}\n",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "-B",
+            ".agents/skills/continuous-development-cycle/scripts/validate_checkpoint_24.py",
+            "docs/work-status/current.md",
+            "--adapter",
+            "docs/development-cycle.yaml"
+          ],
+          "exit": 0,
+          "stdout": "PASS: CDC 2.4 checkpoint v4; remote observations still required\n",
+          "stderr": ""
+        }
+      ],
+      "adapter_binding": {
+        "schema": "continuous-development-cycle/v3",
+        "policy_revision": "2026-10-08-cdc-2.12.1-atomic-adoption",
+        "policy_digest": "5443d2144a73e07df91462b51d65f120436660efe1bb4907ea58c0404189343a"
+      },
+      "policy_nonmigration_semantics_unchanged": true,
+      "checkpoint_product_semantics_unchanged": true,
+      "AGENTS_historical_bytes_preserved": true,
+      "product_files_unchanged": true,
+      "quality_level": "FULL",
+      "CI_reuse": "canonical package exact9c45; consumer root does not acquire exact-SHA CI",
+      "new_FULL_or_Windows": false,
+      "assembly_record": {
+        "schema": "migration-assembly-record/v1",
+        "transaction_id": "gad-cdc2121-20261008",
+        "source_head": "b51173b54e5097cfe1a6cb531d523c178e051412",
+        "target_ref": "refs/heads/codex/build-0.2.0-engineer-attribute-workflow",
+        "target_version": "2.12.1",
+        "target_release_ref": "refs/heads/release/v2.12.1",
+        "target_release_commit": "9b38bd4d9f5fb113ec10bdbca9fbe33908619a54",
+        "final_tree_sha": "151941efce35d8256aed2321e47f79e2125a8d0c",
+        "expected_subtree_tree": "9c45d98c3254e9658d452c505d8c97698e3fc9a7",
+        "manifest": [
+          {
+            "path": ".agents/skills/continuous-development-cycle",
+            "object_type": "tree",
+            "object_sha1": "9c45d98c3254e9658d452c505d8c97698e3fc9a7"
+          },
+          {
+            "path": "docs/cdc-consumer-lock.json",
+            "object_type": "blob",
+            "object_sha1": "0511a373af020c76b743ba148da1af0a0bb63c51"
+          },
+          {
+            "path": "docs/development-cycle.yaml",
+            "object_type": "blob",
+            "object_sha1": "c1f139886e78eb6bd5b734159d1c363f38af8436"
+          },
+          {
+            "path": "docs/work-status/current.md",
+            "object_type": "blob",
+            "object_sha1": "05ffd4c42041fd6439b4ec7d35bce6cc653a0513"
+          },
+          {
+            "path": "docs/cdc-adoption-2.12.1.md",
+            "object_type": "blob",
+            "object_sha1": "7db6708706cbffb0a1d948b82cfb1f9736aa31ae"
+          },
+          {
+            "path": "AGENTS.md",
+            "object_type": "blob",
+            "object_sha1": "753e39c81339164b8e275a103562338193394481"
+          }
+        ],
+        "manifest_digest": "sha256:19da36640f832c6ca46934e7128524e959f4cef86384ea93cd2f12937864ee72",
+        "completed_at_utc": "2026-10-08T09:21:51.070269Z"
+      }
+    },
+    "fleet": {
+      "repository": "bajoicheg/g-cdc",
+      "source_ref": "refs/heads/cdc/fleet",
+      "base": "cf58922a7165dc63fbe819db7911e428a22b9a2e",
+      "candidate": "4e1a389a8d5fa6812c87431be9b9cb8f6f55bad9",
+      "root_tree": "b5cce1540f25d496be98cc2b62fd0ac2adbdc867",
+      "changed_paths": [
+        "fleet/registry.json",
+        "fleet/target-release.json",
+        "fleet/target.json"
+      ],
+      "manifest": [
+        {
+          "path": "fleet/registry.json",
+          "object_type": "blob",
+          "object_sha1": "e92ee85fba164243dc3084f86d3b4584febcb17a"
+        },
+        {
+          "path": "fleet/target-release.json",
+          "object_type": "blob",
+          "object_sha1": "98e8f0e3fff36a003fc18e17e9bb3bfb6742fb3c"
+        },
+        {
+          "path": "fleet/target.json",
+          "object_type": "blob",
+          "object_sha1": "f533317c7f3d1c403f3d7c44ffe89b9219be82a8"
+        }
+      ],
+      "target": {
+        "schema": "version-convergence-target/v1",
+        "target_version": "2.12.1",
+        "target_package_fingerprint": "git-tree:9c45d98c3254e9658d452c505d8c97698e3fc9a7",
+        "checkpoint_schema": "development-work-status/v4",
+        "safe_boundary_required": true
+      },
+      "release_binding": {
+        "schema": "live-target-release/v2",
+        "version": "2.12.1",
+        "canonical_repository": "bajoicheg/g-cdc",
+        "release_ref": "refs/heads/release/v2.12.1",
+        "release_commit": "9b38bd4d9f5fb113ec10bdbca9fbe33908619a54",
+        "package_tree": "9c45d98c3254e9658d452c505d8c97698e3fc9a7",
+        "evidence_binding": {
+          "schema": "canonical-release-evidence-binding/v1",
+          "source_identity": "sha256:dd313ce733052636056110bcc138394c4b3f2d13b67ef7d0ef3cfc2a690203ac",
+          "ref": "refs/heads/cdc/release-evidence/v2.12.1",
+          "commit": "9dece125d09956d4546721bceb9142856bf786d3",
+          "path": "release/evidence-2.12.1.json"
+        }
+      },
+      "registry_projects_preserved": true,
+      "retired_supervisor_unchanged": true,
+      "SLO_and_age_unchanged": true,
+      "scheduler_mutations": false,
+      "quality_level": "FULL",
+      "schema_checks": "GREEN",
+      "publication_prerequisite": "actual canonical fleet-supervisor leader+one-use effect claim and ordered reviews; no authority from preparation"
+    }
+  },
+  "plain_sources": {
+    "consumer-worker.py": "import sys,pathlib,json,subprocess,tarfile,io,os,datetime,copy\nroot=pathlib.Path(sys.argv[1]);config=json.loads((root/'config.json').read_text());driver='/workspace/work/released-2.12.1-adoption/src/continuous-development-cycle/scripts';sys.path.insert(0,driver)\nfrom contracts import load_yaml,digest\nfrom validate_adapter import validate_adapter\nfrom validate_checkpoint_24 import validate_checkpoint_24\nimport quality_levels,migration_transaction as migration\nrelease='9b38bd4d9f5fb113ec10bdbca9fbe33908619a54';package='9c45d98c3254e9658d452c505d8c97698e3fc9a7';prefix='.agents/skills/continuous-development-cycle'\ndef git(*a,input=None):return subprocess.check_output(['git',*a],input=input,text=True,stderr=subprocess.PIPE).strip()\nassert git('rev-parse','HEAD')==config['base']\nassert git('rev-parse',release+':src/continuous-development-cycle')==package\nold_adapter=load_yaml('docs/development-cycle.yaml');adapter_text=pathlib.Path('docs/development-cycle.yaml').read_text();old_min=old_adapter['policy']['skill_min_version'];revision='2026-10-08-cdc-2.12.1-atomic-adoption'\nnewtext=adapter_text.replace('revision: '+old_adapter['policy']['revision'],'revision: '+revision,1).replace('skill_min_version: '+old_min,'skill_min_version: 2.12.1',1).replace('target_version: '+old_adapter['convergence']['target_version'],'target_version: 2.12.1',1).replace(old_adapter['convergence']['target_package_fingerprint_ref'],'https://github.com/bajoicheg/g-cdc/tree/'+release+'/src/continuous-development-cycle',1)\nif 'quality' not in old_adapter:newtext+='\\nquality:\\n  default_level: FULL\\n  max_validation_cycles: 2\\n'\npathlib.Path('docs/development-cycle.yaml').write_text(newtext);new_adapter=load_yaml('docs/development-cycle.yaml');binding=validate_adapter(new_adapter)\nbefore=copy.deepcopy(old_adapter);after=copy.deepcopy(new_adapter)\nfor d in [before,after]:\n d['policy'].pop('revision');d['policy'].pop('skill_min_version');d['convergence'].pop('target_version');d['convergence'].pop('target_package_fingerprint_ref');d.pop('quality',None)\nassert before==after and not new_adapter['watchdog']['enabled'] and new_adapter['quality']['default_level']=='FULL'\nold_checkpoint=load_yaml('docs/work-status/current.md',frontmatter=True);cp=pathlib.Path('docs/work-status/current.md').read_text();end=cp.index('\\n---',4);front=cp[:end];body=cp[end:]\nfront=front.replace('policy_revision: '+old_checkpoint['policy_revision'],'policy_revision: '+revision,1).replace('policy_digest: '+old_checkpoint['policy_digest'],'policy_digest: '+binding['policy_digest'],1)\nnote='\\n\\n## CDC 2.12.1 atomic process adoption\\n\\nCanonical release '+release+', exact352-file package '+package+'; separately pinned evidence9dece125d09956d4546721bceb9142856bf786d3:release/evidence-2.12.1.json. FULL migration retains original product exact-SHA/platform proofs and all blockers. Canonical required CI37737459242/job113180161046 validates this identical package, not this consumer root; no new product or full1121 run is claimed. Frontmatter preserves the last observed product state with only reconciled policy revision/digest changed. Actual adoption publication/release receipts are external coordination facts, not future assertions. Schedulers remain paused.\\n'\npathlib.Path('docs/work-status/current.md').write_text(front+'\\n---'+note+body[len('\\n---'):])\nnew_checkpoint=load_yaml('docs/work-status/current.md',frontmatter=True);validate_checkpoint_24(new_checkpoint,new_adapter);x=dict(old_checkpoint);y=dict(new_checkpoint)\nfor d in [x,y]:d.pop('policy_revision');d.pop('policy_digest')\nassert x==y\nlock=json.loads(pathlib.Path('docs/cdc-consumer-lock.json').read_text());lock.update(version='2.12.1',release_ref='refs/heads/release/v2.12.1',release_commit=release,package_tree=package);pathlib.Path('docs/cdc-consumer-lock.json').write_text(json.dumps(lock,indent=2)+'\\n')\nagents=pathlib.Path('AGENTS.md').read_text();provenance='## CDC 2.12.1 authoritative process provenance\\n\\nUse canonical bajoicheg/g-cdc, immutable refs/heads/release/v2.12.1 commit '+release+', exact352-file package tree '+package+'. Stable canonical evidence is pinned at refs/heads/cdc/release-evidence/v2.12.1 commit9dece125d09956d4546721bceb9142856bf786d3, path release/evidence-2.12.1.json. This process-only atomic adoption uses FULL migration checks and ordered independent SPEC then QUALITY review; existing canonical package/CI evidence is reused honestly. Product behavior, exact-SHA Windows/product proofs, all security/release/review/manual gates, budgets and scheduler pause remain unchanged. No live product rollout or new root-SHA CI GREEN is inferred. Actual publication and supervisor release/quiescence receipts are external coordination evidence; this preparation cannot fabricate them. Earlier CDC sections remain preserved history.\\n\\n';pathlib.Path('AGENTS.md').write_text(provenance+agents)\nadoption='docs/cdc-adoption-2.12.1.md';pathlib.Path(adoption).write_text('# CDC 2.12.1 process-only atomic adoption\\n\\n'+provenance+'\\nSource base '+config['base']+'. Six-object detached assembly: exact package tree, consumer lock, adapter, checkpoint, AGENTS provenance and this adoption record. Adapter changes only revision/minimum/convergence bindings plus explicit legacy FULL quality; checkpoint changes only policy revision/digest. Original product source, workflow, dependency, artifact and platform evidence remain unchanged. Canonical CI37737459242 succeeded all13steps; official log SHA256e87ea031a508cecee807761b66c6f9eb79c154a2a62f5ba3c3f5342703374c99 includes46bootstrap/1121package/all3consumers. Those tests are reused for the exact immutable package, not retargeted to this consumer commit. New checks validate actual installed bytes, adapter and checkpoint. Root independent ordered reviews precede live publication; actual ownership/claim/FF/readback/release remain mandatory. No redundant full suite, Windows build, provider start or scheduler change.\\n')\ngit('rm','-r',prefix);raw=subprocess.check_output(['git','archive',release+':src/continuous-development-cycle']);pathlib.Path(prefix).mkdir(parents=True,exist_ok=True);tarfile.open(fileobj=io.BytesIO(raw)).extractall(prefix,filter='data');git('add',prefix,'AGENTS.md','docs/cdc-consumer-lock.json','docs/development-cycle.yaml','docs/work-status/current.md',adoption)\nchecks=[]\nfor argv in [[sys.executable,'-B',prefix+'/scripts/validate_package.py'],[sys.executable,'-B',prefix+'/scripts/validate_adapter.py','docs/development-cycle.yaml','--json'],[sys.executable,'-B',prefix+'/scripts/validate_checkpoint_24.py','docs/work-status/current.md','--adapter','docs/development-cycle.yaml']]:\n p=subprocess.run(argv,capture_output=True,text=True);checks.append({'argv':argv,'exit':p.returncode,'stdout':p.stdout,'stderr':p.stderr});(root/'validator-proofs.json').write_text(json.dumps(checks,indent=2)+'\\n');assert p.returncode==0,checks[-1]\nassert git('rev-parse',git('write-tree')+':'+prefix)==package\nrows=git('log','--all','--format=%an%x09%ae').splitlines();name,email=next(s.split('\\t',1) for s in rows if '\\t' in s and s.split('\\t',1)[1].endswith('@users.noreply.github.com'));os.environ.update(GIT_AUTHOR_NAME=name,GIT_AUTHOR_EMAIL=email,GIT_COMMITTER_NAME=name,GIT_COMMITTER_EMAIL=email)\ngit('commit','-m','Adopt immutable CDC 2.12.1 process package atomically [skip ci]');head=git('rev-parse','HEAD');assert git('rev-parse',head+':'+prefix)==package;assert len(git('ls-tree','-r',head+':'+prefix).splitlines())==352;assert not git('status','--porcelain')\npaths=[prefix,'docs/cdc-consumer-lock.json','docs/development-cycle.yaml','docs/work-status/current.md',adoption,'AGENTS.md'];manifest=[{'path':p,'object_type':'tree' if p==prefix else 'blob','object_sha1':git('rev-parse',head+':'+p)} for p in paths]\nchanges=git('diff','--name-only',config['base'],head).splitlines();assert all(any(p==a or p.startswith(a+'/') for a in paths) for p in changes)\ntransaction={'schema':'migration-transaction/v1','transaction_id':config['project']+'-cdc2121-20261008','source_head':config['base'],'target_ref':config['source_ref'],'items':manifest,'completed_paths':paths,'operation_budget':config['operation_budget'],'per_item_operations':1,'batch_overhead_operations':1,'finalization_reserve_operations':20,'detached_checkpoints':[{'completed_count':6,'tree_sha':git('rev-parse',head+'^{tree}')}],'final_tree_sha':git('rev-parse',head+'^{tree}'),'expected_subtree_tree':package,'observed_subtree_tree':package,'policy_reconciled':True}\nassembly=migration.assembly_record(transaction,target_version='2.12.1',target_release_ref='refs/heads/release/v2.12.1',target_release_commit=release,completed_at_utc=datetime.datetime.now(datetime.timezone.utc).isoformat().replace('+00:00','Z'))\nproof={'repository':config['repository'],'source_ref':config['source_ref'],'base':config['base'],'candidate':head,'root_tree':git('rev-parse',head+'^{tree}'),'package_tree':package,'file_count':352,'manifest':manifest,'changed_paths':changes,'validators':checks,'adapter_binding':binding,'policy_nonmigration_semantics_unchanged':True,'checkpoint_product_semantics_unchanged':True,'AGENTS_historical_bytes_preserved':True,'product_files_unchanged':True,'quality_level':'FULL','CI_reuse':'canonical package exact9c45; consumer root does not acquire exact-SHA CI','new_FULL_or_Windows':False,'assembly_record':assembly}\n(root/'preparation.json').write_text(json.dumps(proof,indent=2)+'\\n');(root/'migration-transaction.json').write_text(json.dumps(transaction,indent=2)+'\\n');print(json.dumps({'candidate':head,'package':package,'checks':'GREEN'}))\n",
+    "fleet-worker.py": "import sys,pathlib,json,subprocess,os,copy,datetime\ndriver='/workspace/work/released-2.12.1-adoption/src/continuous-development-cycle/scripts';sys.path.insert(0,driver)\nimport fleet_supervisor,version_convergence,live_target\nroot=pathlib.Path(sys.argv[1]);c=json.loads((root/'config.json').read_text());base=c['base']\ndef git(*a):return subprocess.check_output(['git',*a],text=True,stderr=subprocess.PIPE).strip()\nassert git('rev-parse','HEAD')==base\nold=json.loads(pathlib.Path('fleet/registry.json').read_text());target=json.loads(pathlib.Path('fleet/target.json').read_text());release=json.loads(pathlib.Path('fleet/target-release.json').read_text());assert old['target']==target\ntarget.update(target_version='2.12.1',target_package_fingerprint='git-tree:9c45d98c3254e9658d452c505d8c97698e3fc9a7');new=copy.deepcopy(old);new['target']=target;fleet_supervisor.validate_registry(new);assert new['projects']==old['projects'] and len(new['projects'])==3 and not any('g-supervisor' in p['repository'] for p in new['projects'])\nrelease.update(schema='live-target-release/v2',version='2.12.1',release_ref='refs/heads/release/v2.12.1',release_commit='9b38bd4d9f5fb113ec10bdbca9fbe33908619a54',package_tree='9c45d98c3254e9658d452c505d8c97698e3fc9a7');release['evidence_binding']={'schema':'canonical-release-evidence-binding/v1','source_identity':c['source_id'],'ref':'refs/heads/cdc/release-evidence/v2.12.1','commit':'9dece125d09956d4546721bceb9142856bf786d3','path':'release/evidence-2.12.1.json'}\nfor name,value in [('fleet/registry.json',new),('fleet/target.json',target),('fleet/target-release.json',release)]:pathlib.Path(name).write_text(json.dumps(value,indent=2)+'\\n')\ngit('add','fleet/registry.json','fleet/target.json','fleet/target-release.json');rows=git('log','--all','--format=%an%x09%ae').splitlines();name,email=next(s.split('\\t',1) for s in rows if '\\t' in s and s.split('\\t',1)[1].endswith('@users.noreply.github.com'));os.environ.update(GIT_AUTHOR_NAME=name,GIT_AUTHOR_EMAIL=email,GIT_COMMITTER_NAME=name,GIT_COMMITTER_EMAIL=email);git('commit','-m','Advance canonical Fleet target to immutable CDC 2.12.1 [skip ci]');head=git('rev-parse','HEAD');paths=git('diff','--name-only',base,head).splitlines();assert paths==['fleet/registry.json','fleet/target-release.json','fleet/target.json'];assert not git('status','--porcelain')\nproof={'repository':'bajoicheg/g-cdc','source_ref':'refs/heads/cdc/fleet','base':base,'candidate':head,'root_tree':git('rev-parse',head+'^{tree}'),'changed_paths':paths,'manifest':[{'path':p,'object_type':'blob','object_sha1':git('rev-parse',head+':'+p)} for p in paths],'target':target,'release_binding':release,'registry_projects_preserved':new['projects']==old['projects'],'retired_supervisor_unchanged':True,'SLO_and_age_unchanged':new['slo_policy']==old['slo_policy'] and new['assessment_max_age_seconds']==old['assessment_max_age_seconds'],'scheduler_mutations':False,'quality_level':'FULL','schema_checks':'GREEN','publication_prerequisite':'actual canonical fleet-supervisor leader+one-use effect claim and ordered reviews; no authority from preparation'}\n(root/'preparation.json').write_text(json.dumps(proof,indent=2)+'\\n');print(json.dumps(proof))\n",
+    "start-consumer.py": "import sys,pathlib,json,subprocess,uuid,datetime,importlib.util\ndriver='/workspace/work/released-2.12.1-adoption/src/continuous-development-cycle/scripts';sys.path.insert(0,driver)\nimport managed_host_bridge as bridge,budget,operation_intent as op\nfrom git_lease_store import GitLeaseStore\nfrom git_remote_identity import remote_identity\nname=sys.argv[1];allroot=pathlib.Path('/workspace/work/adopt2121-20261008');repo=allroot/name;root=allroot/(name+'-adapter');root.mkdir(exist_ok=True)\nmapping={'gpc':('bajoicheg/g-pc-health-check','refs/heads/design/0.17.0-security-posture'),'switcher':('bajoicheg/g-switcher','refs/heads/release/2.0.1'),'gad':('bajoicheg-private/g-ad-control','refs/heads/codex/build-0.2.0-engineer-attribute-workflow')};repository,ref=mapping[name]\ndef git(*a):return subprocess.check_output(['git',*a],cwd=repo,text=True,stderr=subprocess.PIPE).strip()\nsource_id=remote_identity(repo,'origin');base=git('ls-remote','origin',ref).split()[0];git('fetch','--no-tags','origin',ref)\nls=GitLeaseStore(repo,'origin','refs/heads/cdc/coordination');lr,l=ls.read();assert l['owner_id'] is None and l['external_guard'] is None and l['finalization'] is None\nif name=='gad':\n pool=json.loads((allroot/'gad-source/post-release-pool-state.json').read_text());task=next(x for x in pool['tasks'] if x['id']=='windows-observer');assert task['status']=='cancelled' and task['active_attempt_id'] is None and task['reservation_token'] is None and l['generation']==114\ntry:git('remote','get-url','canonical')\nexcept subprocess.CalledProcessError:git('remote','add','canonical','https://github.com/bajoicheg/g-cdc.git')\nassert git('ls-remote','canonical','refs/heads/release/v2.12.1').split()[0]=='9b38bd4d9f5fb113ec10bdbca9fbe33908619a54'\nassert git('ls-remote','canonical','refs/heads/cdc/release-evidence/v2.12.1').split()[0]=='9dece125d09956d4546721bceb9142856bf786d3'\ngit('fetch','--no-tags','canonical','refs/heads/release/v2.12.1','refs/heads/cdc/release-evidence/v2.12.1')\npaths=['.agents/skills/continuous-development-cycle','AGENTS.md','docs/cdc-consumer-lock.json','docs/development-cycle.yaml','docs/work-status/current.md','docs/cdc-adoption-2.12.1.md']\nplan={'schema':'managed-executor-pool-plan/v1','pool_id':'cdc2121-adopt-'+name+'-20261008','change_id':'cdc2121-consumer-adoption','parent_invocation_id':'cloud-continuation-a1-adopt2121-'+name,'base_sha':base,'integrator_id':'managed-host-bridge','coordination_ref':'refs/heads/cdc/adopt2121-'+name+'-pool-20261008','coordination_store_id':source_id,'max_parallel':1,'total_runtime_budget_seconds':1200,'total_cost_budget_units':1,'tasks':[{'id':'atomic-adoption','role':'writer','required':True,'dependencies':[],'executor_id':'adopt2121-'+name+'-worker','branch':'cdc/cloud-adopt2121-'+name+'-20261008','worktree':'work/adopt2121-'+name+'-writer-20261008','write_paths':paths,'expected_outputs':['out:atomic-consumer-adoption'],'expected_evidence':['evidence:package-adapter-checkpoint-reviews'],'backend_preferences':['local_command'],'max_runtime_seconds':1200,'max_cost_units':1}]}\nreq={'schema':'managed-host-start/v1','repo_root':str(repo),'remote':'origin','plan':plan,'journal_root':str(allroot/(name+'-journal')),'handle_root':str(allroot/(name+'-handles')),'lease_coordination_ref':'refs/heads/cdc/coordination','lease_repository':repository,'lease_source_ref':ref,'task_id':'atomic-adoption','attempt_id':'adopt2121-'+name+'-a1','reservation_token':'adopt2121:'+name+':a1','owner_id':str(uuid.uuid4()),'argv':[sys.executable,'-B',str(allroot/'consumer-worker.py'),str(root)]}\n(root/'start-request.json').write_text(json.dumps(req,indent=2)+'\\n')\ns=importlib.util.spec_from_file_location('bu','/workspace/work/normalize2121-adapter/budget-update.py');bu=importlib.util.module_from_spec(s);s.loader.exec_module(bu);wake='cloud-adopt2121-20261008';now=datetime.datetime.now(datetime.timezone.utc).isoformat().replace('+00:00','Z');event={'type':'reserve','event_id':'adopt2121-'+name+'-managed-admission','task_id':'cdc-parallel-maintenance','wake_id':wake,'at_utc':now,'kind':'tool_call','operation_key':op._hash(req),'attempt_id':req['attempt_id'],'scope':'consumer-adoption/'+repository,'recovery_ref':None,'cost':{'tool_calls':1,'tokens':None,'elapsed_seconds':None}};bu.update([event],wake,str(root/'budget-admission.json'))\nledger=json.loads((root/'budget-admission.json').read_text())['ledger'];remaining=ledger['policy']['task_limits']['tool_calls']-budget._totals(ledger)[1]['tool_calls'];assert remaining>=30\nconfig={'project':name,'repository':repository,'source_ref':ref,'base':base,'prior_lease_revision':lr,'prior_lease':l,'source_id':source_id,'operation_budget':remaining,'owner_authorization':'2026-10-08T09:04:33Z update all active consumers and Fleet to released2.12.1'};(root/'config.json').write_text(json.dumps(config,indent=2)+'\\n')\nr=bridge.start(req);(root/'start-receipt.json').write_text(json.dumps(r,indent=2)+'\\n');print(json.dumps(r))\n",
+    "start-fleet.py": "import sys,pathlib,json,subprocess,uuid,datetime,importlib.util\ndriver='/workspace/work/released-2.12.1-adoption/src/continuous-development-cycle/scripts';sys.path.insert(0,driver)\nimport managed_host_bridge as bridge,operation_intent as op,execution_lease_v2 as v2,fleet_supervisor_control as fleet,budget\nfrom git_document_store import GitDocumentStore\nfrom git_lease_store import GitLeaseStore\nfrom git_remote_identity import remote_identity\nallroot=pathlib.Path('/workspace/work/adopt2121-20261008');root=allroot/'fleet-adapter';root.mkdir(exist_ok=True);repo='/workspace/g-cdc';rid=remote_identity(repo,'origin')\ndef git(*a):return subprocess.check_output(['git',*a],cwd=repo,text=True,stderr=subprocess.PIPE).strip()\nbase=git('ls-remote','origin','refs/heads/cdc/fleet').split()[0];git('fetch','--no-tags','origin','refs/heads/cdc/fleet')\ncanonical=GitDocumentStore(repo,'origin','refs/heads/cdc/fleet-supervisor',rid);fr,fs=canonical.read();fleet.validate(fs);assert fs['lease']['owner_id'] is None and fs['lease']['external_guard'] is None and all(x['state']=='terminal' for x in fs['effects'])\npaths=['fleet/registry.json','fleet/target.json','fleet/target-release.json'];plan={'schema':'managed-executor-pool-plan/v1','pool_id':'cdc2121-fleet-target-20261008','change_id':'cdc2121-fleet-target','parent_invocation_id':'cloud-continuation-a1-adopt2121-fleet','base_sha':base,'integrator_id':'managed-host-bridge','coordination_ref':'refs/heads/cdc/adopt2121-fleet-pool-20261008','coordination_store_id':rid,'max_parallel':1,'total_runtime_budget_seconds':1200,'total_cost_budget_units':1,'tasks':[{'id':'fleet-target','role':'writer','required':True,'dependencies':[],'executor_id':'adopt2121-fleet-worker','branch':'cdc/cloud-adopt2121-fleet-20261008','worktree':'work/adopt2121-fleet-writer-20261008','write_paths':paths,'expected_outputs':['out:atomic-fleet-target'],'expected_evidence':['evidence:pinned-release-leader-claim'],'backend_preferences':['local_command'],'max_runtime_seconds':1200,'max_cost_units':1}]}\nref='refs/heads/cdc/adopt2121-fleet-terminal-20261008';req={'schema':'managed-host-start/v1','repo_root':repo,'remote':'origin','plan':plan,'journal_root':str(allroot/'fleet-journal'),'handle_root':str(allroot/'fleet-handles'),'lease_coordination_ref':ref,'lease_repository':'bajoicheg/g-cdc','lease_source_ref':'refs/heads/cdc/fleet','task_id':'fleet-target','attempt_id':'adopt2121-fleet-a1','reservation_token':'adopt2121:fleet:a1','owner_id':str(uuid.uuid4()),'argv':[sys.executable,'-B',str(allroot/'fleet-worker.py'),str(root)]}\n(root/'start-request.json').write_text(json.dumps(req,indent=2)+'\\n');(root/'config.json').write_text(json.dumps({'base':base,'source_id':rid,'canonical_supervisor_revision':fr,'canonical_supervisor_before':fs,'host_terminal_scope':'preparation/supervision only; does not create Fleet leadership; canonical fleet-supervisor remains sole leadership authority'},indent=2)+'\\n')\ns=importlib.util.spec_from_file_location('bu','/workspace/work/normalize2121-adapter/budget-update.py');bu=importlib.util.module_from_spec(s);s.loader.exec_module(bu);wake='cloud-adopt2121-20261008';now=datetime.datetime.now(datetime.timezone.utc).isoformat().replace('+00:00','Z');e={'type':'reserve','event_id':'adopt2121-fleet-managed-admission','task_id':'cdc-parallel-maintenance','wake_id':wake,'at_utc':now,'kind':'tool_call','operation_key':op._hash(req),'attempt_id':req['attempt_id'],'scope':'fleet-target/preparation-managed-terminal','recovery_ref':None,'cost':{'tool_calls':1,'tokens':None,'elapsed_seconds':None}};bu.update([e],wake,str(root/'budget-admission.json'))\nls=GitLeaseStore(repo,'origin',ref);lr,l=ls.read();assert lr is None,'existing terminal attempt must reconcile, never reset';lr=ls.compare_and_swap(None,v2.initialize('bajoicheg/g-cdc','refs/heads/cdc/fleet'));(root/'terminal-init.json').write_text(json.dumps({'revision':lr,'purpose':'host terminal only, NOT canonical Fleet leadership'})+'\\n')\nr=bridge.start(req);(root/'start-receipt.json').write_text(json.dumps(r,indent=2)+'\\n');print(json.dumps(r))\n",
+    "publish-review-candidate.py": "import sys,pathlib,json,subprocess,datetime,importlib.util,re\ndriver='/workspace/work/released-2.12.1-adoption/src/continuous-development-cycle/scripts';sys.path.insert(0,driver)\nimport managed_host_bridge as bridge,operation_intent as op,execution_lease_v2 as v2\nfrom git_document_store import GitDocumentStore\nfrom git_remote_identity import remote_identity\nname=sys.argv[1];allroot=pathlib.Path('/workspace/work/adopt2121-20261008');root=allroot/(name+'-adapter');req=json.loads((root/'start-request.json').read_text());h=json.loads((root/'start-receipt.json').read_text());proof=json.loads((root/'preparation.json').read_text());repo=req['repo_root'];rid=remote_identity(repo,'origin')\ndef now():return datetime.datetime.now(datetime.timezone.utc).isoformat().replace('+00:00','Z')\ndef git(*a):\n p=subprocess.run(['git',*a],cwd=repo,text=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)\n if p.returncode:\n  err=re.sub(r'https://[^/@\\s]+@','https://[redacted]@',p.stderr);err=re.sub(r'(?:gh[pousr]_[A-Za-z0-9]+|github_pat_[A-Za-z0-9_]+)','[redacted]',err)\n  (root/'native-git-last-error.json').write_text(json.dumps({'argv':['git',*a],'exit_code':p.returncode,'stderr':err},indent=2)+'\\n');raise RuntimeError('native Git failed; sanitized stderr saved')\n return p.stdout.strip()\nsession,runtime,ls=bridge._recover_session(req['handle_root'],h['handle_id']);o=runtime.observe(req['task_id'],req['attempt_id']);assert o['status']=='awaiting_release' and o['pending_terminal_status']=='succeeded';bridge._renew_for_result(session,ls,o);head,paths,_=bridge._result(session,runtime);assert head==proof['candidate']\nassembly_ref='refs/heads/cdc/adopt2121-'+name+'-assembly-20261008'\nif name!='fleet':\n es=GitDocumentStore(repo,'origin',assembly_ref,rid);er,old=es.read();assert er is None or old==proof['assembly_record'];er=es.compare_and_swap(None,proof['assembly_record']) if er is None else er;assert es.read()==(er,proof['assembly_record']);(root/'assembly-authority.json').write_text(json.dumps({'schema':'migration-assembly-authority/v1','store_ref':assembly_ref,'store_id':rid,'revision':er,'transaction_id':proof['assembly_record']['transaction_id'],'manifest_digest':proof['assembly_record']['manifest_digest']},indent=2)+'\\n')\ncandidate_ref='refs/heads/cdc/adopt2121-'+name+'-candidate-20261008';assert not git('ls-remote','origin',candidate_ref)\nbinding={'repository':req['lease_repository'],'candidate_sha':head,'backend':'native_git','mode':'DETACHED_REVIEW_PREPARATION','environment_id':'cloud-continuation-a1','check_suite_fingerprint':op._hash(proof),'environment_fingerprint':op._hash({'source_id':rid}),'check_plan_digest':op._hash({'candidate_ref':candidate_ref,'source_must_stay':proof['base'],'candidate':head})}\nintent=op.prepare(binding,req['attempt_id']+'-review-publication',req['lease_source_ref'],now());store=GitDocumentStore(repo,'origin','refs/heads/cdc/adopt2121-'+name+'-review-operation-20261008',rid);ir,old=store.read();assert ir is None or (old==intent or (old.get('state')=='prepared' and old.get('binding')==intent['binding'] and old.get('attempt_id')==intent['attempt_id'])),'unknown submission never replay';intent=old if ir is not None else intent;ir=store.compare_and_swap(None,intent) if ir is None else ir;rr,d=store.read();assert rr==ir;read_receipt=op.verify_readback(intent,d,'git:'+ir+':document.json',now());intent=op.transition(intent,'submitting',now(),receipt=read_receipt);ir=store.compare_and_swap(ir,intent)\ns=importlib.util.spec_from_file_location('bu','/workspace/work/normalize2121-adapter/budget-update.py');bu=importlib.util.module_from_spec(s);s.loader.exec_module(bu);wake='cloud-adopt2121-20261008';e={'type':'reserve','event_id':'adopt2121-'+name+'-review-publication','task_id':'cdc-parallel-maintenance','wake_id':wake,'at_utc':now(),'kind':'tool_call','operation_key':intent['operation_key'],'attempt_id':intent['attempt_id'],'scope':'detached-candidate-publication/'+name,'recovery_ref':None,'cost':{'tool_calls':1,'tokens':None,'elapsed_seconds':None}};br=bu.update([e],wake,str(root/'review-publication-budget.json'))\nlr,l=ls.read();l=v2.set_guard(l,h['owner_id'],h['generation'],h['invocation_id'],now(),intent,'git:'+ir+':document.json');lr=ls.compare_and_swap(lr,l)\nassert git('ls-remote','origin',req['lease_source_ref']).split()[0]==proof['base'] and not git('ls-remote','origin',candidate_ref)\nlive=bridge.observe({'schema':'managed-host-observe/v1','handle_root':req['handle_root'],'handle_id':h['handle_id']});assert live['lease_owned'] and live['runtime_status']=='awaiting_release'\nassert subprocess.check_output(['git','ls-remote','origin','refs/heads/cdc/parallel-maintenance-budget-20261007'],cwd='/workspace/g-cdc',text=True).split()[0]==br\nlr,l=ls.read();claim=v2.claim_submission(ls,lr,req['lease_repository'],req['lease_source_ref'],h['owner_id'],h['generation'],h['invocation_id'],now(),intent_digest=op._hash(intent));(root/'review-publication-claim.json').write_text(json.dumps(claim,indent=2)+'\\n')\nargv=['push','origin',head+':'+candidate_ref];output=git(*argv);readback=git('ls-remote','origin',candidate_ref).split()[0];assert readback==head;assert git('ls-remote','origin',req['lease_source_ref']).split()[0]==proof['base']\ntask={'task_id':head,'task_url':'https://github.com/'+req['lease_repository']+'/tree/'+candidate_ref.removeprefix('refs/heads/'),'operation_key':intent['operation_key'],'attempt_id':intent['attempt_id'],'binding':intent['binding'],'state':'terminal','conclusion':'succeeded','evidence_refs':['git:'+head]};obs={'schema':'operation-observation/v1','operation_key':intent['operation_key'],'lookup_complete':True,'observed_at_utc':now(),'tasks':[task]};lr,l=ls.read();lr=ls.compare_and_swap(lr,v2.clear_guard(l,h['owner_id'],h['generation'],h['invocation_id'],now(),obs,'git:'+head));ir,old=store.read();store.compare_and_swap(ir,op.transition(old,'terminal',now(),task=task))\nreceipt={'candidate_ref':candidate_ref,'candidate':head,'native_argv':['git',*argv],'exit_code':0,'readback':readback,'source_base_unchanged':proof['base'],'claim':claim,'guard_resolution_revision':lr,'at_utc':now()};(root/'review-ready-publication.json').write_text(json.dumps(receipt,indent=2)+'\\n');print(json.dumps(receipt))\n",
+    "publish-review-proof.py": "import sys,pathlib,json,subprocess,datetime,importlib.util,re,os\ndriver='/workspace/work/released-2.12.1-adoption/src/continuous-development-cycle/scripts';sys.path.insert(0,driver)\nimport managed_host_bridge as bridge,operation_intent as op,execution_lease_v2 as v2\nfrom git_document_store import GitDocumentStore\nfrom git_remote_identity import remote_identity\nname=sys.argv[1];allroot=pathlib.Path('/workspace/work/adopt2121-20261008');root=allroot/(name+'-adapter');req=json.loads((root/'start-request.json').read_text());h=json.loads((root/'start-receipt.json').read_text());proof=json.loads((root/'preparation.json').read_text());repo=req['repo_root'];rid=remote_identity(repo,'origin')\ndef now():return datetime.datetime.now(datetime.timezone.utc).isoformat().replace('+00:00','Z')\ndef git(*a):\n p=subprocess.run(['git',*a],cwd=repo,text=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)\n if p.returncode:\n  err=re.sub(r'https://[^/@\\s]+@','https://[redacted]@',p.stderr);err=re.sub(r'(?:gh[pousr]_[A-Za-z0-9]+|github_pat_[A-Za-z0-9_]+)','[redacted]',err)\n  (root/'native-git-last-error.json').write_text(json.dumps({'argv':['git',*a],'exit_code':p.returncode,'stderr':err},indent=2)+'\\n');raise RuntimeError('native Git failed; sanitized stderr saved')\n return p.stdout.strip()\nsession,runtime,ls=bridge._recover_session(req['handle_root'],h['handle_id']);o=runtime.observe(req['task_id'],req['attempt_id']);assert o['status']=='awaiting_release' and o['pending_terminal_status']=='succeeded';bridge._renew_for_result(session,ls,o);head,paths,_=bridge._result(session,runtime);assert head==proof['candidate']\nassembly_ref='refs/heads/cdc/adopt2121-'+name+'-assembly-20261008'\nif name!='fleet':\n es=GitDocumentStore(repo,'origin',assembly_ref,rid);er,old=es.read();assert er is None or old==proof['assembly_record'];er=es.compare_and_swap(None,proof['assembly_record']) if er is None else er;assert es.read()==(er,proof['assembly_record']);(root/'assembly-authority.json').write_text(json.dumps({'schema':'migration-assembly-authority/v1','store_ref':assembly_ref,'store_id':rid,'revision':er,'transaction_id':proof['assembly_record']['transaction_id'],'manifest_digest':proof['assembly_record']['manifest_digest']},indent=2)+'\\n')\nreport={'schema':'cdc-consumer-adoption-review-ready/v1','scope':'2026-10-08T09:04:33Z','implementation_candidate':head,'live_publication_hold':'independent SPEC then independent QUALITY required','preparation':proof,'proofs':{}}\nfor filename in ['validator-proofs.json','strict-package-verification.json','migration-transaction.json','assembly-authority.json','review-ready-publication.json','start-receipt.json','consumer-publication-state.json','consumer-publication-preflight.json','live-target-preflight.json','proof-preparation-read-failure.json','fleet-leader-admission-preflight.json','proof-publication-failed-a1.json','proof-publication-failed-a2.json']:\n path=root/filename\n if path.exists():report['proofs'][filename]=json.loads(path.read_text())\nreport['proofs']['prior_quiescence_provenance']='GAD immutable post-release pool e8b64fc0155848c5abcc268db5080a782db814b5:pool-state.json cancelled, produced by released observe terminal/quiescent validation; not a fabricated raw receipt' if name=='gad' else 'fresh canonical released unowned source lease before actual admission'\nrows=git('log','--all','--format=%an%x09%ae').splitlines();author_name,author_email=next(row.split('\\t',1) for row in rows if '\\t' in row and row.split('\\t',1)[1].endswith('@users.noreply.github.com'));os.environ.update(GIT_AUTHOR_NAME=author_name,GIT_AUTHOR_EMAIL=author_email,GIT_COMMITTER_NAME=author_name,GIT_COMMITTER_EMAIL=author_email,GIT_TERMINAL_PROMPT='0')\nraw=(json.dumps(report,indent=2,ensure_ascii=False)+'\\n').encode();(root/'review-document.json').write_bytes(raw)\nblob=subprocess.check_output(['git','hash-object','-w','--stdin'],input=raw,cwd=repo).decode().strip()\ntree=subprocess.check_output(['git','mktree'],input=('100644 blob '+blob+'\\tdocument.json\\n').encode(),cwd=repo).decode().strip()\nhead=subprocess.check_output(['git','commit-tree',tree,'-m','CDC 2.12.1 detached review proof [skip ci]'],cwd=repo).decode().strip()\ncandidate_ref='refs/heads/cdc/adopt2121-'+name+'-review-proof-20261008';assert not git('ls-remote','origin',candidate_ref)\nbinding={'repository':req['lease_repository'],'candidate_sha':head,'backend':'native_git','mode':'DETACHED_REVIEW_PREPARATION','environment_id':'cloud-continuation-a1','check_suite_fingerprint':op._hash(proof),'environment_fingerprint':op._hash({'source_id':rid}),'check_plan_digest':op._hash({'candidate_ref':candidate_ref,'source_must_stay':proof['base'],'candidate':head})}\nintent=op.prepare(binding,req['attempt_id']+'-review-proof-publication',req['lease_source_ref'],now());store=GitDocumentStore(repo,'origin','refs/heads/cdc/adopt2121-'+name+'-review-proof-operation-20261008',rid);ir,old=store.read();assert ir is None or (old==intent or (old.get('state')=='prepared' and old.get('binding')==intent['binding'] and old.get('attempt_id')==intent['attempt_id'])),'unknown submission never replay';intent=old if ir is not None else intent;ir=store.compare_and_swap(None,intent) if ir is None else ir;rr,d=store.read();assert rr==ir;read_receipt=op.verify_readback(intent,d,'git:'+ir+':document.json',now());intent=op.transition(intent,'submitting',now(),receipt=read_receipt);ir=store.compare_and_swap(ir,intent)\ns=importlib.util.spec_from_file_location('bu','/workspace/work/normalize2121-adapter/budget-update.py');bu=importlib.util.module_from_spec(s);s.loader.exec_module(bu);wake='cloud-adopt2121-20261008';e={'type':'reserve','event_id':'adopt2121-'+name+'-review-proof-publication','task_id':'cdc-parallel-maintenance','wake_id':wake,'at_utc':now(),'kind':'tool_call','operation_key':intent['operation_key'],'attempt_id':intent['attempt_id'],'scope':'detached-candidate-publication/'+name,'recovery_ref':None,'cost':{'tool_calls':1,'tokens':None,'elapsed_seconds':None}};br=bu.update([e],wake,str(root/'review-proof-publication-budget.json'))\nlr,l=ls.read();l=v2.set_guard(l,h['owner_id'],h['generation'],h['invocation_id'],now(),intent,'git:'+ir+':document.json');lr=ls.compare_and_swap(lr,l)\nassert git('ls-remote','origin',req['lease_source_ref']).split()[0]==proof['base'] and not git('ls-remote','origin',candidate_ref)\nlive=bridge.observe({'schema':'managed-host-observe/v1','handle_root':req['handle_root'],'handle_id':h['handle_id']});assert live['lease_owned'] and live['runtime_status']=='awaiting_release'\nassert subprocess.check_output(['git','ls-remote','origin','refs/heads/cdc/parallel-maintenance-budget-20261007'],cwd='/workspace/g-cdc',text=True).split()[0]==br\nlr,l=ls.read();claim=v2.claim_submission(ls,lr,req['lease_repository'],req['lease_source_ref'],h['owner_id'],h['generation'],h['invocation_id'],now(),intent_digest=op._hash(intent));(root/'review-proof-publication-claim.json').write_text(json.dumps(claim,indent=2)+'\\n')\nargv=['push','origin',head+':'+candidate_ref];output=git(*argv);readback=git('ls-remote','origin',candidate_ref).split()[0];assert readback==head;assert git('ls-remote','origin',req['lease_source_ref']).split()[0]==proof['base']\ntask={'task_id':head,'task_url':'https://github.com/'+req['lease_repository']+'/tree/'+candidate_ref.removeprefix('refs/heads/'),'operation_key':intent['operation_key'],'attempt_id':intent['attempt_id'],'binding':intent['binding'],'state':'terminal','conclusion':'succeeded','evidence_refs':['git:'+head]};obs={'schema':'operation-observation/v1','operation_key':intent['operation_key'],'lookup_complete':True,'observed_at_utc':now(),'tasks':[task]};lr,l=ls.read();lr=ls.compare_and_swap(lr,v2.clear_guard(l,h['owner_id'],h['generation'],h['invocation_id'],now(),obs,'git:'+head));ir,old=store.read();store.compare_and_swap(ir,op.transition(old,'terminal',now(),task=task))\nreceipt={'candidate_ref':candidate_ref,'candidate':head,'native_argv':['git',*argv],'exit_code':0,'readback':readback,'source_base_unchanged':proof['base'],'claim':claim,'guard_resolution_revision':lr,'at_utc':now()};(root/'review-proof-publication.json').write_text(json.dumps(receipt,indent=2)+'\\n');print(json.dumps(receipt))\n",
+    "publish-review-proof-a2.py": "import sys,pathlib,json,subprocess,datetime,importlib.util,re,os\ndriver='/workspace/work/released-2.12.1-adoption/src/continuous-development-cycle/scripts';sys.path.insert(0,driver)\nimport managed_host_bridge as bridge,operation_intent as op,execution_lease_v2 as v2\nfrom git_document_store import GitDocumentStore\nfrom git_remote_identity import remote_identity\nname=sys.argv[1];allroot=pathlib.Path('/workspace/work/adopt2121-20261008');root=allroot/(name+'-adapter');req=json.loads((root/'start-request.json').read_text());h=json.loads((root/'start-receipt.json').read_text());proof=json.loads((root/'preparation.json').read_text());repo=req['repo_root'];rid=remote_identity(repo,'origin')\ndef now():return datetime.datetime.now(datetime.timezone.utc).isoformat().replace('+00:00','Z')\ndef git(*a):\n p=subprocess.run(['git',*a],cwd=repo,text=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)\n if p.returncode:\n  err=re.sub(r'https://[^/@\\s]+@','https://[redacted]@',p.stderr);err=re.sub(r'(?:gh[pousr]_[A-Za-z0-9]+|github_pat_[A-Za-z0-9_]+)','[redacted]',err)\n  (root/'native-git-last-error.json').write_text(json.dumps({'argv':['git',*a],'exit_code':p.returncode,'stderr':err},indent=2)+'\\n');raise RuntimeError('native Git failed; sanitized stderr saved')\n return p.stdout.strip()\nsession,runtime,ls=bridge._recover_session(req['handle_root'],h['handle_id']);o=runtime.observe(req['task_id'],req['attempt_id']);assert o['status']=='awaiting_release' and o['pending_terminal_status']=='succeeded';bridge._renew_for_result(session,ls,o);head,paths,_=bridge._result(session,runtime);assert head==proof['candidate']\nassembly_ref='refs/heads/cdc/adopt2121-'+name+'-assembly-20261008'\nif name!='fleet':\n es=GitDocumentStore(repo,'origin',assembly_ref,rid);er,old=es.read();assert er is None or old==proof['assembly_record'];er=es.compare_and_swap(None,proof['assembly_record']) if er is None else er;assert es.read()==(er,proof['assembly_record']);(root/'assembly-authority.json').write_text(json.dumps({'schema':'migration-assembly-authority/v1','store_ref':assembly_ref,'store_id':rid,'revision':er,'transaction_id':proof['assembly_record']['transaction_id'],'manifest_digest':proof['assembly_record']['manifest_digest']},indent=2)+'\\n')\nreport={'schema':'cdc-consumer-adoption-review-ready/v1','scope':'2026-10-08T09:04:33Z','implementation_candidate':head,'live_publication_hold':'independent SPEC then independent QUALITY required','preparation':proof,'proofs':{}}\nfor filename in ['validator-proofs.json','strict-package-verification.json','migration-transaction.json','assembly-authority.json','review-ready-publication.json','start-receipt.json','consumer-publication-state.json','proof-publication-failed-a1.json']:\n path=root/filename\n if path.exists():report['proofs'][filename]=json.loads(path.read_text())\nreport['proofs']['prior_quiescence_provenance']='GAD immutable post-release pool e8b64fc0155848c5abcc268db5080a782db814b5:pool-state.json cancelled, produced by released observe terminal/quiescent validation; not a fabricated raw receipt' if name=='gad' else 'fresh canonical released unowned source lease before actual admission'\nrows=git('log','--all','--format=%an%x09%ae').splitlines();author_name,author_email=next(row.split('\\t',1) for row in rows if '\\t' in row and row.split('\\t',1)[1].endswith('@users.noreply.github.com'));os.environ.update(GIT_AUTHOR_NAME=author_name,GIT_AUTHOR_EMAIL=author_email,GIT_COMMITTER_NAME=author_name,GIT_COMMITTER_EMAIL=author_email,GIT_TERMINAL_PROMPT='0')\nraw=(json.dumps(report,indent=2,ensure_ascii=False)+'\\n').encode();(root/'review-document.json').write_bytes(raw)\nblob=subprocess.check_output(['git','hash-object','-w','--stdin'],input=raw,cwd=repo).decode().strip()\ntree=subprocess.check_output(['git','mktree'],input=('100644 blob '+blob+'\\tdocument.json\\n').encode(),cwd=repo).decode().strip()\nhead=subprocess.check_output(['git','commit-tree',tree,'-m','CDC 2.12.1 detached review proof [skip ci]'],cwd=repo).decode().strip()\ncandidate_ref='refs/heads/cdc/adopt2121-'+name+'-review-proof-a2-20261008';assert not git('ls-remote','origin',candidate_ref)\nbinding={'repository':req['lease_repository'],'candidate_sha':head,'backend':'native_git','mode':'DETACHED_REVIEW_PREPARATION','environment_id':'cloud-continuation-a1','check_suite_fingerprint':op._hash(proof),'environment_fingerprint':op._hash({'source_id':rid}),'check_plan_digest':op._hash({'candidate_ref':candidate_ref,'source_must_stay':proof['base'],'candidate':head})}\nintent=op.prepare(binding,req['attempt_id']+'-review-proof-publication-a2',req['lease_source_ref'],now());store=GitDocumentStore(repo,'origin','refs/heads/cdc/adopt2121-'+name+'-review-proof-operation-a2-20261008',rid);ir,old=store.read();assert ir is None or (old==intent or (old.get('state')=='prepared' and old.get('binding')==intent['binding'] and old.get('attempt_id')==intent['attempt_id'])),'unknown submission never replay';intent=old if ir is not None else intent;ir=store.compare_and_swap(None,intent) if ir is None else ir;rr,d=store.read();assert rr==ir;read_receipt=op.verify_readback(intent,d,'git:'+ir+':document.json',now());intent=op.transition(intent,'submitting',now(),receipt=read_receipt);ir=store.compare_and_swap(ir,intent)\ns=importlib.util.spec_from_file_location('bu','/workspace/work/normalize2121-adapter/budget-update.py');bu=importlib.util.module_from_spec(s);s.loader.exec_module(bu);wake='cloud-adopt2121-20261008';e={'type':'reserve','event_id':'adopt2121-'+name+'-review-proof-publication-a2','task_id':'cdc-parallel-maintenance','wake_id':wake,'at_utc':now(),'kind':'tool_call','operation_key':intent['operation_key'],'attempt_id':intent['attempt_id'],'scope':'detached-candidate-publication/'+name,'recovery_ref':None,'cost':{'tool_calls':1,'tokens':None,'elapsed_seconds':None}};br=bu.update([e],wake,str(root/'review-proof-publication-budget.json'))\nlr,l=ls.read();l=v2.set_guard(l,h['owner_id'],h['generation'],h['invocation_id'],now(),intent,'git:'+ir+':document.json');lr=ls.compare_and_swap(lr,l)\nassert git('ls-remote','origin',req['lease_source_ref']).split()[0]==proof['base'] and not git('ls-remote','origin',candidate_ref)\nlive=bridge.observe({'schema':'managed-host-observe/v1','handle_root':req['handle_root'],'handle_id':h['handle_id']});assert live['lease_owned'] and live['runtime_status']=='awaiting_release'\nassert subprocess.check_output(['git','ls-remote','origin','refs/heads/cdc/parallel-maintenance-budget-20261007'],cwd='/workspace/g-cdc',text=True).split()[0]==br\nlr,l=ls.read();claim=v2.claim_submission(ls,lr,req['lease_repository'],req['lease_source_ref'],h['owner_id'],h['generation'],h['invocation_id'],now(),intent_digest=op._hash(intent));(root/'review-proof-publication-claim.json').write_text(json.dumps(claim,indent=2)+'\\n')\nargv=['push','origin',head+':'+candidate_ref];output=git(*argv);readback=git('ls-remote','origin',candidate_ref).split()[0];assert readback==head;assert git('ls-remote','origin',req['lease_source_ref']).split()[0]==proof['base']\ntask={'task_id':head,'task_url':'https://github.com/'+req['lease_repository']+'/tree/'+candidate_ref.removeprefix('refs/heads/'),'operation_key':intent['operation_key'],'attempt_id':intent['attempt_id'],'binding':intent['binding'],'state':'terminal','conclusion':'succeeded','evidence_refs':['git:'+head]};obs={'schema':'operation-observation/v1','operation_key':intent['operation_key'],'lookup_complete':True,'observed_at_utc':now(),'tasks':[task]};lr,l=ls.read();lr=ls.compare_and_swap(lr,v2.clear_guard(l,h['owner_id'],h['generation'],h['invocation_id'],now(),obs,'git:'+head));ir,old=store.read();store.compare_and_swap(ir,op.transition(old,'terminal',now(),task=task))\nreceipt={'candidate_ref':candidate_ref,'candidate':head,'native_argv':['git',*argv],'exit_code':0,'readback':readback,'source_base_unchanged':proof['base'],'claim':claim,'guard_resolution_revision':lr,'at_utc':now()};(root/'review-proof-publication.json').write_text(json.dumps(receipt,indent=2)+'\\n');print(json.dumps(receipt))\n",
+    "publish-review-proof-a3.py": "import sys,pathlib,json,subprocess,datetime,importlib.util,re,os\ndriver='/workspace/work/released-2.12.1-adoption/src/continuous-development-cycle/scripts';sys.path.insert(0,driver)\nimport managed_host_bridge as bridge,operation_intent as op,execution_lease_v2 as v2\nfrom git_document_store import GitDocumentStore\nfrom git_remote_identity import remote_identity\nname=sys.argv[1];allroot=pathlib.Path('/workspace/work/adopt2121-20261008');root=allroot/(name+'-adapter');req=json.loads((root/'start-request.json').read_text());h=json.loads((root/'start-receipt.json').read_text());proof=json.loads((root/'preparation.json').read_text());repo=req['repo_root'];rid=remote_identity(repo,'origin')\ndef now():return datetime.datetime.now(datetime.timezone.utc).isoformat().replace('+00:00','Z')\ndef git(*a):\n p=subprocess.run(['git',*a],cwd=repo,text=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)\n if p.returncode:\n  err=re.sub(r'https://[^/@\\s]+@','https://[redacted]@',p.stderr);err=re.sub(r'(?:gh[pousr]_[A-Za-z0-9]+|github_pat_[A-Za-z0-9_]+)','[redacted]',err)\n  (root/'native-git-last-error.json').write_text(json.dumps({'argv':['git',*a],'exit_code':p.returncode,'stderr':err},indent=2)+'\\n');raise RuntimeError('native Git failed; sanitized stderr saved')\n return p.stdout.strip()\nsession,runtime,ls=bridge._recover_session(req['handle_root'],h['handle_id']);o=runtime.observe(req['task_id'],req['attempt_id']);assert o['status']=='awaiting_release' and o['pending_terminal_status']=='succeeded';bridge._renew_for_result(session,ls,o);head,paths,_=bridge._result(session,runtime);assert head==proof['candidate']\nassembly_ref='refs/heads/cdc/adopt2121-'+name+'-assembly-20261008'\nif name!='fleet':\n es=GitDocumentStore(repo,'origin',assembly_ref,rid);er,old=es.read();assert er is None or old==proof['assembly_record'];er=es.compare_and_swap(None,proof['assembly_record']) if er is None else er;assert es.read()==(er,proof['assembly_record']);(root/'assembly-authority.json').write_text(json.dumps({'schema':'migration-assembly-authority/v1','store_ref':assembly_ref,'store_id':rid,'revision':er,'transaction_id':proof['assembly_record']['transaction_id'],'manifest_digest':proof['assembly_record']['manifest_digest']},indent=2)+'\\n')\nreport={'schema':'cdc-consumer-adoption-review-ready/v1','scope':'2026-10-08T09:04:33Z','implementation_candidate':head,'live_publication_hold':'independent SPEC then independent QUALITY required','preparation':proof,'proofs':{}}\nfor filename in ['validator-proofs.json','strict-package-verification.json','migration-transaction.json','assembly-authority.json','review-ready-publication.json','start-receipt.json','consumer-publication-state.json','consumer-publication-preflight.json','proof-publication-failed-a1.json','proof-publication-failed-a2.json']:\n path=root/filename\n if path.exists():report['proofs'][filename]=json.loads(path.read_text())\nreport['proofs']['prior_quiescence_provenance']='GAD immutable post-release pool e8b64fc0155848c5abcc268db5080a782db814b5:pool-state.json cancelled, produced by released observe terminal/quiescent validation; not a fabricated raw receipt' if name=='gad' else 'fresh canonical released unowned source lease before actual admission'\nrows=git('log','--all','--format=%an%x09%ae').splitlines();author_name,author_email=next(row.split('\\t',1) for row in rows if '\\t' in row and row.split('\\t',1)[1].endswith('@users.noreply.github.com'));os.environ.update(GIT_AUTHOR_NAME=author_name,GIT_AUTHOR_EMAIL=author_email,GIT_COMMITTER_NAME=author_name,GIT_COMMITTER_EMAIL=author_email,GIT_TERMINAL_PROMPT='0')\nraw=(json.dumps(report,indent=2,ensure_ascii=False)+'\\n').encode();(root/'review-document.json').write_bytes(raw)\nblob=subprocess.check_output(['git','hash-object','-w','--stdin'],input=raw,cwd=repo).decode().strip()\ntree=subprocess.check_output(['git','mktree'],input=('100644 blob '+blob+'\\tdocument.json\\n').encode(),cwd=repo).decode().strip()\nhead=subprocess.check_output(['git','commit-tree',tree,'-m','CDC 2.12.1 detached review proof [skip ci]'],cwd=repo).decode().strip()\ncandidate_ref='refs/heads/cdc/adopt2121-'+name+'-review-proof-a3-20261008';assert not git('ls-remote','origin',candidate_ref)\nbinding={'repository':req['lease_repository'],'candidate_sha':head,'backend':'native_git','mode':'DETACHED_REVIEW_PREPARATION','environment_id':'cloud-continuation-a1','check_suite_fingerprint':op._hash(proof),'environment_fingerprint':op._hash({'source_id':rid}),'check_plan_digest':op._hash({'candidate_ref':candidate_ref,'source_must_stay':proof['base'],'candidate':head})}\nintent=op.prepare(binding,req['attempt_id']+'-review-proof-publication-a3',req['lease_source_ref'],now());store=GitDocumentStore(repo,'origin','refs/heads/cdc/adopt2121-'+name+'-review-proof-operation-a3-20261008',rid);ir,old=store.read();assert ir is None or (old==intent or (old.get('state')=='prepared' and old.get('binding')==intent['binding'] and old.get('attempt_id')==intent['attempt_id'])),'unknown submission never replay';intent=old if ir is not None else intent;ir=store.compare_and_swap(None,intent) if ir is None else ir;rr,d=store.read();assert rr==ir;read_receipt=op.verify_readback(intent,d,'git:'+ir+':document.json',now());intent=op.transition(intent,'submitting',now(),receipt=read_receipt);ir=store.compare_and_swap(ir,intent)\ns=importlib.util.spec_from_file_location('bu','/workspace/work/normalize2121-adapter/budget-update.py');bu=importlib.util.module_from_spec(s);s.loader.exec_module(bu);wake='cloud-adopt2121-20261008';e={'type':'reserve','event_id':'adopt2121-'+name+'-review-proof-publication-a3','task_id':'cdc-parallel-maintenance','wake_id':wake,'at_utc':now(),'kind':'tool_call','operation_key':intent['operation_key'],'attempt_id':intent['attempt_id'],'scope':'detached-candidate-publication/'+name,'recovery_ref':None,'cost':{'tool_calls':1,'tokens':None,'elapsed_seconds':None}};br=bu.update([e],wake,str(root/'review-proof-publication-budget.json'))\nlr,l=ls.read();l=v2.set_guard(l,h['owner_id'],h['generation'],h['invocation_id'],now(),intent,'git:'+ir+':document.json');lr=ls.compare_and_swap(lr,l)\nassert git('ls-remote','origin',req['lease_source_ref']).split()[0]==proof['base'] and not git('ls-remote','origin',candidate_ref)\nlive=bridge.observe({'schema':'managed-host-observe/v1','handle_root':req['handle_root'],'handle_id':h['handle_id']});assert live['lease_owned'] and live['runtime_status']=='awaiting_release'\nassert subprocess.check_output(['git','ls-remote','origin','refs/heads/cdc/parallel-maintenance-budget-20261007'],cwd='/workspace/g-cdc',text=True).split()[0]==br\nlr,l=ls.read();claim=v2.claim_submission(ls,lr,req['lease_repository'],req['lease_source_ref'],h['owner_id'],h['generation'],h['invocation_id'],now(),intent_digest=op._hash(intent));(root/'review-proof-publication-claim.json').write_text(json.dumps(claim,indent=2)+'\\n')\nargv=['push','origin',head+':'+candidate_ref];output=git(*argv);readback=git('ls-remote','origin',candidate_ref).split()[0];assert readback==head;assert git('ls-remote','origin',req['lease_source_ref']).split()[0]==proof['base']\ntask={'task_id':head,'task_url':'https://github.com/'+req['lease_repository']+'/tree/'+candidate_ref.removeprefix('refs/heads/'),'operation_key':intent['operation_key'],'attempt_id':intent['attempt_id'],'binding':intent['binding'],'state':'terminal','conclusion':'succeeded','evidence_refs':['git:'+head]};obs={'schema':'operation-observation/v1','operation_key':intent['operation_key'],'lookup_complete':True,'observed_at_utc':now(),'tasks':[task]};lr,l=ls.read();lr=ls.compare_and_swap(lr,v2.clear_guard(l,h['owner_id'],h['generation'],h['invocation_id'],now(),obs,'git:'+head));ir,old=store.read();store.compare_and_swap(ir,op.transition(old,'terminal',now(),task=task))\nreceipt={'candidate_ref':candidate_ref,'candidate':head,'native_argv':['git',*argv],'exit_code':0,'readback':readback,'source_base_unchanged':proof['base'],'claim':claim,'guard_resolution_revision':lr,'at_utc':now()};(root/'review-proof-publication.json').write_text(json.dumps(receipt,indent=2)+'\\n');print(json.dumps(receipt))\n",
+    "publish-consumer-live.py": "\"\"\"Owner-authorized adapter. Run only after pinned ordered independent reviews.\n\nNo core changes, generic lease construction, force push, provider launch or CI.\nUnknown/submitted attempts are observed, never resubmitted by this adapter.\n\"\"\"\nimport datetime\nimport hashlib\nimport importlib.util\nimport json\nimport pathlib\nimport subprocess\nimport sys\n\nsys.dont_write_bytecode = True\nROOT = pathlib.Path('/workspace/work/adopt2121-20261008')\nsys.path.insert(0, '/workspace/work/released-2.12.1-adoption/src/continuous-development-cycle/scripts')\nimport budget\nimport consumer_adoption as adoption\nimport execution_lease_v2 as lease\nimport managed_host_bridge as bridge\nimport operation_intent as operation\nfrom git_document_store import GitDocumentStore\nfrom git_remote_identity import remote_identity\n\n\ndef now():\n    return datetime.datetime.now(datetime.timezone.utc).isoformat().replace('+00:00', 'Z')\n\n\ndef read(path):\n    return json.loads(path.read_text())\n\n\ndef save(path, document):\n    path.write_text(json.dumps(document, indent=2, ensure_ascii=False) + '\\n')\n\n\ndef git(repo, *args):\n    return subprocess.check_output(['git', *args], cwd=repo, text=True, stderr=subprocess.PIPE).strip()\n\n\ndef verify_reviews(name, candidate):\n    acceptance = read(ROOT / 'ordered-review-acceptance.json')\n    # This record is populated only from the owner's actual acceptance messages.\n    assert acceptance['owner_explicitly_accepted'] is True\n    assert acceptance['candidates'][name] == candidate\n    assert acceptance['ordered_roles'] == ['SPEC', 'QUALITY']\n    for role in acceptance['ordered_roles']:\n        proof = acceptance['reviews'][role]\n        assert proof['conclusion'] == 'GREEN'\n        subprocess.run(['git', 'fetch', '--no-tags', proof['remote'], proof['ref']],\n                       cwd=proof['repo_root'], check=True, capture_output=True, timeout=30)\n        data = subprocess.check_output(['git', 'show', proof['commit'] + ':' + proof['path']],\n                                       cwd=proof['repo_root'])\n        assert hashlib.sha256(data).hexdigest() == proof['sha256']\n        assert len(data) == proof['utf8_bytes']\n    # The QUALITY acceptance must bind the actual operational source being run.\n    for filename, expected in acceptance['operational_source_sha256'].items():\n        assert hashlib.sha256((ROOT / filename).read_bytes()).hexdigest() == expected\n    for filename, expected in acceptance['external_source_sha256'].items():\n        assert hashlib.sha256(pathlib.Path(filename).read_bytes()).hexdigest() == expected\n    assert '/workspace/work/normalize2121-adapter/budget-update.py' in acceptance['external_source_sha256']\n    assert 'publish-consumer-live.py' in acceptance['operational_source_sha256']\n    return acceptance\n\n\ndef validate_publication_result(publication, candidate, state):\n    assert publication['action'] in {'PUBLISHED', 'CONFIRMED', 'CONFIRMED_FROM_READBACK'}, 'Do not replay uncertain/rejected submission'\n    assert publication['conditional_update'] is True\n    assert publication['published_head'] == candidate\n    assert publication['package_tree'] == state['target_package_tree']\n    assert publication['force_push'] is False and publication['replay_allowed'] is False\n\n\ndef main(name):\n    assert name in {'gpc', 'switcher', 'gad'}\n    root = ROOT / (name + '-adapter')\n    request, handle = read(root / 'start-request.json'), read(root / 'start-receipt.json')\n    preparation = read(root / 'preparation.json')\n    state = read(root / 'consumer-publication-state.json')\n    accepted = verify_reviews(name, preparation['candidate'])\n    assert read(root / 'strict-package-verification.json')['matched'] is True\n    repo = request['repo_root']\n    identity = remote_identity(repo, 'origin')\n    session, runtime, store = bridge._recover_session(request['handle_root'], handle['handle_id'])\n    observed = runtime.observe(request['task_id'], request['attempt_id'])\n    assert observed['status'] == 'awaiting_release' and observed['pending_terminal_status'] == 'succeeded'\n    assert session.get('publication') is None, 'Existing publication needs read-only recovery, not replay'\n    bridge._renew_for_result(session, store, observed)\n    candidate, changed, _ = bridge._result(session, runtime)\n    assert candidate == preparation['candidate']\n    attempts = GitDocumentStore(repo, 'origin', 'refs/heads/cdc/adopt2121-' + name + '-live-publication-20261008', identity)\n    assembly = GitDocumentStore(repo, 'origin', state['assembly_authority']['store_ref'], identity)\n    publisher = adoption.GitConsumerAdoptionPublisher(repo, 'origin', request['lease_source_ref'], identity, attempts, assembly)\n    publisher._verify_candidate(state)\n    # Never invoke publish a second time on an unknown, submitted or existing attempt.\n    _, existing = attempts.read()\n    assert existing is None, 'Existing attempt requires independent read-only reconciliation'\n    binding = {'repository': request['lease_repository'], 'candidate_sha': candidate,\n               'backend': 'native_git', 'mode': 'ATOMIC_CONSUMER_ADOPTION',\n               'environment_id': 'cloud-continuation-a1',\n               'check_suite_fingerprint': operation._hash(accepted),\n               'environment_fingerprint': operation._hash({'source_identity': identity}),\n               'check_plan_digest': operation._hash(state)}\n    intent = operation.prepare(binding, request['attempt_id'] + '-live-a1', request['lease_source_ref'], now())\n    intents = GitDocumentStore(repo, 'origin', 'refs/heads/cdc/adopt2121-' + name + '-live-operation-20261008', identity)\n    ir, prior = intents.read()\n    assert ir is None, 'Unknown submission never replay'\n    ir = intents.compare_and_swap(None, intent)\n    rr, actual = intents.read()\n    assert rr == ir\n    receipt = operation.verify_readback(intent, actual, 'git:' + ir + ':document.json', now())\n    intent = operation.transition(intent, 'submitting', now(), receipt=receipt)\n    ir = intents.compare_and_swap(ir, intent)\n    spec = importlib.util.spec_from_file_location('budget_update', '/workspace/work/normalize2121-adapter/budget-update.py')\n    budget_update = importlib.util.module_from_spec(spec)\n    spec.loader.exec_module(budget_update)\n    wake = 'cloud-adopt2121-20261008'\n    event = {'type': 'reserve', 'event_id': 'adopt2121-' + name + '-live-publication',\n             'task_id': 'cdc-parallel-maintenance', 'wake_id': wake, 'at_utc': now(),\n             'kind': 'tool_call', 'operation_key': intent['operation_key'],\n             'attempt_id': intent['attempt_id'], 'scope': 'atomic-consumer-adoption/' + name,\n             'recovery_ref': None, 'cost': {'tool_calls': 1, 'tokens': None, 'elapsed_seconds': None}}\n    budget_revision = budget_update.update([event], wake, str(root / 'live-publication-budget.json'))\n    lr, record = store.read()\n    lr = store.compare_and_swap(lr, lease.set_guard(record, handle['owner_id'], handle['generation'], handle['invocation_id'], now(), intent, 'git:' + ir + ':document.json'))\n    # Action-specific live callback immediately precedes the one-use grant.\n    verify_reviews(name, candidate)\n    assert git(repo, 'ls-remote', 'origin', request['lease_source_ref']).split()[0] == preparation['base']\n    assert git(repo, 'ls-remote', 'canonical', 'refs/heads/release/v2.12.1').split()[0] == state['target_release_commit']\n    assert git(repo, 'ls-remote', 'canonical', 'refs/heads/cdc/release-evidence/v2.12.1').split()[0] == '9dece125d09956d4546721bceb9142856bf786d3'\n    live = bridge.observe({'schema': 'managed-host-observe/v1', 'handle_root': request['handle_root'], 'handle_id': handle['handle_id']})\n    assert live['lease_owned'] and live['runtime_status'] == 'awaiting_release'\n    assert git('/workspace/g-cdc', 'ls-remote', 'origin', 'refs/heads/cdc/parallel-maintenance-budget-20261007').split()[0] == budget_revision\n    lr, record = store.read()\n    lease.check_record(record, handle['owner_id'], handle['generation'], handle['invocation_id'], now(), action='external_start', intent_digest=operation._hash(intent))\n    claim = lease.claim_submission(store, lr, request['lease_repository'], request['lease_source_ref'], handle['owner_id'], handle['generation'], handle['invocation_id'], now(), intent_digest=operation._hash(intent))\n    save(root / 'live-publication-grant.json', claim)\n    publication = publisher.publish(state)\n    save(root / 'consumer-native-publication.json', publication)\n    validate_publication_result(publication, candidate, state)\n    journal_revision, journal = attempts.read()\n    publication['evidence_ref'] = 'git:' + journal_revision + ':document.json'\n    terminal_task = {'task_id': candidate, 'task_url': 'https://github.com/' + request['lease_repository'] + '/tree/' + candidate,\n                     'operation_key': intent['operation_key'], 'attempt_id': intent['attempt_id'], 'binding': intent['binding'],\n                     'state': 'terminal', 'conclusion': 'succeeded', 'evidence_refs': [publication['evidence_ref']]}\n    observation = {'schema': 'operation-observation/v1', 'operation_key': intent['operation_key'], 'lookup_complete': True,\n                   'observed_at_utc': now(), 'tasks': [terminal_task]}\n    lr, record = store.read()\n    store.compare_and_swap(lr, lease.clear_guard(record, handle['owner_id'], handle['generation'], handle['invocation_id'], now(), observation, publication['evidence_ref']))\n    ir, actual = intents.read()\n    intents.compare_and_swap(ir, operation.transition(actual, 'terminal', now(), task=terminal_task))\n    # The session contains the real specialized publisher's receipt, never a local assertion of publication.\n    session.update(state='published', worker_status='succeeded', result_commit=candidate, publication=publication)\n    bridge._save_session(session)\n    task = next(t for t in request['plan']['tasks'] if t['id'] == request['task_id'])\n    finish = {'schema': 'managed-host-finish/v1', 'handle_root': request['handle_root'], 'handle_id': handle['handle_id'],\n              'output_refs': task['expected_outputs'], 'evidence_refs': task['expected_evidence'],\n              'checkpoint_ref': publication['evidence_ref']}\n    receipt = bridge.finish(finish)\n    save(root / 'finish-receipt.json', receipt)\n    assert receipt['scope_complete'] and receipt['state'] == 'released'\n    supervisor = runtime.observe(request['task_id'], request['attempt_id'])\n    save(root / 'supervisor-terminal.json', supervisor)\n    assert supervisor['quiescent'] is True\n    lr, record = store.read()\n    assert record['owner_id'] is None and record['external_guard'] is None\n    print(json.dumps({'candidate': candidate, 'journal_revision': journal_revision, 'finish': receipt}))\n\n\nif __name__ == '__main__':\n    main(sys.argv[1])\n",
+    "close-fleet-preparation.py": "\"\"\"Close the exact preparation handle through the normal resumable boundary.\"\"\"\nimport importlib.util\nimport pathlib\n\nROOT = pathlib.Path('/workspace/work/adopt2121-20261008')\nspec = importlib.util.spec_from_file_location('adapter_common', ROOT / 'publish-consumer-live.py')\ncommon = importlib.util.module_from_spec(spec)\nspec.loader.exec_module(common)\nbridge, lease = common.bridge, common.lease\nroot = ROOT / 'fleet-adapter'\nrequest, handle = common.read(root / 'start-request.json'), common.read(root / 'start-receipt.json')\nproof = common.read(root / 'review-proof-publication.json')\nassert common.git(request['repo_root'], 'ls-remote', 'origin', proof['candidate_ref']).split()[0] == proof['candidate']\nsession, runtime, store = bridge._recover_session(request['handle_root'], handle['handle_id'])\nobservation = runtime.observe(request['task_id'], request['attempt_id'])\nassert observation['status'] == 'awaiting_release' and observation['pending_terminal_status'] == 'succeeded'\nbridge._renew_for_result(session, store, observation)\ncheckpoint = 'git:' + proof['candidate'] + ':document.json'\nrevision, record = store.read()\nassert record['external_guard'] is None\nowner, generation, invocation = handle['owner_id'], handle['generation'], handle['invocation_id']\nrecord = lease.begin_finalization(record, owner, generation, invocation, common.now(), pending_shared_writes=False)\nrevision = store.compare_and_swap(revision, record)\nrecord = lease.record_checkpoint(record, owner, generation, invocation, common.now(), checkpoint_ref=checkpoint, pending_shared_writes=False)\nrevision = store.compare_and_swap(revision, record)\nrecord = lease.reconcile_finalization(record, owner, generation, invocation, common.now(), external_reconciliation='none')\nrevision = store.compare_and_swap(revision, record)\ncontinuity = bridge._continuity(dict(session, worker_status='succeeded'), request['plan']['base_sha'], checkpoint, None, released=False)\nreason = 'fleet-preparation-requires-new-live-terminal-capability'\nnext_action = 'After ordered independent reviews, admit a live local managed writer; acquire the canonical Fleet leader with its genuine live capability, publish exact reviewed candidate, then finish both scopes.'\nblocker = {'code': reason, 'evidence_refs': [checkpoint], 'next_action': next_action,\n           'recheck_trigger': 'Independent QUALITY accepted and preparation supervisor quiescent'}\ncontinuity['terminal_state'].update(decision='BLOCKED', completion_evidence_refs=[], blocker=blocker)\ncontinuity.update(requested_terminal_outcome='blocked', blocker=reason, next_action=next_action,\n                  blocker_proof={'schema': 'blocked-state-proof/v1', 'dependency_id': reason, 'category': 'worker_terminal',\n                                 'observed_at_utc': common.now(), 'max_age_seconds': 120, 'evidence_refs': [checkpoint],\n                                 'next_action': next_action, 'recheck_trigger': blocker['recheck_trigger'],\n                                 'same_invocation_work_exhausted': True})\nrecord = lease.mark_ready(record, owner, generation, invocation, common.now(), continuity_state=continuity)\nrevision = store.compare_and_swap(revision, record)\nreceipt = runtime.release_execution_lease(store, revision, request['lease_repository'], request['lease_source_ref'], owner, generation, invocation, request['task_id'], request['attempt_id'], common.now())\ncommon.save(root / 'preparation-release-receipt.json', receipt)\nterminal = bridge._wait_terminal(runtime, session)\ncommon.save(root / 'preparation-supervisor-terminal.json', terminal)\nassert terminal['quiescent'] is True\nrevision, record = store.read()\nassert record['owner_id'] is None and record['external_guard'] is None\nprint('Preparation released/quiescent; Fleet adoption remains pending, no live write.')\n",
+    "start-fleet-publication.py": "import sys,pathlib,json,subprocess,uuid,datetime,importlib.util\ndriver='/workspace/work/released-2.12.1-adoption/src/continuous-development-cycle/scripts';sys.path.insert(0,driver)\nimport managed_host_bridge as bridge,operation_intent as op,execution_lease_v2 as v2,fleet_supervisor_control as fleet,budget\nfrom git_document_store import GitDocumentStore\nfrom git_lease_store import GitLeaseStore\nfrom git_remote_identity import remote_identity\nallroot=pathlib.Path('/workspace/work/adopt2121-20261008');root=allroot/'fleet-publication-adapter';root.mkdir(exist_ok=True);repo='/workspace/g-cdc';rid=remote_identity(repo,'origin')\ndef git(*a):return subprocess.check_output(['git',*a],cwd=repo,text=True,stderr=subprocess.PIPE).strip()\nassert not (root/'start-receipt.json').exists(), 'Never restart an admitted handle'\noldreq=json.loads((allroot/'fleet-adapter/start-request.json').read_text());oldh=json.loads((allroot/'fleet-adapter/start-receipt.json').read_text());oldsession,oldruntime,oldlease=bridge._recover_session(oldreq['handle_root'],oldh['handle_id']);oldrev,oldrecord=oldlease.read();assert oldrecord['owner_id'] is None and oldrecord['external_guard'] is None;assert oldruntime.observe(oldreq['task_id'],oldreq['attempt_id'])['quiescent'] is True\ncs=importlib.util.spec_from_file_location('adoption_common',allroot/'publish-consumer-live.py');common=importlib.util.module_from_spec(cs);cs.loader.exec_module(common);common.verify_reviews('fleet',json.loads((allroot/'fleet-adapter/preparation.json').read_text())['candidate'])\nbase=git('ls-remote','origin','refs/heads/cdc/fleet').split()[0];git('fetch','--no-tags','origin','refs/heads/cdc/fleet')\ncanonical=GitDocumentStore(repo,'origin','refs/heads/cdc/fleet-supervisor',rid);fr,fs=canonical.read();fleet.validate(fs);assert fs['lease']['owner_id'] is None and fs['lease']['external_guard'] is None and all(x['state']=='terminal' for x in fs['effects'])\nprep=json.loads((allroot/'fleet-adapter/preparation.json').read_text());assert base==prep['base'];assert git('rev-parse',prep['candidate']+'^{tree}')==prep['root_tree']\npaths=['fleet/registry.json','fleet/target.json','fleet/target-release.json'];plan={'schema':'managed-executor-pool-plan/v1','pool_id':'cdc2121-fleet-publication-20261008','change_id':'cdc2121-fleet-target','parent_invocation_id':'cloud-continuation-a1-adopt2121-fleet','base_sha':base,'integrator_id':'managed-host-bridge','coordination_ref':'refs/heads/cdc/adopt2121-fleet-publication-pool-20261008','coordination_store_id':rid,'max_parallel':1,'total_runtime_budget_seconds':1200,'total_cost_budget_units':1,'tasks':[{'id':'fleet-target','role':'writer','required':True,'dependencies':[],'executor_id':'adopt2121-fleet-worker','branch':'cdc/cloud-adopt2121-fleet-publication-20261008','worktree':'work/adopt2121-fleet-publication-writer-20261008','write_paths':paths,'expected_outputs':['out:atomic-fleet-target'],'expected_evidence':['evidence:pinned-release-leader-claim'],'backend_preferences':['local_command'],'max_runtime_seconds':1200,'max_cost_units':1}]}\nref='refs/heads/cdc/adopt2121-fleet-publication-terminal-20261008';req={'schema':'managed-host-start/v1','repo_root':repo,'remote':'origin','plan':plan,'journal_root':str(allroot/'fleet-publication-journal'),'handle_root':str(allroot/'fleet-publication-handles'),'lease_coordination_ref':ref,'lease_repository':'bajoicheg/g-cdc','lease_source_ref':'refs/heads/cdc/fleet','task_id':'fleet-target','attempt_id':'adopt2121-fleet-publication-a1','reservation_token':'adopt2121:fleet-publication:a1','owner_id':str(uuid.uuid4()),'argv':[sys.executable,'-B',str(allroot/'fleet-publication-worker.py'),str(root)]}\n(root/'start-request.json').write_text(json.dumps(req,indent=2)+'\\n');(root/'config.json').write_text(json.dumps({'base':base,'candidate':prep['candidate'],'source_id':rid,'canonical_supervisor_revision':fr,'canonical_supervisor_before':fs,'host_terminal_scope':'preparation/supervision only; does not create Fleet leadership; canonical fleet-supervisor remains sole leadership authority'},indent=2)+'\\n')\ns=importlib.util.spec_from_file_location('bu','/workspace/work/normalize2121-adapter/budget-update.py');bu=importlib.util.module_from_spec(s);s.loader.exec_module(bu);wake='cloud-adopt2121-20261008';now=datetime.datetime.now(datetime.timezone.utc).isoformat().replace('+00:00','Z');e={'type':'reserve','event_id':'adopt2121-fleet-publication-managed-admission','task_id':'cdc-parallel-maintenance','wake_id':wake,'at_utc':now,'kind':'tool_call','operation_key':op._hash(req),'attempt_id':req['attempt_id'],'scope':'fleet-target/preparation-managed-terminal','recovery_ref':None,'cost':{'tool_calls':1,'tokens':None,'elapsed_seconds':None}};bu.update([e],wake,str(root/'budget-admission.json'))\nls=GitLeaseStore(repo,'origin',ref);lr,l=ls.read();assert lr is None,'existing terminal attempt must reconcile, never reset';lr=ls.compare_and_swap(None,v2.initialize('bajoicheg/g-cdc','refs/heads/cdc/fleet'));(root/'terminal-init.json').write_text(json.dumps({'revision':lr,'purpose':'host terminal only, NOT canonical Fleet leadership'})+'\\n')\nr=bridge.start(req);(root/'start-receipt.json').write_text(json.dumps(r,indent=2)+'\\n');print(json.dumps(r))\n",
+    "fleet-publication-worker.py": "\"\"\"Retain the exact reviewed Fleet candidate; wait for genuine leader admission.\"\"\"\nimport json\nimport pathlib\nimport subprocess\nimport sys\nimport time\n\nroot = pathlib.Path(sys.argv[1])\nconfig = json.loads((root / 'config.json').read_text())\nassert subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip() == config['base']\nsubprocess.run(['git', 'merge', '--ff-only', config['candidate']], check=True, capture_output=True)\nassert subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip() == config['candidate']\n(root / 'worker-ready.json').write_text(json.dumps({'candidate': config['candidate'], 'real_worker_running': True}) + '\\n')\ndeadline = time.monotonic() + 600\nwhile not (root / 'leader-admitted.json').exists():\n    if time.monotonic() > deadline:\n        raise RuntimeError('No genuine Fleet leader admission; no publication authorized')\n    time.sleep(0.1)\n# This signal merely ends preparation; only fresh canonical leader/guard/grants authorize writes.\nprint(json.dumps({'candidate': config['candidate'], 'leader_admission_signal_received': True}))\n",
+    "publish-fleet-live.py": "\"\"\"Canonical single-leader Fleet publication; no scheduler or provider starts.\"\"\"\nimport importlib.util\nimport json\nimport pathlib\nimport subprocess\nimport sys\nimport time\n\nROOT = pathlib.Path('/workspace/work/adopt2121-20261008')\nspec = importlib.util.spec_from_file_location('adapter_common', ROOT / 'publish-consumer-live.py')\ncommon = importlib.util.module_from_spec(spec)\nspec.loader.exec_module(common)\nfrom git_document_store import GitDocumentStore\nfrom git_remote_identity import remote_identity\nimport fleet_supervisor_control as fleet\nimport live_target\n\n\ndef main():\n    prep = common.read(ROOT / 'fleet-adapter/preparation.json')\n    accepted = common.verify_reviews('fleet', prep['candidate'])\n    assert 'publish-fleet-live.py' in accepted['operational_source_sha256']\n    root = ROOT / 'fleet-publication-adapter'\n    assert not (root / 'start-receipt.json').exists(), 'Recover exact existing handle; never restart'\n    subprocess.run([sys.executable, '-B', str(ROOT / 'start-fleet-publication.py')], check=True)\n    request, handle = common.read(root / 'start-request.json'), common.read(root / 'start-receipt.json')\n    session, runtime, terminal_store = common.bridge._recover_session(request['handle_root'], handle['handle_id'])\n    repo = request['repo_root']\n    identity = remote_identity(repo, 'origin')\n    canonical = GitDocumentStore(repo, 'origin', 'refs/heads/cdc/fleet-supervisor', identity)\n    revision, before = canonical.read()\n    fleet.validate(before)\n    assert before['lease']['owner_id'] is None and before['lease']['external_guard'] is None\n    assert all(effect['state'] == 'terminal' for effect in before['effects'])\n    # This object comes only from the real running package-owned runtime.\n    capability = runtime.terminal_capability(request['task_id'], request['attempt_id'], lease_repository='bajoicheg/g-cdc', lease_source_ref='refs/heads/cdc/fleet', observed_at_utc=common.now())\n    admitted = fleet.acquire_cas(canonical, revision, 'bajoicheg/g-cdc', 'refs/heads/cdc/fleet', handle['owner_id'], common.now(), capability.invocation(), terminal_capability=capability)\n    common.save(root / 'leader-admission-receipt.json', admitted)\n    owner, generation, invocation = handle['owner_id'], admitted['generation'], capability.invocation()['invocation_id']\n    # A receipt signal ends argv preparation; it cannot act as a serialized capability.\n    common.save(root / 'leader-admitted.json', {'revision': admitted['revision'], 'owner_id': owner, 'generation': generation})\n    deadline = time.monotonic() + 60\n    while True:\n        observation = runtime.observe(request['task_id'], request['attempt_id'])\n        if observation['status'] == 'awaiting_release':\n            assert observation['pending_terminal_status'] == 'succeeded'\n            break\n        assert observation['status'] in {'running', 'starting'} and time.monotonic() < deadline\n        time.sleep(0.2)\n    common.bridge._renew_for_result(session, terminal_store, observation)\n    result, paths, _ = common.bridge._result(session, runtime)\n    assert result == prep['candidate'] and set(paths) == set(prep['changed_paths'])\n    source = live_target.GitSource(repo, 'origin', identity)\n    resolved = live_target.resolve_live_target(source, source, registry_ref='refs/heads/cdc/adopt2121-fleet-candidate-20261008', canonical_repository='bajoicheg/g-cdc', target_path='fleet/target.json')\n    assert resolved['release']['release_commit'] == '9b38bd4d9f5fb113ec10bdbca9fbe33908619a54'\n    assert resolved['release']['evidence_binding']['commit'] == '9dece125d09956d4546721bceb9142856bf786d3'\n    binding = {'repository': 'bajoicheg/g-cdc', 'candidate_sha': result, 'backend': 'native_git', 'mode': 'FLEET_ATOMIC_TARGET',\n               'environment_id': 'cloud-continuation-a1', 'check_suite_fingerprint': common.operation._hash(accepted),\n               'environment_fingerprint': common.operation._hash({'source_identity': identity}), 'check_plan_digest': common.operation._hash(prep)}\n    intent = common.operation.prepare(binding, request['attempt_id'] + '-live', request['lease_source_ref'], common.now())\n    intents = GitDocumentStore(repo, 'origin', 'refs/heads/cdc/adopt2121-fleet-live-operation-20261008', identity)\n    ir, previous = intents.read()\n    assert ir is None, 'Unknown submission never replay'\n    ir = intents.compare_and_swap(None, intent)\n    rr, actual = intents.read()\n    assert rr == ir\n    receipt = common.operation.verify_readback(intent, actual, 'git:' + ir + ':document.json', common.now())\n    intent = common.operation.transition(intent, 'submitting', common.now(), receipt=receipt)\n    ir = intents.compare_and_swap(ir, intent)\n    spec = importlib.util.spec_from_file_location('budget_update', '/workspace/work/normalize2121-adapter/budget-update.py')\n    bu = importlib.util.module_from_spec(spec)\n    spec.loader.exec_module(bu)\n    wake = 'cloud-adopt2121-20261008'\n    event = {'type': 'reserve', 'event_id': 'adopt2121-fleet-live-publication', 'task_id': 'cdc-parallel-maintenance', 'wake_id': wake,\n             'at_utc': common.now(), 'kind': 'tool_call', 'operation_key': intent['operation_key'], 'attempt_id': intent['attempt_id'],\n             'scope': 'fleet-target/live-publication', 'recovery_ref': None, 'cost': {'tool_calls': 1, 'tokens': None, 'elapsed_seconds': None}}\n    budget_revision = bu.update([event], wake, str(root / 'publication-budget.json'))\n    lr, record = terminal_store.read()\n    lr = terminal_store.compare_and_swap(lr, common.lease.set_guard(record, handle['owner_id'], handle['generation'], handle['invocation_id'], common.now(), intent, 'git:' + ir + ':document.json'))\n    common.verify_reviews('fleet', result)\n    assert common.git(repo, 'ls-remote', 'origin', request['lease_source_ref']).split()[0] == prep['base']\n    assert common.git(repo, 'ls-remote', 'origin', 'refs/heads/cdc/parallel-maintenance-budget-20261007').split()[0] == budget_revision\n    fresh = live_target.resolve_live_target(source, source, registry_ref='refs/heads/cdc/adopt2121-fleet-candidate-20261008', canonical_repository='bajoicheg/g-cdc', target_path='fleet/target.json')\n    assert fresh['registry_revision'] == result\n    fr, state = canonical.read()\n    effect = fleet.claim_effect_cas(canonical, fr, owner, generation, invocation, common.now(), prep['base'],\n                                  {'kind': 'fleet_write', 'target': 'bajoicheg/g-cdc@refs/heads/cdc/fleet', 'observed_fleet_head': prep['base'], 'intent': intent})\n    assert effect['action'] == 'SUBMIT_ONCE' and effect['authorizes_effect'] is True\n    common.save(root / 'canonical-effect-claim.json', effect)\n    lr, record = terminal_store.read()\n    common.lease.check_record(record, handle['owner_id'], handle['generation'], handle['invocation_id'], common.now(), action='external_start', intent_digest=common.operation._hash(intent))\n    grant = common.lease.claim_submission(terminal_store, lr, request['lease_repository'], request['lease_source_ref'], handle['owner_id'], handle['generation'], handle['invocation_id'], common.now(), intent_digest=common.operation._hash(intent))\n    common.save(root / 'terminal-submission-grant.json', grant)\n    fr, state = canonical.read()\n    fleet.update_effect_cas(canonical, fr, owner, generation, invocation, common.now(), effect['effect']['effect_id'], 'submitted', 'git:' + ir + ':document.json')\n    # Released native conditional FF publisher maintains its durable no-replay journal.\n    publication = common.bridge._publish(session, result)\n    common.save(root / 'native-publication-receipt.json', publication)\n    assert publication['conditional_update'] is True\n    assert common.git(repo, 'ls-remote', 'origin', request['lease_source_ref']).split()[0] == result\n    final_target = live_target.resolve_live_target(source, source, registry_ref=request['lease_source_ref'], canonical_repository='bajoicheg/g-cdc', target_path='fleet/target.json')\n    assert final_target['registry_revision'] == result and final_target['target']['target_version'] == '2.12.1'\n    common.save(root / 'live-target-readback.json', final_target)\n    task = {'task_id': result, 'task_url': 'https://github.com/bajoicheg/g-cdc/tree/' + result, 'operation_key': intent['operation_key'],\n            'attempt_id': intent['attempt_id'], 'binding': intent['binding'], 'state': 'terminal', 'conclusion': 'succeeded', 'evidence_refs': [publication['evidence_ref']]}\n    observation = {'schema': 'operation-observation/v1', 'operation_key': intent['operation_key'], 'lookup_complete': True, 'observed_at_utc': common.now(), 'tasks': [task]}\n    lr, record = terminal_store.read()\n    terminal_store.compare_and_swap(lr, common.lease.clear_guard(record, handle['owner_id'], handle['generation'], handle['invocation_id'], common.now(), observation, publication['evidence_ref']))\n    ir, actual = intents.read()\n    intents.compare_and_swap(ir, common.operation.transition(actual, 'terminal', common.now(), task=task))\n    fr, state = canonical.read()\n    fleet.update_effect_cas(canonical, fr, owner, generation, invocation, common.now(), effect['effect']['effect_id'], 'terminal', publication['evidence_ref'], outcome='succeeded')\n    session.update(state='published', worker_status='succeeded', result_commit=result, publication=publication)\n    common.bridge._save_session(session)\n    checkpoint = publication['evidence_ref']\n    fr, _ = canonical.read()\n    fleet.begin_finalization_cas(canonical, fr, owner, generation, invocation, common.now(), pending_shared_writes=False)\n    fr, _ = canonical.read()\n    fleet.record_checkpoint_cas(canonical, fr, owner, generation, invocation, common.now(), checkpoint_ref=checkpoint)\n    fr, _ = canonical.read()\n    fleet.reconcile_finalization_cas(canonical, fr, owner, generation, invocation, common.now(), external_reconciliation='none')\n    continuity = common.bridge._continuity(session, result, checkpoint, publication, released=False)\n    continuity['invocation_id'] = invocation\n    continuity['terminal_state']['invocation_id'] = invocation\n    fr, _ = canonical.read()\n    fleet.mark_ready_cas(canonical, fr, owner, generation, invocation, common.now(), continuity_state=continuity)\n    fr, _ = canonical.read()\n    released = fleet.release_leader_cas(canonical, fr, owner, generation, invocation, common.now())\n    common.save(root / 'canonical-leader-release.json', released)\n    task_plan = request['plan']['tasks'][0]\n    finish = {'schema': 'managed-host-finish/v1', 'handle_root': request['handle_root'], 'handle_id': handle['handle_id'],\n              'output_refs': task_plan['expected_outputs'], 'evidence_refs': task_plan['expected_evidence'], 'checkpoint_ref': checkpoint}\n    finished = common.bridge.finish(finish)\n    common.save(root / 'finish-receipt.json', finished)\n    assert finished['scope_complete'] and finished['state'] == 'released'\n    terminal = runtime.observe(request['task_id'], request['attempt_id'])\n    common.save(root / 'supervisor-terminal.json', terminal)\n    assert terminal['quiescent'] is True\n    fr, state = canonical.read()\n    assert state['lease']['owner_id'] is None and state['lease']['external_guard'] is None\n    print(json.dumps({'candidate': result, 'canonical_release_revision': fr, 'managed_finish': finished}))\n\n\nif __name__ == '__main__':\n    main()\n",
+    "verify-publication-preflight.py": "import sys,pathlib,json\nsys.path.insert(0,'/workspace/work/released-2.12.1-adoption/src/continuous-development-cycle/scripts')\nimport consumer_adoption as ca\nfrom git_document_store import GitDocumentStore\nfrom git_remote_identity import remote_identity\nn=sys.argv[1];a=pathlib.Path('/workspace/work/adopt2121-20261008')/(n+'-adapter');p=json.loads((a/'preparation.json').read_text());q=json.loads((a/'start-request.json').read_text());repo=q['repo_root'];rid=remote_identity(repo,'origin');auth=json.loads((a/'assembly-authority.json').read_text());s={'schema':ca.SCHEMA,'source_head':p['base'],'target_ref':p['source_ref'],'target_version':'2.12.1','target_release_ref':'refs/heads/release/v2.12.1','target_release_commit':'9b38bd4d9f5fb113ec10bdbca9fbe33908619a54','target_package_tree':p['package_tree'],'required_paths':[x['path'] for x in p['manifest']],'prepared_paths':[x['path'] for x in p['manifest']],'assembly_manifest':p['manifest'],'assembly_authority':auth,'final_tree_sha':p['root_tree'],'observed_package_tree':p['package_tree'],'candidate_commit':p['candidate'],'live_source_head':p['base'],'publication_claim':None,'published_head':None,'readback_package_tree':None};s['publication_claim']=ca._claim(s);pub=ca.GitConsumerAdoptionPublisher(repo,'origin',p['source_ref'],rid,GitDocumentStore(repo,'origin','refs/heads/cdc/adopt2121-'+n+'-live-publication-20261008',rid),GitDocumentStore(repo,'origin',auth['store_ref'],rid));result=pub._verify_candidate(s);(a/'consumer-publication-state.json').write_text(json.dumps(s,indent=2)+'\\n');(a/'consumer-publication-preflight.json').write_text(json.dumps({'exit_code':0,'result':result,'read_only':True,'assembly_revision':auth['revision'],'candidate':p['candidate'],'authorizes_live_write':False},indent=2)+'\\n');print(n,result['action'],'read-only; no publication')\n",
+    "publish-driver-packet.py": "import sys,pathlib,json,subprocess,datetime,importlib.util,re,os\ndriver='/workspace/work/released-2.12.1-adoption/src/continuous-development-cycle/scripts';sys.path.insert(0,driver)\nimport managed_host_bridge as bridge,operation_intent as op,execution_lease_v2 as v2\nfrom git_document_store import GitDocumentStore\nfrom git_remote_identity import remote_identity\nname=sys.argv[1];allroot=pathlib.Path('/workspace/work/adopt2121-20261008');root=allroot/(name+'-adapter');req=json.loads((root/'start-request.json').read_text());h=json.loads((root/'start-receipt.json').read_text());proof=json.loads((root/'preparation.json').read_text());repo=req['repo_root'];rid=remote_identity(repo,'origin')\ndef now():return datetime.datetime.now(datetime.timezone.utc).isoformat().replace('+00:00','Z')\ndef git(*a):\n p=subprocess.run(['git',*a],cwd=repo,text=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)\n if p.returncode:\n  err=re.sub(r'https://[^/@\\s]+@','https://[redacted]@',p.stderr);err=re.sub(r'(?:gh[pousr]_[A-Za-z0-9]+|github_pat_[A-Za-z0-9_]+)','[redacted]',err)\n  (root/'native-git-last-error.json').write_text(json.dumps({'argv':['git',*a],'exit_code':p.returncode,'stderr':err},indent=2)+'\\n');raise RuntimeError('native Git failed; sanitized stderr saved')\n return p.stdout.strip()\nsession,runtime,ls=bridge._recover_session(req['handle_root'],h['handle_id']);o=runtime.observe(req['task_id'],req['attempt_id']);assert o['status']=='awaiting_release' and o['pending_terminal_status']=='succeeded';bridge._renew_for_result(session,ls,o);head,paths,_=bridge._result(session,runtime);assert head==proof['candidate']\nassembly_ref='refs/heads/cdc/adopt2121-'+name+'-assembly-20261008'\nif name!='fleet':\n es=GitDocumentStore(repo,'origin',assembly_ref,rid);er,old=es.read();assert er is None or old==proof['assembly_record'];er=es.compare_and_swap(None,proof['assembly_record']) if er is None else er;assert es.read()==(er,proof['assembly_record']);(root/'assembly-authority.json').write_text(json.dumps({'schema':'migration-assembly-authority/v1','store_ref':assembly_ref,'store_id':rid,'revision':er,'transaction_id':proof['assembly_record']['transaction_id'],'manifest_digest':proof['assembly_record']['manifest_digest']},indent=2)+'\\n')\nreport={'schema':'cdc-consumer-adoption-review-ready/v1','scope':'2026-10-08T09:04:33Z','implementation_candidate':head,'live_publication_hold':'independent SPEC then independent QUALITY required','preparation':proof,'proofs':{}}\nfor filename in ['validator-proofs.json','strict-package-verification.json','migration-transaction.json','assembly-authority.json','review-ready-publication.json','start-receipt.json','consumer-publication-state.json','consumer-publication-preflight.json','live-target-preflight.json','proof-preparation-read-failure.json','fleet-leader-admission-preflight.json','proof-publication-failed-a1.json','proof-publication-failed-a2.json']:\n path=root/filename\n if path.exists():report['proofs'][filename]=json.loads(path.read_text())\nreport['proofs']['prior_quiescence_provenance']='GAD immutable post-release pool e8b64fc0155848c5abcc268db5080a782db814b5:pool-state.json cancelled, produced by released observe terminal/quiescent validation; not a fabricated raw receipt' if name=='gad' else 'fresh canonical released unowned source lease before actual admission'\nrows=git('log','--all','--format=%an%x09%ae').splitlines();author_name,author_email=next(row.split('\\t',1) for row in rows if '\\t' in row and row.split('\\t',1)[1].endswith('@users.noreply.github.com'));os.environ.update(GIT_AUTHOR_NAME=author_name,GIT_AUTHOR_EMAIL=author_email,GIT_COMMITTER_NAME=author_name,GIT_COMMITTER_EMAIL=author_email,GIT_TERMINAL_PROMPT='0')\nreport['schema']='cdc-adoption-operational-driver-review/v1'\nreport['candidate_scopes']={n:json.loads((allroot/(n+'-adapter')/'preparation.json').read_text()) for n in ['gpc','switcher','gad','fleet']}\nreport['plain_sources']={}\nreport['operational_source_sha256']={}\nimport hashlib\nfor filename in ['consumer-worker.py', 'fleet-worker.py', 'start-consumer.py', 'start-fleet.py', 'publish-review-candidate.py', 'publish-review-proof.py', 'publish-review-proof-a2.py', 'publish-review-proof-a3.py', 'publish-consumer-live.py', 'close-fleet-preparation.py', 'start-fleet-publication.py', 'fleet-publication-worker.py', 'publish-fleet-live.py', 'verify-publication-preflight.py', 'publish-driver-packet.py']:\n data=(allroot/filename).read_bytes();report['plain_sources'][filename]=data.decode('utf-8');report['operational_source_sha256'][filename]=hashlib.sha256(data).hexdigest()\nhelper=pathlib.Path('/workspace/work/normalize2121-adapter/budget-update.py').read_bytes();report['plain_sources']['external/budget-update.py']=helper.decode('utf-8');report['external_source_sha256']={'/workspace/work/normalize2121-adapter/budget-update.py':hashlib.sha256(helper).hexdigest()}\nreport['source_routes']={'consumers':'native origin; existing canonical cdc/coordination; released GitConsumerAdoptionPublisher','fleet':'native origin cdc/fleet, sole canonical wrapped fleet-supervisor; separate host terminal scope is not leader authority','core':'immutable released2.12.1 from9b38/package9c45; no core modifications','live_execution':'not run; pinned ordered review acceptance required','provider_starts':'none; next Fleet writer local_command in existing Cloud only','preparation_finish':'normal resumable release/quiescence, does not assert Fleet adoption completed'}\nraw=(json.dumps(report,indent=2,ensure_ascii=False)+'\\n').encode();(root/'driver-packet-document.json').write_bytes(raw)\nblob=subprocess.check_output(['git','hash-object','-w','--stdin'],input=raw,cwd=repo).decode().strip()\ntree=subprocess.check_output(['git','mktree'],input=('100644 blob '+blob+'\\tdocument.json\\n').encode(),cwd=repo).decode().strip()\nhead=subprocess.check_output(['git','commit-tree',tree,'-m','CDC 2.12.1 detached review proof [skip ci]'],cwd=repo).decode().strip()\ncandidate_ref='refs/heads/cdc/adopt2121-'+name+'-driver-packet-20261008';assert not git('ls-remote','origin',candidate_ref)\nbinding={'repository':req['lease_repository'],'candidate_sha':head,'backend':'native_git','mode':'DETACHED_REVIEW_PREPARATION','environment_id':'cloud-continuation-a1','check_suite_fingerprint':op._hash(proof),'environment_fingerprint':op._hash({'source_id':rid}),'check_plan_digest':op._hash({'candidate_ref':candidate_ref,'source_must_stay':proof['base'],'candidate':head})}\nintent=op.prepare(binding,req['attempt_id']+'-driver-packet-publication',req['lease_source_ref'],now());store=GitDocumentStore(repo,'origin','refs/heads/cdc/adopt2121-'+name+'-driver-packet-operation-20261008',rid);ir,old=store.read();assert ir is None or (old==intent or (old.get('state')=='prepared' and old.get('binding')==intent['binding'] and old.get('attempt_id')==intent['attempt_id'])),'unknown submission never replay';intent=old if ir is not None else intent;ir=store.compare_and_swap(None,intent) if ir is None else ir;rr,d=store.read();assert rr==ir;read_receipt=op.verify_readback(intent,d,'git:'+ir+':document.json',now());intent=op.transition(intent,'submitting',now(),receipt=read_receipt);ir=store.compare_and_swap(ir,intent)\ns=importlib.util.spec_from_file_location('bu','/workspace/work/normalize2121-adapter/budget-update.py');bu=importlib.util.module_from_spec(s);s.loader.exec_module(bu);wake='cloud-adopt2121-20261008';e={'type':'reserve','event_id':'adopt2121-'+name+'-driver-packet-publication','task_id':'cdc-parallel-maintenance','wake_id':wake,'at_utc':now(),'kind':'tool_call','operation_key':intent['operation_key'],'attempt_id':intent['attempt_id'],'scope':'detached-candidate-publication/'+name,'recovery_ref':None,'cost':{'tool_calls':1,'tokens':None,'elapsed_seconds':None}};br=bu.update([e],wake,str(root/'driver-packet-publication-budget.json'))\nlr,l=ls.read();l=v2.set_guard(l,h['owner_id'],h['generation'],h['invocation_id'],now(),intent,'git:'+ir+':document.json');lr=ls.compare_and_swap(lr,l)\nassert git('ls-remote','origin',req['lease_source_ref']).split()[0]==proof['base'] and not git('ls-remote','origin',candidate_ref)\nlive=bridge.observe({'schema':'managed-host-observe/v1','handle_root':req['handle_root'],'handle_id':h['handle_id']});assert live['lease_owned'] and live['runtime_status']=='awaiting_release'\nassert subprocess.check_output(['git','ls-remote','origin','refs/heads/cdc/parallel-maintenance-budget-20261007'],cwd='/workspace/g-cdc',text=True).split()[0]==br\nlr,l=ls.read();claim=v2.claim_submission(ls,lr,req['lease_repository'],req['lease_source_ref'],h['owner_id'],h['generation'],h['invocation_id'],now(),intent_digest=op._hash(intent));(root/'driver-packet-publication-claim.json').write_text(json.dumps(claim,indent=2)+'\\n')\nargv=['push','origin',head+':'+candidate_ref];output=git(*argv);readback=git('ls-remote','origin',candidate_ref).split()[0];assert readback==head;assert git('ls-remote','origin',req['lease_source_ref']).split()[0]==proof['base']\ntask={'task_id':head,'task_url':'https://github.com/'+req['lease_repository']+'/tree/'+candidate_ref.removeprefix('refs/heads/'),'operation_key':intent['operation_key'],'attempt_id':intent['attempt_id'],'binding':intent['binding'],'state':'terminal','conclusion':'succeeded','evidence_refs':['git:'+head]};obs={'schema':'operation-observation/v1','operation_key':intent['operation_key'],'lookup_complete':True,'observed_at_utc':now(),'tasks':[task]};lr,l=ls.read();lr=ls.compare_and_swap(lr,v2.clear_guard(l,h['owner_id'],h['generation'],h['invocation_id'],now(),obs,'git:'+head));ir,old=store.read();store.compare_and_swap(ir,op.transition(old,'terminal',now(),task=task))\nreceipt={'candidate_ref':candidate_ref,'candidate':head,'native_argv':['git',*argv],'exit_code':0,'readback':readback,'source_base_unchanged':proof['base'],'claim':claim,'guard_resolution_revision':lr,'at_utc':now()};(root/'driver-packet-publication.json').write_text(json.dumps(receipt,indent=2)+'\\n');print(json.dumps(receipt))\n",
+    "publish-driver-packet-a2.py": "import sys,pathlib,json,subprocess,datetime,importlib.util,re,os\ndriver='/workspace/work/released-2.12.1-adoption/src/continuous-development-cycle/scripts';sys.path.insert(0,driver)\nimport managed_host_bridge as bridge,operation_intent as op,execution_lease_v2 as v2\nfrom git_document_store import GitDocumentStore\nfrom git_remote_identity import remote_identity\nname=sys.argv[1];allroot=pathlib.Path('/workspace/work/adopt2121-20261008');root=allroot/(name+'-adapter');req=json.loads((root/'start-request.json').read_text());h=json.loads((root/'start-receipt.json').read_text());proof=json.loads((root/'preparation.json').read_text());repo=req['repo_root'];rid=remote_identity(repo,'origin')\ndef now():return datetime.datetime.now(datetime.timezone.utc).isoformat().replace('+00:00','Z')\ndef git(*a):\n p=subprocess.run(['git',*a],cwd=repo,text=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)\n if p.returncode:\n  err=re.sub(r'https://[^/@\\s]+@','https://[redacted]@',p.stderr);err=re.sub(r'(?:gh[pousr]_[A-Za-z0-9]+|github_pat_[A-Za-z0-9_]+)','[redacted]',err)\n  (root/'native-git-last-error.json').write_text(json.dumps({'argv':['git',*a],'exit_code':p.returncode,'stderr':err},indent=2)+'\\n');raise RuntimeError('native Git failed; sanitized stderr saved')\n return p.stdout.strip()\nsession,runtime,ls=bridge._recover_session(req['handle_root'],h['handle_id']);o=runtime.observe(req['task_id'],req['attempt_id']);assert o['status']=='awaiting_release' and o['pending_terminal_status']=='succeeded';bridge._renew_for_result(session,ls,o);head,paths,_=bridge._result(session,runtime);assert head==proof['candidate']\nassembly_ref='refs/heads/cdc/adopt2121-'+name+'-assembly-20261008'\nif name!='fleet':\n es=GitDocumentStore(repo,'origin',assembly_ref,rid);er,old=es.read();assert er is None or old==proof['assembly_record'];er=es.compare_and_swap(None,proof['assembly_record']) if er is None else er;assert es.read()==(er,proof['assembly_record']);(root/'assembly-authority.json').write_text(json.dumps({'schema':'migration-assembly-authority/v1','store_ref':assembly_ref,'store_id':rid,'revision':er,'transaction_id':proof['assembly_record']['transaction_id'],'manifest_digest':proof['assembly_record']['manifest_digest']},indent=2)+'\\n')\nreport={'schema':'cdc-consumer-adoption-review-ready/v1','scope':'2026-10-08T09:04:33Z','implementation_candidate':head,'live_publication_hold':'independent SPEC then independent QUALITY required','preparation':proof,'proofs':{}}\nfor filename in ['validator-proofs.json','strict-package-verification.json','migration-transaction.json','assembly-authority.json','review-ready-publication.json','start-receipt.json','consumer-publication-state.json','consumer-publication-preflight.json','live-target-preflight.json','proof-preparation-read-failure.json','fleet-leader-admission-preflight.json','proof-publication-failed-a1.json','proof-publication-failed-a2.json']:\n path=root/filename\n if path.exists():report['proofs'][filename]=json.loads(path.read_text())\nreport['proofs']['prior_quiescence_provenance']='GAD immutable post-release pool e8b64fc0155848c5abcc268db5080a782db814b5:pool-state.json cancelled, produced by released observe terminal/quiescent validation; not a fabricated raw receipt' if name=='gad' else 'fresh canonical released unowned source lease before actual admission'\nrows=git('log','--all','--format=%an%x09%ae').splitlines();author_name,author_email=next(row.split('\\t',1) for row in rows if '\\t' in row and row.split('\\t',1)[1].endswith('@users.noreply.github.com'));os.environ.update(GIT_AUTHOR_NAME=author_name,GIT_AUTHOR_EMAIL=author_email,GIT_COMMITTER_NAME=author_name,GIT_COMMITTER_EMAIL=author_email,GIT_TERMINAL_PROMPT='0')\nreport['schema']='cdc-adoption-operational-driver-review/v1'\nreport['candidate_scopes']={n:json.loads((allroot/(n+'-adapter')/'preparation.json').read_text()) for n in ['gpc','switcher','gad','fleet']}\nreport['plain_sources']={}\nreport['operational_source_sha256']={}\nimport hashlib\nfor filename in ['consumer-worker.py', 'fleet-worker.py', 'start-consumer.py', 'start-fleet.py', 'publish-review-candidate.py', 'publish-review-proof.py', 'publish-review-proof-a2.py', 'publish-review-proof-a3.py', 'publish-consumer-live.py', 'close-fleet-preparation.py', 'start-fleet-publication.py', 'fleet-publication-worker.py', 'publish-fleet-live.py', 'verify-publication-preflight.py', 'publish-driver-packet.py', 'publish-driver-packet-a2.py']:\n data=(allroot/filename).read_bytes();report['plain_sources'][filename]=data.decode('utf-8');report['operational_source_sha256'][filename]=hashlib.sha256(data).hexdigest()\nhelper=pathlib.Path('/workspace/work/normalize2121-adapter/budget-update.py').read_bytes();report['plain_sources']['external/budget-update.py']=helper.decode('utf-8');report['external_source_sha256']={'/workspace/work/normalize2121-adapter/budget-update.py':hashlib.sha256(helper).hexdigest()}\nreport['source_routes']={'consumers':'native origin; existing canonical cdc/coordination; released GitConsumerAdoptionPublisher','fleet':'native origin cdc/fleet, sole canonical wrapped fleet-supervisor; separate host terminal scope is not leader authority','core':'immutable released2.12.1 from9b38/package9c45; no core modifications','live_execution':'not run; pinned ordered review acceptance required','provider_starts':'none; next Fleet writer local_command in existing Cloud only','preparation_finish':'normal resumable release/quiescence, does not assert Fleet adoption completed'}\nraw=(json.dumps(report,indent=2,ensure_ascii=False)+'\\n').encode();(root/'driver-packet-document.json').write_bytes(raw)\nblob=subprocess.check_output(['git','hash-object','-w','--stdin'],input=raw,cwd=repo).decode().strip()\ntree=subprocess.check_output(['git','mktree'],input=('100644 blob '+blob+'\\tdocument.json\\n').encode(),cwd=repo).decode().strip()\nhead=subprocess.check_output(['git','commit-tree',tree,'-m','CDC 2.12.1 detached review proof [skip ci]'],cwd=repo).decode().strip()\ncandidate_ref='refs/heads/cdc/adopt2121-'+name+'-driver-packet-a2-20261008';assert not git('ls-remote','origin',candidate_ref)\nbinding={'repository':req['lease_repository'],'candidate_sha':head,'backend':'native_git','mode':'DETACHED_REVIEW_PREPARATION','environment_id':'cloud-continuation-a1','check_suite_fingerprint':op._hash(proof),'environment_fingerprint':op._hash({'source_id':rid}),'check_plan_digest':op._hash({'candidate_ref':candidate_ref,'source_must_stay':proof['base'],'candidate':head})}\nintent=op.prepare(binding,req['attempt_id']+'-driver-packet-publication-a2',req['lease_source_ref'],now());store=GitDocumentStore(repo,'origin','refs/heads/cdc/adopt2121-'+name+'-driver-packet-operation-a2-20261008',rid);ir,old=store.read();assert ir is None or (old==intent or (old.get('state')=='prepared' and old.get('binding')==intent['binding'] and old.get('attempt_id')==intent['attempt_id'])),'unknown submission never replay';intent=old if ir is not None else intent;ir=store.compare_and_swap(None,intent) if ir is None else ir;rr,d=store.read();assert rr==ir;read_receipt=op.verify_readback(intent,d,'git:'+ir+':document.json',now());intent=op.transition(intent,'submitting',now(),receipt=read_receipt);ir=store.compare_and_swap(ir,intent)\ns=importlib.util.spec_from_file_location('bu','/workspace/work/normalize2121-adapter/budget-update.py');bu=importlib.util.module_from_spec(s);s.loader.exec_module(bu);wake='cloud-adopt2121-20261008';e={'type':'reserve','event_id':'adopt2121-'+name+'-driver-packet-publication-a2','task_id':'cdc-parallel-maintenance','wake_id':wake,'at_utc':now(),'kind':'tool_call','operation_key':intent['operation_key'],'attempt_id':intent['attempt_id'],'scope':'detached-candidate-publication/'+name,'recovery_ref':None,'cost':{'tool_calls':1,'tokens':None,'elapsed_seconds':None}};br=bu.update([e],wake,str(root/'driver-packet-publication-budget.json'))\nlr,l=ls.read();l=v2.set_guard(l,h['owner_id'],h['generation'],h['invocation_id'],now(),intent,'git:'+ir+':document.json');lr=ls.compare_and_swap(lr,l)\nassert git('ls-remote','origin',req['lease_source_ref']).split()[0]==proof['base'] and not git('ls-remote','origin',candidate_ref)\nlive=bridge.observe({'schema':'managed-host-observe/v1','handle_root':req['handle_root'],'handle_id':h['handle_id']});assert live['lease_owned'] and live['runtime_status']=='awaiting_release'\nassert subprocess.check_output(['git','ls-remote','origin','refs/heads/cdc/parallel-maintenance-budget-20261007'],cwd='/workspace/g-cdc',text=True).split()[0]==br\nlr,l=ls.read();claim=v2.claim_submission(ls,lr,req['lease_repository'],req['lease_source_ref'],h['owner_id'],h['generation'],h['invocation_id'],now(),intent_digest=op._hash(intent));(root/'driver-packet-publication-claim.json').write_text(json.dumps(claim,indent=2)+'\\n')\nargv=['push','origin',head+':'+candidate_ref];output=git(*argv);readback=git('ls-remote','origin',candidate_ref).split()[0];assert readback==head;assert git('ls-remote','origin',req['lease_source_ref']).split()[0]==proof['base']\ntask={'task_id':head,'task_url':'https://github.com/'+req['lease_repository']+'/tree/'+candidate_ref.removeprefix('refs/heads/'),'operation_key':intent['operation_key'],'attempt_id':intent['attempt_id'],'binding':intent['binding'],'state':'terminal','conclusion':'succeeded','evidence_refs':['git:'+head]};obs={'schema':'operation-observation/v1','operation_key':intent['operation_key'],'lookup_complete':True,'observed_at_utc':now(),'tasks':[task]};lr,l=ls.read();lr=ls.compare_and_swap(lr,v2.clear_guard(l,h['owner_id'],h['generation'],h['invocation_id'],now(),obs,'git:'+head));ir,old=store.read();store.compare_and_swap(ir,op.transition(old,'terminal',now(),task=task))\nreceipt={'candidate_ref':candidate_ref,'candidate':head,'native_argv':['git',*argv],'exit_code':0,'readback':readback,'source_base_unchanged':proof['base'],'claim':claim,'guard_resolution_revision':lr,'at_utc':now()};(root/'driver-packet-publication.json').write_text(json.dumps(receipt,indent=2)+'\\n');print(json.dumps(receipt))\n",
+    "publish-driver-packet-a3.py": "import sys,pathlib,json,subprocess,datetime,importlib.util,re,os\ndriver='/workspace/work/released-2.12.1-adoption/src/continuous-development-cycle/scripts';sys.path.insert(0,driver)\nimport managed_host_bridge as bridge,operation_intent as op,execution_lease_v2 as v2\nfrom git_document_store import GitDocumentStore\nfrom git_remote_identity import remote_identity\nname=sys.argv[1];allroot=pathlib.Path('/workspace/work/adopt2121-20261008');root=allroot/(name+'-adapter');req=json.loads((root/'start-request.json').read_text());h=json.loads((root/'start-receipt.json').read_text());proof=json.loads((root/'preparation.json').read_text());repo=req['repo_root'];rid=remote_identity(repo,'origin')\ndef now():return datetime.datetime.now(datetime.timezone.utc).isoformat().replace('+00:00','Z')\ndef git(*a):\n p=subprocess.run(['git',*a],cwd=repo,text=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)\n if p.returncode:\n  err=re.sub(r'https://[^/@\\s]+@','https://[redacted]@',p.stderr);err=re.sub(r'(?:gh[pousr]_[A-Za-z0-9]+|github_pat_[A-Za-z0-9_]+)','[redacted]',err)\n  (root/'native-git-last-error.json').write_text(json.dumps({'argv':['git',*a],'exit_code':p.returncode,'stderr':err},indent=2)+'\\n');raise RuntimeError('native Git failed; sanitized stderr saved')\n return p.stdout.strip()\nsession,runtime,ls=bridge._recover_session(req['handle_root'],h['handle_id']);o=runtime.observe(req['task_id'],req['attempt_id']);assert o['status']=='awaiting_release' and o['pending_terminal_status']=='succeeded';bridge._renew_for_result(session,ls,o);head,paths,_=bridge._result(session,runtime);assert head==proof['candidate']\nassembly_ref='refs/heads/cdc/adopt2121-'+name+'-assembly-20261008'\nif name!='fleet':\n es=GitDocumentStore(repo,'origin',assembly_ref,rid);er,old=es.read();assert er is None or old==proof['assembly_record'];er=es.compare_and_swap(None,proof['assembly_record']) if er is None else er;assert es.read()==(er,proof['assembly_record']);(root/'assembly-authority.json').write_text(json.dumps({'schema':'migration-assembly-authority/v1','store_ref':assembly_ref,'store_id':rid,'revision':er,'transaction_id':proof['assembly_record']['transaction_id'],'manifest_digest':proof['assembly_record']['manifest_digest']},indent=2)+'\\n')\nreport={'schema':'cdc-consumer-adoption-review-ready/v1','scope':'2026-10-08T09:04:33Z','implementation_candidate':head,'live_publication_hold':'independent SPEC then independent QUALITY required','preparation':proof,'proofs':{}}\nfor filename in ['validator-proofs.json','strict-package-verification.json','migration-transaction.json','assembly-authority.json','review-ready-publication.json','start-receipt.json','consumer-publication-state.json','consumer-publication-preflight.json','live-target-preflight.json','proof-preparation-read-failure.json','fleet-leader-admission-preflight.json','proof-publication-failed-a1.json','proof-publication-failed-a2.json']:\n path=root/filename\n if path.exists():report['proofs'][filename]=json.loads(path.read_text())\nreport['proofs']['prior_quiescence_provenance']='GAD immutable post-release pool e8b64fc0155848c5abcc268db5080a782db814b5:pool-state.json cancelled, produced by released observe terminal/quiescent validation; not a fabricated raw receipt' if name=='gad' else 'fresh canonical released unowned source lease before actual admission'\nrows=git('log','--all','--format=%an%x09%ae').splitlines();author_name,author_email=next(row.split('\\t',1) for row in rows if '\\t' in row and row.split('\\t',1)[1].endswith('@users.noreply.github.com'));os.environ.update(GIT_AUTHOR_NAME=author_name,GIT_AUTHOR_EMAIL=author_email,GIT_COMMITTER_NAME=author_name,GIT_COMMITTER_EMAIL=author_email,GIT_TERMINAL_PROMPT='0')\nreport['schema']='cdc-adoption-operational-driver-review/v1'\nreport['candidate_scopes']={n:json.loads((allroot/(n+'-adapter')/'preparation.json').read_text()) for n in ['gpc','switcher','gad','fleet']}\nreport['plain_sources']={}\nreport['operational_source_sha256']={}\nimport hashlib\nfor filename in ['consumer-worker.py', 'fleet-worker.py', 'start-consumer.py', 'start-fleet.py', 'publish-review-candidate.py', 'publish-review-proof.py', 'publish-review-proof-a2.py', 'publish-review-proof-a3.py', 'publish-consumer-live.py', 'close-fleet-preparation.py', 'start-fleet-publication.py', 'fleet-publication-worker.py', 'publish-fleet-live.py', 'verify-publication-preflight.py', 'publish-driver-packet.py', 'publish-driver-packet-a2.py', 'publish-driver-packet-a3.py', 'publish-root-spec-journal.py', 'test_publication_result_contract.py']:\n data=(allroot/filename).read_bytes();report['plain_sources'][filename]=data.decode('utf-8');report['operational_source_sha256'][filename]=hashlib.sha256(data).hexdigest()\nhelper=pathlib.Path('/workspace/work/normalize2121-adapter/budget-update.py').read_bytes();report['plain_sources']['external/budget-update.py']=helper.decode('utf-8');report['external_source_sha256']={'/workspace/work/normalize2121-adapter/budget-update.py':hashlib.sha256(helper).hexdigest()}\nreport['targeted_regression']={}\nfor filename in ['publication-contract-regression-evidence.json','publication-contract-normal-result.json']:\n report['targeted_regression'][filename]=json.loads((allroot/filename).read_text())\nfor filename in ['publication-contract-RED.log','publication-contract-GREEN.log']:\n report['targeted_regression'][filename]={'utf8':(allroot/filename).read_text(),'sha256':hashlib.sha256((allroot/filename).read_bytes()).hexdigest()}\nreport['source_routes']={'consumers':'native origin; existing canonical cdc/coordination; released GitConsumerAdoptionPublisher','fleet':'native origin cdc/fleet, sole canonical wrapped fleet-supervisor; separate host terminal scope is not leader authority','core':'immutable released2.12.1 from9b38/package9c45; no core modifications','live_execution':'not run; pinned ordered review acceptance required','provider_starts':'none; next Fleet writer local_command in existing Cloud only','preparation_finish':'normal resumable release/quiescence, does not assert Fleet adoption completed'}\nraw=(json.dumps(report,indent=2,ensure_ascii=False)+'\\n').encode();(root/'driver-packet-document.json').write_bytes(raw)\nblob=subprocess.check_output(['git','hash-object','-w','--stdin'],input=raw,cwd=repo).decode().strip()\ntree=subprocess.check_output(['git','mktree'],input=('100644 blob '+blob+'\\tdocument.json\\n').encode(),cwd=repo).decode().strip()\nhead=subprocess.check_output(['git','commit-tree',tree,'-m','CDC 2.12.1 detached review proof [skip ci]'],cwd=repo).decode().strip()\ncandidate_ref='refs/heads/cdc/adopt2121-'+name+'-driver-packet-a3-20261008';assert not git('ls-remote','origin',candidate_ref)\nbinding={'repository':req['lease_repository'],'candidate_sha':head,'backend':'native_git','mode':'DETACHED_REVIEW_PREPARATION','environment_id':'cloud-continuation-a1','check_suite_fingerprint':op._hash(proof),'environment_fingerprint':op._hash({'source_id':rid}),'check_plan_digest':op._hash({'candidate_ref':candidate_ref,'source_must_stay':proof['base'],'candidate':head})}\nintent=op.prepare(binding,req['attempt_id']+'-driver-packet-publication-a3',req['lease_source_ref'],now());store=GitDocumentStore(repo,'origin','refs/heads/cdc/adopt2121-'+name+'-driver-packet-operation-a3-20261008',rid);ir,old=store.read();assert ir is None or (old==intent or (old.get('state')=='prepared' and old.get('binding')==intent['binding'] and old.get('attempt_id')==intent['attempt_id'])),'unknown submission never replay';intent=old if ir is not None else intent;ir=store.compare_and_swap(None,intent) if ir is None else ir;rr,d=store.read();assert rr==ir;read_receipt=op.verify_readback(intent,d,'git:'+ir+':document.json',now());intent=op.transition(intent,'submitting',now(),receipt=read_receipt);ir=store.compare_and_swap(ir,intent)\ns=importlib.util.spec_from_file_location('bu','/workspace/work/normalize2121-adapter/budget-update.py');bu=importlib.util.module_from_spec(s);s.loader.exec_module(bu);wake='cloud-adopt2121-20261008';e={'type':'reserve','event_id':'adopt2121-'+name+'-driver-packet-publication-a3','task_id':'cdc-parallel-maintenance','wake_id':wake,'at_utc':now(),'kind':'tool_call','operation_key':intent['operation_key'],'attempt_id':intent['attempt_id'],'scope':'detached-candidate-publication/'+name,'recovery_ref':None,'cost':{'tool_calls':1,'tokens':None,'elapsed_seconds':None}};br=bu.update([e],wake,str(root/'driver-packet-publication-budget.json'))\nlr,l=ls.read();l=v2.set_guard(l,h['owner_id'],h['generation'],h['invocation_id'],now(),intent,'git:'+ir+':document.json');lr=ls.compare_and_swap(lr,l)\nassert git('ls-remote','origin',req['lease_source_ref']).split()[0]==proof['base'] and not git('ls-remote','origin',candidate_ref)\nlive=bridge.observe({'schema':'managed-host-observe/v1','handle_root':req['handle_root'],'handle_id':h['handle_id']});assert live['lease_owned'] and live['runtime_status']=='awaiting_release'\nassert subprocess.check_output(['git','ls-remote','origin','refs/heads/cdc/parallel-maintenance-budget-20261007'],cwd='/workspace/g-cdc',text=True).split()[0]==br\nlr,l=ls.read();claim=v2.claim_submission(ls,lr,req['lease_repository'],req['lease_source_ref'],h['owner_id'],h['generation'],h['invocation_id'],now(),intent_digest=op._hash(intent));(root/'driver-packet-publication-claim.json').write_text(json.dumps(claim,indent=2)+'\\n')\nargv=['push','origin',head+':'+candidate_ref];output=git(*argv);readback=git('ls-remote','origin',candidate_ref).split()[0];assert readback==head;assert git('ls-remote','origin',req['lease_source_ref']).split()[0]==proof['base']\ntask={'task_id':head,'task_url':'https://github.com/'+req['lease_repository']+'/tree/'+candidate_ref.removeprefix('refs/heads/'),'operation_key':intent['operation_key'],'attempt_id':intent['attempt_id'],'binding':intent['binding'],'state':'terminal','conclusion':'succeeded','evidence_refs':['git:'+head]};obs={'schema':'operation-observation/v1','operation_key':intent['operation_key'],'lookup_complete':True,'observed_at_utc':now(),'tasks':[task]};lr,l=ls.read();lr=ls.compare_and_swap(lr,v2.clear_guard(l,h['owner_id'],h['generation'],h['invocation_id'],now(),obs,'git:'+head));ir,old=store.read();store.compare_and_swap(ir,op.transition(old,'terminal',now(),task=task))\nreceipt={'candidate_ref':candidate_ref,'candidate':head,'native_argv':['git',*argv],'exit_code':0,'readback':readback,'source_base_unchanged':proof['base'],'claim':claim,'guard_resolution_revision':lr,'at_utc':now()};(root/'driver-packet-publication.json').write_text(json.dumps(receipt,indent=2)+'\\n');print(json.dumps(receipt))\n",
+    "publish-root-spec-journal.py": "import sys,pathlib,json,subprocess,datetime,importlib.util,re,os\ndriver='/workspace/work/released-2.12.1-adoption/src/continuous-development-cycle/scripts';sys.path.insert(0,driver)\nimport managed_host_bridge as bridge,operation_intent as op,execution_lease_v2 as v2\nfrom git_document_store import GitDocumentStore\nfrom git_remote_identity import remote_identity\nname=sys.argv[1];allroot=pathlib.Path('/workspace/work/adopt2121-20261008');root=allroot/(name+'-adapter');req=json.loads((root/'start-request.json').read_text());h=json.loads((root/'start-receipt.json').read_text());proof=json.loads((root/'preparation.json').read_text());repo=req['repo_root'];rid=remote_identity(repo,'origin')\ndef now():return datetime.datetime.now(datetime.timezone.utc).isoformat().replace('+00:00','Z')\ndef git(*a):\n p=subprocess.run(['git',*a],cwd=repo,text=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)\n if p.returncode:\n  err=re.sub(r'https://[^/@\\s]+@','https://[redacted]@',p.stderr);err=re.sub(r'(?:gh[pousr]_[A-Za-z0-9]+|github_pat_[A-Za-z0-9_]+)','[redacted]',err)\n  (root/'native-git-last-error.json').write_text(json.dumps({'argv':['git',*a],'exit_code':p.returncode,'stderr':err},indent=2)+'\\n');raise RuntimeError('native Git failed; sanitized stderr saved')\n return p.stdout.strip()\nsession,runtime,ls=bridge._recover_session(req['handle_root'],h['handle_id']);o=runtime.observe(req['task_id'],req['attempt_id']);assert o['status']=='awaiting_release' and o['pending_terminal_status']=='succeeded';bridge._renew_for_result(session,ls,o);head,paths,_=bridge._result(session,runtime);assert head==proof['candidate']\nassembly_ref='refs/heads/cdc/adopt2121-'+name+'-assembly-20261008'\nif name!='fleet':\n es=GitDocumentStore(repo,'origin',assembly_ref,rid);er,old=es.read();assert er is None or old==proof['assembly_record'];er=es.compare_and_swap(None,proof['assembly_record']) if er is None else er;assert es.read()==(er,proof['assembly_record']);(root/'assembly-authority.json').write_text(json.dumps({'schema':'migration-assembly-authority/v1','store_ref':assembly_ref,'store_id':rid,'revision':er,'transaction_id':proof['assembly_record']['transaction_id'],'manifest_digest':proof['assembly_record']['manifest_digest']},indent=2)+'\\n')\nimport hashlib\nartifact=(allroot/'adoption-root-spec-20261008.json').read_bytes();assert hashlib.sha256(artifact).hexdigest()=='a50346ad654ecf1115a2f63120f79c6aec61bfc60e1c89ddc5850e2d19ffa97e'\nreport={'schema':'cdc-independent-review-journal/v1','review_kind':'SPEC','source':'actual owner-uploaded adoption-root-spec-20261008.json; bytes copied, not reconstructed','artifact_path':'adoption-root-spec-20261008.json','artifact_utf8_bytes':len(artifact),'artifact_sha256':hashlib.sha256(artifact).hexdigest(),'status':json.loads(artifact)['status'],'scope':'four immutable adoption candidates; does not authorize live effects','actual_source_base_unchanged':proof['base']}\nrows=git('log','--all','--format=%an%x09%ae').splitlines();author_name,author_email=next(row.split('\\t',1) for row in rows if '\\t' in row and row.split('\\t',1)[1].endswith('@users.noreply.github.com'));os.environ.update(GIT_AUTHOR_NAME=author_name,GIT_AUTHOR_EMAIL=author_email,GIT_COMMITTER_NAME=author_name,GIT_COMMITTER_EMAIL=author_email,GIT_TERMINAL_PROMPT='0')\nraw=(json.dumps(report,indent=2)+'\\n').encode();(root/'root-spec-journal-document.json').write_bytes(raw)\nentries=[]\nfor filename,data in [('document.json',raw),('adoption-root-spec-20261008.json',artifact),('publication-adapter.py',pathlib.Path(__file__).read_bytes())]:\n blob=subprocess.check_output(['git','hash-object','-w','--stdin'],input=data,cwd=repo).decode().strip();entries.append('100644 blob '+blob+'\\t'+filename+'\\n')\ntree=subprocess.check_output(['git','mktree'],input=''.join(entries).encode(),cwd=repo).decode().strip();head=subprocess.check_output(['git','commit-tree',tree,'-m','Store actual independent root SPEC artifact [skip ci]'],cwd=repo).decode().strip()\ncandidate_ref='refs/heads/cdc/adopt2121-'+name+'-root-spec-journal-20261008';assert not git('ls-remote','origin',candidate_ref)\nbinding={'repository':req['lease_repository'],'candidate_sha':head,'backend':'native_git','mode':'DETACHED_REVIEW_PREPARATION','environment_id':'cloud-continuation-a1','check_suite_fingerprint':op._hash(proof),'environment_fingerprint':op._hash({'source_id':rid}),'check_plan_digest':op._hash({'candidate_ref':candidate_ref,'source_must_stay':proof['base'],'candidate':head})}\nintent=op.prepare(binding,req['attempt_id']+'-root-spec-journal-publication',req['lease_source_ref'],now());store=GitDocumentStore(repo,'origin','refs/heads/cdc/adopt2121-'+name+'-root-spec-journal-operation-20261008',rid);ir,old=store.read();assert ir is None or (old==intent or (old.get('state')=='prepared' and old.get('binding')==intent['binding'] and old.get('attempt_id')==intent['attempt_id'])),'unknown submission never replay';intent=old if ir is not None else intent;ir=store.compare_and_swap(None,intent) if ir is None else ir;rr,d=store.read();assert rr==ir;read_receipt=op.verify_readback(intent,d,'git:'+ir+':document.json',now());intent=op.transition(intent,'submitting',now(),receipt=read_receipt);ir=store.compare_and_swap(ir,intent)\ns=importlib.util.spec_from_file_location('bu','/workspace/work/normalize2121-adapter/budget-update.py');bu=importlib.util.module_from_spec(s);s.loader.exec_module(bu);wake='cloud-adopt2121-20261008';e={'type':'reserve','event_id':'adopt2121-'+name+'-root-spec-journal-publication','task_id':'cdc-parallel-maintenance','wake_id':wake,'at_utc':now(),'kind':'tool_call','operation_key':intent['operation_key'],'attempt_id':intent['attempt_id'],'scope':'detached-candidate-publication/'+name,'recovery_ref':None,'cost':{'tool_calls':1,'tokens':None,'elapsed_seconds':None}};br=bu.update([e],wake,str(root/'root-spec-journal-budget.json'))\nlr,l=ls.read();l=v2.set_guard(l,h['owner_id'],h['generation'],h['invocation_id'],now(),intent,'git:'+ir+':document.json');lr=ls.compare_and_swap(lr,l)\nassert git('ls-remote','origin',req['lease_source_ref']).split()[0]==proof['base'] and not git('ls-remote','origin',candidate_ref)\nlive=bridge.observe({'schema':'managed-host-observe/v1','handle_root':req['handle_root'],'handle_id':h['handle_id']});assert live['lease_owned'] and live['runtime_status']=='awaiting_release'\nassert subprocess.check_output(['git','ls-remote','origin','refs/heads/cdc/parallel-maintenance-budget-20261007'],cwd='/workspace/g-cdc',text=True).split()[0]==br\nlr,l=ls.read();claim=v2.claim_submission(ls,lr,req['lease_repository'],req['lease_source_ref'],h['owner_id'],h['generation'],h['invocation_id'],now(),intent_digest=op._hash(intent));(root/'root-spec-journal-claim.json').write_text(json.dumps(claim,indent=2)+'\\n')\nargv=['push','origin',head+':'+candidate_ref];output=git(*argv);readback=git('ls-remote','origin',candidate_ref).split()[0];assert readback==head;assert git('ls-remote','origin',req['lease_source_ref']).split()[0]==proof['base']\ntask={'task_id':head,'task_url':'https://github.com/'+req['lease_repository']+'/tree/'+candidate_ref.removeprefix('refs/heads/'),'operation_key':intent['operation_key'],'attempt_id':intent['attempt_id'],'binding':intent['binding'],'state':'terminal','conclusion':'succeeded','evidence_refs':['git:'+head]};obs={'schema':'operation-observation/v1','operation_key':intent['operation_key'],'lookup_complete':True,'observed_at_utc':now(),'tasks':[task]};lr,l=ls.read();lr=ls.compare_and_swap(lr,v2.clear_guard(l,h['owner_id'],h['generation'],h['invocation_id'],now(),obs,'git:'+head));ir,old=store.read();store.compare_and_swap(ir,op.transition(old,'terminal',now(),task=task))\nreceipt={'candidate_ref':candidate_ref,'candidate':head,'native_argv':['git',*argv],'exit_code':0,'readback':readback,'source_base_unchanged':proof['base'],'claim':claim,'guard_resolution_revision':lr,'at_utc':now()};(root/'root-spec-journal-publication.json').write_text(json.dumps(receipt,indent=2)+'\\n');print(json.dumps(receipt))\n",
+    "test_publication_result_contract.py": "\"\"\"Targeted adapter regression using real released publisher + isolated local Git.\"\"\"\nimport ast\nimport copy\nimport importlib.util\nimport json\nimport pathlib\nimport unittest\n\nROOT = pathlib.Path('/workspace/work/adopt2121-20261008')\nCORE = pathlib.Path('/workspace/work/released-2.12.1-adoption/src/continuous-development-cycle')\n\n\ndef actual_driver_validator():\n    tree = ast.parse((ROOT / 'publish-consumer-live.py').read_text())\n    function = next((n for n in tree.body if isinstance(n, ast.FunctionDef) and n.name == 'validate_publication_result'), None)\n    if function is None:\n        main = next(n for n in tree.body if isinstance(n, ast.FunctionDef) and n.name == 'main')\n        # Execute the existing driver's actual assertions, not a parallel implementation.\n        statements = [n for n in main.body if isinstance(n, ast.Assert) and\n                      any(isinstance(x, ast.Name) and x.id == 'publication' for x in ast.walk(n))]\n        function = ast.FunctionDef(name='validate_publication_result',\n                                  args=ast.arguments(posonlyargs=[], args=[ast.arg(arg='publication'), ast.arg(arg='candidate'), ast.arg(arg='state')], kwonlyargs=[], kw_defaults=[], defaults=[]),\n                                  body=statements, decorator_list=[])\n    namespace = {}\n    exec(compile(ast.fix_missing_locations(ast.Module(body=[function], type_ignores=[])), '<actual-driver-guards>', 'exec'), namespace)\n    return namespace['validate_publication_result']\n\n\nclass PublicationContract(unittest.TestCase):\n    @classmethod\n    def setUpClass(cls):\n        spec = importlib.util.spec_from_file_location('released_publisher_fixture', CORE / 'tests/test_consumer_adoption.py')\n        module = importlib.util.module_from_spec(spec)\n        spec.loader.exec_module(module)\n        fixture = module.GitPublisherTests()\n        fixture.setUp()\n        try:\n            cls.result = fixture.publisher.publish(fixture.ready_state())\n            cls.candidate = fixture.candidate\n            cls.state = {'target_package_tree': fixture.package_tree}\n            (ROOT / 'publication-contract-normal-result.json').write_text(json.dumps({'test_fixture_only': True, 'released_publisher_result': cls.result}, indent=2) + '\\n')\n            assert cls.result['action'] == 'PUBLISHED'\n            assert fixture.git(fixture.work, 'ls-remote', 'origin', 'refs/heads/main').split()[0] == cls.candidate\n        finally:\n            fixture.doCleanups()\n\n    def test_normal_released_native_ff_and_readback_is_accepted(self):\n        actual_driver_validator()(self.result, self.candidate, self.state)\n\n    def test_confirmed_success_contracts_are_accepted(self):\n        for action in ['CONFIRMED', 'CONFIRMED_FROM_READBACK']:\n            result = dict(self.result, action=action)\n            actual_driver_validator()(result, self.candidate, self.state)\n\n    def test_unknown_rejected_and_mismatched_results_fail_closed(self):\n        mutations = [{'action': 'RECONCILE_UNKNOWN'}, {'action': 'REJECTED'},\n                     {'published_head': 'a' * 40}, {'package_tree': 'b' * 40},\n                     {'conditional_update': False}, {'force_push': True}, {'replay_allowed': True}]\n        for mutation in mutations:\n            with self.subTest(mutation=mutation):\n                result = copy.deepcopy(self.result)\n                result.update(mutation)\n                with self.assertRaises((AssertionError, ValueError)):\n                    actual_driver_validator()(result, self.candidate, self.state)\n\n\nif __name__ == '__main__':\n    unittest.main(verbosity=2)\n",
+    "external/budget-update.py": "import sys,pathlib,json,subprocess,os,uuid\nsys.path.insert(0,'/workspace/work/released-2.12.0-diagnostic/src/continuous-development-cycle/scripts')\nimport budget\ndef update(events,wake,receipt_path):\n repo='/workspace/g-cdc';ref='refs/heads/cdc/parallel-maintenance-budget-20261007'\n def git(*a,stdin=None,env=None):return subprocess.check_output(['git',*a],cwd=repo,text=True,input=stdin,env=env,stderr=subprocess.PIPE).strip()\n rows=git('log','--all','--format=%an%x09%ae').splitlines();name,email=next(s.split('\\t',1) for s in rows if '\\t' in s and s.split('\\t',1)[1].endswith('@users.noreply.github.com'));os.environ.update(GIT_AUTHOR_NAME=name,GIT_AUTHOR_EMAIL=email,GIT_COMMITTER_NAME=name,GIT_COMMITTER_EMAIL=email,GIT_TERMINAL_PROMPT='0')\n rev=git('ls-remote','origin',ref).split()[0];git('fetch','--no-tags','origin',ref);old=json.loads(git('show',rev+':budget-ledger.json'));ledger=budget.begin_wake(old,wake)\n for event in events:\n  if any(e['event_id']==event['event_id'] for e in ledger['events']):continue\n  if event['type']=='reserve':\n   decision=budget.decide(ledger,event);assert decision['allow_reservation'],decision\n  ledger=budget.apply_event(ledger,event)\n assert ledger['events'][:len(old['events'])]==old['events']\n env=dict(os.environ,GIT_INDEX_FILE=str(pathlib.Path(receipt_path).with_suffix('.index')));git('read-tree',rev,env=env);blob=git('hash-object','-w','--stdin',stdin=json.dumps(ledger,sort_keys=True)+'\\n');git('update-index','--add','--cacheinfo','100644',blob,'budget-ledger.json',env=env);tree=git('write-tree',env=env);c=git('commit-tree',tree,'-p',rev,stdin='Append CDC budget events '+str(uuid.uuid4())+'\\n');assert git('ls-remote','origin',ref).split()[0]==rev;git('push','origin',c+':'+ref);assert git('ls-remote','origin',ref).split()[0]==c\n pathlib.Path(receipt_path).write_text(json.dumps({'revision':c,'previous_revision':rev,'events':events,'ledger':ledger},indent=2)+'\\n');return c\nif __name__=='__main__':\n data=json.loads(pathlib.Path(sys.argv[1]).read_text());print(update(data['events'],data['wake_id'],data['receipt_path']))\n"
+  },
+  "operational_source_sha256": {
+    "consumer-worker.py": "ba50d2dc1f07222a18c802036779eac9cecd01138592b6f8f12f133352a1349b",
+    "fleet-worker.py": "636ab23400030c7d03178f7e5fa0440128980c6cd2babeea8541be71fc569a70",
+    "start-consumer.py": "fa966385e20925aa6cfda833610be46a1d24426e2a43ece44dc84c8a615ea39c",
+    "start-fleet.py": "1240e91e50f51a4c3bb1cf1f464896574483c684bcea8278d7420f378c58670d",
+    "publish-review-candidate.py": "3a27d4333f82e89a5d7334f95200fde4e41e08d3c299d73b3c4fd0041f074d33",
+    "publish-review-proof.py": "b8a3a0f08b265bd85b4494732a79ca94d1b54c407dd96b2b63b4a1e0e0c12b4c",
+    "publish-review-proof-a2.py": "e7c4f94f9903c1114a5a3d3ca6ca0b96453df177f6c0d67cad8c8f1ddfd2716e",
+    "publish-review-proof-a3.py": "541d545fece39408e9c02475d2b4f998942645686bf9793bbb832db978171bbd",
+    "publish-consumer-live.py": "323c273208b428298c4da3d8c24b6f99bec50e1e51690317f4d4bcf81fff2b62",
+    "close-fleet-preparation.py": "72e0f73af28277e21c6b0e6d79ceb2cd9ab47bcd0d3c866ced3103b65694b4f8",
+    "start-fleet-publication.py": "1a1bf13fb8adeafa9fdd52db0ef00fea6d5a3b8dfc9324532b2f08d73ed5970b",
+    "fleet-publication-worker.py": "7779a93e05deac49fa801112cce4a1b73e6c80000b2eb6a3eae590148fa6739f",
+    "publish-fleet-live.py": "509bb95c9fd9b8e7a51d0b3db97d121870d7a3c6a6d3153cbb87d39348454602",
+    "verify-publication-preflight.py": "270c76e9b909e1fdb308cd39a5fc5d4b53d4145bc5dbdef459560f06c72a1912",
+    "publish-driver-packet.py": "a8e3cff1db0c37c80ff9c48ba82dd4a5124c1137c351e436f7cecdf157e9d5d8",
+    "publish-driver-packet-a2.py": "2e6990560c0bebee3939745f83cf882b05abae64e37d6977d4a3754179bc21da",
+    "publish-driver-packet-a3.py": "e97158112c29064211c00af689cdd2f37752ebdeaa235632e21611b61041e2b2",
+    "publish-root-spec-journal.py": "f407d17e474ad95920351c427ef00d5987e8a746c7db863d8f33210604dbe9b9",
+    "test_publication_result_contract.py": "8586ab35328611dfe5099baa84939c27b19b8558ef6425ccd1684982ca537d85"
+  },
+  "external_source_sha256": {
+    "/workspace/work/normalize2121-adapter/budget-update.py": "a15346220cf0a68569a66ee7a9a8039afee6142e519b2778cce06955b402f744"
+  },
+  "targeted_regression": {
+    "publication-contract-regression-evidence.json": {
+      "before_sha256": "5784b3c5855774a22171c0a865d0d12d3577b713adde44286014c2d8b954b6a1",
+      "after_sha256": "323c273208b428298c4da3d8c24b6f99bec50e1e51690317f4d4bcf81fff2b62",
+      "changed_file": "publish-consumer-live.py",
+      "core_edits": false,
+      "candidate_edits": false,
+      "regression_RED": {
+        "exit_code": 1,
+        "tests": 3,
+        "failures": 1,
+        "log_path": "publication-contract-RED.log",
+        "sha256": "4ed8ddab8292f7b8e80a713cd5722a87a53d3a1a87b27517541d8005c349e201"
+      },
+      "regression_GREEN": {
+        "exit_code": 0,
+        "tests": 3,
+        "failures": 0,
+        "log_path": "publication-contract-GREEN.log",
+        "sha256": "fbaeb2d129509f968cef0570eb9a0cdb3b276ac64ca2b473232cb0c3478fc859"
+      },
+      "execution_scope": "isolated local temporary bare Git; real immutable released publisher normal PUBLISHED contract; no shared source/CI/provider effects"
+    },
+    "publication-contract-normal-result.json": {
+      "test_fixture_only": true,
+      "released_publisher_result": {
+        "schema": "consumer-adoption-publication-result/v1",
+        "action": "PUBLISHED",
+        "published_head": "b5d0a61fb0d8fe24f2a46a1f74102a3f2fae9cb3",
+        "package_tree": "27a9dec2b28408d19f4a37caa3f16a4a26531585",
+        "conditional_update": true,
+        "force_push": false,
+        "replay_allowed": false
+      }
+    },
+    "publication-contract-RED.log": {
+      "utf8": "test_confirmed_success_contracts_are_accepted (__main__.PublicationContract.test_confirmed_success_contracts_are_accepted) ... ok\ntest_normal_released_native_ff_and_readback_is_accepted (__main__.PublicationContract.test_normal_released_native_ff_and_readback_is_accepted) ... FAIL\ntest_unknown_rejected_and_mismatched_results_fail_closed (__main__.PublicationContract.test_unknown_rejected_and_mismatched_results_fail_closed) ... ok\n\n======================================================================\nFAIL: test_normal_released_native_ff_and_readback_is_accepted (__main__.PublicationContract.test_normal_released_native_ff_and_readback_is_accepted)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/work/adopt2121-20261008/test_publication_result_contract.py\", line 46, in test_normal_released_native_ff_and_readback_is_accepted\n    actual_driver_validator()(self.result, self.candidate, self.state)\n  File \"<actual-driver-guards>\", line 133, in validate_publication_result\nAssertionError: Do not replay uncertain/rejected submission\n\n----------------------------------------------------------------------\nRan 3 tests in 1.019s\n\nFAILED (failures=1)\n",
+      "sha256": "4ed8ddab8292f7b8e80a713cd5722a87a53d3a1a87b27517541d8005c349e201"
+    },
+    "publication-contract-GREEN.log": {
+      "utf8": "test_confirmed_success_contracts_are_accepted (__main__.PublicationContract.test_confirmed_success_contracts_are_accepted) ... ok\ntest_normal_released_native_ff_and_readback_is_accepted (__main__.PublicationContract.test_normal_released_native_ff_and_readback_is_accepted) ... ok\ntest_unknown_rejected_and_mismatched_results_fail_closed (__main__.PublicationContract.test_unknown_rejected_and_mismatched_results_fail_closed) ... ok\n\n----------------------------------------------------------------------\nRan 3 tests in 1.069s\n\nOK\n",
+      "sha256": "fbaeb2d129509f968cef0570eb9a0cdb3b276ac64ca2b473232cb0c3478fc859"
+    }
+  },
+  "source_routes": {
+    "consumers": "native origin; existing canonical cdc/coordination; released GitConsumerAdoptionPublisher",
+    "fleet": "native origin cdc/fleet, sole canonical wrapped fleet-supervisor; separate host terminal scope is not leader authority",
+    "core": "immutable released2.12.1 from9b38/package9c45; no core modifications",
+    "live_execution": "not run; pinned ordered review acceptance required",
+    "provider_starts": "none; next Fleet writer local_command in existing Cloud only",
+    "preparation_finish": "normal resumable release/quiescence, does not assert Fleet adoption completed"
+  }
+}
