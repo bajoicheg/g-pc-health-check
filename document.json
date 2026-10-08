@@ -1,0 +1,11 @@
+{
+  "schema": "cdc-independent-review-journal/v1",
+  "review_kind": "QUALITY",
+  "source": "actual owner-uploaded adoption-quality-20261008.json; bytes copied, not reconstructed",
+  "artifact_path": "adoption-quality-20261008.json",
+  "artifact_utf8_bytes": 13836,
+  "artifact_sha256": "bc82569b1c1c2793fad41ad7aa6e746ff4668761589453693a7baf69971f73a3",
+  "status": "GREEN",
+  "scope": "four immutable adoption candidates; does not authorize live effects",
+  "actual_source_base_unchanged": "9dac2653ca1e2d9c66a18505b15cb465f485ed04"
+}
