@@ -133,7 +133,7 @@ public sealed partial class MainForm
 
     private static void SetMetric(TableLayoutPanel metrics, int column, string? captionKey, string? subKey)
     {
-        if (metrics.GetControlFromPosition(column, 0) is not Panel card || card.Controls.Count < 3) return;
+        if (metrics.Controls.OfType<Panel>().ElementAtOrDefault(column) is not Panel card || card.Controls.Count < 3) return;
         if (captionKey is not null && card.Controls[0] is Label caption) caption.Text = AppLocalization.T(captionKey);
         if (subKey is not null) card.Controls[2].Text = AppLocalization.T(subKey);
     }

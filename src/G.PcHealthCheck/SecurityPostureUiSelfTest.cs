@@ -38,9 +38,9 @@ internal static class SecurityPostureUiSelfTest
             var root = form.Controls.OfType<TableLayoutPanel>().Single(x => x.RowCount == 5 && x.ColumnCount == 1);
             var metrics = root.GetControlFromPosition(0, 2) as TableLayoutPanel
                 ?? throw new InvalidOperationException("Main metric layout missing.");
-            Require(metrics.ColumnCount == 7 && metrics.Controls.Count == 7,
+            Require(metrics.Controls.Count == 7,
                 "Main metrics must contain exactly seven cards.");
-            Require(ReferenceEquals(metrics.GetControlFromPosition(6, 0), card), "Security card must be the seventh metric card.");
+            Require(ReferenceEquals(metrics.Controls.OfType<Panel>().ElementAt(6), card), "Security card must be the seventh metric card.");
 
             var onClick = typeof(Control).GetMethod("OnClick", BindingFlags.Instance | BindingFlags.NonPublic)
                 ?? throw new InvalidOperationException("Control click test hook unavailable.");

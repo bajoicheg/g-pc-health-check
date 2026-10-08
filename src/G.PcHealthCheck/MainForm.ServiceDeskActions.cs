@@ -34,7 +34,7 @@ public sealed partial class MainForm
         layout.RowCount = 3;
         layout.RowStyles.Clear();
         layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 76));
-        layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 42));
+        layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
         layout.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
         if (split is not null) layout.SetRow(split, 2);
 
@@ -42,8 +42,8 @@ public sealed partial class MainForm
         {
             Name = "ServiceDeskActionBar",
             Dock = DockStyle.Fill,
-            AutoSize = false,
-            WrapContents = false,
+            AutoSize = true,
+            WrapContents = true,
             FlowDirection = FlowDirection.LeftToRight,
             Padding = new Padding(4, 3, 4, 2),
             Margin = new Padding(0, 0, 0, 4)

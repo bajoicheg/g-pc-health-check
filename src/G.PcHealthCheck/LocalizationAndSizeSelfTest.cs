@@ -20,12 +20,19 @@ internal static class LocalizationAndSizeSelfTest
             Require((string?)Invoke(localization, "TextForCulture", "ru", "Menu.Analysis") == "Анализ", "RU resource lookup failed.");
             Require((string?)Invoke(localization, "TextForCulture", "en", "Menu.Analysis") == "Analysis", "EN resource lookup failed.");
 
+            var multilineKeys = new[] { "Main.Message.Blocked", "Main.Message.Confirm", "Main.Message.Completed", "Main.ExecutionContext.ProcessSession", "Main.ExecutionContext.ScopeTooltip", "Main.ExecutionContext.ActionScope", "Main.ServiceDesk.RecommendedUnavailable" };
+            foreach (var language in new[] { "ru", "en" }) foreach (var key in multilineKeys)
+            {
+                var value = (string?)Invoke(localization, "TextForCulture", language, key) ?? "";
+                Require(value.Contains('\n') && !value.Contains("\\n", StringComparison.Ordinal), language + "/" + key + " must render real line breaks.");
+            }
+
             var oneMb = Convert.ToDouble(Invoke(humanSize, "MegabytesValue", 1_048_576L), CultureInfo.InvariantCulture);
             Require(oneMb == 1d, "Byte-to-MB conversion changed.");
             Require((string?)Invoke(humanSize, "FormatMegabytes", 1_572_864L, CultureInfo.GetCultureInfo("en-US")) == "1.5 MB", "EN MB format is not human-readable.");
             Require((string?)Invoke(humanSize, "FormatMegabytes", (object?)null, CultureInfo.GetCultureInfo("ru-RU")) == "—", "Unknown file size was converted to zero.");
 
-            Console.WriteLine("Localization and MB presentation self-test passed: 7/7.");
+            Console.WriteLine("Localization and MB presentation self-test passed: 21/21.");
             return 0;
         }
         catch (Exception ex)

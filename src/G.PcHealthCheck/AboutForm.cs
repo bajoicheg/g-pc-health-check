@@ -9,11 +9,12 @@ internal sealed class AboutForm : Form
         AutoScaleMode = AutoScaleMode.Dpi;
         Font = new Font("Segoe UI", 9F);
         StartPosition = FormStartPosition.CenterParent;
-        FormBorderStyle = FormBorderStyle.FixedDialog;
+        FormBorderStyle = FormBorderStyle.Sizable;
         MinimizeBox = false;
-        MaximizeBox = false;
+        MaximizeBox = true;
         ShowInTaskbar = false;
-        ClientSize = new Size(470, 235);
+        ClientSize = new Size(520, 300);
+        MinimumSize = new Size(420, 280);
 
         var layout = new TableLayoutPanel
         {
@@ -53,7 +54,7 @@ internal sealed class AboutForm : Form
         {
             Text = AppLocalization.T("About.Purpose"),
             AutoSize = true,
-            MaximumSize = new Size(420, 0)
+            Dock = DockStyle.Fill
         });
         var close = new Button
         {

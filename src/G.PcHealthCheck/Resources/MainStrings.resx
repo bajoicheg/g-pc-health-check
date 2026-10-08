@@ -59,12 +59,20 @@
   <data name="Main.Error.ContextCheck" xml:space="preserve"><value>Не удалось проверить контекст</value></data>
   <data name="Main.Error.Remediation" xml:space="preserve"><value>Ошибка remediation</value></data>
   <data name="Main.Error.CopySummary" xml:space="preserve"><value>Не удалось скопировать сводку</value></data>
-  <data name="Main.Message.Blocked" xml:space="preserve"><value>Набор не выполнен. Доступность изменилась или контекст не подтверждён:\n\n{0}</value></data>
+  <data name="Main.Message.Blocked" xml:space="preserve"><value>Набор не выполнен. Доступность изменилась или контекст не подтверждён:
+
+{0}</value></data>
   <data name="Main.Message.CheckActions" xml:space="preserve"><value>Проверьте выбранные действия</value></data>
   <data name="Main.Message.ScopeLine" xml:space="preserve"><value>  Область: {0}</value></data>
-  <data name="Main.Message.Confirm" xml:space="preserve"><value>Будут выполнены выбранные действия:\n\n{0}\n\nПосле выполнения программа автоматически повторит диагностику в исходном процессе.</value></data>
+  <data name="Main.Message.Confirm" xml:space="preserve"><value>Будут выполнены выбранные действия:
+
+{0}
+
+После выполнения программа автоматически повторит диагностику в исходном процессе.</value></data>
   <data name="Main.Message.ConfirmTitle" xml:space="preserve"><value>Подтвердите действия</value></data>
-  <data name="Main.Message.Completed" xml:space="preserve"><value>Выполнено: {0}/{1}. Повторная диагностика завершена.\nИндекс: {2} → {3}.\nУстранение симптома нужно подтвердить отдельно.</value></data>
+  <data name="Main.Message.Completed" xml:space="preserve"><value>Выполнено: {0}/{1}. Повторная диагностика завершена.
+Индекс: {2} → {3}.
+Устранение симптома нужно подтвердить отдельно.</value></data>
   <data name="Main.Message.Cancelled" xml:space="preserve"><value>Операция отменена</value></data>
   <data name="Main.Message.ReportMissing" xml:space="preserve"><value>Отчёт ещё не сформирован.</value></data>
   <data name="Main.State.Ok" xml:space="preserve"><value>норма</value></data>
@@ -97,17 +105,23 @@
   <data name="Main.Remediation.Error" xml:space="preserve"><value>Ошибка</value></data>
   <data name="Main.ExecutionContext.Details" xml:space="preserve"><value>Права и доступные действия…</value></data>
   <data name="Main.ExecutionContext.NotCaptured" xml:space="preserve"><value>Права и пользователь сеанса: сведения ещё не получены.</value></data>
-  <data name="Main.ExecutionContext.ProcessSession" xml:space="preserve"><value>{0}\nПроцесс: {1} · Сеанс {2}: {3}</value></data>
+  <data name="Main.ExecutionContext.ProcessSession" xml:space="preserve"><value>{0}
+Процесс: {1} · Сеанс {2}: {3}</value></data>
   <data name="Main.ExecutionContext.ManualReason" xml:space="preserve"><value>Ручная рекомендация; программа её не выполняет.</value></data>
-  <data name="Main.ExecutionContext.ScopeTooltip" xml:space="preserve"><value>{0}\nОбласть: {1}</value></data>
-  <data name="Main.ExecutionContext.ActionScope" xml:space="preserve"><value>{0}\nОбласть: {1}\n{2}</value></data>
+  <data name="Main.ExecutionContext.ScopeTooltip" xml:space="preserve"><value>{0}
+Область: {1}</value></data>
+  <data name="Main.ExecutionContext.ActionScope" xml:space="preserve"><value>{0}
+Область: {1}
+{2}</value></data>
   <data name="Main.ServiceDesk.SelectAll" xml:space="preserve"><value>Выбрать все доступные</value></data>
   <data name="Main.ServiceDesk.MakeBetter" xml:space="preserve"><value>Сделать хорошо</value></data>
   <data name="Main.ServiceDesk.DoEverything" xml:space="preserve"><value>Сделать всё</value></data>
   <data name="Main.ServiceDesk.MissingPanel" xml:space="preserve"><value>Не найдена панель рекомендаций для Service Desk действий.</value></data>
   <data name="Main.ServiceDesk.CheckRecommended" xml:space="preserve"><value>Проверяю рекомендуемые автоматические действия…</value></data>
   <data name="Main.ServiceDesk.NoRecommended" xml:space="preserve"><value>По текущему снимку нет рекомендуемых автоматических действий.</value></data>
-  <data name="Main.ServiceDesk.RecommendedUnavailable" xml:space="preserve"><value>Рекомендуемые действия сейчас недоступны:\n\n{0}</value></data>
+  <data name="Main.ServiceDesk.RecommendedUnavailable" xml:space="preserve"><value>Рекомендуемые действия сейчас недоступны:
+
+{0}</value></data>
   <data name="Main.ServiceDesk.PrepareFailed" xml:space="preserve"><value>Не удалось подготовить рекомендуемые действия</value></data>
   <data name="Main.Recommendation.Recommended" xml:space="preserve"><value>Рекомендуется</value></data>
   <data name="Main.Recommendation.Optional" xml:space="preserve"><value>Опционально</value></data>
