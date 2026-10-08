@@ -2,14 +2,14 @@
 schema: development-work-status/v4
 repository: bajoicheg/g-pc-health-check
 branch: design/0.17.0-security-posture
-policy_revision: 2026-10-08-four-stage-cap10-ci7-spec-recovery
-policy_digest: 95caea8bae1fb919fda8e73336d117fa00dc29479cc9af95c4b13140a26aeab9
-observed_at_utc: '2026-10-08T11:55:14.712035Z'
+policy_revision: 2026-10-08-DRAFT-cap18-parallel4-CI10-conserve-route-exception
+policy_digest: 107c1bee9552e27a9cc9d7d396ca8eea86dfe8574ddd628ac097d3f35092ed01
+observed_at_utc: '2026-10-08T19:56:40.244652Z'
 orchestration_origin: chat
-active_executor: 6d3ba240-5d58-4cc2-b2c9-ed6ee333dfd1
+active_executor: 4567e41b-8c0d-4327-a462-4bc53ae66fad
 lease_state: active
-executor_heartbeat_at_utc: '2026-10-08T11:55:14.712035Z'
-execution_lease_until_utc: '2026-10-08T12:15:14.712035Z'
+executor_heartbeat_at_utc: '2026-10-08T19:56:40.244652Z'
+execution_lease_until_utc: '2026-10-08T20:16:40.244652Z'
 waiting_external_kind: null
 waiting_external_id: null
 waiting_external_sha: null
@@ -17,46 +17,59 @@ operation_intent_ref: null
 operation_key: null
 resume_capsule_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/resume.json
 execution_continuity:
-  invocation_id: managed-terminal:8622efbf7abd1e38cc327fe7d09dac369294ff92b89511eff504bcad6a7cea90
+  invocation_id: managed-terminal:1a5159d82303e3db78726546429bb10a12a1d4734789ee501d867a3cc12f98f6
   runnable_next_action: true
   meaningful_progress: true
   primitive_steps_since_progress: 0
   completion_gate: continue
-  last_progress_ref: git:3529dc8811561c31b7ceca3d6d64b68b8a20dc42
+  last_progress_ref: git:c469765400cdf7bd7c6eba9cebd0d5f5b7e8ed5a
 control:
   execution_lease_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/lease.json
-  execution_lease_revision: fd8dab381317db7f8b87a92a1306afd5a557ac17
-  executor_id: 6d3ba240-5d58-4cc2-b2c9-ed6ee333dfd1
-  lease_generation: 28
+  execution_lease_revision: 7ef91c0fd6787e22cf27d9205f67fba75a411cc4
+  executor_id: 4567e41b-8c0d-4327-a462-4bc53ae66fad
+  lease_generation: 29
   budget_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/budget.json
   recovery_snapshot_ref: null
   external_wait_ref: null
 active_change: gpc-0.17.1-readable-ui
-current_task: 0.17.1 Q1-Q4 corrected immutable candidate; Root SPEC then genuine independent
-  QUALITY pending
+current_task: 0.17.1 Q5 limited cycle3 fixture correction and approved recovery policy;
+  exact candidate Root SPEC then bounded independent QUALITY pending
 phase: review
-implementation_sha: 3529dc8811561c31b7ceca3d6d64b68b8a20dc42
-candidate_sha: 3529dc8811561c31b7ceca3d6d64b68b8a20dc42
-last_green_sha: 3529dc8811561c31b7ceca3d6d64b68b8a20dc42
-last_green_evidence: Fresh Q3 margin portable RED248/256 -> GREEN256/256; SDK8.0.425
-  Linux Windows-target compile0warnings0errors; native RU/EN narrow-short/security
-  render NOT_RUN
+implementation_sha: c469765400cdf7bd7c6eba9cebd0d5f5b7e8ed5a
+candidate_sha: c469765400cdf7bd7c6eba9cebd0d5f5b7e8ed5a
+last_green_sha: c469765400cdf7bd7c6eba9cebd0d5f5b7e8ed5a
+last_green_evidence: Fresh analytical Q5 RED11/12 -> GREEN12/12; SDK8.0.425 Linux
+  Windows-target compile0warnings0errors; nativeWindows/render/UAC/RDP/pilot NOT_RUN
 active_compute: none
 active_ci_run_id: ''
 last_ci_run_id: '36128619572'
 last_ci_status: success
 release_version: 0.17.1
-release_candidate_sha: 3529dc8811561c31b7ceca3d6d64b68b8a20dc42
+release_candidate_sha: c469765400cdf7bd7c6eba9cebd0d5f5b7e8ed5a
 release_state: candidate
-blocker: ordered_root_requirements_and_independent_quality_review_pending; exact_head_WindowsCI_not_run;
-  retained_artifact_pending; real_Windows11_pilot_and_explicit_integration_approval_required
-next_action: Root requirements review exact external-journal final candidate, then
-  independently dispatched quality reviewer; canonical publication only after both
-  accepted. One PR cycle per stage; one final all-four-SHA artifact producer, no duplicate
-  intermediate pilot/dispatch.
+blocker: ordered_Root_SPEC_and_bounded_independent_product_QUALITY_pending; exactWindowsPRCI_and_retainedEXE_not_run;
+  manualWindows11_and_ownerintegration_required
+next_action: Root SPEC exact external finalcandidate; separately admitted bounded
+  independent product QUALITY; no sourcepublication orCI before gates
 ---
 
-## Current Q1-Q4 correction after genuine FULL QUALITY REQUEST_CHANGES
+## Current 0.17.1 Q5 cycle3 and approved four-stage recovery
+
+Actual tested implementation `c469765400cdf7bd7c6eba9cebd0d5f5b7e8ed5a` imports exact c05071069d6a11c8818ee822c17d141adb19d94a/treec526e79c5e6adda61e6f2d562ddf6970af11aa2a; Q1-Q4 static closures and original test provenance are retained. Final documentation tip is tracked by the external immutable journal after commit, not circular self-SHA. Genuine bounded d1 report refs/heads/cdc/review-report-gpc-bounded-d1-20261008@38805ccb6658fe7c07c30176ae48489179a9ac09 accepts corrected prospective controls/forward strategy as preparation only, not product/native acceptance.
+
+Q5: native fixture establishes requested Size and explicit nonzero Location(300,70) before final Fit, preserving all narrow/short RU/EN fixtures and >=30 coverage assertion. Fresh analytical witness RED11/12 exit1 -> GREEN12/12 exit0 models clamping geometry; it is NOT WinForms execution. Fresh SDK8.0.425 Windows-target compile exit0,0warnings/errors. Prior identical dependency restore assets are reused; earlier first-use environment failure log and its corrected task-local DOTNET_CLI_HOME remedy retain actual provenance. Native Windows runtime/render/DPI/RDP/UAC, generator, EXE and Windows11 pilot remain NOT_RUN.
+
+Cycle3 explicitly references approved limited strategy git:refs/heads/cdc/strategy-gpc-Q5-cycle3-20261008@57945c00c856cc7dd2856b30333bcfd8411b2eec. Prior two cycles remain spent; quality.max_validation_cycles stays2. Root SPEC acceptance and one genuine independently admitted bounded product QUALITY review are required for this new exact candidate; no old reviewer or policy review is relabelled product acceptance.
+
+Owner reply “Подтверждаю. Продолжай” at2026-10-08 22:45:22 MSK authorizes reviewed cap18/parallel4/CI10/conserve ceiling10. Approved effective adapter bytes SHA256993994b505380d92431f21e745c7b4dbbd7ccb3fb1a0b199b42c831e5ed04307, semantic107c1bee9552e27a9cc9d7d396ca8eea86dfe8574ddd628ac097d3f35092ed01 match live ledger policy sha256:82c91ce8f0b0f749249ec64d5361e4d73224e2e16f59f0c12ce36b9f1d609798. Activation/readback journal b7f4508c5d0df67e6d17a826da0fe51128f1b83c. ALL historical charges/events/circuits/wakes and two UNKNOWN reviewers remain. Current writer gen29 has a separate actual reservation; no a4 replay. One writer plus one bounded stage reviewer and UNKNOWN2 fit parallel4. No retry margin.
+
+Per-stage exact-SHA PR validation plus separate single-SHA EXE artifact production are the only two permitted routes per approved release; CI2historical+4PR+4EXE=10, not an unimplemented four-SHA producer. Shared canonical task identity is preserved. Scope admission binds exact stage SHA/route/attempt/operation, counts UNKNOWN and rejects replay/over-cap; no policy/status/probe/rerun CI. Stage2/0.18/0.19 have fresh-base independent attempts/reviews; global scope remains ACTIVE. Current source7aa unchanged, no publication/CI submitted. Scheduler paused; Windows11 pilot and explicit owner integration approval remain mandatory.
+
+All following checkpoint sections are preserved HISTORICAL observations; prior cap13/CI7/same-retained-reviewer and a4-LIVE wording is superseded by this current approved policy and exact actual gen29 boundary.
+
+
+
+## Historical Q1-Q4 correction checkpoint before Q5
 
 Tested implementation `3529dc8811561c31b7ceca3d6d64b68b8a20dc42` corrects exact prior a4 candidate a8b386f475e4fba6938d0ce44cd83f59583ff7f7/tree102a932130ba4b6470698332405d9d0aab12958c. Final documentation tip is tracked externally after commit, without circular self-SHA. Root accepted prior SPEC; genuine retained `/root/gpc_quality_review` FULL QUALITY returned Critical none and four Important Q1-Q4. This is a review-phase result, not reviewer runtime failure. New exact candidate requires Root SPEC and the same reviewer's delta/risk follow-up, cycle2/max2.
 
