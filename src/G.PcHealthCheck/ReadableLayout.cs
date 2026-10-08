@@ -7,7 +7,9 @@ internal static class ReadableLayout
   scale=Math.Max(1,scale);count=Math.Max(1,count);
   int columns=Math.Clamp(width/(int)Math.Ceiling(165*scale),1,count);
   int rows=(count+columns-1)/columns;
-  return(columns,rows,(int)Math.Ceiling(112*scale)*rows);
+  // 116 per row includes card bottom margin6 and subtext offset68 + >=30 content;
+  // the metrics bottom margin10 is outside the rows and must be reserved once.
+  return(columns,rows,(int)Math.Ceiling(116*scale)*rows+(int)Math.Ceiling(10*scale));
  }
  internal static (int Width,int Height) WindowSize(int width,int height,int availableWidth,int availableHeight)
  {

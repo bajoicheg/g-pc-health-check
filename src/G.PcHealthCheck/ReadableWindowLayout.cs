@@ -6,7 +6,19 @@ internal static class ReadableWindowLayout
     internal static void Attach(Form form)
     {
         form.Shown += (_, _) => Fit(form, Screen.FromControl(form).WorkingArea);
-        form.DpiChanged += (_, _) => Fit(form, Screen.FromControl(form).WorkingArea);
+        form.DpiChanged += (_, _) => AfterScaling(form, () => Fit(form, Screen.FromControl(form).WorkingArea));
+    }
+    internal static void AfterScaling(Form form, Action action)
+    {
+        if (form.IsDisposed || form.Disposing || !form.IsHandleCreated) return;
+        try
+        {
+            form.BeginInvoke((Action)(() =>
+            {
+                if (!form.IsDisposed && !form.Disposing && form.IsHandleCreated) action();
+            }));
+        }
+        catch (InvalidOperationException) when (form.IsDisposed || form.Disposing || !form.IsHandleCreated) { }
     }
     internal static void Fit(Form form, Rectangle workArea)
     {

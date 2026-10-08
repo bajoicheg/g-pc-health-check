@@ -19,7 +19,7 @@ internal static class ReadableLayoutSelfTest
                     AppLocalization.SetLanguage(language);
                     using var form = new MainForm(false);
                     var workArea = new Rectangle(0, 0, area.Width, area.Height);
-                    form.Show(); ReadableWindowLayout.Fit(form, workArea); form.PerformLayout();
+                    form.Show(); ReadableWindowLayout.Fit(form, workArea); form.Size = area; form.PerformLayout();
                     Require(workArea.Contains(form.Bounds), "window exceeds narrow/short available work area");
                     var metrics = Descendants(form).OfType<TableLayoutPanel>().Single(x => x.Name == "AdaptiveMetrics");
                     var cards = metrics.Controls.OfType<Panel>().ToArray();
@@ -55,6 +55,42 @@ internal static class ReadableLayoutSelfTest
                     Require(details.All(x => x.Width > 0 && x.Height >= 30), "finding/action details unreachable");
                     var actionDetail = details.Single(x => x.Name == "ActionDetails");
                     actionDetail.SelectAll(); Require(actionDetail.SelectedText == actionDetail.Text && actionDetail.Text.Length > 1000, "long action reason loses copyable text");
+                    findings.Rows.Add("WARN", "Other", "SECOND_FINDING", "1", "Second finding detail");
+                    actions.Rows.Add(false, "automatic", "SECOND_ACTION", "Second reason", false, "low", "second verify", "available");
+                    foreach (var pair in new[] { (Grid: findings, Detail: findingDetail, Marker: "SECOND_FINDING"), (Grid: actions, Detail: actionDetail, Marker: "SECOND_ACTION") })
+                    {
+                        pair.Grid.CurrentCell = pair.Grid.Rows[1].Cells[2]; Application.DoEvents();
+                        Require(pair.Detail.Text.Contains(pair.Marker), "Q1 details lag selected second row");
+                        pair.Grid.ClearSelection(); Application.DoEvents();
+                        Require(pair.Detail.Text.Length == 0, "Q1 cleared selection retains stale details");
+                        pair.Grid.Rows[1].Selected = true; Application.DoEvents();
+                        Require(pair.Detail.Text.Contains(pair.Marker), "Q1 same-cell reselection must restore current details");
+                        pair.Grid.CurrentCell = null; pair.Grid.CurrentCell = pair.Grid.Rows[0].Cells[2]; Application.DoEvents();
+                        Require(!pair.Detail.Text.Contains(pair.Marker), "Q1 first row retains second details");
+                    }
+                    // Same Unavailable label, but a changed real target scope must refresh copyable details.
+                    var user = ExecutionContextSelfTest.User();
+                    var context = user with { HasAdministratorToken = true, IsElevated = true };
+                    actions.Rows[0].Tag = new ActionRecommendation { Id = "CleanTemp", CanAutomate = true };
+                    var flags = BindingFlags.NonPublic | BindingFlags.Instance;
+                    var render = typeof(MainForm).GetMethod("RenderExecutionContext", flags)!;
+                    var refresh = typeof(MainForm).GetMethod("RefreshActionAvailability", flags)!;
+                    render.Invoke(form, [context]); refresh.Invoke(form, null);
+                    var availability = ExecutionPolicy.For("CleanTemp", context);
+                    Require(availability.State == "Unavailable" && actionDetail.Text.Contains(availability.Reason) && actionDetail.Text.Contains(availability.Scope), "Q2 blocked reason/scope absent from selectable action details");
+                    string oldLabel = Convert.ToString(actions.Rows[0].Cells["Availability"].Value) ?? "";
+                    var changed = context with { SessionProfile = @"C:\Users\SyntheticSecond" };
+                    render.Invoke(form, [changed]); refresh.Invoke(form, null);
+                    var newAvailability = ExecutionPolicy.For("CleanTemp", changed);
+                    Require(oldLabel == Convert.ToString(actions.Rows[0].Cells["Availability"].Value) && newAvailability.Scope != availability.Scope, "Q2 fixture must retain same state with different scope");
+                    Require(actionDetail.Text.Contains(newAvailability.Scope) && !actionDetail.Text.Contains(availability.Scope), "Q2 same-label context change leaves stale scope");
+                    // Exercise real queued production helper around a simulated framework rectangle write.
+                    bool afterScaling = false;
+                    ReadableWindowLayout.AfterScaling(form, () => { ReadableWindowLayout.Fit(form, workArea); afterScaling = true; });
+                    form.Bounds = new Rectangle(0, 0, area.Width + 120, area.Height + 120);
+                    Require(!afterScaling, "Q4 fit must defer until framework scaling returns");
+                    Application.DoEvents();
+                    Require(afterScaling && workArea.Contains(form.Bounds), "Q4 post-scaling clamp was overwritten");
                     SaveRender(form, language, area, "findings-actions");
                     var security = Descendants(form).OfType<TabPage>().Single(x => x.Name == "SecurityPostureTab");
                     Field<TabControl>(form, "_tabs").SelectedTab = security;
@@ -79,15 +115,23 @@ internal static class ReadableLayoutSelfTest
                 Require(ReadableLayout.MemoryBand(item.Value, 8, 15) == item.Expected, "RAM presentation boundary " + item.Value);
             }
             count++;
+            using (var closed = new Form())
+            {
+                closed.Show(); bool called = false;
+                ReadableWindowLayout.AfterScaling(closed, () => called = true);
+                closed.Dispose(); Application.DoEvents();
+                Require(!called, "Q4 disposed form callback must not run");
+            }
+            count++;
             using var common = new CommonProblemsForm();
             ReadableWindowLayout.Fit(common, new Rectangle(0, 0, 800, 720));
             Require(common.Width <= 800 && common.Height <= 720 && common.MinimumSize.Width <= 800, "common problems dialog outside narrow/short area");
             using var about = new AboutForm();
             ReadableWindowLayout.Fit(about, new Rectangle(0, 0, 800, 720));
             Require(about.Width <= 800 && about.Height <= 720, "About outside work area");
-            using var context = new ExecutionContextForm(null);
-            ReadableWindowLayout.Fit(context, new Rectangle(0, 0, 800, 720));
-            Require(context.Width <= 800 && context.Height <= 720 && context.MinimumSize.Width <= 800, "context dialog outside narrow/short area");
+            using var contextDialog = new ExecutionContextForm(null);
+            ReadableWindowLayout.Fit(contextDialog, new Rectangle(0, 0, 800, 720));
+            Require(contextDialog.Width <= 800 && contextDialog.Height <= 720 && contextDialog.MinimumSize.Width <= 800, "context dialog outside narrow/short area");
             Require(about.FormBorderStyle == FormBorderStyle.Sizable && about.MinimumSize.Width > 0, "About must resize long localized text");
         }
         catch (Exception ex) { failures.Add(ex.GetBaseException().Message); }

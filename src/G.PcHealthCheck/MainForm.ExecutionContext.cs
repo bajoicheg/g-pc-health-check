@@ -48,6 +48,8 @@ public sealed partial class MainForm
             row.Cells["Selected"].ReadOnly = !availability.CanRequest;
             if (!availability.CanRequest) row.Cells["Selected"].Value = false;
         }
+        // ToolTipText and context may change while the displayed State value stays identical.
+        if (_actionDetails is not null) RefreshSelectedDetails(_actions, _actionDetails);
         UpdateApplyState();
     }
 

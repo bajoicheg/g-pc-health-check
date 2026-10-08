@@ -35,7 +35,7 @@ public sealed partial class MainForm
         }
         if (root.Parent is Panel viewport) viewport.ClientSizeChanged += (_, _) => Arrange();
         metrics.SizeChanged += (_, _) => Arrange();
-        DpiChanged += (_, _) => Arrange();
+        DpiChanged += (_, _) => ReadableWindowLayout.AfterScaling(this, Arrange);
         Arrange();
     }
 
@@ -67,17 +67,32 @@ public sealed partial class MainForm
         };
     }
 
-    private static Control DetailPane(DataGridView grid, string name)
+    private TextBox? _actionDetails;
+
+    private static void RefreshSelectedDetails(DataGridView grid, TextBox detail)
+    {
+        var row = grid.CurrentRow;
+        detail.Text = row is null || !row.Selected ? "" : string.Join(Environment.NewLine + Environment.NewLine,
+            grid.Columns.Cast<DataGridViewColumn>().Select(c => c.HeaderText + ": " + Convert.ToString(row.Cells[c.Index].Value)
+                + (c.Name == "Availability" && !string.IsNullOrWhiteSpace(row.Cells[c.Index].ToolTipText)
+                    ? Environment.NewLine + row.Cells[c.Index].ToolTipText : "")));
+    }
+
+    private Control DetailPane(DataGridView grid, string name)
     {
         var split = new SplitContainer { Dock = DockStyle.Fill, Orientation = Orientation.Horizontal, Name = name + "Pane" };
         ArmProportionalSplit(split, .70, 40, 35);
         var detail = new TextBox { Name = name, Dock = DockStyle.Fill, ReadOnly = true, Multiline = true, ScrollBars = ScrollBars.Both, WordWrap = false, BackColor = SystemColors.Window, AccessibleName = name };
-        void Refresh()
+        if (ReferenceEquals(grid, _actions)) _actionDetails = detail;
+        void Refresh() => RefreshSelectedDetails(grid, detail);
+        grid.CurrentCellChanged += (_, _) => Refresh();
+        // SelectionChanged precedes CurrentCellChanged; never read old CurrentRow here.
+        grid.SelectionChanged += (_, _) =>
         {
-            var row = grid.CurrentRow;
-            detail.Text = row is null ? "" : string.Join(Environment.NewLine + Environment.NewLine, grid.Columns.Cast<DataGridViewColumn>().Select(c => c.HeaderText + ": " + Convert.ToString(row.Cells[c.Index].Value)));
-        }
-        grid.SelectionChanged += (_, _) => Refresh();
+            if (grid.SelectedRows.Count == 0) detail.Clear();
+            else if (grid.FindForm() is Form form)
+                ReadableWindowLayout.AfterScaling(form, Refresh); // after CurrentCell update, also same-cell reselection
+        };
         grid.CellValueChanged += (_, _) => Refresh();
         grid.RowsAdded += (_, _) => Refresh();
         split.Panel1.Controls.Add(grid); split.Panel2.Controls.Add(detail);
