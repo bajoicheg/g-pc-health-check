@@ -1,6 +1,13 @@
+## Current CDC authority — 2.12.1
+
+Use canonical `bajoicheg/g-cdc` CDC **2.12.1**, immutable `refs/heads/release/v2.12.1`, release commit `9b38bd4d9f5fb113ec10bdbca9fbe33908619a54`, exact 352-file package tree `9c45d98c3254e9658d452c505d8c97698e3fc9a7`. The complete package is vendored at `.agents/skills/continuous-development-cycle/`. Use verified canonical managed controls and the explicitly selected approved task-local adapter with strict live-ledger parity; historical source adapter limits are not the effective policy. Product/native/manual gates and scheduler pause remain.
+
+### Historical authority header before adopted CDC2.12.1
+
 ## Current CDC authority — 2.11.6
 
 Use canonical `bajoicheg/g-cdc` CDC **2.11.6**, immutable `refs/heads/release/v2.11.6`, release commit `b3b517fb70e2deea4006e265f708f29881377885`, exact 329-file package tree `79257a06c40de6f514f9b059be05d610885a50e7`. The complete package is vendored at `.agents/skills/continuous-development-cycle/`. Earlier version statements below are historical when they conflict. Use the verified released `scripts/managed_host_bridge.py`; ordinary Work is observer/orchestrator-only. Preserve product gates, budgets, append-only coordination and the owner scheduler pause. Fleet adoption is separate; this project update does not assert fleet convergence.
+
 
 # Development without losing work between sessions
 

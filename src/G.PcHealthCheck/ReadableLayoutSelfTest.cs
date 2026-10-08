@@ -1,5 +1,7 @@
 using System.Reflection;
 using System.Drawing.Imaging;
+using System.Security.Cryptography;
+using System.Text.Json;
 
 namespace G.PcHealthCheck;
 
@@ -9,8 +11,10 @@ internal static class ReadableLayoutSelfTest
     {
         var original = AppLocalization.Language;
         var failures = new List<string>(); int count = 0;
+        var images = new List<RenderEvidence>();
         try
         {
+            var output = ResolveRenderOutput();
             foreach (var language in new[] { "ru", "en" }) foreach (var area in new[] { new Size(800, 720), new Size(950, 768), new Size(1320, 720), new Size(1320, 1000) })
             {
                 count++;
@@ -91,7 +95,7 @@ internal static class ReadableLayoutSelfTest
                     Require(!afterScaling, "Q4 fit must defer until framework scaling returns");
                     Application.DoEvents();
                     Require(afterScaling && workArea.Contains(form.Bounds), "Q4 post-scaling clamp was overwritten");
-                    SaveRender(form, language, area, "findings-actions");
+                    SaveRender(form, language, area, "findings-actions", output, images);
                     var security = Descendants(form).OfType<TabPage>().Single(x => x.Name == "SecurityPostureTab");
                     Field<TabControl>(form, "_tabs").SelectedTab = security;
                     foreach (var name in new[] { "SecuritySummary", "SecurityOverrides" })
@@ -103,12 +107,13 @@ internal static class ReadableLayoutSelfTest
                         Require(box.Width > 100 && box.Height >= 30, "security details unavailable at narrow width");
                         box.SelectionStart = box.TextLength; box.ScrollToCaret();
                     }
-                    SaveRender(form, language, area, "security");
+                    SaveRender(form, language, area, "security", output, images);
                     Console.WriteLine($"Readable layout synthetic render PASS: {language}, area={area.Width}x{area.Height}, actual DPI={form.DeviceDpi}; not Windows11/RDP acceptance");
                     form.Close();
                 }
                 catch (Exception ex) { failures.Add(ex.GetBaseException().Message); }
             }
+            if (output is not null) CompleteRenderEvidence(output, images);
             foreach (var item in new (double? Value, string Expected)[] { (null, "UNKNOWN"), (0, "CRIT"), (8, "CRIT"), (8.1, "WARN"), (15, "WARN"), (15.1, "OK") })
             {
                 count++;
@@ -140,14 +145,44 @@ internal static class ReadableLayoutSelfTest
         Console.WriteLine($"Readable layout self-test: {count - failures.Count}/{count} passed");
         return failures.Count == 0 ? 0 : 234;
     }
-    private static void SaveRender(Form form, string language, Size area, string view)
+    private sealed record RenderEvidence(string File, string Sha256, string Language, int FixtureWidth, int FixtureHeight, string View, int ActualDpi);
+    private static string? ResolveRenderOutput()
     {
-        var output = Environment.GetEnvironmentVariable("GPC_LAYOUT_EVIDENCE_DIR");
-        if (string.IsNullOrWhiteSpace(output)) return;
+        var explicitOutput = Environment.GetEnvironmentVariable("GPC_LAYOUT_EVIDENCE_DIR");
+        if (!string.IsNullOrWhiteSpace(explicitOutput)) return Path.GetFullPath(explicitOutput);
+        if (!string.Equals(Environment.GetEnvironmentVariable("GITHUB_ACTIONS"), "true", StringComparison.Ordinal)) return null;
+        var workspace = Environment.GetEnvironmentVariable("GITHUB_WORKSPACE");
+        Require(!string.IsNullOrWhiteSpace(workspace) && Path.IsPathFullyQualified(workspace), "CI evidence requires absolute GITHUB_WORKSPACE");
+        var root = Path.GetFullPath(workspace!);
+        Require(File.Exists(Path.Combine(root, "src", "G.PcHealthCheck", "G.PcHealthCheck.csproj")), "CI evidence workspace is not this repository");
+        // Fixed synthetic self-test subtree only; no collector or user diagnostic output.
+        return Path.Combine(root, "artifacts", "final", "readable-layout");
+    }
+    private static void SaveRender(Form form, string language, Size area, string view, string? output, List<RenderEvidence> images)
+    {
+        if (output is null) return;
         Directory.CreateDirectory(output);
-        using var bitmap = new Bitmap(form.Width, form.Height);
-        form.DrawToBitmap(bitmap, new Rectangle(0, 0, form.Width, form.Height));
-        bitmap.Save(Path.Combine(output, $"layout-{language}-{area.Width}x{area.Height}-{view}-dpi{form.DeviceDpi}.png"), ImageFormat.Png);
+        string file = $"layout-{language}-{area.Width}x{area.Height}-{view}-dpi{form.DeviceDpi}.png";
+        string path = Path.Combine(output, file);
+        using (var bitmap = new Bitmap(form.Width, form.Height))
+        {
+            form.DrawToBitmap(bitmap, new Rectangle(0, 0,form.Width, form.Height));
+            bitmap.Save(path, ImageFormat.Png);
+        }
+        using var input = File.OpenRead(path);
+        images.Add(new(file, Convert.ToHexString(SHA256.HashData(input)).ToLowerInvariant(), language, area.Width, area.Height, view, form.DeviceDpi));
+    }
+    private static void CompleteRenderEvidence(string output, List<RenderEvidence> images)
+    {
+        // Count this invocation, not stale files from an earlier process/run.
+        Require(images.Count == 16 && images.Select(x => x.File).Distinct(StringComparer.Ordinal).Count() == 16, "required 16 current-invocation synthetic renders missing");
+        foreach (var image in images)
+        {
+            using var input = File.OpenRead(Path.Combine(output, image.File));
+            Require(Convert.ToHexString(SHA256.HashData(input)).ToLowerInvariant() == image.Sha256, "synthetic render missing or hash changed");
+        }
+        var manifest = new { Schema = "gpc-synthetic-readable-layout/v1", Scope = "Synthetic WinForms self-test only; actual DPI recorded per image; Windows11/RDP/UAC acceptance NOT_RUN", Images = images };
+        File.WriteAllText(Path.Combine(output, "sha256.json"), JsonSerializer.Serialize(manifest, new JsonSerializerOptions { WriteIndented = true }) + Environment.NewLine);
     }
     private static T Field<T>(object obj, string name) => (T)(obj.GetType().GetField(name, BindingFlags.NonPublic | BindingFlags.Instance)!.GetValue(obj)!);
     private static IEnumerable<Control> Descendants(Control root)
