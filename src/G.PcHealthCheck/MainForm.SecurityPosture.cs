@@ -7,8 +7,8 @@ public sealed partial class MainForm
     private readonly DataGridView _securityGrid = new();
     private readonly Label _securityScore = new();
     private readonly Label _securityMetricDetail = new();
-    private readonly Label _securitySummary = new();
-    private readonly Label _securityOverrides = new();
+    private readonly TextBox _securitySummary = new();
+    private readonly TextBox _securityOverrides = new();
     private bool _securityUiInitialized;
 
     private void InitializeSecurityPostureUi(TableLayoutPanel root)
@@ -62,29 +62,27 @@ public sealed partial class MainForm
             Margin = new Padding(0),
             Padding = new Padding(0)
         };
-        layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 78));
+        layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 156));
         layout.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
 
-        var header = Card();
-        header.Margin = new Padding(0, 0, 0, 8);
-        _securitySummary.AutoSize = false;
-        _securitySummary.Font = new Font("Segoe UI Semibold", 11F);
-        _securitySummary.ForeColor = Navy;
-        _securitySummary.Location = new Point(14, 12);
-        _securitySummary.Size = new Size(1000, 24);
-        _securitySummary.Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;
-        _securityOverrides.AutoSize = false;
-        _securityOverrides.ForeColor = Muted;
-        _securityOverrides.Location = new Point(14, 40);
-        _securityOverrides.Size = new Size(1000, 22);
-        _securityOverrides.Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;
-        header.Controls.Add(_securitySummary);
-        header.Controls.Add(_securityOverrides);
-        header.Resize += (_, _) =>
+        // Complete localized coverage/override text remains selectable and vertically scrollable.
+        var header = new TableLayoutPanel { Dock = DockStyle.Fill, ColumnCount = 1, RowCount = 2, Padding = new Padding(12), BackColor = Color.White, Margin = new Padding(0, 0, 0, 8) };
+        header.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
+        header.RowStyles.Add(new RowStyle(SizeType.Percent, 50));
+        header.RowStyles.Add(new RowStyle(SizeType.Percent, 50));
+        foreach (var text in new[] { _securitySummary, _securityOverrides })
         {
-            _securitySummary.Width = Math.Max(100, header.ClientSize.Width - 28);
-            _securityOverrides.Width = Math.Max(100, header.ClientSize.Width - 28);
-        };
+            text.Dock = DockStyle.Fill; text.Multiline = true; text.ReadOnly = true;
+            text.WordWrap = true; text.ScrollBars = ScrollBars.Vertical;
+            text.BorderStyle = BorderStyle.None; text.BackColor = Color.White;
+        }
+        _securitySummary.Name = "SecuritySummary";
+        _securitySummary.AccessibleName = AppLocalization.T("Security.Metric.Caption");
+        _securitySummary.Font = new Font("Segoe UI Semibold", 11F); _securitySummary.ForeColor = Navy;
+        _securityOverrides.Name = "SecurityOverrides";
+        _securityOverrides.AccessibleName = AppLocalization.T("Security.Column.Evidence");
+        _securityOverrides.ForeColor = Muted;
+        header.Controls.Add(_securitySummary, 0, 0); header.Controls.Add(_securityOverrides, 0, 1);
         layout.Controls.Add(header, 0, 0);
 
         ConfigureGrid(_securityGrid);

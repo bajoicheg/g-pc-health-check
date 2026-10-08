@@ -25,6 +25,7 @@ internal sealed class CommonProblemsForm : Form
 
     public CommonProblemsForm()
     {
+        ReadableWindowLayout.Attach(this);
         Text = AppLocalization.T("CommonProblems.Form.Title");
         Size = new Size(1180, 780); MinimumSize = new Size(880, 620);
         StartPosition = FormStartPosition.CenterParent;

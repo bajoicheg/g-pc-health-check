@@ -1,6 +1,6 @@
 schema: continuous-development-cycle/v3
 policy:
-  revision: 2026-10-08-four-stage-cap9-ci7-reviewed-recovery
+  revision: 2026-10-08-four-stage-cap10-ci7-spec-recovery
   skill_min_version: 2.12.1
   skill_max_version_exclusive: 3.0.0
   approved_exceptions: []
@@ -166,7 +166,7 @@ orchestration:
     task_limits:
       compute_starts: null
       ci_starts: 7
-      agent_starts: 9
+      agent_starts: 10
     wake_limits:
       compute_starts: 4
       status_polls: null

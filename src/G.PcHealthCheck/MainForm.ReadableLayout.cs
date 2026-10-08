@@ -22,10 +22,18 @@ public sealed partial class MainForm
                 for (int i = 0; i < geometry.Rows; i++) metrics.RowStyles.Add(new RowStyle(SizeType.Percent, 100f / geometry.Rows));
                 for (int i = 0; i < cards.Length; i++) metrics.SetCellPosition(cards[i], new TableLayoutPanelCellPosition(i % geometry.Columns, i / geometry.Columns));
                 root.RowStyles[2].Height = geometry.Height;
+                if (root.Parent is Panel viewport)
+                {
+                    // Keep the tabs/details usable when the physical screen is short.
+                    // AutoScroll exposes all content and the footer instead of extending the window off-screen.
+                    root.Height = Math.Max(viewport.ClientSize.Height,
+                        (int)Math.Ceiling(860 * DeviceDpi / 96f) + geometry.Height - (int)Math.Ceiling(112 * DeviceDpi / 96f));
+                }
                 metrics.ResumeLayout();
             }
             finally { busy = false; }
         }
+        if (root.Parent is Panel viewport) viewport.ClientSizeChanged += (_, _) => Arrange();
         metrics.SizeChanged += (_, _) => Arrange();
         DpiChanged += (_, _) => Arrange();
         Arrange();

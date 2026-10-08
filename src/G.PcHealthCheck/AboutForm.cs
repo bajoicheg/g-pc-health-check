@@ -5,6 +5,7 @@ internal sealed class AboutForm : Form
     public AboutForm()
     {
         Name = "AboutForm";
+        ReadableWindowLayout.Attach(this);
         Text = AppLocalization.T("About.Title");
         AutoScaleMode = AutoScaleMode.Dpi;
         Font = new Font("Segoe UI", 9F);

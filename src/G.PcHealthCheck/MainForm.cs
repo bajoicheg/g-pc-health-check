@@ -65,19 +65,21 @@ public sealed partial class MainForm : Form
         Font = new Font("Segoe UI", 9F);
         try { Icon = Icon.ExtractAssociatedIcon(Environment.ProcessPath ?? Application.ExecutablePath); } catch { }
         BuildUi();
+        ReadableWindowLayout.Attach(this);
         UpdateApplyState();
         if (autoScan) Shown += async (_, _) => await ScanAsync();
     }
 
     private void BuildUi()
     {
-        var root = new TableLayoutPanel { Dock = DockStyle.Fill, RowCount = 5, ColumnCount = 1, Padding = new Padding(16), BackColor = Bg };
+        var root = new TableLayoutPanel { Name = "MainRoot", Dock = DockStyle.Top, RowCount = 5, ColumnCount = 1, Padding = new Padding(16), BackColor = Bg };
         root.RowStyles.Add(new RowStyle(SizeType.Absolute, 86));
         root.RowStyles.Add(new RowStyle(SizeType.AutoSize));
         root.RowStyles.Add(new RowStyle(SizeType.Absolute, 112));
         root.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
         root.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-        Controls.Add(root);
+        var viewport = new Panel { Name = "MainScrollViewport", Dock = DockStyle.Fill, AutoScroll = true };
+        Controls.Add(viewport); viewport.Controls.Add(root);
         root.Controls.Add(Header(), 0, 0);
         root.Controls.Add(ExecutionContextPanel(), 0, 1);
         root.Controls.Add(Metrics(), 0, 2);
@@ -403,7 +405,9 @@ public sealed partial class MainForm : Form
         _state.Text = scan.Assessment.Status == "OK" ? "норма" : scan.Assessment.Status == "WARN" ? "внимание" : "критично"; _state.ForeColor = _score.ForeColor;
         _host.Text = $"{d.System.ComputerName} · {d.System.UserName}";
         _cpu.Text = F(d.Performance.CpuPercent, "%"); _ram.Text = F(d.Performance.MemoryUsedPercent, "%");
-        _ram.ForeColor = d.Performance.MemoryAvailablePercent is double available && available <= _assessment.Thresholds.MemoryWarnAvailablePercent ? Warn : Navy;
+        _ram.ForeColor = ReadableLayout.MemoryBand(d.Performance.MemoryAvailablePercent,
+            _assessment.Thresholds.MemoryCriticalAvailablePercent, _assessment.Thresholds.MemoryWarnAvailablePercent) switch
+        { "CRIT" => Crit, "WARN" => Warn, "UNKNOWN" => Muted, _ => Navy };
         var sd = SystemDiskSelection.Find(d); _disk.Text = sd is null ? "—" : $"{sd.FreeGB:0.#} GB";
         _uptime.Text = $"{d.System.UptimeDays:0.#} дн.";
         _coverage.Text = $"{scan.Assessment.CoveragePercent}%";

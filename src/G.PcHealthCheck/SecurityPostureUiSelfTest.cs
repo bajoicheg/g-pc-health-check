@@ -35,7 +35,7 @@ internal static class SecurityPostureUiSelfTest
             Require(tab.Name == "SecurityPostureTab", "Security tab stable Name drifted.");
             Require(tabs.TabPages.Contains(tab), "Security tab is not a top-level tab.");
 
-            var root = form.Controls.OfType<TableLayoutPanel>().Single(x => x.RowCount == 5 && x.ColumnCount == 1);
+            var root = form.Controls.OfType<Panel>().Single(x => x.Name == "MainScrollViewport").Controls.OfType<TableLayoutPanel>().Single(x => x.RowCount == 5 && x.ColumnCount == 1);
             var metrics = root.GetControlFromPosition(0, 2) as TableLayoutPanel
                 ?? throw new InvalidOperationException("Main metric layout missing.");
             Require(metrics.Controls.Count == 7,
