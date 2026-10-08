@@ -2,14 +2,14 @@
 schema: development-work-status/v4
 repository: bajoicheg/g-pc-health-check
 branch: design/0.17.0-security-posture
-policy_revision: 2026-10-08-four-stage-cap9-ci7-reviewed-recovery
-policy_digest: 3c52a0ef44aaaad2319c54e8ee16895c8b04f2b18c2814d14c54fca61c59489d
-observed_at_utc: '2026-10-08T10:57:28.426460Z'
+policy_revision: 2026-10-08-four-stage-cap10-ci7-spec-recovery
+policy_digest: 95caea8bae1fb919fda8e73336d117fa00dc29479cc9af95c4b13140a26aeab9
+observed_at_utc: '2026-10-08T11:30:04.953769Z'
 orchestration_origin: chat
-active_executor: ef2bbf99-7ef4-43c3-bad8-e01b054219b9
+active_executor: 6d3ba240-5d58-4cc2-b2c9-ed6ee333dfd1
 lease_state: active
-executor_heartbeat_at_utc: '2026-10-08T10:57:28.426460Z'
-execution_lease_until_utc: '2026-10-08T11:17:28.426460Z'
+executor_heartbeat_at_utc: '2026-10-08T11:30:04.953769Z'
+execution_lease_until_utc: '2026-10-08T11:50:04.953769Z'
 waiting_external_kind: null
 waiting_external_id: null
 waiting_external_sha: null
@@ -17,35 +17,36 @@ operation_intent_ref: null
 operation_key: null
 resume_capsule_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/resume.json
 execution_continuity:
-  invocation_id: managed-terminal:27d8df7f88e7a642a683d8a1bfcaa0dbc6e77c940cde53046ca32bafb2c0c070
+  invocation_id: managed-terminal:8622efbf7abd1e38cc327fe7d09dac369294ff92b89511eff504bcad6a7cea90
   runnable_next_action: true
   meaningful_progress: true
   primitive_steps_since_progress: 0
   completion_gate: continue
-  last_progress_ref: git:b2bf6017d2870ec695d4c6e9f8c6cb4b2c83a866
+  last_progress_ref: git:6d6ebfe1b4c4c62c1af75ce3be1bbcfe9d661abd
 control:
   execution_lease_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/lease.json
-  execution_lease_revision: 19a5a13a5aea1fd2500d1004aab68f26457492af
-  executor_id: ef2bbf99-7ef4-43c3-bad8-e01b054219b9
-  lease_generation: 27
+  execution_lease_revision: 9206c847914b3d470f2d65fc6104eb1e319b2528
+  executor_id: 6d3ba240-5d58-4cc2-b2c9-ed6ee333dfd1
+  lease_generation: 28
   budget_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/budget.json
   recovery_snapshot_ref: null
   external_wait_ref: null
 active_change: gpc-0.17.1-readable-ui
-current_task: 0.17.1 reviewed-source candidate; independent ordered requirements then
-  quality review pending
+current_task: 0.17.1 S1-S3 corrected immutable candidate; Root SPEC then genuine independent
+  QUALITY pending
 phase: review
-implementation_sha: b2bf6017d2870ec695d4c6e9f8c6cb4b2c83a866
-candidate_sha: b2bf6017d2870ec695d4c6e9f8c6cb4b2c83a866
-last_green_sha: b2bf6017d2870ec695d4c6e9f8c6cb4b2c83a866
-last_green_evidence: Portable layout200/200 and existing localization21/21 GREEN;
-  Linux Windows-target compilation0warnings0errors; Windows runtime NOT_RUN
+implementation_sha: 6d6ebfe1b4c4c62c1af75ce3be1bbcfe9d661abd
+candidate_sha: 6d6ebfe1b4c4c62c1af75ce3be1bbcfe9d661abd
+last_green_sha: 6d6ebfe1b4c4c62c1af75ce3be1bbcfe9d661abd
+last_green_evidence: Fresh S1/S3 portable RED200/218 -> GREEN236/236; SDK8.0.425 Linux
+  Windows-target compile0warnings0errors; native RU/EN narrow-short/security render
+  NOT_RUN
 active_compute: none
 active_ci_run_id: ''
 last_ci_run_id: '36128619572'
 last_ci_status: success
 release_version: 0.17.1
-release_candidate_sha: b2bf6017d2870ec695d4c6e9f8c6cb4b2c83a866
+release_candidate_sha: 6d6ebfe1b4c4c62c1af75ce3be1bbcfe9d661abd
 release_state: candidate
 blocker: ordered_root_requirements_and_independent_quality_review_pending; exact_head_WindowsCI_not_run;
   retained_artifact_pending; real_Windows11_pilot_and_explicit_integration_approval_required
@@ -54,6 +55,19 @@ next_action: Root requirements review exact external-journal final candidate, th
   accepted. One PR cycle per stage; one final all-four-SHA artifact producer, no duplicate
   intermediate pilot/dispatch.
 ---
+
+## 0.17.1 Root SPEC correction — current a4 review checkpoint, 2026-10-08
+
+Tested implementation `6d6ebfe1b4c4c62c1af75ce3be1bbcfe9d661abd` imports the exact prior a3 delta; final documentation candidate SHA/root tree are tracked externally after commit, without a circular self-SHA. Root rejected a3 `7d823842a8309c84e46d713e64d4c30569f32afc` for S1 short work-area reachability, S2 clipped security summary, S3 missing RAM critical/unknown display. Its actual succeeded receipt was preserved, canonical gen27 release performed without design publication, and its pool result was superseded/stale. All charges remain.
+
+S1: production window bounds/minimums clamp to available monitor work area. Main virtual content has vertical scrolling, preserving usable findings/action details and reachable wrapped bottom buttons on narrow/720/768-high screens; About, ExecutionContext and CommonProblems bounds also clamp. Native fixtures cover RU/EN ×800x720/950x768/1320x720/1320x1000, long selected finding/action text, footer reachability, and complete narrow security text. S2: full localized coverage/override fields wrap, scroll vertically and copy through read-only text fields. S3: display uses existing assessment critical<=8, warning<=15, unknown neutral; collection/scoring/remediation semantics are unchanged.
+
+Fresh portable S1/S3 RED exit1:200/218 pass,18 expected missing-behavior failures; corrected GREEN exit0:236/236. Latest SDK8.0.425 Linux Windows-target build exit0,0warnings/0errors, no shared compiler/build server; DesignTimeBuild with prior verified assets is compile evidence only. Windows runtime/render/actual DPI/EXE/generator/UAC/RDP/Windows11 acceptance remain NOT_RUN. Prior a2 localization21/21 and original geometry200/200 logs are honestly reused for unchanged scope, not relabelled as a4 executions.
+
+Root-approved budget cap10 preserves2historical+2unsuccessful+1superseded a3+4final stage writers+1retained Root reviewer, max writer1, total agents2 solely writer+read-only reviewer. CI7 preserves2historical+4stage PR cycles+1final all-four-SHA artifact producer. Canonical adapter budget equals current ledger policy; ledger digest `sha256:de98bc4e839c7ec7fd1193983cb8315a7a9dd785372c1dfd37f808b51464be63`. Reviewer reservation `gpc-root-quality-reviewer-20261008-a1-reservation` remains unused; no reviewer identity invented. a4 supervisor gen28 remains LIVE awaiting SPEC/correction and QUALITY jobs; no terminal-success until both accepted. Design source remains7aaef; no design publication or CI submission. Global four-stage scope ACTIVE; scheduler paused, managed Windows11 pilot and explicit owner integration approval remain required.
+
+## Historical a3 preparation checkpoint (superseded after Root SPEC rejection)
+
 
 ## 0.17.1 readable UI — prepared managed candidate, 2026-10-08
 
