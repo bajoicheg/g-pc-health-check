@@ -2,8 +2,8 @@
 schema: development-work-status/v4
 repository: bajoicheg/g-pc-health-check
 branch: design/0.17.0-security-posture
-policy_revision: 2026-10-07-cdc-2.11.9-atomic-adoption
-policy_digest: 28e2751f4bfce8ab0b0d11d29b75e5c77d465660f35c57a9a36a3a1b48dfebbf
+policy_revision: 2026-10-08-cdc-2.12.1-atomic-adoption
+policy_digest: f0c53ad7e35b3f11d30ec831dec6231b9b2e3b7bd19227d849f95d9783bc27c2
 observed_at_utc: '2026-10-06T14:09:25.072161Z'
 orchestration_origin: chat
 active_executor: none
@@ -53,6 +53,11 @@ next_action: Read exact final publication candidate from external immutable host
   after adapter review, fresh gates and durable budget CAS precede managed bridge
   start.
 ---
+
+## CDC 2.12.1 atomic process adoption
+
+Canonical release 9b38bd4d9f5fb113ec10bdbca9fbe33908619a54, exact352-file package 9c45d98c3254e9658d452c505d8c97698e3fc9a7; separately pinned evidence9dece125d09956d4546721bceb9142856bf786d3:release/evidence-2.12.1.json. FULL migration retains original product exact-SHA/platform proofs and all blockers. Canonical required CI37737459242/job113180161046 validates this identical package, not this consumer root; no new product or full1121 run is claimed. Frontmatter preserves the last observed product state with only reconciled policy revision/digest changed. Actual adoption publication/release receipts are external coordination facts, not future assertions. Schedulers remain paused.
+
 
 # Branding review candidate on CDC 2.11.6
 
