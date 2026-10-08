@@ -4,12 +4,12 @@ repository: bajoicheg/g-pc-health-check
 branch: design/0.17.0-security-posture
 policy_revision: 2026-10-08-four-stage-cap10-ci7-spec-recovery
 policy_digest: 95caea8bae1fb919fda8e73336d117fa00dc29479cc9af95c4b13140a26aeab9
-observed_at_utc: '2026-10-08T11:30:04.953769Z'
+observed_at_utc: '2026-10-08T11:55:14.712035Z'
 orchestration_origin: chat
 active_executor: 6d3ba240-5d58-4cc2-b2c9-ed6ee333dfd1
 lease_state: active
-executor_heartbeat_at_utc: '2026-10-08T11:30:04.953769Z'
-execution_lease_until_utc: '2026-10-08T11:50:04.953769Z'
+executor_heartbeat_at_utc: '2026-10-08T11:55:14.712035Z'
+execution_lease_until_utc: '2026-10-08T12:15:14.712035Z'
 waiting_external_kind: null
 waiting_external_id: null
 waiting_external_sha: null
@@ -22,31 +22,31 @@ execution_continuity:
   meaningful_progress: true
   primitive_steps_since_progress: 0
   completion_gate: continue
-  last_progress_ref: git:6d6ebfe1b4c4c62c1af75ce3be1bbcfe9d661abd
+  last_progress_ref: git:3529dc8811561c31b7ceca3d6d64b68b8a20dc42
 control:
   execution_lease_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/lease.json
-  execution_lease_revision: 9206c847914b3d470f2d65fc6104eb1e319b2528
+  execution_lease_revision: fd8dab381317db7f8b87a92a1306afd5a557ac17
   executor_id: 6d3ba240-5d58-4cc2-b2c9-ed6ee333dfd1
   lease_generation: 28
   budget_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/budget.json
   recovery_snapshot_ref: null
   external_wait_ref: null
 active_change: gpc-0.17.1-readable-ui
-current_task: 0.17.1 S1-S3 corrected immutable candidate; Root SPEC then genuine independent
+current_task: 0.17.1 Q1-Q4 corrected immutable candidate; Root SPEC then genuine independent
   QUALITY pending
 phase: review
-implementation_sha: 6d6ebfe1b4c4c62c1af75ce3be1bbcfe9d661abd
-candidate_sha: 6d6ebfe1b4c4c62c1af75ce3be1bbcfe9d661abd
-last_green_sha: 6d6ebfe1b4c4c62c1af75ce3be1bbcfe9d661abd
-last_green_evidence: Fresh S1/S3 portable RED200/218 -> GREEN236/236; SDK8.0.425 Linux
-  Windows-target compile0warnings0errors; native RU/EN narrow-short/security render
-  NOT_RUN
+implementation_sha: 3529dc8811561c31b7ceca3d6d64b68b8a20dc42
+candidate_sha: 3529dc8811561c31b7ceca3d6d64b68b8a20dc42
+last_green_sha: 3529dc8811561c31b7ceca3d6d64b68b8a20dc42
+last_green_evidence: Fresh Q3 margin portable RED248/256 -> GREEN256/256; SDK8.0.425
+  Linux Windows-target compile0warnings0errors; native RU/EN narrow-short/security
+  render NOT_RUN
 active_compute: none
 active_ci_run_id: ''
 last_ci_run_id: '36128619572'
 last_ci_status: success
 release_version: 0.17.1
-release_candidate_sha: 6d6ebfe1b4c4c62c1af75ce3be1bbcfe9d661abd
+release_candidate_sha: 3529dc8811561c31b7ceca3d6d64b68b8a20dc42
 release_state: candidate
 blocker: ordered_root_requirements_and_independent_quality_review_pending; exact_head_WindowsCI_not_run;
   retained_artifact_pending; real_Windows11_pilot_and_explicit_integration_approval_required
@@ -56,7 +56,19 @@ next_action: Root requirements review exact external-journal final candidate, th
   intermediate pilot/dispatch.
 ---
 
-## 0.17.1 Root SPEC correction — current a4 review checkpoint, 2026-10-08
+## Current Q1-Q4 correction after genuine FULL QUALITY REQUEST_CHANGES
+
+Tested implementation `3529dc8811561c31b7ceca3d6d64b68b8a20dc42` corrects exact prior a4 candidate a8b386f475e4fba6938d0ce44cd83f59583ff7f7/tree102a932130ba4b6470698332405d9d0aab12958c. Final documentation tip is tracked externally after commit, without circular self-SHA. Root accepted prior SPEC; genuine retained `/root/gpc_quality_review` FULL QUALITY returned Critical none and four Important Q1-Q4. This is a review-phase result, not reviewer runtime failure. New exact candidate requires Root SPEC and the same reviewer's delta/risk follow-up, cycle2/max2.
+
+Q1: CurrentCellChanged follows actual new CurrentRow; deferred same-cell reselection and explicit clearing prevent stale details. Q2: full selectable ActionDetails includes availability reason/scope and explicitly refreshes after context/availability changes even with unchanged State label. Q3: geometry includes metrics margin10 once and card margin6, keeping the native >=30 subtext assertion unchanged. Q4: monitor clamp and metrics arrangement are queued after framework scaling with handle/disposal guards; DPI mode unchanged. Native two-row/switch/clear/reselect, blocked same-label scope-change, queued rectangle-write/disposal and narrow/short RU/EN fixtures are compiled but NOT_RUN on Linux. Synthetic queue tests do not prove real native DPI transitions or Windows11/RDP acceptance.
+
+Fresh Q3 portable RED exit1:248/256,8 expected single-row margin/coverage failures; GREEN exit0:256/256. Latest SDK8.0.425 Linux cross-target compile exit0,0warnings/0errors, prior verified compilation assets only. The initial test-fixture CS0136 shadowing failure log is retained and corrected in this live writer; no new attempt/charge. Prior unchanged localization/RESX evidence retains original provenance. Windows generator/EXE/runtime/render/UAC/pilot remain NOT_RUN.
+
+Canonical adapter budget equals current ledger policy `sha256:de98bc4e839c7ec7fd1193983cb8315a7a9dd785372c1dfd37f808b51464be63`: cap10 agents,CI7,total parallel2 only one writer plus retained read-only reviewer. Single reservation gpc-root-quality-reviewer-20261008-a1-reservation is already launched once as /root/gpc_quality_review; terminal budget outcome remains absent until all four review stages finish. a4 gen28 stays LIVE for correction/review jobs; terminal-success deferred until both acceptance gates. Design source7aaef unchanged, no design publication/CI submitted, four-stage project scope ACTIVE, scheduler paused. Windows11 pilot and explicit owner integration approval remain required.
+
+
+
+## Historical a4 SPEC checkpoint before genuine QUALITY corrections, 2026-10-08
 
 Tested implementation `6d6ebfe1b4c4c62c1af75ce3be1bbcfe9d661abd` imports the exact prior a3 delta; final documentation candidate SHA/root tree are tracked externally after commit, without a circular self-SHA. Root rejected a3 `7d823842a8309c84e46d713e64d4c30569f32afc` for S1 short work-area reachability, S2 clipped security summary, S3 missing RAM critical/unknown display. Its actual succeeded receipt was preserved, canonical gen27 release performed without design publication, and its pool result was superseded/stale. All charges remain.
 
