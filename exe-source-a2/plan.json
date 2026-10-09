@@ -1,0 +1,37 @@
+{
+  "base_sha": "14c39b45107740b3a1479b539b776a6f44983f8e",
+  "change_id": "bounded-cdc-required-pr-validation-alias-source-candidate",
+  "coordination_ref": "refs/heads/cdc/coordination",
+  "coordination_store_id": "sha256:e9c5798b2e5857d11563b10845ae993ed5b0e7b040ffd6611bdbd1a36aad08d3",
+  "integrator_id": "Work-root",
+  "max_parallel": 1,
+  "parent_invocation_id": "Work-root-gpc-finish-exe-20261009-1239",
+  "pool_id": "gpc-cdc-source-candidate-controller-20261009-a2",
+  "schema": "managed-executor-pool-plan/v1",
+  "tasks": [
+    {
+      "backend_preferences": [
+        "Codex-Cloud"
+      ],
+      "branch": null,
+      "dependencies": [],
+      "executor_id": "Cloud-source-candidate-controller",
+      "expected_evidence": [
+        "exact-source-candidate-and-managed-authority-bindings",
+        "controller-result-digest"
+      ],
+      "expected_outputs": [
+        "bounded-source-candidate-controller-result"
+      ],
+      "id": "controller",
+      "max_cost_units": 1,
+      "max_runtime_seconds": 5400,
+      "required": true,
+      "role": "read_only",
+      "worktree": null,
+      "write_paths": []
+    }
+  ],
+  "total_cost_budget_units": 1,
+  "total_runtime_budget_seconds": 5400
+}

@@ -1,0 +1,53 @@
+[
+  {
+    "at_utc": "2026-10-09T12:42:10.181Z",
+    "attempt_id": "gpc-cdc-source-candidate-controller-20261009-a2",
+    "cost": {
+      "elapsed_seconds": null,
+      "tokens": null,
+      "tool_calls": 1
+    },
+    "event_id": "gpc-cdc-source-candidate-controller-20261009-a2-agent_start",
+    "kind": "agent_start",
+    "operation_key": "sha256:bf30be318c85ce1ffa03da9c2f7ac946ccdbaba6ff5d8b746e4a7e513cc7a874",
+    "recovery_ref": null,
+    "scope": "gpc/dependency/cdc-managed-source-candidate-controller",
+    "task_id": "g-pc-health-check-0.17.0-pre-integration",
+    "type": "reserve",
+    "wake_id": "gpc-owner-finish-to-exe-20261009-1239"
+  },
+  {
+    "at_utc": "2026-10-09T12:42:10.181Z",
+    "attempt_id": "gpc-cdc-source-candidate-controller-20261009-a2",
+    "cost": {
+      "elapsed_seconds": null,
+      "tokens": null,
+      "tool_calls": 1
+    },
+    "event_id": "gpc-cdc-source-candidate-controller-20261009-a2-compute_start",
+    "kind": "compute_start",
+    "operation_key": "sha256:bf30be318c85ce1ffa03da9c2f7ac946ccdbaba6ff5d8b746e4a7e513cc7a874",
+    "recovery_ref": null,
+    "scope": "gpc/dependency/cdc-managed-source-candidate-controller",
+    "task_id": "g-pc-health-check-0.17.0-pre-integration",
+    "type": "reserve",
+    "wake_id": "gpc-owner-finish-to-exe-20261009-1239"
+  },
+  {
+    "at_utc": "2026-10-09T12:42:10.181Z",
+    "attempt_id": "gpc-cdc-source-candidate-managed-worker-20261009-a2",
+    "cost": {
+      "elapsed_seconds": null,
+      "tokens": null,
+      "tool_calls": 1
+    },
+    "event_id": "gpc-cdc-source-candidate-managed-worker-20261009-a2-agent_start",
+    "kind": "agent_start",
+    "operation_key": "sha256:bf30be318c85ce1ffa03da9c2f7ac946ccdbaba6ff5d8b746e4a7e513cc7a874",
+    "recovery_ref": null,
+    "scope": "gpc/dependency/cdc-managed-source-candidate-worker",
+    "task_id": "g-pc-health-check-0.17.0-pre-integration",
+    "type": "reserve",
+    "wake_id": "gpc-owner-finish-to-exe-20261009-1239"
+  }
+]
