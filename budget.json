@@ -1429,7 +1429,7 @@
     "max_parallel_agents": 4,
     "provider_max_age_seconds": 300,
     "task_limits": {
-      "agent_starts": 36,
+      "agent_starts": 44,
       "ci_starts": 13,
       "compute_starts": null
     },
@@ -1439,7 +1439,7 @@
       "tool_calls": 80
     }
   },
-  "policy_digest": "sha256:898c05b66f33db3b9d8d57aeb8b4ea418343e48fae77175ebd8ebc20a0460100",
+  "policy_digest": "sha256:4a7e42a250953a5efdcadeb13dadc02176e969a1a15f1669f095eeb22a8585f4",
   "schema": "budget-ledger/v1",
   "task_id": "g-pc-health-check-0.17.0-pre-integration",
   "wake_ids": [

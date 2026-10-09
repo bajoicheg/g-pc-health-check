@@ -1,0 +1,64 @@
+{
+  "adapter_sha256": "fe8bf84cf57eed66a5f3678fe1deede44c567fa95984773b68b8ef5a4819af80",
+  "all_unknown_slots_and_failure_circuits_preserved": true,
+  "at_utc": "2026-10-09T14:22:34.220444Z",
+  "authority": {
+    "instruction": "\u041f\u043e\u0434\u043d\u0438\u043c\u0430\u0439 \u043b\u0438\u043c\u0438\u0442\u044b \u0438 \u043f\u0440\u043e\u0434\u043e\u043b\u0436\u0430\u0439",
+    "scope": "Necessary CDC dependency completion and GPC native recovery, isolated product writer, independent reviews and controller continuation to first new EXE; no provider subscription or financial settings"
+  },
+  "effective_adapter_ref": "git:refs/heads/cdc/coordination:effective-adapter-cap44.yaml",
+  "event_history_preserved": true,
+  "new_digest": "sha256:4a7e42a250953a5efdcadeb13dadc02176e969a1a15f1669f095eeb22a8585f4",
+  "new_policy": {
+    "actions_budget": "conserve",
+    "checkpoint_reserve": {
+      "tokens": 4000,
+      "tool_calls": 8
+    },
+    "max_parallel_agents": 4,
+    "provider_max_age_seconds": 300,
+    "task_limits": {
+      "agent_starts": 44,
+      "ci_starts": 13,
+      "compute_starts": null
+    },
+    "wake_limits": {
+      "compute_starts": 6,
+      "status_polls": null,
+      "tool_calls": 80
+    }
+  },
+  "old_digest": "sha256:898c05b66f33db3b9d8d57aeb8b4ea418343e48fae77175ebd8ebc20a0460100",
+  "old_policy": {
+    "actions_budget": "conserve",
+    "checkpoint_reserve": {
+      "tokens": 4000,
+      "tool_calls": 8
+    },
+    "max_parallel_agents": 4,
+    "provider_max_age_seconds": 300,
+    "task_limits": {
+      "agent_starts": 36,
+      "ci_starts": 13,
+      "compute_starts": null
+    },
+    "wake_limits": {
+      "compute_starts": 6,
+      "status_polls": null,
+      "tool_calls": 80
+    }
+  },
+  "review": {
+    "checks": [
+      "Only taskagentcap36->44 changes",
+      "CI13 conserve parallel4 wakecompute6 checkpointreserve4000tokens8tools retained",
+      "Only necessary separately admitted starts allowed, no reset or refund",
+      "Full event history and2UNKNOWNactive preserved"
+    ],
+    "result": "PASS",
+    "reviewer": "Root"
+  },
+  "schema": "owner-approved-budget-policy-migration/v1",
+  "source_adapter_write": "Pending genuine managed GPC product publication after canonical guard recovery",
+  "wake_ids_preserved": true
+}
