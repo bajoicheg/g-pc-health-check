@@ -10,29 +10,29 @@
   "change_id": "cdc-neutral-fixture-correction-while-source-owned",
   "coordination_ref": "refs/heads/cdc/coordination",
   "coordination_store_id": "sha256:e9c5798b2e5857d11563b10845ae993ed5b0e7b040ffd6611bdbd1a36aad08d3",
-  "cost_consumed_units": 2,
+  "cost_consumed_units": 3,
   "execution_mode": "parallel",
   "integrator_id": "Work-root",
   "parent_invocation_id": "Work-root-gpc-cloud-20261009",
   "plan_digest": "sha256:27e231f22f7014c8eab1b883c6695451ae0c7ba03769192beea05b11b81b79af",
   "pool_id": "gpc-cdc-neutral-correction-reviews-20261009",
-  "revision": 10,
-  "runtime_consumed_seconds": 641.146952,
+  "revision": 12,
+  "runtime_consumed_seconds": 1231.146952,
   "schema": "managed-executor-pool-state/v1",
   "tasks": [
     {
-      "accepted_result_ref": null,
-      "active_attempt_id": "gpc-cdc-neutral-draft-validation-20261009-a1",
+      "accepted_result_ref": "sha256:f6db5ce99a39cd94258bec8573009946ec1930da34b320a8cff0c96c32e98faa",
+      "active_attempt_id": null,
       "attempt_ids": [
         "gpc-cdc-neutral-draft-validation-20261009-a1"
       ],
-      "cost_units": 0,
+      "cost_units": 1,
       "discarded": false,
       "id": "validate",
-      "integrated": false,
-      "reservation_token": "67a96bd0-5c50-4672-b3eb-00a62ff11953",
-      "runtime_seconds": 0,
-      "status": "running"
+      "integrated": true,
+      "reservation_token": null,
+      "runtime_seconds": 590,
+      "status": "succeeded"
     },
     {
       "accepted_result_ref": "sha256:dae6904903061d48960c0c9e5c49b22e2be25926d34840ad602fa803aa73a5d2",

@@ -950,6 +950,85 @@
         "tokens": null
       },
       "wake_id": "gpc-owner-subagent-review-20261009"
+    },
+    {
+      "at_utc": "2026-10-09T02:21:27.531Z",
+      "event_id": "gpc-cdc-neutral-draft-validation-20261009-a1-agent_start-terminal",
+      "failure": null,
+      "reservation_id": "gpc-cdc-neutral-draft-validation-20261009-a1-agent_start",
+      "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": null,
+        "tokens": null
+      },
+      "wake_id": "gpc-owner-subagent-review-20261009"
+    },
+    {
+      "at_utc": "2026-10-09T02:21:27.531Z",
+      "event_id": "gpc-cdc-neutral-draft-validation-20261009-a1-compute_start-terminal",
+      "failure": null,
+      "reservation_id": "gpc-cdc-neutral-draft-validation-20261009-a1-compute_start",
+      "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": null,
+        "tokens": null
+      },
+      "wake_id": "gpc-owner-subagent-review-20261009"
+    },
+    {
+      "at_utc": "2026-10-09T02:21:27.531Z",
+      "attempt_id": "gpc-cdc-source-candidate-controller-20261009-a1",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-cdc-source-candidate-controller-20261009-a1-agent_start",
+      "kind": "agent_start",
+      "operation_key": "sha256:165fb78664821b3a975a7892675a27218497cac86aa3656d5f8c5c9af83cf76a",
+      "recovery_ref": null,
+      "scope": "gpc/dependency/cdc-managed-source-candidate-controller",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-owner-subagent-review-20261009"
+    },
+    {
+      "at_utc": "2026-10-09T02:21:27.531Z",
+      "attempt_id": "gpc-cdc-source-candidate-controller-20261009-a1",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-cdc-source-candidate-controller-20261009-a1-compute_start",
+      "kind": "compute_start",
+      "operation_key": "sha256:165fb78664821b3a975a7892675a27218497cac86aa3656d5f8c5c9af83cf76a",
+      "recovery_ref": null,
+      "scope": "gpc/dependency/cdc-managed-source-candidate-controller",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-owner-subagent-review-20261009"
+    },
+    {
+      "at_utc": "2026-10-09T02:21:27.531Z",
+      "attempt_id": "gpc-cdc-source-candidate-managed-worker-20261009-a1",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-cdc-source-candidate-managed-worker-20261009-a1-agent_start",
+      "kind": "agent_start",
+      "operation_key": "sha256:165fb78664821b3a975a7892675a27218497cac86aa3656d5f8c5c9af83cf76a",
+      "recovery_ref": null,
+      "scope": "gpc/dependency/cdc-managed-source-candidate-worker",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-owner-subagent-review-20261009"
     }
   ],
   "policy": {

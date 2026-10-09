@@ -1,0 +1,416 @@
+{
+  "original_before": {
+    "head": "5720b6e159972432f04277607be7ec8b398b9967\n",
+    "clean": "",
+    "package": "9c45d98c3254e9658d452c505d8c97698e3fc9a7\n",
+    "runtime-diff": ""
+  },
+  "original_after": {
+    "head": "5720b6e159972432f04277607be7ec8b398b9967\n",
+    "clean": "",
+    "package": "9c45d98c3254e9658d452c505d8c97698e3fc9a7\n",
+    "runtime-diff": ""
+  },
+  "commands": [
+    {
+      "label": "before-head",
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "/workspace/g-cdc",
+      "exit": 0,
+      "elapsed_seconds": 0.002,
+      "started_utc": "2026-10-09T02:07:10.286577+00:00",
+      "log": "before-head.log",
+      "bytes": 41,
+      "sha256": "02ce6322629cff6f8c8579cb23e02df595c9a4a1b38719877c59497f7992b4aa",
+      "tests": null,
+      "skips": null,
+      "failure_summaries": [],
+      "failure_names": []
+    },
+    {
+      "label": "before-clean",
+      "argv": [
+        "git",
+        "status",
+        "--porcelain=v2",
+        "--untracked-files=all"
+      ],
+      "cwd": "/workspace/g-cdc",
+      "exit": 0,
+      "elapsed_seconds": 0.004,
+      "started_utc": "2026-10-09T02:07:10.289170+00:00",
+      "log": "before-clean.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests": null,
+      "skips": null,
+      "failure_summaries": [],
+      "failure_names": []
+    },
+    {
+      "label": "before-package",
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD:src/continuous-development-cycle"
+      ],
+      "cwd": "/workspace/g-cdc",
+      "exit": 0,
+      "elapsed_seconds": 0.002,
+      "started_utc": "2026-10-09T02:07:10.293249+00:00",
+      "log": "before-package.log",
+      "bytes": 41,
+      "sha256": "2e9e384af6343826153e03575d72b115adbdb92e771c248308fce3e7c491fb23",
+      "tests": null,
+      "skips": null,
+      "failure_summaries": [],
+      "failure_names": []
+    },
+    {
+      "label": "before-runtime-diff",
+      "argv": [
+        "git",
+        "diff",
+        "--exit-code",
+        "9b38bd4d9f5fb113ec10bdbca9fbe33908619a54",
+        "HEAD",
+        "--",
+        "src/continuous-development-cycle"
+      ],
+      "cwd": "/workspace/g-cdc",
+      "exit": 0,
+      "elapsed_seconds": 0.002,
+      "started_utc": "2026-10-09T02:07:10.295755+00:00",
+      "log": "before-runtime-diff.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests": null,
+      "skips": null,
+      "failure_summaries": [],
+      "failure_names": []
+    },
+    {
+      "label": "apply-neutral-patch",
+      "argv": [
+        "git",
+        "apply",
+        "/workspace/work/cdc-alias/neutral-draft-validation-20261009/neutral.patch"
+      ],
+      "cwd": "/workspace/work/cdc-alias/neutral-draft-validation-20261009/green-copy",
+      "exit": 0,
+      "elapsed_seconds": 0.002,
+      "started_utc": "2026-10-09T02:07:11.472489+00:00",
+      "log": "apply-neutral-patch.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests": null,
+      "skips": null,
+      "failure_summaries": [],
+      "failure_names": []
+    },
+    {
+      "label": "neutral-red",
+      "argv": [
+        "python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "src/continuous-development-cycle/tests",
+        "-p",
+        "test_submission_recovery_alias.py",
+        "-v"
+      ],
+      "cwd": "/workspace/work/cdc-alias/neutral-draft-validation-20261009/red-copy",
+      "exit": 1,
+      "elapsed_seconds": 0.565,
+      "started_utc": "2026-10-09T02:07:11.516151+00:00",
+      "log": "neutral-red.log",
+      "bytes": 14883,
+      "sha256": "6ebb78e4f8e492fdc59a6d81524d0b80cd185d6de5fc5d6fde93f63a272b3899",
+      "tests": 14,
+      "skips": 0,
+      "failure_summaries": [
+        "FAILED (failures=6)"
+      ],
+      "failure_names": [
+        "test_real_alias_store_rejects_wrong_revision_and_unrelated_mutation (test_submission_recovery_alias.AliasGitTests.test_real_alias_store_rejects_wrong_revision_and_unrelated_mutation)",
+        "test_real_simultaneous_git_cas_contenders_have_one_winner (test_submission_recovery_alias.AliasGitTests.test_real_simultaneous_git_cas_contenders_have_one_winner)",
+        "test_real_store_lost_reply_is_observed_and_never_retried (test_submission_recovery_alias.AliasGitTests.test_real_store_lost_reply_is_observed_and_never_retried)",
+        "test_canonical_store_rejects_unrelated_mutation_and_history_rewrite (test_submission_recovery_alias.AliasTests.test_canonical_store_rejects_unrelated_mutation_and_history_rewrite)",
+        "test_exact_alias_canonical_three_field_transition (test_submission_recovery_alias.AliasTests.test_exact_alias_canonical_three_field_transition)",
+        "test_existing_claim_and_resolution_history_are_preserved (test_submission_recovery_alias.AliasTests.test_existing_claim_and_resolution_history_are_preserved)"
+      ]
+    },
+    {
+      "label": "neutral-focused",
+      "argv": [
+        "python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "src/continuous-development-cycle/tests",
+        "-p",
+        "test_submission_recovery*.py",
+        "-v"
+      ],
+      "cwd": "/workspace/work/cdc-alias/neutral-draft-validation-20261009/green-copy",
+      "exit": 0,
+      "elapsed_seconds": 3.432,
+      "started_utc": "2026-10-09T02:07:12.081366+00:00",
+      "log": "neutral-focused.log",
+      "bytes": 6243,
+      "sha256": "78872029950fa8e7cbeedb981571d69002111e8e3f372f2175d27caa7d993fe1",
+      "tests": 34,
+      "skips": 0,
+      "failure_summaries": [],
+      "failure_names": []
+    },
+    {
+      "label": "neutral-package",
+      "argv": [
+        "python",
+        "-B",
+        "src/continuous-development-cycle/scripts/validate_package.py"
+      ],
+      "cwd": "/workspace/work/cdc-alias/neutral-draft-validation-20261009/green-copy",
+      "exit": 0,
+      "elapsed_seconds": 0.217,
+      "started_utc": "2026-10-09T02:07:15.513797+00:00",
+      "log": "neutral-package.log",
+      "bytes": 74,
+      "sha256": "2d283509ba1df50910f77db7dea37e7ab2440518c597ef49faa5b2a79d439db3",
+      "tests": null,
+      "skips": null,
+      "failure_summaries": [],
+      "failure_names": []
+    },
+    {
+      "label": "neutral-consumer",
+      "argv": [
+        "python",
+        "-B",
+        "/workspace/work/cdc-alias/immutable-runtime/bootstrap/consumer_package_checks.py",
+        "--package-root",
+        "/workspace/work/cdc-alias/neutral-draft-validation-20261009/green-copy/src/continuous-development-cycle"
+      ],
+      "cwd": "/workspace/work/cdc-alias/immutable-runtime",
+      "exit": 0,
+      "elapsed_seconds": 416.836,
+      "started_utc": "2026-10-09T02:07:15.731355+00:00",
+      "log": "neutral-consumer.log",
+      "bytes": 170708,
+      "sha256": "bdd7089e21e5150232637d9eba2b1360bfd3a0da2586aad4b006c20428a24a90",
+      "tests": 1135,
+      "skips": 0,
+      "failure_summaries": [],
+      "failure_names": []
+    },
+    {
+      "label": "after-head",
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "/workspace/g-cdc",
+      "exit": 0,
+      "elapsed_seconds": 0.004,
+      "started_utc": "2026-10-09T02:14:12.573401+00:00",
+      "log": "after-head.log",
+      "bytes": 41,
+      "sha256": "02ce6322629cff6f8c8579cb23e02df595c9a4a1b38719877c59497f7992b4aa",
+      "tests": null,
+      "skips": null,
+      "failure_summaries": [],
+      "failure_names": []
+    },
+    {
+      "label": "after-clean",
+      "argv": [
+        "git",
+        "status",
+        "--porcelain=v2",
+        "--untracked-files=all"
+      ],
+      "cwd": "/workspace/g-cdc",
+      "exit": 0,
+      "elapsed_seconds": 0.005,
+      "started_utc": "2026-10-09T02:14:12.577821+00:00",
+      "log": "after-clean.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests": null,
+      "skips": null,
+      "failure_summaries": [],
+      "failure_names": []
+    },
+    {
+      "label": "after-package",
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD:src/continuous-development-cycle"
+      ],
+      "cwd": "/workspace/g-cdc",
+      "exit": 0,
+      "elapsed_seconds": 0.002,
+      "started_utc": "2026-10-09T02:14:12.583006+00:00",
+      "log": "after-package.log",
+      "bytes": 41,
+      "sha256": "2e9e384af6343826153e03575d72b115adbdb92e771c248308fce3e7c491fb23",
+      "tests": null,
+      "skips": null,
+      "failure_summaries": [],
+      "failure_names": []
+    },
+    {
+      "label": "after-runtime-diff",
+      "argv": [
+        "git",
+        "diff",
+        "--exit-code",
+        "9b38bd4d9f5fb113ec10bdbca9fbe33908619a54",
+        "HEAD",
+        "--",
+        "src/continuous-development-cycle"
+      ],
+      "cwd": "/workspace/g-cdc",
+      "exit": 0,
+      "elapsed_seconds": 0.003,
+      "started_utc": "2026-10-09T02:14:12.585888+00:00",
+      "log": "after-runtime-diff.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests": null,
+      "skips": null,
+      "failure_summaries": [],
+      "failure_names": []
+    }
+  ],
+  "red_expected": {
+    "tests": 14,
+    "support_failures": 6
+  },
+  "full_log_export": {
+    "source_file": "neutral-consumer.log",
+    "total_bytes": 170708,
+    "sha256": "bdd7089e21e5150232637d9eba2b1360bfd3a0da2586aad4b006c20428a24a90",
+    "parts": [
+      {
+        "path": "neutral-consumer.log.part001",
+        "offset": 0,
+        "bytes": 39822,
+        "sha256": "d1b8f49598bd5e8c69d58ea3061270d4c261cbfd8fd13dc79ceaf34308c016a4"
+      },
+      {
+        "path": "neutral-consumer.log.part002",
+        "offset": 39822,
+        "bytes": 39954,
+        "sha256": "1b15d713e2be2cb53dd904b43a302ade27254b670f2c3c19f40e9cca8c5eb258"
+      },
+      {
+        "path": "neutral-consumer.log.part003",
+        "offset": 79776,
+        "bytes": 39937,
+        "sha256": "3578bd7213402e9f87471a6fc78935d3bf92f031ef1ceaf9374a664d61721021"
+      },
+      {
+        "path": "neutral-consumer.log.part004",
+        "offset": 119713,
+        "bytes": 39909,
+        "sha256": "a0ce9c14556c99cebf41aa635aa110ed7cbdf66ae436129ffc721dacbdd2c1c6"
+      },
+      {
+        "path": "neutral-consumer.log.part005",
+        "offset": 159622,
+        "bytes": 11086,
+        "sha256": "547132b0e2dcd60c187e19f255041d4514464337a3940bb0f1d971202c87bbd9"
+      }
+    ],
+    "reassembly": "Concatenate exact payload bytes in listed order, excluding transport markers"
+  },
+  "package_files_unchanged": true,
+  "old_evidence_files_preserved": 2273,
+  "source_owner": {
+    "repository": "bajoicheg/codex-compute",
+    "ref": "refs/heads/cdc/g-cdc-2114-main-20261003-lease",
+    "revision": "6a6515b1f19ab0d10e25d99124ee9038afcfb85f",
+    "path": "lease.json",
+    "generation": 58,
+    "owner": null,
+    "invocation": null,
+    "guard": null,
+    "finalization": null,
+    "observed_at_utc": "2026-10-09 02:13:39 UTC",
+    "actions": "GET only; no ownership or coordination changes; TTL/last_terminal not takeover evidence",
+    "release_readback": {
+      "revision": "6a6515b1f19ab0d10e25d99124ee9038afcfb85f",
+      "last_release": {
+        "at_utc": "2026-10-09T02:09:03.815791Z",
+        "checkpoint_ref": "git:14c39b45107740b3a1479b539b776a6f44983f8e:docs/superpowers/plans/2026-10-09-cloud-fast-start-reusable-recovery.md#approved-plan-only",
+        "completion_reason": "scope_complete",
+        "external_reconciliation": "none",
+        "generation": 58,
+        "invocation_id": "managed-terminal:16febb44ad8dcf8ff39fc205d7eb5776dec574aee615b1afb4f624d648a27e0b",
+        "owner_id": "b61f3184-3133-4912-82b3-4e6af68e4447"
+      },
+      "owner": null,
+      "guard": null
+    },
+    "admission_status": "NOT_RUN; no authority, independent quiescence, current budget/pool or write authorization established"
+  },
+  "all_other_source_platform_release_GPC_gates": "NOT_RUN",
+  "evidence_scope": "neutral draft copies only; NO released/exact-source/GPC GREEN",
+  "reruns": 0,
+  "check_statuses": {
+    "baseline_RED": "EXPECTED_RED:14tests/6failures/exit1",
+    "focused_GREEN": "PASS:34tests/0skips/exit0",
+    "package_validation": "PASS:exit0",
+    "clean_consumer_layout": "PASS:1135tests/0skips/exit0"
+  },
+  "frozen_artifacts": [
+    {
+      "path": "neutral.patch",
+      "bytes": 19658,
+      "sha256": "922f81e11269b5befb82fcf339882611ad98df18cd499b5aa4aa3a8c51299e6f"
+    },
+    {
+      "path": "test_submission_recovery_alias.py",
+      "bytes": 18158,
+      "sha256": "5e6001464d73ca687aea38849548798d33e4058965b51c672d1354d619c95bcb"
+    },
+    {
+      "path": "fixture-correction.patch",
+      "bytes": 1364,
+      "sha256": "fa2d9b104e43f1a194d2b19338cd981df34c1f2ba1c52fab9d696d9c69f18aef"
+    },
+    {
+      "path": "correction-manifest.json",
+      "bytes": 1045,
+      "sha256": "14aab42c87becb8a9180591246fbacc388e227ddfc927fff902d4dd3476ea093"
+    },
+    {
+      "path": "authority-check.json",
+      "bytes": 366,
+      "sha256": "74087279e7619718048f7bf6390a51e4dd558f3df0b8ea9eef5594ab28cac76e"
+    },
+    {
+      "path": "file-freeze-check-manifest.json",
+      "bytes": 2259,
+      "sha256": "2e63ad77736428b500aa55f842669280d2afd64c97a8d1af172e89e4367b89bf"
+    },
+    {
+      "path": "preserved-evidence-check.json",
+      "bytes": 125,
+      "sha256": "edbd945b87635bfc9bacc1211631dedef8d9136339bc12b91eeda78364927320"
+    }
+  ]
+}

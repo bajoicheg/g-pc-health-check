@@ -1,0 +1,127 @@
+{
+  "schema": "root-exact-cloud-transfer-verification/v1",
+  "all_exported_file_digests_verified": true,
+  "files": {
+    "neutral.patch": {
+      "bytes": 19658,
+      "sha256": "922f81e11269b5befb82fcf339882611ad98df18cd499b5aa4aa3a8c51299e6f"
+    },
+    "test_submission_recovery_alias.py": {
+      "bytes": 18158,
+      "sha256": "5e6001464d73ca687aea38849548798d33e4058965b51c672d1354d619c95bcb"
+    },
+    "fixture-correction.patch": {
+      "bytes": 1364,
+      "sha256": "fa2d9b104e43f1a194d2b19338cd981df34c1f2ba1c52fab9d696d9c69f18aef"
+    },
+    "correction-manifest.json": {
+      "bytes": 1045,
+      "sha256": "14aab42c87becb8a9180591246fbacc388e227ddfc927fff902d4dd3476ea093"
+    },
+    "authority-check.json": {
+      "bytes": 366,
+      "sha256": "74087279e7619718048f7bf6390a51e4dd558f3df0b8ea9eef5594ab28cac76e"
+    },
+    "neutral-red.log": {
+      "bytes": 14883,
+      "sha256": "6ebb78e4f8e492fdc59a6d81524d0b80cd185d6de5fc5d6fde93f63a272b3899"
+    },
+    "neutral-focused.log": {
+      "bytes": 6243,
+      "sha256": "78872029950fa8e7cbeedb981571d69002111e8e3f372f2175d27caa7d993fe1"
+    },
+    "neutral-package.log": {
+      "bytes": 74,
+      "sha256": "2d283509ba1df50910f77db7dea37e7ab2440518c597ef49faa5b2a79d439db3"
+    },
+    "neutral-consumer.log.part001": {
+      "bytes": 39822,
+      "sha256": "d1b8f49598bd5e8c69d58ea3061270d4c261cbfd8fd13dc79ceaf34308c016a4"
+    },
+    "neutral-consumer.log.part003": {
+      "bytes": 39937,
+      "sha256": "3578bd7213402e9f87471a6fc78935d3bf92f031ef1ceaf9374a664d61721021"
+    },
+    "neutral-consumer.log.part004": {
+      "bytes": 39909,
+      "sha256": "a0ce9c14556c99cebf41aa635aa110ed7cbdf66ae436129ffc721dacbdd2c1c6"
+    },
+    "after-clean.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "after-head.log": {
+      "bytes": 41,
+      "sha256": "02ce6322629cff6f8c8579cb23e02df595c9a4a1b38719877c59497f7992b4aa"
+    },
+    "after-package.log": {
+      "bytes": 41,
+      "sha256": "2e9e384af6343826153e03575d72b115adbdb92e771c248308fce3e7c491fb23"
+    },
+    "after-runtime-diff.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "apply-neutral-patch.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "before-clean.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "before-head.log": {
+      "bytes": 41,
+      "sha256": "02ce6322629cff6f8c8579cb23e02df595c9a4a1b38719877c59497f7992b4aa"
+    },
+    "before-package.log": {
+      "bytes": 41,
+      "sha256": "2e9e384af6343826153e03575d72b115adbdb92e771c248308fce3e7c491fb23"
+    },
+    "before-runtime-diff.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "file-freeze-check-manifest.json": {
+      "bytes": 2259,
+      "sha256": "2e63ad77736428b500aa55f842669280d2afd64c97a8d1af172e89e4367b89bf"
+    },
+    "preserved-evidence-check.json": {
+      "bytes": 125,
+      "sha256": "edbd945b87635bfc9bacc1211631dedef8d9136339bc12b91eeda78364927320"
+    },
+    "source-observation.json": {
+      "bytes": 1044,
+      "sha256": "8fad20732b1f04602c4534e1535dd3dd5c4fb7e6204b1c0381fcc638eff8987e"
+    },
+    "source-observation-final.json": {
+      "bytes": 438,
+      "sha256": "fb36ba14185e774d94c8c78dadfd02b993a0a16b78e1af3112c638f22d6cdc1b"
+    },
+    "source-release-readback.json": {
+      "bytes": 591,
+      "sha256": "8faf213bd7ce037eeae250303799bd756c0e7674de1fd02e97a22af81fb240fc"
+    },
+    "commands-manifest.json": {
+      "bytes": 8318,
+      "sha256": "a3c9cbcbea151f056976db9f1ec6614435e4307677a72a13a2eadfa90543ba7b"
+    },
+    "result-manifest.json": {
+      "bytes": 13530,
+      "sha256": "f6db5ce99a39cd94258bec8573009946ec1930da34b320a8cff0c96c32e98faa"
+    },
+    "neutral-consumer.log.part002": {
+      "bytes": 39954,
+      "sha256": "1b15d713e2be2cb53dd904b43a302ade27254b670f2c3c19f40e9cca8c5eb258"
+    },
+    "neutral-consumer.log.part005": {
+      "bytes": 11086,
+      "sha256": "547132b0e2dcd60c187e19f255041d4514464337a3940bb0f1d971202c87bbd9"
+    }
+  },
+  "full_log_assembled": true,
+  "full_log_bytes": 170708,
+  "full_log_sha256": "bdd7089e21e5150232637d9eba2b1360bfd3a0da2586aad4b006c20428a24a90",
+  "neutral_aggregate": "1135 tests OK",
+  "release_or_GPC_GREEN": false
+}
