@@ -1,0 +1,14 @@
+{
+  "attempt_id": "gpc-cdc-neutral-draft-validation-20261009-a1",
+  "observed_at_utc": "2026-10-09T02:13:58.078Z",
+  "observed_effort": "\u0421\u0440\u0435\u0434\u043d\u0435\u0435",
+  "observed_model": "GPT-6.1 Sol",
+  "observed_status": "accepted; actual user message and worker progress; consumer suite running",
+  "pool_id": "gpc-cdc-neutral-correction-reviews-20261009",
+  "provider": "Codex Cloud",
+  "provider_task_id": null,
+  "reservation_token": "67a96bd0-5c50-4672-b3eb-00a62ff11953",
+  "schema": "cloud-draft-validation-dispatch/v1",
+  "source_write_authority": false,
+  "thread_url": "https://chatgpt.com/local/01a11e0f-7079-768f-af5c-a25fa003c0ce"
+}

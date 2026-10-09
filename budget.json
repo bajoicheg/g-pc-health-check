@@ -936,6 +936,20 @@
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
       "type": "reserve",
       "wake_id": "gpc-owner-subagent-review-20261009"
+    },
+    {
+      "at_utc": "2026-10-09T02:13:58.078Z",
+      "event_id": "gpc-cdc-neutral-quality-review-20261009-a1-agent_start-terminal",
+      "failure": null,
+      "reservation_id": "gpc-cdc-neutral-quality-review-20261009-a1-agent_start",
+      "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": null,
+        "tokens": null
+      },
+      "wake_id": "gpc-owner-subagent-review-20261009"
     }
   ],
   "policy": {
@@ -947,17 +961,17 @@
     "max_parallel_agents": 4,
     "provider_max_age_seconds": 300,
     "task_limits": {
-      "agent_starts": 24,
+      "agent_starts": 32,
       "ci_starts": 13,
       "compute_starts": null
     },
     "wake_limits": {
-      "compute_starts": 4,
+      "compute_starts": 6,
       "status_polls": null,
       "tool_calls": 80
     }
   },
-  "policy_digest": "sha256:38ed3da1040fa35e8ec30317dadd730482c1f1e2b52581a41a87139231a502c4",
+  "policy_digest": "sha256:99cefd942dda7106a362fd62813f2ac8427c38868797c2557e283881a1da5243",
   "schema": "budget-ledger/v1",
   "task_id": "g-pc-health-check-0.17.0-pre-integration",
   "wake_ids": [
