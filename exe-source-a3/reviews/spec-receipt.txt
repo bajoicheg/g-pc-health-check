@@ -1,0 +1,19 @@
+PASS — independent SPEC review of frozen candidate 3d063ac723a68340e732d552c1d69636470b1ac3.
+
+Reviewer /root/cdc_a3_exact_spec. Actual terminal report received 2026-10-09. Typed findings: 0 Critical / 0 Important / 0 Minor. No scoped spec deviation found.
+
+Exact binding independently confirmed through read-only hashing: base14c39b45107740b3a1479b539b776a6f44983f8e; root48e8b9ef7baec02c404e2a351c1f5bdc66f83895; packageb924d431edec544264bc67cdfbd98548a30d9dfb353files; patchddbe79dae65bbdcd73547a6e7f1bbc2820139e2b55fb675c68ab02eb49f6e627.
+
+Implementation matches design3–7. submission_recovery.py90–95 accepts historical required_pr_validation only exact backendgithub_create_pull_request, outcomenot_submitted, barriercancelled_before_send and exactPOSTrepos/<repository>/pulls. Lines109–116 preserve HTTP-status/barrier validation and reject unsupported outcomes; alias rejection/403 cannot enter supported target branch. Lines30–88/117–122 retain releasedv2, originalclaim/digest/generation, completefreshproviderabsence, exactindependentlystoppedworker, immutabledispatchevidence, candidate, releasetime and independentstoppedparent. Lines123–132 preserveoriginalrecord, appendoneresolution, changeonlythreepermittedfields. Unchangedgit_lease_store.py31–137 enforces canonicalequality, revisionbinding, sealedreleasedstate andappendonlyhistory. Existing PR_VALIDATION/MERGE_VALIDATION/COMPUTE_ONLY branches unchanged.
+
+Neutral regressions tests/test_submission_recovery_alias.py61–261 coverpositive transition/negatives; lines267–365 coveractual simultaneousGitCAS, lostsuccessreplywithoutreplay, stalerevision/unrelatedmutation. ExistingCOMPUTE_ONLY regressions remain in test_submission_recovery.py.
+
+Metadata consistently identifies candidate2.12.2 developed underindependentreleased2.12.1. source.lock4–9 pins9b38bd4d9f5fb113ec10bdbca9fbe33908619a54/package9c45d98c3254e9658d452c505d8c97698e3fc9a7/run37737459242. candidate.json6–8 binds content7100ebb9b7309ecfe98fb2fb4d083f352d59485e andfrozenpackage as candidate. Threearchivedconsumer records bind samepackage preservehistoricalsource/vendorversion. Packagetransport neutralinternallyboundonefileexample.
+
+All19changedpaths inspected: AGENTS,bothVERSION,compatibilitymatrix,threeconsumersource,maintenance,roadmap,spec/plan,releasecandidate/source.lock,packageSKILL,agentYAML,manifest,implementation,transporttemplate,aliastests. Issue100proposed2.13.0planning/historypreserved. No release/install/adoption/GPCguard/EXEclaims.
+
+Evidence separatelyinspected: prompt,Rootbyteverification,patch,checkmanifest,result,compactreadback,handoff,independentdriver,freeze,availablelogparts. Manifest46bootstrap/1metadata/distinct1135canonical+1135cleanconsumer,zeroskips/failures. All5cleanconsumerparts independentlyhashverified/assembledfullhashverified; logconfirms1135andactualCAS/lostreplyobservations.
+
+Limitations: no testreruns/writes/effects. Snapshotfilesystemloses32executablebits; authenticatedGitmode recomputation exactly matches package. Canonicalparts003/005missinglocal; threeavailablepartsverified, fullcanonical suppliedmanifest/readbackevidence. ExactSHACI,QUALITY,managedfinish/integration/release/install/adoption/productplatform remainseparategates. Review grantsnoapproval/merge/releaseauthority.
+
+This is Root's durable faithful transcription of the actual terminal report, with spacing/Markdown condensed; evidence binds this saved receipt's own digest, not an invented digest of unseen raw report bytes.

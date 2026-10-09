@@ -1,0 +1,17 @@
+{
+  "at_utc": "2026-10-09T13:42:15.004672Z",
+  "attempt_id": "gpc-cdc-2122-a3-quality-review",
+  "cost": {
+    "elapsed_seconds": null,
+    "tokens": null,
+    "tool_calls": 1
+  },
+  "event_id": "gpc-cdc-2122-a3-quality-review-agent_start",
+  "kind": "agent_start",
+  "operation_key": "sha256:9303c1af42f6d0a90dd9fefb4d36df58b4fe16d3312b6f75a3d0c97d96880582",
+  "recovery_ref": null,
+  "scope": "gpc/dependency/cdc-exact-candidate-quality-review",
+  "task_id": "g-pc-health-check-0.17.0-pre-integration",
+  "type": "reserve",
+  "wake_id": "gpc-owner-approved-cloud-payload-20261009-1248"
+}

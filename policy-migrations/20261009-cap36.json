@@ -1,0 +1,64 @@
+{
+  "adapter_sha256": "a905fc8a46c8c11a6ba88beea857c292d1c8bb0540c8b80e9e5eedfe1e264d6b",
+  "all_unknown_slots_and_failure_circuits_preserved": true,
+  "at_utc": "2026-10-09T13:42:15.004672Z",
+  "authority": {
+    "instruction": "\u041f\u043e\u0434\u043d\u0438\u043c\u0430\u0439 \u043b\u0438\u043c\u0438\u0442\u044b \u0438 \u043f\u0440\u043e\u0434\u043e\u043b\u0436\u0430\u0439",
+    "scope": "GPC canonical CDC dependency ordered review/source release and actual product continuation to EXE; no paid settings"
+  },
+  "effective_adapter_ref": "git:refs/heads/cdc/coordination:effective-adapter-cap36.yaml",
+  "event_history_preserved": true,
+  "new_digest": "sha256:898c05b66f33db3b9d8d57aeb8b4ea418343e48fae77175ebd8ebc20a0460100",
+  "new_policy": {
+    "actions_budget": "conserve",
+    "checkpoint_reserve": {
+      "tokens": 4000,
+      "tool_calls": 8
+    },
+    "max_parallel_agents": 4,
+    "provider_max_age_seconds": 300,
+    "task_limits": {
+      "agent_starts": 36,
+      "ci_starts": 13,
+      "compute_starts": null
+    },
+    "wake_limits": {
+      "compute_starts": 6,
+      "status_polls": null,
+      "tool_calls": 80
+    }
+  },
+  "old_digest": "sha256:99cefd942dda7106a362fd62813f2ac8427c38868797c2557e283881a1da5243",
+  "old_policy": {
+    "actions_budget": "conserve",
+    "checkpoint_reserve": {
+      "tokens": 4000,
+      "tool_calls": 8
+    },
+    "max_parallel_agents": 4,
+    "provider_max_age_seconds": 300,
+    "task_limits": {
+      "agent_starts": 32,
+      "ci_starts": 13,
+      "compute_starts": null
+    },
+    "wake_limits": {
+      "compute_starts": 6,
+      "status_polls": null,
+      "tool_calls": 80
+    }
+  },
+  "review": {
+    "checks": [
+      "only taskagentcap32->36 changed",
+      "CI13 conserve parallel4 wakecompute6 retained",
+      "seven next necessary modelstarts scoped; full history preserved",
+      "adapter validator PASS"
+    ],
+    "result": "PASS",
+    "reviewer": "Root"
+  },
+  "schema": "owner-approved-budget-policy-migration/v1",
+  "source_adapter_write": "pending actual GPC managed publication after guard recovery",
+  "wake_ids_preserved": true
+}

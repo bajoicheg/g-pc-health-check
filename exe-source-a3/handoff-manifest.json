@@ -1,0 +1,171 @@
+{
+  "schema": "cdc-managed-candidate-a3-controller-handoff/v1",
+  "candidate_commit": "3d063ac723a68340e732d552c1d69636470b1ac3",
+  "content_commit": "7100ebb9b7309ecfe98fb2fb4d083f352d59485e",
+  "root_tree": "48e8b9ef7baec02c404e2a351c1f5bdc66f83895",
+  "package_tree": "b924d431edec544264bc67cdfbd98548a30d9dfb",
+  "version": "2.12.2",
+  "native_original_unchanged": {
+    "head": "5720b6e159972432f04277607be7ec8b398b9967",
+    "status": "",
+    "package_tree": "9c45d98c3254e9658d452c505d8c97698e3fc9a7"
+  },
+  "immutable_authority_release": "9b38bd4d9f5fb113ec10bdbca9fbe33908619a54",
+  "immutable_authority_package": "9c45d98c3254e9658d452c505d8c97698e3fc9a7",
+  "immutable_files_verified": 578,
+  "candidate_files_unchanged": 353,
+  "remote_main": "14c39b45107740b3a1479b539b776a6f44983f8e",
+  "source_remote_candidate_publication": "NOT_RUN; ref independently observed ABSENT",
+  "write_auth_evidence": "Actual private coordination CAS acceptance/readback. Source receive-pack dry-run exit0 proves access only; no source candidate push acceptance claimed.",
+  "handle_id": "1f241e4e-00bf-52ce-89fb-33500fe8026a",
+  "generation": 63,
+  "owner_id": "827589cc-a101-4bea-bc17-633c3ac737e8",
+  "invocation_id": "managed-terminal:4ba0698b6c9100a28692967bc7d0c1e9267c8395d5e31743e9aae509265a7771",
+  "source_lease_ref": "refs/heads/cdc/g-cdc-2114-main-20261003-lease",
+  "source_lease_revision": "8da99712cf786f4de3c7818e20ed4c1d76777018",
+  "checkpoint_ref": "git:bajoicheg/codex-compute@8d6562cc315041ecc9501d1e4a768cbba34b0449:document.json",
+  "pool_ref": "refs/heads/cdc/gpc-cdc-source-candidate-managed-worker-20261009-a3-pool-binding-corrected",
+  "pool_revision": "c988c62e12713355ad66ac4b3c11412c810b9dd6",
+  "pool_task_status": "running",
+  "runtime_status": "awaiting_release",
+  "pending_terminal_status": "succeeded",
+  "quiescent": false,
+  "supervisor_pid": 6782,
+  "worker_exit": 0,
+  "contract": "git:bajoicheg/g-pc-health-check@bc462b722e5004f7baf1864ae1574ce181b20588:exe-source-a3/contract.txt",
+  "contract_sha256": "cd41ddeec56fe8a5d374d63e960246a2df86641b6e373d31a682cb2f2dc9f606",
+  "dispatch_receipt": "git:bajoicheg/g-pc-health-check@6a20edf5676fdc3bb52e70db2de65d8f68652991:exe-source-a3/dispatch.json",
+  "root_budget_binding": "Immutable bc462... budget.json exact snapshot preserved; 78 events; totals29agent/4CI/7compute at authorized dispatch. Root current ledger may advance separately. Unknown2 retained; no reset/refund/doublecharge/newmodelagent.",
+  "source_budget_binding": "Authorized scoped adapter copies full Root budget history; predecessor issue100 235-event budget bound by revision40a2613d87e23622a41a16d9e3e8ea37f49da9f0; historical21 9/9CI3/3 not reused as new global budget. Pool consumption remains inflight, not refunded capacity.",
+  "source_admission_ref": "refs/heads/cdc/gpc-alias-2122-a3-admission-binding-corrected",
+  "source_admission_revision": "b8f017ead52b2ac36f6b0e6a480cc741a9e0e5f3",
+  "candidate_checks": {
+    "completed_commands": 15,
+    "failed": 0,
+    "bootstrap_tests": 46,
+    "focused_metadata_tests": 1,
+    "canonical_full_tests": 1135,
+    "consumer_full_tests": 1135,
+    "skips": 0
+  },
+  "observer_transport_notes": [
+    {
+      "operation": "initial managed start",
+      "exit": 2,
+      "effect": "backend preference mismatch rejected before actual worker queue/start/acquire; preserved initial logs; same paid worker reservation retained",
+      "correction": "Concrete LocalCommandBackend.name=local_command binding, distinct corrected durable pool/admission refs; only one actual worker launched."
+    },
+    {
+      "operation": "initial final independent readback",
+      "exit": 1,
+      "effect": "KeyError for incorrect observer field invocation_id; no source/test mutation",
+      "correction": "Read canonical record.invocation.invocation_id; corrected readback exit0; original observer script preserved."
+    },
+    {
+      "operation": "pool final readback stdout summary",
+      "exit": 1,
+      "effect": "Authoritative read and file persistence succeeded; projection attempted absent top-level attempts field",
+      "correction": "Persisted full canonical state retained and inspected using state.tasks; no state mutation or worker retry."
+    }
+  ],
+  "files": [
+    {
+      "path": "/workspace/work/cdc-source-a3/candidate.patch",
+      "bytes": 35034,
+      "sha256": "ddbe79dae65bbdcd73547a6e7f1bbc2820139e2b55fb675c68ab02eb49f6e627"
+    },
+    {
+      "path": "/workspace/work/cdc-source-a3/freeze.json",
+      "bytes": 64429,
+      "sha256": "b1b9f8f8ea48a2fe9a1b3308f4c42a36b9e4be6d004b91a6e204844092c74d70"
+    },
+    {
+      "path": "/workspace/work/cdc-source-a3/freeze-compact.json",
+      "bytes": 2110,
+      "sha256": "e74f44474b91aaba760baaca29c6a7ff90e263782543ad451a873669135e5880"
+    },
+    {
+      "path": "/workspace/work/cdc-source-a3/changed-file-manifest.json",
+      "bytes": 3808,
+      "sha256": "0981145f24456f00548b7d9d93ec77d155e1574c78c8317e9029c0b762f8cf68"
+    },
+    {
+      "path": "/workspace/work/cdc-source-a3/check-manifest.json",
+      "bytes": 15728,
+      "sha256": "21504b775524ef743ca64fdddef3eda73b6395ff25b496529d7f273f6429e182"
+    },
+    {
+      "path": "/workspace/work/cdc-source-a3/result.json",
+      "bytes": 12845,
+      "sha256": "06e4570323459ee5c3d48f672e44febbf74b35ce64a3264c79e3f3cf4a0496dd"
+    },
+    {
+      "path": "/workspace/work/cdc-source-a3/final-readback.json",
+      "bytes": 43731,
+      "sha256": "89968747a17c46ff0e872fbf2003a16c5d5d24cd220c790599f8768eea518b4c"
+    },
+    {
+      "path": "/workspace/work/cdc-source-a3/final-readback-compact.json",
+      "bytes": 3189,
+      "sha256": "f1a477882f1f593b6423911bd9f13bcc40bffa56f755890c3284a97b88b1461f"
+    },
+    {
+      "path": "/workspace/work/cdc-source-a3/pool-final-readback.json",
+      "bytes": 1733,
+      "sha256": "643ee400fb5aeed8042d5cbb084ae7dcc7d994b4758f759585f9152349d0bb9c"
+    },
+    {
+      "path": "/workspace/work/cdc-source-a3/runtime-hold-receipt.json",
+      "bytes": 2297,
+      "sha256": "48e7816d222ecdf55f9366f92fad30b89446c5af4fc8faec0bb8827afe8aa649"
+    },
+    {
+      "path": "/workspace/work/cdc-source-a3/final-observe.log",
+      "bytes": 746,
+      "sha256": "0b264308670aa7a25c50e687b6c5aad574a091480f239dffebd4e849b3936e69"
+    },
+    {
+      "path": "/workspace/work/cdc-source-a3/final-observe-command.json",
+      "bytes": 490,
+      "sha256": "51f4a39399378cffd4ad00442413008afdb6f5fd49513623b705f6fd77b115df"
+    },
+    {
+      "path": "/workspace/work/cdc-source-a3/independent-driver-readback.json",
+      "bytes": 3764,
+      "sha256": "e06736f9eb42f56307437769964b2197b4582a46625b400b7e03d3499039b38f"
+    },
+    {
+      "path": "/workspace/work/cdc-source-a3/candidate.bundle",
+      "bytes": 10653,
+      "sha256": "a12a8802f311831f288a1282a84a1f0f3e247b9cf97967b531b2e9406252458b"
+    },
+    {
+      "path": "/workspace/work/cdc-source-a3/bundle-receipt.json",
+      "bytes": 677,
+      "sha256": "577eafc1e66bcfbc07cd4d19709ebb0719575b16fa2b6a5c9e93eebcaa83347c"
+    },
+    {
+      "path": "/workspace/work/cdc-source-a3/admission-corrected-receipt.json",
+      "bytes": 278,
+      "sha256": "b3ff28fd631c466b97b70d2287b219ef4fb14c590b675fdef33c48dfa7cdc172"
+    },
+    {
+      "path": "/workspace/work/cdc-source-a3/dispatch.json",
+      "bytes": 1199,
+      "sha256": "8a50b0d8220f4e6e8f10b6453fb961d0baa086c673428f121653c46b75b9dc41"
+    }
+  ],
+  "not_run": [
+    "ordered-exact-candidate-SPEC",
+    "ordered-exact-candidate-QUALITY",
+    "required-exact-SHA-CI",
+    "main-integration",
+    "source-release",
+    "installation",
+    "adoption",
+    "GPC-original-guard-recovery",
+    "Windows11-UAC-RDP-DPI",
+    "GPC-EXE"
+  ],
+  "next_safe_action": "Root independently verifies exported bytes/checkpoint and exact candidate; ordered SPEC then independent QUALITY and required exact-SHA CI. Resume this actual managed handle/attempt under fresh binding readback; do not start another worker. Successful bridge finish can integrate main and is forbidden before those gates. Supervisor remains managed awaiting_release with durable terminal hold; no TTL takeover."
+}
