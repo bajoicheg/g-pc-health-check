@@ -7,32 +7,32 @@
   "authorizes_user_approval": false,
   "authorizes_worker_launch": false,
   "base_sha": "7aaefdebca68eed64c8e92d7dfff7384f0a3c800",
-  "change_id": "gpc-user-readable-tabs-isolated-review-cross-build",
+  "change_id": "gpc-readable-tabs-ordered-reviews-and-recovery",
   "coordination_ref": "refs/heads/cdc/coordination",
   "coordination_store_id": "sha256:e9c5798b2e5857d11563b10845ae993ed5b0e7b040ffd6611bdbd1a36aad08d3",
-  "cost_consumed_units": 1,
+  "cost_consumed_units": 0,
   "execution_mode": "parallel",
   "integrator_id": "Work-root",
-  "parent_invocation_id": "Work-root-gpc-readable-tabs-20261009-200159",
-  "plan_digest": "sha256:67ef8d90605df672abac5a586a999e55e86691bd4e09e2ee100b0b757346aede",
-  "pool_id": "gpc-ui-corrected-build48-20261009",
-  "revision": 3,
+  "parent_invocation_id": "Work-root-gpc-continue-20261009-230128",
+  "plan_digest": "sha256:c78c97a69b017d4a38327b2d280ecde1412e1f6fb1d3f706e83eb6f8d4da19cb",
+  "pool_id": "gpc-ui-quality49-20261009",
+  "revision": 2,
   "runtime_consumed_seconds": 0,
   "schema": "managed-executor-pool-state/v1",
   "tasks": [
     {
       "accepted_result_ref": null,
-      "active_attempt_id": null,
+      "active_attempt_id": "gpc-ui-quality49-20261009",
       "attempt_ids": [
-        "gpc-ui-corrected-build48-20261009"
+        "gpc-ui-quality49-20261009"
       ],
-      "cost_units": 1,
+      "cost_units": 0,
       "discarded": false,
-      "id": "controller",
+      "id": "quality",
       "integrated": false,
-      "reservation_token": null,
+      "reservation_token": "462468e5-8a14-45b9-b404-9494f0f18be8",
       "runtime_seconds": 0,
-      "status": "failed"
+      "status": "running"
     }
   ]
 }

@@ -1,0 +1,12 @@
+{
+  "actual_Send": false,
+  "actual_physical_Native_start": false,
+  "at_utc": "2026-10-09T20:15:39.722058Z",
+  "attempt": "gpc-ui-corrected-build48-20261009",
+  "blocker": "Cloudflare human verification; one reload still blocked; no challenge interaction",
+  "candidate_sha": "68da62237ecfa5377fcc31c5641b3baaebea39a9",
+  "new_EXE": false,
+  "next": "Existing task needs authorized human-verification completion before a newly prepaid genuine launch",
+  "prepaid_reservations_retained_without_refund": true,
+  "schema": "gpc-native-build-launch/v1"
+}

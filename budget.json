@@ -2238,6 +2238,71 @@
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
       "type": "reserve",
       "wake_id": "gpc-owner-raised-limits-20261009-230128"
+    },
+    {
+      "at_utc": "2026-10-09T20:15:39.722058Z",
+      "event_id": "gpc-ui-spec47-20261009-actual-terminal",
+      "failure": null,
+      "reservation_id": "gpc-ui-spec47-20261009-agent_start",
+      "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": 92,
+        "tokens": null
+      },
+      "wake_id": "gpc-owner-raised-limits-20261009-230128"
+    },
+    {
+      "at_utc": "2026-10-09T20:15:39.722058Z",
+      "event_id": "gpc-ui-corrected-build48-20261009-agent_start-setup-blocked",
+      "failure": {
+        "category": "infrastructure",
+        "signature": "Cloudflare human verification blocks original Codex task before Send; one reload still blocked"
+      },
+      "reservation_id": "gpc-ui-corrected-build48-20261009-agent_start",
+      "status": "setup_failed",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": 0,
+        "tokens": null
+      },
+      "wake_id": "gpc-owner-raised-limits-20261009-230128"
+    },
+    {
+      "at_utc": "2026-10-09T20:15:39.722058Z",
+      "event_id": "gpc-ui-corrected-build48-20261009-compute_start-setup-blocked",
+      "failure": {
+        "category": "infrastructure",
+        "signature": "Cloudflare human verification blocks original Codex task before Send; one reload still blocked"
+      },
+      "reservation_id": "gpc-ui-corrected-build48-20261009-compute_start",
+      "status": "setup_failed",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": 0,
+        "tokens": null
+      },
+      "wake_id": "gpc-owner-raised-limits-20261009-230128"
+    },
+    {
+      "at_utc": "2026-10-09T20:15:39.722058Z",
+      "attempt_id": "gpc-ui-quality49-20261009",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-ui-quality49-20261009-agent_start",
+      "kind": "agent_start",
+      "operation_key": "sha256:42e0ad141743e1d1f6636fa5ac7cc0c73aa7190ce19f9b32bb9128dd0a82a83a",
+      "recovery_ref": null,
+      "scope": "gpc/readonly/quality68da",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-owner-raised-limits-20261009-230128"
     }
   ],
   "policy": {
