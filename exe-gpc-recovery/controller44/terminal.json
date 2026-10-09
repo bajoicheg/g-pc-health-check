@@ -1,0 +1,20 @@
+{
+  "Root_downloaded_verified_actual_bytes": true,
+  "Root_verified_all19chunks_and453bundle_entries": true,
+  "Windows_runtime": "NOT_RUN",
+  "actual_UI_duration_seconds": 238,
+  "actual_UI_final_Moscow": "2026-10-09T20:20:00+03:00",
+  "artifact_commit": "81bc310f742a29289f141a4ec918ab439139dada",
+  "candidate": "53d4a46af7b8dd6304a6c6928e2b19cdbd3bce4a",
+  "canonical_evidence": "75efc2042d5537921a33b7432253f7690e1df685",
+  "controller": 44,
+  "lease_untouched": true,
+  "no_new_CI": true,
+  "observed_at_utc": "2026-10-09T17:24:26.453676Z",
+  "original_CI6": "UNKNOWN retained",
+  "prepaid_admission": "a30da65065cb8e54e471e8e09786b400e7967279",
+  "schema": "Root-controller44-genuine-terminal/v1",
+  "scope_complete": false,
+  "source_ref_unchanged": "7aaefdebca68eed64c8e92d7dfff7384f0a3c800",
+  "tree": "12904bf468ca241804ef84244edb1c656aed204d"
+}

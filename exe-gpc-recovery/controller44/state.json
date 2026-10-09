@@ -10,29 +10,29 @@
   "change_id": "gpc-user-readable-tabs-isolated-review-cross-build",
   "coordination_ref": "refs/heads/cdc/coordination",
   "coordination_store_id": "sha256:e9c5798b2e5857d11563b10845ae993ed5b0e7b040ffd6611bdbd1a36aad08d3",
-  "cost_consumed_units": 0,
+  "cost_consumed_units": 1,
   "execution_mode": "parallel",
   "integrator_id": "Work-root",
   "parent_invocation_id": "Work-root-gpc-readable-tabs-20261009-200159",
   "plan_digest": "sha256:3d1c50212917da00b2ea0e66e46033a02fb9dca1f0b1616f4eac416a54d7adac",
   "pool_id": "gpc-native-readable-tabs-review-build-20261009",
-  "revision": 2,
-  "runtime_consumed_seconds": 0,
+  "revision": 4,
+  "runtime_consumed_seconds": 238,
   "schema": "managed-executor-pool-state/v1",
   "tasks": [
     {
-      "accepted_result_ref": null,
-      "active_attempt_id": "gpc-native-readable-tabs-review-build-20261009",
+      "accepted_result_ref": "git:75efc2042d5537921a33b7432253f7690e1df685",
+      "active_attempt_id": null,
       "attempt_ids": [
         "gpc-native-readable-tabs-review-build-20261009"
       ],
-      "cost_units": 0,
+      "cost_units": 1,
       "discarded": false,
       "id": "controller",
-      "integrated": false,
-      "reservation_token": "1076065b-8306-49de-9621-2562845ad7fb",
-      "runtime_seconds": 0,
-      "status": "running"
+      "integrated": true,
+      "reservation_token": null,
+      "runtime_seconds": 238,
+      "status": "succeeded"
     }
   ]
 }

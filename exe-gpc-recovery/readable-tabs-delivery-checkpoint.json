@@ -1,0 +1,100 @@
+{
+  "Windows_required_gates": "NOT_RUN",
+  "artifact": {
+    "CDC_version": "2.12.1 unchanged",
+    "CI6_submission": "UNKNOWN preserved; no replay",
+    "FileVersion": "0.17.1.0",
+    "PE_kind": "PE32+",
+    "PE_machine": "AMD64",
+    "SDK": "8.0.425",
+    "Windows_runtime": "NOT_RUN",
+    "actual_informational_commit_verified": true,
+    "artifact_commit": "81bc310f742a29289f141a4ec918ab439139dada",
+    "build_exit": 0,
+    "bundle_entries_verified": 453,
+    "bytes": 78763727,
+    "candidate": "53d4a46af7b8dd6304a6c6928e2b19cdbd3bce4a",
+    "compiler_errors": 0,
+    "compiler_warnings": 0,
+    "deferred_minor": "PowerShell layout wrapper overwrites rich render manifest; separate checksum filename patch prepared but not applied",
+    "filename": "G-PC-Health-0.17.1-ui-candidate.exe",
+    "independent_review": "Static review only; no Critical/Important findings; Windows runtime NOT_RUN",
+    "new_RU_EN_resources_verified": true,
+    "new_layout": "Overview, Recommendations, Actions; fixed footer; collapsed details",
+    "previous_baseline_Windows_failure": "37846023963: eight RU/EN footer reachability fixtures / selftest234; updated UI fixtures NOT_RUN",
+    "production_release": false,
+    "raw_chunk_count_verified": 19,
+    "schema": "gpc-Root-independent-delivered-byte-verification/v1",
+    "sha256": "0bdcb5df5fcac8c4044bb9ef352a2b7d9b1cae9e8487aa622a626c7db39e5f82",
+    "tree": "12904bf468ca241804ef84244edb1c656aed204d",
+    "validated_pilot": false
+  },
+  "at_utc": "2026-10-09T17:24:26.453676Z",
+  "base": "53636f45cc14075717e4e68b0a40ba020b96d9ca",
+  "budget": {
+    "active_agents": 2,
+    "known": {
+      "agent_starts": 44,
+      "ci_starts": 6,
+      "compute_starts": 18,
+      "elapsed_seconds": 51985.38397604402,
+      "status_polls": 0,
+      "tokens": 0,
+      "tool_calls": 68
+    },
+    "observed": {
+      "elapsed_seconds": null,
+      "tokens": null
+    },
+    "task": {
+      "agent_starts": 44,
+      "ci_starts": 6,
+      "compute_starts": 18,
+      "elapsed_seconds": null,
+      "status_polls": 0,
+      "tokens": null,
+      "tool_calls": 68
+    },
+    "task_id": "g-pc-health-check-0.17.0-pre-integration",
+    "unknown": {
+      "agent_starts": 0,
+      "ci_starts": 0,
+      "compute_starts": 0,
+      "elapsed_seconds": 32,
+      "status_polls": 0,
+      "tokens": 68,
+      "tool_calls": 0
+    },
+    "wake": {
+      "agent_starts": 1,
+      "ci_starts": 0,
+      "compute_starts": 1,
+      "elapsed_seconds": 476,
+      "status_polls": 0,
+      "tokens": null,
+      "tool_calls": 2
+    },
+    "wake_id": "gpc-owner-readable-tabs-20261009-200159"
+  },
+  "candidate": "53d4a46af7b8dd6304a6c6928e2b19cdbd3bce4a",
+  "compiled": true,
+  "decision": "Overview + Recommendations + Actions; collapsed selectable details; fixed wrapping footer with separate status row",
+  "deferred_minor": "M1 tools/dev/Test-ReadableLayout.ps1 overwrites detailed render metadata; smallest separate patch retained in canonical evidence",
+  "eligible_result_now": "new actual isolated UI EXE delivered; verified checksum/resources; runtime acceptance remains open",
+  "guard_operation": "sha256:3dc9f2ff126eaffadc9a1580eecdc14978c51f047133f10f34b41d4b177998d4",
+  "guard_outcome": "UNKNOWN retained; no pilot replay",
+  "independent_review": "one static review, not dual final SPEC/QUALITY or runtime",
+  "merged": false,
+  "prepared_local": true,
+  "production_release": false,
+  "remaining_queue": [
+    "Reconcile original CI6 using authoritative original provider outcome; preserve guard until then",
+    "Run updated exact-candidate Windows source/EXE/layout/portable tests and inspect RU/EN renders at small windows/DPI",
+    "Required independent SPEC/QUALITY reviews, managed Windows11 pilot and integration/release gates",
+    "Continue requested releases 0.17.2, 0.18, 0.19 after dependencies are GREEN"
+  ],
+  "schema": "gpc-readable-tabs-delivery-checkpoint/v1",
+  "task_agent_limit_reached": true,
+  "tree": "12904bf468ca241804ef84244edb1c656aed204d",
+  "user_feedback": "2026-10-09T20:01:59+03:00"
+}
