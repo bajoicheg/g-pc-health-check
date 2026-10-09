@@ -796,6 +796,115 @@
         "tokens": null
       },
       "wake_id": "gpc-owner-subagent-review-20261009"
+    },
+    {
+      "at_utc": "2026-10-09T02:03:16.932Z",
+      "event_id": "gpc-cdc-final-draft-validation-20261009-a1-agent_start-terminal",
+      "failure": {
+        "category": "code",
+        "signature": "validate_package: project-specific literal in tests/test_submission_recovery_alias.py"
+      },
+      "reservation_id": "gpc-cdc-final-draft-validation-20261009-a1-agent_start",
+      "status": "failed",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": null,
+        "tokens": null
+      },
+      "wake_id": "gpc-owner-subagent-review-20261009"
+    },
+    {
+      "at_utc": "2026-10-09T02:03:16.932Z",
+      "event_id": "gpc-cdc-final-draft-validation-20261009-a1-compute_start-terminal",
+      "failure": {
+        "category": "code",
+        "signature": "validate_package: project-specific literal in tests/test_submission_recovery_alias.py"
+      },
+      "reservation_id": "gpc-cdc-final-draft-validation-20261009-a1-compute_start",
+      "status": "failed",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": null,
+        "tokens": null
+      },
+      "wake_id": "gpc-owner-subagent-review-20261009"
+    },
+    {
+      "at_utc": "2026-10-09T02:03:16.932Z",
+      "detail": "Verified exact4fixture literal replacements to neutral example/alias-project; newtest5e600146..., fullpatch922f81..., production unchanged. Bounded separate one-use accounting for agent_start",
+      "event_id": "gpc-cdc-neutral-draft-validation-20261009-a1-agent_start-remedy",
+      "kind": "code_correction",
+      "reference": "sha256:fa2d9b104e43f1a194d2b19338cd981df34c1f2ba1c52fab9d696d9c69f18aef#agent_start-correction",
+      "scope": "gpc/dependency/cdc-final-draft-copy-validation",
+      "signature": "validate_package: project-specific literal in tests/test_submission_recovery_alias.py",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "remedy",
+      "wake_id": "gpc-owner-subagent-review-20261009"
+    },
+    {
+      "at_utc": "2026-10-09T02:03:16.932Z",
+      "attempt_id": "gpc-cdc-neutral-draft-validation-20261009-a1",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-cdc-neutral-draft-validation-20261009-a1-agent_start",
+      "kind": "agent_start",
+      "operation_key": "sha256:4f7594dd6a3a145df54479a994626691343fbc80a0af4e13039fef559885271c",
+      "recovery_ref": "sha256:fa2d9b104e43f1a194d2b19338cd981df34c1f2ba1c52fab9d696d9c69f18aef#agent_start-correction",
+      "scope": "gpc/dependency/cdc-final-draft-copy-validation",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-owner-subagent-review-20261009"
+    },
+    {
+      "at_utc": "2026-10-09T02:03:16.932Z",
+      "detail": "Verified exact4fixture literal replacements to neutral example/alias-project; newtest5e600146..., fullpatch922f81..., production unchanged. Bounded separate one-use accounting for compute_start",
+      "event_id": "gpc-cdc-neutral-draft-validation-20261009-a1-compute_start-remedy",
+      "kind": "code_correction",
+      "reference": "sha256:fa2d9b104e43f1a194d2b19338cd981df34c1f2ba1c52fab9d696d9c69f18aef#compute_start-correction",
+      "scope": "gpc/dependency/cdc-final-draft-copy-validation",
+      "signature": "validate_package: project-specific literal in tests/test_submission_recovery_alias.py",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "remedy",
+      "wake_id": "gpc-owner-subagent-review-20261009"
+    },
+    {
+      "at_utc": "2026-10-09T02:03:16.932Z",
+      "attempt_id": "gpc-cdc-neutral-draft-validation-20261009-a1",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-cdc-neutral-draft-validation-20261009-a1-compute_start",
+      "kind": "compute_start",
+      "operation_key": "sha256:4f7594dd6a3a145df54479a994626691343fbc80a0af4e13039fef559885271c",
+      "recovery_ref": "sha256:fa2d9b104e43f1a194d2b19338cd981df34c1f2ba1c52fab9d696d9c69f18aef#compute_start-correction",
+      "scope": "gpc/dependency/cdc-final-draft-copy-validation",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-owner-subagent-review-20261009"
+    },
+    {
+      "at_utc": "2026-10-09T02:03:16.932Z",
+      "attempt_id": "gpc-cdc-neutral-spec-review-20261009-a1",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-cdc-neutral-spec-review-20261009-a1-agent_start",
+      "kind": "agent_start",
+      "operation_key": "sha256:bc958c109716430bd6ee496d22f29c31bed81ba8c612c9192dc423a53e4d66b9",
+      "recovery_ref": null,
+      "scope": "gpc/dependency/cdc-neutral-spec-review",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-owner-subagent-review-20261009"
     }
   ],
   "policy": {
@@ -807,7 +916,7 @@
     "max_parallel_agents": 4,
     "provider_max_age_seconds": 300,
     "task_limits": {
-      "agent_starts": 22,
+      "agent_starts": 24,
       "ci_starts": 13,
       "compute_starts": null
     },
@@ -817,7 +926,7 @@
       "tool_calls": 80
     }
   },
-  "policy_digest": "sha256:d6e12ca557da1ee526624772340b9d20615a02f403bdd01538b2c0844e06a42d",
+  "policy_digest": "sha256:38ed3da1040fa35e8ec30317dadd730482c1f1e2b52581a41a87139231a502c4",
   "schema": "budget-ledger/v1",
   "task_id": "g-pc-health-check-0.17.0-pre-integration",
   "wake_ids": [

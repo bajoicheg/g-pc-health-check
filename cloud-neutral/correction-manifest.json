@@ -1,0 +1,13 @@
+{
+  "schema": "neutral-fixture-correction/v1",
+  "root_cause": "validate_package.py prohibits project-specific literal bajoicheg anywhere in core package; imported draft test has4instances",
+  "change": "Replace4exact fictional repository literals by example/alias-project; no assertion, generation, algorithm, outcome or safeguard change",
+  "source_patch_sha256": "e698d04dada8ba195f69e0603a1f1a5620381e6b9bf755b04195389533757553",
+  "original_tests_sha256": "ce2d4e3f4d7202f697400f0105f01fa9a92b07f255c3d451be28509a515bd9cf",
+  "tests_sha256": "5e6001464d73ca687aea38849548798d33e4058965b51c672d1354d619c95bcb",
+  "combined_patch_sha256": "922f81e11269b5befb82fcf339882611ad98df18cd499b5aa4aa3a8c51299e6f",
+  "fixture_correction_sha256": "fa2d9b104e43f1a194d2b19338cd981df34c1f2ba1c52fab9d696d9c69f18aef",
+  "git_apply_check_exit": 0,
+  "validation": "Original full1135PASS but packagevalidatorFAIL; correctedbytes NOT_RUN until actual Cloud checks",
+  "previous_evidence_preserved": true
+}

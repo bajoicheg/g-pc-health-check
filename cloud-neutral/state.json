@@ -7,60 +7,54 @@
   "authorizes_user_approval": false,
   "authorizes_worker_launch": false,
   "base_sha": "5720b6e159972432f04277607be7ec8b398b9967",
-  "change_id": "cdc-full-draft-validation-while-source-owned",
+  "change_id": "cdc-neutral-fixture-correction-while-source-owned",
   "coordination_ref": "refs/heads/cdc/coordination",
   "coordination_store_id": "sha256:e9c5798b2e5857d11563b10845ae993ed5b0e7b040ffd6611bdbd1a36aad08d3",
-  "cost_consumed_units": 3,
+  "cost_consumed_units": 0,
   "execution_mode": "parallel",
   "integrator_id": "Work-root",
   "parent_invocation_id": "Work-root-gpc-cloud-20261009",
-  "plan_digest": "sha256:8ccfe2b4aba4b508351ccc7ecb618480baf6464d7992acf4560e85bf197d9b05",
-  "pool_id": "gpc-cdc-full-draft-validation-reviews-20261009",
-  "revision": 11,
-  "runtime_consumed_seconds": 1423.0013199999999,
+  "plan_digest": "sha256:27e231f22f7014c8eab1b883c6695451ae0c7ba03769192beea05b11b81b79af",
+  "pool_id": "gpc-cdc-neutral-correction-reviews-20261009",
+  "revision": 0,
+  "runtime_consumed_seconds": 0,
   "schema": "managed-executor-pool-state/v1",
   "tasks": [
     {
       "accepted_result_ref": null,
       "active_attempt_id": null,
-      "attempt_ids": [
-        "gpc-cdc-final-draft-validation-20261009-a1"
-      ],
-      "cost_units": 1,
+      "attempt_ids": [],
+      "cost_units": 0,
       "discarded": false,
       "id": "validate",
       "integrated": false,
       "reservation_token": null,
-      "runtime_seconds": 831,
-      "status": "failed"
+      "runtime_seconds": 0,
+      "status": "planned"
     },
     {
-      "accepted_result_ref": "sha256:966af37b32b66e19459184a63e1da7f2fa5bb66277ca253919443bf643ee2597",
+      "accepted_result_ref": null,
       "active_attempt_id": null,
-      "attempt_ids": [
-        "gpc-cdc-full-draft-spec-20261009-a1"
-      ],
-      "cost_units": 1,
+      "attempt_ids": [],
+      "cost_units": 0,
       "discarded": false,
       "id": "spec",
-      "integrated": true,
+      "integrated": false,
       "reservation_token": null,
-      "runtime_seconds": 428.791325,
-      "status": "succeeded"
+      "runtime_seconds": 0,
+      "status": "planned"
     },
     {
-      "accepted_result_ref": "sha256:d27244c3fd0b2d27a104bac0171b42a773cd72ac8ed24a510861607aacc886da",
+      "accepted_result_ref": null,
       "active_attempt_id": null,
-      "attempt_ids": [
-        "gpc-cdc-full-draft-quality-20261009-a1"
-      ],
-      "cost_units": 1,
+      "attempt_ids": [],
+      "cost_units": 0,
       "discarded": false,
       "id": "quality",
-      "integrated": true,
+      "integrated": false,
       "reservation_token": null,
-      "runtime_seconds": 163.209995,
-      "status": "succeeded"
+      "runtime_seconds": 0,
+      "status": "planned"
     }
   ]
 }
