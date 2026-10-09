@@ -1,0 +1,85 @@
+{
+  "schema": "root-successor-dispatcher-observation/v1",
+  "repository": "bajoicheg/g-pc-health-check",
+  "producer": {
+    "identity": "/root",
+    "invocation_id": "Work-root-gpc-finish-exe-20261009-1248",
+    "surface": "ChatGPT Work orchestration",
+    "authentication": "Actual active Root tool-call/control registry and authenticated GitHub producer-journal readback; not worker-supplied reconstruction"
+  },
+  "observed_at_utc": "2026-10-09T15:10:43.658Z",
+  "dispatcher": {
+    "dispatcher_id": "Root/github_create_pull_request/5ef7f6f4-9721-445c-b1b1-d87f3f4d6c4e",
+    "status": "stopped",
+    "quiescent": true,
+    "in_flight": false
+  },
+  "current_successor_control": {
+    "original_grant_id": "5ef7f6f4-9721-445c-b1b1-d87f3f4d6c4e",
+    "grant_armed": false,
+    "grant_callback_registered": false,
+    "pending_provider_calls": 0,
+    "provider_POST_calls_for_original_grant": 0,
+    "restarted": false,
+    "replayed": false,
+    "rearmed": false,
+    "terminal_barrier_retained": true
+  },
+  "historical_dispatch": {
+    "barrier_state": "cancelled_before_send",
+    "candidate_sha": "1447b230cd567cb087034c76d1a92a33d2f0200c",
+    "claim_digest": "sha256:acb5b3cdec47102e50a50ac7c61f30ce88f23dec5547a5b1d0b17e453aa0e797",
+    "dispatcher_id": "Root/github_create_pull_request/5ef7f6f4-9721-445c-b1b1-d87f3f4d6c4e",
+    "grant_id": "5ef7f6f4-9721-445c-b1b1-d87f3f4d6c4e",
+    "http_status": null,
+    "in_flight": false,
+    "intent_digest": "sha256:748dba118bd47ecf80eb027f973fd96b4ec820bcf3e248bba852dc7b877a432a",
+    "method": "POST",
+    "outcome": "not_submitted",
+    "reference": "sha256:9deff895cc77710a237bd684c3c525657ada731291ab1b344728b1b4c32b720b",
+    "target": "repos/bajoicheg/g-pc-health-check/pulls",
+    "terminal_at_utc": "2026-10-08T21:29:19.329830Z"
+  },
+  "historical_provenance": {
+    "repository": "bajoicheg/g-pc-health-check",
+    "commit": "976d2817c563076752866860da983ea779cd3208",
+    "path": "document.json",
+    "key": "CURRENT_Root_postrelease_UNAFFECTED_reconciliation",
+    "blob_sha": "ac3ab9f44d15cab2b601a408799df5e2f4b42172",
+    "Root_actual_observations": {
+      "Root_orchestration_running": true,
+      "barrier_sha256": "9deff895cc77710a237bd684c3c525657ada731291ab1b344728b1b4c32b720b",
+      "barrier_terminal_timestamp_unchanged": "2026-10-08T21:29:19.329830Z",
+      "checkpoint": "git:748c89572798c9373f90520bafa4d3a5e6ab6f38",
+      "create_PR_invocations": 0,
+      "dispatcher_id": "Root/github_create_pull_request/5ef7f6f4-9721-445c-b1b1-d87f3f4d6c4e",
+      "dispatcher_quiescent": true,
+      "dispatcher_status": "stopped",
+      "generation": 30,
+      "in_flight": false,
+      "lease_blob": "c0252749a55255a31b95d9ab7a2d5bed0ddce80b",
+      "observed_at_utc": "2026-10-08T21:35:41.751879Z",
+      "owner": null,
+      "post_release_observation_file": "CI4-Root-dispatcher-post-release-observation.json",
+      "post_release_observation_sha256": "b054ff83391d20d9f440afc6304c3337a4175efae189fc4ab46b9b4814ed71c7",
+      "provenance": "Actual Root user-message authenticated tool/file observations; not executor reconstruction of original local files",
+      "provider_GET": {
+        "endpoint": "repos/bajoicheg/g-pc-health-check/pulls",
+        "exact_head": "pilot/gpc-0.17.1-1447b230cd567cb087034c76d1a92a33d2f0200c",
+        "per_page": 100,
+        "result": [],
+        "state": "all"
+      },
+      "released_at_utc": "2026-10-08T21:34:25.820337Z"
+    },
+    "raw_original_files_available_to_current_Root": false,
+    "raw_file_hashes_recomputed": false,
+    "timestamps_refreshed": false
+  },
+  "scope": {
+    "no_product_write": true,
+    "no_CDC_adoption": true,
+    "no_provider_submission": true,
+    "operation": "Historical original one-shot dispatcher remains permanently cancelled; successor Root controls have no callable/queued/in-flight original grant. No claim of old OS process reinspection."
+  }
+}
