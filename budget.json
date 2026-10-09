@@ -1742,6 +1742,71 @@
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
       "type": "reserve",
       "wake_id": "gpc-owner-exe-continuation-20261009-180856"
+    },
+    {
+      "at_utc": "2026-10-09T15:43:50.414447Z",
+      "event_id": "gpc-0171-diagnostic-quality-review-20261009-actual-terminal",
+      "failure": null,
+      "reservation_id": "gpc-0171-diagnostic-quality-review-20261009-agent_start",
+      "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": null,
+        "tokens": null
+      },
+      "wake_id": "gpc-owner-exe-continuation-20261009-180856"
+    },
+    {
+      "at_utc": "2026-10-09T15:43:50.414447Z",
+      "attempt_id": "gpc-native-diagnostic-fix-controller-20261009",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-native-diagnostic-fix-controller-20261009-agent_start",
+      "kind": "agent_start",
+      "operation_key": "sha256:b8c197704ccd92dd5cf2d1e49125eefa88447d38c84f931b76569f71946d83ff",
+      "recovery_ref": null,
+      "scope": "gpc/one-native-diagnostic-run-and-measured-local-fix",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-owner-exe-continuation-20261009-180856"
+    },
+    {
+      "at_utc": "2026-10-09T15:43:50.414447Z",
+      "attempt_id": "gpc-native-diagnostic-fix-controller-20261009",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-native-diagnostic-fix-controller-20261009-compute_start",
+      "kind": "compute_start",
+      "operation_key": "sha256:56aff17931b9669f1eed5470e9ef78999fd649a1948d06a94090f54b85cf3a25",
+      "recovery_ref": null,
+      "scope": "gpc/one-native-diagnostic-run-and-measured-local-fix",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-owner-exe-continuation-20261009-180856"
+    },
+    {
+      "at_utc": "2026-10-09T15:43:50.414447Z",
+      "attempt_id": "gpc-native-diagnostic-fix-controller-20261009",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-native-diagnostic-fix-controller-20261009-ci_start",
+      "kind": "ci_start",
+      "operation_key": "sha256:76dec8efac1e264a5183c1751f0c64cfdaf852807b6b67b606c4322af5e092f2",
+      "recovery_ref": null,
+      "scope": "gpc/one-native-diagnostic-run-and-measured-local-fix",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-owner-exe-continuation-20261009-180856"
     }
   ],
   "policy": {
