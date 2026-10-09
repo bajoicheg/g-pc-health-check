@@ -1,0 +1,15 @@
+{
+  "schema": "cloud-controller-dispatch-observation/v1",
+  "at_utc": "2026-10-09T13:48:16.475Z",
+  "attempt_id": "gpc-cdc-2122-a3-source-finish-controller",
+  "actual_send_calls": 1,
+  "accepted_ui_user_message": true,
+  "running_stop_button": true,
+  "contract_ref": "git:bajoicheg/g-pc-health-check@51078bfe427b5db0372029d0c6b7d63e0b4c3ac8:exe-source-a3/finish/contract.txt",
+  "contract_sha256": "6bff407e3ba4d5a234b34708abcb6988e96149adce74d430f9334297260cd1e5",
+  "managed_handle": "1f241e4e-00bf-52ce-89fb-33500fe8026a",
+  "new_managed_worker_started_by_root": false,
+  "observer_owns_source_lease": false,
+  "owner_disclosure_authority": "user_yes_20261009_1548_Moscow",
+  "task_url": "https://chatgpt.com/local/01a11e0f-7079-768f-af5c-a25fa003c0ce"
+}
