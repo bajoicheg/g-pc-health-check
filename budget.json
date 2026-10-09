@@ -1570,6 +1570,40 @@
         "tokens": null
       },
       "wake_id": "gpc-owner-approved-cloud-payload-20261009-1248"
+    },
+    {
+      "at_utc": "2026-10-09T15:17:53.610570Z",
+      "attempt_id": "gpc-0171-native-ui-recovery-20261009",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-0171-native-ui-recovery-20261009-agent_start",
+      "kind": "agent_start",
+      "operation_key": "sha256:2c0ceeb6590e0181ee0aa2e686c650b2a18012415548d06a1b2c06c07b0c67f5",
+      "recovery_ref": null,
+      "scope": "gpc/native-UI-diagnostic-and-EXE-recovery",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-owner-approved-cloud-payload-20261009-1248"
+    },
+    {
+      "at_utc": "2026-10-09T15:17:53.610570Z",
+      "attempt_id": "gpc-0171-native-ui-recovery-20261009",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-0171-native-ui-recovery-20261009-compute_start",
+      "kind": "compute_start",
+      "operation_key": "sha256:2c0ceeb6590e0181ee0aa2e686c650b2a18012415548d06a1b2c06c07b0c67f5",
+      "recovery_ref": null,
+      "scope": "gpc/native-UI-diagnostic-and-EXE-recovery",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-owner-approved-cloud-payload-20261009-1248"
     }
   ],
   "policy": {

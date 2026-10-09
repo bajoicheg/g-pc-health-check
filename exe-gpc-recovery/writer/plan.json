@@ -1,0 +1,63 @@
+{
+  "base_sha": "7aaefdebca68eed64c8e92d7dfff7384f0a3c800",
+  "change_id": "gpc-0171-native-footer-diagnostic-and-exe",
+  "coordination_ref": "refs/heads/cdc/gpc-0171-native-ui-recovery-20261009-pool",
+  "coordination_store_id": "sha256:e9c5798b2e5857d11563b10845ae993ed5b0e7b040ffd6611bdbd1a36aad08d3",
+  "integrator_id": "Work-root",
+  "max_parallel": 1,
+  "parent_invocation_id": "Work-root-gpc-finish-exe-20261009-1248",
+  "pool_id": "gpc-0171-native-ui-recovery-20261009",
+  "schema": "managed-executor-pool-plan/v1",
+  "tasks": [
+    {
+      "backend_preferences": [
+        "local_command"
+      ],
+      "branch": "codex/gpc-0171-native-ui-recovery-20261009",
+      "dependencies": [],
+      "executor_id": "gpc-0171-native-ui-recovery-20261009",
+      "expected_evidence": [
+        "gpc-0171-exact-commit-checkpoint",
+        "gpc-core21-unchanged"
+      ],
+      "expected_outputs": [
+        "gpc-0171-native-ui-result"
+      ],
+      "id": "ui-recovery",
+      "max_cost_units": 1,
+      "max_runtime_seconds": 7200,
+      "required": true,
+      "role": "writer",
+      "worktree": "work/gpc-native-fresh-recovery-20261009/product-worktree",
+      "write_paths": [
+        "CHANGELOG.md",
+        "docs/DEVELOPMENT.md",
+        "docs/development-cycle.yaml",
+        "docs/releases/0.17.1-validation.md",
+        "docs/releases/0.17.1.md",
+        "docs/work-status/current.md",
+        "src/G.PcHealthCheck/AboutForm.cs",
+        "src/G.PcHealthCheck/CommonProblemsForm.cs",
+        "src/G.PcHealthCheck/ExecutionContextForm.cs",
+        "src/G.PcHealthCheck/G.PcHealthCheck.csproj",
+        "src/G.PcHealthCheck/LocalizationAndSizeSelfTest.cs",
+        "src/G.PcHealthCheck/MainForm.ExecutionContext.cs",
+        "src/G.PcHealthCheck/MainForm.Localization.cs",
+        "src/G.PcHealthCheck/MainForm.ReadableLayout.cs",
+        "src/G.PcHealthCheck/MainForm.SecurityPosture.cs",
+        "src/G.PcHealthCheck/MainForm.ServiceDeskActions.cs",
+        "src/G.PcHealthCheck/MainForm.cs",
+        "src/G.PcHealthCheck/Program.cs",
+        "src/G.PcHealthCheck/ReadableLayout.cs",
+        "src/G.PcHealthCheck/ReadableLayoutSelfTest.cs",
+        "src/G.PcHealthCheck/ReadableWindowLayout.cs",
+        "src/G.PcHealthCheck/Resources/MainStrings.en.resx",
+        "src/G.PcHealthCheck/Resources/MainStrings.resx",
+        "src/G.PcHealthCheck/SecurityPostureUiSelfTest.cs",
+        "tools/dev/Test-ReadableLayout.ps1"
+      ]
+    }
+  ],
+  "total_cost_budget_units": 1,
+  "total_runtime_budget_seconds": 7200
+}
