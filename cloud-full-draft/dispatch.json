@@ -1,0 +1,15 @@
+{
+  "schema": "cloud-draft-validation-dispatch/v1",
+  "attempt_id": "gpc-cdc-final-draft-validation-20261009-a1",
+  "pool_id": "gpc-cdc-full-draft-validation-reviews-20261009",
+  "reservation_token": "09e0dca7-b7e7-48c6-9c12-479d81dd44fc",
+  "admission_commit": "0a54889f7b5890bcfcfd5b0e6666261157461b5d",
+  "provider": "Codex Cloud",
+  "thread_url": "https://chatgpt.com/local/01a11e0f-7079-768f-af5c-a25fa003c0ce",
+  "provider_task_id": null,
+  "observed_status": "accepted; visible user message and Thinking",
+  "observed_model": "GPT-6.1 Sol",
+  "observed_effort": "Среднее",
+  "observed_at_utc": "2026-10-09T01:45:07.277Z",
+  "source_write_authority": false
+}
