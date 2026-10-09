@@ -7,32 +7,32 @@
   "authorizes_user_approval": false,
   "authorizes_worker_launch": false,
   "base_sha": "7aaefdebca68eed64c8e92d7dfff7384f0a3c800",
-  "change_id": "gpc-0171-managed-writer-native-exe-continuation",
+  "change_id": "gpc-verified-diagnostic-artifact-genuine-terminal-cleanup",
   "coordination_ref": "refs/heads/cdc/coordination",
   "coordination_store_id": "sha256:e9c5798b2e5857d11563b10845ae993ed5b0e7b040ffd6611bdbd1a36aad08d3",
-  "cost_consumed_units": 1,
+  "cost_consumed_units": 0,
   "execution_mode": "parallel",
   "integrator_id": "Work-root",
   "parent_invocation_id": "Work-root-gpc-finish-exe-20261009-1248",
-  "plan_digest": "sha256:7fea243cd5191d20cca4263a2f51a9679dc032dcf6dbaa54cd991f07a716063a",
-  "pool_id": "gpc-native-diagnostic-fix-controller-20261009",
-  "revision": 4,
-  "runtime_consumed_seconds": 1572,
+  "plan_digest": "sha256:49dea3353fdb8ed4828c92cd2595d818a7de309343d37f24e9ed57b409d566fe",
+  "pool_id": "gpc-native-byte-saved-terminal-cleanup-20261009",
+  "revision": 2,
+  "runtime_consumed_seconds": 0,
   "schema": "managed-executor-pool-state/v1",
   "tasks": [
     {
-      "accepted_result_ref": "sha256:7ad176498f773d9161e139f8941b45ec46f0e2685a37dc5ddc3c013e22fde6d5",
-      "active_attempt_id": null,
+      "accepted_result_ref": null,
+      "active_attempt_id": "gpc-native-byte-saved-terminal-cleanup-20261009",
       "attempt_ids": [
-        "gpc-native-diagnostic-fix-controller-20261009"
+        "gpc-native-byte-saved-terminal-cleanup-20261009"
       ],
-      "cost_units": 1,
+      "cost_units": 0,
       "discarded": false,
       "id": "controller",
-      "integrated": true,
-      "reservation_token": null,
-      "runtime_seconds": 1572,
-      "status": "succeeded"
+      "integrated": false,
+      "reservation_token": "8e3b7b1a-a5d3-4ad4-af19-7f6481056881",
+      "runtime_seconds": 0,
+      "status": "running"
     }
   ]
 }

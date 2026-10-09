@@ -1,0 +1,20 @@
+{
+  "CI6_outcome": "UNKNOWN preserved",
+  "EXE_scope_complete": false,
+  "Root_actual_FileVersion": "0.17.1.0",
+  "Root_actual_SHA256": "edc5626a9eb3eb2b645bd4a8c27e7444454c1cee07d837be4188b22c90c0ff58",
+  "Root_actual_bundle_entries": 453,
+  "Root_actual_static_CoreCLR_exports_verified": true,
+  "Root_downloaded_all19chunks": true,
+  "Windows_runtime": "NOT_RUN",
+  "actual_UI_duration_seconds": 1572,
+  "actual_UI_terminal_at_Moscow": "2026-10-09T19:11:00+03:00",
+  "actual_final_observed": true,
+  "artifact_commit": "efbd52faf1ff7bc495813120055f70cb6aa1db79",
+  "canonical_producer": "git:196dd2d955803c5c061dfb5ca716e8e53dc3b012",
+  "diagnostic_only": true,
+  "local_EXE_created": true,
+  "observed_at_utc": "2026-10-09T16:18:40.371387Z",
+  "schema": "Root-genuine-controller40-terminal/v1",
+  "writer36_still_running": true
+}

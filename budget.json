@@ -1807,6 +1807,82 @@
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
       "type": "reserve",
       "wake_id": "gpc-owner-exe-continuation-20261009-180856"
+    },
+    {
+      "at_utc": "2026-10-09T16:18:40.371387Z",
+      "event_id": "gpc-native-diagnostic-fix-controller-20261009-agent_start-actual-terminal",
+      "failure": null,
+      "reservation_id": "gpc-native-diagnostic-fix-controller-20261009-agent_start",
+      "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": 1572,
+        "tokens": null
+      },
+      "wake_id": "gpc-owner-exe-continuation-20261009-180856"
+    },
+    {
+      "at_utc": "2026-10-09T16:18:40.371387Z",
+      "event_id": "gpc-native-diagnostic-fix-controller-20261009-compute_start-actual-terminal",
+      "failure": null,
+      "reservation_id": "gpc-native-diagnostic-fix-controller-20261009-compute_start",
+      "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": 1572,
+        "tokens": null
+      },
+      "wake_id": "gpc-owner-exe-continuation-20261009-180856"
+    },
+    {
+      "at_utc": "2026-10-09T16:18:40.371387Z",
+      "event_id": "gpc-native-diagnostic-fix-controller-20261009-ci_start-actual-terminal",
+      "failure": null,
+      "reservation_id": "gpc-native-diagnostic-fix-controller-20261009-ci_start",
+      "status": "unknown",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": null,
+        "tokens": null
+      },
+      "wake_id": "gpc-owner-exe-continuation-20261009-180856"
+    },
+    {
+      "at_utc": "2026-10-09T16:18:40.371387Z",
+      "attempt_id": "gpc-native-byte-saved-terminal-cleanup-20261009",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-native-byte-saved-terminal-cleanup-20261009-agent_start",
+      "kind": "agent_start",
+      "operation_key": "sha256:524845b9b09507d83724f683b334b32e24d8b48ee175788e559b3d6a759c8aac",
+      "recovery_ref": null,
+      "scope": "gpc/exact-owned-writer36-normal-cancel-finish-after-verified-byte-delivery",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-owner-exe-continuation-20261009-180856"
+    },
+    {
+      "at_utc": "2026-10-09T16:18:40.371387Z",
+      "attempt_id": "gpc-native-byte-saved-terminal-cleanup-20261009",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-native-byte-saved-terminal-cleanup-20261009-compute_start",
+      "kind": "compute_start",
+      "operation_key": "sha256:f9aafedbd6b32804b13d412aa0eca781443a35b6a33da6b77b3b35a8b3136494",
+      "recovery_ref": null,
+      "scope": "gpc/exact-owned-writer36-normal-cancel-finish-after-verified-byte-delivery",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-owner-exe-continuation-20261009-180856"
     }
   ],
   "policy": {
