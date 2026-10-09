@@ -1,0 +1,38 @@
+{
+  "authorizes_merge": false,
+  "authorizes_release": false,
+  "authorizes_scheduler_mutation": false,
+  "authorizes_scope_expansion": false,
+  "authorizes_shared_branch_write": false,
+  "authorizes_user_approval": false,
+  "authorizes_worker_launch": false,
+  "base_sha": "14c39b45107740b3a1479b539b776a6f44983f8e",
+  "change_id": "bounded-cdc-required-pr-validation-alias-source-candidate",
+  "coordination_ref": "refs/heads/cdc/coordination",
+  "coordination_store_id": "sha256:e9c5798b2e5857d11563b10845ae993ed5b0e7b040ffd6611bdbd1a36aad08d3",
+  "cost_consumed_units": 0,
+  "execution_mode": "parallel",
+  "integrator_id": "Work-root",
+  "parent_invocation_id": "Work-root-gpc-finish-exe-20261009-1248",
+  "plan_digest": "sha256:61f0d706e19353929cdd9a26f2aa1562ff96f17ddb430d9568a043cdb59c47a4",
+  "pool_id": "gpc-cdc-source-candidate-controller-20261009-a3",
+  "revision": 2,
+  "runtime_consumed_seconds": 0,
+  "schema": "managed-executor-pool-state/v1",
+  "tasks": [
+    {
+      "accepted_result_ref": null,
+      "active_attempt_id": "gpc-cdc-source-candidate-controller-20261009-a3",
+      "attempt_ids": [
+        "gpc-cdc-source-candidate-controller-20261009-a3"
+      ],
+      "cost_units": 0,
+      "discarded": false,
+      "id": "controller",
+      "integrated": false,
+      "reservation_token": "48b3941f-7f95-4b9f-ab8b-f64f6d1676e7",
+      "runtime_seconds": 0,
+      "status": "running"
+    }
+  ]
+}

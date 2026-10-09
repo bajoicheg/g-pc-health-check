@@ -1,0 +1,53 @@
+[
+  {
+    "at_utc": "2026-10-09T12:52:50.380Z",
+    "attempt_id": "gpc-cdc-source-candidate-controller-20261009-a3",
+    "cost": {
+      "elapsed_seconds": null,
+      "tokens": null,
+      "tool_calls": 1
+    },
+    "event_id": "gpc-cdc-source-candidate-controller-20261009-a3-agent_start",
+    "kind": "agent_start",
+    "operation_key": "sha256:cd41ddeec56fe8a5d374d63e960246a2df86641b6e373d31a682cb2f2dc9f606",
+    "recovery_ref": null,
+    "scope": "gpc/dependency/cdc-managed-source-candidate-controller",
+    "task_id": "g-pc-health-check-0.17.0-pre-integration",
+    "type": "reserve",
+    "wake_id": "gpc-owner-approved-cloud-payload-20261009-1248"
+  },
+  {
+    "at_utc": "2026-10-09T12:52:50.380Z",
+    "attempt_id": "gpc-cdc-source-candidate-controller-20261009-a3",
+    "cost": {
+      "elapsed_seconds": null,
+      "tokens": null,
+      "tool_calls": 1
+    },
+    "event_id": "gpc-cdc-source-candidate-controller-20261009-a3-compute_start",
+    "kind": "compute_start",
+    "operation_key": "sha256:cd41ddeec56fe8a5d374d63e960246a2df86641b6e373d31a682cb2f2dc9f606",
+    "recovery_ref": null,
+    "scope": "gpc/dependency/cdc-managed-source-candidate-controller",
+    "task_id": "g-pc-health-check-0.17.0-pre-integration",
+    "type": "reserve",
+    "wake_id": "gpc-owner-approved-cloud-payload-20261009-1248"
+  },
+  {
+    "at_utc": "2026-10-09T12:52:50.380Z",
+    "attempt_id": "gpc-cdc-source-candidate-managed-worker-20261009-a3",
+    "cost": {
+      "elapsed_seconds": null,
+      "tokens": null,
+      "tool_calls": 1
+    },
+    "event_id": "gpc-cdc-source-candidate-managed-worker-20261009-a3-agent_start",
+    "kind": "agent_start",
+    "operation_key": "sha256:cd41ddeec56fe8a5d374d63e960246a2df86641b6e373d31a682cb2f2dc9f606",
+    "recovery_ref": null,
+    "scope": "gpc/dependency/cdc-managed-source-candidate-worker",
+    "task_id": "g-pc-health-check-0.17.0-pre-integration",
+    "type": "reserve",
+    "wake_id": "gpc-owner-approved-cloud-payload-20261009-1248"
+  }
+]
