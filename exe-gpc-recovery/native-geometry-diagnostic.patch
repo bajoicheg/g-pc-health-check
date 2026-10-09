@@ -1,0 +1,38 @@
+--- a/src/G.PcHealthCheck/ReadableLayoutSelfTest.cs
++++ b/src/G.PcHealthCheck/ReadableLayoutSelfTest.cs
+@@ -51,7 +51,34 @@
+                     Require(details.Single(x => x.Name == "ActionDetails").Text.Contains("verify unchanged"), "hidden action facts missing from details");
+                     var viewport = Descendants(form).OfType<Panel>().Single(x => x.Name == "MainScrollViewport");
+                     var footer = Descendants(form).Single(x => x.Name == "MainFooter");
+-                    viewport.ScrollControlIntoView(footer); form.PerformLayout();
++                    // Diagnostic capture: keep every acceptance assertion unchanged.
++                    void Geometry(string phase)
++                    {
++                        var footerOrigin = viewport.PointToClient(footer.PointToScreen(Point.Empty));
++                        var footerEnd = viewport.PointToClient(footer.PointToScreen(new Point(0, footer.Height)));
++                        Console.WriteLine("LAYOUT_NATIVE_GEOMETRY " + JsonSerializer.Serialize(new
++                        {
++                            Phase = phase, Language = language, Fixture = area, ActualDpi = form.DeviceDpi,
++                            FormBounds = form.Bounds, ViewportClient = viewport.ClientRectangle,
++                            ViewportDisplay = viewport.DisplayRectangle, ViewportScroll = viewport.AutoScrollPosition,
++                            VerticalVisible = viewport.VerticalScroll.Visible,
++                            VerticalMinimum = viewport.VerticalScroll.Minimum,
++                            VerticalMaximum = viewport.VerticalScroll.Maximum,
++                            VerticalLargeChange = viewport.VerticalScroll.LargeChange,
++                            FooterBounds = footer.Bounds, FooterOrigin = footerOrigin, FooterEnd = footerEnd,
++                            RootBounds = footer.Parent?.Bounds, RootDock = footer.Parent?.Dock.ToString(),
++                            Buttons = footer.Controls.OfType<Button>().Select(button => new
++                            {
++                                button.Name, button.Text, button.Bounds,
++                                Contained = footer.ClientRectangle.Contains(button.Bounds)
++                            }).ToArray()
++                        }));
++                    }
++                    Geometry("before-scroll");
++                    viewport.ScrollControlIntoView(footer);
++                    Geometry("after-scroll-before-layout");
++                    form.PerformLayout();
++                    Geometry("after-layout");
+                     var bottom = viewport.PointToClient(footer.PointToScreen(new Point(0, footer.Height)));
+                     Require(bottom.Y <= viewport.ClientSize.Height && bottom.Y > 0, "bottom controls unreachable in short work area");
+                     Require(footer.Controls.OfType<Button>().All(x => footer.ClientRectangle.Contains(x.Bounds)), "wrapped footer buttons clipped");
