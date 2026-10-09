@@ -1,0 +1,14 @@
+{
+  "actual_Source_worker_final_response_allowed": true,
+  "actual_Source_worker_generation": 64,
+  "actual_Source_worker_supervisor_quiescent": true,
+  "actual_browser_duration_seconds": 2294,
+  "native_export_manifest_sha256": "8318a27aea188cac2c4abcd01489e2cb0089d46f9ccd18cef88e28ed09e54023",
+  "native_terminal_checkpoint": "git:bajoicheg/codex-compute@b495baf457579633e1532f51a676cda2104058a5:document.json",
+  "no_GPC_scope_completion": true,
+  "no_new_CDC_work_authorized": true,
+  "observed_at_utc": "2026-10-09T15:12:15.019054Z",
+  "schema": "root-observed-source-controller-terminal/v1",
+  "source_controller_attempt": "gpc-cdc-2122-a3-post-pr-controller",
+  "source_controller_ui_terminal_at_Moscow": "2026-10-09T17:54:00+03:00"
+}

@@ -1542,6 +1542,34 @@
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
       "type": "reserve",
       "wake_id": "gpc-owner-approved-cloud-payload-20261009-1248"
+    },
+    {
+      "at_utc": "2026-10-09T15:12:15.019054Z",
+      "event_id": "gpc-cdc-2122-a3-post-pr-controller-agent_start-terminal",
+      "failure": null,
+      "reservation_id": "gpc-cdc-2122-a3-post-pr-controller-agent_start",
+      "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": 2294,
+        "tokens": null
+      },
+      "wake_id": "gpc-owner-approved-cloud-payload-20261009-1248"
+    },
+    {
+      "at_utc": "2026-10-09T15:12:15.019054Z",
+      "event_id": "gpc-cdc-2122-a3-post-pr-controller-compute_start-terminal",
+      "failure": null,
+      "reservation_id": "gpc-cdc-2122-a3-post-pr-controller-compute_start",
+      "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": 2294,
+        "tokens": null
+      },
+      "wake_id": "gpc-owner-approved-cloud-payload-20261009-1248"
     }
   ],
   "policy": {

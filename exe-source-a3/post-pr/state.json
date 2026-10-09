@@ -10,29 +10,29 @@
   "change_id": "cdc-2122-post-pr-exact-ci-source-release",
   "coordination_ref": "refs/heads/cdc/coordination",
   "coordination_store_id": "sha256:e9c5798b2e5857d11563b10845ae993ed5b0e7b040ffd6611bdbd1a36aad08d3",
-  "cost_consumed_units": 0,
+  "cost_consumed_units": 1,
   "execution_mode": "parallel",
   "integrator_id": "Work-root",
   "parent_invocation_id": "Work-root-gpc-finish-exe-20261009-1248",
   "plan_digest": "sha256:10db7da9e953076b18f5a75f450a53fbb6addd8e05582fa206d614eb1bf84e10",
   "pool_id": "gpc-cdc-2122-a3-post-pr-controller",
-  "revision": 2,
-  "runtime_consumed_seconds": 0,
+  "revision": 4,
+  "runtime_consumed_seconds": 2294,
   "schema": "managed-executor-pool-state/v1",
   "tasks": [
     {
-      "accepted_result_ref": null,
-      "active_attempt_id": "gpc-cdc-2122-a3-post-pr-controller",
+      "accepted_result_ref": "sha256:eac8f4b3fa255ce865a09a6e338e47671cc19d9bec92c080d54307b7a1040148",
+      "active_attempt_id": null,
       "attempt_ids": [
         "gpc-cdc-2122-a3-post-pr-controller"
       ],
-      "cost_units": 0,
+      "cost_units": 1,
       "discarded": false,
       "id": "controller",
-      "integrated": false,
-      "reservation_token": "9ec760fb-37b0-4129-b553-69df0705f8e8",
-      "runtime_seconds": 0,
-      "status": "running"
+      "integrated": true,
+      "reservation_token": null,
+      "runtime_seconds": 2294,
+      "status": "succeeded"
     }
   ]
 }
