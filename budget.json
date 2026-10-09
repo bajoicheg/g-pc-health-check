@@ -1604,6 +1604,68 @@
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
       "type": "reserve",
       "wake_id": "gpc-owner-approved-cloud-payload-20261009-1248"
+    },
+    {
+      "at_utc": "2026-10-09T15:25:16.388422Z",
+      "event_id": "gpc-native-fresh-recovery-controller-20261009-agent_start-terminal",
+      "failure": null,
+      "reservation_id": "gpc-native-fresh-recovery-controller-20261009-agent_start",
+      "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": 1593,
+        "tokens": null
+      },
+      "wake_id": "gpc-owner-approved-cloud-payload-20261009-1248"
+    },
+    {
+      "at_utc": "2026-10-09T15:25:16.388422Z",
+      "event_id": "gpc-native-fresh-recovery-controller-20261009-compute_start-terminal",
+      "failure": null,
+      "reservation_id": "gpc-native-fresh-recovery-controller-20261009-compute_start",
+      "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": 1593,
+        "tokens": null
+      },
+      "wake_id": "gpc-owner-approved-cloud-payload-20261009-1248"
+    },
+    {
+      "at_utc": "2026-10-09T15:25:16.388422Z",
+      "attempt_id": "gpc-native-exe-controller-continuation-20261009-1822",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-native-exe-controller-continuation-20261009-1822-agent_start",
+      "kind": "agent_start",
+      "operation_key": "sha256:5579594a988b1ec0811966672963b7cacbe22561b2d43fd7e689cace24105656",
+      "recovery_ref": null,
+      "scope": "gpc/actually-observed-native-controller-continuation",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-owner-exe-continuation-20261009-180856"
+    },
+    {
+      "at_utc": "2026-10-09T15:25:16.388422Z",
+      "attempt_id": "gpc-native-exe-controller-continuation-20261009-1822",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-native-exe-controller-continuation-20261009-1822-compute_start",
+      "kind": "compute_start",
+      "operation_key": "sha256:5579594a988b1ec0811966672963b7cacbe22561b2d43fd7e689cace24105656",
+      "recovery_ref": null,
+      "scope": "gpc/actually-observed-native-controller-continuation",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-owner-exe-continuation-20261009-180856"
     }
   ],
   "policy": {
@@ -1646,6 +1708,7 @@
     "gpc-owner-cloud-route-20261009",
     "gpc-owner-subagent-review-20261009",
     "gpc-owner-finish-to-exe-20261009-1239",
-    "gpc-owner-approved-cloud-payload-20261009-1248"
+    "gpc-owner-approved-cloud-payload-20261009-1248",
+    "gpc-owner-exe-continuation-20261009-180856"
   ]
 }

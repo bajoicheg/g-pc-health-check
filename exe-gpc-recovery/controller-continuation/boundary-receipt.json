@@ -1,0 +1,17 @@
+{
+  "GPC_EXE_scope_complete": false,
+  "actual_recovery_proof": "cfc6a5bacb2daf1df5d7bbf65ff8e978ceddf064",
+  "actual_recovery_revision": "190498e1536984eb9204c86fb64e6005e0d35b7f",
+  "budget_reconciliation_is_after_observed_dispatch_not_prior_admission": true,
+  "controller35_UI_duration_seconds": 1593,
+  "controller35_actual_final_sent": true,
+  "controller35_bounded_recovery_complete": true,
+  "controller35_final_claimed_not_closed_incorrect": true,
+  "core21_unchanged": true,
+  "native_preflight_evidence": "72965f0ef099bf20312f26c76edea8aa7929cf8b",
+  "new_model_continuation_observed_after_root_answer_at_Moscow": "2026-10-09T18:22:00+03:00",
+  "no_original_grant_replay": true,
+  "observed_at_utc": "2026-10-09T15:25:16.388422Z",
+  "schema": "root-observed-gpc-controller-boundary/v1",
+  "writer36_physical_starts_before_boundary": 0
+}

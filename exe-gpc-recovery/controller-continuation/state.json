@@ -7,32 +7,32 @@
   "authorizes_user_approval": false,
   "authorizes_worker_launch": false,
   "base_sha": "7aaefdebca68eed64c8e92d7dfff7384f0a3c800",
-  "change_id": "gpc-authentic-gen30-taskless-recovery-before-exe",
+  "change_id": "gpc-0171-managed-writer-native-exe-continuation",
   "coordination_ref": "refs/heads/cdc/coordination",
   "coordination_store_id": "sha256:e9c5798b2e5857d11563b10845ae993ed5b0e7b040ffd6611bdbd1a36aad08d3",
-  "cost_consumed_units": 1,
+  "cost_consumed_units": 0,
   "execution_mode": "parallel",
   "integrator_id": "Work-root",
   "parent_invocation_id": "Work-root-gpc-finish-exe-20261009-1248",
-  "plan_digest": "sha256:b1a0c950e0d7910ef2e6b779ec1b21f98812fd06c8db5a25d14f8cff8313a201",
-  "pool_id": "gpc-native-fresh-recovery-controller-20261009",
-  "revision": 4,
-  "runtime_consumed_seconds": 1593,
+  "plan_digest": "sha256:22ea6647ab62fd506e271f22dbd60f57bcf92b6eb198da2841f8a571f67b0194",
+  "pool_id": "gpc-native-exe-controller-continuation-20261009-1822",
+  "revision": 2,
+  "runtime_consumed_seconds": 0,
   "schema": "managed-executor-pool-state/v1",
   "tasks": [
     {
-      "accepted_result_ref": "sha256:a3e7ebc0d48331386d607db8b0d6f2de73127a6d0ed1deb8d6c94b9c22232e10",
-      "active_attempt_id": null,
+      "accepted_result_ref": null,
+      "active_attempt_id": "gpc-native-exe-controller-continuation-20261009-1822",
       "attempt_ids": [
-        "gpc-native-fresh-recovery-controller-20261009"
+        "gpc-native-exe-controller-continuation-20261009-1822"
       ],
-      "cost_units": 1,
+      "cost_units": 0,
       "discarded": false,
       "id": "controller",
-      "integrated": true,
-      "reservation_token": null,
-      "runtime_seconds": 1593,
-      "status": "succeeded"
+      "integrated": false,
+      "reservation_token": "631b2c93-4357-4a67-b527-dc2b3da35398",
+      "runtime_seconds": 0,
+      "status": "running"
     }
   ]
 }
