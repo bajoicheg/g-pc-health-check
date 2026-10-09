@@ -10,29 +10,29 @@
   "change_id": "gpc-wire-fixed-durable-git-transport-into-future-caller",
   "coordination_ref": "refs/heads/cdc/coordination",
   "coordination_store_id": "sha256:e9c5798b2e5857d11563b10845ae993ed5b0e7b040ffd6611bdbd1a36aad08d3",
-  "cost_consumed_units": 0,
+  "cost_consumed_units": 1,
   "execution_mode": "parallel",
   "integrator_id": "Work-root",
   "parent_invocation_id": "Work-root-gpc-finish-exe-20261009-1248",
   "plan_digest": "sha256:669ceb3dcea74821a91cc3dd81cee03f6a52a47598dc131dd05aeadb5bf33e81",
   "pool_id": "gpc-native-git-caller-wiring-20261009",
-  "revision": 2,
-  "runtime_consumed_seconds": 0,
+  "revision": 4,
+  "runtime_consumed_seconds": 99,
   "schema": "managed-executor-pool-state/v1",
   "tasks": [
     {
-      "accepted_result_ref": null,
-      "active_attempt_id": "gpc-native-git-caller-wiring-20261009",
+      "accepted_result_ref": "git:8d752d4d9ddefd49084896071e8bd1321d4ae6ca",
+      "active_attempt_id": null,
       "attempt_ids": [
         "gpc-native-git-caller-wiring-20261009"
       ],
-      "cost_units": 0,
+      "cost_units": 1,
       "discarded": false,
       "id": "controller",
-      "integrated": false,
-      "reservation_token": "d9122f04-bfef-435c-9c7a-bf48801540d1",
-      "runtime_seconds": 0,
-      "status": "running"
+      "integrated": true,
+      "reservation_token": null,
+      "runtime_seconds": 99,
+      "status": "succeeded"
     }
   ]
 }

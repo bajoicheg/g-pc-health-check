@@ -1,0 +1,54 @@
+{
+  "CDC_version": "2.12.1 unchanged",
+  "CI6": {
+    "current_exact_SHA_runs": 0,
+    "current_matching_refs": [],
+    "grant_id": "c3c43f96-f88f-4669-b344-13ae248ba382",
+    "operation_key": "sha256:3dc9f2ff126eaffadc9a1580eecdc14978c51f047133f10f34b41d4b177998d4",
+    "state": "UNKNOWN preserved",
+    "these_absences_are_not_original_no_effect_proof": true
+  },
+  "Git_fix": {
+    "Root_tests": 16,
+    "Root_tests_exit": 0,
+    "connected_caller_sha256": "824341b43d088242a9b92adf6b1c45147a644bd7390ac2c8755eeb257b4cb401",
+    "evidence_packet": "git:8d752d4d9ddefd49084896071e8bd1321d4ae6ca",
+    "historical_CI6_response_restored": false,
+    "transport_helper_sha256": "e35c737c5236025aacec10d8769a4426e5576975ef06d5ecd6865eb040691200"
+  },
+  "Source_2.12.2_work_stopped": true,
+  "blocker": "Original receive-pack stdout/stderr lost; original process/frame gone; immutableCDC21 exposed recovery does not support released UNKNOWN retained_windows_exe/git-conditional-create claim; no eligible same-invocation pilot resend/new validation/source writer. No guard clear/grant recreation or core upgrade performed.",
+  "candidate": "53636f45cc14075717e4e68b0a40ba020b96d9ca",
+  "diagnostic_EXE": {
+    "FileVersion": "0.17.1.0",
+    "Library_file": "libfile_46ac8b4a970c8191afe6a143676d2357",
+    "SHA256": "edc5626a9eb3eb2b645bd4a8c27e7444454c1cee07d837be4188b22c90c0ff58",
+    "Windows_runtime": "NOT_RUN",
+    "bytes": 78765063,
+    "checksum_file": "libfile_e8814ad382a481918b293d0fe063cab9",
+    "validated_pilot": false,
+    "verification_file": "libfile_fdfa63471fa081918ebbd566cdad14cd"
+  },
+  "historical_unknown_actors_preserved": 2,
+  "known_product_failure": "8RU/EN footer reachability fixtures uncorrected; root cause unestablished without actual Windows geometry",
+  "latest_owner_instruction": "[19:25 09.10] Почини git и продолжай",
+  "next_required_evidence": "Authenticated original provider/transport terminal disposition bound to exact grant; otherwise specifically authorized and supported reconciliation protocol, not another generic continue or absent-ref inference.",
+  "real_worker36": {
+    "genuine_release": "git:e2b7872317c82184a97d1494810ef1ac5b8c7659",
+    "quiescent": true,
+    "released_generation": 31,
+    "status": "cancelled"
+  },
+  "recorded_at_utc": "2026-10-09T16:54:18.763623Z",
+  "remaining_queue": [
+    "0.17.1 corrected footer and exact Windows diagnostic/final EXE gates",
+    "0.17.2",
+    "0.18",
+    "0.19"
+  ],
+  "scheduler_pause_preserved": true,
+  "schema": "gpc-delivered-diagnostic-and-external-blocker/v1",
+  "scope_complete": false,
+  "source": "7aaefdebca68eed64c8e92d7dfff7384f0a3c800",
+  "state": "waiting_external"
+}

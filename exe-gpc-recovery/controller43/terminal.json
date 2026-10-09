@@ -1,0 +1,26 @@
+{
+  "Git_wrapper_fix_complete": true,
+  "Root_independent_changed_path_tests": {
+    "boundary": "Synthetic host/verification seam; real immutable21 imports and two unused private module placeholders. NOT full admission/Windows execution.",
+    "exit": 0,
+    "new_caller_tests": 5,
+    "tests": 16
+  },
+  "actual_UI_duration_seconds": 99,
+  "actual_UI_start_Moscow": "2026-10-09T19:46+03:00",
+  "actual_UI_terminal_Moscow": "2026-10-09T19:47+03:00",
+  "actual_controller_id": 43,
+  "actual_live_noop_push": "eec0c39e25f5e8aa7aad5c319b095ee84e3341b8: controller42_git_transport_repair_FINAL; exit0, same evidence SHA unchanged, one send",
+  "actual_startup_sequence_incident": "git:5939ad6db663e07f909a37d35777946806ffa74c:exe-gpc-recovery/controller43/startup-incident.json",
+  "all13_exported_file_hashes_independently_verified": true,
+  "caller_sha256": "824341b43d088242a9b92adf6b1c45147a644bd7390ac2c8755eeb257b4cb401",
+  "core": "immutable2.12.1 unchanged",
+  "helper_sha256": "e35c737c5236025aacec10d8769a4426e5576975ef06d5ecd6865eb040691200",
+  "native_packet_historical_key": "controller42_connected_git_caller_FINAL",
+  "observed_at_utc": "2026-10-09T16:54:18.763623Z",
+  "old_CI6_outcome": "UNKNOWN preserved",
+  "packet": "git:8d752d4d9ddefd49084896071e8bd1321d4ae6ca",
+  "schema": "Root-genuine-native43-terminal-and-review/v1",
+  "scope_complete": false,
+  "source": "7aaefdebca68eed64c8e92d7dfff7384f0a3c800"
+}
