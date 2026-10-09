@@ -1,0 +1,7 @@
+Actual independent Work subagent /root/cdc_spec_review, terminal receipt 2026-10-09.
+Neutral-fixture SPEC: PASS. No findings within this bounded correction.
+Independently verified correction patch fa2d9b104e43f1a194d2b19338cd981df34c1f2ba1c52fab9d696d9c69f18aef, neutral test 5e6001464d73ca687aea38849548798d33e4058965b51c672d1354d619c95bcb, combined patch 922f81e11269b5befb82fcf339882611ad98df18cd499b5aa4aa3a8c51299e6f.
+Test and combined patch differ from originals by exactly four replacements of bajoicheg/g-pc-health-check with example/alias-project. Production source, conditions, assertions and history checks unchanged; embedded patch tests match neutral test bytes.
+Fixture derives operation/readback/intent/claim/proof digests from repository binding. Trailing-slash, query-string and absolute-URL negatives remain invalid against neutral exact endpoint. Unchanged validate_package.py:763-769 portability rule satisfied by removing consumer identifier; no validator alteration or bypass.
+Original full log 4c1b3868b62bb35f7a1dad9d45308db636e79975cbf5c649a62cc8d5f1a8476a, exact part reassembly and 1135-test OK independently verified. Original package validation failed as recorded. Original results apply to ce2d test bytes, not neutral bytes.
+Neutral RED/GREEN/package/consumer receipts pending at review time. No edits, tests or external mutations. No release authority, source-release GREEN or GPC completion claimed.

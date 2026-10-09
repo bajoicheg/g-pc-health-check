@@ -905,6 +905,37 @@
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
       "type": "reserve",
       "wake_id": "gpc-owner-subagent-review-20261009"
+    },
+    {
+      "at_utc": "2026-10-09T02:11:42.638Z",
+      "event_id": "gpc-cdc-neutral-spec-review-20261009-a1-agent_start-terminal",
+      "failure": null,
+      "reservation_id": "gpc-cdc-neutral-spec-review-20261009-a1-agent_start",
+      "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": null,
+        "tokens": null
+      },
+      "wake_id": "gpc-owner-subagent-review-20261009"
+    },
+    {
+      "at_utc": "2026-10-09T02:11:42.638Z",
+      "attempt_id": "gpc-cdc-neutral-quality-review-20261009-a1",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-cdc-neutral-quality-review-20261009-a1-agent_start",
+      "kind": "agent_start",
+      "operation_key": "sha256:9a91d65751bde0e3de2d6e16026cac4d85e7446ca18c704f94ab044457764a88",
+      "recovery_ref": null,
+      "scope": "gpc/dependency/cdc-neutral-quality-review",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-owner-subagent-review-20261009"
     }
   ],
   "policy": {

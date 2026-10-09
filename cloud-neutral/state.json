@@ -10,14 +10,14 @@
   "change_id": "cdc-neutral-fixture-correction-while-source-owned",
   "coordination_ref": "refs/heads/cdc/coordination",
   "coordination_store_id": "sha256:e9c5798b2e5857d11563b10845ae993ed5b0e7b040ffd6611bdbd1a36aad08d3",
-  "cost_consumed_units": 0,
+  "cost_consumed_units": 1,
   "execution_mode": "parallel",
   "integrator_id": "Work-root",
   "parent_invocation_id": "Work-root-gpc-cloud-20261009",
   "plan_digest": "sha256:27e231f22f7014c8eab1b883c6695451ae0c7ba03769192beea05b11b81b79af",
   "pool_id": "gpc-cdc-neutral-correction-reviews-20261009",
-  "revision": 4,
-  "runtime_consumed_seconds": 0,
+  "revision": 7,
+  "runtime_consumed_seconds": 505.706111,
   "schema": "managed-executor-pool-state/v1",
   "tasks": [
     {
@@ -35,30 +35,32 @@
       "status": "running"
     },
     {
-      "accepted_result_ref": null,
-      "active_attempt_id": "gpc-cdc-neutral-spec-review-20261009-a1",
+      "accepted_result_ref": "sha256:dae6904903061d48960c0c9e5c49b22e2be25926d34840ad602fa803aa73a5d2",
+      "active_attempt_id": null,
       "attempt_ids": [
         "gpc-cdc-neutral-spec-review-20261009-a1"
       ],
-      "cost_units": 0,
+      "cost_units": 1,
       "discarded": false,
       "id": "spec",
-      "integrated": false,
-      "reservation_token": "385f0ba5-be97-4ce2-b527-d4049118469a",
-      "runtime_seconds": 0,
-      "status": "running"
+      "integrated": true,
+      "reservation_token": null,
+      "runtime_seconds": 505.706111,
+      "status": "succeeded"
     },
     {
       "accepted_result_ref": null,
-      "active_attempt_id": null,
-      "attempt_ids": [],
+      "active_attempt_id": "gpc-cdc-neutral-quality-review-20261009-a1",
+      "attempt_ids": [
+        "gpc-cdc-neutral-quality-review-20261009-a1"
+      ],
       "cost_units": 0,
       "discarded": false,
       "id": "quality",
       "integrated": false,
-      "reservation_token": null,
+      "reservation_token": "b66e4f9c-619f-45fd-a469-cff23f7e6a3d",
       "runtime_seconds": 0,
-      "status": "planned"
+      "status": "queued"
     }
   ]
 }
