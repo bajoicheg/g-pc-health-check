@@ -2317,6 +2317,64 @@
         "tokens": null
       },
       "wake_id": "gpc-owner-raised-limits-20261009-230128"
+    },
+    {
+      "at_utc": "2026-10-09T20:55:51.143745Z",
+      "detail": "Actual same original browser task restored after user manual CAPTCHA; current composer and last genuine final observed; evidence receipt 192f36af51b4ceedf24b1826d1a5d8718b94876531effe82ae12a9d8db343dff",
+      "event_id": "gpc-ui-corrected-build50-20261009-agent_start-service-recovery",
+      "kind": "service_recovery",
+      "reference": "sha256:192f36af51b4ceedf24b1826d1a5d8718b94876531effe82ae12a9d8db343dff#confirmed-access-agent_start",
+      "scope": "gpc/isolated-corrected-ui/gpc-ui-corrected-build48-20261009",
+      "signature": "Cloudflare human verification blocks original Codex task before Send; one reload still blocked",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "remedy",
+      "wake_id": "gpc-manual-captcha-resolved-20261009-235416"
+    },
+    {
+      "at_utc": "2026-10-09T20:55:51.143745Z",
+      "attempt_id": "gpc-ui-corrected-build50-20261009",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-ui-corrected-build50-20261009-agent_start",
+      "kind": "agent_start",
+      "operation_key": "sha256:a267aff0084b72ca3a6af314b65089d9c9d3c0ed26cc5287104443e7e4beeddb",
+      "recovery_ref": "sha256:192f36af51b4ceedf24b1826d1a5d8718b94876531effe82ae12a9d8db343dff#confirmed-access-agent_start",
+      "scope": "gpc/isolated-corrected-ui/gpc-ui-corrected-build48-20261009",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-manual-captcha-resolved-20261009-235416"
+    },
+    {
+      "at_utc": "2026-10-09T20:55:51.143745Z",
+      "detail": "Actual same original browser task restored after user manual CAPTCHA; current composer and last genuine final observed; evidence receipt 192f36af51b4ceedf24b1826d1a5d8718b94876531effe82ae12a9d8db343dff",
+      "event_id": "gpc-ui-corrected-build50-20261009-compute_start-service-recovery",
+      "kind": "service_recovery",
+      "reference": "sha256:192f36af51b4ceedf24b1826d1a5d8718b94876531effe82ae12a9d8db343dff#confirmed-access-compute_start",
+      "scope": "gpc/isolated-corrected-ui/gpc-ui-corrected-build48-20261009",
+      "signature": "Cloudflare human verification blocks original Codex task before Send; one reload still blocked",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "remedy",
+      "wake_id": "gpc-manual-captcha-resolved-20261009-235416"
+    },
+    {
+      "at_utc": "2026-10-09T20:55:51.143745Z",
+      "attempt_id": "gpc-ui-corrected-build50-20261009",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-ui-corrected-build50-20261009-compute_start",
+      "kind": "compute_start",
+      "operation_key": "sha256:68657479c65fdc595eeb7f540cbb78de3eb99662c1d4ae149c65dd4674f22e37",
+      "recovery_ref": "sha256:192f36af51b4ceedf24b1826d1a5d8718b94876531effe82ae12a9d8db343dff#confirmed-access-compute_start",
+      "scope": "gpc/isolated-corrected-ui/gpc-ui-corrected-build48-20261009",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-manual-captcha-resolved-20261009-235416"
     }
   ],
   "policy": {
@@ -2362,6 +2420,7 @@
     "gpc-owner-approved-cloud-payload-20261009-1248",
     "gpc-owner-exe-continuation-20261009-180856",
     "gpc-owner-readable-tabs-20261009-200159",
-    "gpc-owner-raised-limits-20261009-230128"
+    "gpc-owner-raised-limits-20261009-230128",
+    "gpc-manual-captcha-resolved-20261009-235416"
   ]
 }

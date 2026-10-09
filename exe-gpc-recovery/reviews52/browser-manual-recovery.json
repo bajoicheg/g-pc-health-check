@@ -1,0 +1,12 @@
+{
+  "actual_browser_observation": "Existing tab2 shows original GPC task, actual final controller44 EXE handoff and empty settable follow-up composer with Send; no Cloudflare challenge",
+  "at_utc": "2026-10-09T20:55:51.143745Z",
+  "candidate_sha": "68da62237ecfa5377fcc31c5641b3baaebea39a9",
+  "guard_clear": false,
+  "last_existing_Native_final": "controller44; UI displays4m3s, previous authentic packet duration238s",
+  "new_Send_yet": false,
+  "schema": "gpc-browser-service-recovery/v1",
+  "source_sha": "7aaefdebca68eed64c8e92d7dfff7384f0a3c800",
+  "user_message": "Готово",
+  "user_submitted_moscow": "2026-10-09T23:54:16+03:00"
+}
