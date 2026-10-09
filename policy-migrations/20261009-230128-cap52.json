@@ -1,0 +1,66 @@
+{
+  "CDC_version": "2.12.1 unchanged",
+  "adapter_sha256": "a81679cea634ef7674bbaa2363971cf2ad38ef6ffa442d9b6aca68030b75cdfd",
+  "all_unknown_slots_and_failure_circuits_preserved": true,
+  "at_utc": "2026-10-09T20:04:08.521749Z",
+  "authority": {
+    "instruction": "Подними себе лимиты по необходимости сейчас и продолжай",
+    "instruction_time_moscow": "2026-10-09T23:01:28+03:00",
+    "scope": "Eight additional bounded agent starts for GPC UI independent reviews, corrective work, recovery and actual required checks; no provider/subscription/payment changes"
+  },
+  "effective_adapter_ref": "git:refs/heads/cdc/coordination:effective-adapter-cap52.yaml",
+  "event_history_preserved": true,
+  "new_digest": "sha256:e8c01332dd1bd5fcee072bed8760181b8f1d1a4125b6b3fac3b73de5bdf26c68",
+  "new_policy": {
+    "actions_budget": "conserve",
+    "checkpoint_reserve": {
+      "tokens": 4000,
+      "tool_calls": 8
+    },
+    "max_parallel_agents": 4,
+    "provider_max_age_seconds": 300,
+    "task_limits": {
+      "agent_starts": 52,
+      "ci_starts": 13,
+      "compute_starts": null
+    },
+    "wake_limits": {
+      "compute_starts": 6,
+      "status_polls": null,
+      "tool_calls": 80
+    }
+  },
+  "old_digest": "sha256:4a7e42a250953a5efdcadeb13dadc02176e969a1a15f1669f095eeb22a8585f4",
+  "old_policy": {
+    "actions_budget": "conserve",
+    "checkpoint_reserve": {
+      "tokens": 4000,
+      "tool_calls": 8
+    },
+    "max_parallel_agents": 4,
+    "provider_max_age_seconds": 300,
+    "task_limits": {
+      "agent_starts": 44,
+      "ci_starts": 13,
+      "compute_starts": null
+    },
+    "wake_limits": {
+      "compute_starts": 6,
+      "status_polls": null,
+      "tool_calls": 80
+    }
+  },
+  "review": {
+    "checks": [
+      "Only task agent cap44->52 changes",
+      "CI13 conserve parallel4 wakecompute6 reserve4000tokens8tools retained",
+      "Full cumulative history preserved; no resets/refunds/provider quota inventions",
+      "Fresh source7aa and released31 ownership guard remain unchanged"
+    ],
+    "result": "PASS",
+    "reviewer": "Root"
+  },
+  "schema": "owner-approved-budget-policy-migration/v1",
+  "source_adapter_write": "Deferred until genuine managed publication is eligible",
+  "wake_ids_preserved_at_policy_migration": true
+}

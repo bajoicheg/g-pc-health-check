@@ -2125,6 +2125,40 @@
         "tokens": null
       },
       "wake_id": "gpc-owner-readable-tabs-20261009-200159"
+    },
+    {
+      "at_utc": "2026-10-09T20:04:08.521749Z",
+      "attempt_id": "gpc-ui-spec45-20261009",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-ui-spec45-20261009-agent_start",
+      "kind": "agent_start",
+      "operation_key": "sha256:8a2a3c63b7ae13be8408d456f5676005f6ce2139065e3cac3e0db481d6b0a23c",
+      "recovery_ref": null,
+      "scope": "gpc/readonly/spec/ui-53d4-current-unknown-investigation",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-owner-raised-limits-20261009-230128"
+    },
+    {
+      "at_utc": "2026-10-09T20:04:08.521749Z",
+      "attempt_id": "gpc-git-recovery-analysis46-20261009",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-git-recovery-analysis46-20261009-agent_start",
+      "kind": "agent_start",
+      "operation_key": "sha256:87388870e423a44501c26955da8b60fc140cef749cc013724ad3ddedb610cacc",
+      "recovery_ref": null,
+      "scope": "gpc/readonly/recovery/ui-53d4-current-unknown-investigation",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-owner-raised-limits-20261009-230128"
     }
   ],
   "policy": {
@@ -2136,7 +2170,7 @@
     "max_parallel_agents": 4,
     "provider_max_age_seconds": 300,
     "task_limits": {
-      "agent_starts": 44,
+      "agent_starts": 52,
       "ci_starts": 13,
       "compute_starts": null
     },
@@ -2146,7 +2180,7 @@
       "tool_calls": 80
     }
   },
-  "policy_digest": "sha256:4a7e42a250953a5efdcadeb13dadc02176e969a1a15f1669f095eeb22a8585f4",
+  "policy_digest": "sha256:e8c01332dd1bd5fcee072bed8760181b8f1d1a4125b6b3fac3b73de5bdf26c68",
   "schema": "budget-ledger/v1",
   "task_id": "g-pc-health-check-0.17.0-pre-integration",
   "wake_ids": [
@@ -2169,6 +2203,7 @@
     "gpc-owner-finish-to-exe-20261009-1239",
     "gpc-owner-approved-cloud-payload-20261009-1248",
     "gpc-owner-exe-continuation-20261009-180856",
-    "gpc-owner-readable-tabs-20261009-200159"
+    "gpc-owner-readable-tabs-20261009-200159",
+    "gpc-owner-raised-limits-20261009-230128"
   ]
 }
