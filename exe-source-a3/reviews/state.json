@@ -10,14 +10,14 @@
   "change_id": "cdc-submission-recovery-alias-2.12.2",
   "coordination_ref": "refs/heads/cdc/coordination",
   "coordination_store_id": "sha256:e9c5798b2e5857d11563b10845ae993ed5b0e7b040ffd6611bdbd1a36aad08d3",
-  "cost_consumed_units": 1,
+  "cost_consumed_units": 2,
   "execution_mode": "parallel",
   "integrator_id": "Work-root",
   "parent_invocation_id": "Work-root-gpc-finish-exe-20261009-1248",
   "plan_digest": "sha256:475daa78f39a916c191a883c88b79e8066297e6476ac66306d08278535ad0909",
   "pool_id": "gpc-cdc-2122-a3-exact-reviews",
-  "revision": 6,
-  "runtime_consumed_seconds": 389.818211,
+  "revision": 8,
+  "runtime_consumed_seconds": 647.148203,
   "schema": "managed-executor-pool-state/v1",
   "tasks": [
     {
@@ -35,18 +35,18 @@
       "status": "succeeded"
     },
     {
-      "accepted_result_ref": null,
-      "active_attempt_id": "gpc-cdc-2122-a3-quality-review",
+      "accepted_result_ref": "sha256:355f708330d07bcc82e179e41123dfc4bded6f347b31b339a80bf9d7590b384c",
+      "active_attempt_id": null,
       "attempt_ids": [
         "gpc-cdc-2122-a3-quality-review"
       ],
-      "cost_units": 0,
+      "cost_units": 1,
       "discarded": false,
       "id": "quality",
-      "integrated": false,
-      "reservation_token": "e2504c53-ce61-4d97-82c3-32471d563f03",
-      "runtime_seconds": 0,
-      "status": "running"
+      "integrated": true,
+      "reservation_token": null,
+      "runtime_seconds": 257.329992,
+      "status": "succeeded"
     }
   ]
 }

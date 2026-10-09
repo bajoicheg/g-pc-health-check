@@ -1291,6 +1291,71 @@
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
       "type": "reserve",
       "wake_id": "gpc-owner-approved-cloud-payload-20261009-1248"
+    },
+    {
+      "at_utc": "2026-10-09T13:46:32.334664Z",
+      "event_id": "gpc-cdc-2122-a3-quality-review-terminal",
+      "failure": null,
+      "reservation_id": "gpc-cdc-2122-a3-quality-review-agent_start",
+      "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": null,
+        "tokens": null
+      },
+      "wake_id": "gpc-owner-approved-cloud-payload-20261009-1248"
+    },
+    {
+      "at_utc": "2026-10-09T13:46:32.334664Z",
+      "attempt_id": "gpc-cdc-2122-a3-source-finish-controller",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-cdc-2122-a3-source-finish-controller-agent_start",
+      "kind": "agent_start",
+      "operation_key": "sha256:6bff407e3ba4d5a234b34708abcb6988e96149adce74d430f9334297260cd1e5",
+      "recovery_ref": null,
+      "scope": "gpc/dependency/cdc-source-finish-controller",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-owner-approved-cloud-payload-20261009-1248"
+    },
+    {
+      "at_utc": "2026-10-09T13:46:32.334664Z",
+      "attempt_id": "gpc-cdc-2122-a3-source-finish-controller",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-cdc-2122-a3-source-finish-controller-compute_start",
+      "kind": "compute_start",
+      "operation_key": "sha256:6bff407e3ba4d5a234b34708abcb6988e96149adce74d430f9334297260cd1e5",
+      "recovery_ref": null,
+      "scope": "gpc/dependency/cdc-source-finish-controller",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-owner-approved-cloud-payload-20261009-1248"
+    },
+    {
+      "at_utc": "2026-10-09T13:46:32.334664Z",
+      "attempt_id": "gpc-cdc-2122-a3-exact-ci",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-cdc-2122-a3-exact-ci-ci_start",
+      "kind": "ci_start",
+      "operation_key": "sha256:6bff407e3ba4d5a234b34708abcb6988e96149adce74d430f9334297260cd1e5",
+      "recovery_ref": null,
+      "scope": "gpc/dependency/cdc-2122-exact-candidate-validation",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-owner-approved-cloud-payload-20261009-1248"
     }
   ],
   "policy": {
