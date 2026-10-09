@@ -672,6 +672,85 @@
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
       "type": "reserve",
       "wake_id": "gpc-owner-subagent-review-20261009"
+    },
+    {
+      "at_utc": "2026-10-09T01:38:56.855Z",
+      "event_id": "gpc-cdc-cloud-readonly-export-admission-20261009-a1-agent_start-terminal",
+      "failure": null,
+      "reservation_id": "gpc-cdc-cloud-readonly-export-admission-20261009-a1-agent_start",
+      "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": null,
+        "tokens": null
+      },
+      "wake_id": "gpc-owner-subagent-review-20261009"
+    },
+    {
+      "at_utc": "2026-10-09T01:38:56.855Z",
+      "event_id": "gpc-cdc-cloud-readonly-export-admission-20261009-a1-compute_start-terminal",
+      "failure": null,
+      "reservation_id": "gpc-cdc-cloud-readonly-export-admission-20261009-a1-compute_start",
+      "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": null,
+        "tokens": null
+      },
+      "wake_id": "gpc-owner-subagent-review-20261009"
+    },
+    {
+      "at_utc": "2026-10-09T01:38:56.855Z",
+      "attempt_id": "gpc-cdc-final-draft-validation-20261009-a1",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-cdc-final-draft-validation-20261009-a1-agent_start",
+      "kind": "agent_start",
+      "operation_key": "sha256:dbc313b5687cdfc7e3a8fc3f3e227ce1d552293dcbe19a82e0c1d5f3a33270a0",
+      "recovery_ref": null,
+      "scope": "gpc/dependency/cdc-final-draft-copy-validation",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-owner-subagent-review-20261009"
+    },
+    {
+      "at_utc": "2026-10-09T01:38:56.855Z",
+      "attempt_id": "gpc-cdc-final-draft-validation-20261009-a1",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-cdc-final-draft-validation-20261009-a1-compute_start",
+      "kind": "compute_start",
+      "operation_key": "sha256:dbc313b5687cdfc7e3a8fc3f3e227ce1d552293dcbe19a82e0c1d5f3a33270a0",
+      "recovery_ref": null,
+      "scope": "gpc/dependency/cdc-final-draft-copy-validation",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-owner-subagent-review-20261009"
+    },
+    {
+      "at_utc": "2026-10-09T01:38:56.855Z",
+      "attempt_id": "gpc-cdc-full-draft-spec-20261009-a1",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-cdc-full-draft-spec-20261009-a1-agent_start",
+      "kind": "agent_start",
+      "operation_key": "sha256:065b1c2a5b3f49e30141d368bf30013bc719a79764d44dcd2106e94fcf6dc9e0",
+      "recovery_ref": null,
+      "scope": "gpc/dependency/cdc-full-draft-spec-review",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-owner-subagent-review-20261009"
     }
   ],
   "policy": {

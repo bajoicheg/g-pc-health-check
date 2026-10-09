@@ -1,0 +1,48 @@
+{
+  "file_count": 8,
+  "bytes": 90888,
+  "files": [
+    {
+      "path": "draft.patch",
+      "bytes": 19682,
+      "sha256": "461ae66730b70404c985806c14c59623e3edd0cd31452fb964399ed53a218372"
+    },
+    {
+      "path": "draft-tests/test_submission_recovery_alias.py",
+      "bytes": 18182,
+      "sha256": "ce2d4e3f4d7202f697400f0105f01fa9a92b07f255c3d451be28509a515bd9cf"
+    },
+    {
+      "path": "draft-freeze.json",
+      "bytes": 6115,
+      "sha256": "7b080ff9d116dbce59efda3c5907544c13e755138e43b1c3ec5dcb6a92d4d31d"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 3840,
+      "sha256": "0bb20dbef9564c2659f7edcb77ccb5317b6bd3e0cc881e06c71cddf1be09d023"
+    },
+    {
+      "path": "commands.jsonl",
+      "bytes": 19849,
+      "sha256": "ed7b3c0502c863563d235a71b9734203da32de56c069b5da60d66345055d7084"
+    },
+    {
+      "path": "logs/final-bytes-red.log",
+      "bytes": 14043,
+      "sha256": "c4e744204666da713c3fc4d3ec9efc157816a187589a152777afe87daf6bf836"
+    },
+    {
+      "path": "logs/verified-green.log",
+      "bytes": 2934,
+      "sha256": "e0f78eb3abc41022b2a6d94bf65088746b0b2e448aadf922cedb059b007b25d4"
+    },
+    {
+      "path": "logs/post-whitespace-focused.log",
+      "bytes": 6243,
+      "sha256": "c2285b1b1591290767500bc1393209b6db64b44d185b41d90fdc6ef50c46d11a"
+    }
+  ],
+  "original_archive_not_materialized": true,
+  "original_archive_reported_digest": "6da60465234abb9f3448c0914100126609a068702430bca1b1035571d5065d12"
+}

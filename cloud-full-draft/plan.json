@@ -1,0 +1,83 @@
+{
+  "base_sha": "5720b6e159972432f04277607be7ec8b398b9967",
+  "change_id": "cdc-full-draft-validation-while-source-owned",
+  "coordination_ref": "refs/heads/cdc/coordination",
+  "coordination_store_id": "sha256:e9c5798b2e5857d11563b10845ae993ed5b0e7b040ffd6611bdbd1a36aad08d3",
+  "integrator_id": "Work-root",
+  "max_parallel": 2,
+  "parent_invocation_id": "Work-root-gpc-cloud-20261009",
+  "pool_id": "gpc-cdc-full-draft-validation-reviews-20261009",
+  "schema": "managed-executor-pool-plan/v1",
+  "tasks": [
+    {
+      "backend_preferences": [
+        "Codex-Cloud"
+      ],
+      "branch": null,
+      "dependencies": [],
+      "executor_id": "Cloud-draft-validator",
+      "expected_evidence": [
+        "exact-patch-and-test-digests",
+        "validate-result-digest"
+      ],
+      "expected_outputs": [
+        "validate-bounded-draft-result"
+      ],
+      "id": "validate",
+      "max_cost_units": 1,
+      "max_runtime_seconds": 1800,
+      "required": true,
+      "role": "read_only",
+      "worktree": null,
+      "write_paths": []
+    },
+    {
+      "backend_preferences": [
+        "Work-subagent"
+      ],
+      "branch": null,
+      "dependencies": [],
+      "executor_id": "Work-full-draft-spec-reviewer",
+      "expected_evidence": [
+        "exact-patch-and-test-digests",
+        "spec-result-digest"
+      ],
+      "expected_outputs": [
+        "spec-bounded-draft-result"
+      ],
+      "id": "spec",
+      "max_cost_units": 1,
+      "max_runtime_seconds": 1800,
+      "required": true,
+      "role": "review",
+      "worktree": null,
+      "write_paths": []
+    },
+    {
+      "backend_preferences": [
+        "Work-subagent"
+      ],
+      "branch": null,
+      "dependencies": [
+        "spec"
+      ],
+      "executor_id": "Work-full-draft-quality-reviewer",
+      "expected_evidence": [
+        "exact-patch-and-test-digests",
+        "quality-result-digest"
+      ],
+      "expected_outputs": [
+        "quality-bounded-draft-result"
+      ],
+      "id": "quality",
+      "max_cost_units": 1,
+      "max_runtime_seconds": 1800,
+      "required": true,
+      "role": "review",
+      "worktree": null,
+      "write_paths": []
+    }
+  ],
+  "total_cost_budget_units": 3,
+  "total_runtime_budget_seconds": 5400
+}
