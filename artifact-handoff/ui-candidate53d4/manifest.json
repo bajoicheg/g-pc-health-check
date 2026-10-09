@@ -1,0 +1,150 @@
+{
+  "schema": "gpc-raw-artifact-handoff/v1",
+  "binary_name": "G-PC-Health-0.17.1-ui-candidate.exe",
+  "candidate": "53d4a46af7b8dd6304a6c6928e2b19cdbd3bce4a",
+  "tree": "12904bf468ca241804ef84244edb1c656aed204d",
+  "bytes": 78763727,
+  "sha256": "0bdcb5df5fcac8c4044bb9ef352a2b7d9b1cae9e8487aa622a626c7db39e5f82",
+  "chunks": [
+    {
+      "index": 0,
+      "path": "artifact-handoff/ui-candidate53d4/chunk-000.bin",
+      "bytes": 4194304,
+      "sha256": "525eda200c06f74f8d983eaf742099d5308e287956326ac07b941a80eb6a47e7",
+      "blob_oid": "25b38e056fdae6a57c9f2aa27486ee419f0b457c"
+    },
+    {
+      "index": 1,
+      "path": "artifact-handoff/ui-candidate53d4/chunk-001.bin",
+      "bytes": 4194304,
+      "sha256": "b088807e579ea0d37ff995e448616884c29bd36240f5b0d42e282d0402719e6f",
+      "blob_oid": "7cc5bc91e4c64d9d0b71c9e75e973d826c63a1c1"
+    },
+    {
+      "index": 2,
+      "path": "artifact-handoff/ui-candidate53d4/chunk-002.bin",
+      "bytes": 4194304,
+      "sha256": "9725d236cb6075b73c32ddd80b6d1bed0cd126bbc92617ff81b6359054be911f",
+      "blob_oid": "809e06dd77a0b1546916e098dc18d23aca7f6a35"
+    },
+    {
+      "index": 3,
+      "path": "artifact-handoff/ui-candidate53d4/chunk-003.bin",
+      "bytes": 4194304,
+      "sha256": "0a2b22313597d3720a0e5232abe9f8fccdd9f54da879ccedca0cecbcbecb35e7",
+      "blob_oid": "3c855a0d4c30d10fd776c399f5947ee9e446ba6d"
+    },
+    {
+      "index": 4,
+      "path": "artifact-handoff/ui-candidate53d4/chunk-004.bin",
+      "bytes": 4194304,
+      "sha256": "b60d0aef829709cbf593bf20e1df88e4da37ef773e6d855f913b188bf79e2fc7",
+      "blob_oid": "d47a3cefb627107b325eb3576fc5bbcb990f381a"
+    },
+    {
+      "index": 5,
+      "path": "artifact-handoff/ui-candidate53d4/chunk-005.bin",
+      "bytes": 4194304,
+      "sha256": "daed7e0a2ec3bd2e928f6df76c9c8b9277042a4fd131922aa739b86da39b9dea",
+      "blob_oid": "68736b3fa49bc5b2e49e9b74b22d3e4fcd3c0345"
+    },
+    {
+      "index": 6,
+      "path": "artifact-handoff/ui-candidate53d4/chunk-006.bin",
+      "bytes": 4194304,
+      "sha256": "70c4617df3f218d2147021f2db2d2f7a7744982aa4552e62b87b35b773669838",
+      "blob_oid": "2397bdf2921772dbb13509854950d9d758198acb"
+    },
+    {
+      "index": 7,
+      "path": "artifact-handoff/ui-candidate53d4/chunk-007.bin",
+      "bytes": 4194304,
+      "sha256": "7221d1c19657e8f4569f3fd79c8b73e93d26c232137161762625dcb3c384cf63",
+      "blob_oid": "2d676e8e9317c016bafaadfe6a7c8dc06985a3c9"
+    },
+    {
+      "index": 8,
+      "path": "artifact-handoff/ui-candidate53d4/chunk-008.bin",
+      "bytes": 4194304,
+      "sha256": "9e19aa7a9a3992f6bece4ced96380712a8aa0b00a5af9b386eef66fb2e8b166b",
+      "blob_oid": "75df6819e38ba9384ec9dc3f8ebbb0519fff2dfb"
+    },
+    {
+      "index": 9,
+      "path": "artifact-handoff/ui-candidate53d4/chunk-009.bin",
+      "bytes": 4194304,
+      "sha256": "9f3c000b1ef0be3d696f4d7457219014e7a2934ce61a11b2d387795d8999ed60",
+      "blob_oid": "a54de8b8094ded13e31aaf1fd2ba7c88e40a2552"
+    },
+    {
+      "index": 10,
+      "path": "artifact-handoff/ui-candidate53d4/chunk-010.bin",
+      "bytes": 4194304,
+      "sha256": "3b1b76548623453018259680679717aed6955636faa9963b4b451c63745797fa",
+      "blob_oid": "e21072a9e5592e33ec02032181979e079448da05"
+    },
+    {
+      "index": 11,
+      "path": "artifact-handoff/ui-candidate53d4/chunk-011.bin",
+      "bytes": 4194304,
+      "sha256": "46be46de074edcace40a5e848bf019f98bd3059a74e5f28ae74c96dd8932a354",
+      "blob_oid": "b2ab275b9019b25475e063896224a1a83723e45f"
+    },
+    {
+      "index": 12,
+      "path": "artifact-handoff/ui-candidate53d4/chunk-012.bin",
+      "bytes": 4194304,
+      "sha256": "bc49968090e58c3f10c9325b1945e3eead9cbb04574a73678de42aa048364ef0",
+      "blob_oid": "6e796d95af7302b3d1866750ef0345c5a3b72ec9"
+    },
+    {
+      "index": 13,
+      "path": "artifact-handoff/ui-candidate53d4/chunk-013.bin",
+      "bytes": 4194304,
+      "sha256": "e337f5554e06cdde33c6acab7eb6ddd91d7e61c9c42e6d2a222d0ebeb6645d05",
+      "blob_oid": "487186c5d0433df20b419207659367538292a71d"
+    },
+    {
+      "index": 14,
+      "path": "artifact-handoff/ui-candidate53d4/chunk-014.bin",
+      "bytes": 4194304,
+      "sha256": "26d5f2307c1c05aa54751df9b5befde45189386c14914813af0f77e364038d24",
+      "blob_oid": "993294e35da054fc08c5622999c4712534d5146c"
+    },
+    {
+      "index": 15,
+      "path": "artifact-handoff/ui-candidate53d4/chunk-015.bin",
+      "bytes": 4194304,
+      "sha256": "b7e7b398fc2dc3d19596e2b6d414e12ef13c3fbe14d0cfbf69a5fb4d721c5482",
+      "blob_oid": "af2308ac6af0ce405f2de012adac598c100b4ad7"
+    },
+    {
+      "index": 16,
+      "path": "artifact-handoff/ui-candidate53d4/chunk-016.bin",
+      "bytes": 4194304,
+      "sha256": "ac47685d53fccb8755516e717f2a60292012d15a2a9ad58c8a17fe6aa5ce2d4f",
+      "blob_oid": "37670fbdd6db3c1db34c3ff8c3310ebdd245f080"
+    },
+    {
+      "index": 17,
+      "path": "artifact-handoff/ui-candidate53d4/chunk-017.bin",
+      "bytes": 4194304,
+      "sha256": "16ecafab57a7253e528c24a756de52533655e5125f21a85916fc013dd8dfc476",
+      "blob_oid": "af8505e2e4ba763e041c43b6539b48c6f77a6faf"
+    },
+    {
+      "index": 18,
+      "path": "artifact-handoff/ui-candidate53d4/chunk-018.bin",
+      "bytes": 3266255,
+      "sha256": "6cb7b03170c16f75de5969d42a4e2ed2a3e602e52b9f685c6d107e919b44cb8f",
+      "blob_oid": "e38f9e3dc0591dffbcd3ca52598d9087b192f558"
+    }
+  ],
+  "chunk_count": 19,
+  "chunk_bytes_max": 4194304,
+  "FileVersion": "0.17.1.0",
+  "Windows_runtime": "NOT_RUN",
+  "validated_pilot": false,
+  "verification_path": "artifact-handoff/ui-candidate53d4/verification.json",
+  "checksum_path": "artifact-handoff/ui-candidate53d4/G-PC-Health-0.17.1-ui-candidate.exe.sha256"
+}
