@@ -1,0 +1,23 @@
+{
+  "schema": "root-engineering-diagnostic-strategy-preparation/v1",
+  "state": "PREPARED_ONLY",
+  "repository": "bajoicheg/g-pc-health-check",
+  "source_base": "7aaefdebca68eed64c8e92d7dfff7384f0a3c800",
+  "failed_candidate": "1447b230cd567cb087034c76d1a92a33d2f0200c",
+  "failed_windows_run": 37846023963,
+  "failed_windows_job": 113546991469,
+  "actual_failure": "Eight RU/EN bottom-controls-unreachable fixtures, selftest exit234; secondary missing16current-invocation renders; zero EXE artifacts",
+  "diagnostic_patch_sha256": "12be034fa7a3324cc7ce5f9e8336594d5312ff7cc9cfd88db2c9bcdf533b4696",
+  "scope": "Log actual viewport/root/footer/scroll/button geometry before scroll, after scroll and after layout. Preserve every acceptance assertion, fixture, resource and product behavior. Derive any production fix from actual Windows measurements.",
+  "root_preparation_review": "The27added diagnostic lines use existing Text.Json and WinForms types and only read synthetic fixture geometry. All original reachability/button/detail/16image assertions remain. This is Root preparation review, not independent product QUALITY, native compilation or Windows success.",
+  "prior_evidence_insufficient_reason": "Linux cross-target compile and portable geometry do not explain actual Windows scrolling failure. Repeating unchanged tests cannot diagnose it; actual geometry is new input.",
+  "validation_strategy": "One separately admitted diagnostic exact-SHA Windows pilot run after genuine native recovery, isolated writer and required review. Preserve the diagnostic failure/log. Then a separately reviewed evidence-based correction and final exact-SHA Windows EXE plus required PR integration validation; no unchanged repeat or discarded charge.",
+  "quality_max_validation_cycles_preserved": 2,
+  "historical_cycles_preserved": true,
+  "mandatory_gates_preserved": ["Normal managed ownership and isolated write scope", "Ordered required reviews", "Final Windows selftests and portable-security/version/hash checks", "Exact pilot artifact and separate actual PR integration checkout evidence", "Windows11/UAC/RDP/manual acceptance and explicit production integration approval"],
+  "authorizes_product_write": false,
+  "authorizes_external_start": false,
+  "authorizes_release": false,
+  "no_new_exe_claim": true,
+  "remaining_release_queue": ["0.17.1", "0.17.2", "0.18", "0.19"]
+}
