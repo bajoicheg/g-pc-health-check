@@ -1,0 +1,36 @@
+[
+  {
+    "at_utc": "2026-10-09T14:53:12.693633Z",
+    "attempt_id": "gpc-native-fresh-recovery-controller-20261009",
+    "cost": {
+      "elapsed_seconds": null,
+      "tokens": null,
+      "tool_calls": 1
+    },
+    "event_id": "gpc-native-fresh-recovery-controller-20261009-agent_start",
+    "kind": "agent_start",
+    "operation_key": "sha256:f9b6da0408aea5539d4709bd8e168c91cb250c9fdd93de7ca97be21c754ccce2",
+    "recovery_ref": null,
+    "scope": "gpc/native-fresh-recovery-controller",
+    "task_id": "g-pc-health-check-0.17.0-pre-integration",
+    "type": "reserve",
+    "wake_id": "gpc-owner-approved-cloud-payload-20261009-1248"
+  },
+  {
+    "at_utc": "2026-10-09T14:53:12.693633Z",
+    "attempt_id": "gpc-native-fresh-recovery-controller-20261009",
+    "cost": {
+      "elapsed_seconds": null,
+      "tokens": null,
+      "tool_calls": 1
+    },
+    "event_id": "gpc-native-fresh-recovery-controller-20261009-compute_start",
+    "kind": "compute_start",
+    "operation_key": "sha256:f9b6da0408aea5539d4709bd8e168c91cb250c9fdd93de7ca97be21c754ccce2",
+    "recovery_ref": null,
+    "scope": "gpc/native-fresh-recovery-controller",
+    "task_id": "g-pc-health-check-0.17.0-pre-integration",
+    "type": "reserve",
+    "wake_id": "gpc-owner-approved-cloud-payload-20261009-1248"
+  }
+]

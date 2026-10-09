@@ -1,0 +1,63 @@
+{
+  "schema": "root-authenticated-release-worker-terminal-input/v1",
+  "observed_at_utc": "2026-10-09T14:53:11.869Z",
+  "generation": 64,
+  "owner_id": null,
+  "guard": null,
+  "supervisor_quiescent": true,
+  "final_response_allowed": true,
+  "producer": "Authenticated explicit release + native bridge-integrated pool + actual native controller post-finish observation17:50Moscow",
+  "lease_blob_sha": "eb6f4f0c3221f845db97e6597604ef8e5d3e92e2",
+  "pool_blob_sha": "721b06336168eb969b163ec573f50a2d6996a600",
+  "pool_state": {
+    "authorizes_merge": false,
+    "authorizes_release": false,
+    "authorizes_scheduler_mutation": false,
+    "authorizes_scope_expansion": false,
+    "authorizes_shared_branch_write": false,
+    "authorizes_user_approval": false,
+    "authorizes_worker_launch": false,
+    "base_sha": "3d063ac723a68340e732d552c1d69636470b1ac3",
+    "change_id": "cdc-2122-exact-immutable-release-only",
+    "coordination_ref": "refs/heads/cdc/cdc-2122-a3-release-only-20261009-pool",
+    "coordination_store_id": "sha256:dcd0b7ef2c3dcf4b4e6dbd69f7c5a0d1d4b0050a2c6ade11e017d8417eb3be57",
+    "cost_consumed_units": 0,
+    "execution_mode": "parallel",
+    "integrator_id": "Work-root",
+    "parent_invocation_id": "Work-root-gpc-finish-exe-20261009-1248",
+    "plan_digest": "sha256:30cb2c5428a55369ace7ced13c3712be5043c3c1756c51c082a09ed54dc700d1",
+    "pool_id": "cdc-2122-a3-release-only-20261009",
+    "revision": 4,
+    "runtime_consumed_seconds": 619.4453640310003,
+    "schema": "managed-executor-pool-state/v1",
+    "tasks": [
+      {
+        "accepted_result_ref": "sha256:b1739010e341370b69edce1ad9841de42d18cf0da52b743be58d840d73099dc8",
+        "active_attempt_id": null,
+        "attempt_ids": [
+          "gpc-cdc-2122-a3-release-managed-worker"
+        ],
+        "cost_units": 0,
+        "discarded": false,
+        "id": "release-only",
+        "integrated": true,
+        "reservation_token": null,
+        "runtime_seconds": 619.4453640310003,
+        "status": "succeeded"
+      }
+    ]
+  },
+  "release_receipt": {
+    "at_utc": "2026-10-09T14:50:29.200715Z",
+    "checkpoint_ref": "git:bajoicheg/codex-compute@41048369385cec7b39b5e13d1eb9a9a515f4689f:document.json",
+    "completion_reason": "scope_complete",
+    "external_reconciliation": "none",
+    "generation": 64,
+    "invocation_id": "managed-terminal:df37f6b9226d1bfb975a762cdb342efb1b075e15c22c23c0cc30c429b7c9ab5b",
+    "owner_id": "49221187-78f9-4a4d-af2e-206d45a4e4b1"
+  },
+  "package_tree_verified": true,
+  "release_ref": "refs/heads/release/v2.12.2",
+  "release_commit": "3d063ac723a68340e732d552c1d69636470b1ac3",
+  "evidence_commit": "afcf1cf507b73a604177250a01404fbf8a407412"
+}
