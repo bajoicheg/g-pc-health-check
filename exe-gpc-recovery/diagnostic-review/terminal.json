@@ -1,0 +1,20 @@
+{
+  "EXE_certification": false,
+  "Windows_acceptance": "NOT_RUN",
+  "actual_agent": "/root/gpc_diag_spec",
+  "actual_final_observed": true,
+  "candidate": "53636f45cc14075717e4e68b0a40ba020b96d9ca",
+  "critical": 0,
+  "evidence": [
+    "24 file SHA256s and staged tree independently verified",
+    "8 fixtures and 16 fresh render gates preserved",
+    "exit234 failure retained",
+    "CDC21/source adapter/workflows unchanged"
+  ],
+  "important": 0,
+  "observed_elapsed_bound_seconds": 531,
+  "observed_terminal_at_utc": "2026-10-09T15:40:38.012519Z",
+  "schema": "root-independent-review-terminal/v1",
+  "tree": "88560f6981e1fe61097a5a716c74d51b88d9a36c",
+  "verdict": "SPEC PASS FOR DIAGNOSTIC"
+}

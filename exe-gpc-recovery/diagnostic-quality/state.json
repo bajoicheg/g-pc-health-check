@@ -10,29 +10,29 @@
   "change_id": "gpc-native-layout-diagnostic-review",
   "coordination_ref": "refs/heads/cdc/coordination",
   "coordination_store_id": "sha256:e9c5798b2e5857d11563b10845ae993ed5b0e7b040ffd6611bdbd1a36aad08d3",
-  "cost_consumed_units": 1,
+  "cost_consumed_units": 0,
   "execution_mode": "parallel",
   "integrator_id": "Work-root",
   "parent_invocation_id": "Work-root-gpc-finish-exe-20261009-1248",
-  "plan_digest": "sha256:c5cb4267125b55a30c48b3c9171f18821c99404fe5fcb1149d41788afdd70f88",
-  "pool_id": "gpc-0171-diagnostic-spec-review-20261009",
-  "revision": 4,
-  "runtime_consumed_seconds": 531,
+  "plan_digest": "sha256:dee558dac088d91ea7d85689ba45060ba579c9d36016e855c11bcd779e3e76de",
+  "pool_id": "gpc-0171-diagnostic-quality-review-20261009",
+  "revision": 2,
+  "runtime_consumed_seconds": 0,
   "schema": "managed-executor-pool-state/v1",
   "tasks": [
     {
-      "accepted_result_ref": "sha256:41b3c42139d9b0c650654a333f746cac2a1af1d26075052b3acb3baca649d7e0",
-      "active_attempt_id": null,
+      "accepted_result_ref": null,
+      "active_attempt_id": "gpc-0171-diagnostic-quality-review-20261009",
       "attempt_ids": [
-        "gpc-0171-diagnostic-spec-review-20261009"
+        "gpc-0171-diagnostic-quality-review-20261009"
       ],
-      "cost_units": 1,
+      "cost_units": 0,
       "discarded": false,
-      "id": "spec",
-      "integrated": true,
-      "reservation_token": null,
-      "runtime_seconds": 531,
-      "status": "succeeded"
+      "id": "quality",
+      "integrated": false,
+      "reservation_token": "c79a06f2-729a-486e-8ce0-c83773beed29",
+      "runtime_seconds": 0,
+      "status": "running"
     }
   ]
 }
