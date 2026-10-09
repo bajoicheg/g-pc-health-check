@@ -16,13 +16,13 @@
   "parent_invocation_id": "Work-root-gpc-cloud-20261009",
   "plan_digest": "sha256:1f98134c11f98e8955edcd4c04270dd25ebc3adaefb61296311829bde2191726",
   "pool_id": "gpc-cdc-source-candidate-controller-20261009",
-  "revision": 2,
+  "revision": 3,
   "runtime_consumed_seconds": 0,
   "schema": "managed-executor-pool-state/v1",
   "tasks": [
     {
       "accepted_result_ref": null,
-      "active_attempt_id": "gpc-cdc-source-candidate-controller-20261009-a1",
+      "active_attempt_id": null,
       "attempt_ids": [
         "gpc-cdc-source-candidate-controller-20261009-a1"
       ],
@@ -30,9 +30,9 @@
       "discarded": false,
       "id": "controller",
       "integrated": false,
-      "reservation_token": "4f5a541f-5bf7-4c08-8d0a-3c158d5b5a10",
+      "reservation_token": null,
       "runtime_seconds": 0,
-      "status": "running"
+      "status": "cancelled"
     }
   ]
 }

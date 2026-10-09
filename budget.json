@@ -1029,6 +1029,48 @@
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
       "type": "reserve",
       "wake_id": "gpc-owner-subagent-review-20261009"
+    },
+    {
+      "at_utc": "2026-10-09T02:24:42.296Z",
+      "event_id": "gpc-cdc-source-candidate-controller-20261009-a1-agent_start-not-launched-cancelled",
+      "failure": null,
+      "reservation_id": "gpc-cdc-source-candidate-controller-20261009-a1-agent_start",
+      "status": "cancelled",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": 0,
+        "tokens": null
+      },
+      "wake_id": "gpc-owner-subagent-review-20261009"
+    },
+    {
+      "at_utc": "2026-10-09T02:24:42.296Z",
+      "event_id": "gpc-cdc-source-candidate-controller-20261009-a1-compute_start-not-launched-cancelled",
+      "failure": null,
+      "reservation_id": "gpc-cdc-source-candidate-controller-20261009-a1-compute_start",
+      "status": "cancelled",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": 0,
+        "tokens": null
+      },
+      "wake_id": "gpc-owner-subagent-review-20261009"
+    },
+    {
+      "at_utc": "2026-10-09T02:24:42.296Z",
+      "event_id": "gpc-cdc-source-candidate-managed-worker-20261009-a1-agent_start-not-launched-cancelled",
+      "failure": null,
+      "reservation_id": "gpc-cdc-source-candidate-managed-worker-20261009-a1-agent_start",
+      "status": "cancelled",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": 0,
+        "tokens": null
+      },
+      "wake_id": "gpc-owner-subagent-review-20261009"
     }
   ],
   "policy": {

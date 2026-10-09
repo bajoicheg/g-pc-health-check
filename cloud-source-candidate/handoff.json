@@ -1,0 +1,54 @@
+{
+  "GPC_EXE_0_17_1": false,
+  "GPC_guard_recovered": false,
+  "actual_cloud_validation": "neutral RED14/expected6 failures; focused34 PASS; package PASS; clean consumer1135 PASS/0skips/exit0",
+  "at_utc": "2026-10-09T02:24:42.296Z",
+  "blocker": {
+    "category": "ownership",
+    "dependency_id": "canonical-cdc-source-generation59-foreign-owner",
+    "evidence_refs": [
+      "sha256:a571279a976bc8689d671b0b68a87c7710a0396d3caafdc9c07d9741f9a57529",
+      "git:14c39b45107740b3a1479b539b776a6f44983f8e",
+      "sha256:f6db5ce99a39cd94258bec8573009946ec1930da34b320a8cff0c96c32e98faa"
+    ],
+    "max_age_seconds": 900,
+    "next_action": "After actual foreign managed invocation explicit release or independently verified quiescence, freshly reconcile Source main/lease/refs; rebase reviewed alias candidate inputs if needed; reserve a new bounded Cloud controller and one genuine managed writer under immutable released authority; freeze, ordered exact-candidate reviews and release gates, then safe GPC recovery and native Windows diagnostic. Never replay cancelled source-start attempts.",
+    "observed_at_utc": "2026-10-09T02:24:41.164Z",
+    "recheck_trigger": "actual-source-managed-invocation-release-or-verified-quiescence",
+    "same_invocation_work_exhausted": true,
+    "schema": "blocked-state-proof/v1"
+  },
+  "full_consumer_sha256": "bdd7089e21e5150232637d9eba2b1360bfd3a0da2586aad4b006c20428a24a90",
+  "independent_reviews": {
+    "QUALITY": "PASS, actual /root/cdc_quality_review",
+    "SPEC": "PASS, actual /root/cdc_spec_review",
+    "scope": "exact four neutral literal replacements, no source candidate metadata release approval"
+  },
+  "preserved": {
+    "all_charges_and_histories": true,
+    "original_GPC_generation": 30,
+    "original_GPC_unknown_guard": true,
+    "paused_schedulers": true,
+    "source_issue100_owner": true,
+    "unknown_active_GPC_slots": 2
+  },
+  "product_queue": [
+    "0.17.1",
+    "0.17.2",
+    "0.18.0",
+    "0.19.0"
+  ],
+  "released_CDC_alias": false,
+  "safe_inputs": "cloud-managed-alias-candidate-dispatch-prompt.txt remains UNSENT preparation, includes cancelled attempt binding: must derive NEW admission/bindings before future dispatch",
+  "schema": "gpc-cdc-bounded-handoff/v1",
+  "source_controller_and_worker": {
+    "budget_reservations_retained": true,
+    "fresh_attempt_required": true,
+    "managed_worker_start_performed": false,
+    "provider_send_performed": false,
+    "reservations_outcome": "cancelled before launch",
+    "source_owned_by_root": false,
+    "zero_elapsed_and_pool_cost_reason": "positive no model/provider/process start; not inferred provider usage"
+  },
+  "state": "BLOCKED"
+}

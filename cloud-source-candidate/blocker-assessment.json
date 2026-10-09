@@ -1,0 +1,9 @@
+{
+  "authorizes_scope_expansion": false,
+  "dependency_id": "canonical-cdc-source-generation59-foreign-owner",
+  "next_action": "After actual foreign managed invocation explicit release or independently verified quiescence, freshly reconcile Source main/lease/refs; rebase reviewed alias candidate inputs if needed; reserve a new bounded Cloud controller and one genuine managed writer under immutable released authority; freeze, ordered exact-candidate reviews and release gates, then safe GPC recovery and native Windows diagnostic. Never replay cancelled source-start attempts.",
+  "recheck_trigger": "actual-source-managed-invocation-release-or-verified-quiescence",
+  "schema": "blocked-state-assessment/v1",
+  "state": "BLOCKED",
+  "terminal_boundary_valid": true
+}

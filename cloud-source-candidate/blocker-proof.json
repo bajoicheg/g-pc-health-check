@@ -1,0 +1,15 @@
+{
+  "category": "ownership",
+  "dependency_id": "canonical-cdc-source-generation59-foreign-owner",
+  "evidence_refs": [
+    "sha256:a571279a976bc8689d671b0b68a87c7710a0396d3caafdc9c07d9741f9a57529",
+    "git:14c39b45107740b3a1479b539b776a6f44983f8e",
+    "sha256:f6db5ce99a39cd94258bec8573009946ec1930da34b320a8cff0c96c32e98faa"
+  ],
+  "max_age_seconds": 900,
+  "next_action": "After actual foreign managed invocation explicit release or independently verified quiescence, freshly reconcile Source main/lease/refs; rebase reviewed alias candidate inputs if needed; reserve a new bounded Cloud controller and one genuine managed writer under immutable released authority; freeze, ordered exact-candidate reviews and release gates, then safe GPC recovery and native Windows diagnostic. Never replay cancelled source-start attempts.",
+  "observed_at_utc": "2026-10-09T02:24:41.164Z",
+  "recheck_trigger": "actual-source-managed-invocation-release-or-verified-quiescence",
+  "same_invocation_work_exhausted": true,
+  "schema": "blocked-state-proof/v1"
+}
