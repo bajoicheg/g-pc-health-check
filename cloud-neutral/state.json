@@ -16,7 +16,7 @@
   "parent_invocation_id": "Work-root-gpc-cloud-20261009",
   "plan_digest": "sha256:27e231f22f7014c8eab1b883c6695451ae0c7ba03769192beea05b11b81b79af",
   "pool_id": "gpc-cdc-neutral-correction-reviews-20261009",
-  "revision": 2,
+  "revision": 3,
   "runtime_consumed_seconds": 0,
   "schema": "managed-executor-pool-state/v1",
   "tasks": [
@@ -36,15 +36,17 @@
     },
     {
       "accepted_result_ref": null,
-      "active_attempt_id": null,
-      "attempt_ids": [],
+      "active_attempt_id": "gpc-cdc-neutral-spec-review-20261009-a1",
+      "attempt_ids": [
+        "gpc-cdc-neutral-spec-review-20261009-a1"
+      ],
       "cost_units": 0,
       "discarded": false,
       "id": "spec",
       "integrated": false,
-      "reservation_token": null,
+      "reservation_token": "385f0ba5-be97-4ce2-b527-d4049118469a",
       "runtime_seconds": 0,
-      "status": "planned"
+      "status": "queued"
     },
     {
       "accepted_result_ref": null,
