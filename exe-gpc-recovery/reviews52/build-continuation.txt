@@ -1,0 +1,51 @@
+GPC corrected UI cross-publish continuation (NOT submitted)
+
+Goal: produce a real Windows x64 single EXE from exact corrected candidate
+68da62237ecfa5377fcc31c5641b3baaebea39a9, tree
+0e501ab5a5ff728f23dd1203e8ae20aaa1b29e1e, parent53d4a46af7b8dd6304a6c6928e2b19cdbd3bce4a.
+
+Resume the existing original GPC task only after its visible Cloudflare check
+is completed with the required browser confirmation. Do not bypass the check,
+change sessions/endpoints/security settings, or send a new task blindly.
+Build48 never reached Send and never physically started. Its original prepaid
+charges remain recorded as setup_failed. A future Send is a NEW physical launch:
+reserve new agent_start and compute_start through fresh coordination CAS first.
+
+Fetch fresh source/design and coordination state. Source/design must remain
+7aaefdebca68eed64c8e92d7dfff7384f0a3c800; preserve original CI6 UNKNOWN guard,
+released generation31 claim/history and two historic UNKNOWN budget slots.
+CDC immutable2.12.1 package tree9c45d98c3254e9658d452c505d8c97698e3fc9a7;
+no source/core/lease/guard/intent/pilot/CI/PR/main/production mutations.
+No scheduler actions or children.
+
+Authenticated full candidate packet is on coordination:
+exe-gpc-recovery/reviews52/candidate68da.json. Verify all13 byte hashes and
+Git blobs, original base53636f45cc14075717e4e68b0a40ba020b96d9ca, parent,
+tree and raw commit. Use an isolated clean snapshot; no mutable-source build.
+Prior isolated snapshot: /workspace/work/gpc-controller44/snapshot (53d4).
+Cached SDK: /workspace/.g-pc-health-tools/dotnet (8.0.425).
+Cached packages: /workspace/.g-pc-health-tools/nuget.
+Prior brand assets: /workspace/work/gpc-0171/brand. Label their reuse honestly.
+
+Keep UAC/worker/action/Temp/security semantics and all tests unchanged.
+Corrections: both completion paths use stable CompareTab identity; PowerShell
+hash output powershell-sha256.json preserves C# rich sha256.json manifest.
+
+Cross-publish win-x64 single self-contained EXE with informational version
+0.17.1+68da62237ecfa5377fcc31c5641b3baaebea39a9. Record actual build/publish
+commands, stdout/stderr, returncodes, SDK, start/finish, zero warnings/errors
+or actual failure. Do not run or infer Windows selftests on Linux.
+Actual Windows runtime/DPI/RDP/pilot and native screenshots remain NOT_RUN.
+Only actual native Windows execution may change these verdicts.
+
+Return authenticated binary handoff through the existing canonical evidence
+GitDocumentStore protocol, preserving its doc-only current tree and neighbor
+refs. Existing prior delivery transport81bc310f742a29289f141a4ec918ab439139dada
+used19 raw4MiB chunks with size/blobOID/perchunk/full SHA256 and manifest.
+Use a new immutable artifact result, preserve old53d4 artifact and evidence.
+Native payload/evidence refs are handoffs, not source publication or release.
+
+Root verifies delivered raw bytes, PE version/architecture, exact68da resource,
+all453.NET bundle entries and executable SHA, then saves deliverables before
+linking. Close actual terminal budget/pool outcome only after genuine final.
+Do not label corrected candidate complete/release before exact Windows gates.

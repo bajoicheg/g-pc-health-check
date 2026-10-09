@@ -1,0 +1,35 @@
+# Independent ordered QUALITY49 — QUALITY_GREEN
+
+- Reviewer: /root/gpc_ui_quality49; attempt: gpc-ui-quality49-20261009. Independent of SPEC reviewer /root/gpc_ui_spec45 and of the implementation.
+- Candidate: 68da62237ecfa5377fcc31c5641b3baaebea39a9; tree: 0e501ab5a5ff728f23dd1203e8ae20aaa1b29e1e; parent: 53d4a46af7b8dd6304a6c6928e2b19cdbd3bce4a; original UI baseline: 53636f45cc14075717e4e68b0a40ba020b96d9ca.
+- Exact physical reviewer start timestamp: unknown; not instrumented. Admission/preparation lower boundary: 2026-10-09T20:15:51Z, from coordination e35fe1f8f5c7e391ac1cbd23f01d679b7c8fde69 commit timestamp. This is not a claimed actual spawn time. Finish: 2026-10-09T20:20:19Z. Parent observed successful actual collaboration.spawn_agent after durable readback; this reviewer genuinely executed the review.
+- Admission read: exe-gpc-recovery/reviews52/quality49-plan.json and quality49-state.json at e35fe1f8f5c7e391ac1cbd23f01d679b7c8fde69; read_only required quality task running; reservation462468e5-8a14-45b9-b404-9494f0f18be8. No product/shared-ref/release authority.
+- Prior terminal SPEC47_GREEN independently read before quality review; report gpc-ui-reviews-20261009/spec47.md, SHA-256 4f505681514f8756c21f339a1c3b7d9b3cba9e9287cfe294d82f0fe6035fe1ef, finished2026-10-09T20:14:44Z, before QUALITY admission.
+
+## Assessment
+
+No concrete important correctness, safety, maintainability or scope defect found in the immutable candidate. QUALITY_GREEN means independent static code-quality review passed; it does not mean compilation, native UI acceptance, branch finishing or release passed.
+
+Reviewed the complete13-path baseline-to-candidate diff, complete main/layout/localization/service-desk code, detail/context refresh and security-page integration, window/metric geometry helpers, synthetic fixture, render/hash publication logic, and retained localization/security self-tests. Read exact-candidate AGENTS.md, DEVELOPMENT.md, vendored CDC SKILL.md and specification-review-and-finishing.md, plus effective-adapter-cap52.yaml. Effective quality level is FULL: ordered independent SPEC then QUALITY. Verified vendored VERSION2.12.1 and exact subtree9c45d98c3254e9658d452c505d8c97698e3fc9a7. Mutable personal CDC2.12.2 was not used.
+
+The MainShell percent/AutoSize rows own the tabs and footer separately (MainForm.cs73–84); only Overview contains the outer AutoScroll panel (89–106). Dedicated Recommendations/Actions remove the former stacked table allocation. Findings have compact rows and all complete column values remain copyable through the initially collapsed TextBox detail pane (MainForm.ReadableLayout.cs69–104). Detail refresh reacts to selection/current-cell changes and context availability tooltip updates, including unchanged-state/different-scope cases. Actions initialization targets its named page (MainForm.ServiceDeskActions.cs28–49). Constructor-local localization now runs after all pages exist, while OnLoad initializes the action bar and refreshes translated captions.
+
+Stable named tab localization covers all8 pages. Both ApplyAsync and DoEverythingAsync explicitly select CompareTab, closing SPEC45's concrete wrong-page defect. Full diff contains no UAC, allowlist, worker nonce/session or same-user Temp policy changes; existing confirmation/preflight/execution boundaries remain. No changes touch the immutable CDC core or workflow definitions.
+
+Render evidence remains fail-closed for30 current-invocation distinct images with hashes; PowerShell writes powershell-sha256.json separately from the C# rich sha256.json manifest. Release notes and plan correctly preserve NOT_RUN Windows status. A modified local checkout was observed, so review used only pinned git objects and does not certify its cleanliness or its bytes.
+
+## Minor finding and durable disposition
+
+**QUALITY49-01 — P3, dispositioned coverage limitation; not fixed.**
+
+ReadableLayoutSelfTest.cs65–68 defines RequireVisible using Control.Visible and the control rectangle contained in form.ClientRectangle. Lines70–80 apply it to footer/buttons/status. This proves form-relative geometry when executed, but it does not intersect the bounds with every clipping ancestor, test sibling overlap, or prove that the control is unobscured. A child extending beyond MainFooterButtons into another footer row could remain inside the form and pass this helper. Therefore the synthetic assertion alone must not be described as complete nested clipping/non-overlap acceptance. This is a concrete test coverage limitation, not proof that the candidate actually clips.
+
+Durable disposition: retain this report's QUALITY49-01 as an explicit native acceptance requirement. Before product acceptance, inspect actual current-candidate renders and the real main window at800x600 and other supported sizes with RU/EN, the actual menu, all5 buttons, status and marquee progress while collecting. Verify every button is contained in its flow/footer ancestors and cannot overlap/obscure the separate status/progress row; also inspect expanded/collapsed details and resizing. Native DPI/RDP and managed Windows11 pilot gates remain mandatory. Optional future assertions should intersect ancestor client bounds and check footer-row overlap; this review authorizes no code changes and claims no test fix. Static review can remain GREEN because no concrete important production defect was established and the acceptance limitation is retained rather than waived. Disposition reference: gpc-ui-reviews-20261009/quality49.md#minor-finding-and-durable-disposition.
+
+## Verification and remaining gates
+
+Fresh commands exited0: exact commit/tree/parent and immutable CDC subtree checks; SPEC report SHA-256; all13 changed paths and full diff inspection; named result-navigation checks; stable8-page localization checks; RU/EN XML parsing and added keys; collapsed/copyable details architecture;30-current-invocation render-count and separate-manifest checks; git diff --check53636f45cc14075717e4e68b0a40ba020b96d9ca68da62237ecfa5377fcc31c5641b3baaebea39a9. Python output: STATIC_CHECKS_PASS. These are source/XML/digest checks only.
+
+**Windows compilation, self-tests, actual renders, footer/progress geometry, live language switching, DPI, RDP and managed Windows11 pilot: NOT_RUN, separate mandatory gates.** No SDK/runtime was installed or native task launched by this reviewer. The prior delivered EXE is bound to53d4 and is not corrected68da artifact evidence. Parent reports no new68da binary; Cloudflare verification blocked the earlier task before Send and Native48 was setup_failed without physical launch. Static quality review grants no integration/publication/release permission and does not clear the retained publication guard.
+
+Only the authorized operational quality49.md and quality49.json reports were written. No product/core/ref/HEAD/budget/lease mutation, external write, or child delegation was performed. Review scope is terminal; parent task retains pending Windows/artifact/platform work.

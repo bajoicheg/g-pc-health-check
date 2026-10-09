@@ -1,0 +1,135 @@
+{
+  "CDC": {
+    "changed": false,
+    "package_tree": "9c45d98c3254e9658d452c505d8c97698e3fc9a7",
+    "version": "2.12.1"
+  },
+  "agent_cap": 52,
+  "at_utc": "2026-10-09T20:21:41.194317Z",
+  "authorizes_guard_clear": false,
+  "authorizes_release": false,
+  "budget_history_preserved": true,
+  "budget_summary": {
+    "active_agents": 2,
+    "known": {
+      "agent_starts": 49,
+      "ci_starts": 6,
+      "compute_starts": 19,
+      "elapsed_seconds": 52627.78419404402,
+      "status_polls": 0,
+      "tokens": 0,
+      "tool_calls": 74
+    },
+    "observed": {
+      "elapsed_seconds": null,
+      "tokens": null
+    },
+    "task": {
+      "agent_starts": 49,
+      "ci_starts": 6,
+      "compute_starts": 19,
+      "elapsed_seconds": null,
+      "status_polls": 0,
+      "tokens": null,
+      "tool_calls": 74
+    },
+    "task_id": "g-pc-health-check-0.17.0-pre-integration",
+    "unknown": {
+      "agent_starts": 0,
+      "ci_starts": 0,
+      "compute_starts": 0,
+      "elapsed_seconds": 33,
+      "status_polls": 0,
+      "tokens": 74,
+      "tool_calls": 0
+    },
+    "wake": {
+      "agent_starts": 5,
+      "ci_starts": 0,
+      "compute_starts": 1,
+      "elapsed_seconds": null,
+      "status_polls": 0,
+      "tokens": null,
+      "tool_calls": 6
+    },
+    "wake_id": "gpc-owner-raised-limits-20261009-230128"
+  },
+  "build48": {
+    "actual_Send": false,
+    "actual_physical_start": false,
+    "cause": "Cloudflare human verification blocks existing original Codex task after one reload",
+    "charges_retained": true,
+    "outcome": "setup_failed",
+    "proof_library_file_id": "libfile_7eeef009fde48191af0164cb905b7fb1"
+  },
+  "candidate": {
+    "base": "53636f45cc14075717e4e68b0a40ba020b96d9ca",
+    "files": 13,
+    "location": "git:refs/heads/cdc/coordination:exe-gpc-recovery/reviews52/candidate68da.json",
+    "packet_sha256": "f2b50f39ef333e71bf6a7ecd14ee0c680ab276524d299eb7f002b3e92b54c815",
+    "parent": "53d4a46af7b8dd6304a6c6928e2b19cdbd3bce4a",
+    "product_ref_published": false,
+    "sha": "68da62237ecfa5377fcc31c5641b3baaebea39a9",
+    "tree": "0e501ab5a5ff728f23dd1203e8ae20aaa1b29e1e"
+  },
+  "changes": [
+    "Both post-remediation completion paths select named CompareTab",
+    "PowerShell checksums no longer overwrite rich native render manifest"
+  ],
+  "continuation": [
+    {
+      "contract": "exe-gpc-recovery/reviews52/build-continuation.txt",
+      "needs": "Browser policy requires explicit action-time CAPTCHA approval; actual challenge completion/service remedy; fresh prepay before new physical launch",
+      "status": "blocked",
+      "task": "corrected68da single EXE cross-publish"
+    },
+    {
+      "needs": "Authenticated original Git terminal receipt and genuine canonical reconciliation, then admitted exactcandidate publication/CI; no evidence from unchangedsource rerun",
+      "status": "blocked",
+      "task": "exactcandidate Windows CI and native acceptance"
+    },
+    {
+      "requires": "Exact required Windows/pilot checks and existing integration authority",
+      "status": "pending_dependencies",
+      "task": "0.17.1 integration/release then0.17.2/0.18/0.19"
+    }
+  ],
+  "existing_EXE": {
+    "candidate_sha": "53d4a46af7b8dd6304a6c6928e2b19cdbd3bce4a",
+    "includes_latest_corrections": false,
+    "library_file_id": "libfile_b6ca97b222748191812fbc99d8ece997",
+    "local_path": "/workspace/scratch/ac06fa404c9c/gpc-delivery/G-PC-Health-0.17.1-ui-candidate.exe",
+    "sha256": "0bdcb5df5fcac8c4044bb9ef352a2b7d9b1cae9e8487aa622a626c7db39e5f82"
+  },
+  "scheduler_pause_preserved": true,
+  "schema": "gpc-owner-authorized-ui-continuation/v1",
+  "source_guard": {
+    "genuine_terminal_provider_receipt": "MISSING",
+    "lease_blob_preserved": "409cb124c37d7b4875e59c82716ac5b563c6424c",
+    "original_CI6_UNKNOWN_preserved": true,
+    "replay_or_guard_clear": "NOT_ADMITTED",
+    "source_sha": "7aaefdebca68eed64c8e92d7dfff7384f0a3c800"
+  },
+  "user_authority": "Подними себе лимиты по необходимости сейчас и продолжай",
+  "verification": {
+    "QUALITY": {
+      "elapsed_seconds": "UNKNOWN; pool stores conservative268s upper bound only",
+      "minor_finding": "QUALITY49-01 dispositioned, not fixed; mandatory native screenshot/ancestor-clipping/non-overlap inspection retained",
+      "physical_start_time": "UNKNOWN",
+      "report_sha256": "4dddee2c1b81ebe9faea73a776253b9ef38b639c83e4e1bdb531b630bb20c5ef",
+      "result": "GREEN",
+      "reviewer": "/root/gpc_ui_quality49"
+    },
+    "SPEC": {
+      "report_sha256": "4f505681514f8756c21f339a1c3b7d9b3cba9e9287cfe294d82f0fe6035fe1ef",
+      "result": "GREEN",
+      "reviewer": "/root/gpc_ui_spec45"
+    },
+    "Windows_runtime_selftests_DPI_RDP_pilot": "NOT_RUN",
+    "budget_history_and_adapter52": "PASS",
+    "corrected_candidate_EXE": "NOT_AVAILABLE",
+    "corrected_candidate_compilation": "NOT_RUN",
+    "packet_13_file_bytes_and_CDC_tree": "PASS",
+    "static_completion_destination": "RED then GREEN, both paths"
+  }
+}

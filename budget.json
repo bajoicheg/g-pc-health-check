@@ -2303,6 +2303,20 @@
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
       "type": "reserve",
       "wake_id": "gpc-owner-raised-limits-20261009-230128"
+    },
+    {
+      "at_utc": "2026-10-09T20:21:41.194317Z",
+      "event_id": "gpc-ui-quality49-20261009-actual-terminal",
+      "failure": null,
+      "reservation_id": "gpc-ui-quality49-20261009-agent_start",
+      "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": null,
+        "tokens": null
+      },
+      "wake_id": "gpc-owner-raised-limits-20261009-230128"
     }
   ],
   "policy": {

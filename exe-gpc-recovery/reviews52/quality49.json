@@ -1,0 +1,42 @@
+{
+  "schema": "gpc-ui-quality-review/v1",
+  "reviewer": "/root/gpc_ui_quality49",
+  "attempt": "gpc-ui-quality49-20261009",
+  "coordination_sha": "e35fe1f8f5c7e391ac1cbd23f01d679b7c8fde69",
+  "candidate_sha": "68da62237ecfa5377fcc31c5641b3baaebea39a9",
+  "candidate_tree": "0e501ab5a5ff728f23dd1203e8ae20aaa1b29e1e",
+  "parent_sha": "53d4a46af7b8dd6304a6c6928e2b19cdbd3bce4a",
+  "baseline_sha": "53636f45cc14075717e4e68b0a40ba020b96d9ca",
+  "started_at": null,
+  "start_timestamp_status": "UNKNOWN_NOT_INSTRUMENTED",
+  "admission_lower_boundary_at": "2026-10-09T20:15:51Z",
+  "admission_is_actual_spawn_time": false,
+  "admission_to_finish_elapsed_upper_bound_seconds": 268.0,
+  "finished_at": "2026-10-09T20:20:19Z",
+  "disposition": "QUALITY_GREEN",
+  "effective_quality_level": "FULL",
+  "prior_spec_report_sha256": "4f505681514f8756c21f339a1c3b7d9b3cba9e9287cfe294d82f0fe6035fe1ef",
+  "prior_spec_finished_at": "2026-10-09T20:14:44Z",
+  "findings": [
+    {
+      "id": "QUALITY49-01",
+      "severity": "P3",
+      "status": "dispositioned",
+      "type": "test_coverage",
+      "code_ref": "git:68da62237ecfa5377fcc31c5641b3baaebea39a9:src/G.PcHealthCheck/ReadableLayoutSelfTest.cs:65-80",
+      "disposition_ref": "gpc-ui-reviews-20261009/quality49.md#minor-finding-and-durable-disposition",
+      "fixed": false,
+      "remaining_acceptance": "Native actual screenshot and ancestor-clipping/non-overlap inspection, including busy progress and all five buttons"
+    }
+  ],
+  "open_findings": 0,
+  "runtime_acceptance": "NOT_RUN_SEPARATE_GATE",
+  "compile_status": "NOT_RUN",
+  "exact_candidate_binary_status": "NOT_AVAILABLE_PARENT_REPORTED",
+  "report": "quality49.md",
+  "report_sha256": "4dddee2c1b81ebe9faea73a776253b9ef38b639c83e4e1bdb531b630bb20c5ef",
+  "writes": [
+    "gpc-ui-reviews-20261009/quality49.md",
+    "gpc-ui-reviews-20261009/quality49.json"
+  ]
+}
