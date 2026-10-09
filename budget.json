@@ -1973,6 +1973,68 @@
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
       "type": "reserve",
       "wake_id": "gpc-owner-exe-continuation-20261009-180856"
+    },
+    {
+      "at_utc": "2026-10-09T16:47:39.163492Z",
+      "event_id": "gpc-native-git-transport-repair-20261009-agent_start-genuine-terminal",
+      "failure": null,
+      "reservation_id": "gpc-native-git-transport-repair-20261009-agent_start",
+      "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": 659,
+        "tokens": null
+      },
+      "wake_id": "gpc-owner-exe-continuation-20261009-180856"
+    },
+    {
+      "at_utc": "2026-10-09T16:47:39.163492Z",
+      "event_id": "gpc-native-git-transport-repair-20261009-compute_start-genuine-terminal",
+      "failure": null,
+      "reservation_id": "gpc-native-git-transport-repair-20261009-compute_start",
+      "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": 659,
+        "tokens": null
+      },
+      "wake_id": "gpc-owner-exe-continuation-20261009-180856"
+    },
+    {
+      "at_utc": "2026-10-09T16:47:39.163492Z",
+      "attempt_id": "gpc-native-git-caller-wiring-20261009",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-native-git-caller-wiring-20261009-agent_start",
+      "kind": "agent_start",
+      "operation_key": "sha256:aa48b270e02553846176998e19c98e4ac7a407d09127ae332f6f9bbed9a6d222",
+      "recovery_ref": null,
+      "scope": "gpc/actual-existing-native43-caller-wiring-UI-terminal-race-accounted-after-start",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-owner-exe-continuation-20261009-180856"
+    },
+    {
+      "at_utc": "2026-10-09T16:47:39.163492Z",
+      "attempt_id": "gpc-native-git-caller-wiring-20261009",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-native-git-caller-wiring-20261009-compute_start",
+      "kind": "compute_start",
+      "operation_key": "sha256:f4fa375510e9a17da7f805d78d27557ebddf746f567e2d83fb0434df923c6471",
+      "recovery_ref": null,
+      "scope": "gpc/actual-existing-native43-caller-wiring-UI-terminal-race-accounted-after-start",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-owner-exe-continuation-20261009-180856"
     }
   ],
   "policy": {

@@ -1,0 +1,13 @@
+{
+  "actual_UI_previous_terminal_duration_seconds": 659,
+  "actual_UI_start_Moscow": "2026-10-09T19:46+03:00",
+  "attempt_id": "gpc-native-git-caller-wiring-20261009",
+  "future_mitigation": "Before send, charge an additional physical continuation whenever delivery can cross terminal boundary; reconcile unused reservation if genuine same-turn steering",
+  "no_CI_or_product_effect_authorized": true,
+  "physical_start_charge_preserved": true,
+  "recorded_at_utc": "2026-10-09T16:47:39.163492Z",
+  "reservation_is_not_prepaid": true,
+  "schema": "Root-native-controller-boundary-incident/v1",
+  "scope": "Wire already-prepared repaired helper into private GPC future operational caller; local fakehost tests only; originalUNKNOWN preserved",
+  "sequence_violation": "steer was drafted while42active but delivered after genuine42terminal; actual43start preceded its budget recording"
+}
