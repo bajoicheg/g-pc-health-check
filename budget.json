@@ -2159,6 +2159,85 @@
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
       "type": "reserve",
       "wake_id": "gpc-owner-raised-limits-20261009-230128"
+    },
+    {
+      "at_utc": "2026-10-09T20:12:38.213192Z",
+      "event_id": "gpc-ui-spec45-20261009-actual-terminal",
+      "failure": null,
+      "reservation_id": "gpc-ui-spec45-20261009-agent_start",
+      "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": 149.0,
+        "tokens": null
+      },
+      "wake_id": "gpc-owner-raised-limits-20261009-230128"
+    },
+    {
+      "at_utc": "2026-10-09T20:12:38.213192Z",
+      "event_id": "gpc-git-recovery-analysis46-20261009-actual-terminal",
+      "failure": null,
+      "reservation_id": "gpc-git-recovery-analysis46-20261009-agent_start",
+      "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": 401.400218,
+        "tokens": null
+      },
+      "wake_id": "gpc-owner-raised-limits-20261009-230128"
+    },
+    {
+      "at_utc": "2026-10-09T20:12:38.213192Z",
+      "attempt_id": "gpc-ui-spec47-20261009",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-ui-spec47-20261009-agent_start",
+      "kind": "agent_start",
+      "operation_key": "sha256:cbd501c2137cae973b0db072c09e487afdf5151fa570c116d938d5992f4031f6",
+      "recovery_ref": null,
+      "scope": "gpc/isolated-corrected-ui/gpc-ui-spec47-20261009",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-owner-raised-limits-20261009-230128"
+    },
+    {
+      "at_utc": "2026-10-09T20:12:38.213192Z",
+      "attempt_id": "gpc-ui-corrected-build48-20261009",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-ui-corrected-build48-20261009-agent_start",
+      "kind": "agent_start",
+      "operation_key": "sha256:35c16265a26d69531b148af4fbeec093318759d87e31d237306ba62623520083",
+      "recovery_ref": null,
+      "scope": "gpc/isolated-corrected-ui/gpc-ui-corrected-build48-20261009",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-owner-raised-limits-20261009-230128"
+    },
+    {
+      "at_utc": "2026-10-09T20:12:38.213192Z",
+      "attempt_id": "gpc-ui-corrected-build48-20261009",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-ui-corrected-build48-20261009-compute_start",
+      "kind": "compute_start",
+      "operation_key": "sha256:178d3cb8ca5d2f2ad3c6748e71057a004039916c2cf0859a2d554bbacb3c9c05",
+      "recovery_ref": null,
+      "scope": "gpc/isolated-corrected-ui/gpc-ui-corrected-build48-20261009",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-owner-raised-limits-20261009-230128"
     }
   ],
   "policy": {

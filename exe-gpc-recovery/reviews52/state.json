@@ -10,43 +10,43 @@
   "change_id": "gpc-readable-tabs-ordered-reviews-and-recovery",
   "coordination_ref": "refs/heads/cdc/coordination",
   "coordination_store_id": "sha256:e9c5798b2e5857d11563b10845ae993ed5b0e7b040ffd6611bdbd1a36aad08d3",
-  "cost_consumed_units": 0,
+  "cost_consumed_units": 2,
   "execution_mode": "parallel",
   "integrator_id": "Work-root",
   "parent_invocation_id": "Work-root-gpc-continue-20261009-230128",
   "plan_digest": "sha256:02406639fd6ccffe5d3541a5a63ffa999450bfc4b724934095553b417fb3b189",
   "pool_id": "gpc-ui-review-recovery-20261009-230128",
-  "revision": 4,
-  "runtime_consumed_seconds": 0,
+  "revision": 8,
+  "runtime_consumed_seconds": 550.400218,
   "schema": "managed-executor-pool-state/v1",
   "tasks": [
     {
-      "accepted_result_ref": null,
-      "active_attempt_id": "gpc-ui-spec45-20261009",
+      "accepted_result_ref": "sha256:ad23af8336c8199b213a03b60cb4468305338e125bbeab5ab4718723f7a25017",
+      "active_attempt_id": null,
       "attempt_ids": [
         "gpc-ui-spec45-20261009"
       ],
-      "cost_units": 0,
+      "cost_units": 1,
       "discarded": false,
       "id": "spec",
-      "integrated": false,
-      "reservation_token": "b96850b0-ee75-4a97-8206-e2d4f05a0489",
-      "runtime_seconds": 0,
-      "status": "running"
+      "integrated": true,
+      "reservation_token": null,
+      "runtime_seconds": 149.0,
+      "status": "succeeded"
     },
     {
-      "accepted_result_ref": null,
-      "active_attempt_id": "gpc-git-recovery-analysis46-20261009",
+      "accepted_result_ref": "sha256:58fce0438217b9428b55be25c181a2a8bad3dd95ea424ac7274419666f2e48c8",
+      "active_attempt_id": null,
       "attempt_ids": [
         "gpc-git-recovery-analysis46-20261009"
       ],
-      "cost_units": 0,
+      "cost_units": 1,
       "discarded": false,
       "id": "recovery",
-      "integrated": false,
-      "reservation_token": "ffdc2893-fe6e-4d9a-b052-067f8e585ce5",
-      "runtime_seconds": 0,
-      "status": "running"
+      "integrated": true,
+      "reservation_token": null,
+      "runtime_seconds": 401.400218,
+      "status": "succeeded"
     }
   ]
 }
