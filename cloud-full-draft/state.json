@@ -16,7 +16,7 @@
   "parent_invocation_id": "Work-root-gpc-cloud-20261009",
   "plan_digest": "sha256:8ccfe2b4aba4b508351ccc7ecb618480baf6464d7992acf4560e85bf197d9b05",
   "pool_id": "gpc-cdc-full-draft-validation-reviews-20261009",
-  "revision": 3,
+  "revision": 4,
   "runtime_consumed_seconds": 0,
   "schema": "managed-executor-pool-state/v1",
   "tasks": [
@@ -46,7 +46,7 @@
       "integrated": false,
       "reservation_token": "78265554-3874-4d6b-83de-236b4cc41e55",
       "runtime_seconds": 0,
-      "status": "queued"
+      "status": "running"
     },
     {
       "accepted_result_ref": null,
