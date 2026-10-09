@@ -624,6 +624,54 @@
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
       "type": "reserve",
       "wake_id": "gpc-owner-subagent-review-20261009"
+    },
+    {
+      "at_utc": "2026-10-09T01:02:12.550Z",
+      "event_id": "gpc-cdc-alias-quality-review-20261009-a1-agent_start-terminal",
+      "failure": null,
+      "reservation_id": "gpc-cdc-alias-quality-review-20261009-a1-agent_start",
+      "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": null,
+        "tokens": null
+      },
+      "wake_id": "gpc-owner-subagent-review-20261009"
+    },
+    {
+      "at_utc": "2026-10-09T01:02:12.550Z",
+      "attempt_id": "gpc-cdc-cloud-readonly-export-admission-20261009-a1",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-cdc-cloud-readonly-export-admission-20261009-a1-agent_start",
+      "kind": "agent_start",
+      "operation_key": "sha256:22ad3197c7f41e1ae1da6c8049ffec9da572fbcf0d58a1c35cfb3024b1dc43a9",
+      "recovery_ref": null,
+      "scope": "gpc/dependency/cdc-readonly-artifact-export-and-admission",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-owner-subagent-review-20261009"
+    },
+    {
+      "at_utc": "2026-10-09T01:02:12.550Z",
+      "attempt_id": "gpc-cdc-cloud-readonly-export-admission-20261009-a1",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-cdc-cloud-readonly-export-admission-20261009-a1-compute_start",
+      "kind": "compute_start",
+      "operation_key": "sha256:22ad3197c7f41e1ae1da6c8049ffec9da572fbcf0d58a1c35cfb3024b1dc43a9",
+      "recovery_ref": null,
+      "scope": "gpc/dependency/cdc-readonly-artifact-export-and-admission",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-owner-subagent-review-20261009"
     }
   ],
   "policy": {

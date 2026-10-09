@@ -1,0 +1,38 @@
+{
+  "base_sha": "5720b6e159972432f04277607be7ec8b398b9967",
+  "change_id": "gpc-cdc-artifact-export-and-source-admission-check",
+  "coordination_ref": "refs/heads/cdc/coordination",
+  "coordination_store_id": "sha256:e9c5798b2e5857d11563b10845ae993ed5b0e7b040ffd6611bdbd1a36aad08d3",
+  "integrator_id": "Work-root",
+  "max_parallel": 1,
+  "parent_invocation_id": "Work-root-gpc-cloud-20261009",
+  "pool_id": "gpc-cdc-cloud-readonly-export-20261009",
+  "schema": "managed-executor-pool-plan/v1",
+  "tasks": [
+    {
+      "backend_preferences": [
+        "Codex-Cloud"
+      ],
+      "branch": null,
+      "dependencies": [],
+      "executor_id": "existing-Codex-Cloud-thread",
+      "expected_evidence": [
+        "exact-archive-digest",
+        "observed-authoritative-binding-or-unknown"
+      ],
+      "expected_outputs": [
+        "artifact-export-receipt",
+        "fresh-source-admission-facts"
+      ],
+      "id": "export-and-admission",
+      "max_cost_units": 1,
+      "max_runtime_seconds": 1800,
+      "required": true,
+      "role": "read_only",
+      "worktree": null,
+      "write_paths": []
+    }
+  ],
+  "total_cost_budget_units": 1,
+  "total_runtime_budget_seconds": 1800
+}
