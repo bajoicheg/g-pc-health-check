@@ -1,0 +1,43 @@
+{
+  "schema": "exact-candidate-required-ci-receipt/v1",
+  "producer": "Work-root authenticated GitHub connector read",
+  "observed_at_utc": "2026-10-09T14:21:21.271Z",
+  "repository": "bajoicheg/g-cdc",
+  "candidate_sha": "3d063ac723a68340e732d552c1d69636470b1ac3",
+  "root_tree": "48e8b9ef7baec02c404e2a351c1f5bdc66f83895",
+  "package_tree": "b924d431edec544264bc67cdfbd98548a30d9dfb",
+  "run_id": 37942596983,
+  "run_attempt": 1,
+  "event": "pull_request",
+  "status": "completed",
+  "conclusion": "success",
+  "head_sha": "3d063ac723a68340e732d552c1d69636470b1ac3",
+  "pr_number": 102,
+  "base_sha": "14c39b45107740b3a1479b539b776a6f44983f8e",
+  "actual_checkout_sha": "38f46cd6a0a855409b1d62abe53c1c046b6967ab",
+  "actual_checkout_tree": "48e8b9ef7baec02c404e2a351c1f5bdc66f83895",
+  "actual_checkout_parents": [
+    "14c39b45107740b3a1479b539b776a6f44983f8e",
+    "3d063ac723a68340e732d552c1d69636470b1ac3"
+  ],
+  "job_id": 113860534805,
+  "bootstrap_tests": {
+    "count": 46,
+    "seconds": 0.376,
+    "status": "OK"
+  },
+  "package_tests": {
+    "count": 1135,
+    "seconds": 312.473,
+    "status": "OK",
+    "skips": 0
+  },
+  "package_validator": "PASS",
+  "full_bootstrap": "PASS",
+  "three_archived_consumers": "PASS",
+  "saved_decoded_job_log": {
+    "bytes": 257215,
+    "sha256": "02ba486900eaecce771e401f8d23d2dc70f352d07d08b8c162f67c2bbfa2c42b"
+  },
+  "no_ci_rerun": true
+}
