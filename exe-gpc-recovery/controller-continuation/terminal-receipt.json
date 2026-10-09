@@ -1,0 +1,14 @@
+{
+  "EXE_scope_complete": false,
+  "UI_actual_final_at_Moscow": "2026-10-09T18:29:00+03:00",
+  "UI_cumulative_duration_seconds": 1966,
+  "at_utc": "2026-10-09T15:31:46.175604Z",
+  "exact_candidate": "53636f45cc14075717e4e68b0a40ba020b96d9ca",
+  "exact_tree": "88560f6981e1fe61097a5a716c74d51b88d9a36c",
+  "genuine_controller_terminal_observed": true,
+  "observed_continuation_interval_seconds": 373,
+  "previous_UI_terminal_cumulative_seconds": 1593,
+  "producer_evidence": "git:cacfd1130cb604c49a1f4a994551f34895e673a4",
+  "schema": "root-observed-gpc-controller37-terminal/v1",
+  "writer36_still_running": true
+}

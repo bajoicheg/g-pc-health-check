@@ -10,29 +10,29 @@
   "change_id": "gpc-0171-managed-writer-native-exe-continuation",
   "coordination_ref": "refs/heads/cdc/coordination",
   "coordination_store_id": "sha256:e9c5798b2e5857d11563b10845ae993ed5b0e7b040ffd6611bdbd1a36aad08d3",
-  "cost_consumed_units": 0,
+  "cost_consumed_units": 1,
   "execution_mode": "parallel",
   "integrator_id": "Work-root",
   "parent_invocation_id": "Work-root-gpc-finish-exe-20261009-1248",
   "plan_digest": "sha256:22ea6647ab62fd506e271f22dbd60f57bcf92b6eb198da2841f8a571f67b0194",
   "pool_id": "gpc-native-exe-controller-continuation-20261009-1822",
-  "revision": 2,
-  "runtime_consumed_seconds": 0,
+  "revision": 4,
+  "runtime_consumed_seconds": 373,
   "schema": "managed-executor-pool-state/v1",
   "tasks": [
     {
-      "accepted_result_ref": null,
-      "active_attempt_id": "gpc-native-exe-controller-continuation-20261009-1822",
+      "accepted_result_ref": "sha256:236a0b879c13859f68c766d79cae0b782ded4e211a6bb8842154d798542d064e",
+      "active_attempt_id": null,
       "attempt_ids": [
         "gpc-native-exe-controller-continuation-20261009-1822"
       ],
-      "cost_units": 0,
+      "cost_units": 1,
       "discarded": false,
       "id": "controller",
-      "integrated": false,
-      "reservation_token": "631b2c93-4357-4a67-b527-dc2b3da35398",
-      "runtime_seconds": 0,
-      "status": "running"
+      "integrated": true,
+      "reservation_token": null,
+      "runtime_seconds": 373,
+      "status": "succeeded"
     }
   ]
 }

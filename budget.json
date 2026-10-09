@@ -1666,6 +1666,51 @@
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
       "type": "reserve",
       "wake_id": "gpc-owner-exe-continuation-20261009-180856"
+    },
+    {
+      "at_utc": "2026-10-09T15:31:46.175604Z",
+      "event_id": "gpc-native-exe-controller-continuation-20261009-1822-agent_start-terminal",
+      "failure": null,
+      "reservation_id": "gpc-native-exe-controller-continuation-20261009-1822-agent_start",
+      "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": 373,
+        "tokens": null
+      },
+      "wake_id": "gpc-owner-exe-continuation-20261009-180856"
+    },
+    {
+      "at_utc": "2026-10-09T15:31:46.175604Z",
+      "event_id": "gpc-native-exe-controller-continuation-20261009-1822-compute_start-terminal",
+      "failure": null,
+      "reservation_id": "gpc-native-exe-controller-continuation-20261009-1822-compute_start",
+      "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": 373,
+        "tokens": null
+      },
+      "wake_id": "gpc-owner-exe-continuation-20261009-180856"
+    },
+    {
+      "at_utc": "2026-10-09T15:31:46.175604Z",
+      "attempt_id": "gpc-0171-diagnostic-spec-review-20261009",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-0171-diagnostic-spec-review-20261009-agent_start",
+      "kind": "agent_start",
+      "operation_key": "sha256:210954601a07998cca1e52845067fcacc63a354fbc4e42c69b55ddb07895fea7",
+      "recovery_ref": null,
+      "scope": "gpc/independent-exact-diagnostic-SPEC-review",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-owner-exe-continuation-20261009-180856"
     }
   ],
   "policy": {
