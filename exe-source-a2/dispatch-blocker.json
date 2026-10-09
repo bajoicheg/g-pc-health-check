@@ -1,0 +1,21 @@
+{
+  "schema": "gpc-cloud-dispatch-blocker/v1",
+  "observed_at_utc": "2026-10-09T12:46:08.018Z",
+  "attempt": "gpc-cdc-source-candidate-controller-20261009-a2",
+  "provider_sent": false,
+  "worker_started": false,
+  "browser_field_updated": false,
+  "source_owned": false,
+  "automatic_review_result": "rejected",
+  "automatic_review_reason": "The action transmits internal repository, reservation-token, lease, budget, and orchestration details into a Cloud browser prompt, but the user did not explicitly authorize disclosure of this sensitive payload to that destination.",
+  "requested_permission": "Authorize transmitting GPC/CDC repository identity and commits, CDC lease and budget records, exact execution contract and reservation identifiers to the existing Codex Cloud environment g-cdc-rebound at https://chatgpt.com/local/01a11e0f-7079-768f-af5c-a25fa003c0ce for finishing GPC to EXE.",
+  "contract_ref": "git:cf98979e1c36bcdca5cf4168238a301f6b606591:exe-source-a2/contract.txt",
+  "contract_sha256": "bf30be318c85ce1ffa03da9c2f7ac946ccdbaba6ff5d8b746e4a7e513cc7a874",
+  "charges_retained": true,
+  "new_attempt_required_after_permission": true,
+  "cloud_send_available_before_rejection": true,
+  "source_observed_released_generation": 62,
+  "gpc_claimed_guard_generation": 30,
+  "new_exe_created": false,
+  "next_action": "On explicit destination/data authorization, reconcile source ownership and derive a fresh admission; never replay cancelled a2. Continue canonical alias source release, guard recovery, native Windows geometry diagnosis and EXE production."
+}
