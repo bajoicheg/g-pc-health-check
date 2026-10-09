@@ -1,0 +1,15 @@
+{
+  "schema": "root-managed-start-selection/v1",
+  "at_utc": "2026-10-09T15:22:22.884Z",
+  "attempt_id": "gpc-0171-native-ui-recovery-20261009",
+  "admission_commit": "961f4a7bf2459e2279d9b73444608147db4b65d3",
+  "reservation_token": "d4a8ba3b-0ed9-4755-8fc2-5cdc1ac4f4ea",
+  "selection": "fresh canonical managed_host_bridge.start on absent executable pool; bridge creates pool.initial_state then runtime.start queues the same admitted task/attempt/token exactly once",
+  "root_queued_state": "Preserved as immutable Root admission evidence, not imported into executable runtime pool",
+  "new_budget_charge": false,
+  "new_model_start": false,
+  "physical_start_replay": false,
+  "package_code_changed": false,
+  "normal_live_capability_required": true,
+  "precondition": "Native authenticated preflight physicalstarts0, no saved bridge session, absent pool ref/worktree/branch, source7aa and released guardnull; freshly recheck before normal start"
+}
