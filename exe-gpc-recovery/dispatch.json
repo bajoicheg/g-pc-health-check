@@ -1,0 +1,13 @@
+{
+  "schema": "work-cloud-dispatch-receipt/v1",
+  "attempt_id": "gpc-native-fresh-recovery-controller-20261009",
+  "admission_commit": "82a895b40a4f44a151e2d8eb11e8fdcfa13730d1",
+  "sent_at_utc": "2026-10-09T14:56:36.158Z",
+  "actual_send_count": 1,
+  "destination": "https://chatgpt.com/local/01a10fc1-6ed7-75ae-b4c9-24a2dcc420e4",
+  "reservation_token": "f021e4f0-8a07-4323-8e61-9803ec5c5d86",
+  "model": "Existing GPT-6.1 Sol Light",
+  "managed_worker_launch_authorized": false,
+  "ci_start_authorized": false,
+  "source_release_verified": "3d063ac723a68340e732d552c1d69636470b1ac3"
+}
