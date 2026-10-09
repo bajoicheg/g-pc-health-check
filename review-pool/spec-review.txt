@@ -1,0 +1,6 @@
+Exact source SPEC: PASS.
+Reviewer: /root/cdc_spec_review
+Baseline: 5720b6e159972432f04277607be7ec8b398b9967
+Source diff SHA256: e698d04dada8ba195f69e0603a1f1a5620381e6b9bf755b04195389533757553
+The reviewer independently inspected and digest-verified the exact source patch. The nested OR admits the exact alias/backend only with not_submitted/cancelled_before_send, then retains exact POST/target and null HTTP status checks. Common proof freshness, provider absence, worker/dispatcher quiescence, original claim bindings, three-field transition and canonical CAS safeguards remain unchanged. Existing PR/MERGE/COMPUTE source behavior is preserved. No source SPEC defect found.
+Overall candidate acceptance PENDING: combined patch, test bytes and logs were not available to reviewer. Cloud-reported targeted34/34 and aggregate1133 oneFAIL/finalfullNOT_RUN are not independently credited. Test coverage, aggregate correction, independent QUALITY and release gates remain required. This is source-only draft SPEC evidence, no released-source GREEN or GPC completion.

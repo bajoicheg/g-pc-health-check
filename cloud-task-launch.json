@@ -20,7 +20,7 @@
   "provider_url": "https://chatgpt.com/local/01a11e0f-7079-768f-af5c-a25fa003c0ce",
   "repository": "bajoicheg/g-cdc",
   "schema": "user-initiated-cloud-analysis-launch/v1",
-  "state": "executing",
+  "state": "completed_readonly_draft",
   "single_dispatch_consumed": true,
   "dispatched_at_utc": "2026-10-09T00:28:01.375Z",
   "selected_effort": "GPT-6.1 Sol High",
@@ -38,5 +38,27 @@
     "managed_write_authority": "NOT_ESTABLISHED",
     "source_changes_authorized": false
   },
-  "last_observed_at_utc": "2026-10-09T00:37:15.155Z"
+  "last_observed_at_utc": "2026-10-09T00:56:07.283Z",
+  "final_observation": {
+    "terminal": true,
+    "ui_duration_seconds": 1407,
+    "source_diff_sha256": "e698d04dada8ba195f69e0603a1f1a5620381e6b9bf755b04195389533757553",
+    "combined_diff_sha256": "461ae66730b70404c985806c14c59623e3edd0cd31452fb964399ed53a218372",
+    "cloud_bundle_sha256": "6da60465234abb9f3448c0914100126609a068702430bca1b1035571d5065d12",
+    "cloud_bundle_path": "/workspace/work/cdc-alias/cdc-alias-readonly-evidence.zip",
+    "artifact_export": "blocked EROFS/Permission denied; original bundle not materialized in root",
+    "git_transport": "network permission recovered; up-to-date push dry-run exit0; actual new write authorization NOT_ESTABLISHED",
+    "source_write_blocker": "fresh scoped CDC lease/budget/pool not established; prior source ledger agent9/9 CI3/3 is not migrated by GPCcap22/CI13",
+    "source_spec_review": "source-only PASS; overall candidate pending",
+    "cloud_reported_tests": {
+      "baseline20": "PASS",
+      "alias_RED14": "6_expected_failures",
+      "alias_GREEN14": "PASS",
+      "focused34": "PASS",
+      "preliminary_aggregate1133": "1_failure_in_old_test_assertion",
+      "final_full": "NOT_RUN"
+    },
+    "released_source_GREEN": false,
+    "gpc_completed": false
+  }
 }
