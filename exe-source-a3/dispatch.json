@@ -1,0 +1,26 @@
+{
+  "schema": "gpc-cloud-dispatch-observation/v1",
+  "attempt_id": "gpc-cdc-source-candidate-controller-20261009-a3",
+  "parent_invocation_id": "Work-root-gpc-finish-exe-20261009-1248",
+  "at_utc": "2026-10-09T12:57:49.773Z",
+  "contract_commit": "bc462b722e5004f7baf1864ae1574ce181b20588",
+  "contract_sha256": "cd41ddeec56fe8a5d374d63e960246a2df86641b6e373d31a682cb2f2dc9f606",
+  "provider_url": "https://chatgpt.com/local/01a11e0f-7079-768f-af5c-a25fa003c0ce",
+  "observed_status": "running",
+  "evidence": "Cua AX snapshot: submitted message15:54; subsequent native contract fetch succeeded and task is reading managed_host_bridge.py",
+  "managed_worker_status": "not_yet_observed",
+  "owner_authorization": {
+    "data": "GPC/CDC repository, commits, lease, budget, reservation identifiers, execution contract",
+    "destination": "existing Codex Cloud g-cdc-rebound",
+    "reply": "Да",
+    "at_local": "2026-10-09T15:48:42+03:00"
+  },
+  "root_owns_persistent_lease": false,
+  "exe_produced": false,
+  "remaining": [
+    "canonical alias source release",
+    "positive original guard recovery",
+    "native Windows geometry diagnostic and fix",
+    "Windows EXE packaging and SHA-256"
+  ]
+}
