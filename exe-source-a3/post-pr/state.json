@@ -7,32 +7,32 @@
   "authorizes_user_approval": false,
   "authorizes_worker_launch": false,
   "base_sha": "3d063ac723a68340e732d552c1d69636470b1ac3",
-  "change_id": "cdc-2122-exact-ci-and-source-release",
+  "change_id": "cdc-2122-post-pr-exact-ci-source-release",
   "coordination_ref": "refs/heads/cdc/coordination",
   "coordination_store_id": "sha256:e9c5798b2e5857d11563b10845ae993ed5b0e7b040ffd6611bdbd1a36aad08d3",
-  "cost_consumed_units": 1,
+  "cost_consumed_units": 0,
   "execution_mode": "parallel",
   "integrator_id": "Work-root",
   "parent_invocation_id": "Work-root-gpc-finish-exe-20261009-1248",
-  "plan_digest": "sha256:057b47fbb1080abcda688d92fd672bf70116fa5f148cbce0d1d0a7bf15ffae51",
-  "pool_id": "gpc-cdc-2122-a3-source-finish-controller",
-  "revision": 4,
-  "runtime_consumed_seconds": 1278,
+  "plan_digest": "sha256:10db7da9e953076b18f5a75f450a53fbb6addd8e05582fa206d614eb1bf84e10",
+  "pool_id": "gpc-cdc-2122-a3-post-pr-controller",
+  "revision": 2,
+  "runtime_consumed_seconds": 0,
   "schema": "managed-executor-pool-state/v1",
   "tasks": [
     {
-      "accepted_result_ref": "sha256:9bf3e09ff8a63a562813afacb446bbac0e94246ee102947bcda06fdc5d4a00a8",
-      "active_attempt_id": null,
+      "accepted_result_ref": null,
+      "active_attempt_id": "gpc-cdc-2122-a3-post-pr-controller",
       "attempt_ids": [
-        "gpc-cdc-2122-a3-source-finish-controller"
+        "gpc-cdc-2122-a3-post-pr-controller"
       ],
-      "cost_units": 1,
+      "cost_units": 0,
       "discarded": false,
       "id": "controller",
-      "integrated": true,
-      "reservation_token": null,
-      "runtime_seconds": 1278,
-      "status": "succeeded"
+      "integrated": false,
+      "reservation_token": "9ec760fb-37b0-4129-b553-69df0705f8e8",
+      "runtime_seconds": 0,
+      "status": "running"
     }
   ]
 }

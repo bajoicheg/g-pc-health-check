@@ -1,0 +1,14 @@
+{
+  "actual_delegation_revision": "da870b39ea9bad6601a4f6107504fbab56aaabdc",
+  "actual_one_use_grant": "368ac8a5-92e4-4f60-81bf-657ca8d873ad",
+  "actual_ui_terminal": "Final answer17:09Moscow, duration21m18s; Send button, no Stop",
+  "attempt_id": "gpc-cdc-2122-a3-source-finish-controller",
+  "candidate_sha": "3d063ac723a68340e732d552c1d69636470b1ac3",
+  "observed_at_utc": "2026-10-09T14:15:41.605764Z",
+  "outcome": "resumable_handoff",
+  "provider_post_in_controller": false,
+  "remaining": "Root POST then exact CI and source finish/release",
+  "runtime_seconds": 1278,
+  "schema": "work-cloud-controller-terminal-receipt/v1",
+  "source_writer_quiescent": false
+}

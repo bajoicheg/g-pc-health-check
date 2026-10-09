@@ -1356,6 +1356,68 @@
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
       "type": "reserve",
       "wake_id": "gpc-owner-approved-cloud-payload-20261009-1248"
+    },
+    {
+      "at_utc": "2026-10-09T14:15:41.605764Z",
+      "event_id": "gpc-cdc-2122-a3-source-finish-controller-agent_start-terminal",
+      "failure": null,
+      "reservation_id": "gpc-cdc-2122-a3-source-finish-controller-agent_start",
+      "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": 1278,
+        "tokens": null
+      },
+      "wake_id": "gpc-owner-approved-cloud-payload-20261009-1248"
+    },
+    {
+      "at_utc": "2026-10-09T14:15:41.605764Z",
+      "event_id": "gpc-cdc-2122-a3-source-finish-controller-compute_start-terminal",
+      "failure": null,
+      "reservation_id": "gpc-cdc-2122-a3-source-finish-controller-compute_start",
+      "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": 1278,
+        "tokens": null
+      },
+      "wake_id": "gpc-owner-approved-cloud-payload-20261009-1248"
+    },
+    {
+      "at_utc": "2026-10-09T14:15:41.605764Z",
+      "attempt_id": "gpc-cdc-2122-a3-post-pr-controller",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-cdc-2122-a3-post-pr-controller-agent_start",
+      "kind": "agent_start",
+      "operation_key": "sha256:92381c989efbeceaea40d71be2213c777bfaf527fd2309147f28530a7855a6b2",
+      "recovery_ref": null,
+      "scope": "gpc/dependency/cdc-source-post-pr-controller",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-owner-approved-cloud-payload-20261009-1248"
+    },
+    {
+      "at_utc": "2026-10-09T14:15:41.605764Z",
+      "attempt_id": "gpc-cdc-2122-a3-post-pr-controller",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-cdc-2122-a3-post-pr-controller-compute_start",
+      "kind": "compute_start",
+      "operation_key": "sha256:92381c989efbeceaea40d71be2213c777bfaf527fd2309147f28530a7855a6b2",
+      "recovery_ref": null,
+      "scope": "gpc/dependency/cdc-source-post-pr-controller",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-owner-approved-cloud-payload-20261009-1248"
     }
   ],
   "policy": {
