@@ -7,32 +7,32 @@
   "authorizes_user_approval": false,
   "authorizes_worker_launch": false,
   "base_sha": "7aaefdebca68eed64c8e92d7dfff7384f0a3c800",
-  "change_id": "gpc-verified-diagnostic-artifact-genuine-terminal-cleanup",
+  "change_id": "gpc-user-requested-git-transport-repair",
   "coordination_ref": "refs/heads/cdc/coordination",
   "coordination_store_id": "sha256:e9c5798b2e5857d11563b10845ae993ed5b0e7b040ffd6611bdbd1a36aad08d3",
-  "cost_consumed_units": 1,
+  "cost_consumed_units": 0,
   "execution_mode": "parallel",
   "integrator_id": "Work-root",
   "parent_invocation_id": "Work-root-gpc-finish-exe-20261009-1248",
-  "plan_digest": "sha256:49dea3353fdb8ed4828c92cd2595d818a7de309343d37f24e9ed57b409d566fe",
-  "pool_id": "gpc-native-byte-saved-terminal-cleanup-20261009",
-  "revision": 4,
-  "runtime_consumed_seconds": 187,
+  "plan_digest": "sha256:f57f9ab3e6a5fef4e5473301c778cb6c519b9970812587072638c2a1114c4d12",
+  "pool_id": "gpc-native-git-transport-repair-20261009",
+  "revision": 2,
+  "runtime_consumed_seconds": 0,
   "schema": "managed-executor-pool-state/v1",
   "tasks": [
     {
-      "accepted_result_ref": "git:62ca07bdd4729ffa120d23a79c89a79d079407a6",
-      "active_attempt_id": null,
+      "accepted_result_ref": null,
+      "active_attempt_id": "gpc-native-git-transport-repair-20261009",
       "attempt_ids": [
-        "gpc-native-byte-saved-terminal-cleanup-20261009"
+        "gpc-native-git-transport-repair-20261009"
       ],
-      "cost_units": 1,
+      "cost_units": 0,
       "discarded": false,
       "id": "controller",
-      "integrated": true,
-      "reservation_token": null,
-      "runtime_seconds": 187,
-      "status": "succeeded"
+      "integrated": false,
+      "reservation_token": "6be9e953-298e-4c95-bfb3-8751c61f79d7",
+      "runtime_seconds": 0,
+      "status": "running"
     }
   ]
 }
