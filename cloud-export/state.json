@@ -16,21 +16,23 @@
   "parent_invocation_id": "Work-root-gpc-cloud-20261009",
   "plan_digest": "sha256:2c2ac6941551e6fac22cc9be8c211b026ebb3b2f489c27b868fd93c0161e67cc",
   "pool_id": "gpc-cdc-cloud-readonly-export-20261009",
-  "revision": 0,
+  "revision": 1,
   "runtime_consumed_seconds": 0,
   "schema": "managed-executor-pool-state/v1",
   "tasks": [
     {
       "accepted_result_ref": null,
-      "active_attempt_id": null,
-      "attempt_ids": [],
+      "active_attempt_id": "gpc-cdc-cloud-readonly-export-admission-20261009-a1",
+      "attempt_ids": [
+        "gpc-cdc-cloud-readonly-export-admission-20261009-a1"
+      ],
       "cost_units": 0,
       "discarded": false,
       "id": "export-and-admission",
       "integrated": false,
-      "reservation_token": null,
+      "reservation_token": "2c7e2f8b-e4fd-4a12-b9e6-762151a81217",
       "runtime_seconds": 0,
-      "status": "planned"
+      "status": "queued"
     }
   ]
 }
