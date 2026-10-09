@@ -1,0 +1,39 @@
+{
+  "base_sha": "3d063ac723a68340e732d552c1d69636470b1ac3",
+  "change_id": "cdc-2122-exact-immutable-release-only",
+  "coordination_ref": "refs/heads/cdc/cdc-2122-a3-release-only-20261009-pool",
+  "coordination_store_id": "sha256:dcd0b7ef2c3dcf4b4e6dbd69f7c5a0d1d4b0050a2c6ade11e017d8417eb3be57",
+  "integrator_id": "Work-root",
+  "max_parallel": 1,
+  "parent_invocation_id": "Work-root-gpc-finish-exe-20261009-1248",
+  "pool_id": "cdc-2122-a3-release-only-20261009",
+  "schema": "managed-executor-pool-plan/v1",
+  "tasks": [
+    {
+      "backend_preferences": [
+        "local_command"
+      ],
+      "branch": null,
+      "dependencies": [],
+      "executor_id": "cdc-2122-a3-release-only-20261009",
+      "expected_evidence": [
+        "released-source:exact-sha",
+        "published-package:exact-tree",
+        "release:one-shot-native-acceptance"
+      ],
+      "expected_outputs": [
+        "release:2.12.2",
+        "release:evidence-2.12.2"
+      ],
+      "id": "release-only",
+      "max_cost_units": 1,
+      "max_runtime_seconds": 1800,
+      "required": true,
+      "role": "read_only",
+      "worktree": null,
+      "write_paths": []
+    }
+  ],
+  "total_cost_budget_units": 1,
+  "total_runtime_budget_seconds": 1800
+}

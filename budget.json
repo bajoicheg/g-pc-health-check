@@ -1463,6 +1463,23 @@
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
       "type": "reserve",
       "wake_id": "gpc-owner-approved-cloud-payload-20261009-1248"
+    },
+    {
+      "at_utc": "2026-10-09T14:35:43.334722Z",
+      "attempt_id": "gpc-cdc-2122-a3-release-managed-worker",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-cdc-2122-a3-release-managed-worker-compute_start",
+      "kind": "compute_start",
+      "operation_key": "sha256:3f37525c6637fa94df5c5448b2576417771618935238c67b21c45968c83043a4",
+      "recovery_ref": null,
+      "scope": "gpc/dependency/cdc-source-release-worker",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-owner-approved-cloud-payload-20261009-1248"
     }
   ],
   "policy": {
