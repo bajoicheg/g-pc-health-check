@@ -5,7 +5,7 @@
     "version": "2.12.1"
   },
   "agent_cap": 52,
-  "at_utc": "2026-10-09T20:21:41.194317Z",
+  "at_utc": "2026-10-09T20:44:28.596499Z",
   "authorizes_guard_clear": false,
   "authorizes_release": false,
   "budget_history_preserved": true,
@@ -59,6 +59,7 @@
     "actual_physical_start": false,
     "cause": "Cloudflare human verification blocks existing original Codex task after one reload",
     "charges_retained": true,
+    "current_browser_result": "User-authorized checkbox attempt failed on2026-10-09; no further physical Native launch.",
     "outcome": "setup_failed",
     "proof_library_file_id": "libfile_7eeef009fde48191af0164cb905b7fb1"
   },
@@ -72,6 +73,30 @@
     "sha": "68da62237ecfa5377fcc31c5641b3baaebea39a9",
     "tree": "0e501ab5a5ff728f23dd1203e8ae20aaa1b29e1e"
   },
+  "captcha_authorization_and_attempt": {
+    "actual_checkbox_clicks": 1,
+    "at_utc": "2026-10-09T20:44:28.596499Z",
+    "browser_tab_id": "2",
+    "candidate_sha": "68da62237ecfa5377fcc31c5641b3baaebea39a9",
+    "new_EXE": false,
+    "new_Native_Send": false,
+    "new_physical_agent_or_compute_start": false,
+    "next": "Manual handoff of same cloud browser tab; no challenge retry/session or endpoint workaround",
+    "observations": [
+      "Visible checkbox and instruction before click",
+      "After click checkbox disappeared; requested build page did not open",
+      "Original checkbox returned unchecked"
+    ],
+    "proof_library_file_id": "libfile_267337fa21008191a8d34c34148c5a9b",
+    "result": "captcha_failed",
+    "schema": "gpc-browser-captcha-attempt/v1",
+    "source_changed": false,
+    "user_authority": {
+      "binding": "Requested approval to complete current Cloudflare human check before accessing existing original GPC build task",
+      "reply": "Да",
+      "submitted_moscow": "2026-10-09T23:41:05+03:00"
+    }
+  },
   "changes": [
     "Both post-remediation completion paths select named CompareTab",
     "PowerShell checksums no longer overwrite rich native render manifest"
@@ -79,7 +104,7 @@
   "continuation": [
     {
       "contract": "exe-gpc-recovery/reviews52/build-continuation.txt",
-      "needs": "Browser policy requires explicit action-time CAPTCHA approval; actual challenge completion/service remedy; fresh prepay before new physical launch",
+      "needs": "Current authorized CAPTCHA attempt failed; same cloud browser tab requires manual human check. Confirm actual build page access, record service remedy, then fresh prepay before new physical Native Send.",
       "status": "blocked",
       "task": "corrected68da single EXE cross-publish"
     },

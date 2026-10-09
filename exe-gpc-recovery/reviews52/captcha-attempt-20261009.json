@@ -1,0 +1,24 @@
+{
+  "actual_checkbox_clicks": 1,
+  "at_utc": "2026-10-09T20:44:28.596499Z",
+  "browser_tab_id": "2",
+  "candidate_sha": "68da62237ecfa5377fcc31c5641b3baaebea39a9",
+  "new_EXE": false,
+  "new_Native_Send": false,
+  "new_physical_agent_or_compute_start": false,
+  "next": "Manual handoff of same cloud browser tab; no challenge retry/session or endpoint workaround",
+  "observations": [
+    "Visible checkbox and instruction before click",
+    "After click checkbox disappeared; requested build page did not open",
+    "Original checkbox returned unchecked"
+  ],
+  "proof_library_file_id": "libfile_267337fa21008191a8d34c34148c5a9b",
+  "result": "captcha_failed",
+  "schema": "gpc-browser-captcha-attempt/v1",
+  "source_changed": false,
+  "user_authority": {
+    "binding": "Requested approval to complete current Cloudflare human check before accessing existing original GPC build task",
+    "reply": "Да",
+    "submitted_moscow": "2026-10-09T23:41:05+03:00"
+  }
+}
