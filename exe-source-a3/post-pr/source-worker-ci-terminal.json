@@ -1,0 +1,19 @@
+{
+  "artifact_status": "EXE_NOT_BUILT",
+  "ci_attempt": 1,
+  "ci_conclusion": "success",
+  "ci_run": 37942596983,
+  "exact_worker_handle": "1f241e4e-00bf-52ce-89fb-33500fe8026a",
+  "generation": 63,
+  "main": "3d063ac723a68340e732d552c1d69636470b1ac3",
+  "native_normal_finish_final_response_allowed": true,
+  "no_publication_replay": true,
+  "observed_at_utc": "2026-10-09T14:32:36.700237Z",
+  "producer": "Root authenticated GitHub read of canonical native post-pr checkpoint",
+  "schema": "root-managed-source-worker-and-ci-terminal-observation/v1",
+  "source_checkpoint_ref": "refs/heads/cdc/gpc-alias-2122-a3-post-pr",
+  "source_checkpoint_repository": "bajoicheg/codex-compute",
+  "source_lease_release_revision": "2258c588d926dbbb293f274e80904b12e09c71c7",
+  "supervisor_quiescent": true,
+  "worker_status": "succeeded"
+}

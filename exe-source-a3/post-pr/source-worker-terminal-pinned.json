@@ -1,0 +1,59 @@
+{
+  "schema": "authenticated-source-worker-terminal-pinned/v1",
+  "observed_at_utc": "2026-10-09T14:33:06.081Z",
+  "repository": "bajoicheg/codex-compute",
+  "revision": "cd69b6a646d2ff1e9c705c8788e11a7f6d4a7ec1",
+  "path": "document.json",
+  "blob_sha": "2d9e384d11b42f850b71e1bb6e947f45ed239a7a",
+  "actual_native_receipt": {
+    "normal_finish": {
+      "attempt_id": "gpc-cdc-source-candidate-managed-worker-20261009-a3",
+      "changed_paths": null,
+      "current_lease_revision": "2258c588d926dbbb293f274e80904b12e09c71c7",
+      "final_response_allowed": true,
+      "generation": 63,
+      "handle_id": "1f241e4e-00bf-52ce-89fb-33500fe8026a",
+      "invocation_id": "managed-terminal:4ba0698b6c9100a28692967bc7d0c1e9267c8395d5e31743e9aae509265a7771",
+      "lease_revision": "2258c588d926dbbb293f274e80904b12e09c71c7",
+      "owner_id": "827589cc-a101-4bea-bc17-633c3ac737e8",
+      "publication_ref": "refs/heads/cdc/managed-host-publish-1f241e4e00bf52ce89fb33500fe8026a",
+      "published_commit": "3d063ac723a68340e732d552c1d69636470b1ac3",
+      "release_receipt": {
+        "lease_revision": "2258c588d926dbbb293f274e80904b12e09c71c7",
+        "release": {
+          "at_utc": "2026-10-09T14:28:08.996558Z",
+          "checkpoint_ref": "git:bajoicheg/codex-compute@1e90542d171e9f7f76e3141689991c716b6dcc22:document.json",
+          "completion_reason": "scope_complete",
+          "external_reconciliation": "none",
+          "generation": 63,
+          "invocation_id": "managed-terminal:4ba0698b6c9100a28692967bc7d0c1e9267c8395d5e31743e9aae509265a7771",
+          "owner_id": "827589cc-a101-4bea-bc17-633c3ac737e8"
+        },
+        "schema": "execution-release-receipt/v1"
+      },
+      "schema": "managed-host-handle/v1",
+      "scope_complete": true,
+      "state": "released",
+      "task_id": "alias-writer",
+      "worker_status": "succeeded"
+    },
+    "release_receipt": {
+      "lease_revision": "2258c588d926dbbb293f274e80904b12e09c71c7",
+      "release": {
+        "at_utc": "2026-10-09T14:28:08.996558Z",
+        "checkpoint_ref": "git:bajoicheg/codex-compute@1e90542d171e9f7f76e3141689991c716b6dcc22:document.json",
+        "completion_reason": "scope_complete",
+        "external_reconciliation": "none",
+        "generation": 63,
+        "invocation_id": "managed-terminal:4ba0698b6c9100a28692967bc7d0c1e9267c8395d5e31743e9aae509265a7771",
+        "owner_id": "827589cc-a101-4bea-bc17-633c3ac737e8"
+      },
+      "schema": "execution-release-receipt/v1"
+    },
+    "resumed_without_publication_replay": true,
+    "runtime_status": "succeeded",
+    "source_main": "3d063ac723a68340e732d552c1d69636470b1ac3",
+    "supervisor_quiescent": true,
+    "transport_error_preserved_sha256": "d61982420c2d6ae69758f59ff75933eb683c0165994d4c066a921a909a2d72b4"
+  }
+}
