@@ -1,0 +1,37 @@
+{
+  "base_sha": "7aaefdebca68eed64c8e92d7dfff7384f0a3c800",
+  "change_id": "gpc-user-readable-tabs-isolated-review-cross-build",
+  "coordination_ref": "refs/heads/cdc/coordination",
+  "coordination_store_id": "sha256:e9c5798b2e5857d11563b10845ae993ed5b0e7b040ffd6611bdbd1a36aad08d3",
+  "integrator_id": "Work-root",
+  "max_parallel": 1,
+  "parent_invocation_id": "Work-root-gpc-readable-tabs-20261009-200159",
+  "pool_id": "gpc-native-readable-tabs-review-build-20261009",
+  "schema": "managed-executor-pool-plan/v1",
+  "tasks": [
+    {
+      "backend_preferences": [
+        "Codex-Cloud"
+      ],
+      "branch": null,
+      "dependencies": [],
+      "executor_id": "Cloud-original-GPC-exe-controller",
+      "expected_evidence": [
+        "authentic-managed-GPC-worker-boundary",
+        "controller-result-digest"
+      ],
+      "expected_outputs": [
+        "gpc-native-exe-controller-result"
+      ],
+      "id": "controller",
+      "max_cost_units": 1,
+      "max_runtime_seconds": 7200,
+      "required": true,
+      "role": "read_only",
+      "worktree": null,
+      "write_paths": []
+    }
+  ],
+  "total_cost_budget_units": 1,
+  "total_runtime_budget_seconds": 7200
+}

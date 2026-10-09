@@ -2063,6 +2063,40 @@
         "tokens": null
       },
       "wake_id": "gpc-owner-exe-continuation-20261009-180856"
+    },
+    {
+      "at_utc": "2026-10-09T17:14:14.602116Z",
+      "attempt_id": "gpc-native-readable-tabs-review-build-20261009",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-native-readable-tabs-review-build-20261009-agent_start",
+      "kind": "agent_start",
+      "operation_key": "sha256:af0a68ac996021b843a28a5388de68a9b6b6395ac92457ffc1922178a7eb75a7",
+      "recovery_ref": null,
+      "scope": "gpc/readable-tabs-independent-review-cross-build-quarantined-candidate",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-owner-readable-tabs-20261009-200159"
+    },
+    {
+      "at_utc": "2026-10-09T17:14:14.602116Z",
+      "attempt_id": "gpc-native-readable-tabs-review-build-20261009",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-native-readable-tabs-review-build-20261009-compute_start",
+      "kind": "compute_start",
+      "operation_key": "sha256:0d99aaf07fcd2520e6b66a332ece2cc76504017529d3d1f848aa908200d1ce30",
+      "recovery_ref": null,
+      "scope": "gpc/readable-tabs-independent-review-cross-build-quarantined-candidate",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-owner-readable-tabs-20261009-200159"
     }
   ],
   "policy": {
@@ -2106,6 +2140,7 @@
     "gpc-owner-subagent-review-20261009",
     "gpc-owner-finish-to-exe-20261009-1239",
     "gpc-owner-approved-cloud-payload-20261009-1248",
-    "gpc-owner-exe-continuation-20261009-180856"
+    "gpc-owner-exe-continuation-20261009-180856",
+    "gpc-owner-readable-tabs-20261009-200159"
   ]
 }
