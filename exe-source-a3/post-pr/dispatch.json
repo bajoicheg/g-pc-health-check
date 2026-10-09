@@ -1,0 +1,13 @@
+{
+  "schema": "work-cloud-dispatch-receipt/v1",
+  "attempt_id": "gpc-cdc-2122-a3-post-pr-controller",
+  "admission_commit": "6a4291c899a1555ecf235eabff7a24a483d94d8b",
+  "actual_send_count": 1,
+  "sent_at_utc": "2026-10-09T14:16:55.754Z",
+  "destination": "https://chatgpt.com/local/01a11e0f-7079-768f-af5c-a25fa003c0ce",
+  "reservation_token": "9ec760fb-37b0-4129-b553-69df0705f8e8",
+  "provider_pr": 102,
+  "provider_run": 37942596983,
+  "source_writer_handle": "1f241e4e-00bf-52ce-89fb-33500fe8026a",
+  "source_writer_generation": 63
+}
