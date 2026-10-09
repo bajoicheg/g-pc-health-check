@@ -1,37 +1,62 @@
 {
   "CDC": {
     "changed": false,
-    "package_tree": "9c45d98c3254e9658d452c505d8c97698e3fc9a7",
+    "tree": "9c45d98c3254e9658d452c505d8c97698e3fc9a7",
     "version": "2.12.1"
   },
-  "agent_cap": 52,
-  "at_utc": "2026-10-09T20:44:28.596499Z",
+  "Library_save": {
+    "all4_ordered_items_saved": true,
+    "items": [
+      {
+        "filename": "G-PC-Health-0.17.1-ui-corrected.exe",
+        "library_file_id": "libfile_be7bbef4ab94819197e444f0eefdc440",
+        "path": "/workspace/scratch/ac06fa404c9c/gpc-delivery/G-PC-Health-0.17.1-ui-corrected.exe"
+      },
+      {
+        "filename": "G-PC-Health-0.17.1-ui-corrected.exe.sha256",
+        "library_file_id": "libfile_69feb06b42d08191a2fa2387afe153f7",
+        "path": "/workspace/scratch/ac06fa404c9c/gpc-delivery/G-PC-Health-0.17.1-ui-corrected.exe.sha256"
+      },
+      {
+        "filename": "G-PC-Health-0.17.1-ui-corrected-verification.json",
+        "library_file_id": "libfile_d8ba87c90b548191a76aacb1a7de2c0f",
+        "path": "/workspace/scratch/ac06fa404c9c/gpc-delivery/G-PC-Health-0.17.1-ui-corrected-verification.json"
+      },
+      {
+        "filename": "G-PC-Health-ui-corrected-build.jpg",
+        "library_file_id": "libfile_20c34e0230dc81919c43ab9b51416683",
+        "path": "/workspace/scratch/ac06fa404c9c/gpc-delivery/G-PC-Health-ui-corrected-build.jpg"
+      }
+    ],
+    "local_metadata_applied_all4": true,
+    "status": "succeeded"
+  },
+  "at_utc": "2026-10-09T21:07:19.789163Z",
   "authorizes_guard_clear": false,
   "authorizes_release": false,
-  "budget_history_preserved": true,
   "budget_summary": {
     "active_agents": 2,
     "known": {
-      "agent_starts": 49,
+      "agent_starts": 50,
       "ci_starts": 6,
-      "compute_starts": 19,
-      "elapsed_seconds": 52627.78419404402,
+      "compute_starts": 20,
+      "elapsed_seconds": 52855.78419404402,
       "status_polls": 0,
       "tokens": 0,
-      "tool_calls": 74
+      "tool_calls": 76
     },
     "observed": {
       "elapsed_seconds": null,
       "tokens": null
     },
     "task": {
-      "agent_starts": 49,
+      "agent_starts": 50,
       "ci_starts": 6,
-      "compute_starts": 19,
+      "compute_starts": 20,
       "elapsed_seconds": null,
       "status_polls": 0,
       "tokens": null,
-      "tool_calls": 74
+      "tool_calls": 76
     },
     "task_id": "g-pc-health-check-0.17.0-pre-integration",
     "unknown": {
@@ -40,121 +65,59 @@
       "compute_starts": 0,
       "elapsed_seconds": 33,
       "status_polls": 0,
-      "tokens": 74,
+      "tokens": 76,
       "tool_calls": 0
     },
     "wake": {
-      "agent_starts": 5,
+      "agent_starts": 1,
       "ci_starts": 0,
       "compute_starts": 1,
-      "elapsed_seconds": null,
+      "elapsed_seconds": 228,
       "status_polls": 0,
       "tokens": null,
-      "tool_calls": 6
+      "tool_calls": 2
     },
-    "wake_id": "gpc-owner-raised-limits-20261009-230128"
-  },
-  "build48": {
-    "actual_Send": false,
-    "actual_physical_start": false,
-    "cause": "Cloudflare human verification blocks existing original Codex task after one reload",
-    "charges_retained": true,
-    "current_browser_result": "User-authorized checkbox attempt failed on2026-10-09; no further physical Native launch.",
-    "outcome": "setup_failed",
-    "proof_library_file_id": "libfile_7eeef009fde48191af0164cb905b7fb1"
+    "wake_id": "gpc-manual-captcha-resolved-20261009-235416"
   },
   "candidate": {
     "base": "53636f45cc14075717e4e68b0a40ba020b96d9ca",
-    "files": 13,
-    "location": "git:refs/heads/cdc/coordination:exe-gpc-recovery/reviews52/candidate68da.json",
-    "packet_sha256": "f2b50f39ef333e71bf6a7ecd14ee0c680ab276524d299eb7f002b3e92b54c815",
     "parent": "53d4a46af7b8dd6304a6c6928e2b19cdbd3bce4a",
     "product_ref_published": false,
     "sha": "68da62237ecfa5377fcc31c5641b3baaebea39a9",
     "tree": "0e501ab5a5ff728f23dd1203e8ae20aaa1b29e1e"
   },
-  "captcha_authorization_and_attempt": {
-    "actual_checkbox_clicks": 1,
-    "at_utc": "2026-10-09T20:44:28.596499Z",
-    "browser_tab_id": "2",
-    "candidate_sha": "68da62237ecfa5377fcc31c5641b3baaebea39a9",
-    "new_EXE": false,
-    "new_Native_Send": false,
-    "new_physical_agent_or_compute_start": false,
-    "next": "Manual handoff of same cloud browser tab; no challenge retry/session or endpoint workaround",
-    "observations": [
-      "Visible checkbox and instruction before click",
-      "After click checkbox disappeared; requested build page did not open",
-      "Original checkbox returned unchecked"
-    ],
-    "proof_library_file_id": "libfile_267337fa21008191a8d34c34148c5a9b",
-    "result": "captcha_failed",
-    "schema": "gpc-browser-captcha-attempt/v1",
-    "source_changed": false,
-    "user_authority": {
-      "binding": "Requested approval to complete current Cloudflare human check before accessing existing original GPC build task",
-      "reply": "Да",
-      "submitted_moscow": "2026-10-09T23:41:05+03:00"
-    }
-  },
-  "changes": [
-    "Both post-remediation completion paths select named CompareTab",
-    "PowerShell checksums no longer overwrite rich native render manifest"
-  ],
+  "caps_preserved": 52,
   "continuation": [
     {
-      "contract": "exe-gpc-recovery/reviews52/build-continuation.txt",
-      "needs": "Current authorized CAPTCHA attempt failed; same cloud browser tab requires manual human check. Confirm actual build page access, record service remedy, then fresh prepay before new physical Native Send.",
-      "status": "blocked",
-      "task": "corrected68da single EXE cross-publish"
+      "requires": "Genuine original Git effect/terminal receipt and canonical reconciliation, then eligible exactcandidate publication/WindowsCI; no current exposed independent Windows backend",
+      "status": "blocked_external_evidence",
+      "task": "Exactcandidate Windows build/selftests/30 current UI renders/native DPI/RDP/pilot"
     },
     {
-      "needs": "Authenticated original Git terminal receipt and genuine canonical reconciliation, then admitted exactcandidate publication/CI; no evidence from unchangedsource rerun",
-      "status": "blocked",
-      "task": "exactcandidate Windows CI and native acceptance"
-    },
-    {
-      "requires": "Exact required Windows/pilot checks and existing integration authority",
+      "requires": "Required Windows/native/pilot gates and existing integration authority",
       "status": "pending_dependencies",
-      "task": "0.17.1 integration/release then0.17.2/0.18/0.19"
+      "task": "0.17.1 integration/release, then0.17.2/0.18/0.19"
     }
   ],
-  "existing_EXE": {
-    "candidate_sha": "53d4a46af7b8dd6304a6c6928e2b19cdbd3bce4a",
-    "includes_latest_corrections": false,
-    "library_file_id": "libfile_b6ca97b222748191812fbc99d8ece997",
-    "local_path": "/workspace/scratch/ac06fa404c9c/gpc-delivery/G-PC-Health-0.17.1-ui-candidate.exe",
-    "sha256": "0bdcb5df5fcac8c4044bb9ef352a2b7d9b1cae9e8487aa622a626c7db39e5f82"
+  "corrected_EXE": {
+    "Root_raw_chunks_PE_version_bundle_verification": "PASS",
+    "Windows_runtime": "NOT_RUN",
+    "actual_bytes_available": true,
+    "actual_previous53d4_EXE_preserved": true,
+    "bytes": 78763725,
+    "cross_publish": "PASS; zero warnings/errors; Linux cached SDK8.0.425",
+    "filename": "G-PC-Health-0.17.1-ui-corrected.exe",
+    "sha256": "9683e21d4d919a1c6380d7c386aca6fc2eb1bcc1d665dfd5304e61cdc2543639"
   },
+  "minor_native_acceptance_requirement": "QUALITY49-01: actual ancestor clipping/non-overlap, all5 footer buttons/status/progress, RU/EN at800x600 and remaining sizes; native DPI/RDP remain NOT_RUN",
+  "review_pair": "SPEC47_GREEN followed by independent QUALITY49_GREEN on exact68da",
   "scheduler_pause_preserved": true,
-  "schema": "gpc-owner-authorized-ui-continuation/v1",
+  "schema": "gpc-owner-authorized-ui-continuation/v2",
   "source_guard": {
-    "genuine_terminal_provider_receipt": "MISSING",
+    "genuine_original_terminal_provider_receipt": "MISSING",
     "lease_blob_preserved": "409cb124c37d7b4875e59c82716ac5b563c6424c",
     "original_CI6_UNKNOWN_preserved": true,
     "replay_or_guard_clear": "NOT_ADMITTED",
     "source_sha": "7aaefdebca68eed64c8e92d7dfff7384f0a3c800"
-  },
-  "user_authority": "Подними себе лимиты по необходимости сейчас и продолжай",
-  "verification": {
-    "QUALITY": {
-      "elapsed_seconds": "UNKNOWN; pool stores conservative268s upper bound only",
-      "minor_finding": "QUALITY49-01 dispositioned, not fixed; mandatory native screenshot/ancestor-clipping/non-overlap inspection retained",
-      "physical_start_time": "UNKNOWN",
-      "report_sha256": "4dddee2c1b81ebe9faea73a776253b9ef38b639c83e4e1bdb531b630bb20c5ef",
-      "result": "GREEN",
-      "reviewer": "/root/gpc_ui_quality49"
-    },
-    "SPEC": {
-      "report_sha256": "4f505681514f8756c21f339a1c3b7d9b3cba9e9287cfe294d82f0fe6035fe1ef",
-      "result": "GREEN",
-      "reviewer": "/root/gpc_ui_spec45"
-    },
-    "Windows_runtime_selftests_DPI_RDP_pilot": "NOT_RUN",
-    "budget_history_and_adapter52": "PASS",
-    "corrected_candidate_EXE": "NOT_AVAILABLE",
-    "corrected_candidate_compilation": "NOT_RUN",
-    "packet_13_file_bytes_and_CDC_tree": "PASS",
-    "static_completion_destination": "RED then GREEN, both paths"
   }
 }

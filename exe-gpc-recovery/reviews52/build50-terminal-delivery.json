@@ -1,0 +1,95 @@
+{
+  "Library_save": {
+    "all4_ordered_items_saved": true,
+    "items": [
+      {
+        "filename": "G-PC-Health-0.17.1-ui-corrected.exe",
+        "library_file_id": "libfile_be7bbef4ab94819197e444f0eefdc440",
+        "path": "/workspace/scratch/ac06fa404c9c/gpc-delivery/G-PC-Health-0.17.1-ui-corrected.exe"
+      },
+      {
+        "filename": "G-PC-Health-0.17.1-ui-corrected.exe.sha256",
+        "library_file_id": "libfile_69feb06b42d08191a2fa2387afe153f7",
+        "path": "/workspace/scratch/ac06fa404c9c/gpc-delivery/G-PC-Health-0.17.1-ui-corrected.exe.sha256"
+      },
+      {
+        "filename": "G-PC-Health-0.17.1-ui-corrected-verification.json",
+        "library_file_id": "libfile_d8ba87c90b548191a76aacb1a7de2c0f",
+        "path": "/workspace/scratch/ac06fa404c9c/gpc-delivery/G-PC-Health-0.17.1-ui-corrected-verification.json"
+      },
+      {
+        "filename": "G-PC-Health-ui-corrected-build.jpg",
+        "library_file_id": "libfile_20c34e0230dc81919c43ab9b51416683",
+        "path": "/workspace/scratch/ac06fa404c9c/gpc-delivery/G-PC-Health-ui-corrected-build.jpg"
+      }
+    ],
+    "local_metadata_applied_all4": true,
+    "status": "succeeded"
+  },
+  "Windows_runtime_selftests_DPI_RDP_pilot": "NOT_RUN",
+  "actual_Send": true,
+  "actual_terminal": true,
+  "artifact_commit": "d371fc81188e8ec631a447a5eaf4d8fb7a70acbd",
+  "at_utc": "2026-10-09T21:07:19.789163Z",
+  "attempt": "gpc-ui-corrected-build50-20261009",
+  "canonical_evidence_commit": "b1879fa648e5286f15b0dc148be8e27df2d86c71",
+  "elapsed_basis": "Actual browser terminal timer; precise backend start/finish timestamps not separately instrumented",
+  "elapsed_seconds": 114,
+  "guard_clear": false,
+  "handoff_digest_sha256": "a46075f91f4897def821e5571b42138e9d9653ced4b211af0aaa04faa26f55b5",
+  "integration_scope": "Read-only isolated artifact handoff only; no guarded product/ref/release integration",
+  "observed_terminal_UI": "Выполнено за 1 мин 54 с; completed response, composer Send restored",
+  "result_ref": "sha256:a46075f91f4897def821e5571b42138e9d9653ced4b211af0aaa04faa26f55b5",
+  "schema": "gpc-corrected-EXE-terminal-delivery/v1",
+  "source_publication": false,
+  "verification": {
+    "CDC_version": "2.12.1 unchanged",
+    "CI6_submission": "UNKNOWN preserved; no replay",
+    "FileVersion": "0.17.1.0",
+    "PE_kind": "PE32+",
+    "PE_machine": "AMD64",
+    "Windows_runtime": "NOT_RUN",
+    "actual_informational_commit_verified": true,
+    "bundle_verification": {
+      "Windows_Forms_and_EN_resources_present": true,
+      "bounds_decompression_sizes_hashes": "PASS",
+      "changed_entries": [
+        "G-PC-Health.dll",
+        "en/G-PC-Health.resources.dll"
+      ],
+      "entries": 453,
+      "runtime_tfm": "net8.0",
+      "runtimeconfig_and_deps_header_offsets": "PASS",
+      "unchanged_entries_against_prior_UI_EXE": 451,
+      "version": "6.0"
+    },
+    "bytes": 78763725,
+    "candidate": "68da62237ecfa5377fcc31c5641b3baaebea39a9",
+    "cross_publish": {
+      "SDK": "8.0.425",
+      "argv": [
+        "bash",
+        "/workspace/work/gpc-controller50/build.sh"
+      ],
+      "errors": 0,
+      "exit": 0,
+      "raw_log": "8.0.425\n  G.PcHealthCheck -> /workspace/work/gpc-controller50/snapshot/src/G.PcHealthCheck/bin/Release/net8.0-windows10.0.19041.0/win-x64/G-PC-Health.dll\n  G.PcHealthCheck -> /workspace/work/gpc-controller50/publish/\n",
+      "script": "#!/bin/bash\nset -eu\nexport DOTNET_ROOT=/workspace/.g-pc-health-tools/dotnet DOTNET_CLI_HOME=/workspace/.g-pc-health-tools/dotnet-home NUGET_PACKAGES=/workspace/.g-pc-health-tools/nuget DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_CLI_USE_MSBUILD_SERVER=0\ncd /workspace/work/gpc-controller50/snapshot\nmkdir -p src/G.PcHealthCheck/obj\ncp /workspace/work/gpc-native-fresh-recovery-20261009/product-worktree/src/G.PcHealthCheck/obj/project.assets.json src/G.PcHealthCheck/obj/\ncp /workspace/work/gpc-native-fresh-recovery-20261009/product-worktree/src/G.PcHealthCheck/obj/G.PcHealthCheck.csproj.nuget.g.* src/G.PcHealthCheck/obj/\n/workspace/.g-pc-health-tools/dotnet/dotnet --version\n/workspace/.g-pc-health-tools/dotnet/dotnet publish src/G.PcHealthCheck/G.PcHealthCheck.csproj --no-restore -c Release -r win-x64 --self-contained true -p:EnableWindowsTargeting=true -p:DesignTimeBuild=true -p:GeneratedBrandDir=/workspace/work/gpc-0171/brand -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:EnableCompressionInSingleFile=true -p:NuGetAudit=false -p:UseSharedCompilation=false -p:InformationalVersion=0.17.1+68da62237ecfa5377fcc31c5641b3baaebea39a9 -p:IncludeSourceRevisionInInformationalVersion=false --disable-build-servers -warnaserror -o /workspace/work/gpc-controller50/publish --verbosity minimal\nmv /workspace/work/gpc-controller50/publish/G-PC-Health.exe /workspace/work/gpc-controller50/publish/G-PC-Health-0.17.1-ui-corrected.exe\n",
+      "warnings": 0
+    },
+    "filename": "G-PC-Health-0.17.1-ui-corrected.exe",
+    "new_layout": "Overview, Recommendations, Actions; fixed footer; collapsed details",
+    "previous_baseline_Windows_failure": "37846023963: eight RU/EN footer reachability fixtures / selftest234; updated UI fixtures NOT_RUN",
+    "production_release": false,
+    "review": {
+      "QUALITY49": "GREEN",
+      "SPEC47": "GREEN",
+      "native_visibility_acceptance": "NOT_RUN; inspect ancestor clipping, overlap, all footer buttons/status/progress, RU/EN, DPI/RDP"
+    },
+    "schema": "gpc-Root-independent-delivered-byte-verification/v1",
+    "sha256": "9683e21d4d919a1c6380d7c386aca6fc2eb1bcc1d665dfd5304e61cdc2543639",
+    "tree": "0e501ab5a5ff728f23dd1203e8ae20aaa1b29e1e",
+    "validated_pilot": false,
+    "verified_raw_transport_chunks": 19
+  }
+}

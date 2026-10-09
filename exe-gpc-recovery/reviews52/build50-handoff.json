@@ -1,0 +1,238 @@
+{
+  "Windows_DPI_RDP_pilot": "NOT_RUN",
+  "admission": "59aebedcacc333caf8d571af20b2a778c2af4c36",
+  "all13_file_hashes_blobs_exact": true,
+  "artifact": {
+    "auxiliary_commit": "d371fc81188e8ec631a447a5eaf4d8fb7a70acbd",
+    "manifest": {
+      "FileVersion": "0.17.1.0",
+      "Windows_runtime": "NOT_RUN",
+      "binary_name": "G-PC-Health-0.17.1-ui-corrected.exe",
+      "bytes": 78763725,
+      "candidate": "68da62237ecfa5377fcc31c5641b3baaebea39a9",
+      "checksum_path": "artifact-handoff/ui-corrected68da/G-PC-Health-0.17.1-ui-corrected.exe.sha256",
+      "chunk_bytes_max": 4194304,
+      "chunk_count": 19,
+      "chunks": [
+        {
+          "blob_oid": "25b38e056fdae6a57c9f2aa27486ee419f0b457c",
+          "bytes": 4194304,
+          "index": 0,
+          "path": "artifact-handoff/ui-corrected68da/chunk-000.bin",
+          "sha256": "525eda200c06f74f8d983eaf742099d5308e287956326ac07b941a80eb6a47e7"
+        },
+        {
+          "blob_oid": "ce7a7be1151df8b80d88c8eb8497bbdad92008e2",
+          "bytes": 4194304,
+          "index": 1,
+          "path": "artifact-handoff/ui-corrected68da/chunk-001.bin",
+          "sha256": "e7553909da805bffa9dab9cc07a572ef3a66a1825b09353be6966ee775911b8b"
+        },
+        {
+          "blob_oid": "c02369a84553e962fc4db53cfea161a10515ebae",
+          "bytes": 4194304,
+          "index": 2,
+          "path": "artifact-handoff/ui-corrected68da/chunk-002.bin",
+          "sha256": "b26029a34ec10ce7706e7dc202434689442be3af361ab71186a72a194b180a98"
+        },
+        {
+          "blob_oid": "a7528463439350bfb0ef2a9f6d16a7659ff2c361",
+          "bytes": 4194304,
+          "index": 3,
+          "path": "artifact-handoff/ui-corrected68da/chunk-003.bin",
+          "sha256": "8f805d75084b28016440a72a7c1fe45c1d2a3b7ea46dacd26c829e4ea6e7c01e"
+        },
+        {
+          "blob_oid": "e14888f0f67a23f01d88c87a43b8db28efeba4a0",
+          "bytes": 4194304,
+          "index": 4,
+          "path": "artifact-handoff/ui-corrected68da/chunk-004.bin",
+          "sha256": "5887a14b100dbcdef7191c88c726d3c4274cd901ff2928a7258a8a694f52c339"
+        },
+        {
+          "blob_oid": "380f6d533dcae8927fb47c9e6417430ed907565c",
+          "bytes": 4194304,
+          "index": 5,
+          "path": "artifact-handoff/ui-corrected68da/chunk-005.bin",
+          "sha256": "8235bae87a9f00d70a536f4a9287fa74631e3c972d95818a1ce0c8a53f12e489"
+        },
+        {
+          "blob_oid": "3b65217fc3b1e2499f9b8cb671d0af3feccb8e50",
+          "bytes": 4194304,
+          "index": 6,
+          "path": "artifact-handoff/ui-corrected68da/chunk-006.bin",
+          "sha256": "e7268ecfc37d003a45c7ba39cbf641ab45a430e3dcfe89fc64d3afa1b68fffca"
+        },
+        {
+          "blob_oid": "bc38f87fd6fd2433036076a1c27e3f57190e6b39",
+          "bytes": 4194304,
+          "index": 7,
+          "path": "artifact-handoff/ui-corrected68da/chunk-007.bin",
+          "sha256": "611510465d384dfe02972eb504b8577dfd8dd6eafaa72ae5c8a1b7861fe3e365"
+        },
+        {
+          "blob_oid": "fb44687d2c46b7566575e8c78ff967866ec866e9",
+          "bytes": 4194304,
+          "index": 8,
+          "path": "artifact-handoff/ui-corrected68da/chunk-008.bin",
+          "sha256": "d3712d7e848d5972bfed4a9e7cbaebfaa13adef40c123c0e27cf3cffa6d53100"
+        },
+        {
+          "blob_oid": "1087ebd0af284699fc231065d4da6986281573e7",
+          "bytes": 4194304,
+          "index": 9,
+          "path": "artifact-handoff/ui-corrected68da/chunk-009.bin",
+          "sha256": "419fa554b388a41240eb6c63ebaabbfda52e58b5a7bfd725ee4f3106bd732f6a"
+        },
+        {
+          "blob_oid": "8345a069e5ac78ac5a2c9546e4d34753287f42a7",
+          "bytes": 4194304,
+          "index": 10,
+          "path": "artifact-handoff/ui-corrected68da/chunk-010.bin",
+          "sha256": "1cc0ab197687f29b145f85b136dd3d3679e29628e67d95fa3907c2e524b613ff"
+        },
+        {
+          "blob_oid": "1aaec8d7e8acc2df8f342a5c98af2ecc7b98ada1",
+          "bytes": 4194304,
+          "index": 11,
+          "path": "artifact-handoff/ui-corrected68da/chunk-011.bin",
+          "sha256": "60f9c2f0898224a34516c30eb08096ccd4ca453166fed1f5ee5c2a84478f644e"
+        },
+        {
+          "blob_oid": "d8007772e4d258f1c9511842d0a9b6955c7a12eb",
+          "bytes": 4194304,
+          "index": 12,
+          "path": "artifact-handoff/ui-corrected68da/chunk-012.bin",
+          "sha256": "48b923061c7e57040788761e381bb383b1600a336b680a5111f20915757e3e4c"
+        },
+        {
+          "blob_oid": "6051b5a7454e285b6c6615cf30287c13c427fb16",
+          "bytes": 4194304,
+          "index": 13,
+          "path": "artifact-handoff/ui-corrected68da/chunk-013.bin",
+          "sha256": "5a0a5ad97cad6e8cf9a35ac871eed527eaa9f8d7e4abcd8c3e752562cab7a9ac"
+        },
+        {
+          "blob_oid": "ef1c435c89080fb27030b9d99103f0e7004ad237",
+          "bytes": 4194304,
+          "index": 14,
+          "path": "artifact-handoff/ui-corrected68da/chunk-014.bin",
+          "sha256": "2d1a5be5c2d5cbcb5313424a9e822e6261b90d3ac8f4d3c9a1652c3788c44a9e"
+        },
+        {
+          "blob_oid": "167be075380c21778387f3789fa328833e1af5aa",
+          "bytes": 4194304,
+          "index": 15,
+          "path": "artifact-handoff/ui-corrected68da/chunk-015.bin",
+          "sha256": "d6cf28d5cca1168336e96ca18a5b6c89842bbc8b1976d7be91eaf8cd171c7aa3"
+        },
+        {
+          "blob_oid": "97b6e50932b9d3aabe4d5a65e90750b2798c0c81",
+          "bytes": 4194304,
+          "index": 16,
+          "path": "artifact-handoff/ui-corrected68da/chunk-016.bin",
+          "sha256": "895f8d711a738377a7ddaafa352196f53521b88422d24ae6135d3700c055082d"
+        },
+        {
+          "blob_oid": "79fc0020bcdc7836dffe599ca591d75846846eb4",
+          "bytes": 4194304,
+          "index": 17,
+          "path": "artifact-handoff/ui-corrected68da/chunk-017.bin",
+          "sha256": "2f192af6426cdc4de50f08fe933666858047d2819346b255dea1cc33790b8dfd"
+        },
+        {
+          "blob_oid": "5347b25b28001b6f0d97272e08db504602f9177e",
+          "bytes": 3266253,
+          "index": 18,
+          "path": "artifact-handoff/ui-corrected68da/chunk-018.bin",
+          "sha256": "e7b47aa6e7b41ab44e1723123a55a9507b76d342306076eec3b2e0fea8dc3542"
+        }
+      ],
+      "schema": "gpc-raw-artifact-handoff/v1",
+      "sha256": "9683e21d4d919a1c6380d7c386aca6fc2eb1bcc1d665dfd5304e61cdc2543639",
+      "tree": "0e501ab5a5ff728f23dd1203e8ae20aaa1b29e1e",
+      "validated_pilot": false,
+      "verification_path": "artifact-handoff/ui-corrected68da/verification.json"
+    },
+    "manifest_path": "artifact-handoff/ui-corrected68da/manifest.json",
+    "tree": "d862c89cbb6ccf3c9c5ff95c1eedfe174f4f7183"
+  },
+  "authenticated_parent": "53d4a46af7b8dd6304a6c6928e2b19cdbd3bce4a",
+  "base": "53636f45cc14075717e4e68b0a40ba020b96d9ca",
+  "boundary": {
+    "budget_unchanged": true,
+    "coordination": "59aebedcacc333caf8d571af20b2a778c2af4c36",
+    "guard_grant": "c3c43f96-f88f-4669-b344-13ae248ba382",
+    "guard_state": "original CI6 UNKNOWN retained",
+    "lease_generation": 31,
+    "new_CI": 0,
+    "new_agents": 0,
+    "owner": null,
+    "source": "7aaefdebca68eed64c8e92d7dfff7384f0a3c800",
+    "source_publication": false
+  },
+  "build": {
+    "SDK": "8.0.425",
+    "argv": [
+      "bash",
+      "/workspace/work/gpc-controller50/build.sh"
+    ],
+    "cached_assets": true,
+    "errors": 0,
+    "exit": 0,
+    "fresh_brand_generator": "NOT_RUN",
+    "raw_log": "8.0.425\n  G.PcHealthCheck -> /workspace/work/gpc-controller50/snapshot/src/G.PcHealthCheck/bin/Release/net8.0-windows10.0.19041.0/win-x64/G-PC-Health.dll\n  G.PcHealthCheck -> /workspace/work/gpc-controller50/publish/\n",
+    "script": "#!/bin/bash\nset -eu\nexport DOTNET_ROOT=/workspace/.g-pc-health-tools/dotnet DOTNET_CLI_HOME=/workspace/.g-pc-health-tools/dotnet-home NUGET_PACKAGES=/workspace/.g-pc-health-tools/nuget DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_CLI_USE_MSBUILD_SERVER=0\ncd /workspace/work/gpc-controller50/snapshot\nmkdir -p src/G.PcHealthCheck/obj\ncp /workspace/work/gpc-native-fresh-recovery-20261009/product-worktree/src/G.PcHealthCheck/obj/project.assets.json src/G.PcHealthCheck/obj/\ncp /workspace/work/gpc-native-fresh-recovery-20261009/product-worktree/src/G.PcHealthCheck/obj/G.PcHealthCheck.csproj.nuget.g.* src/G.PcHealthCheck/obj/\n/workspace/.g-pc-health-tools/dotnet/dotnet --version\n/workspace/.g-pc-health-tools/dotnet/dotnet publish src/G.PcHealthCheck/G.PcHealthCheck.csproj --no-restore -c Release -r win-x64 --self-contained true -p:EnableWindowsTargeting=true -p:DesignTimeBuild=true -p:GeneratedBrandDir=/workspace/work/gpc-0171/brand -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:EnableCompressionInSingleFile=true -p:NuGetAudit=false -p:UseSharedCompilation=false -p:InformationalVersion=0.17.1+68da62237ecfa5377fcc31c5641b3baaebea39a9 -p:IncludeSourceRevisionInInformationalVersion=false --disable-build-servers -warnaserror -o /workspace/work/gpc-controller50/publish --verbosity minimal\nmv /workspace/work/gpc-controller50/publish/G-PC-Health.exe /workspace/work/gpc-controller50/publish/G-PC-Health-0.17.1-ui-corrected.exe\n",
+    "source_selftests": "NOT_RUN on Linux",
+    "warnings": 0
+  },
+  "candidate": "68da62237ecfa5377fcc31c5641b3baaebea39a9",
+  "candidate_packet_bytes": 142286,
+  "candidate_packet_sha256": "f2b50f39ef333e71bf6a7ecd14ee0c680ab276524d299eb7f002b3e92b54c815",
+  "controller": 50,
+  "core": {
+    "files": 352,
+    "tree": "9c45d98c3254e9658d452c505d8c97698e3fc9a7",
+    "unchanged": true,
+    "version": "2.12.1"
+  },
+  "production_release_ready": false,
+  "raw_commit_exact": true,
+  "review": {
+    "P3_acceptance": "ancestor clipping/non-overlap/actual screenshots and busy progress NOT_RUN; mandatory native acceptance remains",
+    "QUALITY49_full_report": "# Independent ordered QUALITY49 — QUALITY_GREEN\n\n- Reviewer: /root/gpc_ui_quality49; attempt: gpc-ui-quality49-20261009. Independent of SPEC reviewer /root/gpc_ui_spec45 and of the implementation.\n- Candidate: 68da62237ecfa5377fcc31c5641b3baaebea39a9; tree: 0e501ab5a5ff728f23dd1203e8ae20aaa1b29e1e; parent: 53d4a46af7b8dd6304a6c6928e2b19cdbd3bce4a; original UI baseline: 53636f45cc14075717e4e68b0a40ba020b96d9ca.\n- Exact physical reviewer start timestamp: unknown; not instrumented. Admission/preparation lower boundary: 2026-10-09T20:15:51Z, from coordination e35fe1f8f5c7e391ac1cbd23f01d679b7c8fde69 commit timestamp. This is not a claimed actual spawn time. Finish: 2026-10-09T20:20:19Z. Parent observed successful actual collaboration.spawn_agent after durable readback; this reviewer genuinely executed the review.\n- Admission read: exe-gpc-recovery/reviews52/quality49-plan.json and quality49-state.json at e35fe1f8f5c7e391ac1cbd23f01d679b7c8fde69; read_only required quality task running; reservation462468e5-8a14-45b9-b404-9494f0f18be8. No product/shared-ref/release authority.\n- Prior terminal SPEC47_GREEN independently read before quality review; report gpc-ui-reviews-20261009/spec47.md, SHA-256 4f505681514f8756c21f339a1c3b7d9b3cba9e9287cfe294d82f0fe6035fe1ef, finished2026-10-09T20:14:44Z, before QUALITY admission.\n\n## Assessment\n\nNo concrete important correctness, safety, maintainability or scope defect found in the immutable candidate. QUALITY_GREEN means independent static code-quality review passed; it does not mean compilation, native UI acceptance, branch finishing or release passed.\n\nReviewed the complete13-path baseline-to-candidate diff, complete main/layout/localization/service-desk code, detail/context refresh and security-page integration, window/metric geometry helpers, synthetic fixture, render/hash publication logic, and retained localization/security self-tests. Read exact-candidate AGENTS.md, DEVELOPMENT.md, vendored CDC SKILL.md and specification-review-and-finishing.md, plus effective-adapter-cap52.yaml. Effective quality level is FULL: ordered independent SPEC then QUALITY. Verified vendored VERSION2.12.1 and exact subtree9c45d98c3254e9658d452c505d8c97698e3fc9a7. Mutable personal CDC2.12.2 was not used.\n\nThe MainShell percent/AutoSize rows own the tabs and footer separately (MainForm.cs73–84); only Overview contains the outer AutoScroll panel (89–106). Dedicated Recommendations/Actions remove the former stacked table allocation. Findings have compact rows and all complete column values remain copyable through the initially collapsed TextBox detail pane (MainForm.ReadableLayout.cs69–104). Detail refresh reacts to selection/current-cell changes and context availability tooltip updates, including unchanged-state/different-scope cases. Actions initialization targets its named page (MainForm.ServiceDeskActions.cs28–49). Constructor-local localization now runs after all pages exist, while OnLoad initializes the action bar and refreshes translated captions.\n\nStable named tab localization covers all8 pages. Both ApplyAsync and DoEverythingAsync explicitly select CompareTab, closing SPEC45's concrete wrong-page defect. Full diff contains no UAC, allowlist, worker nonce/session or same-user Temp policy changes; existing confirmation/preflight/execution boundaries remain. No changes touch the immutable CDC core or workflow definitions.\n\nRender evidence remains fail-closed for30 current-invocation distinct images with hashes; PowerShell writes powershell-sha256.json separately from the C# rich sha256.json manifest. Release notes and plan correctly preserve NOT_RUN Windows status. A modified local checkout was observed, so review used only pinned git objects and does not certify its cleanliness or its bytes.\n\n## Minor finding and durable disposition\n\n**QUALITY49-01 — P3, dispositioned coverage limitation; not fixed.**\n\nReadableLayoutSelfTest.cs65–68 defines RequireVisible using Control.Visible and the control rectangle contained in form.ClientRectangle. Lines70–80 apply it to footer/buttons/status. This proves form-relative geometry when executed, but it does not intersect the bounds with every clipping ancestor, test sibling overlap, or prove that the control is unobscured. A child extending beyond MainFooterButtons into another footer row could remain inside the form and pass this helper. Therefore the synthetic assertion alone must not be described as complete nested clipping/non-overlap acceptance. This is a concrete test coverage limitation, not proof that the candidate actually clips.\n\nDurable disposition: retain this report's QUALITY49-01 as an explicit native acceptance requirement. Before product acceptance, inspect actual current-candidate renders and the real main window at800x600 and other supported sizes with RU/EN, the actual menu, all5 buttons, status and marquee progress while collecting. Verify every button is contained in its flow/footer ancestors and cannot overlap/obscure the separate status/progress row; also inspect expanded/collapsed details and resizing. Native DPI/RDP and managed Windows11 pilot gates remain mandatory. Optional future assertions should intersect ancestor client bounds and check footer-row overlap; this review authorizes no code changes and claims no test fix. Static review can remain GREEN because no concrete important production defect was established and the acceptance limitation is retained rather than waived. Disposition reference: gpc-ui-reviews-20261009/quality49.md#minor-finding-and-durable-disposition.\n\n## Verification and remaining gates\n\nFresh commands exited0: exact commit/tree/parent and immutable CDC subtree checks; SPEC report SHA-256; all13 changed paths and full diff inspection; named result-navigation checks; stable8-page localization checks; RU/EN XML parsing and added keys; collapsed/copyable details architecture;30-current-invocation render-count and separate-manifest checks; git diff --check53636f45cc14075717e4e68b0a40ba020b96d9ca68da62237ecfa5377fcc31c5641b3baaebea39a9. Python output: STATIC_CHECKS_PASS. These are source/XML/digest checks only.\n\n**Windows compilation, self-tests, actual renders, footer/progress geometry, live language switching, DPI, RDP and managed Windows11 pilot: NOT_RUN, separate mandatory gates.** No SDK/runtime was installed or native task launched by this reviewer. The prior delivered EXE is bound to53d4 and is not corrected68da artifact evidence. Parent reports no new68da binary; Cloudflare verification blocked the earlier task before Send and Native48 was setup_failed without physical launch. Static quality review grants no integration/publication/release permission and does not clear the retained publication guard.\n\nOnly the authorized operational quality49.md and quality49.json reports were written. No product/core/ref/HEAD/budget/lease mutation, external write, or child delegation was performed. Review scope is terminal; parent task retains pending Windows/artifact/platform work.\n",
+    "QUALITY49_sha256": "4dddee2c1b81ebe9faea73a776253b9ef38b639c83e4e1bdb531b630bb20c5ef",
+    "SPEC47_full_report": "# Independent SPEC review 47 — SPEC_GREEN\n\n- Reviewer: /root/gpc_ui_spec45 acting on new paid attempt gpc-ui-spec47-20261009 (separate accounting from45).\n- Exact candidate: 68da62237ecfa5377fcc31c5641b3baaebea39a9; tree: 0e501ab5a5ff728f23dd1203e8ae20aaa1b29e1e; exact parent: 53d4a46af7b8dd6304a6c6928e2b19cdbd3bce4a; original UI baseline: 53636f45cc14075717e4e68b0a40ba020b96d9ca.\n- Start: 2026-10-09T20:13:12Z; finish: 2026-10-09T20:14:44Z.\n- Coordination binding read at37c44aeba1c5ef6914e803ef87ac9425bcaa5775: exe-gpc-recovery/reviews52/spec47-plan.json and spec47-state.json, required read_only spec task running, reservation34cedbb2-eaeb-432a-a1f3-5e0336b26ca4. It grants no product/shared-branch/release/merge authority.\n- Only git show/diff/grep and immutable-object static assertions were used for product assessment. No product/core/ref/HEAD/budget edits, child agents, or external writes. Authorized local operational report writes only.\n- Applicable exact-candidate AGENTS.md, DEVELOPMENT.md, vendored CDC2.12.1, approved design/plan and effective adapter were loaded during45; immutable delta verifies their bytes unchanged in47. CDC VERSION2.12.1 and exact package tree9c45d98c3254e9658d452c505d8c97698e3fc9a7 freshly verified; mutable personal2.12.2 not used.\n\n## Prior finding resolved by exact source evidence\n\n**SPEC45-01 — P2 / resolved at candidate 68da62237ecfa5377fcc31c5641b3baaebea39a9.**\n\n- MainForm.cs ApplyAsync(), line397 now selects `_tabs.SelectedTab = _tabs.TabPages[\"CompareTab\"];` after PopulateVerification.\n- ServiceDeskFullBatchUi.cs DoEverythingAsync(), line136 uses the same named identity after PopulateVerification.\n- MainForm.cs Tabs(), line160 creates the comparison page and sets Name=\"CompareTab\" before adding it. CompareTab() continues to own both before/after and remediation result grids.\n- Immutable parent→candidate diff contains exactly these two destination corrections plus the independent PowerShell manifest filename correction; no execution/confirmation/worker/security policy logic changes.\n- Fresh Python static assertions on both whole candidate files pass: both completion paths use CompareTab, neither contains numeric _tabs SelectedIndex assignments or numeric TabPages lookup. This proves closure of the concrete wrong-page mapping. It is a static regression check, not native execution of a remediation or WinForms scenario.\n\nResolution reference: git:68da62237ecfa5377fcc31c5641b3baaebea39a9:src/G.PcHealthCheck/MainForm.cs:ApplyAsync and git:68da62237ecfa5377fcc31c5641b3baaebea39a9:src/G.PcHealthCheck/ServiceDeskFullBatchUi.cs:DoEverythingAsync.\n\n## Full retained UI requirements\n\n| Requirement | Whole candidate evidence | Static disposition |\n|---|---|---|\n| Overview header/context/seven metrics/triage | MainForm.cs OverviewTab(), lines89–106; SecurityPosture InitializeSecurityPostureUi() adds7th security card | Compliant |\n| Dedicated full findings and action tables; batch bar on Actions | MainForm.cs RecommendationsTab()/ActionsTab(); ServiceDeskActions EnsureServiceDeskActionsUi() targets named ActionsTab | Compliant |\n| Details initially collapsed and opened by button/doubleclick | MainForm.ReadableLayout.cs DetailPane() uses Panel2Collapsed=true and both handlers | Compliant |\n| Complete copyable long content including hidden availability/reason/scope | ReadOnly multiline TextBox with Both scrollbars, RefreshSelectedDetails enumerates all columns including invisible ones and Availability tooltip; ExecutionContext RefreshActionAvailability explicitly refreshes after tooltip updates | Compliant |\n| Fixed footer with all5 wrapping buttons plus separate collection status | MainShell DockFill with percent tab row and AutoSize footer row; MainFooterButtons FlowLayoutPanel wraps5 buttons; MainStatusRow separately owns progress and CollectionStatus; only Overview viewport scrolls | Compliant source architecture; actual800x600 bounds pending Windows |\n|800x600 minimum and work-area clamp | MainForm constructor MinimumSize800x600 plus ReadableWindowLayout.Attach/Fit | Compliant source architecture; native scaling pending |\n| RU/EN stable tab localization/navigation | LocalizeTabsAndColumns maps all8 stable identities and details toggles; RU/EN keys parsed nonempty; both action completion destinations now named CompareTab; security navigation uses actual page reference | Compliant source; in-place live switch still requires native observation |\n| Actual main menu retains footer reachability | CommonProblemsMenu adds DockTop MenuStrip; MainShell DockFill reserves client remainder; synthetic fixture attaches actual menu before Show and checks footer/status on all pages/after Overview scroll | Compliant source architecture; actual docking/bounds pending Windows |\n| Existing action/UAC/security execution behavior | Full baseline→candidate diff retains original execution boundaries, confirmation and security code; only corrected result-page destinations alter action flow presentation | No scope drift found |\n\n## Manifest correction\n\nTest-ReadableLayout.ps1 line10 writes `powershell-sha256.json`; ReadableLayoutSelfTest CompleteRenderEvidence() still writes native `sha256.json`. Therefore PowerShell no longer overwrites the structured C#30-current-invocation manifest. Wholecandidate immutable-source assertions confirmed both distinct names. No claim of30 actual new renders is made.\n\n## Checks and limitations\n\nFresh review checks exited0: candidate commit/parent/tree binding; wholecandidate static assertions for named destination, collapsed/full details, tooltip refresh, shell/footer/status/minimum, all8 named localization pages, RU/EN new resource XML values; distinct manifest names; immutable CDC VERSION/tree; `git diff --check 53636f45cc14075717e4e68b0a40ba020b96d9ca 68da62237ecfa5377fcc31c5641b3baaebea39a9`.\n\n**Windows runtime/selftests/native renders/800x600 footer geometry/live language switch/DPI/RDP/managed Windows11 pilot remain NOT_RUN and separate mandatory acceptance gates.** Static SPEC_GREEN does not mean runtimeGREEN, compilationGREEN, artifact acceptance, integration or release approval. The parent-supplied earlier cross-published EXE was bound to prior53d4, so it is not exact corrected68da artifact evidence. Original Windows baseline1447b23 retained8 footer failures and cannot validate this candidate.\n\nNo open SPEC findings remain. Ordered independent QUALITY may proceed on exact candidate68da62237ecfa5377fcc31c5641b3baaebea39a9; required Windows/platform/artifact gates remain pending. This report contains no implementation or permission to publish guarded source/pilot.\n",
+    "SPEC47_sha256": "4f505681514f8756c21f339a1c3b7d9b3cba9e9287cfe294d82f0fe6035fe1ef",
+    "corrections": "RED wrong Events destination / GREEN CompareTab for both paths; metadata overwrite RED / separate output GREEN",
+    "ordered_static_disposition": "SPEC47_GREEN then QUALITY49_GREEN; no new review performed by build50"
+  },
+  "schema": "gpc-readable-tabs-candidate-build/v1",
+  "token": "e3122ca6-5071-4ac7-af11-85fd17c932ae",
+  "tree": "0e501ab5a5ff728f23dd1203e8ae20aaa1b29e1e",
+  "verification": {
+    "FileVersion": "0.17.1.0",
+    "PE_kind": "PE32+",
+    "PE_machine": "AMD64 0x8664",
+    "Windows_runtime": "NOT_RUN",
+    "bytes": 78763725,
+    "candidate": "68da62237ecfa5377fcc31c5641b3baaebea39a9",
+    "core": "2.12.1 unchanged352",
+    "file": "/workspace/work/gpc-controller50/publish/G-PC-Health-0.17.1-ui-corrected.exe",
+    "generated_brand_assets": "existing retained assets; fresh Windows generator NOT_RUN",
+    "guard": "UNKNOWN preserved",
+    "informational_commit_in_actual_resource": true,
+    "known_native_RED": "37846023963/selftest234",
+    "product_source_unchanged": true,
+    "publish_exit": 0,
+    "publish_job": "controller50-isolated-cross-build",
+    "schema": "gpc-local-diagnostic-exe-verification/v1",
+    "self_contained_requested": true,
+    "sha256": "9683e21d4d919a1c6380d7c386aca6fc2eb1bcc1d665dfd5304e61cdc2543639",
+    "single_file_directory": true,
+    "subsystem": 2,
+    "tree": "0e501ab5a5ff728f23dd1203e8ae20aaa1b29e1e",
+    "validated_pilot": false,
+    "version_source": "actual PE RT_VERSION / VS_FIXEDFILEINFO, not project metadata"
+  }
+}

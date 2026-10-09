@@ -2375,6 +2375,34 @@
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
       "type": "reserve",
       "wake_id": "gpc-manual-captcha-resolved-20261009-235416"
+    },
+    {
+      "at_utc": "2026-10-09T21:07:19.789163Z",
+      "event_id": "gpc-ui-corrected-build50-20261009-agent_start-actual-terminal",
+      "failure": null,
+      "reservation_id": "gpc-ui-corrected-build50-20261009-agent_start",
+      "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": 114,
+        "tokens": null
+      },
+      "wake_id": "gpc-manual-captcha-resolved-20261009-235416"
+    },
+    {
+      "at_utc": "2026-10-09T21:07:19.789163Z",
+      "event_id": "gpc-ui-corrected-build50-20261009-compute_start-actual-terminal",
+      "failure": null,
+      "reservation_id": "gpc-ui-corrected-build50-20261009-compute_start",
+      "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": 114,
+        "tokens": null
+      },
+      "wake_id": "gpc-manual-captcha-resolved-20261009-235416"
     }
   ],
   "policy": {

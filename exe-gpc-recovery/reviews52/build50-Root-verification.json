@@ -1,0 +1,50 @@
+{
+  "schema": "gpc-Root-independent-delivered-byte-verification/v1",
+  "filename": "G-PC-Health-0.17.1-ui-corrected.exe",
+  "bytes": 78763725,
+  "sha256": "9683e21d4d919a1c6380d7c386aca6fc2eb1bcc1d665dfd5304e61cdc2543639",
+  "PE_machine": "AMD64",
+  "PE_kind": "PE32+",
+  "FileVersion": "0.17.1.0",
+  "candidate": "68da62237ecfa5377fcc31c5641b3baaebea39a9",
+  "tree": "0e501ab5a5ff728f23dd1203e8ae20aaa1b29e1e",
+  "actual_informational_commit_verified": true,
+  "Windows_runtime": "NOT_RUN",
+  "validated_pilot": false,
+  "previous_baseline_Windows_failure": "37846023963: eight RU/EN footer reachability fixtures / selftest234; updated UI fixtures NOT_RUN",
+  "new_layout": "Overview, Recommendations, Actions; fixed footer; collapsed details",
+  "CI6_submission": "UNKNOWN preserved; no replay",
+  "CDC_version": "2.12.1 unchanged",
+  "production_release": false,
+  "verified_raw_transport_chunks": 19,
+  "bundle_verification": {
+    "version": "6.0",
+    "entries": 453,
+    "bounds_decompression_sizes_hashes": "PASS",
+    "runtimeconfig_and_deps_header_offsets": "PASS",
+    "runtime_tfm": "net8.0",
+    "Windows_Forms_and_EN_resources_present": true,
+    "unchanged_entries_against_prior_UI_EXE": 451,
+    "changed_entries": [
+      "G-PC-Health.dll",
+      "en/G-PC-Health.resources.dll"
+    ]
+  },
+  "cross_publish": {
+    "SDK": "8.0.425",
+    "exit": 0,
+    "warnings": 0,
+    "errors": 0,
+    "argv": [
+      "bash",
+      "/workspace/work/gpc-controller50/build.sh"
+    ],
+    "script": "#!/bin/bash\nset -eu\nexport DOTNET_ROOT=/workspace/.g-pc-health-tools/dotnet DOTNET_CLI_HOME=/workspace/.g-pc-health-tools/dotnet-home NUGET_PACKAGES=/workspace/.g-pc-health-tools/nuget DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_CLI_USE_MSBUILD_SERVER=0\ncd /workspace/work/gpc-controller50/snapshot\nmkdir -p src/G.PcHealthCheck/obj\ncp /workspace/work/gpc-native-fresh-recovery-20261009/product-worktree/src/G.PcHealthCheck/obj/project.assets.json src/G.PcHealthCheck/obj/\ncp /workspace/work/gpc-native-fresh-recovery-20261009/product-worktree/src/G.PcHealthCheck/obj/G.PcHealthCheck.csproj.nuget.g.* src/G.PcHealthCheck/obj/\n/workspace/.g-pc-health-tools/dotnet/dotnet --version\n/workspace/.g-pc-health-tools/dotnet/dotnet publish src/G.PcHealthCheck/G.PcHealthCheck.csproj --no-restore -c Release -r win-x64 --self-contained true -p:EnableWindowsTargeting=true -p:DesignTimeBuild=true -p:GeneratedBrandDir=/workspace/work/gpc-0171/brand -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:EnableCompressionInSingleFile=true -p:NuGetAudit=false -p:UseSharedCompilation=false -p:InformationalVersion=0.17.1+68da62237ecfa5377fcc31c5641b3baaebea39a9 -p:IncludeSourceRevisionInInformationalVersion=false --disable-build-servers -warnaserror -o /workspace/work/gpc-controller50/publish --verbosity minimal\nmv /workspace/work/gpc-controller50/publish/G-PC-Health.exe /workspace/work/gpc-controller50/publish/G-PC-Health-0.17.1-ui-corrected.exe\n",
+    "raw_log": "8.0.425\n  G.PcHealthCheck -> /workspace/work/gpc-controller50/snapshot/src/G.PcHealthCheck/bin/Release/net8.0-windows10.0.19041.0/win-x64/G-PC-Health.dll\n  G.PcHealthCheck -> /workspace/work/gpc-controller50/publish/\n"
+  },
+  "review": {
+    "SPEC47": "GREEN",
+    "QUALITY49": "GREEN",
+    "native_visibility_acceptance": "NOT_RUN; inspect ancestor clipping, overlap, all footer buttons/status/progress, RU/EN, DPI/RDP"
+  }
+}
