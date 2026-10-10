@@ -1,0 +1,75 @@
+{
+  "schema": "gpc-huawei-independent-spec-review/v1",
+  "task_id": "spec",
+  "attempt_id": "gpc-huawei-spec51-20261010",
+  "reservation_token": "9b0b874b-fd38-49cc-a2bd-a452040e84e7",
+  "disposition": "SPEC_GREEN",
+  "scope": "Exact read-only discovery ZIP and unapplied engineering proposal; no product acceptance",
+  "coordination_claim_commit": "528e9b2c9d62350b873a52e9552ac7033a9dc8e3",
+  "cdc_pinned_version": "2.12.1",
+  "observed_start_utc": "2026-10-10T01:39:21Z",
+  "observed_finish_utc": "2026-10-10T01:41:24Z",
+  "provider_agent_start_utc": null,
+  "timing_basis": "First clock observation and report-preparation finish; provider launch unknown",
+  "candidate_sha": "68da62237ecfa5377fcc31c5641b3baaebea39a9",
+  "zip_sha256": "a76d2c0f1d0d9d59fd569ef4dd0b3a7d848ca2af74ca8ad79c9bf97d01c21539",
+  "patch_sha256": "edf2b7f28578efc5284490f28dad42a31f2b410ff82b5618367e2f02fabcb693",
+  "probe_sha256": "3fa0a335dcb4d339078c58e49960a02e5115fbb2d73941fd3356abf3e27ddac4",
+  "report_path": "/workspace/scratch/ac06fa404c9c/huawei1010-reviews/spec51.md",
+  "report_sha256": "66fdf56829d461649f54e1ce2fc64deb7837657c80ed55e2badf1d710c389dbf",
+  "blocking_findings": 0,
+  "findings": [
+    {
+      "id": "S1",
+      "severity": "HIGH",
+      "disposition": "Existing source defect accurately documented; not an artifact blocker",
+      "summary": "/v full identifiers conflict with alias-only firmware-manager lookup"
+    },
+    {
+      "id": "S2",
+      "severity": "INFO",
+      "disposition": "Meets bounded source-inspected scope",
+      "summary": "No OEM method/ordinal/opcode calls or BIOS/BCD writes, elevation or policy changes, or full SMBIOS/PII export"
+    },
+    {
+      "id": "S3",
+      "severity": "INFO",
+      "disposition": "Preserved with CIM-code interpretation required for OEM absence",
+      "summary": "Absence, errors, and unknown/unavailable states do not imply false"
+    },
+    {
+      "id": "S4",
+      "severity": "INFO",
+      "disposition": "Accurately unconfirmed",
+      "summary": "No usable validated Huawei BIOS GET contract established"
+    },
+    {
+      "id": "S5",
+      "severity": "INFO",
+      "disposition": "Accurately NOT_RUN",
+      "summary": "Windows/Huawei/compiler/UI/PowerShell selftests not executed"
+    }
+  ],
+  "verification": {
+    "archive_members_compared": 7,
+    "manifest_hashes_checked": 6,
+    "exact_source_git_show": true,
+    "proposed_bytes_hash_verified_in_memory": true,
+    "patch_applied": false,
+    "patch_compiled": false,
+    "Windows_runtime": "NOT_RUN",
+    "Huawei_runtime": "NOT_RUN",
+    "PowerShell_embedded_selftests": "NOT_RUN",
+    "independent_tree_sitter_execution": "NOT_RUN",
+    "product_source_or_exe_changed": false,
+    "backend_started": false,
+    "coordination_changed": false,
+    "product_acceptance_authorized": false
+  },
+  "limitations": [
+    "Original HTML observations supplied by task context, no original HTML independently reverified",
+    "Static source/spec review is not Windows execution",
+    "Independent QUALITY and root integration outstanding",
+    "Product source7aa and unresolved original CI6 guards remain untouched"
+  ]
+}

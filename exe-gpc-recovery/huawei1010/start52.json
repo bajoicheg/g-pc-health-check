@@ -1,0 +1,12 @@
+{
+  "SPEC_actual_terminal": true,
+  "SPEC_pool_runtime_basis": "conservative upper bound from prepay to observed terminal; ledger elapsed unknown",
+  "SPEC_provider_start_time": "UNKNOWN",
+  "SPEC_sha256": "66fdf56829d461649f54e1ce2fc64deb7837657c80ed55e2badf1d710c389dbf",
+  "actual_worker_start": "NOT_YET",
+  "artifact_sha256": "a76d2c0f1d0d9d59fd569ef4dd0b3a7d848ca2af74ca8ad79c9bf97d01c21539",
+  "at_utc": "2026-10-10T01:42:12.961702Z",
+  "attempt": "gpc-huawei-quality52-20261010",
+  "reservation_token": "3ca6f28a-bfaf-4dca-b8f3-f754412076c0",
+  "role": "READ_ONLY_REVIEW"
+}
