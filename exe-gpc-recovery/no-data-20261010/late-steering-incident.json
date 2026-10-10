@@ -1,0 +1,15 @@
+{
+  "schema": "gpc-late-steering-race/v1",
+  "main_task_terminal_UI_seconds": 1336,
+  "extra_message_sent_after_main_terminal": "2026-10-10 22:33 MSK observed UI",
+  "extra_turn_terminal": "2026-10-10 22:34 MSK observed UI",
+  "extra_physical_turn": true,
+  "prepaid_before_send": false,
+  "reason": "Fresh source compatibility observation was sent after task crossed its terminal boundary, using previously active composer state",
+  "actual_observed_result": "Acknowledgement only; completed handoff/candidate unchanged; no command execution surfaced",
+  "stop_requested": true,
+  "stop_result": "Already produced terminal answer; Send restored, Stop absent",
+  "elapsed_seconds": null,
+  "compute_usage_unknown_conservatively_charged": true,
+  "next_control": "Refresh current UI immediately before steering; if terminal, do not send a same-task continuation"
+}

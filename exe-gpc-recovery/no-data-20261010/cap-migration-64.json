@@ -1,0 +1,44 @@
+{
+  "old_policy": {
+    "actions_budget": "conserve",
+    "checkpoint_reserve": {
+      "tokens": 4000,
+      "tool_calls": 8
+    },
+    "max_parallel_agents": 4,
+    "provider_max_age_seconds": 300,
+    "task_limits": {
+      "agent_starts": 63,
+      "ci_starts": 13,
+      "compute_starts": null
+    },
+    "wake_limits": {
+      "compute_starts": 6,
+      "status_polls": null,
+      "tool_calls": 80
+    }
+  },
+  "new_policy": {
+    "actions_budget": "conserve",
+    "checkpoint_reserve": {
+      "tokens": 4000,
+      "tool_calls": 8
+    },
+    "max_parallel_agents": 4,
+    "provider_max_age_seconds": 300,
+    "task_limits": {
+      "agent_starts": 64,
+      "ci_starts": 13,
+      "compute_starts": null
+    },
+    "wake_limits": {
+      "compute_starts": 6,
+      "status_polls": null,
+      "tool_calls": 80
+    }
+  },
+  "authority": "Owner authorizes necessary limits and current features",
+  "reason": "Retrospective extra physical Native turn charge, then ordered exact-candidate SPEC63 and QUALITY64",
+  "history_preserved": true,
+  "incident_prepaid": false
+}

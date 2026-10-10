@@ -2809,6 +2809,113 @@
         "tokens": null,
         "elapsed_seconds": null
       }
+    },
+    {
+      "type": "outcome",
+      "event_id": "gpc-no-data61-20261010-agent_start-terminal",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-no-data-20261010",
+      "at_utc": "2026-10-10T19:40:14.044262Z",
+      "reservation_id": "gpc-no-data61-20261010-agent_start",
+      "status": "succeeded",
+      "usage": {
+        "tokens": null,
+        "elapsed_seconds": 1336
+      },
+      "failure": null
+    },
+    {
+      "type": "outcome",
+      "event_id": "gpc-no-data61-20261010-compute_start-terminal",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-no-data-20261010",
+      "at_utc": "2026-10-10T19:40:14.044262Z",
+      "reservation_id": "gpc-no-data61-20261010-compute_start",
+      "status": "succeeded",
+      "usage": {
+        "tokens": null,
+        "elapsed_seconds": 1336
+      },
+      "failure": null
+    },
+    {
+      "type": "reserve",
+      "event_id": "gpc-no-data62-late-steering-20261010-agent_start",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-no-data-20261010",
+      "at_utc": "2026-10-10T19:40:14.044262Z",
+      "operation_key": "sha256:bdcbff2b2c777985712669c52e230bf4c19a5d3b4737805d9ae5b8e7488c9649",
+      "attempt_id": "gpc-no-data62-late-steering-20261010",
+      "kind": "agent_start",
+      "scope": "gpc/retrospective-unprepaid-late-steering-incident",
+      "recovery_ref": null,
+      "cost": {
+        "tool_calls": 1,
+        "tokens": null,
+        "elapsed_seconds": null
+      }
+    },
+    {
+      "type": "outcome",
+      "event_id": "gpc-no-data62-late-steering-20261010-agent_start-terminal",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-no-data-20261010",
+      "at_utc": "2026-10-10T19:40:14.044262Z",
+      "reservation_id": "gpc-no-data62-late-steering-20261010-agent_start",
+      "status": "succeeded",
+      "usage": {
+        "tokens": null,
+        "elapsed_seconds": null
+      },
+      "failure": null
+    },
+    {
+      "type": "reserve",
+      "event_id": "gpc-no-data62-late-steering-20261010-compute_start",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-no-data-20261010",
+      "at_utc": "2026-10-10T19:40:14.044262Z",
+      "operation_key": "sha256:3dd6e8e3da9e067405b55084545c4ebb2adf8c695e4e7b4fa7059a1375fc9995",
+      "attempt_id": "gpc-no-data62-late-steering-20261010",
+      "kind": "compute_start",
+      "scope": "gpc/retrospective-unprepaid-late-steering-incident",
+      "recovery_ref": null,
+      "cost": {
+        "tool_calls": 1,
+        "tokens": null,
+        "elapsed_seconds": null
+      }
+    },
+    {
+      "type": "outcome",
+      "event_id": "gpc-no-data62-late-steering-20261010-compute_start-terminal",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-no-data-20261010",
+      "at_utc": "2026-10-10T19:40:14.044262Z",
+      "reservation_id": "gpc-no-data62-late-steering-20261010-compute_start",
+      "status": "succeeded",
+      "usage": {
+        "tokens": null,
+        "elapsed_seconds": null
+      },
+      "failure": null
+    },
+    {
+      "type": "reserve",
+      "event_id": "gpc-no-data63-spec-20261010-agent_start",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-no-data-20261010",
+      "at_utc": "2026-10-10T19:40:14.044262Z",
+      "operation_key": "sha256:5dcf4a67a286dace81b65fdabeb7b0972637f4be2648b476c2ed363fbf959730",
+      "attempt_id": "gpc-no-data63-spec-20261010",
+      "kind": "agent_start",
+      "scope": "gpc/exact-candidate-spec-review",
+      "recovery_ref": null,
+      "cost": {
+        "tool_calls": 1,
+        "tokens": null,
+        "elapsed_seconds": null
+      }
     }
   ],
   "policy": {
@@ -2820,7 +2927,7 @@
     "max_parallel_agents": 4,
     "provider_max_age_seconds": 300,
     "task_limits": {
-      "agent_starts": 63,
+      "agent_starts": 64,
       "ci_starts": 13,
       "compute_starts": null
     },
@@ -2830,7 +2937,7 @@
       "tool_calls": 80
     }
   },
-  "policy_digest": "sha256:410fe4decffe93b00a74c875c01a00ad89181bf20416f425a2515c181895c699",
+  "policy_digest": "sha256:11d44db79c593e9123f6281895e91df41cf82538bf9fbb4d89770df953f9e3ab",
   "schema": "budget-ledger/v1",
   "task_id": "g-pc-health-check-0.17.0-pre-integration",
   "wake_ids": [
