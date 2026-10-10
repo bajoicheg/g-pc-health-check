@@ -1,0 +1,593 @@
+diff --git a/docs/releases/0.17.1-evidence.md b/docs/releases/0.17.1-evidence.md
+new file mode 100644
+index 0000000..f9a04d1
+--- /dev/null
++++ b/docs/releases/0.17.1-evidence.md
+@@ -0,0 +1,13 @@
++# G PC Health 0.17.1 — missing-evidence candidate
++
++This isolated candidate is based on ca354d2194a454b0356057c2db34e94cea8ffbbe. It retains the corrected named tabs, fixed footer and Huawei BCD correction. It is not a source publication or production release.
++
++Unknown security controls now expose an additive explanation: a stable reason code, retained source identities or an explicit “not recorded”, and localized manual next steps. Only explicit collector state/error tokens establish denial, timeout, cancellation, missing observation, unsupported fields or conflict. Missing administrator policy differs from unreadable/wrong-type policy. Empty or generic evidence remains “cause not established”; Unknown never means protection or a BIOS password is absent. Scores, weights, statuses, coverage and original observations are unchanged. Complete selectable row details, HTML, JSON and clipboard retain the explanation and raw evidence.
++
++Triage distinguishes incomplete collection/coverage from a checked assessment without significant findings. Missing technical signals receive the same honest source limits and safe guidance; the application does not invent a failed provider or an access requirement. CRIT/WARN ordering and health/security separation remain unchanged.
++
++A compact Overview symptom menu opens existing performance, incident, resource-probe and printing diagnostics. Selecting a route records the original symptom note for JSON/HTML/clipboard, does not alter an action batch or run repairs, and leaves the destination idle until an explicit user operation. Existing Common Problems menu behavior is retained; only the symptom route requests its idle mode. The footer remains outside scrolling.
++
++Actual portable source-linked checks: behavior RED 1/10 → GREEN 10/10; unchanged security evaluator 9/9. Existing guidance/triage harness has seven failures on Linux, reproduced identically against the exact parent (12/19 guidance cases); these are not represented as passing or changed to green. Complete Windows-target cross-build uses SDK 8.0.425 and warnings as errors. Exact commands, logs, final publication identity, source bundle and binary checksum are retained in the external immutable handoff, avoiding a circular self-SHA.
++
++Windows runtime, all WinForms/selftests/rendered screenshots, ancestor clipping, busy progress, native DPI/RDP, UAC, Huawei device checks and Windows 11 pilot are NOT_RUN. Independent SPEC/QUALITY and owner integration remain pending. The original CI6 Git receive-pack outcome remains UNKNOWN; this local artifact does not reconcile it or authorize a retry. CDC 2.12.1 and shared source remain unchanged.
+diff --git a/src/G.PcHealthCheck/CommonProblemsForm.cs b/src/G.PcHealthCheck/CommonProblemsForm.cs
+index 6147e66..4f42510 100644
+--- a/src/G.PcHealthCheck/CommonProblemsForm.cs
++++ b/src/G.PcHealthCheck/CommonProblemsForm.cs
+@@ -23,7 +23,7 @@ internal sealed class CommonProblemsForm : Form
+     private bool _busy;
+     private bool _commandRunning;
+ 
+-    public CommonProblemsForm()
++    public CommonProblemsForm(bool autoScan = true)
+     {
+         ReadableWindowLayout.Attach(this);
+         Text = AppLocalization.T("CommonProblems.Form.Title");
+@@ -81,7 +81,7 @@ internal sealed class CommonProblemsForm : Form
+         };
+         _export.Click += (_, _) => Export();
+         _dns.Click += async (_, _) => await FlushDnsAsync();
+-        Shown += async (_, _) => await ScanAsync();
++        if (autoScan) Shown += async (_, _) => await ScanAsync();
+         FormClosing += (_, e) =>
+         {
+             if (_commandRunning)
+diff --git a/src/G.PcHealthCheck/EvidencePresentationSelfTest.cs b/src/G.PcHealthCheck/EvidencePresentationSelfTest.cs
+new file mode 100644
+index 0000000..845ee83
+--- /dev/null
++++ b/src/G.PcHealthCheck/EvidencePresentationSelfTest.cs
+@@ -0,0 +1,73 @@
++using System.Text.Json;
++namespace G.PcHealthCheck;
++internal static class EvidencePresentationSelfTest
++{
++ public static int Run()
++ {
++  int failed=0,total=0;
++  void Test(string name,Action body){total++;try{body();Console.WriteLine("Evidence PASS: "+name);}catch(Exception ex){failed++;Console.Error.WriteLine("Evidence FAIL: "+name+": "+ex.Message);}}
++  void Require(bool value,string message){if(!value)throw new InvalidOperationException(message);}
++  EvidenceExplanation Explain(params SecurityEvidence[] e)=>MissingEvidenceExplanation.For(e);
++  Test("explicit denial, timeout and cancellation use exact retained tokens",()=>{
++   foreach(var pair in new[]{("UnauthorizedAccessException","access_denied"),("TimeoutException","timeout"),("OperationCanceledException","cancelled")})
++    Require(Explain(new SecurityEvidence("CollectionError",pair.Item1,"WindowsUpdate")).ReasonCode==pair.Item2,pair.Item1);
++  });
++  Test("generic exception, null and empty never invent rights or unsupported OEM",()=>{
++   Require(Explain().ReasonCode=="cause_not_established","empty cause");
++   Require(Explain(new SecurityEvidence("AdminPasswordSet","Unknown","SMBIOS Type24")).ReasonCode=="cause_not_established","null BIOS is not unsupported or password absent");
++   Require(Explain(new SecurityEvidence("CollectionError","COMException password=secret","WMI")).ReasonCode=="cause_not_established","generic COM reason");
++   Require(!MissingEvidenceExplanation.Format(Explain(new SecurityEvidence("CollectionError","password=secret","WMI")),"en").Contains("secret"),"raw exception copied");
++  });
++  Test("explicit unsupported and missing observation are distinguishable",()=>{
++   Require(Explain(new SecurityEvidence("CollectionState","UnsupportedManufacturer","Firmware")).ReasonCode=="unsupported","explicit OEM");
++   Require(Explain(new SecurityEvidence("CollectionState","MissingObservation","TPM")).ReasonCode=="not_collected","missing observation");
++  });
++  Test("missing local admin policy differs from unreadable or wrong type",()=>{
++   Require(Explain(new SecurityEvidence("PolicyConfigured","False","HKLM machine policy")).ReasonCode=="policy_missing","missing policy");
++   Require(Explain(new SecurityEvidence("PolicyConfigured","True","HKLM machine policy"),new("PolicyReadable","False","HKLM machine policy")).ReasonCode=="policy_unreadable","wrong type/unreadable is not access denial");
++  });
++  Test("explicit conflict, but grouped volume differences not guessed conflict",()=>{
++   Require(Explain(new SecurityEvidence("CollectionState","ConflictingEvidence","A/B")).ReasonCode=="conflicting_evidence","conflict marker");
++   Require(Explain(new SecurityEvidence("ProtectionStatus","On","Volume A"),new("ProtectionStatus","Off","Volume B")).ReasonCode=="cause_not_established","different subjects not conflict");
++  });
++  Test("source and safe nextstep localized without secret source",()=>{
++   var e=Explain(new SecurityEvidence("CollectionError","TimeoutException","https://user:pass@example.test/query?token=private"));
++   var en=MissingEvidenceExplanation.Format(e,"en");var ru=MissingEvidenceExplanation.Format(e,"ru");
++   Require(en.Contains("Next step")&&ru.Contains("Следующий шаг"),"localized guidance missing");
++   Require(!en.Contains("pass@")&&!en.Contains("private"),"source credentials exposed");
++   Require(MissingEvidenceExplanation.Format(Explain(),"en").Contains("not recorded"),"unrecorded source invented");
++  });
++  Test("incomplete triage not all-clear and preserves assessment",()=>{
++   var scan=new ScanResult{Assessment=new Assessment{Score=100,Status="OK",CoveragePercent=40,MissingSignals=["CPU"]}};
++   var t=TriageSummary.Build(scan);Require(t.Title!="Проблем не обнаружено","false all-clear");
++   Require(t.Detail.Contains("40%"),"actual coverage absent");
++   Require(scan.Assessment.Score==100&&scan.Assessment.Status=="OK"&&scan.Assessment.CoveragePercent==40,"diagnostic semantics changed");
++   Require(TechnicalEvidence.Format(scan.Assessment,"en").Contains("CPU")&&TechnicalEvidence.Format(scan.Assessment,"en").Contains("Next step"),"technical explanation absent");
++  });
++  Test("healthy empty differs from collection warning and CRIT order retained",()=>{
++   var healthy=new ScanResult{Assessment=new Assessment{Score=100}};var before=TriageSummary.Build(healthy).Title;
++   healthy.Data.CollectionWarnings.Add("Synthetic collection failed");Require(TriageSummary.Build(healthy).Title!=before,"failed collection all-clear");
++   healthy.Assessment.Findings.Add(new Finding{Severity="WARN",Title="warning",Penalty=99});healthy.Assessment.Findings.Add(new Finding{Severity="CRIT",Title="critical",Penalty=1});
++   Require(TriageSummary.SignificantFindings(healthy)[0].Title=="critical","CRIT ordering changed");
++  });
++  Test("JSON, HTML and clipboard carry explanation and original evidence",()=>{
++   var evidence=new List<SecurityEvidence>{new("CollectionError","TimeoutException","WindowsUpdate")};
++   var c=new SecurityControlResult("SEC-OS-UPDATES",SecurityControlStatus.Unknown,10,0,"SEC-OS-UPDATES",evidence);
++   var scan=new ScanResult{Security=new SecurityPostureAssessment{Controls=[c]}};
++   var technical = JsonSerializer.Serialize(new Assessment { MissingSignals = ["CPU"] });
++   Require(technical.Contains("MissingSignalExplanations") && technical.Contains("cause_not_established"), "technical JSON metadata missing");
++   var json=JsonSerializer.Serialize(c);Require(json.Contains("Explanation")&&json.Contains("timeout")&&json.Contains("TimeoutException"),"JSON metadata/raw evidence absent");
++   Require(SecurityReportSection.BuildHtml(scan,"en").Contains("Next step"),"HTML explanation absent");
++   Require(SecurityReportSection.BuildClipboardSummary(scan,"en").Contains("WindowsUpdate")&&SecurityReportSection.BuildClipboardSummary(scan,"en").Contains("Next step"),"clipboard explanation/raw source absent");
++   Require(c.Status==SecurityControlStatus.Unknown&&c.Weight==10&&c.EarnedFraction==0&&c.Evidence==evidence,"raw/scoring changed");
++  });
++  Test("symptom routes only existing inspections, no auto probes, batch unchanged",()=>{
++   Require(SymptomRoutes.All.Count==4,"four routes required");
++   var expected=new[]{"performance-session","incident-review","resource-probe","common-problems"};Require(SymptomRoutes.All.Select(x=>x.ToolId).SequenceEqual(expected),"wrong routes");
++   var notes=new List<SymptomNote>();var next=SymptomRoutes.Select(notes,"resource");Require(notes.Count==0&&next.Count==1&&next[0].SymptomId=="resource","selection mutated prior state");
++   Require(SymptomRoutes.All.All(x=>!x.AutoStart&&!x.IsRemediation),"active probe/remediation");
++   bool rejected=false;try{SymptomRoutes.Select(notes,"CleanTemp");}catch(ArgumentException){rejected=true;}Require(rejected,"remediation accepted as symptom");
++  });
++  Console.WriteLine($"Evidence presentation: {total-failed}/{total} passed");return failed==0?0:1;
++ }
++}
+diff --git a/src/G.PcHealthCheck/MainForm.Localization.cs b/src/G.PcHealthCheck/MainForm.Localization.cs
+index 54de339..15c16df 100644
+--- a/src/G.PcHealthCheck/MainForm.Localization.cs
++++ b/src/G.PcHealthCheck/MainForm.Localization.cs
+@@ -67,6 +67,8 @@ public sealed partial class MainForm
+                 };
+                 _uptime.Text = AppLocalization.T("Main.Uptime.Days", scan.Data.System.UptimeDays);
+                 var triage = TriageSummary.Build(scan);
++                _triageTitle.Text = triage.Title;
++                _triageDetail.Text = triage.Detail;
+                 _tabs.TabPages["RecommendationsTab"]!.Text = triage.SignificantCount > 0
+                     ? AppLocalization.T("Main.Tab.Recommendations.Count", triage.SignificantCount)
+                     : AppLocalization.T("Main.Tab.Recommendations");
+@@ -123,13 +125,14 @@ public sealed partial class MainForm
+ 
+     private void LocalizeTabsAndColumns()
+     {
++        _symptomButton.Text = AppLocalization.T("Evidence.Symptom.Title");
+         foreach (var (name, key) in new[] {
+             ("OverviewTab", "Main.Tab.Overview"), ("RecommendationsTab", "Main.Tab.Recommendations"),
+             ("ActionsTab", "Main.Tab.Actions"), ("ProcessesTab", "Main.Tab.Processes"),
+             ("EventsTab", "Main.Tab.Events"), ("SystemTab", "Main.Tab.System"),
+             ("CompareTab", "Main.Tab.Compare"), ("SecurityPostureTab", "Security.Tab.Title") })
+             if (_tabs.TabPages[name] is TabPage page) page.Text = AppLocalization.T(key);
+-        foreach (var toggle in DescendantsForLocalization(this).OfType<Button>().Where(x => x.Name is "FindingDetailsToggle" or "ActionDetailsToggle"))
++        foreach (var toggle in DescendantsForLocalization(this).OfType<Button>().Where(x => x.Name is "FindingDetailsToggle" or "ActionDetailsToggle" or "SecurityDetailsToggle"))
+         {
+             toggle.Text = AppLocalization.T("Main.Details.Toggle");
+             toggle.AccessibleName = toggle.Text;
+@@ -219,8 +222,10 @@ public sealed partial class MainForm
+             _system.Rows[9].Cells[1].Value = ExecutionPolicy.Value(d.System.ExecutionContext?.ProcessAccount) + " / " + AppLocalization.T("Main.System.ContextNotSaved");
+         if (_system.Rows.Count > 11 && d.System.ExecutionContext is null)
+             _system.Rows[11].Cells[1].Value = AppLocalization.T("Main.System.ContextNotSaved");
+-        if (_system.Rows.Count > 13 && scan.Assessment.MissingSignals.Count == 0)
+-            _system.Rows[13].Cells[1].Value = AppLocalization.T("Common.No");
++        if (_system.Rows.Count > 13)
++            _system.Rows[13].Cells[1].Value = scan.Assessment.MissingSignals.Count == 0
++                ? AppLocalization.T("Common.No")
++                : TechnicalEvidence.Format(scan.Assessment, AppLocalization.Language);
+         if (_system.Rows.Count > 14)
+             _system.Rows[14].Cells[1].Value = d.PendingReboot.Pending
+                 ? AppLocalization.T("Common.Yes") + " — " + string.Join("; ", d.PendingReboot.Reasons)
+diff --git a/src/G.PcHealthCheck/MainForm.ReadableLayout.cs b/src/G.PcHealthCheck/MainForm.ReadableLayout.cs
+index aa5e4af..1a1aeb8 100644
+--- a/src/G.PcHealthCheck/MainForm.ReadableLayout.cs
++++ b/src/G.PcHealthCheck/MainForm.ReadableLayout.cs
+@@ -25,7 +25,8 @@ public sealed partial class MainForm
+                 // Only the Overview scrolls; tabs and footer stay within the window.
+                 root.Height = (int)Math.Ceiling((86 + 76 + 16) * DeviceDpi / 96f)
+                     + geometry.Height + root.GetControlFromPosition(0, 1)!.GetPreferredSize(new Size(metrics.Width, 0)).Height
+-                    + (int)Math.Ceiling(8 * DeviceDpi / 96f);
++                    + (int)Math.Ceiling(8 * DeviceDpi / 96f)
++                    + root.GetControlFromPosition(0, 4)!.GetPreferredSize(new Size(metrics.Width, 0)).Height;
+                 metrics.ResumeLayout();
+             }
+             finally { busy = false; }
+diff --git a/src/G.PcHealthCheck/MainForm.SecurityPosture.cs b/src/G.PcHealthCheck/MainForm.SecurityPosture.cs
+index e7bff35..4aa8ed7 100644
+--- a/src/G.PcHealthCheck/MainForm.SecurityPosture.cs
++++ b/src/G.PcHealthCheck/MainForm.SecurityPosture.cs
+@@ -95,7 +95,7 @@ public sealed partial class MainForm
+         _securityGrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "Source", HeaderText = AppLocalization.T("Security.Column.Source"), Width = 180 });
+         foreach (DataGridViewColumn column in _securityGrid.Columns)
+             column.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+-        layout.Controls.Add(_securityGrid, 0, 1);
++        layout.Controls.Add(DetailPane(_securityGrid, "SecurityDetails"), 0, 1);
+ 
+         page.Controls.Add(layout);
+         return page;
+@@ -148,6 +148,8 @@ public sealed partial class MainForm
+         var evidence = control.Evidence.Count == 0
+             ? AppLocalization.T("Security.Evidence.None")
+             : string.Join("; ", control.Evidence.Select(x => $"{x.Key}={x.Value}"));
++        if (control.Explanation is { } explanation)
++            evidence += "; " + MissingEvidenceExplanation.Format(explanation, AppLocalization.Language);
+         var sources = DistinctSources(control.Evidence);
+         var recommendation = control.Status is SecurityControlStatus.Pass or SecurityControlStatus.NotApplicable
+             ? "—"
+diff --git a/src/G.PcHealthCheck/MainForm.Symptoms.cs b/src/G.PcHealthCheck/MainForm.Symptoms.cs
+new file mode 100644
+index 0000000..b545196
+--- /dev/null
++++ b/src/G.PcHealthCheck/MainForm.Symptoms.cs
+@@ -0,0 +1,40 @@
++namespace G.PcHealthCheck;
++public sealed partial class MainForm
++{
++    private readonly Button _symptomButton = new() { Name = "SymptomEntry", AutoSize = true, Margin = new Padding(0, 4, 0, 4) };
++    private List<SymptomNote> _symptomNotes = [];
++    private Control SymptomEntry()
++    {
++        var row = new FlowLayoutPanel { AutoSize = true, Dock = DockStyle.Fill, Margin = new Padding(0), WrapContents = true };
++        _symptomButton.Text = AppLocalization.T("Evidence.Symptom.Title");
++        row.Controls.Add(_symptomButton);
++        _symptomButton.Click += (_, _) =>
++        {
++            if (_isBusy) return;
++            var menu = new ContextMenuStrip();
++            foreach (var route in SymptomRoutes.All)
++            {
++                var item = menu.Items.Add(AppLocalization.T(route.TitleKey));
++                item.Click += (_, _) => OpenSymptom(route);
++            }
++            menu.Closed += (_, _) => menu.Dispose();
++            menu.Show(_symptomButton, new Point(0, _symptomButton.Height));
++        };
++        return row;
++    }
++    private void OpenSymptom(SymptomRoute route)
++    {
++        if (_isBusy) return;
++        _symptomNotes = SymptomRoutes.Select(_symptomNotes, route.Id);
++        if (_current is not null) _current.SymptomNotes = _symptomNotes.ToList();
++        using Form form = route.ToolId switch
++        {
++            "performance-session" => new PerformanceSessionForm(),
++            "incident-review" => new IncidentReviewForm(true),
++            "resource-probe" => new ResourceProbeForm(),
++            "common-problems" => new CommonProblemsForm(autoScan: false),
++            _ => throw new ArgumentException("Unknown symptom tool")
++        };
++        form.ShowDialog(this);
++    }
++}
+diff --git a/src/G.PcHealthCheck/MainForm.cs b/src/G.PcHealthCheck/MainForm.cs
+index 318bf38..4e4f276 100644
+--- a/src/G.PcHealthCheck/MainForm.cs
++++ b/src/G.PcHealthCheck/MainForm.cs
+@@ -102,7 +102,7 @@ public sealed partial class MainForm : Form
+         _overviewRoot.Controls.Add(ExecutionContextPanel(), 0, 1);
+         _overviewRoot.Controls.Add(Metrics(), 0, 2);
+         _overviewRoot.Controls.Add(TriageCard(), 0, 3);
+-        _overviewRoot.Controls.Add(new Panel { Height = 0, Margin = new Padding(0) }, 0, 4);
++        _overviewRoot.Controls.Add(SymptomEntry(), 0, 4);
+         return page;
+     }
+ 
+@@ -319,6 +319,7 @@ public sealed partial class MainForm : Form
+             StampExecutionContext(data, context);
+             var scan = _assessment.Assess(data);
+             await AttachSecurityPostureAsync(scan, progress);
++            scan.SymptomNotes = _symptomNotes.ToList();
+             _current = scan;
+             var saved = _reports.SaveScan(_current);
+             _latestReport = saved.Html;
+@@ -505,7 +506,7 @@ public sealed partial class MainForm : Form
+         Add("Профиль пользователя сеанса", ExecutionPolicy.Value(d.System.ExecutionContext?.SessionProfile));
+         Add("Контекст: ограничения", d.System.ExecutionContext is null ? "Контекст не сохранён" : string.Join(" | ", d.System.ExecutionContext.Warnings));
+         Add("Покрытие диагностики", $"{scan.Assessment.CoveragePercent}% ({scan.Assessment.CoverageStatus})");
+-        Add("Недоступные сигналы", scan.Assessment.MissingSignals.Count == 0 ? "Нет" : string.Join("; ", scan.Assessment.MissingSignals));
++        Add("Недоступные сигналы", scan.Assessment.MissingSignals.Count == 0 ? "Нет" : TechnicalEvidence.Format(scan.Assessment, AppLocalization.Language));
+         Add("Pending reboot", d.PendingReboot.Pending ? "Да — " + string.Join("; ", d.PendingReboot.Reasons) : "Нет"); Add("Windows Update", $"wuauserv={d.Updates.Wuauserv}; BITS={d.Updates.Bits}");
+         Add("Защита", d.SecurityProducts.Count == 0 ? "Не удалось определить" : string.Join("; ", d.SecurityProducts.Select(x => $"{x.Name} [{x.State}]")));
+         Add("Физические диски", d.PhysicalDisks.Count == 0 ? "Не удалось определить" : string.Join("; ", d.PhysicalDisks.Select(x => $"{x.Name}: {x.HealthStatus}")));
+@@ -545,6 +546,7 @@ public sealed partial class MainForm : Form
+ 
+     private void Busy(bool value, string? text = null)
+     {
++        _symptomButton.Enabled = !value;
+         _isBusy = value;
+         _scan.Enabled = !value;
+         _openReport.Enabled = !value;
+diff --git a/src/G.PcHealthCheck/MissingEvidenceExplanation.cs b/src/G.PcHealthCheck/MissingEvidenceExplanation.cs
+new file mode 100644
+index 0000000..7ca4e01
+--- /dev/null
++++ b/src/G.PcHealthCheck/MissingEvidenceExplanation.cs
+@@ -0,0 +1,66 @@
++namespace G.PcHealthCheck;
++
++public sealed record EvidenceExplanation(string ReasonCode, IReadOnlyList<string> Sources)
++{
++    public string Reason => MissingEvidenceExplanation.Reason(ReasonCode, AppLocalization.Language);
++    public string NextStep => MissingEvidenceExplanation.NextStep(ReasonCode, AppLocalization.Language);
++}
++
++internal static class MissingEvidenceExplanation
++{
++    internal static EvidenceExplanation For(IEnumerable<SecurityEvidence> evidence)
++    {
++        var items = evidence.ToArray();
++        bool Has(string key, string value) => items.Any(x => x.Key == key && x.Value == value);
++        string code = "cause_not_established";
++        // Only explicit retained collector states establish a cause. Values from
++        // different volumes/subjects never establish a conflict by themselves.
++        foreach (var item in items.Where(x => x.Key is "CollectionError" or "CollectionState"))
++        {
++            code = item.Value switch
++            {
++                "UnauthorizedAccessException" or "SecurityException" => "access_denied",
++                "TimeoutException" => "timeout",
++                "OperationCanceledException" or "TaskCanceledException" => "cancelled",
++                "MissingObservation" => "not_collected",
++                "UnsupportedManufacturer" or "UnsupportedField" => "unsupported",
++                "ConflictingEvidence" or "ConflictingSources" => "conflicting_evidence",
++                _ => code
++            };
++        }
++        if (code == "cause_not_established")
++        {
++            if (Has("PolicyConfigured", "False")) code = "policy_missing";
++            else if (Has("PolicyConfigured", "True") && Has("PolicyReadable", "False")) code = "policy_unreadable";
++        }
++        return new(code, items.Select(x => SafeSource(x.Source)).Where(x => x.Length > 0).Distinct(StringComparer.OrdinalIgnoreCase).ToArray());
++    }
++
++    private static string SafeSource(string? source)
++    {
++        if (string.IsNullOrWhiteSpace(source)) return "";
++        if (Uri.TryCreate(source, UriKind.Absolute, out var uri) && uri.Scheme is "https" or "http")
++            return uri.GetLeftPart(UriPartial.Authority).Replace(uri.UserInfo.Length > 0 ? uri.UserInfo + "@" : "\0", "") + uri.AbsolutePath;
++        // Provider identity is useful; free-form credential-bearing text is not.
++        if (source.Contains('=') || source.Contains('@') || source.Any(char.IsControl)) return "[source redacted]";
++        return source.Length <= 200 ? source : source[..200];
++    }
++
++    internal static string Reason(string code, string language) => Text(language, "Evidence.Reason." + code);
++    internal static string NextStep(string code, string language) => Text(language, "Evidence.Next." + code);
++    internal static string Format(EvidenceExplanation explanation, string language)
++        => Text(language, "Evidence.Reason.Label") + ": " + Reason(explanation.ReasonCode, language)
++            + "; " + Text(language, "Evidence.Source.Label") + ": "
++            + (explanation.Sources.Count == 0 ? Text(language, "Evidence.Source.NotRecorded") : string.Join(", ", explanation.Sources))
++            + "; " + Text(language, "Evidence.Next.Label") + ": " + NextStep(explanation.ReasonCode, language);
++    internal static string Text(string language, string key) => AppLocalization.TextForCulture(AppLocalization.NormalizeLanguage(language), key);
++}
++
++public sealed record TechnicalSignalExplanation(string Signal, EvidenceExplanation Explanation);
++internal static class TechnicalEvidence
++{
++    internal static IReadOnlyList<TechnicalSignalExplanation> Explain(Assessment assessment)
++        => assessment.MissingSignals.Select(x => new TechnicalSignalExplanation(x, new EvidenceExplanation("cause_not_established", []))).ToArray();
++    internal static string Format(Assessment assessment, string language)
++        => string.Join(Environment.NewLine, Explain(assessment).Select(x => x.Signal + ": " + MissingEvidenceExplanation.Format(x.Explanation, language)));
++}
+diff --git a/src/G.PcHealthCheck/Models.cs b/src/G.PcHealthCheck/Models.cs
+index 0174d6a..68b9344 100644
+--- a/src/G.PcHealthCheck/Models.cs
++++ b/src/G.PcHealthCheck/Models.cs
+@@ -178,6 +178,7 @@ public sealed class Assessment
+     public int CoveragePercent { get; set; } = 100;
+     public string CoverageStatus { get; set; } = "HIGH";
+     public List<string> MissingSignals { get; set; } = [];
++    public IReadOnlyList<TechnicalSignalExplanation> MissingSignalExplanations => TechnicalEvidence.Explain(this);
+     public List<Finding> Findings { get; set; } = [];
+ }
+ 
+@@ -250,6 +251,7 @@ public sealed class SecurityHardeningEvidence
+ 
+ public sealed class ScanResult
+ {
++    public List<SymptomNote> SymptomNotes { get; set; } = [];
+     public DiagnosticData Data { get; set; } = new();
+     public Assessment Assessment { get; set; } = new();
+     public SecurityPostureAssessment? Security { get; set; }
+diff --git a/src/G.PcHealthCheck/Program.cs b/src/G.PcHealthCheck/Program.cs
+index 5015088..626a9d2 100644
+--- a/src/G.PcHealthCheck/Program.cs
++++ b/src/G.PcHealthCheck/Program.cs
+@@ -51,6 +51,7 @@ internal static class Program
+             if (result == 0) result = SecurityHardeningWorkerSelfTest.Run();
+             if (result == 0) result = SecurityHardeningUiSelfTest.Run();
+             if (result == 0) result = SecurityLocalizationCoverageSelfTest.Run();
++            if (result == 0) result = EvidencePresentationSelfTest.Run();
+             if (result == 0) result = SecurityEvidenceSafetySelfTest.Run();
+             if (result == 0) result = SystemDiskSelectionSelfTest.Run();
+             if (result == 0) result = PortableElevationSelfTest.Run();
+diff --git a/src/G.PcHealthCheck/ReportService.cs b/src/G.PcHealthCheck/ReportService.cs
+index f38af69..400c3ae 100644
+--- a/src/G.PcHealthCheck/ReportService.cs
++++ b/src/G.PcHealthCheck/ReportService.cs
+@@ -145,6 +145,9 @@ public sealed class ReportService
+     private static void Triage(StringBuilder sb, ScanResult scan)
+     {
+         var triage = TriageSummary.Build(scan);
++        if (scan.SymptomNotes.Count > 0) sb.Append("<p>").Append(H(SymptomRoutes.Format(scan.SymptomNotes, AppLocalization.Language))).Append("</p>");
++        if (scan.Assessment.MissingSignals.Count > 0)
++            sb.Append("<p>").Append(H(TechnicalEvidence.Format(scan.Assessment, AppLocalization.Language))).Append("</p>");
+         sb.Append("<section><h2>Triage</h2><p><b>").Append(H(triage.Title)).Append("</b></p><p>").Append(H(triage.Detail)).Append("</p></section>");
+     }
+ 
+diff --git a/src/G.PcHealthCheck/Resources/Strings.en.resx b/src/G.PcHealthCheck/Resources/Strings.en.resx
+index 0e2d7f4..059e52e 100644
+--- a/src/G.PcHealthCheck/Resources/Strings.en.resx
++++ b/src/G.PcHealthCheck/Resources/Strings.en.resx
+@@ -114,4 +114,34 @@
+   <data name="ExecutionContext.Flag.Unknown" xml:space="preserve"><value>unknown</value></data>
+   <data name="ExecutionContext.Flag.Yes" xml:space="preserve"><value>yes</value></data>
+   <data name="ExecutionContext.Flag.No" xml:space="preserve"><value>no</value></data>
++
++  <data name="Evidence.Reason.cause_not_established" xml:space="preserve"><value>The cause of missing data is not established; Unknown does not mean protection is absent.</value></data>
++  <data name="Evidence.Reason.access_denied" xml:space="preserve"><value>The source explicitly reported access denied.</value></data>
++  <data name="Evidence.Reason.timeout" xml:space="preserve"><value>The source explicitly reported a query timeout.</value></data>
++  <data name="Evidence.Reason.cancelled" xml:space="preserve"><value>Collection was explicitly cancelled.</value></data>
++  <data name="Evidence.Reason.not_collected" xml:space="preserve"><value>The expected observation was not collected.</value></data>
++  <data name="Evidence.Reason.unsupported" xml:space="preserve"><value>The source explicitly reported an unsupported field or manufacturer.</value></data>
++  <data name="Evidence.Reason.policy_missing" xml:space="preserve"><value>The baseline policy is not configured; this is not a collector failure.</value></data>
++  <data name="Evidence.Reason.policy_unreadable" xml:space="preserve"><value>The policy is configured but not readable in the expected form; verify the cause and value type.</value></data>
++  <data name="Evidence.Reason.conflicting_evidence" xml:space="preserve"><value>The source explicitly recorded conflicting observations.</value></data>
++  <data name="Evidence.Next.cause_not_established" xml:space="preserve"><value>Manually verify the stated source and collection limits before drawing conclusions or changing settings; the app does not elevate automatically.</value></data>
++  <data name="Evidence.Next.access_denied" xml:space="preserve"><value>Manually verify the stated source and collection limits before drawing conclusions or changing settings; the app does not elevate automatically.</value></data>
++  <data name="Evidence.Next.timeout" xml:space="preserve"><value>Manually verify the stated source and collection limits before drawing conclusions or changing settings; the app does not elevate automatically.</value></data>
++  <data name="Evidence.Next.cancelled" xml:space="preserve"><value>Manually verify the stated source and collection limits before drawing conclusions or changing settings; the app does not elevate automatically.</value></data>
++  <data name="Evidence.Next.not_collected" xml:space="preserve"><value>Manually verify the stated source and collection limits before drawing conclusions or changing settings; the app does not elevate automatically.</value></data>
++  <data name="Evidence.Next.unsupported" xml:space="preserve"><value>Manually verify the stated source and collection limits before drawing conclusions or changing settings; the app does not elevate automatically.</value></data>
++  <data name="Evidence.Next.policy_missing" xml:space="preserve"><value>Agree a baseline policy with the owner; an administrator list alone does not prove a violation.</value></data>
++  <data name="Evidence.Next.policy_unreadable" xml:space="preserve"><value>Manually verify the stated source and collection limits before drawing conclusions or changing settings; the app does not elevate automatically.</value></data>
++  <data name="Evidence.Next.conflicting_evidence" xml:space="preserve"><value>Manually verify the stated source and collection limits before drawing conclusions or changing settings; the app does not elevate automatically.</value></data>
++  <data name="Evidence.Reason.Label" xml:space="preserve"><value>Reason</value></data>
++  <data name="Evidence.Source.Label" xml:space="preserve"><value>Source</value></data>
++  <data name="Evidence.Source.NotRecorded" xml:space="preserve"><value>not recorded in the observation</value></data>
++  <data name="Evidence.Next.Label" xml:space="preserve"><value>Next step</value></data>
++  <data name="Evidence.Triage.Incomplete" xml:space="preserve"><value>Insufficient data for an overall conclusion</value></data>
++  <data name="Evidence.Triage.Limits" xml:space="preserve"><value>No CRIT/WARN among known facts, but collection or coverage is incomplete. No findings does not prove health.</value></data>
++  <data name="Evidence.Symptom.Title" xml:space="preserve"><value>What is the symptom?</value></data>
++  <data name="Evidence.Symptom.Slow" xml:space="preserve"><value>Slow PC → performance</value></data>
++  <data name="Evidence.Symptom.Application" xml:space="preserve"><value>Hang / crash → incidents</value></data>
++  <data name="Evidence.Symptom.Resource" xml:space="preserve"><value>Unavailable resource → explicit probe</value></data>
++  <data name="Evidence.Symptom.Printing" xml:space="preserve"><value>Printing → common problems</value></data>
+ </root>
+diff --git a/src/G.PcHealthCheck/Resources/Strings.resx b/src/G.PcHealthCheck/Resources/Strings.resx
+index 5496ca3..2d27eed 100644
+--- a/src/G.PcHealthCheck/Resources/Strings.resx
++++ b/src/G.PcHealthCheck/Resources/Strings.resx
+@@ -114,4 +114,34 @@
+   <data name="ExecutionContext.Flag.Unknown" xml:space="preserve"><value>неизвестно</value></data>
+   <data name="ExecutionContext.Flag.Yes" xml:space="preserve"><value>да</value></data>
+   <data name="ExecutionContext.Flag.No" xml:space="preserve"><value>нет</value></data>
++
++  <data name="Evidence.Reason.cause_not_established" xml:space="preserve"><value>Причина нехватки данных не установлена; Unknown не означает отсутствие защиты.</value></data>
++  <data name="Evidence.Reason.access_denied" xml:space="preserve"><value>Источник явно сообщил об отказе в доступе.</value></data>
++  <data name="Evidence.Reason.timeout" xml:space="preserve"><value>Источник явно сообщил об истечении времени запроса.</value></data>
++  <data name="Evidence.Reason.cancelled" xml:space="preserve"><value>Сбор был явно отменён.</value></data>
++  <data name="Evidence.Reason.not_collected" xml:space="preserve"><value>Ожидаемое наблюдение не было получено.</value></data>
++  <data name="Evidence.Reason.unsupported" xml:space="preserve"><value>Источник явно сообщил о неподдерживаемом поле или производителе.</value></data>
++  <data name="Evidence.Reason.policy_missing" xml:space="preserve"><value>Базовая политика не задана; это не ошибка сборщика.</value></data>
++  <data name="Evidence.Reason.policy_unreadable" xml:space="preserve"><value>Политика задана, но не прочитана корректно; причина или тип значения требуют проверки.</value></data>
++  <data name="Evidence.Reason.conflicting_evidence" xml:space="preserve"><value>Источник явно зафиксировал конфликт наблюдений.</value></data>
++  <data name="Evidence.Next.cause_not_established" xml:space="preserve"><value>Вручную проверить указанный источник и ограничения сбора до выводов или изменений; приложение не повышает права автоматически.</value></data>
++  <data name="Evidence.Next.access_denied" xml:space="preserve"><value>Вручную проверить указанный источник и ограничения сбора до выводов или изменений; приложение не повышает права автоматически.</value></data>
++  <data name="Evidence.Next.timeout" xml:space="preserve"><value>Вручную проверить указанный источник и ограничения сбора до выводов или изменений; приложение не повышает права автоматически.</value></data>
++  <data name="Evidence.Next.cancelled" xml:space="preserve"><value>Вручную проверить указанный источник и ограничения сбора до выводов или изменений; приложение не повышает права автоматически.</value></data>
++  <data name="Evidence.Next.not_collected" xml:space="preserve"><value>Вручную проверить указанный источник и ограничения сбора до выводов или изменений; приложение не повышает права автоматически.</value></data>
++  <data name="Evidence.Next.unsupported" xml:space="preserve"><value>Вручную проверить указанный источник и ограничения сбора до выводов или изменений; приложение не повышает права автоматически.</value></data>
++  <data name="Evidence.Next.policy_missing" xml:space="preserve"><value>Согласовать базовую политику с владельцем; список администраторов сам по себе не доказывает нарушение.</value></data>
++  <data name="Evidence.Next.policy_unreadable" xml:space="preserve"><value>Вручную проверить указанный источник и ограничения сбора до выводов или изменений; приложение не повышает права автоматически.</value></data>
++  <data name="Evidence.Next.conflicting_evidence" xml:space="preserve"><value>Вручную проверить указанный источник и ограничения сбора до выводов или изменений; приложение не повышает права автоматически.</value></data>
++  <data name="Evidence.Reason.Label" xml:space="preserve"><value>Причина</value></data>
++  <data name="Evidence.Source.Label" xml:space="preserve"><value>Источник</value></data>
++  <data name="Evidence.Source.NotRecorded" xml:space="preserve"><value>не записан в наблюдении</value></data>
++  <data name="Evidence.Next.Label" xml:space="preserve"><value>Следующий шаг</value></data>
++  <data name="Evidence.Triage.Incomplete" xml:space="preserve"><value>Недостаточно данных для общего вывода</value></data>
++  <data name="Evidence.Triage.Limits" xml:space="preserve"><value>Среди известных данных нет CRIT/WARN, но сбор или покрытие неполны. Отсутствие замечаний не доказывает исправность.</value></data>
++  <data name="Evidence.Symptom.Title" xml:space="preserve"><value>Что за симптом?</value></data>
++  <data name="Evidence.Symptom.Slow" xml:space="preserve"><value>Медленно работает → производительность</value></data>
++  <data name="Evidence.Symptom.Application" xml:space="preserve"><value>Зависает / сбой → события</value></data>
++  <data name="Evidence.Symptom.Resource" xml:space="preserve"><value>Ресурс недоступен → проверка по запросу</value></data>
++  <data name="Evidence.Symptom.Printing" xml:space="preserve"><value>Печать → типовые проблемы</value></data>
+ </root>
+diff --git a/src/G.PcHealthCheck/SecurityPostureModels.cs b/src/G.PcHealthCheck/SecurityPostureModels.cs
+index 2855f59..5f57d94 100644
+--- a/src/G.PcHealthCheck/SecurityPostureModels.cs
++++ b/src/G.PcHealthCheck/SecurityPostureModels.cs
+@@ -26,7 +26,10 @@ public sealed record SecurityControlResult(
+     int Weight,
+     double EarnedFraction,
+     string GuidanceCode,
+-    IReadOnlyList<SecurityEvidence> Evidence);
++    IReadOnlyList<SecurityEvidence> Evidence)
++{
++    public EvidenceExplanation? Explanation => Status == SecurityControlStatus.Unknown ? MissingEvidenceExplanation.For(Evidence) : null;
++}
+ 
+ public sealed class SecurityPostureAssessment
+ {
+diff --git a/src/G.PcHealthCheck/SecurityReportSection.cs b/src/G.PcHealthCheck/SecurityReportSection.cs
+index fa34c31..b141e9c 100644
+--- a/src/G.PcHealthCheck/SecurityReportSection.cs
++++ b/src/G.PcHealthCheck/SecurityReportSection.cs
+@@ -55,12 +55,18 @@ internal static class SecurityReportSection
+         if (assessment.CriticalOverrides.Count > 0)
+             sb.AppendLine(T(language, "Security.Summary.Overrides", string.Join(", ", assessment.CriticalOverrides)));
+ 
+-        var attention = assessment.Controls
++        var attention = assessment.Controls.Concat(assessment.Supplemental)
+             .Where(x => x.Status is SecurityControlStatus.Fail or SecurityControlStatus.Warn or SecurityControlStatus.Unknown)
+-            .Take(8)
+             .ToList();
+         foreach (var control in attention)
++            {
+             sb.AppendLine($"- {control.Id}: {StatusText(language, control.Status)}; {PointsText(control)}");
++            if (control.Explanation is { } explanation)
++            {
++                sb.AppendLine(MissingEvidenceExplanation.Format(explanation, language));
++                sb.AppendLine(string.Join("; ", control.Evidence.Select(x => $"{x.Key}={x.Value} ({x.Source})")));
++            }
++        }
+ 
+         if (scan.SecurityHardening is { } hardening)
+         {
+@@ -87,6 +93,7 @@ internal static class SecurityReportSection
+         var evidence = control.Evidence.Count == 0
+             ? T(language, "Security.Evidence.None")
+             : string.Join("; ", control.Evidence.Select(x => $"{x.Key}={x.Value}"));
++        if (control.Explanation is { } explanation) evidence += "; " + MissingEvidenceExplanation.Format(explanation, language);
+         var sources = string.Join(", ", control.Evidence.Select(x => x.Source)
+             .Where(x => !string.IsNullOrWhiteSpace(x))
+             .Distinct(StringComparer.OrdinalIgnoreCase));
+diff --git a/src/G.PcHealthCheck/SupportSummary.cs b/src/G.PcHealthCheck/SupportSummary.cs
+index 33e9327..4f166f1 100644
+--- a/src/G.PcHealthCheck/SupportSummary.cs
++++ b/src/G.PcHealthCheck/SupportSummary.cs
+@@ -14,6 +14,7 @@ internal static class SupportSummary
+         var triage = TriageSummary.Build(scan);
+         var systemDrive = SystemDiskSelection.Find(d);
+         var sb = new StringBuilder();
++        sb.AppendLine(SymptomRoutes.Format(scan.SymptomNotes, AppLocalization.Language));
+ 
+         sb.AppendLine("G PC Health");
+         sb.AppendLine($"Компьютер: {d.System.ComputerName}");
+@@ -33,7 +34,7 @@ internal static class SupportSummary
+         sb.AppendLine(ExecutionPolicy.Describe(d.System.ExecutionContext));
+ 
+         if (a.MissingSignals.Count > 0)
+-            sb.AppendLine("Недоступные сигналы: " + string.Join(", ", a.MissingSignals));
++            sb.AppendLine(TechnicalEvidence.Format(a, AppLocalization.Language));
+         if (d.CollectionWarnings.Count > 0)
+             sb.AppendLine("Предупреждения сбора: " + string.Join(" | ", d.CollectionWarnings));
+ 
+diff --git a/src/G.PcHealthCheck/SymptomRoutes.cs b/src/G.PcHealthCheck/SymptomRoutes.cs
+new file mode 100644
+index 0000000..ed97d1f
+--- /dev/null
++++ b/src/G.PcHealthCheck/SymptomRoutes.cs
+@@ -0,0 +1,20 @@
++namespace G.PcHealthCheck;
++public sealed record SymptomNote(string SymptomId, string ToolId);
++internal sealed record SymptomRoute(string Id, string ToolId, string TitleKey, bool AutoStart = false, bool IsRemediation = false);
++internal static class SymptomRoutes
++{
++    internal static IReadOnlyList<SymptomRoute> All { get; } = Array.AsReadOnly(new[]
++    {
++        new SymptomRoute("slow", "performance-session", "Evidence.Symptom.Slow"),
++        new SymptomRoute("application", "incident-review", "Evidence.Symptom.Application"),
++        new SymptomRoute("resource", "resource-probe", "Evidence.Symptom.Resource"),
++        new SymptomRoute("printing", "common-problems", "Evidence.Symptom.Printing")
++    });
++    internal static string Format(IEnumerable<SymptomNote> notes, string language)
++        => string.Join(Environment.NewLine, notes.Select(x => All.SingleOrDefault(r => r.Id == x.SymptomId && r.ToolId == x.ToolId)).Where(x => x is not null).Select(x => MissingEvidenceExplanation.Text(language, x!.TitleKey)));
++    internal static List<SymptomNote> Select(IEnumerable<SymptomNote> previous, string id)
++    {
++        var route = All.SingleOrDefault(x => x.Id == id) ?? throw new ArgumentException("Unknown symptom route", nameof(id));
++        var result = previous.ToList(); result.Add(new(route.Id, route.ToolId)); return result;
++    }
++}
+diff --git a/src/G.PcHealthCheck/TriageSummary.cs b/src/G.PcHealthCheck/TriageSummary.cs
+index 3ce3f61..77f0ed1 100644
+--- a/src/G.PcHealthCheck/TriageSummary.cs
++++ b/src/G.PcHealthCheck/TriageSummary.cs
+@@ -34,6 +34,14 @@ internal static class TriageSummary
+ 
+         if (primary is null)
+         {
++            bool incomplete = scan.Assessment.CoveragePercent < 100 || scan.Assessment.MissingSignals.Count > 0 || scan.Data.CollectionWarnings.Count > 0;
++            if (incomplete)
++                return new TriageInsight
++                {
++                    Title = MissingEvidenceExplanation.Text(AppLocalization.Language, "Evidence.Triage.Incomplete"),
++                    Detail = MissingEvidenceExplanation.Text(AppLocalization.Language, "Evidence.Triage.Limits") + $" ({scan.Assessment.CoveragePercent}%) " + TechnicalEvidence.Format(scan.Assessment, AppLocalization.Language),
++                    NextAction = MissingEvidenceExplanation.Text(AppLocalization.Language, "Evidence.Next.cause_not_established")
++                };
+             const string next = "Автоматические действия не требуются.";
+             return new TriageInsight
+             {

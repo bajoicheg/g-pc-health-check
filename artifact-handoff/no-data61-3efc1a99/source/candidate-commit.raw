@@ -1,0 +1,8 @@
+tree 68c7b7a420699b389a435f252a30d193622113b8
+parent ca354d2194a454b0356057c2db34e94cea8ffbbe
+author GPC local implementation <local@example.invalid> 1791660242 +0000
+committer GPC local implementation <local@example.invalid> 1791660341 +0000
+
+Explain missing evidence and route explicit symptoms
+
+Preserve diagnostic/security semantics and fixed footer. Portable behavior tests and Linux Windows cross-build recorded externally; native Windows acceptance remains pending.

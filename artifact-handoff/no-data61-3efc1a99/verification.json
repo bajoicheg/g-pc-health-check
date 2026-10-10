@@ -1,0 +1,16 @@
+{
+  "schema": "gpc-static-crosspublish-verification/v1",
+  "binary_name": "G-PC-Health-0.17.1-evidence-candidate.exe",
+  "bytes": 78774712,
+  "sha256": "806dc38d35f35cd09286c354cbf3c189dc44f1d3b489862d79bb3731507b1249",
+  "candidate": "3efc1a990bf56dc9659faf8be86d921dda8c1a2a",
+  "parent": "ca354d2194a454b0356057c2db34e94cea8ffbbe",
+  "tree": "68c7b7a420699b389a435f252a30d193622113b8",
+  "PE": "AMD64/PE32+",
+  "FileVersion": "0.17.1.0",
+  "InformationalVersion": "0.17.1+3efc1a990bf56dc9659faf8be86d921dda8c1a2a",
+  "bundle_entries": 453,
+  "Windows_runtime": "NOT_RUN",
+  "single_file_self_contained": "Crosspublish configuration; static CoreCLR-linked .NET Windows apphost, not native runtime acceptance",
+  "original_CI6_outcome": "UNKNOWN"
+}

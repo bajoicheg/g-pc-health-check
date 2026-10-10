@@ -1,0 +1,162 @@
+[
+  {
+    "path": "src/G.PcHealthCheck/Resources/ReviewServiceStrings.en.resx",
+    "old_entries_preserved": 25,
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/ResourceProbeUiStrings.en.resx",
+    "old_entries_preserved": 59,
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/DiagnosticBundleStrings.resx",
+    "old_entries_preserved": 174,
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/PerformanceSessionStrings.resx",
+    "old_entries_preserved": 68,
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/IncidentStrings.en.resx",
+    "old_entries_preserved": 109,
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/ProcessObservationStrings.en.resx",
+    "old_entries_preserved": 106,
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/DiagnosticBundleReportExtraStrings.en.resx",
+    "old_entries_preserved": 31,
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/StorageReviewStrings.resx",
+    "old_entries_preserved": 58,
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/MainStrings.en.resx",
+    "old_entries_preserved": 111,
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/FileUseStrings.en.resx",
+    "old_entries_preserved": 102,
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/DiagnosticBundleStrings.en.resx",
+    "old_entries_preserved": 174,
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/EndpointReviewStrings.resx",
+    "old_entries_preserved": 40,
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/ReviewServiceStrings.resx",
+    "old_entries_preserved": 25,
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/ServiceDeskBatchStrings.resx",
+    "old_entries_preserved": 28,
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/ServiceDeskBatchStrings.en.resx",
+    "old_entries_preserved": 28,
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/FileUseStrings.resx",
+    "old_entries_preserved": 102,
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/SecurityStrings.resx",
+    "old_entries_preserved": 65,
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/AnalysisStrings.resx",
+    "old_entries_preserved": 49,
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/PerformanceSessionStrings.en.resx",
+    "old_entries_preserved": 68,
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/ReviewStrings.resx",
+    "old_entries_preserved": 62,
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/DiagnosticBundleReportExtraStrings.resx",
+    "old_entries_preserved": 31,
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/ReviewStrings.en.resx",
+    "old_entries_preserved": 62,
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/Strings.en.resx",
+    "old_entries_preserved": 110,
+    "new_entries": 29
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/AnalysisStrings.en.resx",
+    "old_entries_preserved": 49,
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/IncidentStrings.resx",
+    "old_entries_preserved": 109,
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/StorageReviewStrings.en.resx",
+    "old_entries_preserved": 58,
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/ResourceProbeUiStrings.resx",
+    "old_entries_preserved": 59,
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/ProcessObservationStrings.resx",
+    "old_entries_preserved": 107,
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/SecurityStrings.en.resx",
+    "old_entries_preserved": 65,
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/Strings.resx",
+    "old_entries_preserved": 110,
+    "new_entries": 29
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/EndpointReviewStrings.en.resx",
+    "old_entries_preserved": 40,
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/MainStrings.resx",
+    "old_entries_preserved": 111,
+    "new_entries": 0
+  }
+]

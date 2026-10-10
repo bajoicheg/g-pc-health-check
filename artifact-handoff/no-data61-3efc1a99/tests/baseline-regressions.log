@@ -1,0 +1,18 @@
+Security posture evaluator self-test: PASS — final control catalog is exactly 100 points
+Security posture evaluator self-test: PASS — all-pass posture is 100 with full coverage
+Security posture evaluator self-test: PASS — warn earns half weight and fail earns zero
+Security posture evaluator self-test: PASS — unknown lowers coverage without becoming failure
+Security posture evaluator self-test: PASS — not-applicable is removed from both score and coverage denominator
+Security posture evaluator self-test: PASS — coverage below 80 forces assessment incomplete
+Security posture evaluator self-test: PASS — critical Low caps override arithmetic score
+Security posture evaluator self-test: PASS — needs-attention caps override High without becoming Low
+Security posture evaluator self-test: 9/9 passed.
+Primary guidance regression: 12/19 passed.
+FAIL: physical disk failure guidance is not replaced by Temp cleanup: The competing cleanup recommendation was not reproduced.
+FAIL: critical CPU guidance is not replaced by Temp cleanup: The competing cleanup recommendation was not reproduced.
+FAIL: critical RAM guidance is not replaced by Temp cleanup: The competing cleanup recommendation was not reproduced.
+FAIL: critical disk pressure guidance is not replaced by Temp cleanup: The competing cleanup recommendation was not reproduced.
+FAIL: critical repeated events guidance is not replaced by Temp cleanup: The competing cleanup recommendation was not reproduced.
+FAIL: isolated low space keeps its actual guidance and cleanup action: Sequence contains no matching element
+FAIL: healthy clipboard contains no significant findings or omission marker: OK findings entered the significant list.
+BASELINE regression exits: security=0, triage=1

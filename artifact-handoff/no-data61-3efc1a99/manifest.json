@@ -1,0 +1,294 @@
+{
+  "schema": "gpc-raw-artifact-handoff/v1",
+  "binary_name": "G-PC-Health-0.17.1-evidence-candidate.exe",
+  "bytes": 78774712,
+  "sha256": "806dc38d35f35cd09286c354cbf3c189dc44f1d3b489862d79bb3731507b1249",
+  "candidate": "3efc1a990bf56dc9659faf8be86d921dda8c1a2a",
+  "parent": "ca354d2194a454b0356057c2db34e94cea8ffbbe",
+  "tree": "68c7b7a420699b389a435f252a30d193622113b8",
+  "PE": "AMD64/PE32+",
+  "FileVersion": "0.17.1.0",
+  "InformationalVersion": "0.17.1+3efc1a990bf56dc9659faf8be86d921dda8c1a2a",
+  "bundle_entries": 453,
+  "Windows_runtime": "NOT_RUN",
+  "single_file_self_contained": "Crosspublish configuration; static CoreCLR-linked .NET Windows apphost, not native runtime acceptance",
+  "original_CI6_outcome": "UNKNOWN",
+  "chunks": [
+    {
+      "index": 0,
+      "path": "artifact-handoff/no-data61-3efc1a99/chunk-000.bin",
+      "bytes": 4194304,
+      "sha256": "f9ab16004bed78572cbf9cfc1ca2e4982b02a7765edcf1799b2a294b93a38094",
+      "blob_oid": "4c17039bbed38b367fe42ca2fa5359d06dd28959"
+    },
+    {
+      "index": 1,
+      "path": "artifact-handoff/no-data61-3efc1a99/chunk-001.bin",
+      "bytes": 4194304,
+      "sha256": "2ca75328832a7f8026ff12ae274c0857c322ef00d35b41ffbe6927bf727393bb",
+      "blob_oid": "f7b609ba3f718ca4368606339a8a3fa2748e8cbd"
+    },
+    {
+      "index": 2,
+      "path": "artifact-handoff/no-data61-3efc1a99/chunk-002.bin",
+      "bytes": 4194304,
+      "sha256": "a31958e35ce42d57fe5d07686004dcb64904fd84d3048cfc916acf48621fafd7",
+      "blob_oid": "755f58110fc8be45f660bc9369abda6bca93aeb1"
+    },
+    {
+      "index": 3,
+      "path": "artifact-handoff/no-data61-3efc1a99/chunk-003.bin",
+      "bytes": 4194304,
+      "sha256": "cc81787ee46fb7ba473d2d0412983af5c0859a7d4f2698a692ec80f4ed234369",
+      "blob_oid": "d253a6900763d139e05fc84872c179f101763231"
+    },
+    {
+      "index": 4,
+      "path": "artifact-handoff/no-data61-3efc1a99/chunk-004.bin",
+      "bytes": 4194304,
+      "sha256": "29d4bfff5d9d028bf2dd552751df6b5ac120062a7f5d0a1ee32c11a6412c6d5e",
+      "blob_oid": "f442c26d9be2a0e3eaa400b18fcbbb7f8f0f057e"
+    },
+    {
+      "index": 5,
+      "path": "artifact-handoff/no-data61-3efc1a99/chunk-005.bin",
+      "bytes": 4194304,
+      "sha256": "7e639097bd4fda36f8e015ba17440e85a5e59ac35926704e4200fabcd02cc6b3",
+      "blob_oid": "a8530eaef108e0b52444c6d0bc6321afaf4f1dc8"
+    },
+    {
+      "index": 6,
+      "path": "artifact-handoff/no-data61-3efc1a99/chunk-006.bin",
+      "bytes": 4194304,
+      "sha256": "6af1c1932a9dd69f753e81190f8e7a9dfb32d29f942ea93f078c12f3addb9a2c",
+      "blob_oid": "692bbe4359488114f2a361ad00a52d2bc5701771"
+    },
+    {
+      "index": 7,
+      "path": "artifact-handoff/no-data61-3efc1a99/chunk-007.bin",
+      "bytes": 4194304,
+      "sha256": "2249da565ceabd9916c2ad6a9864740e37f65ea2075d4015c1f276a18f4010ca",
+      "blob_oid": "009e9ba2525f1c71bc6af0d005d7b214cc06b00c"
+    },
+    {
+      "index": 8,
+      "path": "artifact-handoff/no-data61-3efc1a99/chunk-008.bin",
+      "bytes": 4194304,
+      "sha256": "e8cf6aa91f0751a503a6d4620c1522f733e3d425d403c6339d9e485bf1e05e06",
+      "blob_oid": "e8023307d22cbeb64fc71a0b272e0571ec5aba1d"
+    },
+    {
+      "index": 9,
+      "path": "artifact-handoff/no-data61-3efc1a99/chunk-009.bin",
+      "bytes": 4194304,
+      "sha256": "0438549db810c0565449d3285db99bf211a35aa6840bd28d3d6bd31f04574bac",
+      "blob_oid": "f23d43fedb8d0f8a4dce2678a55aed9cda56611a"
+    },
+    {
+      "index": 10,
+      "path": "artifact-handoff/no-data61-3efc1a99/chunk-010.bin",
+      "bytes": 4194304,
+      "sha256": "853d5c3221a6da8184268c03e7bc8b3b70b5e3848b0c11209279befca863b5de",
+      "blob_oid": "3e4c1c5914593799b1170dd6690334bbb16b7094"
+    },
+    {
+      "index": 11,
+      "path": "artifact-handoff/no-data61-3efc1a99/chunk-011.bin",
+      "bytes": 4194304,
+      "sha256": "4a42675c26fc8c3e26029e5a806bd4ab5b1ca045b0f8856afcb2d628737b1a3d",
+      "blob_oid": "44fd0d366db889d6e0f101ae9de2f2e02fed9900"
+    },
+    {
+      "index": 12,
+      "path": "artifact-handoff/no-data61-3efc1a99/chunk-012.bin",
+      "bytes": 4194304,
+      "sha256": "f229f34b934732957366069aff3eeec20f2e5791813b8fc38918977774bb629e",
+      "blob_oid": "77b0137c79691b8137f3b32df281719ca506998e"
+    },
+    {
+      "index": 13,
+      "path": "artifact-handoff/no-data61-3efc1a99/chunk-013.bin",
+      "bytes": 4194304,
+      "sha256": "768d101b5455f60db09c0cbc3514deb19cd5304e110b249faed49ed9786cc99f",
+      "blob_oid": "619ac0f3d270627cf0ea35fa36e6ea193c0bdd5f"
+    },
+    {
+      "index": 14,
+      "path": "artifact-handoff/no-data61-3efc1a99/chunk-014.bin",
+      "bytes": 4194304,
+      "sha256": "206cafe1fcc5a148f9f05cdad330d17c1680450816639b8835069884946e70dc",
+      "blob_oid": "362d2a8e6289e9498ca9e0232ed6242e99d4b82c"
+    },
+    {
+      "index": 15,
+      "path": "artifact-handoff/no-data61-3efc1a99/chunk-015.bin",
+      "bytes": 4194304,
+      "sha256": "5765c9446e7e0096ef626963669d2933ee6cadc958eec64f675540649e74844d",
+      "blob_oid": "e24aaef6240b040004ca8be376c609d2a2d2f089"
+    },
+    {
+      "index": 16,
+      "path": "artifact-handoff/no-data61-3efc1a99/chunk-016.bin",
+      "bytes": 4194304,
+      "sha256": "96427ea9f6c183b30d55090847f2bb9cad0a7a3a83fb54e246bb8f2b24549b82",
+      "blob_oid": "87aa8fb4f1c6750f3247df8f623bf10396661d22"
+    },
+    {
+      "index": 17,
+      "path": "artifact-handoff/no-data61-3efc1a99/chunk-017.bin",
+      "bytes": 4194304,
+      "sha256": "712e0fbc8859fa2d484d59c7c85e3caf83f2d6c7b0ab5f82cea2987ca0bb2744",
+      "blob_oid": "2c81119ea911159c095b58ec8890637f8d641564"
+    },
+    {
+      "index": 18,
+      "path": "artifact-handoff/no-data61-3efc1a99/chunk-018.bin",
+      "bytes": 3277240,
+      "sha256": "2b52a2a119456ad5790e19ba0a4803a7cd505dd18ad82dcd36218f6a63c3b30f",
+      "blob_oid": "a30e91b90309cadb256e39bbfc44678bf6373955"
+    }
+  ],
+  "changed_files": [
+    {
+      "path": "docs/releases/0.17.1-evidence.md",
+      "bytes": 2671,
+      "sha256": "5311460e6759c16bc3b87b8ae965302dac9aa8a74e9f202e7169675228d3d00c",
+      "git_blob": "f9a04d196eb0da65181896c278840b5b46ade3c5",
+      "artifact_path": "artifact-handoff/no-data61-3efc1a99/source/files/docs/releases/0.17.1-evidence.md"
+    },
+    {
+      "path": "src/G.PcHealthCheck/CommonProblemsForm.cs",
+      "bytes": 11895,
+      "sha256": "2881ed34678b8e222e328c35dc22f7eb17b097098d5bcfd464677e7ce244a98d",
+      "git_blob": "4f42510c6c2f33c25e9808566b6271fba899343f",
+      "artifact_path": "artifact-handoff/no-data61-3efc1a99/source/files/src/G.PcHealthCheck/CommonProblemsForm.cs"
+    },
+    {
+      "path": "src/G.PcHealthCheck/EvidencePresentationSelfTest.cs",
+      "bytes": 6911,
+      "sha256": "f868cf488a96c03e818d4101a0c454d8844fe5d6250561b48150b2701ca28524",
+      "git_blob": "845ee8345dfb117d6fc8aae3fa79555ef1c82794",
+      "artifact_path": "artifact-handoff/no-data61-3efc1a99/source/files/src/G.PcHealthCheck/EvidencePresentationSelfTest.cs"
+    },
+    {
+      "path": "src/G.PcHealthCheck/MainForm.Localization.cs",
+      "bytes": 12114,
+      "sha256": "7729823a00059f02ac84d6b84fde53173e57a98205a0a32819764f89c41010d0",
+      "git_blob": "15c16dfb9626eda4291a518233c645b51db3de03",
+      "artifact_path": "artifact-handoff/no-data61-3efc1a99/source/files/src/G.PcHealthCheck/MainForm.Localization.cs"
+    },
+    {
+      "path": "src/G.PcHealthCheck/MainForm.ReadableLayout.cs",
+      "bytes": 6290,
+      "sha256": "c184785e46278e43a04516099b873cdc0c0419e3844943ce78269a05abc4b602",
+      "git_blob": "1a1aeb847dd4c196a77be5f19b558e17904190bc",
+      "artifact_path": "artifact-handoff/no-data61-3efc1a99/source/files/src/G.PcHealthCheck/MainForm.ReadableLayout.cs"
+    },
+    {
+      "path": "src/G.PcHealthCheck/MainForm.SecurityPosture.cs",
+      "bytes": 16360,
+      "sha256": "fb89eeadd579d6fca8e608cc3e408338f559104c0bfb6b0634e7f2c42dea2595",
+      "git_blob": "4aa8ed7e0e9265a5f4215ae4877085ec42fbdd10",
+      "artifact_path": "artifact-handoff/no-data61-3efc1a99/source/files/src/G.PcHealthCheck/MainForm.SecurityPosture.cs"
+    },
+    {
+      "path": "src/G.PcHealthCheck/MainForm.Symptoms.cs",
+      "bytes": 1721,
+      "sha256": "e3ee027221049ee6ad63f98e6c4083dd232c426342bb08a4c22e1e24ce5da9aa",
+      "git_blob": "b545196477ff56df77dc651cb070542265da4d16",
+      "artifact_path": "artifact-handoff/no-data61-3efc1a99/source/files/src/G.PcHealthCheck/MainForm.Symptoms.cs"
+    },
+    {
+      "path": "src/G.PcHealthCheck/MainForm.cs",
+      "bytes": 39927,
+      "sha256": "a40b396d1bb606153c46a1bdd75cf22eba2035281570f8e7f900b32726cda330",
+      "git_blob": "4e4f27657ecd429ee9f8ec1d0793159c80a1a206",
+      "artifact_path": "artifact-handoff/no-data61-3efc1a99/source/files/src/G.PcHealthCheck/MainForm.cs"
+    },
+    {
+      "path": "src/G.PcHealthCheck/MissingEvidenceExplanation.cs",
+      "bytes": 3996,
+      "sha256": "c7cc5509bdc5bc7bff115913fb3eac456230b54ffe665c25fd8582805a447ae5",
+      "git_blob": "7ca4e01d06dc3819628b9b0ba2a7f4d7c56a9437",
+      "artifact_path": "artifact-handoff/no-data61-3efc1a99/source/files/src/G.PcHealthCheck/MissingEvidenceExplanation.cs"
+    },
+    {
+      "path": "src/G.PcHealthCheck/Models.cs",
+      "bytes": 11332,
+      "sha256": "f160a7a3620852eb96eeec4ad6f9227c07cb0339417d8ed0cfa866c2a2ccf061",
+      "git_blob": "68b934473b45f179d3fa63338f103f57e1455504",
+      "artifact_path": "artifact-handoff/no-data61-3efc1a99/source/files/src/G.PcHealthCheck/Models.cs"
+    },
+    {
+      "path": "src/G.PcHealthCheck/Program.cs",
+      "bytes": 9071,
+      "sha256": "0ae6be9a1dac547c86d277f058f211ff808f2fdac3946b8c0747f57aa0080c48",
+      "git_blob": "626a9d26435ed9b669e20cf6ad708f0e0c1d23a2",
+      "artifact_path": "artifact-handoff/no-data61-3efc1a99/source/files/src/G.PcHealthCheck/Program.cs"
+    },
+    {
+      "path": "src/G.PcHealthCheck/ReportService.cs",
+      "bytes": 19762,
+      "sha256": "2b67188e16c4bcf7cce7d5d133d12a41c80fdc3e85bcd7d51fac03ce05192a33",
+      "git_blob": "400c3ae203c0f8442a33dfd24255b79e586c67a7",
+      "artifact_path": "artifact-handoff/no-data61-3efc1a99/source/files/src/G.PcHealthCheck/ReportService.cs"
+    },
+    {
+      "path": "src/G.PcHealthCheck/Resources/Strings.en.resx",
+      "bytes": 19422,
+      "sha256": "86ef668cfea3e425c98bf965a6167741123e815d69d16f29b3387275d9da2dcd",
+      "git_blob": "059e52e8acd7b31368b6e77a12515d4d63fb7d9c",
+      "artifact_path": "artifact-handoff/no-data61-3efc1a99/source/files/src/G.PcHealthCheck/Resources/Strings.en.resx"
+    },
+    {
+      "path": "src/G.PcHealthCheck/Resources/Strings.resx",
+      "bytes": 24238,
+      "sha256": "9be54514c5de0b8e507877454e06c1a7fc1611cb031d833e69e502b5f02d8c57",
+      "git_blob": "2d27eed0126fba14bf28805e7098dd3b4742c3e6",
+      "artifact_path": "artifact-handoff/no-data61-3efc1a99/source/files/src/G.PcHealthCheck/Resources/Strings.resx"
+    },
+    {
+      "path": "src/G.PcHealthCheck/SecurityPostureModels.cs",
+      "bytes": 4786,
+      "sha256": "eaf734947af1dca9e963a4d7da7091c1f9ca8c8b2a83ee8ca5faa7c35aec882f",
+      "git_blob": "5f57d9454ce3f2f256988987d794aab8db8aa1c3",
+      "artifact_path": "artifact-handoff/no-data61-3efc1a99/source/files/src/G.PcHealthCheck/SecurityPostureModels.cs"
+    },
+    {
+      "path": "src/G.PcHealthCheck/SecurityReportSection.cs",
+      "bytes": 10111,
+      "sha256": "d84219c8914f4e4f3b42fcd8f2bb1d95f020660c093524ff9b96695ceed2b066",
+      "git_blob": "b141e9c1ad9dc309dcc8837a22ccb2e68ddf5f02",
+      "artifact_path": "artifact-handoff/no-data61-3efc1a99/source/files/src/G.PcHealthCheck/SecurityReportSection.cs"
+    },
+    {
+      "path": "src/G.PcHealthCheck/SupportSummary.cs",
+      "bytes": 3480,
+      "sha256": "1b531939c314ff2b7a06ac5ba6d59f06ceac27c49dcc12c32ac27258ba486173",
+      "git_blob": "4f166f1955e79373ccfb7423096a568ec1670d8a",
+      "artifact_path": "artifact-handoff/no-data61-3efc1a99/source/files/src/G.PcHealthCheck/SupportSummary.cs"
+    },
+    {
+      "path": "src/G.PcHealthCheck/SymptomRoutes.cs",
+      "bytes": 1347,
+      "sha256": "a74034964a2b2e53dd498ac2ce3da0b874aaac459e7f31e25040bdf0b3d1886b",
+      "git_blob": "ed97d1f0f765bcd5f72a85fdf62eebfc13353fc3",
+      "artifact_path": "artifact-handoff/no-data61-3efc1a99/source/files/src/G.PcHealthCheck/SymptomRoutes.cs"
+    },
+    {
+      "path": "src/G.PcHealthCheck/TriageSummary.cs",
+      "bytes": 3561,
+      "sha256": "e750ae44364dec0acd046fdb19917a281f3e491af47ea249d57c5bdb60a18014",
+      "git_blob": "77f0ed1e60f28a6439c5f55b470aa74c79014461",
+      "artifact_path": "artifact-handoff/no-data61-3efc1a99/source/files/src/G.PcHealthCheck/TriageSummary.cs"
+    }
+  ],
+  "source_bundle": "artifact-handoff/no-data61-3efc1a99/source/candidate.bundle",
+  "source_bundle_sha256": "1aeb0965cb8e8f61f5e5b70843bf7a4d93b95efc70724e72413203ec10495d36",
+  "source_patch": "artifact-handoff/no-data61-3efc1a99/source/candidate.patch",
+  "source_patch_sha256": "d7956722919e3f05edb7c748c702222603a1dcd151f8aa74cba8e7d350d80b49",
+  "complete_history_bundle": true,
+  "core": "CDC2.12.1 unchanged",
+  "SPEC": "PENDING Root62",
+  "QUALITY": "PENDING Root63"
+}

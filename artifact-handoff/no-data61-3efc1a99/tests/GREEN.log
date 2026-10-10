@@ -1,0 +1,11 @@
+Evidence PASS: explicit denial, timeout and cancellation use exact retained tokens
+Evidence PASS: generic exception, null and empty never invent rights or unsupported OEM
+Evidence PASS: explicit unsupported and missing observation are distinguishable
+Evidence PASS: missing local admin policy differs from unreadable or wrong type
+Evidence PASS: explicit conflict, but grouped volume differences not guessed conflict
+Evidence PASS: source and safe nextstep localized without secret source
+Evidence PASS: incomplete triage not all-clear and preserves assessment
+Evidence PASS: healthy empty differs from collection warning and CRIT order retained
+Evidence PASS: JSON, HTML and clipboard carry explanation and original evidence
+Evidence PASS: symptom routes only existing inspections, no auto probes, batch unchanged
+Evidence presentation: 10/10 passed

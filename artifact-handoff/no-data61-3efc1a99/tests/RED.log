@@ -1,0 +1,11 @@
+Evidence FAIL: explicit denial, timeout and cancellation use exact retained tokens: UnauthorizedAccessException
+Evidence PASS: generic exception, null and empty never invent rights or unsupported OEM
+Evidence FAIL: explicit unsupported and missing observation are distinguishable: explicit OEM
+Evidence FAIL: missing local admin policy differs from unreadable or wrong type: missing policy
+Evidence FAIL: explicit conflict, but grouped volume differences not guessed conflict: conflict marker
+Evidence FAIL: source and safe nextstep localized without secret source: localized guidance missing
+Evidence FAIL: incomplete triage not all-clear and preserves assessment: false all-clear
+Evidence FAIL: healthy empty differs from collection warning and CRIT order retained: failed collection all-clear
+Evidence FAIL: JSON, HTML and clipboard carry explanation and original evidence: JSON metadata/raw evidence absent
+Evidence FAIL: symptom routes only existing inspections, no auto probes, batch unchanged: four routes required
+Evidence presentation: 1/10 passed

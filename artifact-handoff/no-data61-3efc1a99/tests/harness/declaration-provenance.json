@@ -1,0 +1,30 @@
+[
+  {
+    "source": "SecurityHardeningOperations.cs",
+    "sha256": "905deb59cb29485e72b602d70e8056cae7ac24b747af0516ef74b2bcf8642f63",
+    "type": "SecurityActionResult",
+    "start": 93,
+    "end": 762
+  },
+  {
+    "source": "SecurityHardeningOperations.cs",
+    "sha256": "905deb59cb29485e72b602d70e8056cae7ac24b747af0516ef74b2bcf8642f63",
+    "type": "SecurityHardeningBatchResult",
+    "start": 764,
+    "end": 1064
+  },
+  {
+    "source": "SecurityHardeningUiWorkflow.cs",
+    "sha256": "ad287c58f69e2debddad5d3be082edbe4264be6f007518eb63be8b5e3bea8631",
+    "type": "SecurityHardeningVerification",
+    "start": 251,
+    "end": 432
+  },
+  {
+    "source": "SecurityPostureCollector.cs",
+    "sha256": "9d7321c5e38626881579e6702b2e069cb1a204105e6b23288dcc97cd1dac3bdb",
+    "type": "SecurityPostureCollectionResult",
+    "start": 28,
+    "end": 164
+  }
+]
