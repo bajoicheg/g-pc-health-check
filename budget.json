@@ -3015,6 +3015,37 @@
         "tokens": null,
         "elapsed_seconds": null
       }
+    },
+    {
+      "type": "outcome",
+      "event_id": "gpc-no-data65-spec-20261010-agent_start-terminal",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-no-data-20261010",
+      "at_utc": "2026-10-10T20:10:11.291950Z",
+      "reservation_id": "gpc-no-data65-spec-20261010-agent_start",
+      "status": "succeeded",
+      "usage": {
+        "tokens": null,
+        "elapsed_seconds": 179.67
+      },
+      "failure": null
+    },
+    {
+      "type": "reserve",
+      "event_id": "gpc-no-data66-quality-20261010-agent_start",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-no-data-20261010",
+      "at_utc": "2026-10-10T20:10:11.291950Z",
+      "operation_key": "sha256:8605826a2a226df3de496571e41a8a028c87a51c40d62f2be3b1e0f5e2864c0d",
+      "attempt_id": "gpc-no-data66-quality-20261010",
+      "kind": "agent_start",
+      "scope": "gpc/exact-corrected-quality-review",
+      "recovery_ref": null,
+      "cost": {
+        "tool_calls": 1,
+        "tokens": null,
+        "elapsed_seconds": null
+      }
     }
   ],
   "policy": {

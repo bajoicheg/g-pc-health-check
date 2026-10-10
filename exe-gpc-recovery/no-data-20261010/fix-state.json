@@ -8,7 +8,7 @@
   "integrator_id": "Work-root",
   "coordination_ref": "refs/heads/cdc/coordination",
   "coordination_store_id": "sha256:e9c5798b2e5857d11563b10845ae993ed5b0e7b040ffd6611bdbd1a36aad08d3",
-  "revision": 6,
+  "revision": 10,
   "execution_mode": "parallel",
   "tasks": [
     {
@@ -27,24 +27,26 @@
     },
     {
       "id": "spec",
-      "status": "running",
+      "status": "succeeded",
       "attempt_ids": [
         "gpc-no-data65-spec-20261010"
       ],
-      "active_attempt_id": "gpc-no-data65-spec-20261010",
-      "reservation_token": "43fe114e-6d03-4350-bd34-086eb232df8b",
-      "accepted_result_ref": null,
-      "integrated": false,
+      "active_attempt_id": null,
+      "reservation_token": null,
+      "accepted_result_ref": "git:refs/heads/cdc/coordination:exe-gpc-recovery/no-data-20261010/spec65-review.json",
+      "integrated": true,
       "discarded": false,
-      "runtime_seconds": 0,
-      "cost_units": 0
+      "runtime_seconds": 179.67,
+      "cost_units": 1
     },
     {
       "id": "quality",
-      "status": "planned",
-      "attempt_ids": [],
-      "active_attempt_id": null,
-      "reservation_token": null,
+      "status": "running",
+      "attempt_ids": [
+        "gpc-no-data66-quality-20261010"
+      ],
+      "active_attempt_id": "gpc-no-data66-quality-20261010",
+      "reservation_token": "d20aa016-37a3-4b13-8f30-c2e73b5f0045",
       "accepted_result_ref": null,
       "integrated": false,
       "discarded": false,
@@ -52,8 +54,8 @@
       "cost_units": 0
     }
   ],
-  "runtime_consumed_seconds": 929,
-  "cost_consumed_units": 1,
+  "runtime_consumed_seconds": 1108.67,
+  "cost_consumed_units": 2,
   "authorizes_worker_launch": false,
   "authorizes_shared_branch_write": false,
   "authorizes_merge": false,

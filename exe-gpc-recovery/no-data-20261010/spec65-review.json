@@ -1,0 +1,85 @@
+{
+  "schema": "gpc-independent-spec-review/v1",
+  "attempt": "gpc-no-data65-spec-20261010",
+  "candidate": "3e64dbd7cf78ce6a273f454ec97583a454695d5e",
+  "tree": "b61f0ca5fdccd4e06be6c4fecd6c6b79b9bea10f",
+  "sole_parent": "3efc1a990bf56dc9659faf8be86d921dda8c1a2a",
+  "scope_base": "ca354d2194a454b0356057c2db34e94cea8ffbbe",
+  "admission": "55b2443678ae1df21edf74c42f730913f16e3b10",
+  "started_at_utc": "2026-10-10T20:06:40.140610Z",
+  "finished_at_utc": "2026-10-10T20:09:39.810803Z",
+  "elapsed_seconds": 179.67,
+  "timing_basis": "Conservative upper bound from persisted SPEC65 launch preparation through review completion; initial agent-dispatch clock was not independently captured. Includes preparation before first reviewer read.",
+  "verdict": "GREEN",
+  "findings": [],
+  "resolved_findings": [
+    {
+      "id": "SPEC-1",
+      "paths": [
+        "src/G.PcHealthCheck/MissingEvidenceExplanation.cs:31-40",
+        "src/G.PcHealthCheck/FirmwareSecurityCollector.cs:30-32"
+      ],
+      "evidence": "Exact UnsupportedManufacturer key is recognized for nonblank, non-Unknown retained OEM value. Blank/Unknown OEM and null Huawei BIOS password observation remain cause_not_established. Providers/statuses unchanged."
+    },
+    {
+      "id": "SPEC-2",
+      "paths": [
+        "src/G.PcHealthCheck/SecurityDetailPresentation.cs:12-52",
+        "src/G.PcHealthCheck/MainForm.SecurityPosture.cs:151-191",
+        "src/G.PcHealthCheck/Models.cs:253-265",
+        "src/G.PcHealthCheck/SecurityReportSection.cs:37-41,76-77"
+      ],
+      "evidence": "Each Unknown displayed volume/member uses shared production detail presentation with own evidence and reason/source-or-not-recorded/next step. Volume grouping starts only at actual Volume keys, does not borrow another volume error; member causes use explicit member Reason/policy flags. Serialized SecurityDetails retains members absent from JsonIgnored collector snapshot and is consumed by HTML/clipboard after roundtrip. Raw subject facts retained."
+    },
+    {
+      "id": "SPEC-3",
+      "paths": [
+        "src/G.PcHealthCheck/ReportService.cs:22-55",
+        "src/G.PcHealthCheck/MainForm.Symptoms.cs:25-42"
+      ],
+      "evidence": "Selection produces a separate snapshot and new report pair in staging, flushes each file and commits with a same-parent directory rename; original reports are not overwritten. Current snapshot, symptom notes and latest report update only after success. Failure displays localized message and returns before tool open, preserving current/clipboard/history."
+    },
+    {
+      "id": "SPEC-4",
+      "paths": [
+        "src/G.PcHealthCheck/MainForm.cs:389-396",
+        "src/G.PcHealthCheck/ServiceDeskFullBatchUi.cs:129-134",
+        "src/G.PcHealthCheck/ReportService.cs:68-83,133-136,182-187",
+        "src/G.PcHealthCheck/SupportSummary.cs:17"
+      ],
+      "evidence": "Both existing verification paths copy Before.SymptomNotes into independent After list before saving/replacing current. Verification JSON/HTML and current clipboard consume those same notes. Diff adds only the note assignment in both remediation flows, preserving execution semantics."
+    },
+    {
+      "id": "SPEC-5",
+      "paths": [
+        "src/G.PcHealthCheck/Resources/Strings.en.resx:125",
+        "src/G.PcHealthCheck/Resources/Strings.resx:125",
+        "src/G.PcHealthCheck/LocalAdministratorsPolicy.cs:28-31"
+      ],
+      "evidence": "Unchanged generic-exception policy sentinel no longer yields localized configured/existence assertion; unreadable reason explicitly says existence/type/cause may not be established and does not infer denial."
+    }
+  ],
+  "confirmed_scope_preserved": [
+    "Entire approved feature diff reviewed: source paths plus release note only; no evaluator/control-weight/score/coverage/provider/worker/UAC/Temp/session/nonce changes.",
+    "No-WARN/CRIT Triage incomplete branch preserves assessment semantics and existing CRIT/WARN ordering; healthy empty results remain distinct from collection warnings. Technical missing signals carry conservative additive metadata.",
+    "Four compact Overview routes use existing performance, incident review, Resource Probe and Common Problems forms. Constructors are idle; printing route explicitly disables Common Problems Shown auto-scan. Selection does not collect/probe/repair or change action batch.",
+    "Security grid uses AutoSizeRowsMode.None, RowTemplate.Height=28 and no wrapping; selected detail pane retains complete read-only multiline selectable values. Existing tabs and shell fixed footer remain structurally retained. Actual Windows layout not executed."
+  ],
+  "evidence": [
+    "Independent exact HEAD/tree/sole-parent readbacks and clean git status; whole-feature git diff --check exit0.",
+    "Read contract.txt, fix-contract.txt, original spec-review.json, entire base-to-candidate diff and actual collector/presentation/persistence/verification integrations.",
+    "Independent read-only Python verified all 13 extracted source blocks against exact file SHA256 and character bounds, with only declared access-modifier transformations; all matched supplied UiExtraction.cs.",
+    "Independent read-only XML check verified all 11 reason/next-step pairs exist in both RU and EN resources.",
+    "Inspected real source-linked C# RED 0/6 exit1, repeat RED 0/6 exit1, final corrective GREEN9/9 exit0, extraction/shim provenance and tests. These are producer execution receipts, not independent runtime reruns.",
+    "Inspected candidate and exact-parent regression logs: evidence10/10, evaluator9/9, firmware12/12 and BitLocker7/7 pass; same seven guidance failures in parent/candidate, aggregate regression exit2. Full suite is not green.",
+    "Inspected compile log (zero warnings/errors), build receipts and exact-candidate self-contained win-x64 publish argv/raw stdout/stderr/returncode0, SDK8.0.425 and informational version exact3e64dbd7.",
+    "Read corrected-root-verification.json: independent root owns immutable delivered bytes/source/bundle/version verification; this SPEC review does not independently revalidate binary publication."
+  ],
+  "limitations": [
+    "GREEN is bounded static SPEC acceptance for this exact source candidate; independent QUALITY66 remains pending. No new tests/builds or native WinForms runtime executed by reviewer.",
+    "Portable C# UI extraction substitutes native controls/acquisition with explicit shims; passing checks do not establish real Windows UI/UAC/WMI/BCD/firmware behavior.",
+    "Windows runtime/UI rendering/DPI/RDP/Windows11 pilot/UAC/physical Huawei acceptance remain NOT_RUN.",
+    "Existing seven Linux guidance failures are retained and reproduced on exact parent; no full-suite success claim.",
+    "Only spec65-review.json written. No source/shared refs/admission/budget changes, browser/native compute invocation, CI replay or child agents. All own commands returned terminal; no subprocess sessions started. Original Git outcome remains UNKNOWN."
+  ]
+}

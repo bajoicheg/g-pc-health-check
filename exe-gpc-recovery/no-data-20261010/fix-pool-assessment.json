@@ -5,8 +5,7 @@
   "terminal_allowed": false,
   "runnable_task_ids": [],
   "blockers": [
-    "spec:active",
-    "quality:dependency_wait"
+    "quality:active"
   ],
   "next_action": "observe_or_recover_pool",
   "authorizes_worker_launch": false,
