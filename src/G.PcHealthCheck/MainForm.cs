@@ -53,7 +53,7 @@ public sealed partial class MainForm : Form
 
     public MainForm()
     {
-        Text = "G PC Health Check";
+        Text = "G PC Health";
         Width = 1320;
         Height = 900;
         MinimumSize = new Size(1080, 740);
@@ -95,7 +95,7 @@ public sealed partial class MainForm : Form
             Image = BrandAssets.LoadShield()
         };
         p.Controls.Add(logo);
-        p.Controls.Add(new Label { Text = "G PC Health Check", Font = new Font("Segoe UI Semibold", 18F), ForeColor = Navy, AutoSize = true, Location = new Point(86, 13) });
+        p.Controls.Add(new Label { Text = "G PC Health", Font = new Font("Segoe UI Semibold", 18F), ForeColor = Navy, AutoSize = true, Location = new Point(86, 13) });
         p.Controls.Add(new Label { Text = "Service Desk · диагностика и контролируемые действия для Windows 11", ForeColor = Muted, AutoSize = true, Location = new Point(88, 49) });
         _host.Font = new Font("Segoe UI Semibold", 10F); _host.ForeColor = Navy; _host.AutoSize = true; _host.Anchor = AnchorStyles.Top | AnchorStyles.Right;
         p.Controls.Add(_host);
@@ -265,7 +265,9 @@ public sealed partial class MainForm : Form
             var progress = new Progress<string>(s => ApplyScanProgress(progressOwner, s));
             var data = await _diagnostics.CollectAsync(progress);
             StampExecutionContext(data, context);
-            _current = _assessment.Assess(data);
+            var scan = _assessment.Assess(data);
+            await AttachSecurityPostureAsync(scan, progress);
+            _current = scan;
             var saved = _reports.SaveScan(_current);
             _latestReport = saved.Html;
             Populate(_current);
@@ -330,9 +332,10 @@ public sealed partial class MainForm : Form
             var verificationProgress = new Progress<string>(s => ApplyOperationProgress(verificationOwner, s));
             var context = await Task.Run(ExecutionContextService.Capture);
             var afterData = await _diagnostics.CollectAsync(verificationProgress);
-            if (ReferenceEquals(_applyProgressOwner, verificationOwner)) _applyProgressOwner = null;
             StampExecutionContext(afterData, context);
             var after = _assessment.Assess(afterData);
+            await AttachSecurityPostureAsync(after, verificationProgress);
+            if (ReferenceEquals(_applyProgressOwner, verificationOwner)) _applyProgressOwner = null;
             var verification = new VerificationResult { Before = before, After = after, Remediation = batch };
             var saved = _reports.SaveVerification(verification);
             _latestReport = saved.Html;
@@ -341,7 +344,7 @@ public sealed partial class MainForm : Form
             PopulateVerification(verification);
             _tabs.SelectedIndex = 4;
             var ok = batch.Actions.Count(x => x.Success);
-            MessageBox.Show(this, $"Выполнено: {ok}/{batch.Actions.Count}. Повторная диагностика завершена.\nИндекс: {before.Assessment.Score} → {after.Assessment.Score}.\nУстранение симптома нужно подтвердить отдельно.", "G PC Health Check", MessageBoxButtons.OK, batch.Actions.All(x => x.Success) ? MessageBoxIcon.Information : MessageBoxIcon.Warning);
+            MessageBox.Show(this, $"Выполнено: {ok}/{batch.Actions.Count}. Повторная диагностика завершена.\nИндекс: {before.Assessment.Score} → {after.Assessment.Score}.\nУстранение симптома нужно подтвердить отдельно.", "G PC Health", MessageBoxButtons.OK, batch.Actions.All(x => x.Success) ? MessageBoxIcon.Information : MessageBoxIcon.Warning);
         }
         catch (OperationCanceledException ex)
         {

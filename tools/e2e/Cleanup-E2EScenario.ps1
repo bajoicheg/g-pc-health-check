@@ -32,4 +32,4 @@ foreach ($target in $targets) {
     }
 }
 
-Write-Host 'G PC Health Check E2E test data cleanup completed.' -ForegroundColor Green
+Write-Host 'G PC Health E2E test data cleanup completed.' -ForegroundColor Green

@@ -37,6 +37,7 @@ public sealed partial class MainForm
         if (_mainLocalizationInitialized) return;
         _mainLocalizationInitialized = true;
         _mainLocalizationRoot = root;
+        InitializeSecurityPostureUi(root);
         AppLocalization.CultureChanged += OnMainCultureChanged;
         Disposed += (_, _) => AppLocalization.CultureChanged -= OnMainCultureChanged;
 
@@ -67,6 +68,7 @@ public sealed partial class MainForm
             LocalizeHeader();
             LocalizeMetrics();
             LocalizeTabsAndColumns();
+            RefreshSecurityLocalization();
 
             _scan.Text = AppLocalization.T("Main.Button.Rescan");
             _openReport.Text = AppLocalization.T("Main.Button.OpenReport");
@@ -126,6 +128,7 @@ public sealed partial class MainForm
         SetMetric(metrics, 3, null, "Main.Metric.Ram.Sub");
         SetMetric(metrics, 4, "Main.Metric.SystemDisk", "Main.Metric.SystemDisk.Sub");
         SetMetric(metrics, 5, null, "Main.Metric.Uptime.Sub");
+        SetMetric(metrics, 6, "Security.Metric.Caption", null);
     }
 
     private static void SetMetric(TableLayoutPanel metrics, int column, string? captionKey, string? subKey)
@@ -145,6 +148,7 @@ public sealed partial class MainForm
             _tabs.TabPages[3].Text = AppLocalization.T("Main.Tab.System");
             _tabs.TabPages[4].Text = AppLocalization.T("Main.Tab.Compare");
         }
+        if (_tabs.TabPages.Count >= 6) _tabs.TabPages[5].Text = AppLocalization.T("Security.Tab.Title");
 
         SetColumn(_actions, "Kind", "Main.Column.Type");
         SetColumn(_actions, "Title", "Main.Column.Action");

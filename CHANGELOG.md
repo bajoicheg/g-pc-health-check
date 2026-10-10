@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased — G PC Health rebranding
+
+- Renames the product to **G PC Health** in the dashboard, About window, RU/EN analysis windows, reports and Administrative Templates display resources.
+- Publishes new builds as `G-PC-Health.exe`; updates build, pilot packaging, checksums, release notes and SBOM/provenance scripts together.
+- Retains existing settings/report directories, GPO Registry keys, namespace, resource names and workflow artifact IDs for compatibility. Existing release assets and historical verification evidence are unchanged.
+- Refreshes the project status and managed Windows 11 pilot priorities. This source change is not a built, accepted or published release.
+
 ## 0.16.0 — Bilingual Service Desk actions and one-click repair
 
 - Adds persistent in-app RU/EN operator localization while keeping stable control/action IDs, JSON keys and raw provider evidence language-independent.

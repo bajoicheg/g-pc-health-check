@@ -14,7 +14,7 @@
   <data name="FileUse.Form.Export" xml:space="preserve"><value>Save HTML / JSON</value></data>
   <data name="FileUse.Form.Close" xml:space="preserve"><value>Close</value></data>
   <data name="FileUse.Form.StageInitial" xml:space="preserve"><value>Choose a file. Collection has not started.</value></data>
-  <data name="FileUse.Form.Title" xml:space="preserve"><value>G PC Health Check — who is using a file</value></data>
+  <data name="FileUse.Form.Title" xml:space="preserve"><value>G PC Health — who is using a file</value></data>
   <data name="FileUse.Form.Intro" xml:space="preserve"><value>WHO IS USING A FILE — a Windows Restart Manager query that does not close applications or modify the file.
 One ordinary local file only. This is not a complete handle list; no results do not guarantee that the file is not blocked.</value></data>
   <data name="FileUse.Column.Application" xml:space="preserve"><value>Application (RM)</value></data>
@@ -91,7 +91,7 @@ One ordinary local file only. This is not a complete handle list; no results do 
 
   <data name="FileUse.Report.Meaning" xml:space="preserve"><value>Restart Manager reports applications/services using the selected path. This is not a complete handle list and does not check delete permissions. An empty list does not prove that the file is not blocked: retry the exact operation that failed. Names from Restart Manager and separately verified EXE metadata are different sources. The result applies to the query time; the file and processes may change.</value></data>
   <data name="FileUse.Report.NextSteps" xml:space="preserve"><value>Save your work. Review the reported application and, if appropriate, close it normally, then repeat the check and the original operation. Do not terminate system processes or services based on one result row. If the list is empty or unavailable, check file permissions, attributes, path scope, and the actual Windows error; do not disable protective software for testing.</value></data>
-  <data name="FileUse.Report.Title" xml:space="preserve"><value>G PC Health Check — who is using a file</value></data>
+  <data name="FileUse.Report.Title" xml:space="preserve"><value>G PC Health — who is using a file</value></data>
   <data name="FileUse.Report.Target" xml:space="preserve"><value>Checked path: {0}</value></data>
   <data name="FileUse.Report.Computer" xml:space="preserve"><value>PC: {0}; {1:O} — {2:O}.</value></data>
   <data name="FileUse.Report.Collection" xml:space="preserve"><value>Collection: {0}; stage: {1}.</value></data>

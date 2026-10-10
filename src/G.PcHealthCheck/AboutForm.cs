@@ -32,7 +32,7 @@ internal sealed class AboutForm : Form
 
         layout.Controls.Add(new Label
         {
-            Text = "G PC Health Check",
+            Text = "G PC Health",
             Font = new Font("Segoe UI Semibold", 17F),
             AutoSize = true,
             Margin = new Padding(0, 0, 0, 8)

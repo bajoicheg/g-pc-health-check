@@ -7,7 +7,7 @@
 ## Запуск
 
 ```powershell
-powershell.exe -NoLogo -NoProfile -File .\tools\e2e\Analyze-E2EEvidence.ps1 -EvidenceZip "C:\Path\G-PC-Health-Check-E2E-HOST-20260909_230000.zip"
+powershell.exe -NoLogo -NoProfile -File .\tools\e2e\Analyze-E2EEvidence.ps1 -EvidenceZip "C:\Path\G-PC-Health-E2E-HOST-20260909_230000.zip"
 ```
 
 Также можно анализировать уже распакованный bundle:
@@ -18,8 +18,8 @@ powershell.exe -NoLogo -NoProfile -File .\tools\e2e\Analyze-E2EEvidence.ps1 -Evi
 
 По умолчанию рядом с evidence создаются:
 
-- `G-PC-Health-Check-E2E-analysis-*.json` — машинно-читаемый результат;
-- `G-PC-Health-Check-E2E-analysis-*.md` — краткий отчёт для человека.
+- `G-PC-Health-E2E-analysis-*.json` — машинно-читаемый результат;
+- `G-PC-Health-E2E-analysis-*.md` — краткий отчёт для человека.
 
 ## Вердикты и exit codes
 

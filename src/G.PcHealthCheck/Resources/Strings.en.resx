@@ -35,8 +35,8 @@
   <data name="ResourceProbe.Outcome.Unreachable" xml:space="preserve"><value>No reachable route/host</value></data>
   <data name="ResourceProbe.Outcome.Denied" xml:space="preserve"><value>Access denied by the OS</value></data>
   <data name="ResourceProbe.Outcome.Unknown" xml:space="preserve"><value>No result</value></data>
-  <data name="ResourceProbe.Report.Title" xml:space="preserve"><value>G PC Health Check — resource diagnostics</value></data>
-  <data name="ResourceProbe.Report.HtmlTitle" xml:space="preserve"><value>G PC Health Check — resource</value></data>
+  <data name="ResourceProbe.Report.Title" xml:space="preserve"><value>G PC Health — resource diagnostics</value></data>
+  <data name="ResourceProbe.Report.HtmlTitle" xml:space="preserve"><value>G PC Health — resource</value></data>
   <data name="ResourceProbe.Report.CurrentAttempt" xml:space="preserve"><value>Current attempt</value></data>
   <data name="ResourceProbe.Report.PreviousAttempt" xml:space="preserve"><value>Previous attempt</value></data>
   <data name="ResourceProbe.Report.SameTarget" xml:space="preserve"><value>The same target was checked again; a changed result does not prove that the root cause was fixed.</value></data>
@@ -56,7 +56,7 @@
   <data name="ResourceProbe.Report.HtmlDuration" xml:space="preserve"><value>ms</value></data>
   <data name="ResourceProbe.Report.HtmlLocalIp" xml:space="preserve"><value>Local IP</value></data>
   <data name="ResourceProbe.Report.HtmlCodeDetails" xml:space="preserve"><value>Code / details</value></data>
-  <data name="ExecutionContext.Form.Title" xml:space="preserve"><value>G PC Health Check — permissions and execution context</value></data>
+  <data name="ExecutionContext.Form.Title" xml:space="preserve"><value>G PC Health — permissions and execution context</value></data>
   <data name="ExecutionContext.Column.Operation" xml:space="preserve"><value>Check / action</value></data>
   <data name="ExecutionContext.Column.State" xml:space="preserve"><value>Availability</value></data>
   <data name="ExecutionContext.Column.Scope" xml:space="preserve"><value>Data owner / scope</value></data>

@@ -1,3 +1,7 @@
+## Current CDC authority — 2.11.6
+
+Use canonical `bajoicheg/g-cdc` CDC **2.11.6**, immutable `refs/heads/release/v2.11.6`, release commit `b3b517fb70e2deea4006e265f708f29881377885`, exact 329-file package tree `79257a06c40de6f514f9b059be05d610885a50e7`. The complete package is vendored at `.agents/skills/continuous-development-cycle/`. Earlier version statements below are historical when they conflict. Use the verified released `scripts/managed_host_bridge.py`; ordinary Work is observer/orchestrator-only. Preserve product gates, budgets, append-only coordination and the owner scheduler pause. Fleet adoption is separate; this project update does not assert fleet convergence.
+
 # Development without losing work between sessions
 
 This workflow addresses the connector interruptions seen while preparing 0.10.0 and 0.13.0. It reduces avoidable round trips and preserves evidence; it does not fix or disable OpenAI's internal tool evaluation or expand GitHub permissions. Application version 0.13.0 is unchanged by this maintenance update.
@@ -32,7 +36,7 @@ Quick skips four expensive stages during edits: publish, published-EXE self-test
 
 Restore/audit may contact configured package sources. Existing tests use the documented synthetic/native fixtures, not real repairs. Review the test code before running on a machine with valuable data.
 
-Every run writes to a unique ignored `artifacts/dev/<UTC-time>-<id>/` directory. Per-stage stdout/stderr and `summary.json` record Git SHA, branch, dirty-worktree flag, SDK, profile, timestamps, durations, stage states and exit codes. Full adds `publish/G-PC-Health-Check.exe` and its checksum. `Dirty=true` means the tested workspace differs from its recorded SHA; it must not be claimed as exact-commit validation.
+Every run writes to a unique ignored `artifacts/dev/<UTC-time>-<id>/` directory. Per-stage stdout/stderr and `summary.json` record Git SHA, branch, dirty-worktree flag, SDK, profile, timestamps, durations, stage states and exit codes. Full adds `publish/G-PC-Health.exe` and its checksum. `Dirty=true` means the tested workspace differs from its recorded SHA; it must not be claimed as exact-commit validation.
 
 The summary is replaced atomically before/after each step. A killed runner may leave `Running` or `NotRun`, never an inferred pass. This is progress preservation, not automatic resume: rerun verification after restarting. Native calls have no hard local timeout. Ctrl+C or shell closure may leave child work running; inspect owned processes before another run. CI job timeouts remain in force. The runner does not forcibly terminate other processes.
 

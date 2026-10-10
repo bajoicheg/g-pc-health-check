@@ -72,11 +72,12 @@ public sealed class ReportService
     private static string BuildScanHtml(ScanResult scan)
     {
         var d = scan.Data;
-        var sb = Begin("G PC Health Check — " + d.System.ComputerName);
+        var sb = Begin("G PC Health — " + d.System.ComputerName);
         Header(sb, "Диагностика рабочего места Service Desk", d.System.CollectedAt);
         Hero(sb, scan.Assessment.Score, scan.Assessment.Status, d.System.ComputerName + " · " + d.System.UserName + " · " + d.System.Model);
         Triage(sb, scan);
         Metrics(sb, scan);
+        sb.Append(SecurityReportSection.BuildHtml(scan, AppLocalization.Language));
         ContextBlock(sb, "Контекст диагностики", d.System.ExecutionContext);
         Findings(sb, scan.Assessment.Findings, "Выводы");
         sb.Append("<section><h2>Действия Service Desk</h2><table><thead><tr><th>Тип</th><th>Действие</th><th>Причина</th><th>Авто</th><th>Admin</th><th>Риск</th><th>Доступность при сборе</th></tr></thead><tbody>");
@@ -95,10 +96,11 @@ public sealed class ReportService
 
     private static string BuildVerificationHtml(VerificationResult v)
     {
-        var sb = Begin("G PC Health Check — автопроверка");
+        var sb = Begin("G PC Health — автопроверка");
         Header(sb, "Автопроверка после remediation", DateTime.Now);
         Hero(sb, v.After.Assessment.Score, v.After.Assessment.Status, $"{v.After.Data.System.ComputerName} · было {v.Before.Assessment.Score}/100 → стало {v.After.Assessment.Score}/100");
         Triage(sb, v.After);
+        sb.Append(SecurityReportSection.BuildHtml(v.After, AppLocalization.Language));
         ContextBlock(sb, "Контекст диагностики до действий", v.Before.Data.System.ExecutionContext);
         ContextBlock(sb, "Контекст повторной диагностики", v.After.Data.System.ExecutionContext);
         sb.Append("<section><h2>До / после</h2><p>Сравнивайте полноту и контекст обоих снимков. Изменение индекса не доказывает устранение симптома.</p><table><thead><tr><th>Показатель</th><th>До</th><th>После</th><th>Изменение</th></tr></thead><tbody>");
@@ -131,7 +133,7 @@ public sealed class ReportService
 
     private static void Header(StringBuilder sb, string subtitle, DateTime stamp)
     {
-        sb.Append("<header><div class='brand'>").Append(ShieldSvg()).Append("<div><h1>G PC Health Check</h1><div class='muted'>").Append(H(subtitle)).Append("</div></div></div><div class='stamp'>").Append(H(stamp.ToString("dd.MM.yyyy HH:mm:ss"))).Append("</div></header><main>");
+        sb.Append("<header><div class='brand'>").Append(ShieldSvg()).Append("<div><h1>G PC Health</h1><div class='muted'>").Append(H(subtitle)).Append("</div></div></div><div class='stamp'>").Append(H(stamp.ToString("dd.MM.yyyy HH:mm:ss"))).Append("</div></header><main>");
     }
 
     private static void Hero(StringBuilder sb, int score, string status, string detail)

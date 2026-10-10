@@ -5,14 +5,14 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <AssemblyName>G-PC-Health-Check</AssemblyName>
+    <AssemblyName>G-PC-Health</AssemblyName>
     <RootNamespace>G.PcHealthCheck</RootNamespace>
     <GeneratedBrandDir>$(MSBuildProjectDirectory)\obj\brand</GeneratedBrandDir>
     <ApplicationIcon>$(GeneratedBrandDir)\gpchc.ico</ApplicationIcon>
-    <Version>0.16.0</Version>
-    <FileVersion>0.16.0.0</FileVersion>
-    <AssemblyVersion>0.16.0.0</AssemblyVersion>
-    <Product>G PC Health Check</Product>
+    <Version>0.17.0</Version>
+    <FileVersion>0.17.0.0</FileVersion>
+    <AssemblyVersion>0.17.0.0</AssemblyVersion>
+    <Product>G PC Health</Product>
     <Company>G</Company>
     <Description>Service Desk workstation diagnostics and controlled remediation for Windows 11.</Description>
     <PublishSingleFile>true</PublishSingleFile>

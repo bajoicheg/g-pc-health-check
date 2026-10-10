@@ -1,7 +1,7 @@
 {
   "name": "continuous-development-cycle",
-  "version": "2.6.0",
+  "version": "3.3.1",
   "schema": "continuous-development-cycle/v3",
   "entrypoint": "SKILL.md",
-  "description": "Recoverable development with fleet supervision, version convergence, progress SLO and hash-chained control-plane audit."
+  "description": "Owner-authorized isolation of UNKNOWN create-only Git submissions, preserving history and permanent replay protection."
 }

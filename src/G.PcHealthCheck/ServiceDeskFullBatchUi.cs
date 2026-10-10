@@ -138,7 +138,7 @@ public sealed partial class MainForm
             MessageBox.Show(
                 this,
                 AppLocalization.T("Main.Message.Completed", ok, batch.Actions.Count, before.Assessment.Score, after.Assessment.Score),
-                "G PC Health Check",
+                "G PC Health",
                 MessageBoxButtons.OK,
                 batch.Actions.All(x => x.Success) ? MessageBoxIcon.Information : MessageBoxIcon.Warning);
         }

@@ -4,8 +4,8 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
-  <data name="Incident.Form.Title.Events" xml:space="preserve"><value>G PC Health Check — события за время сбоя</value></data>
-  <data name="Incident.Form.Title.Processes" xml:space="preserve"><value>G PC Health Check — подробности процессов</value></data>
+  <data name="Incident.Form.Title.Events" xml:space="preserve"><value>G PC Health — события за время сбоя</value></data>
+  <data name="Incident.Form.Title.Processes" xml:space="preserve"><value>G PC Health — подробности процессов</value></data>
   <data name="Incident.Form.Intro.Events" xml:space="preserve"><value>Локальные Application и System. Укажите интервал в местном времени Windows (до 7 суток).&#10;Сбор только по кнопке; максимум 1000 записей на журнал. Поиск и фильтры работают по уже полученным данным.</value></data>
   <data name="Incident.Form.Intro.Processes" xml:space="preserve"><value>Текущий снимок процессов: PID, время запуска, путь, команда и память. Владелец запрашивается отдельно для выбранной строки.&#10;Ничего не запускается и не завершается. Недоступные сведения отмечаются; отсутствие пути не означает вредоносность.</value></data>
   <data name="Incident.Form.SearchPlaceholder" xml:space="preserve"><value>Поиск в полученном снимке</value></data>
@@ -70,7 +70,7 @@
   <data name="Incident.MessageState.Unavailable" xml:space="preserve"><value>Недоступен</value></data>
   <data name="Incident.MessageState.Unknown" xml:space="preserve"><value>Неизвестно</value></data>
   <data name="Incident.Report.Boundary" xml:space="preserve"><value>Совпадение событий по времени не доказывает причину сбоя. PID в событии — идентификатор издателя, не обязательно сбойного приложения; его нельзя автоматически связывать с текущим процессом. Процессы — отдельный текущий снимок, не история. Полнота сбора не является оценкой здоровья. Поиск ограничен полученным снимком; отсутствующие или удалённые ранее события восстановить нельзя.</value></data>
-  <data name="Incident.Report.Title" xml:space="preserve"><value>G PC Health Check — разбор сбоя</value></data>
+  <data name="Incident.Report.Title" xml:space="preserve"><value>G PC Health — разбор сбоя</value></data>
   <data name="Incident.Report.Collection" xml:space="preserve"><value>Сбор: {0:O} — {1:O}; {2}</value></data>
   <data name="Incident.Report.Interval" xml:space="preserve"><value>Интервал: {0:O} — {1:O}; лимит {2} на журнал.</value></data>
   <data name="Incident.Report.EventCounts" xml:space="preserve"><value>Сохранено {0} событий; по текущему фильтру {1}.</value></data>

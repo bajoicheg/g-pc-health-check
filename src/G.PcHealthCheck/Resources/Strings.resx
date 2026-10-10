@@ -35,8 +35,8 @@
   <data name="ResourceProbe.Outcome.Unreachable" xml:space="preserve"><value>Нет доступного маршрута/узла</value></data>
   <data name="ResourceProbe.Outcome.Denied" xml:space="preserve"><value>Доступ запрещён ОС</value></data>
   <data name="ResourceProbe.Outcome.Unknown" xml:space="preserve"><value>Нет результата</value></data>
-  <data name="ResourceProbe.Report.Title" xml:space="preserve"><value>G PC Health Check — проверка ресурса</value></data>
-  <data name="ResourceProbe.Report.HtmlTitle" xml:space="preserve"><value>G PC Health Check — ресурс</value></data>
+  <data name="ResourceProbe.Report.Title" xml:space="preserve"><value>G PC Health — проверка ресурса</value></data>
+  <data name="ResourceProbe.Report.HtmlTitle" xml:space="preserve"><value>G PC Health — ресурс</value></data>
   <data name="ResourceProbe.Report.CurrentAttempt" xml:space="preserve"><value>Текущая попытка</value></data>
   <data name="ResourceProbe.Report.PreviousAttempt" xml:space="preserve"><value>Предыдущая попытка</value></data>
   <data name="ResourceProbe.Report.SameTarget" xml:space="preserve"><value>Повторная проверка той же цели; изменение не доказывает устранение причины.</value></data>
@@ -56,7 +56,7 @@
   <data name="ResourceProbe.Report.HtmlDuration" xml:space="preserve"><value>мс</value></data>
   <data name="ResourceProbe.Report.HtmlLocalIp" xml:space="preserve"><value>Исходный IP</value></data>
   <data name="ResourceProbe.Report.HtmlCodeDetails" xml:space="preserve"><value>Код / подробности</value></data>
-  <data name="ExecutionContext.Form.Title" xml:space="preserve"><value>G PC Health Check — права и контекст</value></data>
+  <data name="ExecutionContext.Form.Title" xml:space="preserve"><value>G PC Health — права и контекст</value></data>
   <data name="ExecutionContext.Column.Operation" xml:space="preserve"><value>Проверка / действие</value></data>
   <data name="ExecutionContext.Column.State" xml:space="preserve"><value>Доступность</value></data>
   <data name="ExecutionContext.Column.Scope" xml:space="preserve"><value>Чьи данные / область</value></data>

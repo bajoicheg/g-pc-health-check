@@ -1,5 +1,21 @@
 <!-- continuous-development-cycle-v2:start -->
-## Continuous Development Cycle v2.6
+## Continuous Development Cycle v2.13.0
+
+## New-chat and watchdog Cloud entry — 2.13.0
+
+Resolve the actual verified CDC vendor_root from the installed package/consumer lock and project adapter first; do not assume the canonical source path is the consumer path. Read current source/checkpoint/lease/guard/journal before setup. With VENDOR_ROOT set to that verified project-local path, run the read-only preparation:
+
+```sh
+python -B "$VENDOR_ROOT/scripts/codex_cloud_entrypoint.py" prepare --profile docs/cdc-cloud-profile.json --inputs docs/cdc-cloud-entry-inputs.json --project-root .
+```
+
+The canonical source vendor_root is src/continuous-development-cycle; consumer and installed loader roots require their own actual byte/tree verification. Profile and cloud-entry-inputs/v1 snapshot files must be genuinely configured/hash-bound before this command is eligible; the shipped profile is UNCONFIGURED and never contains fake environment IDs/digests. Context/probe/registry/routing_policy/routing_context each load exact local UTF-8 JSON bytes through the typed loader. Expanded form accepts --policy (alias --routing-policy). Do not pass --now outside explicit simulated fixtures.
+
+Native runtime, official UI and authenticated CLI have separate provider namespaces/IDs and per-mode completeness. A genuine native ID/control-host binding remains usable with null display label, CLI401 or unknown nested inventory; a null remote CLI environment label still blocks submission. No nested Cloud/auth retry/Codespace start is needed to use the connected native runtime. Known submitting/unknown operations always select same-key observe/reconcile before setup or new work.
+
+Follow the ONE typed next_action using the existing authorized managed caller: exact raw argv is never trimmed, cached readiness/serialized handoff is not authority, and every real effect retains fresh owner/intent/guard/budget/one-use callback. Durable recovery history binds input digests and actual verified proof; present dependencies or consumed investigation select evidence reuse/blocker, never broad reinstall or a forged retry. Read references/cloud-fast-start.md and capability-routing.md.
+
+Watchdog invocations inherit actual owner-paused state. These instructions do not enable/run/rebind/reschedule schedulers or reopen product/platform/security gates.
 
 For substantial implementation, resume, release, repository migration, or watchdog work, load the installed/repo-local `continuous-development-cycle` skill.
 
@@ -26,3 +42,18 @@ Publish/refresh a `fleet-project-snapshot/v1` on the coordination plane when pro
 Before chat cleanup or watchdog recovery, reconcile the canonical task-to-conversation binding. Protect its verified chat dependencies; follow the archive prevention/recovery procedure in `references/watchdog-recovery-and-migration.md`. A successful unarchive or enabled flag alone is not recovery: require a fresh completed run, visible result, and preserved enabled schedule.
 For watchdog/status/resume, build the six-signal health vector (scheduler, chat, invocation, lease, external operation and meaningful progress) with `scripts/watchdog_health.py`. Treat its result as diagnostic only; it never grants takeover, writes, external starts, scheduler mutation or budget restoration. Persist a changed health fingerprint only on an authorized coordination path without moving a guarded product HEAD.
 <!-- continuous-development-cycle-v2:end -->
+
+
+Canonical CDC core is an immutable released dependency. Keep a validated
+`cdc-consumer-lock/v1` binding to canonical repository + version + release ref +
+release commit + exact package tree. Local edits inside the vendored core are drift.
+Advance the lock only at a safe ownership boundary with no unresolved external guard,
+while preserving budget, validation and audit history.
+
+
+Human interaction is not an execution backend. Missing GitHub/connector/API methods are capability gaps, not implicit approval gates. Prefer durable event triggers, alternate authorized backends or policy-safe workflow changes before asking the owner for a mechanical action. Escalate only for genuine human authorization/judgment, unavailable secrets, protected approvals or external systems with no authorized automation route.
+
+
+Bare user continuation commands such as «продолжай», «продолжи» or “continue” mean continue the current authorized scope to terminal state. Do not stop after one status/read/commit/compute step. Terminal state is verified scope completion or a real durable blocker/handoff with exact evidence and next action. Explicit narrower user qualifiers and all normal guards still apply.
+
+Cost routing is visibility-aware. Public repositories may classify standard GitHub-hosted Actions as unmetered/normal compute; private/internal repositories retain Codex-first economics and expensive-Actions fallback controls.
