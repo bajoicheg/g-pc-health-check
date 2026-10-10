@@ -1,0 +1,19 @@
+{
+  "schema": "managed-executor-pool-assessment/v1",
+  "pool_id": "gpc-no-data64-corrective-20261010",
+  "complete": false,
+  "terminal_allowed": false,
+  "runnable_task_ids": [],
+  "blockers": [
+    "spec:active",
+    "quality:dependency_wait"
+  ],
+  "next_action": "observe_or_recover_pool",
+  "authorizes_worker_launch": false,
+  "authorizes_shared_branch_write": false,
+  "authorizes_merge": false,
+  "authorizes_release": false,
+  "authorizes_scope_expansion": false,
+  "authorizes_scheduler_mutation": false,
+  "authorizes_user_approval": false
+}

@@ -1,0 +1,120 @@
+{
+  "schema": "gpc-independent-corrected-delivery-verification/v1",
+  "candidate": "3e64dbd7cf78ce6a273f454ec97583a454695d5e",
+  "tree": "b61f0ca5fdccd4e06be6c4fecd6c6b79b9bea10f",
+  "sole_parent": "3efc1a990bf56dc9659faf8be86d921dda8c1a2a",
+  "artifact_commit": "a7e4ca5146dfec8202f48a70689faa43728c3030",
+  "immutable_result_ref": "git:d1b633c25fef1063b3005f3578557d28ae527817:document.json#no_data64_corrective_handoff",
+  "manifest_path": "artifact-handoff/no-data64-3e64dbd7/manifest.json",
+  "sha256": "c632d6798da8fe994a214d418a6d67c37e44ee01c3840c220696da9cb5e9af06",
+  "bytes": 78778990,
+  "filename": "G-PC-Health-0.17.1-evidence-corrected.exe",
+  "PE_version_bundle453": "Root independent helpers exit0; exact ProductVersion/AMD64/PE32+/453 bounded decompressed entries verified",
+  "all13_source_files_match": true,
+  "source_worktree_clean": true,
+  "all31_previous_evidence_keys_preserved": true,
+  "tests": {
+    "GREEN": {
+      "command": "dotnet run --project harness/Harness.csproj --no-restore",
+      "exit": 0,
+      "log": "final-corrective.log",
+      "result": "9/9; includes actual MainForm and ServiceDeskFullBatchUi verification blocks, real filesystem save/rollback, JSON roundtrip and cross-volume cause separation"
+    },
+    "RED": {
+      "command": "dotnet run --project harness/Harness.csproj --no-restore",
+      "exit": 1,
+      "log": "red.log",
+      "result": "0/6; functional assertions for all five SPEC findings, including two subject cases; compiler setup failures excluded",
+      "source": "3efc1a990bf56dc9659faf8be86d921dda8c1a2a"
+    },
+    "RED_reproduction": {
+      "command": "dotnet run --project red-repeat/harness/Harness.csproj -p:RestoreSources=/tmp/gpc-empty-nuget",
+      "exit": 1,
+      "log": "red-repeat.log",
+      "result": "0/6 with retained source extraction and fixtures",
+      "source": "3efc1a990bf56dc9659faf8be86d921dda8c1a2a"
+    },
+    "SDK": "8.0.425",
+    "exact_parent_regressions": {
+      "command": "dotnet run --project baseline-harness/Harness.csproj -p:RestoreSources=/tmp/gpc-empty-nuget",
+      "exit": 2,
+      "log": "baseline-regressions.log",
+      "result": "same seven guidance failures; evaluator/firmware/BitLocker/evidence PASS, triage exit1",
+      "source": "3efc1a990bf56dc9659faf8be86d921dda8c1a2a"
+    },
+    "harness_limits": "Production C# sources and extracted exact UI presentation/persistence blocks; native control/acquisition shims explicitly excluded from acceptance. No real WMI/BCD/OEM was invoked. Unused shim variable warning is not a product warning. Windows runtime/layout NOT_RUN.",
+    "project": "harness/Harness.csproj",
+    "regressions": {
+      "BitLocker": "7/7 fake-source PASS",
+      "command": "dotnet run --project harness/Harness.csproj --no-restore -- regressions",
+      "evidence": 0,
+      "exit": 2,
+      "firmware": "12/12 fake-source PASS",
+      "guidance": "12/19; same seven Linux failures",
+      "log": "regressions.log",
+      "security_evaluator": 0,
+      "triage": 1
+    },
+    "schema": "gpc-source-linked-corrective-tests/v1"
+  },
+  "build_receipts": {
+    "Windows_runtime": "NOT_RUN",
+    "brand": "Cached prior successful assets, no Windows generation claimed; hashes checked against retained brand-provenance.json",
+    "compile": {
+      "argv": [
+        "dotnet",
+        "build",
+        "src/G.PcHealthCheck/G.PcHealthCheck.csproj",
+        "--no-restore",
+        "-c",
+        "Release",
+        "-r",
+        "win-x64",
+        "-p:EnableWindowsTargeting=true",
+        "-p:DesignTimeBuild=true",
+        "-p:GeneratedBrandDir=/workspace/work/gpc-no-data61/brand",
+        "-p:UseSharedCompilation=false",
+        "-warnaserror"
+      ],
+      "errors": 0,
+      "exit": 0,
+      "log": "compile.log",
+      "scope": "All corrections; subsequent native fixture addition also compiled by final publish",
+      "warnings": 0
+    },
+    "publish": "Exact actual argv/timestamps/returncode in publish-receipt.json, stdout/stderr persisted before assertion; final frozen candidate with native fixture addition",
+    "restore": {
+      "argv": [
+        "dotnet",
+        "restore",
+        "src/G.PcHealthCheck/G.PcHealthCheck.csproj",
+        "-r",
+        "win-x64",
+        "-p:EnableWindowsTargeting=true",
+        "-p:RestoreSources=/tmp/gpc-empty-nuget"
+      ],
+      "exit": 0,
+      "log": "restore.log"
+    },
+    "sdk": "8.0.425"
+  },
+  "Linux_guidance_failures": [
+    "FAIL: critical CPU guidance is not replaced by Temp cleanup: The competing cleanup recommendation was not reproduced.",
+    "FAIL: critical RAM guidance is not replaced by Temp cleanup: The competing cleanup recommendation was not reproduced.",
+    "FAIL: critical disk pressure guidance is not replaced by Temp cleanup: The competing cleanup recommendation was not reproduced.",
+    "FAIL: critical repeated events guidance is not replaced by Temp cleanup: The competing cleanup recommendation was not reproduced.",
+    "FAIL: healthy clipboard contains no significant findings or omission marker: OK findings entered the significant list.",
+    "FAIL: isolated low space keeps its actual guidance and cleanup action: Sequence contains no matching element",
+    "FAIL: physical disk failure guidance is not replaced by Temp cleanup: The competing cleanup recommendation was not reproduced."
+  ],
+  "actual_baseline_same_failures": true,
+  "elapsed_seconds": 929,
+  "native_UI_terminal": "Done15m29s, Stop absent; usage-limit banner, Send disabled after artifact published",
+  "native_transport_outcome": "quota_exhausted_after_verified_handoff",
+  "Native_foreground_commands": "two final tool results observed Command completed; retained build/test/publish subprocess exits read independently",
+  "Native_background_absence": "not independently observed; no watcher/children/new background commands authorized or reported",
+  "Windows_runtime": "NOT_RUN",
+  "production_release": false,
+  "original_Git_outcome": "UNKNOWN retained",
+  "independent_reviews": "PENDING"
+}
