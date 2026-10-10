@@ -1,0 +1,419 @@
+diff --git a/docs/releases/0.17.1-evidence.md b/docs/releases/0.17.1-evidence.md
+index f9a04d1..80a90db 100644
+--- a/docs/releases/0.17.1-evidence.md
++++ b/docs/releases/0.17.1-evidence.md
+@@ -11,3 +11,9 @@ A compact Overview symptom menu opens existing performance, incident, resource-p
+ Actual portable source-linked checks: behavior RED 1/10 → GREEN 10/10; unchanged security evaluator 9/9. Existing guidance/triage harness has seven failures on Linux, reproduced identically against the exact parent (12/19 guidance cases); these are not represented as passing or changed to green. Complete Windows-target cross-build uses SDK 8.0.425 and warnings as errors. Exact commands, logs, final publication identity, source bundle and binary checksum are retained in the external immutable handoff, avoiding a circular self-SHA.
+ 
+ Windows runtime, all WinForms/selftests/rendered screenshots, ancestor clipping, busy progress, native DPI/RDP, UAC, Huawei device checks and Windows 11 pilot are NOT_RUN. Independent SPEC/QUALITY and owner integration remain pending. The original CI6 Git receive-pack outcome remains UNKNOWN; this local artifact does not reconcile it or authorize a retry. CDC 2.12.1 and shared source remain unchanged.
++
++## Isolated SPEC corrective candidate (writer64)
++
++Sole parent is 3efc1a990bf56dc9659faf8be86d921dda8c1a2a. All five SPEC findings are corrected: the real unsupported-manufacturer collector shape is recognized only for a known manufacturer; individual Unknown volumes/members retain their own explanation and typed export metadata; a symptom selection atomically saves a new HTML/JSON pair before updating current state, preserving history and rolling back on failure; both verification paths copy the original symptom context; unreadable policy wording no longer asserts confirmed existence/type. Security rows are fixed at 28 pixels without wrapped prose; complete values remain selectable in the detail pane and exports.
++
++Actual source-linked C# corrective RED 0/6 (all five findings, including two subject cases) → GREEN 6/6; extended rollback/serialization/cross-volume tests GREEN 9/9. Extraction provenance explicitly identifies the real UI method/state blocks and the native-control/acquisition shims. This is portable behavior verification, not WinForms execution. Seven preexisting Linux guidance failures remain documented; scores, statuses, coverage, actions, UAC and collection providers are unchanged. Exact final source/binary identities and build/test commands are tracked in the immutable external handoff, not a circular self-SHA. Windows runtime/layout/physical Huawei/UAC/DPI/RDP remain NOT_RUN. Root SPEC65 and QUALITY66 remain pending.
+diff --git a/src/G.PcHealthCheck/MainForm.SecurityPosture.cs b/src/G.PcHealthCheck/MainForm.SecurityPosture.cs
+index 4aa8ed7..6e0cc88 100644
+--- a/src/G.PcHealthCheck/MainForm.SecurityPosture.cs
++++ b/src/G.PcHealthCheck/MainForm.SecurityPosture.cs
+@@ -86,7 +86,9 @@ public sealed partial class MainForm
+         layout.Controls.Add(header, 0, 0);
+ 
+         ConfigureGrid(_securityGrid);
+-        _securityGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
++        _securityGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
++        _securityGrid.RowTemplate.Height = 28;
++        _securityGrid.DefaultCellStyle.WrapMode = DataGridViewTriState.False;
+         _securityGrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "Control", HeaderText = AppLocalization.T("Security.Column.Control"), Width = 210 });
+         _securityGrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "Status", HeaderText = AppLocalization.T("Security.Column.Status"), Width = 115 });
+         _securityGrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "Points", HeaderText = AppLocalization.T("Security.Column.Points"), Width = 78 });
+@@ -94,7 +96,7 @@ public sealed partial class MainForm
+         _securityGrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "Recommendation", HeaderText = AppLocalization.T("Security.Column.Recommendation"), Width = 300 });
+         _securityGrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "Source", HeaderText = AppLocalization.T("Security.Column.Source"), Width = 180 });
+         foreach (DataGridViewColumn column in _securityGrid.Columns)
+-            column.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
++            column.DefaultCellStyle.WrapMode = DataGridViewTriState.False;
+         layout.Controls.Add(DetailPane(_securityGrid, "SecurityDetails"), 0, 1);
+ 
+         page.Controls.Add(layout);
+@@ -167,53 +169,22 @@ public sealed partial class MainForm
+     private void AddBitLockerDetailRows(SecurityPostureAssessment assessment)
+     {
+         foreach (var control in assessment.Controls.Where(x => x.Id is "SEC-BITLOCKER-OS" or "SEC-BITLOCKER-DATA"))
+-        {
+-            var groups = SplitEvidenceGroups(control.Evidence, "Volume");
+-            foreach (var group in groups)
+-            {
+-                var volume = group.FirstOrDefault(x => x.Key == "Volume")?.Value;
+-                if (string.IsNullOrWhiteSpace(volume)) continue;
+-                var status = SecurityStatusFromBitLockerEvidence(group);
+-                var evidence = string.Join("; ", group.Select(x => $"{x.Key}={x.Value}"));
+-                var index = _securityGrid.Rows.Add(
+-                    control.Id + " · " + volume,
+-                    SecurityStatusText(status),
+-                    "—",
+-                    evidence,
+-                    status is SecurityControlStatus.Pass or SecurityControlStatus.NotApplicable ? "—" : SecurityGuidance(control.GuidanceCode),
+-                    DistinctSources(group));
+-                StyleSecurityRow(_securityGrid.Rows[index], status);
+-            }
+-        }
++            foreach (var detail in SecurityDetailPresentation.BitLocker(control)) AddSecuritySubjectRow(detail, control.GuidanceCode);
+     }
+ 
+     private void AddLocalAdministratorDetailRows(LocalAdministratorsCollectionResult? localAdministrators)
+     {
+-        if (localAdministrators is null) return;
+-        foreach (var member in localAdministrators.Members)
+-        {
+-            var status = member.Result switch
+-            {
+-                "Allowed" => SecurityControlStatus.Pass,
+-                "Unauthorized" => SecurityControlStatus.Fail,
+-                _ => SecurityControlStatus.Unknown
+-            };
+-            var identity = member.Name ?? (member.Sid is null ? "Unknown" : "SID:" + member.Sid);
+-            var facts = new List<string>();
+-            if (member.Sid is not null) facts.Add("SID=" + member.Sid);
+-            facts.Add("Type=" + member.Type);
+-            facts.Add("Result=" + member.Result);
+-            facts.Add("Reason=" + member.Reason);
+-            if (member.MatchedRule is not null) facts.Add("MatchedRule=" + member.MatchedRule);
+-            var index = _securityGrid.Rows.Add(
+-                "SEC-LOCAL-ADMINS · " + identity,
+-                SecurityStatusText(status),
+-                "—",
+-                string.Join("; ", facts),
+-                status == SecurityControlStatus.Pass ? "—" : SecurityGuidance("SEC-LOCAL-ADMINS"),
+-                member.Source);
+-            StyleSecurityRow(_securityGrid.Rows[index], status);
+-        }
++        if (localAdministrators is not null)
++            foreach (var detail in SecurityDetailPresentation.LocalAdministrators(localAdministrators)) AddSecuritySubjectRow(detail, "SEC-LOCAL-ADMINS");
++    }
++
++    private void AddSecuritySubjectRow(SecuritySubjectDetail detail, string guidanceCode)
++    {
++        var index = _securityGrid.Rows.Add(detail.ControlId + " · " + detail.Subject,
++            SecurityStatusText(detail.Status), "—", detail.DisplayEvidence(AppLocalization.Language),
++            detail.Status is SecurityControlStatus.Pass or SecurityControlStatus.NotApplicable ? "—" : SecurityGuidance(guidanceCode),
++            DistinctSources(detail.Evidence));
++        StyleSecurityRow(_securityGrid.Rows[index], detail.Status);
+     }
+ 
+     private static IReadOnlyList<IReadOnlyList<SecurityEvidence>> SplitEvidenceGroups(
+diff --git a/src/G.PcHealthCheck/MainForm.Symptoms.cs b/src/G.PcHealthCheck/MainForm.Symptoms.cs
+index b545196..ed0eb90 100644
+--- a/src/G.PcHealthCheck/MainForm.Symptoms.cs
++++ b/src/G.PcHealthCheck/MainForm.Symptoms.cs
+@@ -25,8 +25,22 @@ public sealed partial class MainForm
+     private void OpenSymptom(SymptomRoute route)
+     {
+         if (_isBusy) return;
+-        _symptomNotes = SymptomRoutes.Select(_symptomNotes, route.Id);
+-        if (_current is not null) _current.SymptomNotes = _symptomNotes.ToList();
++        if (_current is null) _symptomNotes = SymptomRoutes.Select(_symptomNotes, route.Id);
++        else
++        {
++            try
++            {
++                var saved = _reports.SaveSymptomSelection(_current, route.Id);
++                _current = saved.Snapshot;
++                _symptomNotes = saved.Snapshot.SymptomNotes.ToList();
++                _latestReport = saved.Html;
++            }
++            catch (Exception)
++            {
++                MessageBox.Show(this, AppLocalization.T("Evidence.Symptom.SaveFailed"), "G PC Health", MessageBoxButtons.OK, MessageBoxIcon.Error);
++                return;
++            }
++        }
+         using Form form = route.ToolId switch
+         {
+             "performance-session" => new PerformanceSessionForm(),
+diff --git a/src/G.PcHealthCheck/MainForm.cs b/src/G.PcHealthCheck/MainForm.cs
+index 4e4f276..0f2bcec 100644
+--- a/src/G.PcHealthCheck/MainForm.cs
++++ b/src/G.PcHealthCheck/MainForm.cs
+@@ -387,6 +387,7 @@ public sealed partial class MainForm : Form
+             var afterData = await _diagnostics.CollectAsync(verificationProgress);
+             StampExecutionContext(afterData, context);
+             var after = _assessment.Assess(afterData);
++            after.SymptomNotes = before.SymptomNotes.ToList();
+             await AttachSecurityPostureAsync(after, verificationProgress);
+             if (ReferenceEquals(_applyProgressOwner, verificationOwner)) _applyProgressOwner = null;
+             var verification = new VerificationResult { Before = before, After = after, Remediation = batch };
+diff --git a/src/G.PcHealthCheck/MissingEvidenceExplanation.cs b/src/G.PcHealthCheck/MissingEvidenceExplanation.cs
+index 7ca4e01..616fdf6 100644
+--- a/src/G.PcHealthCheck/MissingEvidenceExplanation.cs
++++ b/src/G.PcHealthCheck/MissingEvidenceExplanation.cs
+@@ -30,7 +30,13 @@ internal static class MissingEvidenceExplanation
+         }
+         if (code == "cause_not_established")
+         {
+-            if (Has("PolicyConfigured", "False")) code = "policy_missing";
++            if (items.Any(x => x.Key == "UnsupportedManufacturer" && !string.IsNullOrWhiteSpace(x.Value)
++                && !x.Value.Trim().Equals("Unknown", StringComparison.OrdinalIgnoreCase))) code = "unsupported";
++            else if (Has("Reason", "PrincipalIdentityUnavailable")) code = "identity_unavailable";
++            else if (Has("Reason", "NameResolutionRequired")) code = "name_resolution_required";
++            else if (Has("Reason", "PolicyNotConfigured")) code = "policy_missing";
++            else if (Has("Reason", "PolicyUnreadable")) code = "policy_unreadable";
++            else if (Has("PolicyConfigured", "False")) code = "policy_missing";
+             else if (Has("PolicyConfigured", "True") && Has("PolicyReadable", "False")) code = "policy_unreadable";
+         }
+         return new(code, items.Select(x => SafeSource(x.Source)).Where(x => x.Length > 0).Distinct(StringComparer.OrdinalIgnoreCase).ToArray());
+@@ -38,7 +44,7 @@ internal static class MissingEvidenceExplanation
+ 
+     private static string SafeSource(string? source)
+     {
+-        if (string.IsNullOrWhiteSpace(source)) return "";
++        if (string.IsNullOrWhiteSpace(source) || source.Equals("Unknown", StringComparison.OrdinalIgnoreCase)) return "";
+         if (Uri.TryCreate(source, UriKind.Absolute, out var uri) && uri.Scheme is "https" or "http")
+             return uri.GetLeftPart(UriPartial.Authority).Replace(uri.UserInfo.Length > 0 ? uri.UserInfo + "@" : "\0", "") + uri.AbsolutePath;
+         // Provider identity is useful; free-form credential-bearing text is not.
+diff --git a/src/G.PcHealthCheck/Models.cs b/src/G.PcHealthCheck/Models.cs
+index 68b9344..07bc9e7 100644
+--- a/src/G.PcHealthCheck/Models.cs
++++ b/src/G.PcHealthCheck/Models.cs
+@@ -251,6 +251,13 @@ public sealed class SecurityHardeningEvidence
+ 
+ public sealed class ScanResult
+ {
++    private List<SecuritySubjectDetail>? _securityDetails;
++    // Persist subject metadata even though the collector snapshot is not serialized.
++    public List<SecuritySubjectDetail> SecurityDetails
++    {
++        get => _securityDetails ?? SecurityDetailPresentation.ForScan(this).ToList();
++        set => _securityDetails = value;
++    }
+     public List<SymptomNote> SymptomNotes { get; set; } = [];
+     public DiagnosticData Data { get; set; } = new();
+     public Assessment Assessment { get; set; } = new();
+diff --git a/src/G.PcHealthCheck/ReadableLayoutSelfTest.cs b/src/G.PcHealthCheck/ReadableLayoutSelfTest.cs
+index db9b9b6..4678fa6 100644
+--- a/src/G.PcHealthCheck/ReadableLayoutSelfTest.cs
++++ b/src/G.PcHealthCheck/ReadableLayoutSelfTest.cs
+@@ -139,6 +139,17 @@ internal static class ReadableLayoutSelfTest
+                         Require(box.Width > 100 && box.Height >= 30, "security details unavailable at narrow width");
+                         box.SelectionStart = box.TextLength; box.ScrollToCaret();
+                     }
++                    var securityGrid = Field<DataGridView>(form, "_securityGrid");
++                    string completeEvidence = string.Concat(Enumerable.Repeat("Unknown retained evidence / причина / next step; ", 100));
++                    int securityRow = securityGrid.Rows.Add("SEC-TEST", "Unknown", "—", completeEvidence, "Manual verification", "Fixture source");
++                    securityGrid.CurrentCell = securityGrid.Rows[securityRow].Cells[3];
++                    var securityToggle = Descendants(security).OfType<Button>().Single(x => x.Name == "SecurityDetailsToggle");
++                    securityToggle.PerformClick(); Application.DoEvents();
++                    var securityDetail = Descendants(security).OfType<TextBox>().Single(x => x.Name == "SecurityDetails");
++                    Require(securityGrid.AutoSizeRowsMode == DataGridViewAutoSizeRowsMode.None
++                        && securityGrid.Columns.Cast<DataGridViewColumn>().All(x => x.DefaultCellStyle.WrapMode == DataGridViewTriState.False), "security prose must not expand every grid row");
++                    Require(securityGrid.Rows[securityRow].Height <= Math.Ceiling(28.0 * form.DeviceDpi / 96) + 2, "security row height is unbounded");
++                    Require(securityDetail.Text.Contains(completeEvidence) && securityDetail.ReadOnly && securityDetail.Multiline, "compact grid lost complete selectable evidence");
+                     SaveRender(form, language, area, "security", output, images);
+                     Console.WriteLine($"Readable layout synthetic render PASS: {language}, area={area.Width}x{area.Height}, actual DPI={form.DeviceDpi}; not Windows11/RDP acceptance");
+                     form.Close();
+diff --git a/src/G.PcHealthCheck/ReportService.cs b/src/G.PcHealthCheck/ReportService.cs
+index 400c3ae..06dca11 100644
+--- a/src/G.PcHealthCheck/ReportService.cs
++++ b/src/G.PcHealthCheck/ReportService.cs
+@@ -19,6 +19,42 @@ public sealed class ReportService
+         }
+     }
+ 
++    public (ScanResult Snapshot, string Html, string Json) SaveSymptomSelection(ScanResult scan, string symptomId)
++    {
++        var snapshot = new ScanResult
++        {
++            Data = scan.Data, Assessment = scan.Assessment, Security = scan.Security,
++            SecurityHardening = scan.SecurityHardening, SecuritySnapshot = scan.SecuritySnapshot,
++            SecurityDetails = scan.SecurityDetails.ToList(), Actions = scan.Actions,
++            SymptomNotes = SymptomRoutes.Select(scan.SymptomNotes, symptomId)
++        };
++        var directory = ReportsDirectory;
++        var id = Guid.NewGuid().ToString("N");
++        var staging = Path.Combine(directory, ".symptom-" + id);
++        var final = Path.Combine(directory, "PCHealth_symptom_" + id);
++        try
++        {
++            Directory.CreateDirectory(staging);
++            WriteDurable(Path.Combine(staging, "report.json"), JsonSerializer.Serialize(snapshot, JsonOptions));
++            WriteDurable(Path.Combine(staging, "report.html"), BuildScanHtml(snapshot));
++            // One directory rename commits the pair; old report history is never overwritten.
++            Directory.Move(staging, final);
++            return (snapshot, Path.Combine(final, "report.html"), Path.Combine(final, "report.json"));
++        }
++        catch
++        {
++            if (Directory.Exists(staging)) Directory.Delete(staging, recursive: true);
++            throw;
++        }
++    }
++
++    private static void WriteDurable(string path, string content)
++    {
++        using var stream = new FileStream(path, FileMode.CreateNew, FileAccess.Write, FileShare.None);
++        var bytes = new UTF8Encoding(false).GetBytes(content);
++        stream.Write(bytes); stream.Flush(flushToDisk: true);
++    }
++
+     public (string Html, string Json) SaveScan(ScanResult scan)
+     {
+         var basePath = BasePath(scan.Data.System.ComputerName, "");
+diff --git a/src/G.PcHealthCheck/Resources/Strings.en.resx b/src/G.PcHealthCheck/Resources/Strings.en.resx
+index 059e52e..ec01b31 100644
+--- a/src/G.PcHealthCheck/Resources/Strings.en.resx
++++ b/src/G.PcHealthCheck/Resources/Strings.en.resx
+@@ -122,7 +122,7 @@
+   <data name="Evidence.Reason.not_collected" xml:space="preserve"><value>The expected observation was not collected.</value></data>
+   <data name="Evidence.Reason.unsupported" xml:space="preserve"><value>The source explicitly reported an unsupported field or manufacturer.</value></data>
+   <data name="Evidence.Reason.policy_missing" xml:space="preserve"><value>The baseline policy is not configured; this is not a collector failure.</value></data>
+-  <data name="Evidence.Reason.policy_unreadable" xml:space="preserve"><value>The policy is configured but not readable in the expected form; verify the cause and value type.</value></data>
++  <data name="Evidence.Reason.policy_unreadable" xml:space="preserve"><value>The policy could not be read or validated; its existence, type and cause may not be established.</value></data>
+   <data name="Evidence.Reason.conflicting_evidence" xml:space="preserve"><value>The source explicitly recorded conflicting observations.</value></data>
+   <data name="Evidence.Next.cause_not_established" xml:space="preserve"><value>Manually verify the stated source and collection limits before drawing conclusions or changing settings; the app does not elevate automatically.</value></data>
+   <data name="Evidence.Next.access_denied" xml:space="preserve"><value>Manually verify the stated source and collection limits before drawing conclusions or changing settings; the app does not elevate automatically.</value></data>
+@@ -144,4 +144,9 @@
+   <data name="Evidence.Symptom.Application" xml:space="preserve"><value>Hang / crash → incidents</value></data>
+   <data name="Evidence.Symptom.Resource" xml:space="preserve"><value>Unavailable resource → explicit probe</value></data>
+   <data name="Evidence.Symptom.Printing" xml:space="preserve"><value>Printing → common problems</value></data>
++  <data name="Evidence.Reason.identity_unavailable" xml:space="preserve"><value>A reliable member identity was not obtained.</value></data>
++  <data name="Evidence.Next.identity_unavailable" xml:space="preserve"><value>Manually verify the member name and SID; do not infer authorization without an identity.</value></data>
++  <data name="Evidence.Reason.name_resolution_required" xml:space="preserve"><value>Name resolution is required to compare the member with the rule.</value></data>
++  <data name="Evidence.Next.name_resolution_required" xml:space="preserve"><value>Manually verify name resolution and the policy rule.</value></data>
++  <data name="Evidence.Symptom.SaveFailed" xml:space="preserve"><value>The symptom selection could not be saved to HTML/JSON. The previous snapshot is retained; the tool was not opened.</value></data>
+ </root>
+diff --git a/src/G.PcHealthCheck/Resources/Strings.resx b/src/G.PcHealthCheck/Resources/Strings.resx
+index 2d27eed..df8de29 100644
+--- a/src/G.PcHealthCheck/Resources/Strings.resx
++++ b/src/G.PcHealthCheck/Resources/Strings.resx
+@@ -122,7 +122,7 @@
+   <data name="Evidence.Reason.not_collected" xml:space="preserve"><value>Ожидаемое наблюдение не было получено.</value></data>
+   <data name="Evidence.Reason.unsupported" xml:space="preserve"><value>Источник явно сообщил о неподдерживаемом поле или производителе.</value></data>
+   <data name="Evidence.Reason.policy_missing" xml:space="preserve"><value>Базовая политика не задана; это не ошибка сборщика.</value></data>
+-  <data name="Evidence.Reason.policy_unreadable" xml:space="preserve"><value>Политика задана, но не прочитана корректно; причина или тип значения требуют проверки.</value></data>
++  <data name="Evidence.Reason.policy_unreadable" xml:space="preserve"><value>Не удалось прочитать или проверить политику; наличие, тип и причина могут быть не установлены.</value></data>
+   <data name="Evidence.Reason.conflicting_evidence" xml:space="preserve"><value>Источник явно зафиксировал конфликт наблюдений.</value></data>
+   <data name="Evidence.Next.cause_not_established" xml:space="preserve"><value>Вручную проверить указанный источник и ограничения сбора до выводов или изменений; приложение не повышает права автоматически.</value></data>
+   <data name="Evidence.Next.access_denied" xml:space="preserve"><value>Вручную проверить указанный источник и ограничения сбора до выводов или изменений; приложение не повышает права автоматически.</value></data>
+@@ -144,4 +144,9 @@
+   <data name="Evidence.Symptom.Application" xml:space="preserve"><value>Зависает / сбой → события</value></data>
+   <data name="Evidence.Symptom.Resource" xml:space="preserve"><value>Ресурс недоступен → проверка по запросу</value></data>
+   <data name="Evidence.Symptom.Printing" xml:space="preserve"><value>Печать → типовые проблемы</value></data>
++  <data name="Evidence.Reason.identity_unavailable" xml:space="preserve"><value>Не получена достоверная идентичность участника.</value></data>
++  <data name="Evidence.Next.identity_unavailable" xml:space="preserve"><value>Вручную проверьте имя и SID участника; не делайте вывод о разрешении без идентичности.</value></data>
++  <data name="Evidence.Reason.name_resolution_required" xml:space="preserve"><value>Для сравнения с правилом требуется разрешение имени.</value></data>
++  <data name="Evidence.Next.name_resolution_required" xml:space="preserve"><value>Вручную проверьте разрешение имени и правило политики.</value></data>
++  <data name="Evidence.Symptom.SaveFailed" xml:space="preserve"><value>Не удалось сохранить выбор симптома в HTML/JSON. Предыдущий снимок сохранён; инструмент не запущен.</value></data>
+ </root>
+diff --git a/src/G.PcHealthCheck/SecurityDetailPresentation.cs b/src/G.PcHealthCheck/SecurityDetailPresentation.cs
+new file mode 100644
+index 0000000..6423e36
+--- /dev/null
++++ b/src/G.PcHealthCheck/SecurityDetailPresentation.cs
+@@ -0,0 +1,69 @@
++namespace G.PcHealthCheck;
++
++public sealed record SecuritySubjectDetail(string ControlId, string Subject, SecurityControlStatus Status,
++    IReadOnlyList<SecurityEvidence> Evidence, EvidenceExplanation? Explanation)
++{
++    public string DisplayEvidence(string language) => string.Join("; ", Evidence.Select(x => $"{x.Key}={x.Value}"))
++        + (Explanation is null ? "" : "; " + MissingEvidenceExplanation.Format(Explanation, language));
++}
++
++internal static class SecurityDetailPresentation
++{
++    internal static IReadOnlyList<SecuritySubjectDetail> BitLocker(SecurityControlResult control)
++    {
++        var result = new List<SecuritySubjectDetail>();
++        List<SecurityEvidence>? group = null;
++        void Add()
++        {
++            if (group is null || group.Count == 0 || string.IsNullOrWhiteSpace(group[0].Value)) return;
++            var status = SecurityStatusFromBitLockerEvidence(group);
++            result.Add(new(control.Id, group[0].Value, status, group.ToArray(),
++                status == SecurityControlStatus.Unknown ? MissingEvidenceExplanation.For(group) : null));
++        }
++        foreach (var item in control.Evidence)
++        {
++            if (item.Key == "Volume") { Add(); group = []; }
++            group?.Add(item);
++        }
++        Add(); return result;
++    }
++    internal static IReadOnlyList<SecuritySubjectDetail> LocalAdministrators(LocalAdministratorsCollectionResult collection)
++        => collection.Members.Select(member =>
++        {
++            var status = member.Result switch { "Allowed" => SecurityControlStatus.Pass, "Unauthorized" => SecurityControlStatus.Fail, _ => SecurityControlStatus.Unknown };
++            var facts = new List<SecurityEvidence>();
++            if (member.Sid is not null) facts.Add(new("SID", member.Sid, member.Source));
++            facts.Add(new("Type", member.Type, member.Source));
++            facts.Add(new("Result", member.Result, member.Source));
++            facts.Add(new("Reason", member.Reason, member.Source));
++            if (member.MatchedRule is not null) facts.Add(new("MatchedRule", member.MatchedRule, member.Source));
++            facts.Add(new("PolicyConfigured", collection.Policy.Configured.ToString(), collection.Policy.Source));
++            facts.Add(new("PolicyReadable", collection.Policy.Readable.ToString(), collection.Policy.Source));
++            return new SecuritySubjectDetail("SEC-LOCAL-ADMINS", member.Name ?? (member.Sid is null ? "Unknown" : "SID:" + member.Sid),
++                status, facts, status == SecurityControlStatus.Unknown ? MissingEvidenceExplanation.For(facts) : null);
++        }).ToArray();
++    internal static IReadOnlyList<SecuritySubjectDetail> ForScan(ScanResult scan)
++    {
++        var result = new List<SecuritySubjectDetail>();
++        if (scan.Security is not null)
++            foreach (var control in scan.Security.Controls.Where(x => x.Id is "SEC-BITLOCKER-OS" or "SEC-BITLOCKER-DATA"))
++                result.AddRange(BitLocker(control));
++        if (scan.SecuritySnapshot?.LocalAdministrators is { } members) result.AddRange(LocalAdministrators(members));
++        return result;
++    }
++    internal static SecurityControlStatus SecurityStatusFromBitLockerEvidence(IReadOnlyList<SecurityEvidence> evidence)
++    {
++        var protection = evidence.FirstOrDefault(x => x.Key == "ProtectionStatus")?.Value;
++        var conversion = evidence.FirstOrDefault(x => x.Key == "ConversionStatus")?.Value;
++        if (protection is null || conversion is null) return SecurityControlStatus.Unknown;
++        if (conversion.Equals("FullyDecrypted", StringComparison.OrdinalIgnoreCase)) return SecurityControlStatus.Fail;
++        if (conversion is "EncryptionInProgress" or "EncryptionPaused" or "DecryptionInProgress" or "DecryptionPaused") return SecurityControlStatus.Warn;
++        if (conversion.Equals("FullyEncrypted", StringComparison.OrdinalIgnoreCase))
++        {
++            if (protection.Equals("On", StringComparison.OrdinalIgnoreCase)) return SecurityControlStatus.Pass;
++            if (protection.Equals("Off", StringComparison.OrdinalIgnoreCase)) return SecurityControlStatus.Warn;
++        }
++        return SecurityControlStatus.Unknown;
++    }
++
++}
+diff --git a/src/G.PcHealthCheck/SecurityReportSection.cs b/src/G.PcHealthCheck/SecurityReportSection.cs
+index b141e9c..616a635 100644
+--- a/src/G.PcHealthCheck/SecurityReportSection.cs
++++ b/src/G.PcHealthCheck/SecurityReportSection.cs
+@@ -34,6 +34,11 @@ internal static class SecurityReportSection
+         foreach (var control in assessment.Controls.Concat(assessment.Supplemental))
+             AppendControlRow(sb, control, language);
+ 
++        foreach (var detail in scan.SecurityDetails)
++            sb.Append("<tr><td>").Append(H(detail.ControlId + " · " + detail.Subject)).Append("</td><td>")
++                .Append(H(StatusText(language, detail.Status))).Append("</td><td>—</td><td>")
++                .Append(H(detail.DisplayEvidence(language))).Append("</td><td>—</td><td>")
++                .Append(H(string.Join(", ", detail.Evidence.Select(x => x.Source).Distinct()))).Append("</td></tr>");
+         sb.Append("</tbody></table>");
+         AppendHardeningEvidence(sb, scan.SecurityHardening, language);
+         sb.Append("</section>");
+@@ -68,6 +73,9 @@ internal static class SecurityReportSection
+             }
+         }
+ 
++        foreach (var detail in scan.SecurityDetails.Where(x => x.Status == SecurityControlStatus.Unknown))
++            sb.AppendLine(detail.ControlId + " · " + detail.Subject + ": " + detail.DisplayEvidence(language));
++
+         if (scan.SecurityHardening is { } hardening)
+         {
+             sb.AppendLine(T(
+diff --git a/src/G.PcHealthCheck/ServiceDeskFullBatchUi.cs b/src/G.PcHealthCheck/ServiceDeskFullBatchUi.cs
+index 6d65955..a62d3f7 100644
+--- a/src/G.PcHealthCheck/ServiceDeskFullBatchUi.cs
++++ b/src/G.PcHealthCheck/ServiceDeskFullBatchUi.cs
+@@ -127,6 +127,7 @@ public sealed partial class MainForm
+             if (ReferenceEquals(_applyProgressOwner, verificationOwner)) _applyProgressOwner = null;
+             StampExecutionContext(afterData, context);
+             var after = _assessment.Assess(afterData);
++            after.SymptomNotes = before.SymptomNotes.ToList();
+             var verification = new VerificationResult { Before = before, After = after, Remediation = batch };
+             var saved = _reports.SaveVerification(verification);
+             _latestReport = saved.Html;

@@ -1,0 +1,29 @@
+{
+  "argv": [
+    "/workspace/.g-pc-health-tools/dotnet/dotnet",
+    "publish",
+    "src/G.PcHealthCheck/G.PcHealthCheck.csproj",
+    "--no-restore",
+    "-c",
+    "Release",
+    "-r",
+    "win-x64",
+    "--self-contained",
+    "true",
+    "-o",
+    "/workspace/work/gpc-no-data64/publish",
+    "-p:EnableWindowsTargeting=true",
+    "-p:DesignTimeBuild=true",
+    "-p:GeneratedBrandDir=/workspace/work/gpc-no-data64/brand",
+    "-p:UseSharedCompilation=false",
+    "-p:InformationalVersion=0.17.1+3e64dbd7cf78ce6a273f454ec97583a454695d5e",
+    "-p:IncludeSourceRevisionInInformationalVersion=false",
+    "-warnaserror"
+  ],
+  "started_at_utc": "2026-10-10T19:58:00.856022+00:00",
+  "finished_at_utc": "2026-10-10T19:58:18.720862+00:00",
+  "returncode": 0,
+  "sdk": "8.0.425",
+  "candidate": "3e64dbd7cf78ce6a273f454ec97583a454695d5e",
+  "Windows_runtime": "NOT_RUN"
+}

@@ -1,0 +1,88 @@
+[
+  {
+    "file": "MainForm.SecurityPosture.cs",
+    "sha256": "fb89eeadd579d6fca8e608cc3e408338f559104c0bfb6b0634e7f2c42dea2595",
+    "method": "AddSecurityControlRow(",
+    "start": 7203,
+    "end": 8175,
+    "transform": "access modifier only"
+  },
+  {
+    "file": "MainForm.SecurityPosture.cs",
+    "sha256": "fb89eeadd579d6fca8e608cc3e408338f559104c0bfb6b0634e7f2c42dea2595",
+    "method": "AddBitLockerDetailRows(",
+    "start": 8177,
+    "end": 9319,
+    "transform": "access modifier only"
+  },
+  {
+    "file": "MainForm.SecurityPosture.cs",
+    "sha256": "fb89eeadd579d6fca8e608cc3e408338f559104c0bfb6b0634e7f2c42dea2595",
+    "method": "AddLocalAdministratorDetailRows(",
+    "start": 9321,
+    "end": 10670,
+    "transform": "access modifier only"
+  },
+  {
+    "file": "MainForm.SecurityPosture.cs",
+    "sha256": "fb89eeadd579d6fca8e608cc3e408338f559104c0bfb6b0634e7f2c42dea2595",
+    "method": "SplitEvidenceGroups(",
+    "start": 10672,
+    "end": 11297,
+    "transform": "access modifier only"
+  },
+  {
+    "file": "MainForm.SecurityPosture.cs",
+    "sha256": "fb89eeadd579d6fca8e608cc3e408338f559104c0bfb6b0634e7f2c42dea2595",
+    "method": "SecurityStatusFromBitLockerEvidence(",
+    "start": 11299,
+    "end": 12354,
+    "transform": "access modifier only"
+  },
+  {
+    "file": "MainForm.SecurityPosture.cs",
+    "sha256": "fb89eeadd579d6fca8e608cc3e408338f559104c0bfb6b0634e7f2c42dea2595",
+    "method": "DistinctSources(",
+    "start": 12356,
+    "end": 12584,
+    "transform": "access modifier only"
+  },
+  {
+    "file": "MainForm.SecurityPosture.cs",
+    "sha256": "fb89eeadd579d6fca8e608cc3e408338f559104c0bfb6b0634e7f2c42dea2595",
+    "method": "SecurityGuidance(",
+    "start": 12586,
+    "end": 12824,
+    "transform": "access modifier only"
+  },
+  {
+    "file": "MainForm.SecurityPosture.cs",
+    "sha256": "fb89eeadd579d6fca8e608cc3e408338f559104c0bfb6b0634e7f2c42dea2595",
+    "method": "SecurityStatusText(",
+    "start": 12826,
+    "end": 13330,
+    "transform": "access modifier only"
+  },
+  {
+    "file": "MainForm.SecurityPosture.cs",
+    "sha256": "fb89eeadd579d6fca8e608cc3e408338f559104c0bfb6b0634e7f2c42dea2595",
+    "method": "SecurityPointsText(",
+    "start": 14164,
+    "end": 14469,
+    "transform": "access modifier only"
+  },
+  {
+    "file": "MainForm.Symptoms.cs",
+    "sha256": "e3ee027221049ee6ad63f98e6c4083dd232c426342bb08a4c22e1e24ce5da9aa",
+    "block": "actual OpenSymptom admission/persistence prefix; native dialog creation excluded",
+    "start": 1103,
+    "end": 1285
+  },
+  {
+    "file": "MainForm.cs",
+    "sha256": "a40b396d1bb606153c46a1bdd75cf22eba2035281570f8e7f900b32726cda330",
+    "block": "actual post-collection verification/persistence block; collection/remediation/native controls excluded",
+    "start": 21757,
+    "end": 22234
+  }
+]

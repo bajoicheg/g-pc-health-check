@@ -1,0 +1,60 @@
+/workspace/work/gpc-no-data64/harness/UiExtraction.cs(143,65): warning CS0108: 'FakeRows.Add(params object?[])' hides inherited member 'List<object?[]>.Add(object?[])'. Use the new keyword if hiding was intended. [/workspace/work/gpc-no-data64/harness/Harness.csproj]
+/workspace/work/gpc-no-data64/harness/UiExtraction.cs(5,16): warning CS0649: Field 'UiExtraction._isBusy' is never assigned to, and will always have its default value false [/workspace/work/gpc-no-data64/harness/Harness.csproj]
+Evidence PASS: explicit denial, timeout and cancellation use exact retained tokens
+Evidence PASS: generic exception, null and empty never invent rights or unsupported OEM
+Evidence PASS: explicit unsupported and missing observation are distinguishable
+Evidence PASS: missing local admin policy differs from unreadable or wrong type
+Evidence PASS: explicit conflict, but grouped volume differences not guessed conflict
+Evidence PASS: source and safe nextstep localized without secret source
+Evidence PASS: incomplete triage not all-clear and preserves assessment
+Evidence PASS: healthy empty differs from collection warning and CRIT order retained
+Evidence PASS: JSON, HTML and clipboard carry explanation and original evidence
+Evidence PASS: symptom routes only existing inspections, no auto probes, batch unchanged
+Evidence presentation: 10/10 passed
+Security posture evaluator self-test: PASS — final control catalog is exactly 100 points
+Security posture evaluator self-test: PASS — all-pass posture is 100 with full coverage
+Security posture evaluator self-test: PASS — warn earns half weight and fail earns zero
+Security posture evaluator self-test: PASS — unknown lowers coverage without becoming failure
+Security posture evaluator self-test: PASS — not-applicable is removed from both score and coverage denominator
+Security posture evaluator self-test: PASS — coverage below 80 forces assessment incomplete
+Security posture evaluator self-test: PASS — critical Low caps override arithmetic score
+Security posture evaluator self-test: PASS — needs-attention caps override High without becoming Low
+Security posture evaluator self-test: 9/9 passed.
+Firmware security self-test: PASS — Lenovo PasswordState maps admin, power-on and drive password bits
+Firmware security self-test: PASS — Dell and HP require an already-present supported provider
+Firmware security self-test: PASS — Huawei SMBIOS Type 24 maps password status without secret material
+Firmware security self-test: PASS — Huawei adapter exposes SMBIOS admin password and never invents drive password
+Firmware security self-test: PASS — Huawei firmware query keeps identifiers compatible with the alias parser
+Firmware security self-test: PASS — Huawei firmware boot evidence reports positive external paths but absence never passes
+Firmware security self-test: PASS — firmware password control uses admin password only
+Firmware security self-test: PASS — boot restriction pass requires trusted internal-only firmware evidence
+Firmware security self-test: PASS — internal first with USB or PXE still enabled warns
+Firmware security self-test: PASS — external effective path or legacy boot fails
+Firmware security self-test: PASS — BCD-only or partial boot evidence stays Unknown
+Firmware security self-test: PASS — firmware adapter API cannot accept or return password secrets
+Firmware security self-test: 12/12 passed.
+BitLocker security self-test: PASS — OS volume protected and fully encrypted passes
+BitLocker security self-test: PASS — OS encrypting suspended or protection-only fallback warns
+BitLocker security self-test: PASS — OS decrypted or unprotected fails and unavailable is unknown
+BitLocker security self-test: PASS — all applicable fixed data volumes protected passes
+BitLocker security self-test: PASS — data aggregate fails, warns, not-applicable and unknown truthfully
+BitLocker security self-test: PASS — EFI recovery removable and optical volumes are excluded from data aggregate
+BitLocker security self-test: PASS — evidence contains protector types only and never recovery material
+BitLocker security self-test: 7/7 passed.
+Primary guidance regression: 12/19 passed.
+FAIL: physical disk failure guidance is not replaced by Temp cleanup: The competing cleanup recommendation was not reproduced.
+FAIL: critical CPU guidance is not replaced by Temp cleanup: The competing cleanup recommendation was not reproduced.
+FAIL: critical RAM guidance is not replaced by Temp cleanup: The competing cleanup recommendation was not reproduced.
+FAIL: critical disk pressure guidance is not replaced by Temp cleanup: The competing cleanup recommendation was not reproduced.
+FAIL: critical repeated events guidance is not replaced by Temp cleanup: The competing cleanup recommendation was not reproduced.
+FAIL: isolated low space keeps its actual guidance and cleanup action: Sequence contains no matching element
+FAIL: healthy clipboard contains no significant findings or omission marker: OK findings entered the significant list.
+Primary guidance regression: 12/19 passed.
+FAIL: physical disk failure guidance is not replaced by Temp cleanup: The competing cleanup recommendation was not reproduced.
+FAIL: critical CPU guidance is not replaced by Temp cleanup: The competing cleanup recommendation was not reproduced.
+FAIL: critical RAM guidance is not replaced by Temp cleanup: The competing cleanup recommendation was not reproduced.
+FAIL: critical disk pressure guidance is not replaced by Temp cleanup: The competing cleanup recommendation was not reproduced.
+FAIL: critical repeated events guidance is not replaced by Temp cleanup: The competing cleanup recommendation was not reproduced.
+FAIL: isolated low space keeps its actual guidance and cleanup action: Sequence contains no matching element
+FAIL: healthy clipboard contains no significant findings or omission marker: OK findings entered the significant list.
+Regression exits evidence=0, evaluator=0, firmware=0, bitlocker=0, guidance=1, triage=1

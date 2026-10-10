@@ -1,0 +1,8 @@
+tree b61f0ca5fdccd4e06be6c4fecd6c6b79b9bea10f
+parent 3efc1a990bf56dc9659faf8be86d921dda8c1a2a
+author GPC isolated corrective writer64 <evidence@example.invalid> 1791662274 +0000
+committer GPC isolated corrective writer64 <evidence@example.invalid> 1791662274 +0000
+
+Fix no-data subject explanations and persisted symptom context
+
+Correct all five SPEC findings on exact 3ef parent; keep Security rows compact with complete details. Portable corrective RED 0/6 to GREEN 9/9; native Windows/layout/Huawei acceptance NOT_RUN. Historical CI6 UNKNOWN unchanged; no source publication.

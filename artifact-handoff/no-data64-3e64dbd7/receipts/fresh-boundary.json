@@ -1,0 +1,12 @@
+{
+  "source": "325fe132be9ff49bc09b8bfb873f6d3e92df1c5e",
+  "coordination": "d010f6ca156227f40fe0a24028af92cd05767dc9",
+  "lease_generation": 32,
+  "owner_id": null,
+  "external_guard": null,
+  "current_source_CDC": "3.3.1",
+  "current_source_package_tree": "f580a8946c0510540a4be3f4422ab3404875274b",
+  "current_source_package_files": 401,
+  "frozen_candidate_CDC": "2.12.1",
+  "plan_state_budget_validation": "PASS"
+}

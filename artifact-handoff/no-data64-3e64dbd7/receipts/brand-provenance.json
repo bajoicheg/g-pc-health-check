@@ -1,0 +1,10 @@
+{
+  "source_artifact_commit": "9cf419be1190725efb540a4ea83485c74b664c02",
+  "source_binary_sha256": "484b95a877a2e2543ce2937598ab58ea9d51e0fa29d2d6ff5ca5dd732adf41cf",
+  "method": "static bundle managed-resource PNG and PE RT_GROUP_ICON/RT_ICON extraction; no native execution/generation",
+  "bundle_entries": 453,
+  "assets": {
+    "gpchc.ico": "8d041ae38c8b64773177d55497da507c3bc36b4007157e08b71228a1f0851fa9",
+    "g-shield.png": "5157c5cf83a6cfddb74c51701a693e401e36b400812505a1e46e15d760c72877"
+  }
+}

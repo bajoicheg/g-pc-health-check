@@ -1,0 +1,198 @@
+[
+  {
+    "path": "src/G.PcHealthCheck/Resources/ReviewServiceStrings.en.resx",
+    "old_entries": 25,
+    "changed": [],
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/ResourceProbeUiStrings.en.resx",
+    "old_entries": 59,
+    "changed": [],
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/DiagnosticBundleStrings.resx",
+    "old_entries": 174,
+    "changed": [],
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/PerformanceSessionStrings.resx",
+    "old_entries": 68,
+    "changed": [],
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/IncidentStrings.en.resx",
+    "old_entries": 109,
+    "changed": [],
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/ProcessObservationStrings.en.resx",
+    "old_entries": 106,
+    "changed": [],
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/DiagnosticBundleReportExtraStrings.en.resx",
+    "old_entries": 31,
+    "changed": [],
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/StorageReviewStrings.resx",
+    "old_entries": 58,
+    "changed": [],
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/MainStrings.en.resx",
+    "old_entries": 111,
+    "changed": [],
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/FileUseStrings.en.resx",
+    "old_entries": 102,
+    "changed": [],
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/DiagnosticBundleStrings.en.resx",
+    "old_entries": 174,
+    "changed": [],
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/EndpointReviewStrings.resx",
+    "old_entries": 40,
+    "changed": [],
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/ReviewServiceStrings.resx",
+    "old_entries": 25,
+    "changed": [],
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/ServiceDeskBatchStrings.resx",
+    "old_entries": 28,
+    "changed": [],
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/ServiceDeskBatchStrings.en.resx",
+    "old_entries": 28,
+    "changed": [],
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/FileUseStrings.resx",
+    "old_entries": 102,
+    "changed": [],
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/SecurityStrings.resx",
+    "old_entries": 65,
+    "changed": [],
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/AnalysisStrings.resx",
+    "old_entries": 49,
+    "changed": [],
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/PerformanceSessionStrings.en.resx",
+    "old_entries": 68,
+    "changed": [],
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/ReviewStrings.resx",
+    "old_entries": 62,
+    "changed": [],
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/DiagnosticBundleReportExtraStrings.resx",
+    "old_entries": 31,
+    "changed": [],
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/ReviewStrings.en.resx",
+    "old_entries": 62,
+    "changed": [],
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/Strings.en.resx",
+    "old_entries": 139,
+    "changed": [
+      "Evidence.Reason.policy_unreadable"
+    ],
+    "new_entries": 5
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/AnalysisStrings.en.resx",
+    "old_entries": 49,
+    "changed": [],
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/IncidentStrings.resx",
+    "old_entries": 109,
+    "changed": [],
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/StorageReviewStrings.en.resx",
+    "old_entries": 58,
+    "changed": [],
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/ResourceProbeUiStrings.resx",
+    "old_entries": 59,
+    "changed": [],
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/ProcessObservationStrings.resx",
+    "old_entries": 107,
+    "changed": [],
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/SecurityStrings.en.resx",
+    "old_entries": 65,
+    "changed": [],
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/Strings.resx",
+    "old_entries": 139,
+    "changed": [
+      "Evidence.Reason.policy_unreadable"
+    ],
+    "new_entries": 5
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/EndpointReviewStrings.en.resx",
+    "old_entries": 40,
+    "changed": [],
+    "new_entries": 0
+  },
+  {
+    "path": "src/G.PcHealthCheck/Resources/MainStrings.resx",
+    "old_entries": 111,
+    "changed": [],
+    "new_entries": 0
+  }
+]

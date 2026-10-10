@@ -1,0 +1,11 @@
+/workspace/work/gpc-no-data64/harness/UiExtraction.cs(141,10): warning CS0219: The variable 'verificationOwner' is assigned but its value is never used [/workspace/work/gpc-no-data64/harness/Harness.csproj]
+PASS 1 real unsupported manufacturer collector
+PASS 2 actual per-volume unknown detail and exports
+PASS 2 actual per-member unknown detail
+PASS 3 saved scan symptom HTML/JSON/clipboard coherence
+PASS 4 actual verification block carries original symptom notes
+PASS 5 throwing policy source never claims configured
+PASS 3 persistence failure rolls back snapshot and history
+PASS 2 member subject metadata survives serialization with aggregate failure
+PASS 2 per-subject cause never inherited from another volume
+CORRECTIVE 9/9

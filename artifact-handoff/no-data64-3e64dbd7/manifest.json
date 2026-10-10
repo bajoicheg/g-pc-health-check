@@ -1,0 +1,253 @@
+{
+  "schema": "gpc-raw-artifact-handoff/v1",
+  "binary_name": "G-PC-Health-0.17.1-evidence-corrected.exe",
+  "bytes": 78778990,
+  "sha256": "c632d6798da8fe994a214d418a6d67c37e44ee01c3840c220696da9cb5e9af06",
+  "candidate": "3e64dbd7cf78ce6a273f454ec97583a454695d5e",
+  "parent": "3efc1a990bf56dc9659faf8be86d921dda8c1a2a",
+  "tree": "b61f0ca5fdccd4e06be6c4fecd6c6b79b9bea10f",
+  "PE": "AMD64/PE32+",
+  "FileVersion": "0.17.1.0",
+  "InformationalVersion": "0.17.1+3e64dbd7cf78ce6a273f454ec97583a454695d5e",
+  "bundle_entries": 453,
+  "Windows_runtime": "NOT_RUN",
+  "single_file_self_contained": "Crosspublish configuration; static CoreCLR-linked .NET Windows apphost, not native runtime acceptance",
+  "original_CI6_outcome": "UNKNOWN",
+  "chunks": [
+    {
+      "index": 0,
+      "path": "artifact-handoff/no-data64-3e64dbd7/chunk-000.bin",
+      "bytes": 4194304,
+      "sha256": "f9ab16004bed78572cbf9cfc1ca2e4982b02a7765edcf1799b2a294b93a38094",
+      "blob_oid": "4c17039bbed38b367fe42ca2fa5359d06dd28959"
+    },
+    {
+      "index": 1,
+      "path": "artifact-handoff/no-data64-3e64dbd7/chunk-001.bin",
+      "bytes": 4194304,
+      "sha256": "2e310362f0059c6a5681afecf7fb3b55ef0900b5b3d429a82ae84e1d5789ad95",
+      "blob_oid": "4ba5c99745d73f66dd269d89e0c966f129ac57c4"
+    },
+    {
+      "index": 2,
+      "path": "artifact-handoff/no-data64-3e64dbd7/chunk-002.bin",
+      "bytes": 4194304,
+      "sha256": "3d2348714159ed4002183f94e3798331e619e772fe11c21f7b1ad8670c0a0240",
+      "blob_oid": "97c93a34e61d9e7e7720d8b955ba02795cdf9dce"
+    },
+    {
+      "index": 3,
+      "path": "artifact-handoff/no-data64-3e64dbd7/chunk-003.bin",
+      "bytes": 4194304,
+      "sha256": "2ac2953e1641f23fd2dd1f260d3de8b1998ddfb0a0b9f7b08d8295a515edadf8",
+      "blob_oid": "2f34db54d426fdc344d3924fe76364f3f6bcdfee"
+    },
+    {
+      "index": 4,
+      "path": "artifact-handoff/no-data64-3e64dbd7/chunk-004.bin",
+      "bytes": 4194304,
+      "sha256": "269f59054a5c5eff939d257071bc4670f34a4003bd79bfcd07c5fe59dc1d91ba",
+      "blob_oid": "75e47a79af47537b1e8dc15688f489a0b2e9bb37"
+    },
+    {
+      "index": 5,
+      "path": "artifact-handoff/no-data64-3e64dbd7/chunk-005.bin",
+      "bytes": 4194304,
+      "sha256": "03cdfacefadacae95d048d19d4e340a30b30c332d7bccccf122b84781e19720c",
+      "blob_oid": "e1ba75b27021b4da67d7326bb14a50eea0017aa5"
+    },
+    {
+      "index": 6,
+      "path": "artifact-handoff/no-data64-3e64dbd7/chunk-006.bin",
+      "bytes": 4194304,
+      "sha256": "7c8ccf97303147b66538c3a87a512044a07c6f60432982d9f60bdb9c9ab01d25",
+      "blob_oid": "6995780c9bdb7493f024202f5fef313fab45a8e7"
+    },
+    {
+      "index": 7,
+      "path": "artifact-handoff/no-data64-3e64dbd7/chunk-007.bin",
+      "bytes": 4194304,
+      "sha256": "cf9a12109ba99cc84b2093be41fac442947befa380255f6cdfdc5bb1ee2b8a3f",
+      "blob_oid": "524164f0bc5e25c162d1f3fd6a1be91098440538"
+    },
+    {
+      "index": 8,
+      "path": "artifact-handoff/no-data64-3e64dbd7/chunk-008.bin",
+      "bytes": 4194304,
+      "sha256": "50fa7cb120bd6dd88b53f10737afc5076d2a31b3e351ebc8c5ea0a9f08ce1a13",
+      "blob_oid": "bd2403582c46b19eddf30817406aa4f9c55b88fe"
+    },
+    {
+      "index": 9,
+      "path": "artifact-handoff/no-data64-3e64dbd7/chunk-009.bin",
+      "bytes": 4194304,
+      "sha256": "a6e4c4a3b674bcfb7239aef768328c91665ec0125673f88a94f9fc068e28729d",
+      "blob_oid": "5cd05d9b2badebd3ad2f9aa01f0a9b2063eb8b90"
+    },
+    {
+      "index": 10,
+      "path": "artifact-handoff/no-data64-3e64dbd7/chunk-010.bin",
+      "bytes": 4194304,
+      "sha256": "c72210ced72865c034897a6560c99416300c9ed06014ffef6aa7c713738080a6",
+      "blob_oid": "6b4a9721c94e3e2831458c9a14089dc2f994ad62"
+    },
+    {
+      "index": 11,
+      "path": "artifact-handoff/no-data64-3e64dbd7/chunk-011.bin",
+      "bytes": 4194304,
+      "sha256": "4baa90f7952486f3a59c40eaf56c7174998c50bac03d9b8d5b580ccf8ec19fe9",
+      "blob_oid": "b2e8e2106482c0a435feae144c02662ad35d8ee6"
+    },
+    {
+      "index": 12,
+      "path": "artifact-handoff/no-data64-3e64dbd7/chunk-012.bin",
+      "bytes": 4194304,
+      "sha256": "93593425054473edb8359676b1cfa6a72d4689c3c0a655780fcec9a93fbda593",
+      "blob_oid": "ddbd65067758ff1f47397a84741f0becbeaefdd4"
+    },
+    {
+      "index": 13,
+      "path": "artifact-handoff/no-data64-3e64dbd7/chunk-013.bin",
+      "bytes": 4194304,
+      "sha256": "0e07191f67fb54572206c07099478f7988b38cea6ae6680394024854876b5796",
+      "blob_oid": "f68a7300e755e9e24dd02fe4cfaf75a2aee2141b"
+    },
+    {
+      "index": 14,
+      "path": "artifact-handoff/no-data64-3e64dbd7/chunk-014.bin",
+      "bytes": 4194304,
+      "sha256": "e62a303c595a2706a48e8c6971afea7d276b6b214362b4083e87252d7c964195",
+      "blob_oid": "bbc70ea55d25da580a4cd903376ae069c8bab122"
+    },
+    {
+      "index": 15,
+      "path": "artifact-handoff/no-data64-3e64dbd7/chunk-015.bin",
+      "bytes": 4194304,
+      "sha256": "dcc3897ab4eadb67c411945dc6257de8533820542e3a053ad0a97299ccab5f2c",
+      "blob_oid": "d5a73c07d80853c88faff0f0e09ecd8af91abfff"
+    },
+    {
+      "index": 16,
+      "path": "artifact-handoff/no-data64-3e64dbd7/chunk-016.bin",
+      "bytes": 4194304,
+      "sha256": "a3ffee858b561f714a62e3b2a348aaff67afc1f68909cbbf434847a5f12b4dc9",
+      "blob_oid": "32f06f031dc4b14220bb7ac11f9f1096e4dbb1bf"
+    },
+    {
+      "index": 17,
+      "path": "artifact-handoff/no-data64-3e64dbd7/chunk-017.bin",
+      "bytes": 4194304,
+      "sha256": "e909c8f6b86322b13a07c967ed9186b2278b5a4b3b9784c03614777337348f6b",
+      "blob_oid": "b1842fa74ab6931e94f897db0b5cf2a563a3ac5c"
+    },
+    {
+      "index": 18,
+      "path": "artifact-handoff/no-data64-3e64dbd7/chunk-018.bin",
+      "bytes": 3281518,
+      "sha256": "468e5bc8e9e19abcce0ec280f1e625df1431c2d98702cf3c09914d1ec4a82ff4",
+      "blob_oid": "66b25602f43305a03cbb67bd40cf23a3c0a10a2a"
+    }
+  ],
+  "changed_files": [
+    {
+      "path": "docs/releases/0.17.1-evidence.md",
+      "bytes": 4131,
+      "sha256": "c302211d31ca3584ba1be54e56e53df055c4bc82ac43ea0a8fd313cedd5bba1d",
+      "git_blob": "80a90db7dcc8cb774b9b84f4aba6a8b1766fa9ac",
+      "artifact_path": "artifact-handoff/no-data64-3e64dbd7/source/files/docs/releases/0.17.1-evidence.md"
+    },
+    {
+      "path": "src/G.PcHealthCheck/MainForm.SecurityPosture.cs",
+      "bytes": 15185,
+      "sha256": "92297fd61c4aa468728e9dbee0c978cf9251395b8defc79cad207506f5c95955",
+      "git_blob": "6e0cc881f913f8e79f53d7c52331a87cfd96e7fe",
+      "artifact_path": "artifact-handoff/no-data64-3e64dbd7/source/files/src/G.PcHealthCheck/MainForm.SecurityPosture.cs"
+    },
+    {
+      "path": "src/G.PcHealthCheck/MainForm.Symptoms.cs",
+      "bytes": 2204,
+      "sha256": "c5f15614c966c3a4c2ea3d0eefdec54d1e57dc98c54ab4e246d521e5bafe8342",
+      "git_blob": "ed0eb904b4d92fa334ef66021b31f87a1e248d84",
+      "artifact_path": "artifact-handoff/no-data64-3e64dbd7/source/files/src/G.PcHealthCheck/MainForm.Symptoms.cs"
+    },
+    {
+      "path": "src/G.PcHealthCheck/MainForm.cs",
+      "bytes": 39990,
+      "sha256": "5df82301b214d36d689b2a3590ffb05d2aa904cd3c0f14e8b924347d3d17393a",
+      "git_blob": "0f2bcec7469f3b37876eb85efd8ecb8d8d8d0bff",
+      "artifact_path": "artifact-handoff/no-data64-3e64dbd7/source/files/src/G.PcHealthCheck/MainForm.cs"
+    },
+    {
+      "path": "src/G.PcHealthCheck/MissingEvidenceExplanation.cs",
+      "bytes": 4647,
+      "sha256": "aa2b6f9cd2f0b8179815c59396d8eb46c556b402c8a71d1e565d6e42b2371384",
+      "git_blob": "616fdf641dd8507efc869b6f617b4c5ae303acd3",
+      "artifact_path": "artifact-handoff/no-data64-3e64dbd7/source/files/src/G.PcHealthCheck/MissingEvidenceExplanation.cs"
+    },
+    {
+      "path": "src/G.PcHealthCheck/Models.cs",
+      "bytes": 11671,
+      "sha256": "d8099f66f645260361324cdf6edb2747b1fd21b54866cc1cbe649e2021499747",
+      "git_blob": "07bc9e74b9f4c3f9dfd81cad1d1acca79a761fe1",
+      "artifact_path": "artifact-handoff/no-data64-3e64dbd7/source/files/src/G.PcHealthCheck/Models.cs"
+    },
+    {
+      "path": "src/G.PcHealthCheck/ReadableLayoutSelfTest.cs",
+      "bytes": 20128,
+      "sha256": "b646d59e7773ab725a5cacfe00ab3ad9324f094ef7d3d37a6334a142eab72aa9",
+      "git_blob": "4678fa6aa16a16278a359b023f54356b4d2479d0",
+      "artifact_path": "artifact-handoff/no-data64-3e64dbd7/source/files/src/G.PcHealthCheck/ReadableLayoutSelfTest.cs"
+    },
+    {
+      "path": "src/G.PcHealthCheck/ReportService.cs",
+      "bytes": 21492,
+      "sha256": "3d8c17f25fa1ae0d7d693fddac7c0a765092d6a49699cfaadcdec51c740a6ca6",
+      "git_blob": "06dca1194216a1656a682b91efcf531f653997fa",
+      "artifact_path": "artifact-handoff/no-data64-3e64dbd7/source/files/src/G.PcHealthCheck/ReportService.cs"
+    },
+    {
+      "path": "src/G.PcHealthCheck/Resources/Strings.en.resx",
+      "bytes": 20259,
+      "sha256": "18b576e1ed65c2049347b04d45b6678079bf729ac1a55326daef513608eae020",
+      "git_blob": "ec01b314055436316365436c8e4654c809e1b53c",
+      "artifact_path": "artifact-handoff/no-data64-3e64dbd7/source/files/src/G.PcHealthCheck/Resources/Strings.en.resx"
+    },
+    {
+      "path": "src/G.PcHealthCheck/Resources/Strings.resx",
+      "bytes": 25343,
+      "sha256": "bb7d5d81628dd04ff010873f402229206b64b791f064acb840addcc031951e98",
+      "git_blob": "df8de293240d056fdfb513c38bb8fcec837fa91b",
+      "artifact_path": "artifact-handoff/no-data64-3e64dbd7/source/files/src/G.PcHealthCheck/Resources/Strings.resx"
+    },
+    {
+      "path": "src/G.PcHealthCheck/SecurityDetailPresentation.cs",
+      "bytes": 4172,
+      "sha256": "973b703695a4dc416f2cc6657c13d66c2d798a40b04a510b05c77335680094ed",
+      "git_blob": "6423e36188ebfcb543d772b3b5f5b5239610d0ff",
+      "artifact_path": "artifact-handoff/no-data64-3e64dbd7/source/files/src/G.PcHealthCheck/SecurityDetailPresentation.cs"
+    },
+    {
+      "path": "src/G.PcHealthCheck/SecurityReportSection.cs",
+      "bytes": 10800,
+      "sha256": "c55ee09f160948a4121f4ea04d4a7114940b565f18972bc36ab40ade9d027b10",
+      "git_blob": "616a63516cd4d8d6ffe4ef630b032e71204aa635",
+      "artifact_path": "artifact-handoff/no-data64-3e64dbd7/source/files/src/G.PcHealthCheck/SecurityReportSection.cs"
+    },
+    {
+      "path": "src/G.PcHealthCheck/ServiceDeskFullBatchUi.cs",
+      "bytes": 7106,
+      "sha256": "7e13215ab270e7c51cf8deb8b5a77d2c567c56051e2d97a639c01607645a45c7",
+      "git_blob": "a62d3f7ea8489cb04681a564cf50bae3c4872c6a",
+      "artifact_path": "artifact-handoff/no-data64-3e64dbd7/source/files/src/G.PcHealthCheck/ServiceDeskFullBatchUi.cs"
+    }
+  ],
+  "source_bundle": "artifact-handoff/no-data64-3e64dbd7/receipts/candidate.bundle",
+  "source_bundle_sha256": "3455107cf6352386e28996d8c58274717450d9db2f2be61a4080a8e8b1db8a3f",
+  "source_patch": "artifact-handoff/no-data64-3e64dbd7/receipts/candidate.patch",
+  "source_patch_sha256": "a3a63175bfb66a156bee5c44c3a5fc51055072587ee8cbb7d6c8fcdded950f09",
+  "complete_history_bundle": true,
+  "local_branch": "codex/local-no-data64",
+  "core": "CDC2.12.1 unchanged",
+  "SPEC": "PENDING Root65",
+  "QUALITY": "PENDING Root66"
+}

@@ -1,0 +1,87 @@
+{
+  "schema": "managed-executor-pool-plan/v1",
+  "pool_id": "gpc-no-data64-corrective-20261010",
+  "change_id": "gpc-explain-missing-evidence",
+  "parent_invocation_id": "Work-root-gpc-no-data-20261010",
+  "base_sha": "3efc1a990bf56dc9659faf8be86d921dda8c1a2a",
+  "integrator_id": "Work-root",
+  "coordination_ref": "refs/heads/cdc/coordination",
+  "coordination_store_id": "sha256:e9c5798b2e5857d11563b10845ae993ed5b0e7b040ffd6611bdbd1a36aad08d3",
+  "max_parallel": 1,
+  "total_runtime_budget_seconds": 3600,
+  "total_cost_budget_units": 3,
+  "tasks": [
+    {
+      "id": "controller",
+      "role": "writer",
+      "required": true,
+      "dependencies": [],
+      "executor_id": "Native-Cloud-GPC-no-data64",
+      "branch": "codex/local-no-data64",
+      "worktree": "gpc-no-data64",
+      "write_paths": [
+        "src/G.PcHealthCheck",
+        "docs/releases/0.17.1-evidence.md"
+      ],
+      "expected_outputs": [
+        "source-bundle",
+        "EXE-manifest"
+      ],
+      "expected_evidence": [
+        "real-CSharp-RED-GREEN",
+        "whole-app-crosspublish"
+      ],
+      "backend_preferences": [
+        "Native-Codex-Cloud"
+      ],
+      "max_runtime_seconds": 2400,
+      "max_cost_units": 1
+    },
+    {
+      "id": "spec",
+      "role": "review",
+      "required": true,
+      "dependencies": [
+        "controller"
+      ],
+      "executor_id": "Work-GPC-no-data65",
+      "branch": null,
+      "worktree": null,
+      "write_paths": [],
+      "expected_outputs": [
+        "spec-review"
+      ],
+      "expected_evidence": [
+        "exact-candidate-spec"
+      ],
+      "backend_preferences": [
+        "Native-Codex-Cloud"
+      ],
+      "max_runtime_seconds": 600,
+      "max_cost_units": 1
+    },
+    {
+      "id": "quality",
+      "role": "review",
+      "required": true,
+      "dependencies": [
+        "spec"
+      ],
+      "executor_id": "Work-GPC-no-data66",
+      "branch": null,
+      "worktree": null,
+      "write_paths": [],
+      "expected_outputs": [
+        "quality-review"
+      ],
+      "expected_evidence": [
+        "exact-candidate-quality"
+      ],
+      "backend_preferences": [
+        "Native-Codex-Cloud"
+      ],
+      "max_runtime_seconds": 600,
+      "max_cost_units": 1
+    }
+  ]
+}

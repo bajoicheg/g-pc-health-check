@@ -1,0 +1,8 @@
+{
+ "sdk":"8.0.425",
+ "restore":{"argv":["dotnet","restore","src/G.PcHealthCheck/G.PcHealthCheck.csproj","-r","win-x64","-p:EnableWindowsTargeting=true","-p:RestoreSources=/tmp/gpc-empty-nuget"],"log":"restore.log","exit":0},
+ "compile":{"argv":["dotnet","build","src/G.PcHealthCheck/G.PcHealthCheck.csproj","--no-restore","-c","Release","-r","win-x64","-p:EnableWindowsTargeting=true","-p:DesignTimeBuild=true","-p:GeneratedBrandDir=/workspace/work/gpc-no-data61/brand","-p:UseSharedCompilation=false","-warnaserror"],"log":"compile.log","exit":0,"warnings":0,"errors":0,"scope":"All corrections; subsequent native fixture addition also compiled by final publish"},
+ "publish":"Exact actual argv/timestamps/returncode in publish-receipt.json, stdout/stderr persisted before assertion; final frozen candidate with native fixture addition",
+ "brand":"Cached prior successful assets, no Windows generation claimed; hashes checked against retained brand-provenance.json",
+ "Windows_runtime":"NOT_RUN"
+}

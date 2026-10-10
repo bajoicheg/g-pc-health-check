@@ -1,0 +1,11 @@
+{
+ "schema":"gpc-source-linked-corrective-tests/v1",
+ "SDK":"8.0.425",
+ "project":"harness/Harness.csproj",
+ "RED":{"source":"3efc1a990bf56dc9659faf8be86d921dda8c1a2a","command":"dotnet run --project harness/Harness.csproj --no-restore","log":"red.log","exit":1,"result":"0/6; functional assertions for all five SPEC findings, including two subject cases; compiler setup failures excluded"},
+ "RED_reproduction":{"source":"3efc1a990bf56dc9659faf8be86d921dda8c1a2a","command":"dotnet run --project red-repeat/harness/Harness.csproj -p:RestoreSources=/tmp/gpc-empty-nuget","log":"red-repeat.log","exit":1,"result":"0/6 with retained source extraction and fixtures"},
+ "GREEN":{"command":"dotnet run --project harness/Harness.csproj --no-restore","log":"final-corrective.log","exit":0,"result":"9/9; includes actual MainForm and ServiceDeskFullBatchUi verification blocks, real filesystem save/rollback, JSON roundtrip and cross-volume cause separation"},
+ "regressions":{"command":"dotnet run --project harness/Harness.csproj --no-restore -- regressions","log":"regressions.log","exit":2,"evidence":0,"security_evaluator":0,"firmware":"12/12 fake-source PASS","BitLocker":"7/7 fake-source PASS","guidance":"12/19; same seven Linux failures","triage":1},
+ "exact_parent_regressions":{"source":"3efc1a990bf56dc9659faf8be86d921dda8c1a2a","command":"dotnet run --project baseline-harness/Harness.csproj -p:RestoreSources=/tmp/gpc-empty-nuget","log":"baseline-regressions.log","exit":2,"result":"same seven guidance failures; evaluator/firmware/BitLocker/evidence PASS, triage exit1"},
+ "harness_limits":"Production C# sources and extracted exact UI presentation/persistence blocks; native control/acquisition shims explicitly excluded from acceptance. No real WMI/BCD/OEM was invoked. Unused shim variable warning is not a product warning. Windows runtime/layout NOT_RUN."
+}

@@ -1,0 +1,62 @@
+{
+  "schema": "managed-executor-pool-state/v1",
+  "plan_digest": "sha256:c98e59d63ccc499cedd2421bc76b02d47f088d0ca52909ebc7b5cc07bcf5eccf",
+  "pool_id": "gpc-no-data64-corrective-20261010",
+  "change_id": "gpc-explain-missing-evidence",
+  "parent_invocation_id": "Work-root-gpc-no-data-20261010",
+  "base_sha": "3efc1a990bf56dc9659faf8be86d921dda8c1a2a",
+  "integrator_id": "Work-root",
+  "coordination_ref": "refs/heads/cdc/coordination",
+  "coordination_store_id": "sha256:e9c5798b2e5857d11563b10845ae993ed5b0e7b040ffd6611bdbd1a36aad08d3",
+  "revision": 2,
+  "execution_mode": "parallel",
+  "tasks": [
+    {
+      "id": "controller",
+      "status": "running",
+      "attempt_ids": [
+        "gpc-no-data64-corrective-20261010"
+      ],
+      "active_attempt_id": "gpc-no-data64-corrective-20261010",
+      "reservation_token": "865ac864-2b44-4a7e-8a86-d340a5c378f7",
+      "accepted_result_ref": null,
+      "integrated": false,
+      "discarded": false,
+      "runtime_seconds": 0,
+      "cost_units": 0
+    },
+    {
+      "id": "spec",
+      "status": "planned",
+      "attempt_ids": [],
+      "active_attempt_id": null,
+      "reservation_token": null,
+      "accepted_result_ref": null,
+      "integrated": false,
+      "discarded": false,
+      "runtime_seconds": 0,
+      "cost_units": 0
+    },
+    {
+      "id": "quality",
+      "status": "planned",
+      "attempt_ids": [],
+      "active_attempt_id": null,
+      "reservation_token": null,
+      "accepted_result_ref": null,
+      "integrated": false,
+      "discarded": false,
+      "runtime_seconds": 0,
+      "cost_units": 0
+    }
+  ],
+  "runtime_consumed_seconds": 0,
+  "cost_consumed_units": 0,
+  "authorizes_worker_launch": false,
+  "authorizes_shared_branch_write": false,
+  "authorizes_merge": false,
+  "authorizes_release": false,
+  "authorizes_scope_expansion": false,
+  "authorizes_scheduler_mutation": false,
+  "authorizes_user_approval": false
+}
