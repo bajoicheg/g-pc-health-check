@@ -2775,6 +2775,40 @@
         "elapsed_seconds": 245
       },
       "failure": null
+    },
+    {
+      "type": "reserve",
+      "event_id": "gpc-no-data61-20261010-agent_start",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-no-data-20261010",
+      "at_utc": "2026-10-10T19:07:53.816274Z",
+      "operation_key": "sha256:3a9ac406cd58b865fe437ae5e0ccb733ef9718fa74ba7f06d85c0ba06dadcc09",
+      "attempt_id": "gpc-no-data61-20261010",
+      "kind": "agent_start",
+      "scope": "gpc/isolated-explain-missing-evidence",
+      "recovery_ref": null,
+      "cost": {
+        "tool_calls": 1,
+        "tokens": null,
+        "elapsed_seconds": null
+      }
+    },
+    {
+      "type": "reserve",
+      "event_id": "gpc-no-data61-20261010-compute_start",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-no-data-20261010",
+      "at_utc": "2026-10-10T19:07:53.816274Z",
+      "operation_key": "sha256:6acd59e52280b3c3b54370be50719deaf86a46ee43af6f000326f51bd6e2e4b2",
+      "attempt_id": "gpc-no-data61-20261010",
+      "kind": "compute_start",
+      "scope": "gpc/isolated-explain-missing-evidence",
+      "recovery_ref": null,
+      "cost": {
+        "tool_calls": 1,
+        "tokens": null,
+        "elapsed_seconds": null
+      }
     }
   ],
   "policy": {
@@ -2786,7 +2820,7 @@
     "max_parallel_agents": 4,
     "provider_max_age_seconds": 300,
     "task_limits": {
-      "agent_starts": 60,
+      "agent_starts": 63,
       "ci_starts": 13,
       "compute_starts": null
     },
@@ -2796,7 +2830,7 @@
       "tool_calls": 80
     }
   },
-  "policy_digest": "sha256:5bb18b9c49e060afe015022df7e2a78330ab51c1990a1e76408823e9582308e4",
+  "policy_digest": "sha256:410fe4decffe93b00a74c875c01a00ad89181bf20416f425a2515c181895c699",
   "schema": "budget-ledger/v1",
   "task_id": "g-pc-health-check-0.17.0-pre-integration",
   "wake_ids": [
@@ -2824,6 +2858,7 @@
     "gpc-manual-captcha-resolved-20261009-235416",
     "gpc-huawei-bios-20261010-042502",
     "gpc-max-huawei-20261010-123856",
-    "gpc-git-original-receipt-audit-20261010-2048"
+    "gpc-git-original-receipt-audit-20261010-2048",
+    "gpc-no-data-20261010"
   ]
 }
