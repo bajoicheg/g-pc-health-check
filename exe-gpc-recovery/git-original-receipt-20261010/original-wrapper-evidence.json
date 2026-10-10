@@ -1,0 +1,57 @@
+{
+  "schema": "gpc-original-CI6-wrapper-and-send-evidence/v1",
+  "provenance": "Authenticated immutable original packet33ec87e4:document.json; extracted values, NOT recovered receive-pack bytes",
+  "original_packet": {
+    "commit": "33ec87e4d79f2b5b51b49bdbee097b9d7264b4ad",
+    "blob": "157409a900c1309046cab256a12f53faaec9e4f4",
+    "sha256": "d35e7893a787de967c47ac7bf580fdaa3065347a14ce808092e794d1cfedb03a"
+  },
+  "wrapper_tool_result": {
+    "chunk_id": "54e0cc",
+    "exception": "ValueError: publication conflict/unknown: preserve intent and guard, no replay",
+    "exit_code": 1,
+    "provenance": "Actual current-chat tool result; no on-disk historical transport log claimed",
+    "session_id": 26208,
+    "tool": "tools.write_stdin",
+    "traceback_locations": [
+      "diagnostic-CI6.py:40",
+      "prospective_controls.py:140"
+    ]
+  },
+  "original_code_sha256": "d28d79197024c5c09663dbd6241d5ae596219d6cc90c4850639130533e60a5d8",
+  "old_push_code_sha256": "1230c1eed9195c35bb305725bdd65df8d1585b920f016551dd91e47cdeae5ccd",
+  "original_host_git_source": "def git(*a,check=True):return subprocess.run(['git','-c','advice.graftFileDeprecated=false','-C',REPO,*a],env=git_object_environment(),stdout=subprocess.PIPE,stderr=subprocess.PIPE,check=check,timeout=90)",
+  "scoped_original_log_observation": {
+    "codex_journal_files_exposed": 0,
+    "original_receivepack_response_NOT_exposed": true,
+    "send_once_record_exists": true,
+    "writer_backend_logs_bytes": {
+      "stderr.log": 0,
+      "stdout.log": 0,
+      "supervisor.log": 0
+    },
+    "writer_logs_are_not_CI6_controller_transport": true
+  },
+  "actual_receivepack_calls": 1,
+  "original_process_returned": true,
+  "original_effect": {
+    "grant": {
+      "attempt_id": "gpc-0171-native-diagnostic-CI6-20261009",
+      "claimed_at_utc": "2026-10-09T15:47:25.156111Z",
+      "generation": 31,
+      "grant_id": "c3c43f96-f88f-4669-b344-13ae248ba382",
+      "intent_digest": "sha256:c25367ca88b9ae5a69f75b7b9b2ab48b658ca1b251c645aa77d24dadf52b1708",
+      "operation_key": "sha256:3dc9f2ff126eaffadc9a1580eecdc14978c51f047133f10f34b41d4b177998d4",
+      "owner_id": "97f173a1-4785-4bfa-a3dd-0afe5e97db9b"
+    },
+    "revision": "9eb04cfad6f3da314e41f4ea5764b347ec1d772e"
+  },
+  "real_receivepack_result": {
+    "stdout": null,
+    "stderr": null,
+    "returncode": null,
+    "terminal_disposition": "UNKNOWN"
+  },
+  "later_dry_run_separately_identified": true,
+  "wrapper_exit_NOT_git_returncode": true
+}

@@ -2747,6 +2747,34 @@
         "tokens": null,
         "elapsed_seconds": null
       }
+    },
+    {
+      "type": "outcome",
+      "event_id": "gpc-original-CI6-host-log-audit60-20261010-agent_start-actual-terminal",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-git-original-receipt-audit-20261010-2048",
+      "at_utc": "2026-10-10T18:02:48.087629Z",
+      "reservation_id": "gpc-original-CI6-host-log-audit60-20261010-agent_start",
+      "status": "succeeded",
+      "usage": {
+        "tokens": null,
+        "elapsed_seconds": 245
+      },
+      "failure": null
+    },
+    {
+      "type": "outcome",
+      "event_id": "gpc-original-CI6-host-log-audit60-20261010-compute_start-actual-terminal",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-git-original-receipt-audit-20261010-2048",
+      "at_utc": "2026-10-10T18:02:48.087629Z",
+      "reservation_id": "gpc-original-CI6-host-log-audit60-20261010-compute_start",
+      "status": "succeeded",
+      "usage": {
+        "tokens": null,
+        "elapsed_seconds": 245
+      },
+      "failure": null
     }
   ],
   "policy": {

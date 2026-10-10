@@ -1,0 +1,31 @@
+{
+  "schema": "gpc-CDC330-target-observation/v1",
+  "observed_at_utc": "2026-10-10T17:58:58.161906+00:00",
+  "fleet_revision": "c5f5c28ffd33cd87802c8481f5bc8d9b1559e787",
+  "release": {
+    "canonical_repository": "bajoicheg/g-cdc",
+    "evidence_binding": {
+      "commit": "226e70b3fb4a172b86f18c1828b8668387b6d009",
+      "path": "release/evidence-3.3.0.json",
+      "ref": "refs/heads/cdc/release-evidence/v3.3.0",
+      "schema": "canonical-release-evidence-binding/v1",
+      "source_identity": "sha256:dd313ce733052636056110bcc138394c4b3f2d13b67ef7d0ef3cfc2a690203ac"
+    },
+    "package_tree": "3f00c4927557aa94912c8bf21a881add47c2f412",
+    "release_commit": "2be2088d8e6ad59f87cdd9d07dc9f7ab8d4c34ad",
+    "release_ref": "refs/heads/release/v3.3.0",
+    "schema": "live-target-release/v2",
+    "version": "3.3.0"
+  },
+  "package_files": 398,
+  "declared_canonical_release_status": "released",
+  "installed_GPC_version": "2.12.1",
+  "installed_package_tree": "9c45d98c3254e9658d452c505d8c97698e3fc9a7",
+  "adopted": false,
+  "authorizes_adoption": false,
+  "migration_decision": "wait_safe_boundary",
+  "reason": "Original CI6 unresolved external guard; current user permits adoption only after positive recovery and supported reconciliation",
+  "product_gates_preserved": true,
+  "scheduler_pause_preserved": true,
+  "canonical_test_claim": "Retained release evidence read, tests not rerun or claimed GPC product validation"
+}

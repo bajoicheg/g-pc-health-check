@@ -1,0 +1,20 @@
+{
+  "schema": "gpc-root-original-CI6-audit-verification/v1",
+  "at_utc": "2026-10-10T18:01:05.252410+00:00",
+  "audit_commit": "48a1220845956fff6fc1b43c87dbd96af3f2e626",
+  "audit_blob": "e83ec737ea82f10e750953bd7e14668297bd6140",
+  "raw_document_sha256": "3a0cbfdda76e1fee834bdafc74eaac288f0fe837f9ca7b3de881032815532b92",
+  "historical_blobs_and_source_hashes_verified": true,
+  "exact_original_binding_and_admission_verified": true,
+  "all_27_neighbor_keys_values_preserved": true,
+  "current_tree_document_only": true,
+  "original_receivepack_result_recovered": false,
+  "guard_resolution_allowed": false,
+  "remaining_limit": "Original host runtime replaced; original tool/transport receipt not available in inspected interfaces",
+  "UI_terminal": true,
+  "UI_total_seconds": 245,
+  "audit_observed_seconds": 116.536598,
+  "inventory_digest_verified": false,
+  "inventory_serialization": [],
+  "inventory_canonical_semantic_sha256": "b37f12f17135554ba995424bc9d1a174e99928212fe7bdab641b68cd94e56aee"
+}

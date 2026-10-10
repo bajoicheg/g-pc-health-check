@@ -1,0 +1,38 @@
+{
+  "schema": "managed-executor-pool-state/v1",
+  "plan_digest": "sha256:ebfc53d622a65513affd505d7bf4e630e15a36d6b7f414cd7e11bb092c98674f",
+  "pool_id": "gpc-original-CI6-host-log-audit60-20261010",
+  "change_id": "gpc-original-CI6-authentic-receipt-recovery",
+  "parent_invocation_id": "Work-root-gpc-original-receipt-20261010-2048",
+  "base_sha": "7aaefdebca68eed64c8e92d7dfff7384f0a3c800",
+  "integrator_id": "Work-root",
+  "coordination_ref": "refs/heads/cdc/coordination",
+  "coordination_store_id": "sha256:e9c5798b2e5857d11563b10845ae993ed5b0e7b040ffd6611bdbd1a36aad08d3",
+  "revision": 4,
+  "execution_mode": "parallel",
+  "tasks": [
+    {
+      "id": "controller",
+      "status": "succeeded",
+      "attempt_ids": [
+        "gpc-original-CI6-host-log-audit60-20261010"
+      ],
+      "active_attempt_id": null,
+      "reservation_token": null,
+      "accepted_result_ref": "git:48a1220845956fff6fc1b43c87dbd96af3f2e626:document.json#original_CI6_host_log_audit60",
+      "integrated": true,
+      "discarded": false,
+      "runtime_seconds": 245,
+      "cost_units": 1
+    }
+  ],
+  "runtime_consumed_seconds": 245,
+  "cost_consumed_units": 1,
+  "authorizes_worker_launch": false,
+  "authorizes_shared_branch_write": false,
+  "authorizes_merge": false,
+  "authorizes_release": false,
+  "authorizes_scope_expansion": false,
+  "authorizes_scheduler_mutation": false,
+  "authorizes_user_approval": false
+}

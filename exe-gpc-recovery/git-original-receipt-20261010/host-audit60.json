@@ -1,0 +1,247 @@
+{
+  "admission": {
+    "attempt": "gpc-original-CI6-host-log-audit60-20261010",
+    "plan_digest": "sha256:ebfc53d622a65513affd505d7bf4e630e15a36d6b7f414cd7e11bb092c98674f",
+    "revision": "109274a5e6652098ac3437387a393d06bb7f23f0",
+    "token": "9e34cefa-6d21-432f-b157-e93fd2f58d35"
+  },
+  "binding": {
+    "candidate": "53636f45cc14075717e4e68b0a40ba020b96d9ca",
+    "chunk": "54e0cc",
+    "grant": "c3c43f96-f88f-4669-b344-13ae248ba382",
+    "operation_key": "sha256:3dc9f2ff126eaffadc9a1580eecdc14978c51f047133f10f34b41d4b177998d4",
+    "session": 26208
+  },
+  "coord_after": "109274a5e6652098ac3437387a393d06bb7f23f0",
+  "coord_before": "109274a5e6652098ac3437387a393d06bb7f23f0",
+  "core": "2.12.1 unchanged",
+  "duration_seconds": 116.536598,
+  "finished_at_utc": "2026-10-10T17:58:34.599221+00:00",
+  "historical_records": [
+    {
+      "blob": "157409a900c1309046cab256a12f53faaec9e4f4",
+      "bytes": 760128,
+      "caller_sha256": "d28d79197024c5c09663dbd6241d5ae596219d6cc90c4850639130533e60a5d8",
+      "historical_finding": "host.git captures stdout/stderr in CompletedProcess but does NOT persist them; push_pilot raises generic error before host save; original Python caller exited; no genuinely retained frame locals available",
+      "historical_native_log_inventory": {
+        "codex_journal_files_exposed": 0,
+        "original_receivepack_response_NOT_exposed": true,
+        "send_once_record_exists": true,
+        "writer_backend_logs_bytes": {
+          "stderr.log": 0,
+          "stdout.log": 0,
+          "supervisor.log": 0
+        },
+        "writer_logs_are_not_CI6_controller_transport": true
+      },
+      "historical_raw_record": {
+        "chunk_id": "54e0cc",
+        "exception": "ValueError: publication conflict/unknown: preserve intent and guard, no replay",
+        "exit_code": 1,
+        "provenance": "Actual current-chat tool result; no on-disk historical transport log claimed",
+        "session_id": 26208,
+        "tool": "tools.write_stdin",
+        "traceback_locations": [
+          "diagnostic-CI6.py:40",
+          "prospective_controls.py:140"
+        ]
+      },
+      "host_git_source": "def git(*a,check=True):return subprocess.run(['git','-c','advice.graftFileDeprecated=false','-C',REPO,*a],env=git_object_environment(),stdout=subprocess.PIPE,stderr=subprocess.PIPE,check=check,timeout=90)",
+      "host_git_source_sha256": "0a9ff696b58726e11122ac92ba1f25cda4c56a73203db02cfb01663fb81bfce1",
+      "path": "document.json",
+      "provenance": "Immutable saved producer record; wrapper observation, NOT original receive-pack streams/returncode",
+      "revision": "33ec87e4d79f2b5b51b49bdbee097b9d7264b4ad",
+      "sha256": "d35e7893a787de967c47ac7bf580fdaa3065347a14ce808092e794d1cfedb03a",
+      "target_present": true
+    },
+    {
+      "blob": "f1f665f3205ca51e9057cd14443fcd6aea09a85c",
+      "bytes": 712663,
+      "caller_sha256": "d28d79197024c5c09663dbd6241d5ae596219d6cc90c4850639130533e60a5d8",
+      "historical_finding": "host.git captures stdout/stderr in CompletedProcess but does NOT persist them; push_pilot raises generic error before host save; original Python caller exited; no genuinely retained frame locals available",
+      "historical_native_log_inventory": {
+        "codex_journal_files_exposed": 0,
+        "original_receivepack_response_NOT_exposed": true,
+        "send_once_record_exists": true,
+        "writer_backend_logs_bytes": {
+          "stderr.log": 0,
+          "stdout.log": 0,
+          "supervisor.log": 0
+        },
+        "writer_logs_are_not_CI6_controller_transport": true
+      },
+      "historical_raw_record": {
+        "chunk_id": "54e0cc",
+        "exception": "ValueError: publication conflict/unknown: preserve intent and guard, no replay",
+        "exit_code": 1,
+        "provenance": "Actual current-chat tool result; no on-disk historical transport log claimed",
+        "session_id": 26208,
+        "tool": "tools.write_stdin",
+        "traceback_locations": [
+          "diagnostic-CI6.py:40",
+          "prospective_controls.py:140"
+        ]
+      },
+      "host_git_source": "def git(*a,check=True):return subprocess.run(['git','-c','advice.graftFileDeprecated=false','-C',REPO,*a],env=git_object_environment(),stdout=subprocess.PIPE,stderr=subprocess.PIPE,check=check,timeout=90)",
+      "host_git_source_sha256": "0a9ff696b58726e11122ac92ba1f25cda4c56a73203db02cfb01663fb81bfce1",
+      "path": "document.json",
+      "provenance": "Immutable saved producer record; wrapper observation, NOT original receive-pack streams/returncode",
+      "revision": "2f5fe3f00c056381ba28704745c8ce2a3a5d4fcb",
+      "sha256": "953e71a70da103df3dd0eb448f8ca757682d889e92869dd5de3f262c95efb033",
+      "target_present": true
+    }
+  ],
+  "host": {
+    "boot_mismatch_proves_neither_quiescence_nor_git_outcome": true,
+    "current_boot": "9a417970-f2e1-4409-a839-1c51384d9c25",
+    "historical_boot": "a896337f-ffb5-4527-ad99-c9b81e24c95e",
+    "original_workspace_not_present": true
+  },
+  "inventory_sha256": "74e7e5763c7c6584e679df20511a8593a278a2be912ced09a06abd2a2775daa3",
+  "missing_proof": "Authentic original CompletedProcess streams/exit and per-ref receive-pack result bound to session26208/chunk54e0cc/grantc3c43f96; wrapper exit1 is not Git returncode",
+  "network": {
+    "fresh_policy": "restricted/enforced/current/running/connected after documented reviewed inherited proxy TCP prerequisite",
+    "source_config_version_id": "f4cf1723-a1c5-4990-b14b-dcf8c46f2565~cecfgver_6ac48b09407c81928b97a4271843e712"
+  },
+  "next_step": "Root/platform retention support must access original boot/session26208 tool raw output or original server receive-pack transaction audit if retained. This executor exposes neither; do not replay or infer no-effect.",
+  "no_guard_changes": true,
+  "no_new_agents_or_CI": true,
+  "no_original_command_rerun": true,
+  "no_push_or_dryrun": true,
+  "not_found_is_not_global_deletion": true,
+  "original_files_inventory": [
+    {
+      "exists": false,
+      "path": "/workspace/work/gpc-native-fresh-recovery-20261009"
+    },
+    {
+      "entry_names": [],
+      "exists": true,
+      "path": "/workspace/.codex"
+    },
+    {
+      "exists": false,
+      "path": "/workspace/.codex/sessions"
+    },
+    {
+      "exists": false,
+      "path": "/workspace/.codex/log"
+    },
+    {
+      "exists": false,
+      "path": "/workspace/.codex/history.jsonl"
+    },
+    {
+      "exists": false,
+      "path": "/workspace/.codex/state_5.sqlite"
+    },
+    {
+      "exists": false,
+      "path": "/home/agent/.codex/sessions"
+    },
+    {
+      "exists": false,
+      "path": "/home/agent/.codex/log"
+    },
+    {
+      "error": "PermissionError",
+      "path": "/root/.codex/sessions"
+    },
+    {
+      "error": "PermissionError",
+      "path": "/root/.codex/log"
+    },
+    {
+      "exists": false,
+      "path": "/tmp/codex"
+    },
+    {
+      "exists": false,
+      "path": "/var/log/codex"
+    },
+    {
+      "bytes": null,
+      "exists": false,
+      "mtime": null,
+      "path": "/workspace/work/gpc-native-fresh-recovery-20261009/diagnostic-CI6.py",
+      "reason": "parent original work root absent",
+      "sha256": null
+    },
+    {
+      "bytes": null,
+      "exists": false,
+      "mtime": null,
+      "path": "/workspace/work/gpc-native-fresh-recovery-20261009/diagnostic-CI6-effect.json",
+      "reason": "parent original work root absent",
+      "sha256": null
+    },
+    {
+      "bytes": null,
+      "exists": false,
+      "mtime": null,
+      "path": "/workspace/work/gpc-native-fresh-recovery-20261009/diagnostic-CI6-push.json",
+      "reason": "parent original work root absent",
+      "sha256": null
+    },
+    {
+      "bytes": null,
+      "exists": false,
+      "mtime": null,
+      "path": "/workspace/work/gpc-native-fresh-recovery-20261009/diagnostic-CI6-submission-receipt.json",
+      "reason": "parent original work root absent",
+      "sha256": null
+    },
+    {
+      "bytes": null,
+      "exists": false,
+      "mtime": null,
+      "path": "/workspace/work/gpc-native-fresh-recovery-20261009/CI6-send-journal",
+      "reason": "parent original work root absent",
+      "sha256": null
+    },
+    {
+      "bytes": null,
+      "exists": false,
+      "mtime": null,
+      "path": "/workspace/work/gpc-native-fresh-recovery-20261009/CI6-authenticated-provider-observation.json",
+      "reason": "parent original work root absent",
+      "sha256": null
+    },
+    {
+      "bytes": null,
+      "exists": false,
+      "mtime": null,
+      "path": "/workspace/work/gpc-native-fresh-recovery-20261009/writer36-jobs",
+      "reason": "parent original work root absent",
+      "sha256": null
+    },
+    {
+      "bytes": null,
+      "exists": false,
+      "mtime": null,
+      "path": "/workspace/work/gpc-native-fresh-recovery-20261009/writer36-handles",
+      "reason": "parent original work root absent",
+      "sha256": null
+    }
+  ],
+  "original_git_result": {
+    "returncode": null,
+    "stderr": null,
+    "stdout": null,
+    "terminal_disposition": "UNKNOWN"
+  },
+  "physical_start_utc": null,
+  "recovered_original_raw_records": [],
+  "retention_interfaces": {
+    "exposed_executor_retention_API": false,
+    "restricted_roots": "PermissionError /root/.codex sessions/log; no escalation, credentials or unrelated chats read",
+    "sqlite": "No accessible scoped logdb present; no sqlite content read",
+    "target_search": "Original root absent and accessible session/log roots absent or empty: no matching raw record available to search",
+    "tools_metadata_search": "No callable original executor tool/session retention interface exposed; Page transcripts/DocumentControl concern other surfaces and were not used"
+  },
+  "schema": "gpc-original-receivepack-host-audit/v1",
+  "source_after": "7aaefdebca68eed64c8e92d7dfff7384f0a3c800",
+  "source_before": "7aaefdebca68eed64c8e92d7dfff7384f0a3c800",
+  "started_at_utc": "2026-10-10T17:56:38.062623+00:00",
+  "timing_basis": "Observed local contract read/materialization timestamp to audit report construction; physical provider start unknown; not charged elapsed claim"
+}

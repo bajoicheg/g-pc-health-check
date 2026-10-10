@@ -1,0 +1,141 @@
+{
+  "schema": "gpc-root-retained-evidence-search/v1",
+  "at_utc": "2026-10-10T17:57:20.650470+00:00",
+  "argv": [
+    "rg",
+    "-l",
+    "--hidden",
+    "-g",
+    "!*.exe",
+    "-g",
+    "!*.bundle",
+    "-g",
+    "!*.png",
+    "-g",
+    "!*.jpg",
+    "-g",
+    "!*.zip",
+    "-g",
+    "!gpc-git-recovery-20261010/**",
+    "54e0cc|26208|diagnostic-CI6\\.py|33ec87e4d79f2b5b51b49bdbee097b9d7264b4ad",
+    "."
+  ],
+  "exit_code": 0,
+  "duration_seconds": 0.020345,
+  "matched_files": [
+    {
+      "path": "/workspace/scratch/ac06fa404c9c/max1010-final-gate.json",
+      "bytes": 33029,
+      "sha256": "3ae1a3160930c36bb9adcac3bde0ce52737b604ca92d50431312487c8a82d66d"
+    },
+    {
+      "path": "/workspace/scratch/ac06fa404c9c/huawei1010-final-lease-readback.json",
+      "bytes": 24083,
+      "sha256": "11808a4e9c26751d9129ebc62fceadb4d0dbea841a525c6cd4362ad8d6f087c7"
+    },
+    {
+      "path": "/workspace/scratch/ac06fa404c9c/gpc-ui-reviews-20261009/recovery46.md",
+      "bytes": 11241,
+      "sha256": "58fce0438217b9428b55be25c181a2a8bad3dd95ea424ac7274419666f2e48c8"
+    },
+    {
+      "path": "/workspace/scratch/ac06fa404c9c/gpc1010-fresh-probe.json",
+      "bytes": 29656,
+      "sha256": "132f7463cec9ae7f76a6a16c927ce6f9c02230fdfe5819c408048467052e6c22"
+    },
+    {
+      "path": "/workspace/scratch/ac06fa404c9c/gpc52-admit47-48-entries.json",
+      "bytes": 271953,
+      "sha256": "eb3ad86901c32ef9abdf079fa1b740b9fe8222af95632193d60fe3438eec5ad5"
+    },
+    {
+      "path": "/workspace/scratch/ac06fa404c9c/gpc1010-final-gate.json",
+      "bytes": 32871,
+      "sha256": "f8ebc22e21976bb3518092478515bf765bdb675e13e936d7a9c6d3557f288e22"
+    },
+    {
+      "path": "/workspace/scratch/ac06fa404c9c/max1010-final-entries.json",
+      "bytes": 180890,
+      "sha256": "b1686734948bb1aec8327044e5e68dc5dfebeb39fd4bd7dee9c99638695f0f74"
+    },
+    {
+      "path": "/workspace/scratch/ac06fa404c9c/gpc52-fresh-lease.json",
+      "bytes": 24083,
+      "sha256": "11808a4e9c26751d9129ebc62fceadb4d0dbea841a525c6cd4362ad8d6f087c7"
+    },
+    {
+      "path": "/workspace/scratch/ac06fa404c9c/gpc1010-checkpoint-entries.json",
+      "bytes": 76508,
+      "sha256": "790afc008bf7c77d8bb30a32a3916c6a7c6d0ab8c21b81fd9ba59f62eafc2328"
+    },
+    {
+      "path": "/workspace/scratch/ac06fa404c9c/gpc-ui44-fresh-lease.json",
+      "bytes": 24083,
+      "sha256": "11808a4e9c26751d9129ebc62fceadb4d0dbea841a525c6cd4362ad8d6f087c7"
+    },
+    {
+      "path": "/workspace/scratch/ac06fa404c9c/gpc-controller41-terminal.json",
+      "bytes": 4650,
+      "sha256": "606c28dcbbd1bedd1e9216536ec938f5be0d2fa1c9352ab07bcd9394034f4e28"
+    },
+    {
+      "path": "/workspace/scratch/ac06fa404c9c/cleanup41-authenticated-packet.json",
+      "bytes": 145276,
+      "sha256": "6c87e2debd0d69cb0975229ce8c6798b61239b9007070ede8e9b8e64a0e27e9c"
+    },
+    {
+      "path": "/workspace/scratch/ac06fa404c9c/huawei1010-final-entries.json",
+      "bytes": 179951,
+      "sha256": "533a834c56d2af33c4450f7bbcc2f5708872c69621e0d8f8baf5e5098dcaaaa2"
+    },
+    {
+      "path": "/workspace/scratch/ac06fa404c9c/gpc-controller43-evidence.json",
+      "bytes": 204219,
+      "sha256": "7cf2912ddc6211452e7978eb06dbffbec4748bae29d2b6ba5f0cb1202b4bafa4"
+    },
+    {
+      "path": "/workspace/scratch/ac06fa404c9c/max1010-final-lease-readback.json",
+      "bytes": 24084,
+      "sha256": "094cef4f030e92fcd86bcec33f6daa37842010942bb209671d7a832f0636f093"
+    },
+    {
+      "path": "/workspace/scratch/ac06fa404c9c/gpc-ui44-native-evidence.json",
+      "bytes": 1185818,
+      "sha256": "c9d7da84a6bfa7c1476448e38a0119762f44128e7a1317ce2d30b1baf6088f55"
+    },
+    {
+      "path": "/workspace/scratch/ac06fa404c9c/gpc-ui50-native-evidence.json",
+      "bytes": 1209041,
+      "sha256": "638a42cfbb7128c10e3af1d0a170a036b334fb4c91ea3e7210bf3d7191a5c667"
+    },
+    {
+      "path": "/workspace/scratch/ac06fa404c9c/huawei1010-final-gate.json",
+      "bytes": 33170,
+      "sha256": "b164dfc3036a94ae6e32d7257189ce150abb5949452074d2ce5d89d28c933a1b"
+    }
+  ],
+  "original_receivepack_result_found": false,
+  "original_session_readback": "Unknown process id26208; no rerun",
+  "root_runtime_logs": {
+    "path": "/root/.codex/logs_2.sqlite",
+    "mode": "read-only",
+    "rows": 1000,
+    "retained_UTC_range": [
+      "2026-10-10T17:45:30Z",
+      "2026-10-10T17:50:56Z"
+    ],
+    "exact_token_matches": {
+      "chunk54e0cc": 0,
+      "session26208": 0,
+      "diagnostic_CI6": 0,
+      "operation_prefix": 0
+    }
+  },
+  "root_thread_registry": {
+    "path": "/root/.codex/state_5.sqlite",
+    "mode": "read-only",
+    "thread_count": 0,
+    "original_rollout_path_available": false
+  },
+  "limitations": "No provider-side historical transaction audit interface exposed; personal_context returned summaries only; native original host separate audit pending"
+}
