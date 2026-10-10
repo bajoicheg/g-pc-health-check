@@ -8,26 +8,26 @@
   "integrator_id": "Work-root",
   "coordination_ref": "refs/heads/cdc/coordination",
   "coordination_store_id": "sha256:e9c5798b2e5857d11563b10845ae993ed5b0e7b040ffd6611bdbd1a36aad08d3",
-  "revision": 2,
+  "revision": 4,
   "execution_mode": "parallel",
   "tasks": [
     {
       "id": "controller",
-      "status": "running",
+      "status": "succeeded",
       "attempt_ids": [
         "gpc-huawei-controller57-20261010"
       ],
-      "active_attempt_id": "gpc-huawei-controller57-20261010",
-      "reservation_token": "90a0750a-3b77-496a-9793-d0dd3aa83b8e",
-      "accepted_result_ref": null,
-      "integrated": false,
+      "active_attempt_id": null,
+      "reservation_token": null,
+      "accepted_result_ref": "sha256:f696b3b4653c6d6af3abbbdf28175700d6585d44d83e45ce2d8a8e31b508d1be",
+      "integrated": true,
       "discarded": false,
-      "runtime_seconds": 0,
-      "cost_units": 0
+      "runtime_seconds": 291,
+      "cost_units": 1
     }
   ],
-  "runtime_consumed_seconds": 0,
-  "cost_consumed_units": 0,
+  "runtime_consumed_seconds": 291,
+  "cost_consumed_units": 1,
   "authorizes_worker_launch": false,
   "authorizes_shared_branch_write": false,
   "authorizes_merge": false,

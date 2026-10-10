@@ -1,0 +1,14 @@
+{
+  "schema": "gpc-actual-Native57-terminal/v1",
+  "at_utc": "2026-10-10T10:01:03.647564Z",
+  "attempt_id": "gpc-huawei-controller57-20261010",
+  "provider_start_utc": null,
+  "actual_UI_terminal": "Выполнено за 4 мин 51 с; final response; Send restored",
+  "observed_elapsed_seconds": 291,
+  "canonical_evidence": "3c27edfc3828393d5aa29f0c1d50ba612e7dabee",
+  "handoff_sha256": "f696b3b4653c6d6af3abbbdf28175700d6585d44d83e45ce2d8a8e31b508d1be",
+  "Root_downloaded_bytes_verified": true,
+  "Windows_runtime": "NOT_RUN",
+  "guard_clear": false,
+  "source_publication": false
+}

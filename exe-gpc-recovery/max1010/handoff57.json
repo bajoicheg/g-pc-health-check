@@ -1,0 +1,279 @@
+{
+  "OEM": {
+    "ABI_verified": false,
+    "Windows_Huawei_runtime": "NOT_RUN",
+    "bytes_downloaded": 0,
+    "curl_exit": 56,
+    "proxy_CONNECT_403": true,
+    "retries": 0,
+    "stderr": "curl: (56) CONNECT tunnel failed, response 403\n"
+  },
+  "Windows_DPI_RDP_pilot": "NOT_RUN",
+  "admission": "ee1b61e755ab361e81d73da11979397ce8813f1b",
+  "all2_file_hashes_blobs_exact": true,
+  "artifact": {
+    "auxiliary_commit": "9cf419be1190725efb540a4ea83485c74b664c02",
+    "manifest": {
+      "FileVersion": "0.17.1.0",
+      "Windows_runtime": "NOT_RUN",
+      "binary_name": "G-PC-Health-0.17.1-huawei-candidate.exe",
+      "bytes": 78764002,
+      "candidate": "ca354d2194a454b0356057c2db34e94cea8ffbbe",
+      "checksum_path": "artifact-handoff/huawei-ca354d21/G-PC-Health-0.17.1-huawei-candidate.exe.sha256",
+      "chunk_bytes_max": 4194304,
+      "chunk_count": 19,
+      "chunks": [
+        {
+          "blob_oid": "25b38e056fdae6a57c9f2aa27486ee419f0b457c",
+          "bytes": 4194304,
+          "index": 0,
+          "path": "artifact-handoff/huawei-ca354d21/chunk-000.bin",
+          "sha256": "525eda200c06f74f8d983eaf742099d5308e287956326ac07b941a80eb6a47e7"
+        },
+        {
+          "blob_oid": "367852a9ea6bdaebd46475dc6160bf7379daa71d",
+          "bytes": 4194304,
+          "index": 1,
+          "path": "artifact-handoff/huawei-ca354d21/chunk-001.bin",
+          "sha256": "7ce8890b53f6b452f73cf30bb55689c7913c22d4a0f903c3b29e320bb1b3b93a"
+        },
+        {
+          "blob_oid": "6e214f7ef3c8042c013c3f2de2a9976a06b8df92",
+          "bytes": 4194304,
+          "index": 2,
+          "path": "artifact-handoff/huawei-ca354d21/chunk-002.bin",
+          "sha256": "44a109184d948c56f29bf23a04e7eda6f7777b9d57b70e922a2a30ba1553189f"
+        },
+        {
+          "blob_oid": "866c56ad602d05c431de0261838a9780a78b2383",
+          "bytes": 4194304,
+          "index": 3,
+          "path": "artifact-handoff/huawei-ca354d21/chunk-003.bin",
+          "sha256": "f5b28cbbc31aeb87b3c0a86e9692f609dbe32c105c4c0172f62a47d73a47478d"
+        },
+        {
+          "blob_oid": "e0ae262bf736b0265b7b8dbd90fe118696716988",
+          "bytes": 4194304,
+          "index": 4,
+          "path": "artifact-handoff/huawei-ca354d21/chunk-004.bin",
+          "sha256": "ea09503fa8c29299cdbb5100b4dbb70d57bd043a48dddf64ab63c473d7522549"
+        },
+        {
+          "blob_oid": "f9ca69b50f2686679cc9efc2e0fb7501573173e3",
+          "bytes": 4194304,
+          "index": 5,
+          "path": "artifact-handoff/huawei-ca354d21/chunk-005.bin",
+          "sha256": "45c4e225610fd3d7624a23498629836882a94946c055b4fa372f76047cb3d9fd"
+        },
+        {
+          "blob_oid": "5d54b3bc9d49623d327ff14ed1df05ff0c10dc35",
+          "bytes": 4194304,
+          "index": 6,
+          "path": "artifact-handoff/huawei-ca354d21/chunk-006.bin",
+          "sha256": "916d69047794b1ee1fdeb22baf07c0810da7bc7c32425e4f99050bf5401d6e3f"
+        },
+        {
+          "blob_oid": "4af4ac04878539fc00bc7c8c703ca7ee26b9a3e7",
+          "bytes": 4194304,
+          "index": 7,
+          "path": "artifact-handoff/huawei-ca354d21/chunk-007.bin",
+          "sha256": "db1b1584900c8995b5ddb8839316ee12e58c1a036d392e182e89189b35569985"
+        },
+        {
+          "blob_oid": "aaa12e725d5f235ca41498069e09573abb60a4be",
+          "bytes": 4194304,
+          "index": 8,
+          "path": "artifact-handoff/huawei-ca354d21/chunk-008.bin",
+          "sha256": "3de2d1c59ab6d7d54fb6fa0c5437a8ce9037b5e2a5c642b05268a20c97786891"
+        },
+        {
+          "blob_oid": "9350cef11f0c723db87a0f03b868b7d5f0a9e8e1",
+          "bytes": 4194304,
+          "index": 9,
+          "path": "artifact-handoff/huawei-ca354d21/chunk-009.bin",
+          "sha256": "8410d9ac561e24e55011fb3df26ef31f6bace953d522579548fe3115a3c7c0a4"
+        },
+        {
+          "blob_oid": "ce9d0f0e41552e4bd3907f69a94954fb376dc19a",
+          "bytes": 4194304,
+          "index": 10,
+          "path": "artifact-handoff/huawei-ca354d21/chunk-010.bin",
+          "sha256": "b7d50ea3ba9cd905ef8729f86725c5e1dfebea092ba616c7915181628ecce19a"
+        },
+        {
+          "blob_oid": "b163db27e4e11d66dfe996802f6f052e6a80554f",
+          "bytes": 4194304,
+          "index": 11,
+          "path": "artifact-handoff/huawei-ca354d21/chunk-011.bin",
+          "sha256": "8702938e2a77bbe59ca85ca9dedf6b92b4f38491cc9ed9267d8456edfa6b1801"
+        },
+        {
+          "blob_oid": "e8e5bd017254aab1b33e3e8fe1bae0b84a43563d",
+          "bytes": 4194304,
+          "index": 12,
+          "path": "artifact-handoff/huawei-ca354d21/chunk-012.bin",
+          "sha256": "b1051d6da8ce20ec01180c26539dea9804ce21d14710a55ffb6095abff7842ec"
+        },
+        {
+          "blob_oid": "68e6b193965073e6b7861ba279928804958e2716",
+          "bytes": 4194304,
+          "index": 13,
+          "path": "artifact-handoff/huawei-ca354d21/chunk-013.bin",
+          "sha256": "f993a9612056090545ce3b4d774ffaa5763ed62a407034ebb9f6dbe804338601"
+        },
+        {
+          "blob_oid": "6fe9e1a7f798f65eaf1b82f3069478feb1699b9e",
+          "bytes": 4194304,
+          "index": 14,
+          "path": "artifact-handoff/huawei-ca354d21/chunk-014.bin",
+          "sha256": "aabd56dd5fd36e4a9040841b7d3c7f277c33a6d8382e5325062608b53c9636f0"
+        },
+        {
+          "blob_oid": "3afcd27ac19c0a9fa2ed9f372f292a39d898deef",
+          "bytes": 4194304,
+          "index": 15,
+          "path": "artifact-handoff/huawei-ca354d21/chunk-015.bin",
+          "sha256": "4acd1b87c1a892d23da5c6598c82f31bb7be04dde581cf1e652e3ce94b81e14e"
+        },
+        {
+          "blob_oid": "e348a42759d11a8da7c173ba937c31eeb54bbe2e",
+          "bytes": 4194304,
+          "index": 16,
+          "path": "artifact-handoff/huawei-ca354d21/chunk-016.bin",
+          "sha256": "c08a83d25d731a6bc052b5e8388dd5a694561be554f091c9a314e7b1436a7d15"
+        },
+        {
+          "blob_oid": "2de58b019c8ac0db8ec909d2399bd9f7719d29b2",
+          "bytes": 4194304,
+          "index": 17,
+          "path": "artifact-handoff/huawei-ca354d21/chunk-017.bin",
+          "sha256": "1c1baa8f2fbabb0748b34a7bce4ab063ab3edfd09be92c402d015904ecdfe309"
+        },
+        {
+          "blob_oid": "1643a4fcc701f131916a1138b7a6386d99308447",
+          "bytes": 3266530,
+          "index": 18,
+          "path": "artifact-handoff/huawei-ca354d21/chunk-018.bin",
+          "sha256": "39bb1c9670ce896935c6e36646c5a0de90f059907a1f1bed10a7fe167985a1f7"
+        }
+      ],
+      "schema": "gpc-raw-artifact-handoff/v1",
+      "sha256": "484b95a877a2e2543ce2937598ab58ea9d51e0fa29d2d6ff5ca5dd732adf41cf",
+      "tree": "ad95b455107256e7288f53fa04bb249f397e7ad7",
+      "validated_pilot": false,
+      "verification_path": "artifact-handoff/huawei-ca354d21/verification.json"
+    },
+    "manifest_path": "artifact-handoff/huawei-ca354d21/manifest.json",
+    "raw_commit_path": "artifact-handoff/huawei-ca354d21/source/candidate.commit.raw",
+    "source_bundle_path": "artifact-handoff/huawei-ca354d21/source/candidate.bundle",
+    "source_bundle_sha256": "f8fe0a5c1f058ecdcc0f2142210902d9961abac8b3e8fac78d84188899e88b18",
+    "source_files": [
+      {
+        "bytes": 19267,
+        "content": "using System.Reflection;\n\nnamespace G.PcHealthCheck;\n\ninternal static class FirmwareSecurityCollectorSelfTest\n{\n    public static int Run()\n    {\n        var failures = 0;\n        void Test(string name, Action body)\n        {\n            try { body(); Console.WriteLine($\"Firmware security self-test: PASS — {name}\"); }\n            catch (Exception ex) { failures++; Console.Error.WriteLine($\"Firmware security self-test: FAIL — {name}: {ex.Message}\"); }\n        }\n\n        Test(\"Lenovo PasswordState maps admin, power-on and drive password bits\", () =>\n        {\n            var admin = new LenovoFirmwareSecurityAdapter(new FakeLenovoSource(0b010, UnknownBoot(\"Lenovo WMI\"))).Collect();\n            Require(admin.AdminPasswordSet == true, \"Lenovo BIT1 must mean admin/supervisor password set.\");\n            Require(admin.PowerOnPasswordSet == false, \"Lenovo BIT0 must remain supplemental power-on/user password evidence.\");\n            Require(admin.DrivePasswordSet == false, \"Lenovo BIT2 must remain supplemental drive-password evidence.\");\n\n            var supplemental = new LenovoFirmwareSecurityAdapter(new FakeLenovoSource(0b101, UnknownBoot(\"Lenovo WMI\"))).Collect();\n            Require(supplemental.AdminPasswordSet == false, \"Missing Lenovo BIT1 must positively report admin password absent when PasswordState is valid.\");\n            Require(supplemental.PowerOnPasswordSet == true, \"Lenovo BIT0 supplemental evidence drifted.\");\n            Require(supplemental.DrivePasswordSet == true, \"Lenovo BIT2 supplemental evidence drifted.\");\n\n            var missing = new LenovoFirmwareSecurityAdapter(new FakeLenovoSource(0, UnknownBoot(\"Lenovo WMI\"))).Collect();\n            Require(missing.AdminPasswordSet == false, \"Lenovo PasswordState 0 must report admin password absent.\");\n\n            var malformed = new LenovoFirmwareSecurityAdapter(new FakeLenovoSource(-1, UnknownBoot(\"Lenovo WMI\"))).Collect();\n            Require(malformed.AdminPasswordSet is null, \"Malformed Lenovo PasswordState must remain Unknown.\");\n        });\n\n        Test(\"Dell and HP require an already-present supported provider\", () =>\n        {\n            var dellPresent = new DellFirmwareSecurityAdapter(new FakeDellSource(true, true, UnknownBoot(\"Dell BIOS Provider\"))).Collect();\n            Require(dellPresent.AdminPasswordSet == true, \"Present Dell provider must surface admin-password state.\");\n            var dellMissing = new DellFirmwareSecurityAdapter(new FakeDellSource(false, true, UnknownBoot(\"Dell BIOS Provider\"))).Collect();\n            Require(dellMissing.AdminPasswordSet is null, \"Missing Dell provider must be Unknown.\");\n\n            var hpPresent = new HpFirmwareSecurityAdapter(new FakeHpSource(true, false, UnknownBoot(\"HP InstrumentedBIOS\"))).Collect();\n            Require(hpPresent.AdminPasswordSet == false, \"Present HP provider must surface setup-password state.\");\n            var hpMissing = new HpFirmwareSecurityAdapter(new FakeHpSource(false, false, UnknownBoot(\"HP InstrumentedBIOS\"))).Collect();\n            Require(hpMissing.AdminPasswordSet is null, \"Missing HP provider must be Unknown.\");\n\n            Require(!HasDeclaredInstallMethod(typeof(DellFirmwareSecurityAdapter)), \"Dell adapter must not install provider/tooling.\");\n            Require(!HasDeclaredInstallMethod(typeof(HpFirmwareSecurityAdapter)), \"HP adapter must not install provider/tooling.\");\n            Require(!HasDeclaredInstallMethod(typeof(LenovoFirmwareSecurityAdapter)), \"Lenovo adapter must not install provider/tooling.\");\n        });\n\n        Test(\"Huawei SMBIOS Type 24 maps password status without secret material\", () =>\n        {\n            var enabled = HuaweiSmbiosHardwareSecurityReader.ParseHardwareSecurityByte(0x44);\n            Require(enabled.AdminPasswordSet == true, \"SMBIOS Type 24 administrator-password Enabled must map to true.\");\n            Require(enabled.PowerOnPasswordSet == true, \"SMBIOS Type 24 power-on password Enabled must map to true.\");\n\n            var disabled = HuaweiSmbiosHardwareSecurityReader.ParseHardwareSecurityByte(0x00);\n            Require(disabled.AdminPasswordSet == false, \"SMBIOS Type 24 administrator-password Disabled must map to false.\");\n            Require(disabled.PowerOnPasswordSet == false, \"SMBIOS Type 24 power-on password Disabled must map to false.\");\n\n            var unknown = HuaweiSmbiosHardwareSecurityReader.ParseHardwareSecurityByte(0xCC);\n            Require(unknown.AdminPasswordSet is null, \"SMBIOS Type 24 Unknown administrator-password state must remain Unknown.\");\n            Require(unknown.PowerOnPasswordSet is null, \"SMBIOS Type 24 Unknown power-on state must remain Unknown.\");\n\n            var raw = new byte[]\n            {\n                0, 3, 9, 0, 7, 0, 0, 0,\n                24, 5, 1, 0, 0x44, 0, 0\n            };\n            var parsedRaw = HuaweiSmbiosHardwareSecurityReader.ParseRawSmbios(raw);\n            Require(parsedRaw.AdminPasswordSet == true && parsedRaw.PowerOnPasswordSet == true,\n                \"Raw SMBIOS parser must locate Type 24 and decode only its status byte.\");\n        });\n\n        Test(\"Huawei adapter exposes SMBIOS admin password and never invents drive password\", () =>\n        {\n            var adapter = new HuaweiFirmwareSecurityAdapter(new FakeHuaweiSource(\n                (true, false),\n                UnknownBoot(\"Huawei firmware\")));\n            Require(adapter.Supports(\"HUAWEI\"), \"Huawei manufacturer must select the Huawei adapter.\");\n            Require(adapter.Supports(\"Huawei Technologies Co., Ltd.\"), \"Huawei long manufacturer string must select the Huawei adapter.\");\n            var observation = adapter.Collect();\n            Require(observation.AdminPasswordSet == true, \"Huawei SMBIOS admin-password evidence must surface.\");\n            Require(observation.PowerOnPasswordSet == false, \"Huawei SMBIOS power-on evidence must surface.\");\n            Require(observation.DrivePasswordSet is null, \"SMBIOS Type 24 does not prove drive-password state.\");\n            Require(!HasDeclaredInstallMethod(typeof(HuaweiFirmwareSecurityAdapter)), \"Huawei adapter must not install PC Manager/provider/tooling.\");\n            var controls = FirmwareSecurityCollector.Collect(\"HUAWEI\", [adapter]);\n            Require(controls[\"SEC-BIOS-ADMIN-PASSWORD\"].Status == SecurityControlStatus.Pass,\n                \"Confirmed Huawei administrator password must contribute known Security coverage.\");\n        });\n\n        Test(\"Huawei firmware query keeps identifiers compatible with the alias parser\", () =>\n        {\n            const string path = @\"C:\\Windows\\System32\\bcdedit.exe\";\n            var query = HuaweiFirmwareBootReader.CreateFirmwareEnumerationStartInfo(path);\n            Require(query.FileName == path, \"Firmware query must use the supplied system executable path.\");\n            Require(query.ArgumentList.SequenceEqual(new[] { \"/enum\", \"FIRMWARE\" }, StringComparer.OrdinalIgnoreCase),\n                \"Firmware query must use aliases expected by the parser; /v prints full GUIDs instead.\");\n            Require(!query.UseShellExecute && query.RedirectStandardOutput && query.RedirectStandardError && query.CreateNoWindow,\n                \"Firmware query must retain its redirected, shell-free collection boundary.\");\n        });\n\n        Test(\"Huawei firmware boot evidence reports positive external paths but absence never passes\", () =>\n        {\n            const string windowsFirstWithUsb = \"\"\"\nFirmware Boot Manager\n---------------------\nidentifier              {fwbootmgr}\ndisplayorder            {bootmgr}\n                        {11111111-1111-1111-1111-111111111111}\n\nWindows Boot Manager\n--------------------\nidentifier              {bootmgr}\npath                    \\EFI\\Microsoft\\Boot\\bootmgfw.efi\ndescription             Windows Boot Manager\n\nEFI USB Device\n--------------\nidentifier              {11111111-1111-1111-1111-111111111111}\ndescription             EFI USB Device\n\"\"\";\n            var warned = HuaweiFirmwareBootReader.ParseFirmwareEnumeration(windowsFirstWithUsb, uefiMode: true);\n            Require(warned.TrustedFirmwareEvidence, \"Positive UEFI external-entry evidence plus order must be trusted for risk detection.\");\n            Require(warned.WindowsBootManagerEffective == true, \"Windows Boot Manager is first in the synthetic firmware order.\");\n            Require(warned.UsbBootEnabled == true, \"USB firmware entry must be detected.\");\n            Require(warned.ExternalBootEffective == false, \"USB after Windows Boot Manager is not the effective first boot path.\");\n            Require(FirmwareSecurityCollector.Collect(new FirmwareSecurityObservation(null, null, null, warned, \"Huawei\"))\n                [\"SEC-BOOT-RESTRICTIONS\"].Status == SecurityControlStatus.Warn,\n                \"Enabled external firmware path after Windows Boot Manager must warn.\");\n\n            const string externalFirst = \"\"\"\nFirmware Boot Manager\n---------------------\nidentifier              {fwbootmgr}\ndisplayorder            {22222222-2222-2222-2222-222222222222}\n                        {bootmgr}\n\nUEFI PXE IPv4\n-------------\nidentifier              {22222222-2222-2222-2222-222222222222}\ndescription             UEFI PXE IPv4\n\nWindows Boot Manager\n--------------------\nidentifier              {bootmgr}\npath                    \\EFI\\Microsoft\\Boot\\bootmgfw.efi\n\"\"\";\n            var failed = HuaweiFirmwareBootReader.ParseFirmwareEnumeration(externalFirst, uefiMode: true);\n            Require(failed.PxeBootEnabled == true && failed.ExternalBootEffective == true,\n                \"External-first PXE firmware entry must be detected as effective.\");\n            Require(FirmwareSecurityCollector.Collect(new FirmwareSecurityObservation(null, null, null, failed, \"Huawei\"))\n                [\"SEC-BOOT-RESTRICTIONS\"].Status == SecurityControlStatus.Fail,\n                \"Effective external boot path must fail.\");\n\n            const string windowsOnly = \"\"\"\nFirmware Boot Manager\n---------------------\nidentifier              {fwbootmgr}\ndisplayorder            {bootmgr}\n\nWindows Boot Manager\n--------------------\nidentifier              {bootmgr}\npath                    \\EFI\\Microsoft\\Boot\\bootmgfw.efi\n\"\"\";\n            var incomplete = HuaweiFirmwareBootReader.ParseFirmwareEnumeration(windowsOnly, uefiMode: true);\n            Require(!incomplete.TrustedFirmwareEvidence,\n                \"Absence of visible external entries must not prove BIOS external boot disabled.\");\n            Require(FirmwareSecurityCollector.Collect(new FirmwareSecurityObservation(null, null, null, incomplete, \"Huawei\"))\n                [\"SEC-BOOT-RESTRICTIONS\"].Status == SecurityControlStatus.Unknown,\n                \"Huawei boot must never Pass from absence-only firmware enumeration.\");\n        });\n\n        Test(\"firmware password control uses admin password only\", () =>\n        {\n            var pass = Collect(new FirmwareSecurityObservation(true, false, false, UnknownBoot(\"Synthetic\"), \"Synthetic\"));\n            Require(pass[\"SEC-BIOS-ADMIN-PASSWORD\"].Status == SecurityControlStatus.Pass, \"Confirmed admin password must pass.\");\n\n            var fail = Collect(new FirmwareSecurityObservation(false, true, true, UnknownBoot(\"Synthetic\"), \"Synthetic\"));\n            Require(fail[\"SEC-BIOS-ADMIN-PASSWORD\"].Status == SecurityControlStatus.Fail, \"Power-on/HDD passwords must not substitute for missing admin password.\");\n            Require(fail[\"SEC-BIOS-ADMIN-PASSWORD\"].Evidence.Any(x => x.Key == \"PowerOnPasswordSet\" && x.Value == \"True\"), \"Power-on password must remain supplemental evidence.\");\n            Require(fail[\"SEC-BIOS-ADMIN-PASSWORD\"].Evidence.Any(x => x.Key == \"DrivePasswordSet\" && x.Value == \"True\"), \"Drive password must remain supplemental evidence.\");\n\n            var unknown = Collect(new FirmwareSecurityObservation(null, null, null, UnknownBoot(\"Synthetic\"), \"Synthetic\"));\n            Require(unknown[\"SEC-BIOS-ADMIN-PASSWORD\"].Status == SecurityControlStatus.Unknown, \"Unavailable password state must remain Unknown.\");\n        });\n\n        Test(\"boot restriction pass requires trusted internal-only firmware evidence\", () =>\n        {\n            var controls = Collect(new FirmwareSecurityObservation(null, null, null,\n                new FirmwareBootObservation(true, true, false, false, false, false, false, false, true, \"Synthetic OEM\"), \"Synthetic OEM\"));\n            Require(controls[\"SEC-BOOT-RESTRICTIONS\"].Status == SecurityControlStatus.Pass,\n                \"UEFI + effective Windows Boot Manager + all external paths disabled must pass.\");\n        });\n\n        Test(\"internal first with USB or PXE still enabled warns\", () =>\n        {\n            var usb = Collect(new FirmwareSecurityObservation(null, null, null,\n                new FirmwareBootObservation(true, true, true, false, false, false, false, false, true, \"Synthetic OEM\"), \"Synthetic OEM\"));\n            Require(usb[\"SEC-BOOT-RESTRICTIONS\"].Status == SecurityControlStatus.Warn, \"Enabled USB path after internal boot must warn.\");\n\n            var pxe = Collect(new FirmwareSecurityObservation(null, null, null,\n                new FirmwareBootObservation(true, true, false, true, false, false, false, false, true, \"Synthetic OEM\"), \"Synthetic OEM\"));\n            Require(pxe[\"SEC-BOOT-RESTRICTIONS\"].Status == SecurityControlStatus.Warn, \"Enabled PXE path after internal boot must warn.\");\n        });\n\n        Test(\"external effective path or legacy boot fails\", () =>\n        {\n            var external = Collect(new FirmwareSecurityObservation(null, null, null,\n                new FirmwareBootObservation(true, true, true, false, false, false, false, true, true, \"Synthetic OEM\"), \"Synthetic OEM\"));\n            Require(external[\"SEC-BOOT-RESTRICTIONS\"].Status == SecurityControlStatus.Fail, \"Effective external boot path must fail.\");\n\n            var legacy = Collect(new FirmwareSecurityObservation(null, null, null,\n                new FirmwareBootObservation(false, false, null, null, null, null, null, null, false, \"Synthetic OEM\"), \"Synthetic OEM\"));\n            Require(legacy[\"SEC-BOOT-RESTRICTIONS\"].Status == SecurityControlStatus.Fail, \"Legacy firmware mode must fail.\");\n        });\n\n        Test(\"BCD-only or partial boot evidence stays Unknown\", () =>\n        {\n            var bcdOnly = Collect(new FirmwareSecurityObservation(null, null, null,\n                new FirmwareBootObservation(true, true, null, null, null, null, null, null, false, \"Windows BCD\"), \"Windows BCD\"));\n            Require(bcdOnly[\"SEC-BOOT-RESTRICTIONS\"].Status == SecurityControlStatus.Unknown,\n                \"BCD-only evidence must never prove external boot is disabled.\");\n        });\n\n        Test(\"firmware adapter API cannot accept or return password secrets\", () =>\n        {\n            foreach (var type in new[] { typeof(LenovoFirmwareSecurityAdapter), typeof(DellFirmwareSecurityAdapter), typeof(HpFirmwareSecurityAdapter), typeof(HuaweiFirmwareSecurityAdapter) })\n            {\n                foreach (var ctor in type.GetConstructors(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic))\n                    AssertNoSecretParameters(type, ctor.GetParameters());\n\n                foreach (var method in type.GetMethods(BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly))\n                {\n                    AssertNoSecretParameters(type, method.GetParameters());\n                    Require(method.ReturnType != typeof(System.Security.SecureString), $\"{type.Name}.{method.Name} must not return SecureString.\");\n                    Require(method.ReturnType != typeof(byte[]), $\"{type.Name}.{method.Name} must not return raw secret bytes.\");\n                    Require(method.ReturnType != typeof(char[]), $\"{type.Name}.{method.Name} must not return raw secret chars.\");\n                }\n            }\n        });\n\n        Console.WriteLine($\"Firmware security self-test: {12 - failures}/12 passed.\");\n        return failures == 0 ? 0 : 1;\n    }\n\n    private static Dictionary<string, SecurityControlObservation> Collect(FirmwareSecurityObservation observation)\n        => FirmwareSecurityCollector.Collect(observation);\n\n    private static FirmwareBootObservation UnknownBoot(string source)\n        => new(null, null, null, null, null, null, null, null, false, source);\n\n    private static bool HasDeclaredInstallMethod(Type type)\n        => type.GetMethods(BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly)\n            .Any(x => x.Name.Contains(\"Install\", StringComparison.OrdinalIgnoreCase));\n\n    private static void AssertNoSecretParameters(Type type, ParameterInfo[] parameters)\n    {\n        foreach (var parameter in parameters)\n        {\n            var name = parameter.Name ?? \"\";\n            Require(!IsSecretParameterName(name), $\"{type.Name} exposes secret-like parameter '{name}'.\");\n            Require(parameter.ParameterType != typeof(System.Security.SecureString), $\"{type.Name} must not accept SecureString.\");\n            Require(parameter.ParameterType != typeof(byte[]), $\"{type.Name} must not accept raw secret bytes.\");\n            Require(parameter.ParameterType != typeof(char[]), $\"{type.Name} must not accept raw secret chars.\");\n        }\n    }\n\n    private static bool IsSecretParameterName(string name)\n        => name.Equals(\"password\", StringComparison.OrdinalIgnoreCase)\n            || name.Equals(\"currentPassword\", StringComparison.OrdinalIgnoreCase)\n            || name.Equals(\"newPassword\", StringComparison.OrdinalIgnoreCase)\n            || name.Equals(\"secret\", StringComparison.OrdinalIgnoreCase)\n            || name.Equals(\"credential\", StringComparison.OrdinalIgnoreCase)\n            || name.Equals(\"recoveryKey\", StringComparison.OrdinalIgnoreCase);\n\n    private sealed class FakeLenovoSource(int? passwordState, FirmwareBootObservation boot) : ILenovoFirmwareSecuritySource\n    {\n        public int? ReadPasswordState() => passwordState;\n        public FirmwareBootObservation ReadBoot() => boot;\n    }\n\n    private sealed class FakeDellSource(bool available, bool? adminPasswordSet, FirmwareBootObservation boot) : IDellFirmwareSecuritySource\n    {\n        public bool IsProviderAvailable() => available;\n        public bool? ReadAdminPasswordSet() => adminPasswordSet;\n        public FirmwareBootObservation ReadBoot() => boot;\n    }\n\n    private sealed class FakeHuaweiSource(\n        (bool? AdminPasswordSet, bool? PowerOnPasswordSet) passwordStatus,\n        FirmwareBootObservation boot) : IHuaweiFirmwareSecuritySource\n    {\n        public (bool? AdminPasswordSet, bool? PowerOnPasswordSet) ReadPasswordStatus() => passwordStatus;\n        public FirmwareBootObservation ReadBoot() => boot;\n    }\n\n    private sealed class FakeHpSource(bool available, bool? adminPasswordSet, FirmwareBootObservation boot) : IHpFirmwareSecuritySource\n    {\n        public bool IsProviderAvailable() => available;\n        public bool? ReadAdminPasswordSet() => adminPasswordSet;\n        public FirmwareBootObservation ReadBoot() => boot;\n    }\n\n    private static void Require(bool condition, string message)\n    {\n        if (!condition) throw new InvalidOperationException(message);\n    }\n}\n",
+        "git_blob": "0459156eea6ed8553e5ffc70f3173da86ad6bd61",
+        "path": "src/G.PcHealthCheck/FirmwareSecurityCollectorSelfTest.cs",
+        "sha256": "3a5cfbd42594bdf922e273d22fc419eb985769449cb1e76124b7b2d0f0d215f8"
+      },
+      {
+        "bytes": 12154,
+        "content": "using System.ComponentModel;\nusing System.Diagnostics;\nusing System.Runtime.InteropServices;\nusing System.Text.RegularExpressions;\n\nnamespace G.PcHealthCheck;\n\ninternal interface IHuaweiFirmwareSecuritySource\n{\n    (bool? AdminPasswordSet, bool? PowerOnPasswordSet) ReadPasswordStatus();\n    FirmwareBootObservation ReadBoot();\n}\n\ninternal sealed class HuaweiFirmwareSecurityAdapter : IFirmwareSecurityAdapter\n{\n    private readonly IHuaweiFirmwareSecuritySource _source;\n\n    public HuaweiFirmwareSecurityAdapter() : this(new HuaweiFirmwareSecuritySource()) { }\n\n    internal HuaweiFirmwareSecurityAdapter(IHuaweiFirmwareSecuritySource source)\n    {\n        _source = source;\n    }\n\n    public bool Supports(string manufacturer)\n        => manufacturer.Contains(\"Huawei\", StringComparison.OrdinalIgnoreCase);\n\n    public FirmwareSecurityObservation Collect()\n    {\n        (bool? AdminPasswordSet, bool? PowerOnPasswordSet) passwords;\n        FirmwareBootObservation boot;\n        try { passwords = _source.ReadPasswordStatus(); }\n        catch { passwords = (null, null); }\n        try { boot = _source.ReadBoot(); }\n        catch { boot = FirmwareBootObservation.Unknown(\"Huawei SMBIOS/UEFI\"); }\n\n        return new(\n            passwords.AdminPasswordSet,\n            passwords.PowerOnPasswordSet,\n            null,\n            boot,\n            \"Huawei SMBIOS/UEFI\");\n    }\n}\n\ninternal sealed class HuaweiFirmwareSecuritySource : IHuaweiFirmwareSecuritySource\n{\n    public (bool? AdminPasswordSet, bool? PowerOnPasswordSet) ReadPasswordStatus()\n        => HuaweiSmbiosHardwareSecurityReader.ReadPasswordStatus();\n\n    public FirmwareBootObservation ReadBoot()\n        => HuaweiFirmwareBootReader.Read();\n}\n\ninternal static class HuaweiSmbiosHardwareSecurityReader\n{\n    private const uint RawSmbiosProvider = 0x52534D42; // 'RSMB'\n    private const byte HardwareSecurityType = 24;\n    private const int RawSmbiosHeaderLength = 8;\n\n    public static (bool? AdminPasswordSet, bool? PowerOnPasswordSet) ReadPasswordStatus()\n    {\n        var required = GetSystemFirmwareTable(RawSmbiosProvider, 0, IntPtr.Zero, 0);\n        if (required < RawSmbiosHeaderLength)\n            throw new Win32Exception(Marshal.GetLastWin32Error(), \"Raw SMBIOS table is unavailable.\");\n\n        var buffer = Marshal.AllocHGlobal(checked((int)required));\n        try\n        {\n            var written = GetSystemFirmwareTable(RawSmbiosProvider, 0, buffer, required);\n            if (written != required)\n                throw new InvalidDataException(\"Raw SMBIOS table length changed during collection.\");\n\n            var raw = new byte[checked((int)written)];\n            Marshal.Copy(buffer, raw, 0, checked((int)written));\n            return ParseRawSmbios(raw);\n        }\n        finally\n        {\n            Marshal.FreeHGlobal(buffer);\n        }\n    }\n\n    internal static (bool? AdminPasswordSet, bool? PowerOnPasswordSet) ParseHardwareSecurityByte(byte settings)\n        => (\n            DecodeStatus((settings >> 2) & 0b11),\n            DecodeStatus((settings >> 6) & 0b11));\n\n    internal static (bool? AdminPasswordSet, bool? PowerOnPasswordSet) ParseRawSmbios(byte[] raw)\n    {\n        ArgumentNullException.ThrowIfNull(raw);\n        if (raw.Length < RawSmbiosHeaderLength)\n            return (null, null);\n\n        var tableLength = BitConverter.ToUInt32(raw, 4);\n        var available = raw.Length - RawSmbiosHeaderLength;\n        if (tableLength > (uint)available)\n            return (null, null);\n\n        var offset = RawSmbiosHeaderLength;\n        var end = checked(RawSmbiosHeaderLength + (int)tableLength);\n        while (offset + 4 <= end)\n        {\n            var type = raw[offset];\n            var length = raw[offset + 1];\n            if (length < 4 || offset + length > end)\n                return (null, null);\n\n            if (type == HardwareSecurityType && length >= 5)\n                return ParseHardwareSecurityByte(raw[offset + 4]);\n\n            if (type == 127)\n                break;\n\n            var next = offset + length;\n            while (next + 1 < end && (raw[next] != 0 || raw[next + 1] != 0))\n                next++;\n            if (next + 1 >= end)\n                break;\n            offset = next + 2;\n        }\n\n        return (null, null);\n    }\n\n    private static bool? DecodeStatus(int value) => value switch\n    {\n        0 => false,\n        1 => true,\n        _ => null\n    };\n\n    [DllImport(\"kernel32.dll\", SetLastError = true)]\n    private static extern uint GetSystemFirmwareTable(\n        uint firmwareTableProviderSignature,\n        uint firmwareTableId,\n        IntPtr firmwareTableBuffer,\n        uint bufferSize);\n}\n\ninternal static class HuaweiFirmwareBootReader\n{\n    private static readonly TimeSpan QueryTimeout = TimeSpan.FromSeconds(3);\n    private static readonly Regex BlockSeparator = new(@\"\\r?\\n\\s*\\r?\\n\", RegexOptions.Compiled);\n    private static readonly Regex Identifier = new(\n        @\"\\{(?:fwbootmgr|bootmgr|[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})\\}\",\n        RegexOptions.Compiled | RegexOptions.IgnoreCase);\n\n    public static FirmwareBootObservation Read()\n    {\n        var uefi = ReadUefiMode();\n        if (uefi == false)\n            return new(false, null, null, null, null, null, null, null, false, \"GetFirmwareType\");\n\n        var output = ReadFirmwareEnumeration();\n        return string.IsNullOrWhiteSpace(output)\n            ? new(uefi, null, null, null, null, null, null, null, false, \"Windows firmware boot manager\")\n            : ParseFirmwareEnumeration(output, uefi);\n    }\n\n    internal static FirmwareBootObservation ParseFirmwareEnumeration(string output, bool? uefiMode)\n    {\n        if (string.IsNullOrWhiteSpace(output))\n            return new(uefiMode, null, null, null, null, null, null, null, false, \"Windows firmware boot manager\");\n\n        var blocks = BlockSeparator.Split(output.Trim())\n            .Where(x => !string.IsNullOrWhiteSpace(x))\n            .ToList();\n        var manager = blocks.FirstOrDefault(x => ContainsId(x, \"{fwbootmgr}\"));\n        if (manager is null)\n            return new(uefiMode, null, null, null, null, null, null, null, false, \"Windows firmware boot manager\");\n\n        var ordered = ExtractIds(manager)\n            .Where(x => !x.Equals(\"{fwbootmgr}\", StringComparison.OrdinalIgnoreCase))\n            .Distinct(StringComparer.OrdinalIgnoreCase)\n            .ToList();\n\n        var objects = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);\n        foreach (var block in blocks)\n        {\n            var ids = ExtractIds(block);\n            if (ids.Count == 0) continue;\n            var objectId = ids[0];\n            if (objectId.Equals(\"{fwbootmgr}\", StringComparison.OrdinalIgnoreCase)) continue;\n            objects.TryAdd(objectId, block);\n        }\n\n        string? ObjectText(string id)\n            => objects.TryGetValue(id, out var value) ? value : null;\n\n        bool IsWindows(string id)\n        {\n            if (id.Equals(\"{bootmgr}\", StringComparison.OrdinalIgnoreCase)) return true;\n            var text = ObjectText(id);\n            if (string.IsNullOrWhiteSpace(text)) return false;\n            return text.Contains(@\"\\EFI\\Microsoft\\Boot\\bootmgfw.efi\", StringComparison.OrdinalIgnoreCase)\n                || text.Contains(\"Windows Boot Manager\", StringComparison.OrdinalIgnoreCase);\n        }\n\n        bool IsUsb(string text)\n            => text.Contains(\"USB\", StringComparison.OrdinalIgnoreCase)\n               || text.Contains(\"Removable\", StringComparison.OrdinalIgnoreCase);\n        bool IsPxe(string text)\n            => text.Contains(\"PXE\", StringComparison.OrdinalIgnoreCase)\n               || text.Contains(\"Network\", StringComparison.OrdinalIgnoreCase)\n               || text.Contains(\"IPv4\", StringComparison.OrdinalIgnoreCase)\n               || text.Contains(\"IPv6\", StringComparison.OrdinalIgnoreCase);\n        bool IsOptical(string text)\n            => text.Contains(\"DVD\", StringComparison.OrdinalIgnoreCase)\n               || text.Contains(\"CDROM\", StringComparison.OrdinalIgnoreCase)\n               || text.Contains(\"CD-ROM\", StringComparison.OrdinalIgnoreCase)\n               || text.Contains(\"Optical\", StringComparison.OrdinalIgnoreCase);\n        bool IsSd(string text)\n            => text.Contains(\"SD Card\", StringComparison.OrdinalIgnoreCase)\n               || text.Contains(\"SDCard\", StringComparison.OrdinalIgnoreCase);\n\n        bool IsExternal(string id)\n        {\n            var text = ObjectText(id);\n            return text is not null && (IsUsb(text) || IsPxe(text) || IsOptical(text) || IsSd(text));\n        }\n\n        var objectTexts = objects.Values.ToList();\n        var usb = objectTexts.Any(IsUsb) ? true : (bool?)null;\n        var pxe = objectTexts.Any(IsPxe) ? true : (bool?)null;\n        var optical = objectTexts.Any(IsOptical) ? true : (bool?)null;\n        var sd = objectTexts.Any(IsSd) ? true : (bool?)null;\n        var anyExternal = usb == true || pxe == true || optical == true || sd == true;\n\n        bool? windowsFirst = null;\n        bool? externalEffective = null;\n        if (ordered.Count > 0)\n        {\n            var first = ordered[0];\n            if (IsWindows(first))\n            {\n                windowsFirst = true;\n                if (anyExternal) externalEffective = false;\n            }\n            else if (IsExternal(first))\n            {\n                windowsFirst = false;\n                externalEffective = true;\n            }\n        }\n\n        var trustedPositiveRiskEvidence = uefiMode == true\n            && anyExternal\n            && windowsFirst is not null\n            && externalEffective is not null;\n\n        return new(\n            uefiMode,\n            windowsFirst,\n            usb,\n            pxe,\n            optical,\n            sd,\n            null,\n            externalEffective,\n            trustedPositiveRiskEvidence,\n            \"Windows firmware boot manager (Huawei)\");\n    }\n\n    private static bool? ReadUefiMode()\n    {\n        if (!GetFirmwareType(out var firmwareType)) return null;\n        return firmwareType switch\n        {\n            FirmwareTypeBios => false,\n            FirmwareTypeUefi => true,\n            _ => null\n        };\n    }\n\n    private static string? ReadFirmwareEnumeration()\n    {\n        var path = Path.Combine(Environment.SystemDirectory, \"bcdedit.exe\");\n        if (!File.Exists(path)) return null;\n\n        var psi = CreateFirmwareEnumerationStartInfo(path);\n\n        using var process = Process.Start(psi);\n        if (process is null) return null;\n        var stdout = process.StandardOutput.ReadToEndAsync();\n        var stderr = process.StandardError.ReadToEndAsync();\n        if (!process.WaitForExit((int)QueryTimeout.TotalMilliseconds))\n        {\n            try { process.Kill(entireProcessTree: true); } catch { }\n            try { process.WaitForExit(500); } catch { }\n            return null;\n        }\n\n        var output = stdout.GetAwaiter().GetResult();\n        _ = stderr.GetAwaiter().GetResult();\n        return process.ExitCode == 0 ? output : null;\n    }\n\n    internal static ProcessStartInfo CreateFirmwareEnumerationStartInfo(string path)\n    {\n        var psi = new ProcessStartInfo\n        {\n            FileName = path,\n            UseShellExecute = false,\n            RedirectStandardOutput = true,\n            RedirectStandardError = true,\n            CreateNoWindow = true\n        };\n        psi.ArgumentList.Add(\"/enum\");\n        psi.ArgumentList.Add(\"FIRMWARE\");\n\n        return psi;\n    }\n\n    private static bool ContainsId(string block, string id)\n        => ExtractIds(block).Any(x => x.Equals(id, StringComparison.OrdinalIgnoreCase));\n\n    private static List<string> ExtractIds(string block)\n        => Identifier.Matches(block)\n            .Cast<Match>()\n            .Select(x => x.Value.ToLowerInvariant())\n            .ToList();\n\n    private const uint FirmwareTypeBios = 1;\n    private const uint FirmwareTypeUefi = 2;\n\n    [DllImport(\"kernel32.dll\", SetLastError = true)]\n    [return: MarshalAs(UnmanagedType.Bool)]\n    private static extern bool GetFirmwareType(out uint firmwareType);\n}\n",
+        "git_blob": "915c7359d6723fa861eb612bc081c4ff125a7357",
+        "path": "src/G.PcHealthCheck/HuaweiFirmwareSecurityAdapter.cs",
+        "sha256": "5486e853465a3a91811752cd072becef685c96bea5374483646da9fb6b648ef1"
+      }
+    ],
+    "source_patch_path": "artifact-handoff/huawei-ca354d21/source/source.patch",
+    "source_patch_sha256": "f1a7a172b4fabd11ee468a332facfd6654196ed6954a2144899769628da7d8a2",
+    "tree": "4964cf907e5796c49980d9a5af9cdeca051b4fcb"
+  },
+  "authenticated_parent": "68da62237ecfa5377fcc31c5641b3baaebea39a9",
+  "base": "68da62237ecfa5377fcc31c5641b3baaebea39a9",
+  "boundary": {
+    "budget_unchanged": true,
+    "coordination": "ee1b61e755ab361e81d73da11979397ce8813f1b",
+    "guard_grant": "c3c43f96-f88f-4669-b344-13ae248ba382",
+    "guard_state": "original CI6 UNKNOWN retained",
+    "lease_generation": 31,
+    "new_CI": 0,
+    "new_agents": 0,
+    "owner": null,
+    "source": "7aaefdebca68eed64c8e92d7dfff7384f0a3c800",
+    "source_publication": false
+  },
+  "build": {
+    "SDK": "8.0.425",
+    "argv": [
+      "bash",
+      "/workspace/work/gpc-controller57/build.sh"
+    ],
+    "cached_assets": true,
+    "errors": 0,
+    "exit": 0,
+    "fresh_brand_generator": "NOT_RUN",
+    "raw_log": "8.0.425\n  G.PcHealthCheck -> /workspace/work/gpc-controller57/snapshot/src/G.PcHealthCheck/bin/Release/net8.0-windows10.0.19041.0/win-x64/G-PC-Health.dll\n  G.PcHealthCheck -> /workspace/work/gpc-controller57/publish/\n",
+    "script": "#!/bin/bash\nset -eu\nexport DOTNET_ROOT=/workspace/.g-pc-health-tools/dotnet DOTNET_CLI_HOME=/workspace/.g-pc-health-tools/dotnet-home NUGET_PACKAGES=/workspace/.g-pc-health-tools/nuget DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_CLI_USE_MSBUILD_SERVER=0\ncd /workspace/work/gpc-controller57/snapshot\nmkdir -p src/G.PcHealthCheck/obj\ncp /workspace/work/gpc-native-fresh-recovery-20261009/product-worktree/src/G.PcHealthCheck/obj/project.assets.json src/G.PcHealthCheck/obj/\ncp /workspace/work/gpc-native-fresh-recovery-20261009/product-worktree/src/G.PcHealthCheck/obj/G.PcHealthCheck.csproj.nuget.g.* src/G.PcHealthCheck/obj/\n/workspace/.g-pc-health-tools/dotnet/dotnet --version\n/workspace/.g-pc-health-tools/dotnet/dotnet publish src/G.PcHealthCheck/G.PcHealthCheck.csproj --no-restore -c Release -r win-x64 --self-contained true -p:EnableWindowsTargeting=true -p:DesignTimeBuild=true -p:GeneratedBrandDir=/workspace/work/gpc-0171/brand -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:EnableCompressionInSingleFile=true -p:NuGetAudit=false -p:UseSharedCompilation=false -p:InformationalVersion=0.17.1+ca354d2194a454b0356057c2db34e94cea8ffbbe -p:IncludeSourceRevisionInInformationalVersion=false --disable-build-servers -warnaserror -o /workspace/work/gpc-controller57/publish --verbosity minimal\nmv /workspace/work/gpc-controller57/publish/G-PC-Health.exe /workspace/work/gpc-controller57/publish/G-PC-Health-0.17.1-huawei-candidate.exe\n",
+    "source_selftests": "NOT_RUN on Linux",
+    "warnings": 0
+  },
+  "candidate": "ca354d2194a454b0356057c2db34e94cea8ffbbe",
+  "candidate_packet_bytes": 33481,
+  "candidate_packet_sha256": "71a37b561c0855917cfa96db11f47f000d12b5689e425bc50db360808ab17512",
+  "controller": 57,
+  "core": {
+    "files": 352,
+    "tree": "9c45d98c3254e9658d452c505d8c97698e3fc9a7",
+    "unchanged": true,
+    "version": "2.12.1"
+  },
+  "portable_test": {
+    "GREEN_exit": 0,
+    "GREEN_log": "Firmware security self-test: PASS — Lenovo PasswordState maps admin, power-on and drive password bits\nFirmware security self-test: PASS — Dell and HP require an already-present supported provider\nFirmware security self-test: PASS — Huawei SMBIOS Type 24 maps password status without secret material\nFirmware security self-test: PASS — Huawei adapter exposes SMBIOS admin password and never invents drive password\nFirmware security self-test: PASS — Huawei firmware query keeps identifiers compatible with the alias parser\nFirmware security self-test: PASS — Huawei firmware boot evidence reports positive external paths but absence never passes\nFirmware security self-test: PASS — firmware password control uses admin password only\nFirmware security self-test: PASS — boot restriction pass requires trusted internal-only firmware evidence\nFirmware security self-test: PASS — internal first with USB or PXE still enabled warns\nFirmware security self-test: PASS — external effective path or legacy boot fails\nFirmware security self-test: PASS — BCD-only or partial boot evidence stays Unknown\nFirmware security self-test: PASS — firmware adapter API cannot accept or return password secrets\nFirmware security self-test: 12/12 passed.\n",
+    "RED_exit": 1,
+    "RED_log": "Firmware security self-test: PASS — Lenovo PasswordState maps admin, power-on and drive password bits\nFirmware security self-test: PASS — Dell and HP require an already-present supported provider\nFirmware security self-test: PASS — Huawei SMBIOS Type 24 maps password status without secret material\nFirmware security self-test: PASS — Huawei adapter exposes SMBIOS admin password and never invents drive password\nFirmware security self-test: FAIL — Huawei firmware query keeps identifiers compatible with the alias parser: Firmware query must use aliases expected by the parser; /v prints full GUIDs instead.\nFirmware security self-test: PASS — Huawei firmware boot evidence reports positive external paths but absence never passes\nFirmware security self-test: PASS — firmware password control uses admin password only\nFirmware security self-test: PASS — boot restriction pass requires trusted internal-only firmware evidence\nFirmware security self-test: PASS — internal first with USB or PXE still enabled warns\nFirmware security self-test: PASS — external effective path or legacy boot fails\nFirmware security self-test: PASS — BCD-only or partial boot evidence stays Unknown\nFirmware security self-test: PASS — firmware adapter API cannot accept or return password secrets\nFirmware security self-test: 11/12 passed.\n",
+    "RED_packet_SHA256": "bab71adcba3359aa8f395f74bb934f08f41c6763cdfc2a177f51b449fe530f21",
+    "command": [
+      "dotnet",
+      "run",
+      "--project",
+      "/workspace/work/gpc-controller57/harness/Harness.csproj",
+      "-p:RestoreSources=/tmp/gpc-empty-nuget",
+      "-p:UseSharedCompilation=false"
+    ],
+    "fix": "Removed ONLY psi.ArgumentList.Add(\"/v\"); from exact prepared RED production file",
+    "harness_project": "<Project Sdk=\"Microsoft.NET.Sdk\"><PropertyGroup><OutputType>Exe</OutputType><TargetFramework>net8.0</TargetFramework><ImplicitUsings>enable</ImplicitUsings><Nullable>enable</Nullable><EnableDefaultCompileItems>false</EnableDefaultCompileItems><NuGetAudit>false</NuGetAudit><NoWarn>CA1416</NoWarn></PropertyGroup><ItemGroup><Compile Include=\"Program.cs\"/><Compile Include=\"../snapshot/src/G.PcHealthCheck/GlobMatcher.cs\"/><Compile Include=\"../snapshot/src/G.PcHealthCheck/LocalAdministratorsPolicy.cs\"/><Compile Include=\"../snapshot/src/G.PcHealthCheck/LocalAdministratorsCollector.cs\"/><Compile Include=\"../snapshot/src/G.PcHealthCheck/FirmwareSecurityCollectorSelfTest.cs\"/><Compile Include=\"../snapshot/src/G.PcHealthCheck/FirmwareSecurityCollector.cs\"/><Compile Include=\"../snapshot/src/G.PcHealthCheck/*FirmwareSecurityAdapter.cs\"/><Compile Include=\"../snapshot/src/G.PcHealthCheck/SecurityPostureModels.cs\"/><PackageReference Include=\"System.Management\" Version=\"8.0.0\"/></ItemGroup></Project>\n",
+    "program": "return G.PcHealthCheck.FirmwareSecurityCollectorSelfTest.Run();\n",
+    "scope": "All12 production FirmwareSecurityCollectorSelfTest fake-source checks, closed production dependencies linked in net8.0 harness; no real WMI/BCD/OEM execution",
+    "setup_compiler_errors_NOT_RED": true
+  },
+  "production_release_ready": false,
+  "raw_commit_exact": true,
+  "schema": "gpc-readable-tabs-candidate-build/v1",
+  "token": "90a0750a-3b77-496a-9793-d0dd3aa83b8e",
+  "tree": "ad95b455107256e7288f53fa04bb249f397e7ad7",
+  "verification": {
+    "FileVersion": "0.17.1.0",
+    "PE_kind": "PE32+",
+    "PE_machine": "AMD64 0x8664",
+    "Windows_runtime": "NOT_RUN",
+    "bytes": 78764002,
+    "candidate": "ca354d2194a454b0356057c2db34e94cea8ffbbe",
+    "core": "2.12.1 unchanged352",
+    "file": "/workspace/work/gpc-controller57/publish/G-PC-Health-0.17.1-huawei-candidate.exe",
+    "generated_brand_assets": "existing retained assets; fresh Windows generator NOT_RUN",
+    "guard": "UNKNOWN preserved",
+    "informational_commit_in_actual_resource": true,
+    "known_native_RED": "37846023963/selftest234",
+    "product_source_unchanged": true,
+    "publish_exit": 0,
+    "publish_job": "controller57-isolated-cross-build",
+    "schema": "gpc-local-diagnostic-exe-verification/v1",
+    "self_contained_requested": true,
+    "sha256": "484b95a877a2e2543ce2937598ab58ea9d51e0fa29d2d6ff5ca5dd732adf41cf",
+    "single_file_directory": true,
+    "subsystem": 2,
+    "tree": "ad95b455107256e7288f53fa04bb249f397e7ad7",
+    "validated_pilot": false,
+    "version_source": "actual PE RT_VERSION / VS_FIXEDFILEINFO, not project metadata"
+  }
+}

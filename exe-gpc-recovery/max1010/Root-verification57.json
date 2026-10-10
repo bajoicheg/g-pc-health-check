@@ -1,0 +1,45 @@
+{
+  "schema": "gpc-Root-independent-delivered-byte-verification/v1",
+  "filename": "G-PC-Health-0.17.1-huawei-candidate.exe",
+  "bytes": 78764002,
+  "sha256": "484b95a877a2e2543ce2937598ab58ea9d51e0fa29d2d6ff5ca5dd732adf41cf",
+  "PE_machine": "AMD64",
+  "PE_kind": "PE32+",
+  "FileVersion": "0.17.1.0",
+  "candidate": "ca354d2194a454b0356057c2db34e94cea8ffbbe",
+  "tree": "ad95b455107256e7288f53fa04bb249f397e7ad7",
+  "actual_informational_commit_verified": true,
+  "Windows_runtime": "NOT_RUN",
+  "validated_pilot": false,
+  "previous_baseline_Windows_failure": "37846023963: eight RU/EN footer reachability fixtures / selftest234; updated UI fixtures NOT_RUN",
+  "new_layout": "Overview, Recommendations, Actions; fixed footer; collapsed details",
+  "CI6_submission": "UNKNOWN preserved; no replay",
+  "CDC_version": "2.12.1 unchanged",
+  "production_release": false,
+  "bundle_verification": {
+    "bundle_version": "6.0",
+    "entries": 453,
+    "bounds_decompression_sizes_and_hashes": "PASS",
+    "managed_app_and_Windows_runtime_entries": "PASS",
+    "runtime_tfm": "net8.0",
+    "bundle_id": "h9ZIlC_alzQkQCcuNpQi9TRZlqMvrp0="
+  },
+  "source_verification": {
+    "raw_commit": "ca354d2194a454b0356057c2db34e94cea8ffbbe",
+    "parent": "68da62237ecfa5377fcc31c5641b3baaebea39a9",
+    "history_commits": 1,
+    "all_touched_paths": [
+      "src/G.PcHealthCheck/HuaweiFirmwareSecurityAdapter.cs",
+      "src/G.PcHealthCheck/FirmwareSecurityCollectorSelfTest.cs"
+    ],
+    "exact_prepared_RED_plus_only_v_removal": true,
+    "canonical_evidence_neighbors_preserved": true,
+    "product_source_published": false
+  },
+  "chunks_verified": 19,
+  "portable_firmware_tests": {
+    "RED": "11/12 exit1",
+    "GREEN": "12/12 exit0",
+    "scope": "Fake-source production firmware tests in portable harness; full application tests NOT_RUN"
+  }
+}

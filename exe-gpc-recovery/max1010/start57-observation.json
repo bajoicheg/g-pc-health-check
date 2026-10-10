@@ -1,0 +1,18 @@
+{
+  "schema": "gpc-actual-Native57-submission-observation/v1",
+  "parent_invocation_id": "Work-root-gpc-20261010-123856",
+  "attempt_id": "gpc-huawei-controller57-20261010",
+  "reservation_token": "90a0750a-3b77-496a-9793-d0dd3aa83b8e",
+  "prepaid_admission": "ee1b61e755ab361e81d73da11979397ce8813f1b",
+  "provider_task_url": "https://chatgpt.com/local/01a10fc1-6ed7-75ae-b4c9-24a2dcc420e4",
+  "Send_count": 1,
+  "actual_running_UI_observed": true,
+  "reported_RED": "11/12; alias query assertion failed; compiler setup failures excluded",
+  "reported_GREEN": "12/12 exit0 fake-source selftests",
+  "evidence_packet_verification": "pending actual terminal handoff",
+  "Windows_runtime": "NOT_RUN",
+  "observed_at_utc": "2026-10-10T09:56:26.715562+00:00",
+  "provider_start_utc": null,
+  "guard_CI6": "UNKNOWN unchanged",
+  "product_ref_changed": false
+}
