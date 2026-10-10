@@ -1,0 +1,77 @@
+diff --git a/src/G.PcHealthCheck/FirmwareSecurityCollectorSelfTest.cs b/src/G.PcHealthCheck/FirmwareSecurityCollectorSelfTest.cs
+index 4127db5d..0459156e 100644
+--- a/src/G.PcHealthCheck/FirmwareSecurityCollectorSelfTest.cs
++++ b/src/G.PcHealthCheck/FirmwareSecurityCollectorSelfTest.cs
+@@ -90,6 +90,17 @@ internal static class FirmwareSecurityCollectorSelfTest
+                 "Confirmed Huawei administrator password must contribute known Security coverage.");
+         });
+ 
++        Test("Huawei firmware query keeps identifiers compatible with the alias parser", () =>
++        {
++            const string path = @"C:\Windows\System32\bcdedit.exe";
++            var query = HuaweiFirmwareBootReader.CreateFirmwareEnumerationStartInfo(path);
++            Require(query.FileName == path, "Firmware query must use the supplied system executable path.");
++            Require(query.ArgumentList.SequenceEqual(new[] { "/enum", "FIRMWARE" }, StringComparer.OrdinalIgnoreCase),
++                "Firmware query must use aliases expected by the parser; /v prints full GUIDs instead.");
++            Require(!query.UseShellExecute && query.RedirectStandardOutput && query.RedirectStandardError && query.CreateNoWindow,
++                "Firmware query must retain its redirected, shell-free collection boundary.");
++        });
++
+         Test("Huawei firmware boot evidence reports positive external paths but absence never passes", () =>
+         {
+             const string windowsFirstWithUsb = """
+@@ -231,7 +242,7 @@ path                    \EFI\Microsoft\Boot\bootmgfw.efi
+             }
+         });
+ 
+-        Console.WriteLine($"Firmware security self-test: {11 - failures}/11 passed.");
++        Console.WriteLine($"Firmware security self-test: {12 - failures}/12 passed.");
+         return failures == 0 ? 0 : 1;
+     }
+ 
+diff --git a/src/G.PcHealthCheck/HuaweiFirmwareSecurityAdapter.cs b/src/G.PcHealthCheck/HuaweiFirmwareSecurityAdapter.cs
+index 16695d25..915c7359 100644
+--- a/src/G.PcHealthCheck/HuaweiFirmwareSecurityAdapter.cs
++++ b/src/G.PcHealthCheck/HuaweiFirmwareSecurityAdapter.cs
+@@ -278,17 +278,7 @@ internal static class HuaweiFirmwareBootReader
+         var path = Path.Combine(Environment.SystemDirectory, "bcdedit.exe");
+         if (!File.Exists(path)) return null;
+ 
+-        var psi = new ProcessStartInfo
+-        {
+-            FileName = path,
+-            UseShellExecute = false,
+-            RedirectStandardOutput = true,
+-            RedirectStandardError = true,
+-            CreateNoWindow = true
+-        };
+-        psi.ArgumentList.Add("/enum");
+-        psi.ArgumentList.Add("FIRMWARE");
+-        psi.ArgumentList.Add("/v");
++        var psi = CreateFirmwareEnumerationStartInfo(path);
+ 
+         using var process = Process.Start(psi);
+         if (process is null) return null;
+@@ -306,6 +296,22 @@ internal static class HuaweiFirmwareBootReader
+         return process.ExitCode == 0 ? output : null;
+     }
+ 
++    internal static ProcessStartInfo CreateFirmwareEnumerationStartInfo(string path)
++    {
++        var psi = new ProcessStartInfo
++        {
++            FileName = path,
++            UseShellExecute = false,
++            RedirectStandardOutput = true,
++            RedirectStandardError = true,
++            CreateNoWindow = true
++        };
++        psi.ArgumentList.Add("/enum");
++        psi.ArgumentList.Add("FIRMWARE");
++
++        return psi;
++    }
++
+     private static bool ContainsId(string block, string id)
+         => ExtractIds(block).Any(x => x.Equals(id, StringComparison.OrdinalIgnoreCase));
+ 

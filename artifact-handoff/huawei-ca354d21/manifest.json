@@ -1,0 +1,150 @@
+{
+  "schema": "gpc-raw-artifact-handoff/v1",
+  "binary_name": "G-PC-Health-0.17.1-huawei-candidate.exe",
+  "candidate": "ca354d2194a454b0356057c2db34e94cea8ffbbe",
+  "tree": "ad95b455107256e7288f53fa04bb249f397e7ad7",
+  "bytes": 78764002,
+  "sha256": "484b95a877a2e2543ce2937598ab58ea9d51e0fa29d2d6ff5ca5dd732adf41cf",
+  "chunks": [
+    {
+      "index": 0,
+      "path": "artifact-handoff/huawei-ca354d21/chunk-000.bin",
+      "bytes": 4194304,
+      "sha256": "525eda200c06f74f8d983eaf742099d5308e287956326ac07b941a80eb6a47e7",
+      "blob_oid": "25b38e056fdae6a57c9f2aa27486ee419f0b457c"
+    },
+    {
+      "index": 1,
+      "path": "artifact-handoff/huawei-ca354d21/chunk-001.bin",
+      "bytes": 4194304,
+      "sha256": "7ce8890b53f6b452f73cf30bb55689c7913c22d4a0f903c3b29e320bb1b3b93a",
+      "blob_oid": "367852a9ea6bdaebd46475dc6160bf7379daa71d"
+    },
+    {
+      "index": 2,
+      "path": "artifact-handoff/huawei-ca354d21/chunk-002.bin",
+      "bytes": 4194304,
+      "sha256": "44a109184d948c56f29bf23a04e7eda6f7777b9d57b70e922a2a30ba1553189f",
+      "blob_oid": "6e214f7ef3c8042c013c3f2de2a9976a06b8df92"
+    },
+    {
+      "index": 3,
+      "path": "artifact-handoff/huawei-ca354d21/chunk-003.bin",
+      "bytes": 4194304,
+      "sha256": "f5b28cbbc31aeb87b3c0a86e9692f609dbe32c105c4c0172f62a47d73a47478d",
+      "blob_oid": "866c56ad602d05c431de0261838a9780a78b2383"
+    },
+    {
+      "index": 4,
+      "path": "artifact-handoff/huawei-ca354d21/chunk-004.bin",
+      "bytes": 4194304,
+      "sha256": "ea09503fa8c29299cdbb5100b4dbb70d57bd043a48dddf64ab63c473d7522549",
+      "blob_oid": "e0ae262bf736b0265b7b8dbd90fe118696716988"
+    },
+    {
+      "index": 5,
+      "path": "artifact-handoff/huawei-ca354d21/chunk-005.bin",
+      "bytes": 4194304,
+      "sha256": "45c4e225610fd3d7624a23498629836882a94946c055b4fa372f76047cb3d9fd",
+      "blob_oid": "f9ca69b50f2686679cc9efc2e0fb7501573173e3"
+    },
+    {
+      "index": 6,
+      "path": "artifact-handoff/huawei-ca354d21/chunk-006.bin",
+      "bytes": 4194304,
+      "sha256": "916d69047794b1ee1fdeb22baf07c0810da7bc7c32425e4f99050bf5401d6e3f",
+      "blob_oid": "5d54b3bc9d49623d327ff14ed1df05ff0c10dc35"
+    },
+    {
+      "index": 7,
+      "path": "artifact-handoff/huawei-ca354d21/chunk-007.bin",
+      "bytes": 4194304,
+      "sha256": "db1b1584900c8995b5ddb8839316ee12e58c1a036d392e182e89189b35569985",
+      "blob_oid": "4af4ac04878539fc00bc7c8c703ca7ee26b9a3e7"
+    },
+    {
+      "index": 8,
+      "path": "artifact-handoff/huawei-ca354d21/chunk-008.bin",
+      "bytes": 4194304,
+      "sha256": "3de2d1c59ab6d7d54fb6fa0c5437a8ce9037b5e2a5c642b05268a20c97786891",
+      "blob_oid": "aaa12e725d5f235ca41498069e09573abb60a4be"
+    },
+    {
+      "index": 9,
+      "path": "artifact-handoff/huawei-ca354d21/chunk-009.bin",
+      "bytes": 4194304,
+      "sha256": "8410d9ac561e24e55011fb3df26ef31f6bace953d522579548fe3115a3c7c0a4",
+      "blob_oid": "9350cef11f0c723db87a0f03b868b7d5f0a9e8e1"
+    },
+    {
+      "index": 10,
+      "path": "artifact-handoff/huawei-ca354d21/chunk-010.bin",
+      "bytes": 4194304,
+      "sha256": "b7d50ea3ba9cd905ef8729f86725c5e1dfebea092ba616c7915181628ecce19a",
+      "blob_oid": "ce9d0f0e41552e4bd3907f69a94954fb376dc19a"
+    },
+    {
+      "index": 11,
+      "path": "artifact-handoff/huawei-ca354d21/chunk-011.bin",
+      "bytes": 4194304,
+      "sha256": "8702938e2a77bbe59ca85ca9dedf6b92b4f38491cc9ed9267d8456edfa6b1801",
+      "blob_oid": "b163db27e4e11d66dfe996802f6f052e6a80554f"
+    },
+    {
+      "index": 12,
+      "path": "artifact-handoff/huawei-ca354d21/chunk-012.bin",
+      "bytes": 4194304,
+      "sha256": "b1051d6da8ce20ec01180c26539dea9804ce21d14710a55ffb6095abff7842ec",
+      "blob_oid": "e8e5bd017254aab1b33e3e8fe1bae0b84a43563d"
+    },
+    {
+      "index": 13,
+      "path": "artifact-handoff/huawei-ca354d21/chunk-013.bin",
+      "bytes": 4194304,
+      "sha256": "f993a9612056090545ce3b4d774ffaa5763ed62a407034ebb9f6dbe804338601",
+      "blob_oid": "68e6b193965073e6b7861ba279928804958e2716"
+    },
+    {
+      "index": 14,
+      "path": "artifact-handoff/huawei-ca354d21/chunk-014.bin",
+      "bytes": 4194304,
+      "sha256": "aabd56dd5fd36e4a9040841b7d3c7f277c33a6d8382e5325062608b53c9636f0",
+      "blob_oid": "6fe9e1a7f798f65eaf1b82f3069478feb1699b9e"
+    },
+    {
+      "index": 15,
+      "path": "artifact-handoff/huawei-ca354d21/chunk-015.bin",
+      "bytes": 4194304,
+      "sha256": "4acd1b87c1a892d23da5c6598c82f31bb7be04dde581cf1e652e3ce94b81e14e",
+      "blob_oid": "3afcd27ac19c0a9fa2ed9f372f292a39d898deef"
+    },
+    {
+      "index": 16,
+      "path": "artifact-handoff/huawei-ca354d21/chunk-016.bin",
+      "bytes": 4194304,
+      "sha256": "c08a83d25d731a6bc052b5e8388dd5a694561be554f091c9a314e7b1436a7d15",
+      "blob_oid": "e348a42759d11a8da7c173ba937c31eeb54bbe2e"
+    },
+    {
+      "index": 17,
+      "path": "artifact-handoff/huawei-ca354d21/chunk-017.bin",
+      "bytes": 4194304,
+      "sha256": "1c1baa8f2fbabb0748b34a7bce4ab063ab3edfd09be92c402d015904ecdfe309",
+      "blob_oid": "2de58b019c8ac0db8ec909d2399bd9f7719d29b2"
+    },
+    {
+      "index": 18,
+      "path": "artifact-handoff/huawei-ca354d21/chunk-018.bin",
+      "bytes": 3266530,
+      "sha256": "39bb1c9670ce896935c6e36646c5a0de90f059907a1f1bed10a7fe167985a1f7",
+      "blob_oid": "1643a4fcc701f131916a1138b7a6386d99308447"
+    }
+  ],
+  "chunk_count": 19,
+  "chunk_bytes_max": 4194304,
+  "FileVersion": "0.17.1.0",
+  "Windows_runtime": "NOT_RUN",
+  "validated_pilot": false,
+  "verification_path": "artifact-handoff/huawei-ca354d21/verification.json",
+  "checksum_path": "artifact-handoff/huawei-ca354d21/G-PC-Health-0.17.1-huawei-candidate.exe.sha256"
+}

@@ -1,0 +1,6 @@
+tree ad95b455107256e7288f53fa04bb249f397e7ad7
+parent 68da62237ecfa5377fcc31c5641b3baaebea39a9
+author Codex <codex@openai.com> 1791626101 +0000
+committer Codex <codex@openai.com> 1791626101 +0000
+
+Fix Huawei read-only firmware enumeration alias compatibility

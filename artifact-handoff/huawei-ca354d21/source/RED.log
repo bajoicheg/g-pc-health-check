@@ -1,0 +1,13 @@
+Firmware security self-test: PASS — Lenovo PasswordState maps admin, power-on and drive password bits
+Firmware security self-test: PASS — Dell and HP require an already-present supported provider
+Firmware security self-test: PASS — Huawei SMBIOS Type 24 maps password status without secret material
+Firmware security self-test: PASS — Huawei adapter exposes SMBIOS admin password and never invents drive password
+Firmware security self-test: FAIL — Huawei firmware query keeps identifiers compatible with the alias parser: Firmware query must use aliases expected by the parser; /v prints full GUIDs instead.
+Firmware security self-test: PASS — Huawei firmware boot evidence reports positive external paths but absence never passes
+Firmware security self-test: PASS — firmware password control uses admin password only
+Firmware security self-test: PASS — boot restriction pass requires trusted internal-only firmware evidence
+Firmware security self-test: PASS — internal first with USB or PXE still enabled warns
+Firmware security self-test: PASS — external effective path or legacy boot fails
+Firmware security self-test: PASS — BCD-only or partial boot evidence stays Unknown
+Firmware security self-test: PASS — firmware adapter API cannot accept or return password secrets
+Firmware security self-test: 11/12 passed.
