@@ -1,0 +1,61 @@
+{
+  "base_sha": "7aaefdebca68eed64c8e92d7dfff7384f0a3c800",
+  "change_id": "gpc-huawei-discovery-artifact-a76d2c0f1d0d9d59fd569ef4dd0b3a7d848ca2af74ca8ad79c9bf97d01c21539",
+  "coordination_ref": "refs/heads/cdc/coordination",
+  "coordination_store_id": "sha256:e9c5798b2e5857d11563b10845ae993ed5b0e7b040ffd6611bdbd1a36aad08d3",
+  "integrator_id": "Work-root",
+  "max_parallel": 1,
+  "parent_invocation_id": "Work-root-gpc-20261010-042502",
+  "pool_id": "gpc-huawei-readonly-reviews-20261010",
+  "schema": "managed-executor-pool-plan/v1",
+  "tasks": [
+    {
+      "backend_preferences": [
+        "Work-subagent"
+      ],
+      "branch": null,
+      "dependencies": [],
+      "executor_id": "Work-root-huawei-spec-reviewer",
+      "expected_evidence": [
+        "exact-artifact-or-patch-binding",
+        "genuine-terminal-report-digest"
+      ],
+      "expected_outputs": [
+        "huawei-spec-report"
+      ],
+      "id": "spec",
+      "max_cost_units": 1,
+      "max_runtime_seconds": 1800,
+      "required": true,
+      "role": "read_only",
+      "worktree": null,
+      "write_paths": []
+    },
+    {
+      "backend_preferences": [
+        "Work-subagent"
+      ],
+      "branch": null,
+      "dependencies": [
+        "spec"
+      ],
+      "executor_id": "Work-root-huawei-quality-reviewer",
+      "expected_evidence": [
+        "exact-artifact-or-patch-binding",
+        "genuine-terminal-report-digest"
+      ],
+      "expected_outputs": [
+        "huawei-quality-report"
+      ],
+      "id": "quality",
+      "max_cost_units": 1,
+      "max_runtime_seconds": 1800,
+      "required": true,
+      "role": "read_only",
+      "worktree": null,
+      "write_paths": []
+    }
+  ],
+  "total_cost_budget_units": 2,
+  "total_runtime_budget_seconds": 3600
+}

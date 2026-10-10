@@ -2403,6 +2403,23 @@
         "tokens": null
       },
       "wake_id": "gpc-manual-captcha-resolved-20261009-235416"
+    },
+    {
+      "at_utc": "2026-10-10T01:38:27.995499Z",
+      "attempt_id": "gpc-huawei-spec51-20261010",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-huawei-spec51-20261010-agent_start",
+      "kind": "agent_start",
+      "operation_key": "sha256:6c3b176fc2e85623335b470084f4de9194a2df238b7eb1793bc75b49b749c70b",
+      "recovery_ref": null,
+      "scope": "gpc/readonly/huawei-diagnostic-artifact-review",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-huawei-bios-20261010-042502"
     }
   ],
   "policy": {
@@ -2449,6 +2466,7 @@
     "gpc-owner-exe-continuation-20261009-180856",
     "gpc-owner-readable-tabs-20261009-200159",
     "gpc-owner-raised-limits-20261009-230128",
-    "gpc-manual-captcha-resolved-20261009-235416"
+    "gpc-manual-captcha-resolved-20261009-235416",
+    "gpc-huawei-bios-20261010-042502"
   ]
 }
