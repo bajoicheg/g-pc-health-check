@@ -1,0 +1,27 @@
+{
+  "schema": "terminal-state/v2",
+  "invocation_id": "Work-root-gpc-20261010-042502",
+  "scope_id": "gpc-approved-releases0.17.1-through0.19",
+  "observed_head": "7aaefdebca68eed64c8e92d7dfff7384f0a3c800",
+  "decision": "BLOCKED",
+  "runnable_actions": [],
+  "pending_external": null,
+  "blocker": {
+    "code": "gpc-huawei-physical-device-and-ci6-receipt",
+    "evidence_refs": [
+      "git:afdd8b8373a3c458f2033261cffb502378ced4ae:lease.json@blob409cb124c37d7b4875e59c82716ac5b563c6424c",
+      "git:refs/heads/cdc/intent-gpc-native-diagnostic-CI6-20261009@57d4176f8fadbc9a498fcab771b4909ecc8250ac",
+      "library:libfile_e38ad37112108191bb106dc500c621c6",
+      "git:refs/heads/cdc/coordination:exe-gpc-recovery/huawei1010/final-delivery-validation.json"
+    ],
+    "next_action": "Run delivered read-only Huawei discovery kit on actual MCLF-XX and obtain huawei-bios-evidence.json; select verified GET only from actual schema/PCManager version evidence. For source integration independently obtain original CI6 authenticated receive-pack terminal receipt and reconcile pinnedCDC2.12.1 guard before publication/Windows validation.",
+    "recheck_trigger": "Actual Huawei evidence JSON or authenticated original CI6 transaction receipt becomes available"
+  },
+  "meaningful_progress_refs": [
+    "library:libfile_e38ad37112108191bb106dc500c621c6",
+    "git:refs/heads/cdc/coordination:exe-gpc-recovery/huawei1010/final-state.json"
+  ],
+  "completion_evidence_refs": [],
+  "checkpoint_ref": "git:refs/heads/cdc/coordination:exe-gpc-recovery/huawei1010/current-checkpoint.json",
+  "lease_released": true
+}

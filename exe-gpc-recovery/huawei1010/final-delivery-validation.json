@@ -1,0 +1,25 @@
+{
+  "path": "/workspace/scratch/ac06fa404c9c/gpc-delivery/G-PC-Health-Huawei-BIOS-Check.zip",
+  "bytes": 14577,
+  "sha256": "a7f21a8ba1e0f39bbee113554eb9baf12fa2ee2d553584da8c3cc54afbb7efee",
+  "ZIP_CRC": "PASS",
+  "manifest": "PASS",
+  "reviewed_executable_payload_unchanged": true,
+  "reviewed_archive_sha256": "2772ea9233e97f6d97db38feba87332eb3c8b1f692fdfe2ef7cb9b65bc2808ff",
+  "reviews": [
+    {
+      "role": "SPEC",
+      "verdict": "SPEC_GREEN",
+      "report": "exe-gpc-recovery/huawei1010/spec54.md",
+      "report_sha256": "f3c812682d074dc49f67800571090c8f0bf02d656f0c17e995910ab9978ebbef"
+    },
+    {
+      "role": "QUALITY",
+      "verdict": "QUALITY_GREEN",
+      "report": "exe-gpc-recovery/huawei1010/quality55.md",
+      "report_sha256": "ac77510a815432b0b4fa7fa36a6799cfd6460a133ffb0b3f90b85d9187dba3e3"
+    }
+  ],
+  "EXE_unchanged": true,
+  "Windows_Huawei": "NOT_RUN"
+}
