@@ -3046,6 +3046,20 @@
         "tokens": null,
         "elapsed_seconds": null
       }
+    },
+    {
+      "type": "outcome",
+      "event_id": "gpc-no-data66-quality-20261010-agent_start-terminal",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-no-data-20261010",
+      "at_utc": "2026-10-10T20:14:00.812194Z",
+      "reservation_id": "gpc-no-data66-quality-20261010-agent_start",
+      "status": "succeeded",
+      "usage": {
+        "tokens": null,
+        "elapsed_seconds": 164.072
+      },
+      "failure": null
     }
   ],
   "policy": {
