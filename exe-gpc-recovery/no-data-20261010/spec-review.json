@@ -1,0 +1,110 @@
+{
+  "schema": "gpc-independent-spec-review/v1",
+  "attempt": "gpc-no-data63-spec-20261010",
+  "candidate": "3efc1a990bf56dc9659faf8be86d921dda8c1a2a",
+  "tree": "68c7b7a420699b389a435f252a30d193622113b8",
+  "sole_parent": "ca354d2194a454b0356057c2db34e94cea8ffbbe",
+  "admission": "956bffbc8d195a76ea409ec98805a4ed677385d6",
+  "started_at_utc": "2026-10-10T19:41:03.191Z",
+  "finished_at_utc": "2026-10-10T19:45:04.423Z",
+  "elapsed_seconds": 241.232,
+  "verdict": "RED",
+  "findings": [
+    {
+      "id": "SPEC-1",
+      "priority": "P1",
+      "title": "Actual unsupported OEM evidence does not reach unsupported explanation",
+      "path": "/workspace/scratch/ac06fa404c9c/gpc-no-data61/src/G.PcHealthCheck/MissingEvidenceExplanation.cs",
+      "lines": [
+        18,
+        26
+      ],
+      "evidence_paths": [
+        "/workspace/scratch/ac06fa404c9c/gpc-no-data61/src/G.PcHealthCheck/FirmwareSecurityCollector.cs:30-32",
+        "/workspace/scratch/ac06fa404c9c/gpc-no-data61/src/G.PcHealthCheck/EvidencePresentationSelfTest.cs:21-23"
+      ],
+      "description": "A known manufacturer with no matching adapter produces SecurityEvidence(Key=UnsupportedManufacturer, Value=manufacturer, Source=Firmware). The classifier filters to CollectionError/CollectionState and therefore reports cause_not_established even though retained collector evidence explicitly establishes unsupported manufacturer. The new test supplies a different synthetic shape, CollectionState=UnsupportedManufacturer, so its green result misses the real integration.",
+      "required_fix": "Recognize the real retained key/value shape for a recorded known OEM, retain conservative cause_not_established for blank/Unknown manufacturer and null Huawei password status, and cover actual FirmwareSecurityCollector output."
+    },
+    {
+      "id": "SPEC-2",
+      "priority": "P1",
+      "title": "Unknown Security detail rows still lack the required localized explanation",
+      "path": "/workspace/scratch/ac06fa404c9c/gpc-no-data61/src/G.PcHealthCheck/MainForm.SecurityPosture.cs",
+      "lines": [
+        167,
+        215
+      ],
+      "description": "Only AddSecurityControlRow appends MissingEvidenceExplanation. AddBitLockerDetailRows builds Unknown per-volume rows from raw group evidence without reason/next-step; AddLocalAdministratorDetailRows renders Unknown members with raw Reason=PolicyNotConfigured/PolicyUnreadable/PrincipalIdentityUnavailable/NameResolutionRequired and no localized human-readable explanation or honest not-recorded source fallback. Selecting those rows in the new complete detail pane cannot reveal the required explanation.",
+      "required_fix": "Apply explanations to all visible Unknown row shapes using their retained subject evidence. Preserve per-volume/member evidence and expose corresponding metadata consistently in exports without changing statuses or treating parent explanation as a proven per-subject cause."
+    },
+    {
+      "id": "SPEC-3",
+      "priority": "P2",
+      "title": "Selecting a symptom after a scan makes clipboard disagree with the saved report",
+      "path": "/workspace/scratch/ac06fa404c9c/gpc-no-data61/src/G.PcHealthCheck/MainForm.Symptoms.cs",
+      "lines": [
+        25,
+        29
+      ],
+      "evidence_paths": [
+        "/workspace/scratch/ac06fa404c9c/gpc-no-data61/src/G.PcHealthCheck/MainForm.cs:322-325",
+        "/workspace/scratch/ac06fa404c9c/gpc-no-data61/src/G.PcHealthCheck/MainForm.cs:538-539",
+        "/workspace/scratch/ac06fa404c9c/gpc-no-data61/src/G.PcHealthCheck/SupportSummary.cs:17"
+      ],
+      "description": "After ScanAsync already saves HTML/JSON, OpenSymptom updates only _current.SymptomNotes in memory. Clipboard immediately formats the new notes, while OpenReport opens the prior _latestReport whose HTML and JSON contain no selection. The product has no later save in this selection path.",
+      "required_fix": "Make symptom-note report persistence and clipboard refer to the same selection snapshot without automatically collecting, probing, repairing, or changing the action batch; add a behavioral regression for selection after a completed scan."
+    },
+    {
+      "id": "SPEC-4",
+      "priority": "P2",
+      "title": "Verification discards the original symptom notes from the current snapshot and HTML",
+      "path": "/workspace/scratch/ac06fa404c9c/gpc-no-data61/src/G.PcHealthCheck/MainForm.cs",
+      "lines": [
+        389,
+        395
+      ],
+      "evidence_paths": [
+        "/workspace/scratch/ac06fa404c9c/gpc-no-data61/src/G.PcHealthCheck/ReportService.cs:97-103",
+        "/workspace/scratch/ac06fa404c9c/gpc-no-data61/src/G.PcHealthCheck/Models.cs:254"
+      ],
+      "description": "Regular scan assigns _symptomNotes, but ApplySelectedAsync creates a new after ScanResult and immediately saves/replaces _current without copying those notes. Verification JSON can retain notes in Before but After is empty, verification HTML renders Triage(v.After) and loses the symptom, and the current clipboard also loses it. This breaks original symptom continuity across the existing verification flow.",
+      "required_fix": "Carry the original symptom context into the post-verification snapshot/report and test Before/After/HTML/clipboard consistency without altering remediation semantics."
+    },
+    {
+      "id": "SPEC-5",
+      "priority": "P2",
+      "title": "Policy-unreadable prose claims a configured policy when the collector may only have caught a generic exception",
+      "path": "/workspace/scratch/ac06fa404c9c/gpc-no-data61/src/G.PcHealthCheck/Resources/Strings.en.resx",
+      "lines": [
+        125,
+        125
+      ],
+      "evidence_paths": [
+        "/workspace/scratch/ac06fa404c9c/gpc-no-data61/src/G.PcHealthCheck/Resources/Strings.resx:125",
+        "/workspace/scratch/ac06fa404c9c/gpc-no-data61/src/G.PcHealthCheck/LocalAdministratorsPolicy.cs:28-31",
+        "/workspace/scratch/ac06fa404c9c/gpc-no-data61/src/G.PcHealthCheck/MissingEvidenceExplanation.cs:31-34"
+      ],
+      "description": "LocalAdministratorsPolicy.Load catches any source exception and returns Configured=true/Readable=false as a conservative sentinel, even if policy existence was never observed. The new policy_unreadable reason states that the policy is configured (RU: Политика задана). A generic pre-read exception therefore produces a stronger existence claim than retained evidence supports.",
+      "required_fix": "Use honest wording that the policy could not be read/validated and its existence/type may be unestablished, or distinguish confirmed presence using existing explicit retained evidence only. Do not infer access denial or change policy/control status."
+    }
+  ],
+  "confirmed_scope_preserved": [
+    "No diff to security evaluator, control weights, scoring, diagnostic coverage calculation, providers, elevation/remediation machinery or shared product refs.",
+    "Four compact Overview routes point to existing performance, incident, resource and common-problems forms; ResourceProbe and other destinations remain explicitly started, and common-problems symptom route disables Shown auto-scan.",
+    "Localized reason/next-step metadata is additive for top-level Unknown controls and included in normal UI selected details, HTML, JSON and clipboard.",
+    "No-WARN/CRIT Triage includes incomplete coverage/missing-signal/collection-warning branch; existing CRIT/WARN ordering unchanged."
+  ],
+  "evidence": [
+    "Read contract.txt, verified exact HEAD/tree/sole parent twice.",
+    "Reviewed entire candidate diff and collector/UI/report/persistence integrations; git diff --check HEAD^ HEAD exit 0; git status --short empty.",
+    "Read received RED/GREEN/final-regressions/baseline-regressions logs: evidence behavior 10/10, evaluator 9/9, seven guidance failures reproduced in parent (12/19). These are producer receipts, not independently rerun tests.",
+    "Read publish-receipt.json: SDK8.0.425 warnings-as-errors win-x64 crosspublish returncode0; verification.json identifies exact candidate/version and Windows runtime NOT_RUN."
+  ],
+  "limitations": [
+    "READ ONLY static SPEC review; no independent runtime or test execution and no new build.",
+    "Windows runtime, WinForms render/layout/DPI/RDP, Windows11 pilot, UAC and physical Huawei validation NOT_RUN.",
+    "Received immutable binary bytes/checksums and publication mechanics are owned by parent validation, not independently validated here.",
+    "No subprocess sessions started; all invoked read-only commands returned terminal exit codes. Only this standalone review JSON was written. Original Git outcome remains UNKNOWN and no replay was attempted."
+  ]
+}

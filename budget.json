@@ -2916,6 +2916,54 @@
         "tokens": null,
         "elapsed_seconds": null
       }
+    },
+    {
+      "type": "outcome",
+      "event_id": "gpc-no-data63-spec-20261010-agent_start-terminal",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-no-data-20261010",
+      "at_utc": "2026-10-10T19:45:40.504164Z",
+      "reservation_id": "gpc-no-data63-spec-20261010-agent_start",
+      "status": "succeeded",
+      "usage": {
+        "tokens": null,
+        "elapsed_seconds": 241.232
+      },
+      "failure": null
+    },
+    {
+      "type": "reserve",
+      "event_id": "gpc-no-data64-corrective-20261010-agent_start",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-no-data-20261010",
+      "at_utc": "2026-10-10T19:45:40.504164Z",
+      "operation_key": "sha256:3de9016dccd221a770607a5fb18957af570c9ea925996e95740618c2006f1d23",
+      "attempt_id": "gpc-no-data64-corrective-20261010",
+      "kind": "agent_start",
+      "scope": "gpc/isolated-corrective-missing-evidence",
+      "recovery_ref": null,
+      "cost": {
+        "tool_calls": 1,
+        "tokens": null,
+        "elapsed_seconds": null
+      }
+    },
+    {
+      "type": "reserve",
+      "event_id": "gpc-no-data64-corrective-20261010-compute_start",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-no-data-20261010",
+      "at_utc": "2026-10-10T19:45:40.504164Z",
+      "operation_key": "sha256:7f1373117ae538fe4eaa87fdd1bd95235749de76cadc7e650891b6b8bdf71311",
+      "attempt_id": "gpc-no-data64-corrective-20261010",
+      "kind": "compute_start",
+      "scope": "gpc/isolated-corrective-missing-evidence",
+      "recovery_ref": null,
+      "cost": {
+        "tool_calls": 1,
+        "tokens": null,
+        "elapsed_seconds": null
+      }
     }
   ],
   "policy": {
@@ -2927,7 +2975,7 @@
     "max_parallel_agents": 4,
     "provider_max_age_seconds": 300,
     "task_limits": {
-      "agent_starts": 64,
+      "agent_starts": 66,
       "ci_starts": 13,
       "compute_starts": null
     },
@@ -2937,7 +2985,7 @@
       "tool_calls": 80
     }
   },
-  "policy_digest": "sha256:11d44db79c593e9123f6281895e91df41cf82538bf9fbb4d89770df953f9e3ab",
+  "policy_digest": "sha256:4a859f15a4c3e14352a08eaa9fa8fe43f6602733982f69aa5dd4b6965539af02",
   "schema": "budget-ledger/v1",
   "task_id": "g-pc-health-check-0.17.0-pre-integration",
   "wake_ids": [

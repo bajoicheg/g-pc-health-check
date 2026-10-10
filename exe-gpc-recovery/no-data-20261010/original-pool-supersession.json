@@ -1,0 +1,26 @@
+{
+  "reason": "SPEC RED requires corrective writer; old unstarted QUALITY superseded by corrected candidate ordered reviews",
+  "original_candidate": "3efc1a990bf56dc9659faf8be86d921dda8c1a2a",
+  "original_pool_assessment": {
+    "schema": "managed-executor-pool-assessment/v1",
+    "pool_id": "gpc-no-data61-20261010",
+    "complete": false,
+    "terminal_allowed": false,
+    "runnable_task_ids": [],
+    "blockers": [
+      "spec:recovery_required",
+      "quality:dependency_wait"
+    ],
+    "next_action": "observe_or_recover_pool",
+    "authorizes_worker_launch": false,
+    "authorizes_shared_branch_write": false,
+    "authorizes_merge": false,
+    "authorizes_release": false,
+    "authorizes_scope_expansion": false,
+    "authorizes_scheduler_mutation": false,
+    "authorizes_user_approval": false
+  },
+  "launched_review_terminal": true,
+  "no_active_original_pool_actors": true,
+  "retained_in_history": true
+}
