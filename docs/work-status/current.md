@@ -2,9 +2,9 @@
 schema: development-work-status/v4
 repository: bajoicheg/g-pc-health-check
 branch: design/0.17.0-security-posture
-policy_revision: 2026-10-08-cdc-2.12.1-atomic-adoption
-policy_digest: f0c53ad7e35b3f11d30ec831dec6231b9b2e3b7bd19227d849f95d9783bc27c2
-observed_at_utc: '2026-10-06T14:09:25.072161Z'
+policy_revision: 2026-10-10-cdc-3.3.1-independent-gpc-adoption
+policy_digest: 754133586e0cec49f1e1aaa7c36e9662c403c73acc098096e21286e3c5021d8d
+observed_at_utc: '2026-10-10T19:05:04.291408Z'
 orchestration_origin: chat
 active_executor: none
 lease_state: released
@@ -24,10 +24,10 @@ execution_continuity:
   completion_gate: continue
   last_progress_ref: docs/REBRANDING.md
 control:
-  execution_lease_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/lease.json
-  execution_lease_revision: c7811cd7ed2ecf32efcce10d17b9cbb4be89b7dd
+  execution_lease_ref: refs/heads/cdc/coordination
+  execution_lease_revision: cad05d820b206b138b714b790311306d2025f238
   executor_id: null
-  lease_generation: 19
+  lease_generation: 31
   budget_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/budget.json
   recovery_snapshot_ref: null
   external_wait_ref: null
@@ -203,3 +203,8 @@ Canonical immutable release 97706dd78a82cfb9ff9e1ce9191d21a42222db37, package 38
 ## CDC 2.11.9 atomic process adoption
 
 Canonical immutable release 62cd32e91446675799d42247eac2a0312c33d363, package 6867b012d01d776c2c0236b110980ba2c1292c26. Only policy bindings change in frontmatter; existing product state/evidence/platform blockers remain historical facts. This complete detached assembly does not claim publication, new product tests or a future ownership release. Actual managed publication and terminal release receipts are authoritative on separate control refs. Schedulers remain paused.
+
+
+## Current CDC 3.3.1 independent process maintenance
+
+Canonical released source 51740497bea3e1bcbb302e894fda8b7e42bc0087, exact401-file package tree f580a8946c0510540a4be3f4422ab3404875274b, immutable refs/heads/release/v3.3.1. Separately pinned evidence 245fdf05c272d3f1c49ff0b7903213fac0aaf5a8:release/evidence-3.3.1.json; mandatory canonical CI38076972040 is reused for this identical CDC package. Owner approved administrative isolation of the original consumed CI6 guard through released3.3.1 canonical retirement. Original Git outcome remains UNKNOWN forever; original53636f45 candidate, pilot push, attempt and grant must never be replayed. This independent CDC-only migration preserves all product objects, budgets, audits, previous evidence and Windows0.17.1/0.17.2/0.18/0.19 pending/NOT_RUN gates. No product CI, product approval or product release is inferred. All schedulers/watchdogs/Fleet background remain paused; retiredSupervisor remains cancelled. Read real new managed release/pool/physical closure receipts independently. Earlier CDC sections remain historical.
