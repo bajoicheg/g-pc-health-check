@@ -1,33 +1,33 @@
 {
   "schema": "managed-executor-pool-state/v1",
-  "plan_digest": "sha256:1e09d64b4da8a49fbb29719deb358e081710af90ddcf35d8f59610c8e4c869d6",
-  "pool_id": "gpc-max-huawei-OEM56-20261010",
-  "change_id": "gpc-huawei-verified-readonly-OEM-contract-research",
+  "plan_digest": "sha256:402759e6679aa6e61f8581a5382d1d63e0c7344a4899f8ad8867745741826bb4",
+  "pool_id": "gpc-huawei-controller57-20261010",
+  "change_id": "gpc-isolated-huawei-bcd-command-candidate",
   "parent_invocation_id": "Work-root-gpc-20261010-123856",
   "base_sha": "7aaefdebca68eed64c8e92d7dfff7384f0a3c800",
   "integrator_id": "Work-root",
   "coordination_ref": "refs/heads/cdc/coordination",
   "coordination_store_id": "sha256:e9c5798b2e5857d11563b10845ae993ed5b0e7b040ffd6611bdbd1a36aad08d3",
-  "revision": 4,
+  "revision": 2,
   "execution_mode": "parallel",
   "tasks": [
     {
-      "id": "oem",
-      "status": "succeeded",
+      "id": "controller",
+      "status": "running",
       "attempt_ids": [
-        "gpc-huawei-OEM56-20261010"
+        "gpc-huawei-controller57-20261010"
       ],
-      "active_attempt_id": null,
-      "reservation_token": null,
-      "accepted_result_ref": "sha256:8413d21e27d1654f904096aa4fae931df53d05195816ab5441dfe1dbb6d15e2c",
-      "integrated": true,
+      "active_attempt_id": "gpc-huawei-controller57-20261010",
+      "reservation_token": "90a0750a-3b77-496a-9793-d0dd3aa83b8e",
+      "accepted_result_ref": null,
+      "integrated": false,
       "discarded": false,
-      "runtime_seconds": 444.127283,
-      "cost_units": 1
+      "runtime_seconds": 0,
+      "cost_units": 0
     }
   ],
-  "runtime_consumed_seconds": 444.127283,
-  "cost_consumed_units": 1,
+  "runtime_consumed_seconds": 0,
+  "cost_consumed_units": 0,
   "authorizes_worker_launch": false,
   "authorizes_shared_branch_write": false,
   "authorizes_merge": false,

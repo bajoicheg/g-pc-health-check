@@ -1,0 +1,121 @@
+{
+  "schema": "gpc-huawei-primary-oem-research/v1",
+  "task_id": "oem",
+  "attempt_id": "gpc-huawei-OEM56-20261010",
+  "reservation_token": "e6ee8f9c-6358-4da5-8206-42df594f5291",
+  "parent_invocation_id": "Work-root-gpc-20261010-123856",
+  "coordination_claim_commit": "b81e276bd1e8393613254a0fb63cb1f688195d8c",
+  "coordination_state_path": "exe-gpc-recovery/max1010/oem-state.json",
+  "cdc_pinned_version": "2.12.1",
+  "disposition": "RESEARCH_COMPLETE_WITH_CONCRETE_NEXT_STEP",
+  "verified_BIOS_GET_contract": false,
+  "observed_start_utc": "2026-10-10T09:44:28Z",
+  "observed_finish_utc": "2026-10-10T09:47:31Z",
+  "provider_agent_start_utc": null,
+  "timing_basis": "Observed local clock to report-preparation finish; physical/provider start unknown",
+  "report_path": "/workspace/scratch/ac06fa404c9c/max1010-reviews/oem56.md",
+  "report_sha256": "8413d21e27d1654f904096aa4fae931df53d05195816ab5441dfe1dbb6d15e2c",
+  "new_positive_findings": [
+    "Official PC Manager acquisition page and actual Download Now redirect route verified",
+    "Static PE export inspection route documented by Microsoft; ABI/ordinal stability cannot be inferred from names",
+    "Static _WDG mapping and WM/WQ/_WED role separation verified from primary kernel docs",
+    "Desktop ACPI-table acquisition API documented; duplicate-signature first-only coverage limit verified"
+  ],
+  "official_package": {
+    "advertised_page_version": "14.0.7.260",
+    "page": "https://consumer.huawei.com/en/support/pc-manager/",
+    "observed_download_route": "https://consumer-tkb.huawei.com/weknow/servlet/download/public?contextNo=W00030690&view=true",
+    "observed_redirect_host": "consumer-tkbdownload.huawei.com",
+    "observed_redirect_kind": ".exe",
+    "binary_sha256": null,
+    "binary_downloaded": false,
+    "binary_version_verified": false,
+    "DLL_contents_verified": false,
+    "retrieval_limitation": "Web page retrieval cannot inspect redirected .exe binary; no vendor outage inference"
+  },
+  "next_action": "Acquire exact official package bytes through authorized binary-transfer route, hash/signature-check and statically inspect packaging/DLL exports/call graph without installer/DLL execution",
+  "remaining_gaps": [
+    "Actual DLL bytes, selector enums/ABI/input/output layout and initialization",
+    "MCLF-specific ACPI _WDG/WM dispatcher and dependency coverage",
+    "Proven read-only BIOS password/USB/PXE command semantics",
+    "Physical Windows/Huawei validation"
+  ],
+  "sources": [
+    {
+      "id": "H1",
+      "url": "https://consumer.huawei.com/en/support/pc-manager/",
+      "finding": "Official page advertises PC Manager 14.0.7.260 and exposes official Download Now route"
+    },
+    {
+      "id": "H2",
+      "url": "https://consumer-tkb.huawei.com/weknow/servlet/download/public?contextNo=W00030690&view=true",
+      "finding": "Observed official download redirects to consumer-tkbdownload.huawei.com .exe; binary unsupported by web retrieval tool, no bytes/hash acquired"
+    },
+    {
+      "id": "H3",
+      "url": "https://consumer.huawei.com/en/support/content/en-us00688514/",
+      "finding": "Official download instructions; features vary by Huawei model"
+    },
+    {
+      "id": "M1",
+      "url": "https://learn.microsoft.com/en-us/cpp/build/exporting-from-a-dll?view=msvc-170",
+      "finding": "DUMPBIN /EXPORTS lists DLL export table"
+    },
+    {
+      "id": "M2",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/debug/pe-format",
+      "finding": "PE names/ordinals/RVAs and forwarders, optional export names; table alone is not a full callable contract"
+    },
+    {
+      "id": "M3",
+      "url": "https://learn.microsoft.com/en-us/cpp/build/reference/exports?view=msvc-170",
+      "finding": "C++ decorated names are compiler-specific; NONAME exports can omit names"
+    },
+    {
+      "id": "A1",
+      "url": "https://www.kernel.org/doc/html/v6.8/wmi/acpi-interface.html",
+      "finding": "Static _WDG discovery mapping; WMxx method dispatch, WQxx queries and _WED event data are distinct"
+    },
+    {
+      "id": "M4",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/sysinfoapi/nf-sysinfoapi-enumsystemfirmwaretables",
+      "finding": "Desktop API enumerates ACPI signatures, including duplicates"
+    },
+    {
+      "id": "M5",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/sysinfoapi/nf-sysinfoapi-getsystemfirmwaretable",
+      "finding": "Desktop API reads ACPI table bytes, but only first table for duplicate signature"
+    },
+    {
+      "id": "A2",
+      "url": "https://github.com/acpica/acpica/issues/414",
+      "finding": "ACPICA primary project record warns incomplete external/dynamically loaded SSDTs can make disassembly unresolved"
+    },
+    {
+      "id": "X1",
+      "url": "https://github.com/denis-bb/honor-fmb-p-dsdt",
+      "finding": "Author DSDT artifacts are Honor FMB-P/BIOS1.13, not Huawei MCLF; cannot reuse target mapping"
+    }
+  ],
+  "verification": {
+    "Windows_runtime": "NOT_RUN",
+    "Huawei_runtime": "NOT_RUN",
+    "package_binary_acquisition": "NOT_RUN",
+    "DLL_export_or_disassembly": "NOT_RUN",
+    "ACPI_capture_or_disassembly": "NOT_RUN",
+    "OEM_methods_invoked": 0,
+    "DLLs_loaded": 0,
+    "drivers_loaded": 0,
+    "guessed_opcodes_sent": 0,
+    "product_source_or_Git_changed": false,
+    "backend_started": false,
+    "delegation": false
+  },
+  "limitations": [
+    "Bounded search failure is not proof of no private SDK/interface",
+    "Official page version does not prove binary/DLL version",
+    "GetSystemFirmwareTable returns first table for duplicate ACPI signature",
+    "Generic WMI mapping does not demonstrate any Huawei BIOS read-only command",
+    "Existing guards preserved; report does not authorize product integration"
+  ]
+}
