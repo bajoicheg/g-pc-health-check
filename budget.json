@@ -2513,6 +2513,37 @@
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
       "type": "reserve",
       "wake_id": "gpc-huawei-bios-20261010-042502"
+    },
+    {
+      "at_utc": "2026-10-10T01:55:37.241332Z",
+      "event_id": "gpc-huawei-spec54-20261010-actual-terminal",
+      "failure": null,
+      "reservation_id": "gpc-huawei-spec54-20261010-agent_start",
+      "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": null,
+        "tokens": null
+      },
+      "wake_id": "gpc-huawei-bios-20261010-042502"
+    },
+    {
+      "at_utc": "2026-10-10T01:55:37.241332Z",
+      "attempt_id": "gpc-huawei-quality55-20261010",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-huawei-quality55-20261010-agent_start",
+      "kind": "agent_start",
+      "operation_key": "sha256:b05f66624cb0ab06f6f4cd2bf09036944bcc69008bf45fa282e2c1a555721bc7",
+      "recovery_ref": null,
+      "scope": "gpc/readonly/huawei-diagnostic-quality-review",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-huawei-bios-20261010-042502"
     }
   ],
   "policy": {
