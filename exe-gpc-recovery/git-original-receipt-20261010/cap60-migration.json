@@ -1,0 +1,49 @@
+{
+  "schema": "owner-approved-budget-policy-migration/v1",
+  "at_utc": "2026-10-10T17:53:46.256538Z",
+  "authority": "Prior explicit owner instruction Подними себе лимиты по необходимости сейчас и продолжай; current explicit original executor log search",
+  "scope": "ONE independent non-competing read-only host log search; no replay/source/lease/guard/intent/grant/adoption effects",
+  "old_policy": {
+    "actions_budget": "conserve",
+    "checkpoint_reserve": {
+      "tokens": 4000,
+      "tool_calls": 8
+    },
+    "max_parallel_agents": 4,
+    "provider_max_age_seconds": 300,
+    "task_limits": {
+      "agent_starts": 59,
+      "ci_starts": 13,
+      "compute_starts": null
+    },
+    "wake_limits": {
+      "compute_starts": 6,
+      "status_polls": null,
+      "tool_calls": 80
+    }
+  },
+  "new_policy": {
+    "actions_budget": "conserve",
+    "checkpoint_reserve": {
+      "tokens": 4000,
+      "tool_calls": 8
+    },
+    "max_parallel_agents": 4,
+    "provider_max_age_seconds": 300,
+    "task_limits": {
+      "agent_starts": 60,
+      "ci_starts": 13,
+      "compute_starts": null
+    },
+    "wake_limits": {
+      "compute_starts": 6,
+      "status_polls": null,
+      "tool_calls": 80
+    }
+  },
+  "old_digest": "sha256:cd1a977f28cafbdbc80e8ac8245b761d7de7bf9d3dedecd5dac36aefc128ee8b",
+  "new_digest": "sha256:5bb18b9c49e060afe015022df7e2a78330ab51c1990a1e76408823e9582308e4",
+  "events_preserved": true,
+  "historical_unknowns_preserved": true,
+  "CDC": "2.12.1 unchanged"
+}

@@ -2713,6 +2713,40 @@
         "tokens": null
       },
       "wake_id": "gpc-max-huawei-20261010-123856"
+    },
+    {
+      "type": "reserve",
+      "event_id": "gpc-original-CI6-host-log-audit60-20261010-agent_start",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-git-original-receipt-audit-20261010-2048",
+      "at_utc": "2026-10-10T17:53:46.256538Z",
+      "operation_key": "sha256:f88d5a26a8f29ff5805047600d7ccf3da73e11ef5a223a056789d062c68bcd37",
+      "attempt_id": "gpc-original-CI6-host-log-audit60-20261010",
+      "kind": "agent_start",
+      "scope": "gpc/readonly-original-host-retained-log-recovery",
+      "recovery_ref": null,
+      "cost": {
+        "tool_calls": 1,
+        "tokens": null,
+        "elapsed_seconds": null
+      }
+    },
+    {
+      "type": "reserve",
+      "event_id": "gpc-original-CI6-host-log-audit60-20261010-compute_start",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-git-original-receipt-audit-20261010-2048",
+      "at_utc": "2026-10-10T17:53:46.256538Z",
+      "operation_key": "sha256:5d1ec8b1fbf9bb6038efe1829f7876df63e956feb3dbdd62325a7971c2306dfc",
+      "attempt_id": "gpc-original-CI6-host-log-audit60-20261010",
+      "kind": "compute_start",
+      "scope": "gpc/readonly-original-host-retained-log-recovery",
+      "recovery_ref": null,
+      "cost": {
+        "tool_calls": 1,
+        "tokens": null,
+        "elapsed_seconds": null
+      }
     }
   ],
   "policy": {
@@ -2724,7 +2758,7 @@
     "max_parallel_agents": 4,
     "provider_max_age_seconds": 300,
     "task_limits": {
-      "agent_starts": 59,
+      "agent_starts": 60,
       "ci_starts": 13,
       "compute_starts": null
     },
@@ -2734,7 +2768,7 @@
       "tool_calls": 80
     }
   },
-  "policy_digest": "sha256:cd1a977f28cafbdbc80e8ac8245b761d7de7bf9d3dedecd5dac36aefc128ee8b",
+  "policy_digest": "sha256:5bb18b9c49e060afe015022df7e2a78330ab51c1990a1e76408823e9582308e4",
   "schema": "budget-ledger/v1",
   "task_id": "g-pc-health-check-0.17.0-pre-integration",
   "wake_ids": [
@@ -2761,6 +2795,7 @@
     "gpc-owner-raised-limits-20261009-230128",
     "gpc-manual-captcha-resolved-20261009-235416",
     "gpc-huawei-bios-20261010-042502",
-    "gpc-max-huawei-20261010-123856"
+    "gpc-max-huawei-20261010-123856",
+    "gpc-git-original-receipt-audit-20261010-2048"
   ]
 }
