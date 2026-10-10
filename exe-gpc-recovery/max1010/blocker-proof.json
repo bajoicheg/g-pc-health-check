@@ -1,0 +1,16 @@
+{
+  "schema": "blocked-state-proof/v1",
+  "dependency_id": "gpc-huawei-device-OEM-bytes-and-original-ci6-receipt",
+  "category": "external_evidence_unavailable",
+  "observed_at_utc": "2026-10-10T10:13:34.305428Z",
+  "max_age_seconds": 600,
+  "evidence_refs": [
+    "git:4aeb5f2a793c2b26925df5ed95cebf7ea611865a:lease.json@blob409cb124c37d7b4875e59c82716ac5b563c6424c",
+    "git:3c27edfc3828393d5aa29f0c1d50ba612e7dabee:document.json#controller57_huawei_BCD_EXE_handoff",
+    "library:libfile_e38ad37112108191bb106dc500c621c6",
+    "git:refs/heads/cdc/intent-gpc-native-diagnostic-CI6-20261009@57d4176f8fadbc9a498fcab771b4909ecc8250ac"
+  ],
+  "next_action": "Obtain actual MCLF Huawei evidence JSON/exact OEM DLL bytes for static GET analysis. Obtain authenticated original CI6 receive-pack terminal receipt and reconcile immutableCDC2.12.1 guard before product publication/required Windows validation.",
+  "recheck_trigger": "Actual Huawei evidence/OEM bytes or authenticated original CI6 transaction receipt becomes available",
+  "same_invocation_work_exhausted": true
+}

@@ -2560,145 +2560,159 @@
       "wake_id": "gpc-huawei-bios-20261010-042502"
     },
     {
-      "type": "reserve",
-      "event_id": "gpc-huawei-OEM56-20261010-agent_start",
-      "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-max-huawei-20261010-123856",
       "at_utc": "2026-10-10T09:43:43.984294Z",
-      "operation_key": "sha256:b3721629aef7fef42e91e96dcc3895448332f606215626961dd2ce3038bd3976",
       "attempt_id": "gpc-huawei-OEM56-20261010",
-      "kind": "agent_start",
-      "scope": "gpc/readonly/OEM-primary-contract-research",
-      "recovery_ref": null,
       "cost": {
-        "tool_calls": 1,
+        "elapsed_seconds": null,
         "tokens": null,
-        "elapsed_seconds": null
-      }
+        "tool_calls": 1
+      },
+      "event_id": "gpc-huawei-OEM56-20261010-agent_start",
+      "kind": "agent_start",
+      "operation_key": "sha256:b3721629aef7fef42e91e96dcc3895448332f606215626961dd2ce3038bd3976",
+      "recovery_ref": null,
+      "scope": "gpc/readonly/OEM-primary-contract-research",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-max-huawei-20261010-123856"
     },
     {
-      "type": "outcome",
-      "event_id": "gpc-huawei-OEM56-20261010-actual-terminal",
-      "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-max-huawei-20261010-123856",
       "at_utc": "2026-10-10T09:51:08.111577Z",
+      "event_id": "gpc-huawei-OEM56-20261010-actual-terminal",
+      "failure": null,
       "reservation_id": "gpc-huawei-OEM56-20261010-agent_start",
       "status": "succeeded",
-      "usage": {
-        "tokens": null,
-        "elapsed_seconds": null
-      },
-      "failure": null
-    },
-    {
-      "type": "reserve",
-      "event_id": "gpc-huawei-controller57-20261010-agent_start",
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-max-huawei-20261010-123856",
-      "at_utc": "2026-10-10T09:51:08.111577Z",
-      "operation_key": "sha256:234d7a657bc9808ec214b8c29dade44e51764a6862536d4d839efb4a3515057d",
-      "attempt_id": "gpc-huawei-controller57-20261010",
-      "kind": "agent_start",
-      "scope": "gpc/isolated-huawei-bcd-validation-and-build",
-      "recovery_ref": null,
-      "cost": {
-        "tool_calls": 1,
-        "tokens": null,
-        "elapsed_seconds": null
-      }
-    },
-    {
-      "type": "reserve",
-      "event_id": "gpc-huawei-controller57-20261010-compute_start",
-      "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-max-huawei-20261010-123856",
-      "at_utc": "2026-10-10T09:51:08.111577Z",
-      "operation_key": "sha256:596c4c381284a589787f80f313ed5c62499e56e24f6e3bf694318f23f3023b7d",
-      "attempt_id": "gpc-huawei-controller57-20261010",
-      "kind": "compute_start",
-      "scope": "gpc/isolated-huawei-bcd-validation-and-build",
-      "recovery_ref": null,
-      "cost": {
-        "tool_calls": 1,
-        "tokens": null,
-        "elapsed_seconds": null
-      }
-    },
-    {
       "type": "outcome",
-      "event_id": "gpc-huawei-controller57-20261010-agent_start-actual-terminal",
+      "usage": {
+        "elapsed_seconds": null,
+        "tokens": null
+      },
+      "wake_id": "gpc-max-huawei-20261010-123856"
+    },
+    {
+      "at_utc": "2026-10-10T09:51:08.111577Z",
+      "attempt_id": "gpc-huawei-controller57-20261010",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-huawei-controller57-20261010-agent_start",
+      "kind": "agent_start",
+      "operation_key": "sha256:234d7a657bc9808ec214b8c29dade44e51764a6862536d4d839efb4a3515057d",
+      "recovery_ref": null,
+      "scope": "gpc/isolated-huawei-bcd-validation-and-build",
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-max-huawei-20261010-123856",
+      "type": "reserve",
+      "wake_id": "gpc-max-huawei-20261010-123856"
+    },
+    {
+      "at_utc": "2026-10-10T09:51:08.111577Z",
+      "attempt_id": "gpc-huawei-controller57-20261010",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-huawei-controller57-20261010-compute_start",
+      "kind": "compute_start",
+      "operation_key": "sha256:596c4c381284a589787f80f313ed5c62499e56e24f6e3bf694318f23f3023b7d",
+      "recovery_ref": null,
+      "scope": "gpc/isolated-huawei-bcd-validation-and-build",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-max-huawei-20261010-123856"
+    },
+    {
       "at_utc": "2026-10-10T10:01:03.647564Z",
+      "event_id": "gpc-huawei-controller57-20261010-agent_start-actual-terminal",
+      "failure": null,
       "reservation_id": "gpc-huawei-controller57-20261010-agent_start",
       "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
       "usage": {
-        "tokens": null,
-        "elapsed_seconds": 291
+        "elapsed_seconds": 291,
+        "tokens": null
       },
-      "failure": null
+      "wake_id": "gpc-max-huawei-20261010-123856"
     },
     {
-      "type": "outcome",
-      "event_id": "gpc-huawei-controller57-20261010-compute_start-actual-terminal",
-      "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-max-huawei-20261010-123856",
       "at_utc": "2026-10-10T10:01:03.647564Z",
+      "event_id": "gpc-huawei-controller57-20261010-compute_start-actual-terminal",
+      "failure": null,
       "reservation_id": "gpc-huawei-controller57-20261010-compute_start",
       "status": "succeeded",
-      "usage": {
-        "tokens": null,
-        "elapsed_seconds": 291
-      },
-      "failure": null
-    },
-    {
-      "type": "reserve",
-      "event_id": "gpc-huawei-spec58-20261010-agent_start",
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-max-huawei-20261010-123856",
-      "at_utc": "2026-10-10T10:01:03.647564Z",
-      "operation_key": "sha256:f1b71938f56f2ff422c9ac023d5e7b4b19c1f09f1c7aa2472152fc96d17250eb",
-      "attempt_id": "gpc-huawei-spec58-20261010",
-      "kind": "agent_start",
-      "scope": "gpc/readonly/huawei-bcd-candidate-spec-review",
-      "recovery_ref": null,
-      "cost": {
-        "tool_calls": 1,
-        "tokens": null,
-        "elapsed_seconds": null
-      }
-    },
-    {
       "type": "outcome",
-      "event_id": "gpc-huawei-spec58-20261010-actual-terminal",
+      "usage": {
+        "elapsed_seconds": 291,
+        "tokens": null
+      },
+      "wake_id": "gpc-max-huawei-20261010-123856"
+    },
+    {
+      "at_utc": "2026-10-10T10:01:03.647564Z",
+      "attempt_id": "gpc-huawei-spec58-20261010",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-huawei-spec58-20261010-agent_start",
+      "kind": "agent_start",
+      "operation_key": "sha256:f1b71938f56f2ff422c9ac023d5e7b4b19c1f09f1c7aa2472152fc96d17250eb",
+      "recovery_ref": null,
+      "scope": "gpc/readonly/huawei-bcd-candidate-spec-review",
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-max-huawei-20261010-123856",
+      "type": "reserve",
+      "wake_id": "gpc-max-huawei-20261010-123856"
+    },
+    {
       "at_utc": "2026-10-10T10:06:05.645890Z",
+      "event_id": "gpc-huawei-spec58-20261010-actual-terminal",
+      "failure": null,
       "reservation_id": "gpc-huawei-spec58-20261010-agent_start",
       "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
       "usage": {
-        "tokens": null,
-        "elapsed_seconds": null
+        "elapsed_seconds": null,
+        "tokens": null
       },
-      "failure": null
+      "wake_id": "gpc-max-huawei-20261010-123856"
     },
     {
-      "type": "reserve",
-      "event_id": "gpc-huawei-quality59-20261010-agent_start",
-      "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-max-huawei-20261010-123856",
       "at_utc": "2026-10-10T10:06:05.645890Z",
-      "operation_key": "sha256:123c74e035a744f261393e1e0dd4ac44e86140ee1006bb12b1772d35e10e7bf2",
       "attempt_id": "gpc-huawei-quality59-20261010",
-      "kind": "agent_start",
-      "scope": "gpc/readonly/huawei-bcd-candidate-quality-review",
-      "recovery_ref": null,
       "cost": {
-        "tool_calls": 1,
+        "elapsed_seconds": null,
         "tokens": null,
-        "elapsed_seconds": null
-      }
+        "tool_calls": 1
+      },
+      "event_id": "gpc-huawei-quality59-20261010-agent_start",
+      "kind": "agent_start",
+      "operation_key": "sha256:123c74e035a744f261393e1e0dd4ac44e86140ee1006bb12b1772d35e10e7bf2",
+      "recovery_ref": null,
+      "scope": "gpc/readonly/huawei-bcd-candidate-quality-review",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-max-huawei-20261010-123856"
+    },
+    {
+      "at_utc": "2026-10-10T10:11:29.780211Z",
+      "event_id": "gpc-huawei-quality59-20261010-actual-terminal",
+      "failure": null,
+      "reservation_id": "gpc-huawei-quality59-20261010-agent_start",
+      "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": null,
+        "tokens": null
+      },
+      "wake_id": "gpc-max-huawei-20261010-123856"
     }
   ],
   "policy": {
