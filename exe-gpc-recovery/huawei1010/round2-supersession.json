@@ -1,0 +1,21 @@
+{
+  "at_utc": "2026-10-10T01:53:20.039135Z",
+  "new_pool": "gpc-huawei-final-reviews-20261010",
+  "no_inflight_workers": true,
+  "old_pool": "gpc-huawei-corrected-reviews-20261010",
+  "old_pool_complete": false,
+  "old_spec_report_ref": "sha256:a649690938a34a0ac31e6a99cfc55286610657bb646eda520c59da4a173862cf",
+  "old_unstarted_quality": {
+    "attempt": null,
+    "physical_start": false,
+    "reserved": false,
+    "status": "planned"
+  },
+  "original_plan_digest": "sha256:297a33307a9959f95c7e520c3b641a722d822b32c3af8be7896b564fb3587df4",
+  "reason": "SPEC53 RED for obsolete artifact; root fixed network guard order and directory claim. Required SPEC and QUALITY are carried to fresh artifact-bound plan, never omitted or claimed complete. No stale claim reused.",
+  "required_work_carried": [
+    "spec",
+    "quality"
+  ],
+  "schema": "explicit-review-plan-supersession/v1"
+}

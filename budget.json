@@ -2482,6 +2482,37 @@
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
       "type": "reserve",
       "wake_id": "gpc-huawei-bios-20261010-042502"
+    },
+    {
+      "at_utc": "2026-10-10T01:53:20.039135Z",
+      "event_id": "gpc-huawei-spec53-20261010-actual-terminal-SPEC-RED",
+      "failure": null,
+      "reservation_id": "gpc-huawei-spec53-20261010-agent_start",
+      "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": null,
+        "tokens": null
+      },
+      "wake_id": "gpc-huawei-bios-20261010-042502"
+    },
+    {
+      "at_utc": "2026-10-10T01:53:20.039135Z",
+      "attempt_id": "gpc-huawei-spec54-20261010",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-huawei-spec54-20261010-agent_start",
+      "kind": "agent_start",
+      "operation_key": "sha256:89f06207914b6cb3771587a25ffa8248c74d9fb47aca6ea64f7c502858b46c7d",
+      "recovery_ref": null,
+      "scope": "gpc/readonly/final-huawei-discovery-spec-review",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-huawei-bios-20261010-042502"
     }
   ],
   "policy": {
@@ -2493,7 +2524,7 @@
     "max_parallel_agents": 4,
     "provider_max_age_seconds": 300,
     "task_limits": {
-      "agent_starts": 54,
+      "agent_starts": 55,
       "ci_starts": 13,
       "compute_starts": null
     },
@@ -2503,7 +2534,7 @@
       "tool_calls": 80
     }
   },
-  "policy_digest": "sha256:9e61fff5aa59f16d95973a1ecba943137c3eab1599ed115081c68e2d1050a306",
+  "policy_digest": "sha256:289aeb05ee87308ed637350eee9e4ca6cc6d8b977b7eef1887bbec689f5e443b",
   "schema": "budget-ledger/v1",
   "task_id": "g-pc-health-check-0.17.0-pre-integration",
   "wake_ids": [

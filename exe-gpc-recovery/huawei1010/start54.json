@@ -1,0 +1,8 @@
+{
+  "actual_worker_start": "NOT_YET",
+  "artifact_sha256": "2772ea9233e97f6d97db38feba87332eb3c8b1f692fdfe2ef7cb9b65bc2808ff",
+  "at_utc": "2026-10-10T01:53:20.039135Z",
+  "attempt": "gpc-huawei-spec54-20261010",
+  "reservation_token": "d722efc7-eec6-44fb-82b8-0feba7620ac9",
+  "role": "READ_ONLY_REVIEW"
+}
