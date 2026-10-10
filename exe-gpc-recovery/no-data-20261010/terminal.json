@@ -1,0 +1,21 @@
+{
+  "schema": "terminal-state/v2",
+  "invocation_id": "Work-root-gpc-no-data-20261010",
+  "scope_id": "owner-approved-missing-evidence-feature-reviewed-EXE-candidate-delivery",
+  "observed_head": "325fe132be9ff49bc09b8bfb873f6d3e92df1c5e",
+  "decision": "COMPLETE",
+  "runnable_actions": [],
+  "pending_external": null,
+  "blocker": null,
+  "meaningful_progress_refs": [
+    "git:d1b633c25fef1063b3005f3578557d28ae527817:document.json#no_data64_corrective_handoff",
+    "git:refs/heads/cdc/coordination:exe-gpc-recovery/no-data-20261010/fix-state.json"
+  ],
+  "completion_evidence_refs": [
+    "library:libfile_eb5224093df0819181aa3891645b9be7",
+    "git:refs/heads/cdc/coordination:exe-gpc-recovery/no-data-20261010/spec65-review.json",
+    "git:refs/heads/cdc/coordination:exe-gpc-recovery/no-data-20261010/quality66-review.json"
+  ],
+  "checkpoint_ref": "git:refs/heads/cdc/coordination:exe-gpc-recovery/no-data-20261010/final-checkpoint.json",
+  "lease_released": true
+}

@@ -1,0 +1,11 @@
+{
+  "schema": "gpc-final-fresh-ref-probe/v1",
+  "source_ref": "refs/heads/design/0.17.0-security-posture",
+  "source_sha": "325fe132be9ff49bc09b8bfb873f6d3e92df1c5e",
+  "coordination_ref": "refs/heads/cdc/coordination",
+  "coordination_sha": "641cba1e30757b3bd0899dc14e9a090919abdde2",
+  "observed_at_utc": "2026-10-10T20:14:41Z",
+  "current_process": "CDC3.3.1 adopted by external managing invocation; frozen product feature worktree retains CDC2.12.1",
+  "source_product_ref_changed_by_this_phase": false,
+  "lease_blob": "08216b898759f560c86b0c4ab7b839dcc50a78e5"
+}

@@ -116,5 +116,14 @@
   "Windows_runtime": "NOT_RUN",
   "production_release": false,
   "original_Git_outcome": "UNKNOWN retained",
-  "independent_reviews": "PENDING"
+  "independent_reviews": {
+    "SPEC": "GREEN",
+    "QUALITY": "GREEN",
+    "exact_candidate": "3e64dbd7cf78ce6a273f454ec97583a454695d5e",
+    "durable_coordination": "641cba1e30757b3bd0899dc14e9a090919abdde2",
+    "SPEC_record": "exe-gpc-recovery/no-data-20261010/spec65-review.json",
+    "QUALITY_record": "exe-gpc-recovery/no-data-20261010/quality66-review.json",
+    "qualification": "Independent static source/receipt review; Windows runtime NOT_RUN"
+  },
+  "independent_reviews_at_initial_byte_verification": "PENDING"
 }

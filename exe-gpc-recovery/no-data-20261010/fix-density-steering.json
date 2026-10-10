@@ -1,0 +1,10 @@
+{
+  "at_utc": "2026-10-10T19:50:52.033309Z",
+  "attempt": "gpc-no-data64-corrective-20261010",
+  "observed_active_UI_seconds": 249,
+  "Stop_present_before_send": true,
+  "scope": "Existing owner compactness requirement; AllCells+WrapMode would inflate newly explained Unknown rows",
+  "requested": "Compact bounded/fixed Security rows; full selected details and exports preserved",
+  "same_active_attempt": true,
+  "no_extra_physical_start": true
+}

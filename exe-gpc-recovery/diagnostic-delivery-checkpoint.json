@@ -1,1 +1,780 @@
-{"CDC_version":"2.12.1 unchanged","CI6":{"current_exact_SHA_runs":0,"current_matching_refs":[],"grant_id":"c3c43f96-f88f-4669-b344-13ae248ba382","operation_key":"sha256:3dc9f2ff126eaffadc9a1580eecdc14978c51f047133f10f34b41d4b177998d4","state":"UNKNOWN preserved","these_absences_are_not_original_no_effect_proof":true},"Git_fix":{"Root_tests":16,"Root_tests_exit":0,"connected_caller_sha256":"824341b43d088242a9b92adf6b1c45147a644bd7390ac2c8755eeb257b4cb401","evidence_packet":"git:8d752d4d9ddefd49084896071e8bd1321d4ae6ca","historical_CI6_response_restored":false,"transport_helper_sha256":"e35c737c5236025aacec10d8769a4426e5576975ef06d5ecd6865eb040691200"},"Source_2.12.2_work_stopped":true,"blocker":"Original receive-pack streams/returncode/per-ref outcome not recovered from inspected retained records or current original-task runtime; no authenticated terminal result, UNKNOWN preserved. CDC3.3.0 adoption waits for supported reconciliation.","candidate":"53636f45cc14075717e4e68b0a40ba020b96d9ca","cdc331_administrative_retirement_actual_receipt":{"evidence_reference":"git:939279bebf89b6af30b307ebea58654087d0c10f","guard_moved_unchanged_to_append_only_history":true,"independent_CDC_maintenance_eligible":true,"no_new_grant":true,"no_provider_replay":true,"original_outcome":"UNKNOWN","original_resolutions_18_preserved":true,"proof":{"effect":{"backend":"git-conditional-create","caller_digest":"sha256:d28d79197024c5c09663dbd6241d5ae596219d6cc90c4850639130533e60a5d8","caller_reference":"git:33ec87e4d79f2b5b51b49bdbee097b9d7264b4ad","candidate_sha":"53636f45cc14075717e4e68b0a40ba020b96d9ca","expected_target":null,"observation_reference":"git:33ec87e4d79f2b5b51b49bdbee097b9d7264b4ad","receive_pack_calls":1,"subprocess_returned":true,"target_ref":"refs/heads/pilot/gpc-0171-native-diagnostic-53636f45-20261009"},"guard_digest":"sha256:a49a779ca9c4ea67d726567480c4dd7e39145d841c430006f26c1f1ad9b64b74","lease_digest":"sha256:504f0bccebdfd30415b17ee39cff0ed3752d4195684644508b6805113f520f7e","lease_revision":"d443c7df1ff29e13a420ff9e0b091db02031cbac","observed_at_utc":"2026-10-10T19:04:31.096772Z","owner_decision":{"action":"retire_unknown_without_replay","reference":"git:749fc0595d4565c82780068287353b3af3691ccd"},"repository":"bajoicheg/g-pc-health-check","runtime":{"generation":31,"invocation_id":"managed-terminal:c41403245478da5ca018542a3cbd093395fbfaf56b96cb0cfd7fa982adfc4e8f","observed_at_utc":"2026-10-10T19:04:31.096772Z","owner_id":"97f173a1-4785-4bfa-a3dd-0afe5e97db9b","pending_shared_writes":false,"quiescent":true,"reference":"git:48a1220845956fff6fc1b43c87dbd96af3f2e626","status":"stopped"},"schema":"unknown-submission-retirement/v1","source_ref":"refs/heads/design/0.17.0-security-posture"},"retired_guard_digest":"sha256:a49a779ca9c4ea67d726567480c4dd7e39145d841c430006f26c1f1ad9b64b74","revision":"b8aef446472c251eed5e7b69dfaf55b001cfc767"},"cdc331_administrative_retirement_proof_checkpoint":{"approved_independent_maintenance":"CDC3.3.1 migration only; no original candidate replay","evidence_reference":"git:f874a37037f774524ebd701e82a7c656a0b6fc0c","evidence_store_ref":"refs/heads/cdc/gpc-native-fresh-recovery-evidence-20261009","final_revision_bound_proof_key":"cdc331_administrative_retirement_final_preCAS","original_git_outcome":"UNKNOWN","original_history_preserved":true,"proof":{"effect":{"backend":"git-conditional-create","caller_digest":"sha256:d28d79197024c5c09663dbd6241d5ae596219d6cc90c4850639130533e60a5d8","caller_reference":"git:33ec87e4d79f2b5b51b49bdbee097b9d7264b4ad","candidate_sha":"53636f45cc14075717e4e68b0a40ba020b96d9ca","expected_target":null,"observation_reference":"git:33ec87e4d79f2b5b51b49bdbee097b9d7264b4ad","receive_pack_calls":1,"subprocess_returned":true,"target_ref":"refs/heads/pilot/gpc-0171-native-diagnostic-53636f45-20261009"},"guard_digest":"sha256:a49a779ca9c4ea67d726567480c4dd7e39145d841c430006f26c1f1ad9b64b74","lease_digest":"sha256:504f0bccebdfd30415b17ee39cff0ed3752d4195684644508b6805113f520f7e","lease_revision":"fe3dee03fad1e9ef37bfc4dbe5ba3da2d6ced806","observed_at_utc":"2026-10-10T19:04:18.564719Z","owner_decision":{"action":"retire_unknown_without_replay","reference":"git:749fc0595d4565c82780068287353b3af3691ccd"},"repository":"bajoicheg/g-pc-health-check","runtime":{"generation":31,"invocation_id":"managed-terminal:c41403245478da5ca018542a3cbd093395fbfaf56b96cb0cfd7fa982adfc4e8f","observed_at_utc":"2026-10-10T19:04:18.564719Z","owner_id":"97f173a1-4785-4bfa-a3dd-0afe5e97db9b","pending_shared_writes":false,"quiescent":true,"reference":"git:48a1220845956fff6fc1b43c87dbd96af3f2e626","status":"stopped"},"schema":"unknown-submission-retirement/v1","source_ref":"refs/heads/design/0.17.0-security-posture"}},"cdc331_after_exit_authoritative_recovery_status":{"CDC_status":"CDC3.3.1APPLIED","CDC_version":"3.3.1","FULL_reruns":0,"Root_personal":"ROOT_REPORTED_401_BYTES_MODES_ACCEPTED","Root_personal_and_final_acceptance":"PERSONAL_ACCEPTED_FINAL_ROOT_ACCEPTANCE_OPEN","Root_personal_provenance":"git:2bd2ed83d1143bc29738e60ec0dadca8915adcf8","actual_release_receipt":{"lease_revision":"06d3d94787fbf977fd930cc199075edde4d267d2","release":{"at_utc":"2026-10-10T19:14:30.692957Z","checkpoint_ref":"git:bajoicheg/g-pc-health-check@325fe132be9ff49bc09b8bfb873f6d3e92df1c5e:docs/work-status/current.md","completion_reason":"scope_complete","external_reconciliation":"none","generation":32,"invocation_id":"managed-terminal:fbdb20896ecc2b06f296705528e0df667875d171ddf30197572b9b0e1f0e9b65","owner_id":"ca94b91f-c9b5-4ecd-af74-539f0bc63e96"},"schema":"execution-release-receipt/v1"},"actual_source_head":"325fe132be9ff49bc09b8bfb873f6d3e92df1c5e","all_preceding_status_and_blocker_fields_are_historical":true,"controller_exit":"ACTUAL_EXIT0_INDEPENDENT_PID_ABSENT","controller_exited_at_utc":"2026-10-10T19:16:08.272185Z","controller_identity":{"command_channel":"short path to hash-pinned command JSON and code file","input_max_bytes":256,"max_lifetime_seconds":5400,"namespace":"pid:[4026532200]","parent_pid":111079,"pid":111080,"proc_start_ticks":"3139136","started_at_utc":"2026-10-10T18:41:44.115016Z","state":"alive"},"current_operational_status_authority":"cdc331_after_exit_authoritative_recovery_status","durable_current_queue":["preserved Windows/product validation NOT_RUN/pending","Root final independent acceptance"],"historical_checkpoint_fields_retained_verbatim":true,"historical_original_receipt_wait_is_current_CDC_blocker":false,"independent_CDC_migration":"ADOPTED","new_product_CI":0,"observed_at_utc":"2026-10-10T19:18:53.565421Z","original_Git_returncode":null,"original_Git_stderr":null,"original_Git_stdout":null,"original_UNKNOWN_administratively_retired":true,"original_UNKNOWN_is_current_CDC_blocker":false,"original_guard_administratively_retired_revision":"b8aef446472c251eed5e7b69dfaf55b001cfc767","original_provider_Git_outcome":"UNKNOWN","original_replay_count":0,"original_replay_forbidden":true,"original_top_level_status_and_blocker_fields_are_historical":true,"package_files":401,"package_tree":"f580a8946c0510540a4be3f4422ab3404875274b","pool_accepted_integrated":true,"product_complete":false,"product_readiness":"UNMODIFIED_WINDOWS_PRODUCT_GATES_NOT_RUN_PENDING","released_generation":32,"root_tree":"7bc8c48a7d9dd23a47a01949486b00289e20d8b0","schedulers":"PAUSED","schema":"cdc-gpc-current-recovery-status/v1","source_ref":"refs/heads/design/0.17.0-security-posture","worker_supervisor_physical_absence":{"supervisor_proc_pid":{"absent":true,"observed_at_utc":"2026-10-10T19:14:49.344550Z","pid":127918},"worker_pid":{"absent":true,"observed_at_utc":"2026-10-10T19:14:49.344522Z","pid":127950}}},"cdc331_current_authoritative_recovery_status":{"CDC_status":"CDC3.3.1APPLIED","CDC_version":"3.3.1","FULL_reruns":0,"Root_personal":"ROOT_REPORTED_401_BYTES_MODES_ACCEPTED","Root_personal_and_final_acceptance":"OPEN","Root_personal_provenance":"git:2bd2ed83d1143bc29738e60ec0dadca8915adcf8","actual_release_receipt":{"lease_revision":"06d3d94787fbf977fd930cc199075edde4d267d2","release":{"at_utc":"2026-10-10T19:14:30.692957Z","checkpoint_ref":"git:bajoicheg/g-pc-health-check@325fe132be9ff49bc09b8bfb873f6d3e92df1c5e:docs/work-status/current.md","completion_reason":"scope_complete","external_reconciliation":"none","generation":32,"invocation_id":"managed-terminal:fbdb20896ecc2b06f296705528e0df667875d171ddf30197572b9b0e1f0e9b65","owner_id":"ca94b91f-c9b5-4ecd-af74-539f0bc63e96"},"schema":"execution-release-receipt/v1"},"actual_source_head":"325fe132be9ff49bc09b8bfb873f6d3e92df1c5e","controller_exit":"PENDING_ACTUAL_EXIT","current_operational_status_authority":"cdc331_current_authoritative_recovery_status","durable_current_queue":["preserved Windows/product validation NOT_RUN/pending","original controller actual exit0 and independent after-exit absence","Root final independent acceptance"],"historical_checkpoint_fields_retained_verbatim":true,"historical_original_receipt_wait_is_current_CDC_blocker":false,"independent_CDC_migration":"ADOPTED","new_product_CI":0,"observed_at_utc":"2026-10-10T19:15:29.521481Z","original_Git_returncode":null,"original_Git_stderr":null,"original_Git_stdout":null,"original_UNKNOWN_administratively_retired":true,"original_UNKNOWN_is_current_CDC_blocker":false,"original_guard_administratively_retired_revision":"b8aef446472c251eed5e7b69dfaf55b001cfc767","original_provider_Git_outcome":"UNKNOWN","original_replay_count":0,"original_replay_forbidden":true,"original_top_level_status_and_blocker_fields_are_historical":true,"package_files":401,"package_tree":"f580a8946c0510540a4be3f4422ab3404875274b","pool_accepted_integrated":true,"product_complete":false,"product_readiness":"UNMODIFIED_WINDOWS_PRODUCT_GATES_NOT_RUN_PENDING","released_generation":32,"root_tree":"7bc8c48a7d9dd23a47a01949486b00289e20d8b0","schedulers":"PAUSED","schema":"cdc-gpc-current-recovery-status/v1","source_ref":"refs/heads/design/0.17.0-security-posture","worker_supervisor_physical_absence":{"supervisor_proc_pid":{"absent":true,"observed_at_utc":"2026-10-10T19:14:49.344550Z","pid":127918},"worker_pid":{"absent":true,"observed_at_utc":"2026-10-10T19:14:49.344522Z","pid":127950}}},"diagnostic_EXE":{"FileVersion":"0.17.1.0","Library_file":"libfile_46ac8b4a970c8191afe6a143676d2357","SHA256":"edc5626a9eb3eb2b645bd4a8c27e7444454c1cee07d837be4188b22c90c0ff58","Windows_runtime":"NOT_RUN","bytes":78765063,"checksum_file":"libfile_e8814ad382a481918b293d0fe063cab9","validated_pilot":false,"verification_file":"libfile_fdfa63471fa081918ebbd566cdad14cd"},"historical_blocker_text_before_20261010":"Original receive-pack stdout/stderr lost; original process/frame gone; immutableCDC21 exposed recovery does not support released UNKNOWN retained_windows_exe/git-conditional-create claim; no eligible same-invocation pilot resend/new validation/source writer. No guard clear/grant recreation or core upgrade performed.","historical_unknown_actors_preserved":2,"known_product_failure":"8RU/EN footer reachability fixtures uncorrected; root cause unestablished without actual Windows geometry","latest_owner_instruction":"[19:25 09.10] Почини git и продолжай","next_required_evidence":"Retrieve original tool/session retention for26208/chunk54e0cc on boot a896337f-ffb5-4527-ad99-c9b81e24c95e, or authenticated original server per-ref receive-pack transaction/audit receipt after claim2026-10-09T15:47:25.156111Z. Bind candidate53636f45, grantc3c43f96, original operation key and pilot; persist/readback raw proof, check supported canonical reconciliation, then perform atomic CDC3.3.0 adoption. No replay/replacement grant/absence inference.","original_operation_recovery_20261010":{"CDC_target":{"adopted":false,"authorizes_adoption":false,"canonical_test_claim":"Retained release evidence read, tests not rerun or claimed GPC product validation","declared_canonical_release_status":"released","fleet_revision":"c5f5c28ffd33cd87802c8481f5bc8d9b1559e787","installed_GPC_version":"2.12.1","installed_package_tree":"9c45d98c3254e9658d452c505d8c97698e3fc9a7","migration_decision":"wait_safe_boundary","observed_at_utc":"2026-10-10T17:58:58.161906+00:00","package_files":398,"product_gates_preserved":true,"reason":"Original CI6 unresolved external guard; current user permits adoption only after positive recovery and supported reconciliation","release":{"canonical_repository":"bajoicheg/g-cdc","evidence_binding":{"commit":"226e70b3fb4a172b86f18c1828b8668387b6d009","path":"release/evidence-3.3.0.json","ref":"refs/heads/cdc/release-evidence/v3.3.0","schema":"canonical-release-evidence-binding/v1","source_identity":"sha256:dd313ce733052636056110bcc138394c4b3f2d13b67ef7d0ef3cfc2a690203ac"},"package_tree":"3f00c4927557aa94912c8bf21a881add47c2f412","release_commit":"2be2088d8e6ad59f87cdd9d07dc9f7ab8d4c34ad","release_ref":"refs/heads/release/v3.3.0","schema":"live-target-release/v2","version":"3.3.0"},"scheduler_pause_preserved":true,"schema":"gpc-CDC330-target-observation/v1"},"active_current_invocation_executors":0,"at_utc":"2026-10-10T18:02:48.087629Z","authentic_original_response_recovered":false,"checked_sources":["Immutable33ec87e4:document.json","Immutable2f5fe3f:document.json","Original intent57d4176f:document.json","Fresh coordination lease/budget/diagnostic checkpoint","Current chat write_stdin(session26208) observation-only: unknown process","Scoped scratch retained records18 matches","Root read-only logs_2.sqlite exact tokens absent and state_5.sqlite threads0","One original Cloud-task host audit: different boot; original workroot absent; accessible sessions/history/logdb absent; /root/.codex restricted","Personal-context retrieval returned wrapper summaries, no raw receive-pack reply"],"coordination_admission_and_after_search":"109274a5e6652098ac3437387a393d06bb7f23f0","coordination_at_start":"4897731ce84fe9dfa2c4a3fce3b208f03a16d5a6","current_invocation_executors_drained":true,"current_source_sha":"7aaefdebca68eed64c8e92d7dfff7384f0a3c800","generation":31,"global_loss_proven":false,"guard_preserved":true,"historical_unknown_actors_preserved":2,"intent_revision_unchanged":"57d4176f8fadbc9a498fcab771b4909ecc8250ac","invocation_id":"Work-root-gpc-original-receipt-20261010-2048","lease_blob_unchanged":"409cb124c37d7b4875e59c82716ac5b563c6424c","missing_proof":"Authentic original CompletedProcess streams/exit and per-ref receive-pack result bound to session26208/chunk54e0cc/grantc3c43f96; wrapper exit1 is not Git returncode","next_action":"Retrieve original tool/session retention for26208/chunk54e0cc on boot a896337f-ffb5-4527-ad99-c9b81e24c95e, or authenticated original server per-ref receive-pack transaction/audit receipt after claim2026-10-09T15:47:25.156111Z. Bind candidate53636f45, grantc3c43f96, original operation key and pilot; persist/readback raw proof, check supported canonical reconciliation, then perform atomic CDC3.3.0 adoption. No replay/replacement grant/absence inference.","no_guard_clear":true,"no_new_CI":true,"no_original_command_rerun":true,"no_replacement_grant":true,"original_git_returncode":null,"original_git_stderr":null,"original_git_stdout":null,"original_operation":{"intent":{"attempt_id":"gpc-0171-native-diagnostic-CI6-20261009","binding":{"backend":"git-conditional-create","candidate_sha":"53636f45cc14075717e4e68b0a40ba020b96d9ca","check_plan_digest":"sha256:ead940bd5906ad2988890679cd80e440eb8e7e7d1cc6566a2e9197a24e449f3e","check_suite_fingerprint":"sha256:ec57343604c3aa50167ea7a15e42eac6a6d4057612bd45bb017cb50dcb655dfb","environment_fingerprint":"sha256:1efdba8db1d6384afe67291133b59ec61c9bfd54feac2aa2592d4a4ad8cbd90a","environment_id":"existing-gpc-cloud-task","mode":"retained_windows_exe","repository":"bajoicheg/g-pc-health-check"},"created_at_utc":"2026-10-09T15:47:16.186316Z","durable_intent":{"attempt_id":"gpc-0171-native-diagnostic-CI6-20261009","operation_key":"sha256:3dc9f2ff126eaffadc9a1580eecdc14978c51f047133f10f34b41d4b177998d4","read_back_at_utc":"2026-10-09T15:47:19.223231Z","record_digest":"sha256:6424df0ae2b91bc6664e8b44ea87fb165f08bd5e1d2917cbbddc3249416e090e","reference":"git:refs/heads/cdc/intent-gpc-native-diagnostic-CI6-20261009@749dcf3262c2b0f70e91c48ba1505b6e812688c4","schema":"operation-intent-readback/v1"},"operation_key":"sha256:3dc9f2ff126eaffadc9a1580eecdc14978c51f047133f10f34b41d4b177998d4","schema":"operation-intent/v1","skill_version":"2.3.0","source_ref":"refs/heads/design/0.17.0-security-posture","state":"submitting","task":null,"updated_at_utc":"2026-10-09T15:47:19.223467Z"},"intent_digest":"sha256:c25367ca88b9ae5a69f75b7b9b2ab48b658ca1b251c645aa77d24dadf52b1708","intent_reference":"git:refs/heads/cdc/intent-gpc-native-diagnostic-CI6-20261009@57d4176f8fadbc9a498fcab771b4909ecc8250ac","operation_key":"sha256:3dc9f2ff126eaffadc9a1580eecdc14978c51f047133f10f34b41d4b177998d4","submission_claim":{"attempt_id":"gpc-0171-native-diagnostic-CI6-20261009","claimed_at_utc":"2026-10-09T15:47:25.156111Z","generation":31,"grant_id":"c3c43f96-f88f-4669-b344-13ae248ba382","intent_digest":"sha256:c25367ca88b9ae5a69f75b7b9b2ab48b658ca1b251c645aa77d24dadf52b1708","operation_key":"sha256:3dc9f2ff126eaffadc9a1580eecdc14978c51f047133f10f34b41d4b177998d4","owner_id":"97f173a1-4785-4bfa-a3dd-0afe5e97db9b"}},"owner":null,"raw_audit_blob":"e83ec737ea82f10e750953bd7e14668297bd6140","raw_audit_ref":"git:48a1220845956fff6fc1b43c87dbd96af3f2e626:document.json#original_CI6_host_log_audit60","root_verification":{"UI_terminal":true,"UI_total_seconds":245,"all_27_neighbor_keys_values_preserved":true,"at_utc":"2026-10-10T18:01:05.252410+00:00","audit_blob":"e83ec737ea82f10e750953bd7e14668297bd6140","audit_commit":"48a1220845956fff6fc1b43c87dbd96af3f2e626","audit_observed_seconds":116.536598,"current_tree_document_only":true,"exact_original_binding_and_admission_verified":true,"guard_resolution_allowed":false,"historical_blobs_and_source_hashes_verified":true,"inventory_canonical_semantic_sha256":"b37f12f17135554ba995424bc9d1a174e99928212fe7bdab641b68cd94e56aee","inventory_digest_verified":false,"inventory_serialization":[],"original_receivepack_result_recovered":false,"raw_document_sha256":"3a0cbfdda76e1fee834bdafc74eaac288f0fe837f9ca7b3de881032815532b92","remaining_limit":"Original host runtime replaced; original tool/transport receipt not available in inspected interfaces","schema":"gpc-root-original-CI6-audit-verification/v1"},"scheduler_pause_preserved":true,"schema":"gpc-original-Git-operation-recovery/v1","scope_complete":false,"terminal_result":"UNKNOWN","timing":{"UI_audit_total_seconds":245,"first_measured_root_time_utc":"2026-10-10T17:48:34.220735Z","observed_host_audit_seconds":116.536598,"original_git_duration_seconds":null,"physical_provider_start_utc":null,"root_elapsed_so_far_seconds":853.866894},"wrapper_exit_code":1,"wrapper_exit_is_NOT_git_result":true},"real_worker36":{"genuine_release":"git:e2b7872317c82184a97d1494810ef1ac5b8c7659","quiescent":true,"released_generation":31,"status":"cancelled"},"recorded_at_utc":"2026-10-10T18:02:48.087629Z","remaining_queue":["0.17.1 corrected footer and exact Windows diagnostic/final EXE gates","0.17.2","0.18","0.19"],"scheduler_pause_preserved":true,"schema":"gpc-delivered-diagnostic-and-external-blocker/v1","scope_complete":false,"source":"7aaefdebca68eed64c8e92d7dfff7384f0a3c800","state":"waiting_external"}
+{
+  "CDC_version": "2.12.1 unchanged",
+  "CI6": {
+    "current_exact_SHA_runs": 0,
+    "current_matching_refs": [],
+    "grant_id": "c3c43f96-f88f-4669-b344-13ae248ba382",
+    "operation_key": "sha256:3dc9f2ff126eaffadc9a1580eecdc14978c51f047133f10f34b41d4b177998d4",
+    "state": "UNKNOWN preserved",
+    "these_absences_are_not_original_no_effect_proof": true
+  },
+  "Git_fix": {
+    "Root_tests": 16,
+    "Root_tests_exit": 0,
+    "connected_caller_sha256": "824341b43d088242a9b92adf6b1c45147a644bd7390ac2c8755eeb257b4cb401",
+    "evidence_packet": "git:8d752d4d9ddefd49084896071e8bd1321d4ae6ca",
+    "historical_CI6_response_restored": false,
+    "transport_helper_sha256": "e35c737c5236025aacec10d8769a4426e5576975ef06d5ecd6865eb040691200"
+  },
+  "Source_2.12.2_work_stopped": true,
+  "blocker": "Original receive-pack streams/returncode/per-ref outcome not recovered from inspected retained records or current original-task runtime; no authenticated terminal result, UNKNOWN preserved. CDC3.3.0 adoption waits for supported reconciliation.",
+  "candidate": "53636f45cc14075717e4e68b0a40ba020b96d9ca",
+  "cdc331_administrative_retirement_actual_receipt": {
+    "evidence_reference": "git:939279bebf89b6af30b307ebea58654087d0c10f",
+    "guard_moved_unchanged_to_append_only_history": true,
+    "independent_CDC_maintenance_eligible": true,
+    "no_new_grant": true,
+    "no_provider_replay": true,
+    "original_outcome": "UNKNOWN",
+    "original_resolutions_18_preserved": true,
+    "proof": {
+      "effect": {
+        "backend": "git-conditional-create",
+        "caller_digest": "sha256:d28d79197024c5c09663dbd6241d5ae596219d6cc90c4850639130533e60a5d8",
+        "caller_reference": "git:33ec87e4d79f2b5b51b49bdbee097b9d7264b4ad",
+        "candidate_sha": "53636f45cc14075717e4e68b0a40ba020b96d9ca",
+        "expected_target": null,
+        "observation_reference": "git:33ec87e4d79f2b5b51b49bdbee097b9d7264b4ad",
+        "receive_pack_calls": 1,
+        "subprocess_returned": true,
+        "target_ref": "refs/heads/pilot/gpc-0171-native-diagnostic-53636f45-20261009"
+      },
+      "guard_digest": "sha256:a49a779ca9c4ea67d726567480c4dd7e39145d841c430006f26c1f1ad9b64b74",
+      "lease_digest": "sha256:504f0bccebdfd30415b17ee39cff0ed3752d4195684644508b6805113f520f7e",
+      "lease_revision": "d443c7df1ff29e13a420ff9e0b091db02031cbac",
+      "observed_at_utc": "2026-10-10T19:04:31.096772Z",
+      "owner_decision": {
+        "action": "retire_unknown_without_replay",
+        "reference": "git:749fc0595d4565c82780068287353b3af3691ccd"
+      },
+      "repository": "bajoicheg/g-pc-health-check",
+      "runtime": {
+        "generation": 31,
+        "invocation_id": "managed-terminal:c41403245478da5ca018542a3cbd093395fbfaf56b96cb0cfd7fa982adfc4e8f",
+        "observed_at_utc": "2026-10-10T19:04:31.096772Z",
+        "owner_id": "97f173a1-4785-4bfa-a3dd-0afe5e97db9b",
+        "pending_shared_writes": false,
+        "quiescent": true,
+        "reference": "git:48a1220845956fff6fc1b43c87dbd96af3f2e626",
+        "status": "stopped"
+      },
+      "schema": "unknown-submission-retirement/v1",
+      "source_ref": "refs/heads/design/0.17.0-security-posture"
+    },
+    "retired_guard_digest": "sha256:a49a779ca9c4ea67d726567480c4dd7e39145d841c430006f26c1f1ad9b64b74",
+    "revision": "b8aef446472c251eed5e7b69dfaf55b001cfc767"
+  },
+  "cdc331_administrative_retirement_proof_checkpoint": {
+    "approved_independent_maintenance": "CDC3.3.1 migration only; no original candidate replay",
+    "evidence_reference": "git:f874a37037f774524ebd701e82a7c656a0b6fc0c",
+    "evidence_store_ref": "refs/heads/cdc/gpc-native-fresh-recovery-evidence-20261009",
+    "final_revision_bound_proof_key": "cdc331_administrative_retirement_final_preCAS",
+    "original_git_outcome": "UNKNOWN",
+    "original_history_preserved": true,
+    "proof": {
+      "effect": {
+        "backend": "git-conditional-create",
+        "caller_digest": "sha256:d28d79197024c5c09663dbd6241d5ae596219d6cc90c4850639130533e60a5d8",
+        "caller_reference": "git:33ec87e4d79f2b5b51b49bdbee097b9d7264b4ad",
+        "candidate_sha": "53636f45cc14075717e4e68b0a40ba020b96d9ca",
+        "expected_target": null,
+        "observation_reference": "git:33ec87e4d79f2b5b51b49bdbee097b9d7264b4ad",
+        "receive_pack_calls": 1,
+        "subprocess_returned": true,
+        "target_ref": "refs/heads/pilot/gpc-0171-native-diagnostic-53636f45-20261009"
+      },
+      "guard_digest": "sha256:a49a779ca9c4ea67d726567480c4dd7e39145d841c430006f26c1f1ad9b64b74",
+      "lease_digest": "sha256:504f0bccebdfd30415b17ee39cff0ed3752d4195684644508b6805113f520f7e",
+      "lease_revision": "fe3dee03fad1e9ef37bfc4dbe5ba3da2d6ced806",
+      "observed_at_utc": "2026-10-10T19:04:18.564719Z",
+      "owner_decision": {
+        "action": "retire_unknown_without_replay",
+        "reference": "git:749fc0595d4565c82780068287353b3af3691ccd"
+      },
+      "repository": "bajoicheg/g-pc-health-check",
+      "runtime": {
+        "generation": 31,
+        "invocation_id": "managed-terminal:c41403245478da5ca018542a3cbd093395fbfaf56b96cb0cfd7fa982adfc4e8f",
+        "observed_at_utc": "2026-10-10T19:04:18.564719Z",
+        "owner_id": "97f173a1-4785-4bfa-a3dd-0afe5e97db9b",
+        "pending_shared_writes": false,
+        "quiescent": true,
+        "reference": "git:48a1220845956fff6fc1b43c87dbd96af3f2e626",
+        "status": "stopped"
+      },
+      "schema": "unknown-submission-retirement/v1",
+      "source_ref": "refs/heads/design/0.17.0-security-posture"
+    }
+  },
+  "cdc331_after_exit_authoritative_recovery_status": {
+    "CDC_status": "CDC3.3.1APPLIED",
+    "CDC_version": "3.3.1",
+    "FULL_reruns": 0,
+    "Root_personal": "ROOT_REPORTED_401_BYTES_MODES_ACCEPTED",
+    "Root_personal_and_final_acceptance": "PERSONAL_ACCEPTED_FINAL_ROOT_ACCEPTANCE_OPEN",
+    "Root_personal_provenance": "git:2bd2ed83d1143bc29738e60ec0dadca8915adcf8",
+    "actual_release_receipt": {
+      "lease_revision": "06d3d94787fbf977fd930cc199075edde4d267d2",
+      "release": {
+        "at_utc": "2026-10-10T19:14:30.692957Z",
+        "checkpoint_ref": "git:bajoicheg/g-pc-health-check@325fe132be9ff49bc09b8bfb873f6d3e92df1c5e:docs/work-status/current.md",
+        "completion_reason": "scope_complete",
+        "external_reconciliation": "none",
+        "generation": 32,
+        "invocation_id": "managed-terminal:fbdb20896ecc2b06f296705528e0df667875d171ddf30197572b9b0e1f0e9b65",
+        "owner_id": "ca94b91f-c9b5-4ecd-af74-539f0bc63e96"
+      },
+      "schema": "execution-release-receipt/v1"
+    },
+    "actual_source_head": "325fe132be9ff49bc09b8bfb873f6d3e92df1c5e",
+    "all_preceding_status_and_blocker_fields_are_historical": true,
+    "controller_exit": "ACTUAL_EXIT0_INDEPENDENT_PID_ABSENT",
+    "controller_exited_at_utc": "2026-10-10T19:16:08.272185Z",
+    "controller_identity": {
+      "command_channel": "short path to hash-pinned command JSON and code file",
+      "input_max_bytes": 256,
+      "max_lifetime_seconds": 5400,
+      "namespace": "pid:[4026532200]",
+      "parent_pid": 111079,
+      "pid": 111080,
+      "proc_start_ticks": "3139136",
+      "started_at_utc": "2026-10-10T18:41:44.115016Z",
+      "state": "alive"
+    },
+    "current_operational_status_authority": "cdc331_after_exit_authoritative_recovery_status",
+    "durable_current_queue": [
+      "preserved Windows/product validation NOT_RUN/pending",
+      "Root final independent acceptance"
+    ],
+    "historical_checkpoint_fields_retained_verbatim": true,
+    "historical_original_receipt_wait_is_current_CDC_blocker": false,
+    "independent_CDC_migration": "ADOPTED",
+    "new_product_CI": 0,
+    "observed_at_utc": "2026-10-10T19:18:53.565421Z",
+    "original_Git_returncode": null,
+    "original_Git_stderr": null,
+    "original_Git_stdout": null,
+    "original_UNKNOWN_administratively_retired": true,
+    "original_UNKNOWN_is_current_CDC_blocker": false,
+    "original_guard_administratively_retired_revision": "b8aef446472c251eed5e7b69dfaf55b001cfc767",
+    "original_provider_Git_outcome": "UNKNOWN",
+    "original_replay_count": 0,
+    "original_replay_forbidden": true,
+    "original_top_level_status_and_blocker_fields_are_historical": true,
+    "package_files": 401,
+    "package_tree": "f580a8946c0510540a4be3f4422ab3404875274b",
+    "pool_accepted_integrated": true,
+    "product_complete": false,
+    "product_readiness": "UNMODIFIED_WINDOWS_PRODUCT_GATES_NOT_RUN_PENDING",
+    "released_generation": 32,
+    "root_tree": "7bc8c48a7d9dd23a47a01949486b00289e20d8b0",
+    "schedulers": "PAUSED",
+    "schema": "cdc-gpc-current-recovery-status/v1",
+    "source_ref": "refs/heads/design/0.17.0-security-posture",
+    "worker_supervisor_physical_absence": {
+      "supervisor_proc_pid": {
+        "absent": true,
+        "observed_at_utc": "2026-10-10T19:14:49.344550Z",
+        "pid": 127918
+      },
+      "worker_pid": {
+        "absent": true,
+        "observed_at_utc": "2026-10-10T19:14:49.344522Z",
+        "pid": 127950
+      }
+    }
+  },
+  "cdc331_current_authoritative_recovery_status": {
+    "CDC_status": "CDC3.3.1APPLIED",
+    "CDC_version": "3.3.1",
+    "FULL_reruns": 0,
+    "Root_personal": "ROOT_REPORTED_401_BYTES_MODES_ACCEPTED",
+    "Root_personal_and_final_acceptance": "OPEN",
+    "Root_personal_provenance": "git:2bd2ed83d1143bc29738e60ec0dadca8915adcf8",
+    "actual_release_receipt": {
+      "lease_revision": "06d3d94787fbf977fd930cc199075edde4d267d2",
+      "release": {
+        "at_utc": "2026-10-10T19:14:30.692957Z",
+        "checkpoint_ref": "git:bajoicheg/g-pc-health-check@325fe132be9ff49bc09b8bfb873f6d3e92df1c5e:docs/work-status/current.md",
+        "completion_reason": "scope_complete",
+        "external_reconciliation": "none",
+        "generation": 32,
+        "invocation_id": "managed-terminal:fbdb20896ecc2b06f296705528e0df667875d171ddf30197572b9b0e1f0e9b65",
+        "owner_id": "ca94b91f-c9b5-4ecd-af74-539f0bc63e96"
+      },
+      "schema": "execution-release-receipt/v1"
+    },
+    "actual_source_head": "325fe132be9ff49bc09b8bfb873f6d3e92df1c5e",
+    "controller_exit": "PENDING_ACTUAL_EXIT",
+    "current_operational_status_authority": "cdc331_current_authoritative_recovery_status",
+    "durable_current_queue": [
+      "preserved Windows/product validation NOT_RUN/pending",
+      "original controller actual exit0 and independent after-exit absence",
+      "Root final independent acceptance"
+    ],
+    "historical_checkpoint_fields_retained_verbatim": true,
+    "historical_original_receipt_wait_is_current_CDC_blocker": false,
+    "independent_CDC_migration": "ADOPTED",
+    "new_product_CI": 0,
+    "observed_at_utc": "2026-10-10T19:15:29.521481Z",
+    "original_Git_returncode": null,
+    "original_Git_stderr": null,
+    "original_Git_stdout": null,
+    "original_UNKNOWN_administratively_retired": true,
+    "original_UNKNOWN_is_current_CDC_blocker": false,
+    "original_guard_administratively_retired_revision": "b8aef446472c251eed5e7b69dfaf55b001cfc767",
+    "original_provider_Git_outcome": "UNKNOWN",
+    "original_replay_count": 0,
+    "original_replay_forbidden": true,
+    "original_top_level_status_and_blocker_fields_are_historical": true,
+    "package_files": 401,
+    "package_tree": "f580a8946c0510540a4be3f4422ab3404875274b",
+    "pool_accepted_integrated": true,
+    "product_complete": false,
+    "product_readiness": "UNMODIFIED_WINDOWS_PRODUCT_GATES_NOT_RUN_PENDING",
+    "released_generation": 32,
+    "root_tree": "7bc8c48a7d9dd23a47a01949486b00289e20d8b0",
+    "schedulers": "PAUSED",
+    "schema": "cdc-gpc-current-recovery-status/v1",
+    "source_ref": "refs/heads/design/0.17.0-security-posture",
+    "worker_supervisor_physical_absence": {
+      "supervisor_proc_pid": {
+        "absent": true,
+        "observed_at_utc": "2026-10-10T19:14:49.344550Z",
+        "pid": 127918
+      },
+      "worker_pid": {
+        "absent": true,
+        "observed_at_utc": "2026-10-10T19:14:49.344522Z",
+        "pid": 127950
+      }
+    }
+  },
+  "diagnostic_EXE": {
+    "FileVersion": "0.17.1.0",
+    "Library_file": "libfile_46ac8b4a970c8191afe6a143676d2357",
+    "SHA256": "edc5626a9eb3eb2b645bd4a8c27e7444454c1cee07d837be4188b22c90c0ff58",
+    "Windows_runtime": "NOT_RUN",
+    "bytes": 78765063,
+    "checksum_file": "libfile_e8814ad382a481918b293d0fe063cab9",
+    "validated_pilot": false,
+    "verification_file": "libfile_fdfa63471fa081918ebbd566cdad14cd"
+  },
+  "historical_blocker_text_before_20261010": "Original receive-pack stdout/stderr lost; original process/frame gone; immutableCDC21 exposed recovery does not support released UNKNOWN retained_windows_exe/git-conditional-create claim; no eligible same-invocation pilot resend/new validation/source writer. No guard clear/grant recreation or core upgrade performed.",
+  "historical_unknown_actors_preserved": 2,
+  "known_product_failure": "8RU/EN footer reachability fixtures uncorrected; root cause unestablished without actual Windows geometry",
+  "latest_owner_instruction": "[19:25 09.10] Почини git и продолжай",
+  "next_required_evidence": "Retrieve original tool/session retention for26208/chunk54e0cc on boot a896337f-ffb5-4527-ad99-c9b81e24c95e, or authenticated original server per-ref receive-pack transaction/audit receipt after claim2026-10-09T15:47:25.156111Z. Bind candidate53636f45, grantc3c43f96, original operation key and pilot; persist/readback raw proof, check supported canonical reconciliation, then perform atomic CDC3.3.0 adoption. No replay/replacement grant/absence inference.",
+  "original_operation_recovery_20261010": {
+    "CDC_target": {
+      "adopted": false,
+      "authorizes_adoption": false,
+      "canonical_test_claim": "Retained release evidence read, tests not rerun or claimed GPC product validation",
+      "declared_canonical_release_status": "released",
+      "fleet_revision": "c5f5c28ffd33cd87802c8481f5bc8d9b1559e787",
+      "installed_GPC_version": "2.12.1",
+      "installed_package_tree": "9c45d98c3254e9658d452c505d8c97698e3fc9a7",
+      "migration_decision": "wait_safe_boundary",
+      "observed_at_utc": "2026-10-10T17:58:58.161906+00:00",
+      "package_files": 398,
+      "product_gates_preserved": true,
+      "reason": "Original CI6 unresolved external guard; current user permits adoption only after positive recovery and supported reconciliation",
+      "release": {
+        "canonical_repository": "bajoicheg/g-cdc",
+        "evidence_binding": {
+          "commit": "226e70b3fb4a172b86f18c1828b8668387b6d009",
+          "path": "release/evidence-3.3.0.json",
+          "ref": "refs/heads/cdc/release-evidence/v3.3.0",
+          "schema": "canonical-release-evidence-binding/v1",
+          "source_identity": "sha256:dd313ce733052636056110bcc138394c4b3f2d13b67ef7d0ef3cfc2a690203ac"
+        },
+        "package_tree": "3f00c4927557aa94912c8bf21a881add47c2f412",
+        "release_commit": "2be2088d8e6ad59f87cdd9d07dc9f7ab8d4c34ad",
+        "release_ref": "refs/heads/release/v3.3.0",
+        "schema": "live-target-release/v2",
+        "version": "3.3.0"
+      },
+      "scheduler_pause_preserved": true,
+      "schema": "gpc-CDC330-target-observation/v1"
+    },
+    "active_current_invocation_executors": 0,
+    "at_utc": "2026-10-10T18:02:48.087629Z",
+    "authentic_original_response_recovered": false,
+    "checked_sources": [
+      "Immutable33ec87e4:document.json",
+      "Immutable2f5fe3f:document.json",
+      "Original intent57d4176f:document.json",
+      "Fresh coordination lease/budget/diagnostic checkpoint",
+      "Current chat write_stdin(session26208) observation-only: unknown process",
+      "Scoped scratch retained records18 matches",
+      "Root read-only logs_2.sqlite exact tokens absent and state_5.sqlite threads0",
+      "One original Cloud-task host audit: different boot; original workroot absent; accessible sessions/history/logdb absent; /root/.codex restricted",
+      "Personal-context retrieval returned wrapper summaries, no raw receive-pack reply"
+    ],
+    "coordination_admission_and_after_search": "109274a5e6652098ac3437387a393d06bb7f23f0",
+    "coordination_at_start": "4897731ce84fe9dfa2c4a3fce3b208f03a16d5a6",
+    "current_invocation_executors_drained": true,
+    "current_source_sha": "7aaefdebca68eed64c8e92d7dfff7384f0a3c800",
+    "generation": 31,
+    "global_loss_proven": false,
+    "guard_preserved": true,
+    "historical_unknown_actors_preserved": 2,
+    "intent_revision_unchanged": "57d4176f8fadbc9a498fcab771b4909ecc8250ac",
+    "invocation_id": "Work-root-gpc-original-receipt-20261010-2048",
+    "lease_blob_unchanged": "409cb124c37d7b4875e59c82716ac5b563c6424c",
+    "missing_proof": "Authentic original CompletedProcess streams/exit and per-ref receive-pack result bound to session26208/chunk54e0cc/grantc3c43f96; wrapper exit1 is not Git returncode",
+    "next_action": "Retrieve original tool/session retention for26208/chunk54e0cc on boot a896337f-ffb5-4527-ad99-c9b81e24c95e, or authenticated original server per-ref receive-pack transaction/audit receipt after claim2026-10-09T15:47:25.156111Z. Bind candidate53636f45, grantc3c43f96, original operation key and pilot; persist/readback raw proof, check supported canonical reconciliation, then perform atomic CDC3.3.0 adoption. No replay/replacement grant/absence inference.",
+    "no_guard_clear": true,
+    "no_new_CI": true,
+    "no_original_command_rerun": true,
+    "no_replacement_grant": true,
+    "original_git_returncode": null,
+    "original_git_stderr": null,
+    "original_git_stdout": null,
+    "original_operation": {
+      "intent": {
+        "attempt_id": "gpc-0171-native-diagnostic-CI6-20261009",
+        "binding": {
+          "backend": "git-conditional-create",
+          "candidate_sha": "53636f45cc14075717e4e68b0a40ba020b96d9ca",
+          "check_plan_digest": "sha256:ead940bd5906ad2988890679cd80e440eb8e7e7d1cc6566a2e9197a24e449f3e",
+          "check_suite_fingerprint": "sha256:ec57343604c3aa50167ea7a15e42eac6a6d4057612bd45bb017cb50dcb655dfb",
+          "environment_fingerprint": "sha256:1efdba8db1d6384afe67291133b59ec61c9bfd54feac2aa2592d4a4ad8cbd90a",
+          "environment_id": "existing-gpc-cloud-task",
+          "mode": "retained_windows_exe",
+          "repository": "bajoicheg/g-pc-health-check"
+        },
+        "created_at_utc": "2026-10-09T15:47:16.186316Z",
+        "durable_intent": {
+          "attempt_id": "gpc-0171-native-diagnostic-CI6-20261009",
+          "operation_key": "sha256:3dc9f2ff126eaffadc9a1580eecdc14978c51f047133f10f34b41d4b177998d4",
+          "read_back_at_utc": "2026-10-09T15:47:19.223231Z",
+          "record_digest": "sha256:6424df0ae2b91bc6664e8b44ea87fb165f08bd5e1d2917cbbddc3249416e090e",
+          "reference": "git:refs/heads/cdc/intent-gpc-native-diagnostic-CI6-20261009@749dcf3262c2b0f70e91c48ba1505b6e812688c4",
+          "schema": "operation-intent-readback/v1"
+        },
+        "operation_key": "sha256:3dc9f2ff126eaffadc9a1580eecdc14978c51f047133f10f34b41d4b177998d4",
+        "schema": "operation-intent/v1",
+        "skill_version": "2.3.0",
+        "source_ref": "refs/heads/design/0.17.0-security-posture",
+        "state": "submitting",
+        "task": null,
+        "updated_at_utc": "2026-10-09T15:47:19.223467Z"
+      },
+      "intent_digest": "sha256:c25367ca88b9ae5a69f75b7b9b2ab48b658ca1b251c645aa77d24dadf52b1708",
+      "intent_reference": "git:refs/heads/cdc/intent-gpc-native-diagnostic-CI6-20261009@57d4176f8fadbc9a498fcab771b4909ecc8250ac",
+      "operation_key": "sha256:3dc9f2ff126eaffadc9a1580eecdc14978c51f047133f10f34b41d4b177998d4",
+      "submission_claim": {
+        "attempt_id": "gpc-0171-native-diagnostic-CI6-20261009",
+        "claimed_at_utc": "2026-10-09T15:47:25.156111Z",
+        "generation": 31,
+        "grant_id": "c3c43f96-f88f-4669-b344-13ae248ba382",
+        "intent_digest": "sha256:c25367ca88b9ae5a69f75b7b9b2ab48b658ca1b251c645aa77d24dadf52b1708",
+        "operation_key": "sha256:3dc9f2ff126eaffadc9a1580eecdc14978c51f047133f10f34b41d4b177998d4",
+        "owner_id": "97f173a1-4785-4bfa-a3dd-0afe5e97db9b"
+      }
+    },
+    "owner": null,
+    "raw_audit_blob": "e83ec737ea82f10e750953bd7e14668297bd6140",
+    "raw_audit_ref": "git:48a1220845956fff6fc1b43c87dbd96af3f2e626:document.json#original_CI6_host_log_audit60",
+    "root_verification": {
+      "UI_terminal": true,
+      "UI_total_seconds": 245,
+      "all_27_neighbor_keys_values_preserved": true,
+      "at_utc": "2026-10-10T18:01:05.252410+00:00",
+      "audit_blob": "e83ec737ea82f10e750953bd7e14668297bd6140",
+      "audit_commit": "48a1220845956fff6fc1b43c87dbd96af3f2e626",
+      "audit_observed_seconds": 116.536598,
+      "current_tree_document_only": true,
+      "exact_original_binding_and_admission_verified": true,
+      "guard_resolution_allowed": false,
+      "historical_blobs_and_source_hashes_verified": true,
+      "inventory_canonical_semantic_sha256": "b37f12f17135554ba995424bc9d1a174e99928212fe7bdab641b68cd94e56aee",
+      "inventory_digest_verified": false,
+      "inventory_serialization": [],
+      "original_receivepack_result_recovered": false,
+      "raw_document_sha256": "3a0cbfdda76e1fee834bdafc74eaac288f0fe837f9ca7b3de881032815532b92",
+      "remaining_limit": "Original host runtime replaced; original tool/transport receipt not available in inspected interfaces",
+      "schema": "gpc-root-original-CI6-audit-verification/v1"
+    },
+    "scheduler_pause_preserved": true,
+    "schema": "gpc-original-Git-operation-recovery/v1",
+    "scope_complete": false,
+    "terminal_result": "UNKNOWN",
+    "timing": {
+      "UI_audit_total_seconds": 245,
+      "first_measured_root_time_utc": "2026-10-10T17:48:34.220735Z",
+      "observed_host_audit_seconds": 116.536598,
+      "original_git_duration_seconds": null,
+      "physical_provider_start_utc": null,
+      "root_elapsed_so_far_seconds": 853.866894
+    },
+    "wrapper_exit_code": 1,
+    "wrapper_exit_is_NOT_git_result": true
+  },
+  "real_worker36": {
+    "genuine_release": "git:e2b7872317c82184a97d1494810ef1ac5b8c7659",
+    "quiescent": true,
+    "released_generation": 31,
+    "status": "cancelled"
+  },
+  "recorded_at_utc": "2026-10-10T18:02:48.087629Z",
+  "remaining_queue": [
+    "0.17.1 corrected footer and exact Windows diagnostic/final EXE gates",
+    "0.17.2",
+    "0.18",
+    "0.19"
+  ],
+  "scheduler_pause_preserved": true,
+  "schema": "gpc-delivered-diagnostic-and-external-blocker/v1",
+  "scope_complete": false,
+  "source": "7aaefdebca68eed64c8e92d7dfff7384f0a3c800",
+  "state": "waiting_external",
+  "missing_evidence_feature_20261010": {
+    "schema": "gpc-missing-evidence-candidate-delivery/v1",
+    "observed_at_utc": "2026-10-10T20:15:02.111276Z",
+    "owner_instruction": "Делай. Нет данных это боль; repeated Делай",
+    "candidate": {
+      "schema": "gpc-independent-corrected-delivery-verification/v1",
+      "candidate": "3e64dbd7cf78ce6a273f454ec97583a454695d5e",
+      "tree": "b61f0ca5fdccd4e06be6c4fecd6c6b79b9bea10f",
+      "sole_parent": "3efc1a990bf56dc9659faf8be86d921dda8c1a2a",
+      "artifact_commit": "a7e4ca5146dfec8202f48a70689faa43728c3030",
+      "immutable_result_ref": "git:d1b633c25fef1063b3005f3578557d28ae527817:document.json#no_data64_corrective_handoff",
+      "manifest_path": "artifact-handoff/no-data64-3e64dbd7/manifest.json",
+      "sha256": "c632d6798da8fe994a214d418a6d67c37e44ee01c3840c220696da9cb5e9af06",
+      "bytes": 78778990,
+      "filename": "G-PC-Health-0.17.1-evidence-corrected.exe",
+      "PE_version_bundle453": "Root independent helpers exit0; exact ProductVersion/AMD64/PE32+/453 bounded decompressed entries verified",
+      "all13_source_files_match": true,
+      "source_worktree_clean": true,
+      "all31_previous_evidence_keys_preserved": true,
+      "tests": {
+        "GREEN": {
+          "command": "dotnet run --project harness/Harness.csproj --no-restore",
+          "exit": 0,
+          "log": "final-corrective.log",
+          "result": "9/9; includes actual MainForm and ServiceDeskFullBatchUi verification blocks, real filesystem save/rollback, JSON roundtrip and cross-volume cause separation"
+        },
+        "RED": {
+          "command": "dotnet run --project harness/Harness.csproj --no-restore",
+          "exit": 1,
+          "log": "red.log",
+          "result": "0/6; functional assertions for all five SPEC findings, including two subject cases; compiler setup failures excluded",
+          "source": "3efc1a990bf56dc9659faf8be86d921dda8c1a2a"
+        },
+        "RED_reproduction": {
+          "command": "dotnet run --project red-repeat/harness/Harness.csproj -p:RestoreSources=/tmp/gpc-empty-nuget",
+          "exit": 1,
+          "log": "red-repeat.log",
+          "result": "0/6 with retained source extraction and fixtures",
+          "source": "3efc1a990bf56dc9659faf8be86d921dda8c1a2a"
+        },
+        "SDK": "8.0.425",
+        "exact_parent_regressions": {
+          "command": "dotnet run --project baseline-harness/Harness.csproj -p:RestoreSources=/tmp/gpc-empty-nuget",
+          "exit": 2,
+          "log": "baseline-regressions.log",
+          "result": "same seven guidance failures; evaluator/firmware/BitLocker/evidence PASS, triage exit1",
+          "source": "3efc1a990bf56dc9659faf8be86d921dda8c1a2a"
+        },
+        "harness_limits": "Production C# sources and extracted exact UI presentation/persistence blocks; native control/acquisition shims explicitly excluded from acceptance. No real WMI/BCD/OEM was invoked. Unused shim variable warning is not a product warning. Windows runtime/layout NOT_RUN.",
+        "project": "harness/Harness.csproj",
+        "regressions": {
+          "BitLocker": "7/7 fake-source PASS",
+          "command": "dotnet run --project harness/Harness.csproj --no-restore -- regressions",
+          "evidence": 0,
+          "exit": 2,
+          "firmware": "12/12 fake-source PASS",
+          "guidance": "12/19; same seven Linux failures",
+          "log": "regressions.log",
+          "security_evaluator": 0,
+          "triage": 1
+        },
+        "schema": "gpc-source-linked-corrective-tests/v1"
+      },
+      "build_receipts": {
+        "Windows_runtime": "NOT_RUN",
+        "brand": "Cached prior successful assets, no Windows generation claimed; hashes checked against retained brand-provenance.json",
+        "compile": {
+          "argv": [
+            "dotnet",
+            "build",
+            "src/G.PcHealthCheck/G.PcHealthCheck.csproj",
+            "--no-restore",
+            "-c",
+            "Release",
+            "-r",
+            "win-x64",
+            "-p:EnableWindowsTargeting=true",
+            "-p:DesignTimeBuild=true",
+            "-p:GeneratedBrandDir=/workspace/work/gpc-no-data61/brand",
+            "-p:UseSharedCompilation=false",
+            "-warnaserror"
+          ],
+          "errors": 0,
+          "exit": 0,
+          "log": "compile.log",
+          "scope": "All corrections; subsequent native fixture addition also compiled by final publish",
+          "warnings": 0
+        },
+        "publish": "Exact actual argv/timestamps/returncode in publish-receipt.json, stdout/stderr persisted before assertion; final frozen candidate with native fixture addition",
+        "restore": {
+          "argv": [
+            "dotnet",
+            "restore",
+            "src/G.PcHealthCheck/G.PcHealthCheck.csproj",
+            "-r",
+            "win-x64",
+            "-p:EnableWindowsTargeting=true",
+            "-p:RestoreSources=/tmp/gpc-empty-nuget"
+          ],
+          "exit": 0,
+          "log": "restore.log"
+        },
+        "sdk": "8.0.425"
+      },
+      "Linux_guidance_failures": [
+        "FAIL: critical CPU guidance is not replaced by Temp cleanup: The competing cleanup recommendation was not reproduced.",
+        "FAIL: critical RAM guidance is not replaced by Temp cleanup: The competing cleanup recommendation was not reproduced.",
+        "FAIL: critical disk pressure guidance is not replaced by Temp cleanup: The competing cleanup recommendation was not reproduced.",
+        "FAIL: critical repeated events guidance is not replaced by Temp cleanup: The competing cleanup recommendation was not reproduced.",
+        "FAIL: healthy clipboard contains no significant findings or omission marker: OK findings entered the significant list.",
+        "FAIL: isolated low space keeps its actual guidance and cleanup action: Sequence contains no matching element",
+        "FAIL: physical disk failure guidance is not replaced by Temp cleanup: The competing cleanup recommendation was not reproduced."
+      ],
+      "actual_baseline_same_failures": true,
+      "elapsed_seconds": 929,
+      "native_UI_terminal": "Done15m29s, Stop absent; usage-limit banner, Send disabled after artifact published",
+      "native_transport_outcome": "quota_exhausted_after_verified_handoff",
+      "Native_foreground_commands": "two final tool results observed Command completed; retained build/test/publish subprocess exits read independently",
+      "Native_background_absence": "not independently observed; no watcher/children/new background commands authorized or reported",
+      "Windows_runtime": "NOT_RUN",
+      "production_release": false,
+      "original_Git_outcome": "UNKNOWN retained",
+      "independent_reviews": {
+        "SPEC": "GREEN",
+        "QUALITY": "GREEN",
+        "exact_candidate": "3e64dbd7cf78ce6a273f454ec97583a454695d5e",
+        "durable_coordination": "641cba1e30757b3bd0899dc14e9a090919abdde2",
+        "SPEC_record": "exe-gpc-recovery/no-data-20261010/spec65-review.json",
+        "QUALITY_record": "exe-gpc-recovery/no-data-20261010/quality66-review.json",
+        "qualification": "Independent static source/receipt review; Windows runtime NOT_RUN"
+      },
+      "independent_reviews_at_initial_byte_verification": "PENDING"
+    },
+    "independent_SPEC": {
+      "schema": "gpc-independent-spec-review/v1",
+      "attempt": "gpc-no-data65-spec-20261010",
+      "candidate": "3e64dbd7cf78ce6a273f454ec97583a454695d5e",
+      "tree": "b61f0ca5fdccd4e06be6c4fecd6c6b79b9bea10f",
+      "sole_parent": "3efc1a990bf56dc9659faf8be86d921dda8c1a2a",
+      "scope_base": "ca354d2194a454b0356057c2db34e94cea8ffbbe",
+      "admission": "55b2443678ae1df21edf74c42f730913f16e3b10",
+      "started_at_utc": "2026-10-10T20:06:40.140610Z",
+      "finished_at_utc": "2026-10-10T20:09:39.810803Z",
+      "elapsed_seconds": 179.67,
+      "timing_basis": "Conservative upper bound from persisted SPEC65 launch preparation through review completion; initial agent-dispatch clock was not independently captured. Includes preparation before first reviewer read.",
+      "verdict": "GREEN",
+      "findings": [],
+      "resolved_findings": [
+        {
+          "id": "SPEC-1",
+          "paths": [
+            "src/G.PcHealthCheck/MissingEvidenceExplanation.cs:31-40",
+            "src/G.PcHealthCheck/FirmwareSecurityCollector.cs:30-32"
+          ],
+          "evidence": "Exact UnsupportedManufacturer key is recognized for nonblank, non-Unknown retained OEM value. Blank/Unknown OEM and null Huawei BIOS password observation remain cause_not_established. Providers/statuses unchanged."
+        },
+        {
+          "id": "SPEC-2",
+          "paths": [
+            "src/G.PcHealthCheck/SecurityDetailPresentation.cs:12-52",
+            "src/G.PcHealthCheck/MainForm.SecurityPosture.cs:151-191",
+            "src/G.PcHealthCheck/Models.cs:253-265",
+            "src/G.PcHealthCheck/SecurityReportSection.cs:37-41,76-77"
+          ],
+          "evidence": "Each Unknown displayed volume/member uses shared production detail presentation with own evidence and reason/source-or-not-recorded/next step. Volume grouping starts only at actual Volume keys, does not borrow another volume error; member causes use explicit member Reason/policy flags. Serialized SecurityDetails retains members absent from JsonIgnored collector snapshot and is consumed by HTML/clipboard after roundtrip. Raw subject facts retained."
+        },
+        {
+          "id": "SPEC-3",
+          "paths": [
+            "src/G.PcHealthCheck/ReportService.cs:22-55",
+            "src/G.PcHealthCheck/MainForm.Symptoms.cs:25-42"
+          ],
+          "evidence": "Selection produces a separate snapshot and new report pair in staging, flushes each file and commits with a same-parent directory rename; original reports are not overwritten. Current snapshot, symptom notes and latest report update only after success. Failure displays localized message and returns before tool open, preserving current/clipboard/history."
+        },
+        {
+          "id": "SPEC-4",
+          "paths": [
+            "src/G.PcHealthCheck/MainForm.cs:389-396",
+            "src/G.PcHealthCheck/ServiceDeskFullBatchUi.cs:129-134",
+            "src/G.PcHealthCheck/ReportService.cs:68-83,133-136,182-187",
+            "src/G.PcHealthCheck/SupportSummary.cs:17"
+          ],
+          "evidence": "Both existing verification paths copy Before.SymptomNotes into independent After list before saving/replacing current. Verification JSON/HTML and current clipboard consume those same notes. Diff adds only the note assignment in both remediation flows, preserving execution semantics."
+        },
+        {
+          "id": "SPEC-5",
+          "paths": [
+            "src/G.PcHealthCheck/Resources/Strings.en.resx:125",
+            "src/G.PcHealthCheck/Resources/Strings.resx:125",
+            "src/G.PcHealthCheck/LocalAdministratorsPolicy.cs:28-31"
+          ],
+          "evidence": "Unchanged generic-exception policy sentinel no longer yields localized configured/existence assertion; unreadable reason explicitly says existence/type/cause may not be established and does not infer denial."
+        }
+      ],
+      "confirmed_scope_preserved": [
+        "Entire approved feature diff reviewed: source paths plus release note only; no evaluator/control-weight/score/coverage/provider/worker/UAC/Temp/session/nonce changes.",
+        "No-WARN/CRIT Triage incomplete branch preserves assessment semantics and existing CRIT/WARN ordering; healthy empty results remain distinct from collection warnings. Technical missing signals carry conservative additive metadata.",
+        "Four compact Overview routes use existing performance, incident review, Resource Probe and Common Problems forms. Constructors are idle; printing route explicitly disables Common Problems Shown auto-scan. Selection does not collect/probe/repair or change action batch.",
+        "Security grid uses AutoSizeRowsMode.None, RowTemplate.Height=28 and no wrapping; selected detail pane retains complete read-only multiline selectable values. Existing tabs and shell fixed footer remain structurally retained. Actual Windows layout not executed."
+      ],
+      "evidence": [
+        "Independent exact HEAD/tree/sole-parent readbacks and clean git status; whole-feature git diff --check exit0.",
+        "Read contract.txt, fix-contract.txt, original spec-review.json, entire base-to-candidate diff and actual collector/presentation/persistence/verification integrations.",
+        "Independent read-only Python verified all 13 extracted source blocks against exact file SHA256 and character bounds, with only declared access-modifier transformations; all matched supplied UiExtraction.cs.",
+        "Independent read-only XML check verified all 11 reason/next-step pairs exist in both RU and EN resources.",
+        "Inspected real source-linked C# RED 0/6 exit1, repeat RED 0/6 exit1, final corrective GREEN9/9 exit0, extraction/shim provenance and tests. These are producer execution receipts, not independent runtime reruns.",
+        "Inspected candidate and exact-parent regression logs: evidence10/10, evaluator9/9, firmware12/12 and BitLocker7/7 pass; same seven guidance failures in parent/candidate, aggregate regression exit2. Full suite is not green.",
+        "Inspected compile log (zero warnings/errors), build receipts and exact-candidate self-contained win-x64 publish argv/raw stdout/stderr/returncode0, SDK8.0.425 and informational version exact3e64dbd7.",
+        "Read corrected-root-verification.json: independent root owns immutable delivered bytes/source/bundle/version verification; this SPEC review does not independently revalidate binary publication."
+      ],
+      "limitations": [
+        "GREEN is bounded static SPEC acceptance for this exact source candidate; independent QUALITY66 remains pending. No new tests/builds or native WinForms runtime executed by reviewer.",
+        "Portable C# UI extraction substitutes native controls/acquisition with explicit shims; passing checks do not establish real Windows UI/UAC/WMI/BCD/firmware behavior.",
+        "Windows runtime/UI rendering/DPI/RDP/Windows11 pilot/UAC/physical Huawei acceptance remain NOT_RUN.",
+        "Existing seven Linux guidance failures are retained and reproduced on exact parent; no full-suite success claim.",
+        "Only spec65-review.json written. No source/shared refs/admission/budget changes, browser/native compute invocation, CI replay or child agents. All own commands returned terminal; no subprocess sessions started. Original Git outcome remains UNKNOWN."
+      ]
+    },
+    "independent_QUALITY": {
+      "schema": "gpc-independent-quality-review/v1",
+      "attempt": "gpc-no-data66-quality-20261010",
+      "candidate": "3e64dbd7cf78ce6a273f454ec97583a454695d5e",
+      "tree": "b61f0ca5fdccd4e06be6c4fecd6c6b79b9bea10f",
+      "sole_parent": "3efc1a990bf56dc9659faf8be86d921dda8c1a2a",
+      "scope_base": "ca354d2194a454b0356057c2db34e94cea8ffbbe",
+      "admission": "3dea9c2cb8cc6946bad7b517edad9839c933d081",
+      "verdict": "GREEN",
+      "findings": [],
+      "evidence": [
+        "Independent read-only QUALITY review of all 22 changed files in the complete approved base-to-candidate feature diff, contracts, prior five SPEC defects, GREEN SPEC65, corrected root verification, production collector semantics, report/UI integration, source-linked fixtures and receipts. Exact HEAD/tree/sole-parent and clean worktree verified before and after; whole-feature diff --check exit0.",
+        "MissingEvidenceExplanation uses exact retained CollectionError/CollectionState tokens and actual UnsupportedManufacturer key. Empty/null/Unknown manufacturer and generic errors remain cause_not_established; policy unreadable wording does not assert existence or rights. Raw evidence/statuses retained; only safe derived source/recognized cause information is added to prose. Production exception collectors retain exception type names rather than free-form exception messages.",
+        "Shared SecurityDetailPresentation derives each Unknown volume/member explanation from its own retained facts. Volume groups do not borrow the preceding or following subject error. SecurityDetails persists the typed member facts despite JsonIgnored collector snapshot, and the backing serialized details are consumed by report/clipboard after roundtrip. Aggregate Fail does not suppress an Unknown member. JSON computed control and technical metadata is additive.",
+        "SaveSymptomSelection creates a new snapshot with an independent note list and preserves Data/Assessment/Security/SecurityHardening/SecuritySnapshot/details/actions. JSON and HTML are written and flushed inside one new same-parent staging directory, then Directory.Move commits the pair without overwriting prior history. MainForm updates current/notes/latest-report only after success; caught failure returns with localized error before tool open. Pre-staging, write, and rename failures cannot publish a partial final pair or change clipboard state. Cleanup can fail but does not alter prior snapshot/history.",
+        "Both MainForm.ApplySelectedAsync and ServiceDeskFullBatchUi copy Before notes into an independent After list before verification persistence/current replacement. Reports render After notes and JSON carries Before/After; clipboard reads the same current snapshot. Changes in those paths are note assignments only, preserving action/remediation semantics.",
+        "No-WARN/CRIT triage branches on coverage, missing technical signals, or collection warnings while CRIT/WARN ordering remains unchanged. Healthy complete empty results remain distinct. RU/EN contain all 11 reason/next-step pairs; technical missing-signal source limits remain conservative. No changes to score, weights, coverage calculations, evaluators or acquisition providers.",
+        "Four fixed routes open existing idle performance, incident, Resource Probe, and Common Problems forms. Constructor/event reads confirm no route starts acquisition; resource run remains gated by target and consent, and printing route disables only its Shown auto-scan. Busy admission and action state are preserved. Overview remains inside the existing scroll viewport; named tabs and fixed footer shell are retained. Security rows use None autosizing, 28-pixel template, no wrapping, and existing complete selectable detail pane.",
+        "Independent read-only Python verification matched all 13 supplied extraction blocks against exact source SHA256, character bounds, and only declared access-modifier transforms. Independently compared exact baseline/candidate regression failure sequences: seven unique failures, each logged twice (14 entries), identical in both. Initial count assertion expecting seven total entries was corrected after reading the duplicate log groups; no product test failure was inferred from that reviewer assertion.",
+        "Inspected producer real C# RED0/6 exit1 and repeat RED0/6 exit1 to final corrective GREEN9/9 exit0, including filesystem rollback, serialized member metadata, both verification blocks and cross-volume separation. Inspected evidence10/10, evaluator9/9, firmware12/12 and BitLocker7/7 receipts. Guidance12/19 remains failing identically on exact parent and candidate; aggregate regressions exit2. These are inspected producer receipts, not tests rerun by this reviewer.",
+        "Inspected SDK8.0.425 compile receipts/raw output showing zero warnings/errors, and exact-candidate win-x64 self-contained warnings-as-errors publish argv/raw output/returncode0 with InformationalVersion0.17.1+3e64dbd7cf78ce6a273f454ec97583a454695d5e. Root verification owns independent 19-chunk/OID/full-SHA/PE-version/453-bundle-entry validation. Release note retains actual scope, history, failures and NOT_RUN qualifications."
+      ],
+      "limitations": [
+        "GREEN is a bounded independent static QUALITY verdict for this exact candidate, with no material blocker found. It is not a production-release or Windows acceptance claim. No new runtime tests, build or publication were executed by this reviewer.",
+        "Portable producer C# harness uses exact linked production files and extracted real UI state/presentation blocks, with explicitly declared native-control/acquisition shims. It does not establish actual WinForms rendering, Windows WMI/BCD/OEM, UAC or interactive failure behavior.",
+        "Windows runtime/UI rendering, Windows11 pilot, UAC, native DPI/RDP and physical Huawei acceptance remain NOT_RUN. Actual high-DPI row rendering and report rename behavior on target Windows are not independently exercised.",
+        "Report-pair consistency was statically reviewed; inspected rollback fixture forces ReportsDirectory creation failure, not every write/rename failure or power-loss scenario. No crash/power-loss durability claim is made.",
+        "Seven unique Linux guidance failures remain present and baseline-equivalent; full suite is not green. Binary transport/version/decompression are root-owned independent checks, not revalidated here.",
+        "Only this review JSON written. No source/shared ref/admission/budget/lease/guard/CI changes, native executor invocation, children or background processes. All own commands returned terminal exits, including corrected read-only reviewer assertions. Original Git536/CI6 outcome remains UNKNOWN; no replay or guard removal attempted."
+      ],
+      "started_at_utc": "2026-10-10T20:10:48.898482Z",
+      "finished_at_utc": "2026-10-10T20:13:32.970341Z",
+      "elapsed_seconds": 164.072,
+      "timing_basis": "Measured UTC interval from reviewer first captured terminal timestamp 2026-10-10T20:10:48.898482Z through final source verification and report serialization. Initial sub-second skill/setup calls precede this captured timestamp; admission preparation at20:10:11.291950Z is not misrepresented as reviewer execution time."
+    },
+    "library_receipt": {
+      "local_path": "/workspace/scratch/ac06fa404c9c/gpc-delivery/G-PC-Health-0.17.1-evidence-corrected.exe",
+      "purpose": "create_library_file",
+      "status": "succeeded",
+      "file_id": "file_00000000236481f7995d956f896c013c",
+      "library_file_id": "libfile_eb5224093df0819181aa3891645b9be7",
+      "file_name": "G-PC-Health-0.17.1-evidence-corrected.exe",
+      "local_metadata_applied": true,
+      "path": "/G-PC-Health-0.17.1-evidence-corrected.exe",
+      "current_version_number": 0
+    },
+    "corrective_pool": {
+      "schema": "managed-executor-pool-assessment/v1",
+      "pool_id": "gpc-no-data64-corrective-20261010",
+      "complete": true,
+      "terminal_allowed": true,
+      "runnable_task_ids": [],
+      "blockers": [],
+      "next_action": null,
+      "authorizes_worker_launch": false,
+      "authorizes_shared_branch_write": false,
+      "authorizes_merge": false,
+      "authorizes_release": false,
+      "authorizes_scope_expansion": false,
+      "authorizes_scheduler_mutation": false,
+      "authorizes_user_approval": false
+    },
+    "original_candidate_SPEC_RED_retained": "git:d010f6ca156227f40fe0a24028af92cd05767dc9:exe-gpc-recovery/no-data-20261010/spec-review.json",
+    "original_Git_outcome": "UNKNOWN; administrative retirement does not prove Git outcome",
+    "original_operation_replays": 0,
+    "current_source": {
+      "schema": "gpc-final-fresh-ref-probe/v1",
+      "source_ref": "refs/heads/design/0.17.0-security-posture",
+      "source_sha": "325fe132be9ff49bc09b8bfb873f6d3e92df1c5e",
+      "coordination_ref": "refs/heads/cdc/coordination",
+      "coordination_sha": "641cba1e30757b3bd0899dc14e9a090919abdde2",
+      "observed_at_utc": "2026-10-10T20:14:41Z",
+      "current_process": "CDC3.3.1 adopted by external managing invocation; frozen product feature worktree retains CDC2.12.1",
+      "source_product_ref_changed_by_this_phase": false,
+      "lease_blob": "08216b898759f560c86b0c4ab7b839dcc50a78e5"
+    },
+    "product_ref_published": false,
+    "Windows_UI_UAC_DPI_RDP_Huawei": "NOT_RUN",
+    "full_product_release_complete": false,
+    "budget_summary": {
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-no-data-20261010",
+      "task": {
+        "tokens": null,
+        "status_polls": 0,
+        "tool_calls": 97,
+        "compute_starts": 25,
+        "elapsed_seconds": null,
+        "ci_starts": 6,
+        "agent_starts": 66
+      },
+      "wake": {
+        "tokens": null,
+        "status_polls": 0,
+        "tool_calls": 9,
+        "compute_starts": 3,
+        "elapsed_seconds": null,
+        "ci_starts": 0,
+        "agent_starts": 6
+      },
+      "known": {
+        "tokens": 0,
+        "status_polls": 0,
+        "tool_calls": 97,
+        "compute_starts": 25,
+        "elapsed_seconds": 59042.75819404402,
+        "ci_starts": 6,
+        "agent_starts": 66
+      },
+      "unknown": {
+        "tokens": 97,
+        "status_polls": 0,
+        "tool_calls": 0,
+        "compute_starts": 0,
+        "elapsed_seconds": 43,
+        "ci_starts": 0,
+        "agent_starts": 0
+      },
+      "observed": {
+        "tokens": null,
+        "elapsed_seconds": null
+      },
+      "active_agents": 2
+    },
+    "budget_history_preserved": true,
+    "new_executors_terminal": true,
+    "watchdogs_enabled": false,
+    "next_product_step": "Integrate accepted product delta onto current source through managed CDC3.3.1 process without reverting its process adoption, then required Windows validation and real endpoint UI/UAC/DPI/Huawei acceptance; original536 operation never replayed"
+  }
+}
