@@ -1,0 +1,10 @@
+{
+  "actual_worker_start": "NOT_YET",
+  "artifact_sha256": "b08db66b9cf65fe9fcc7e98a59991881eab6daca3d69973c6cbf9b988d13ab97",
+  "at_utc": "2026-10-10T01:49:05.933978Z",
+  "attempt": "gpc-huawei-spec53-20261010",
+  "previous_quality_disposition": "QUALITY52_RED",
+  "remedies": "output/file resource caps, local-files-only, CreateNew checksum",
+  "reservation_token": "8cdd3b6f-1a4f-479c-8ac4-0b82e1a9e837",
+  "role": "READ_ONLY_REVIEW"
+}

@@ -1,0 +1,63 @@
+{
+  "schema": "gpc-huawei-independent-quality-review/v1",
+  "task_id": "quality",
+  "attempt_id": "gpc-huawei-quality52-20261010",
+  "reservation_token": "3ca6f28a-bfaf-4dca-b8f3-f754412076c0",
+  "disposition": "QUALITY_RED",
+  "scope": "Exact discovery ZIP and unapplied patch; no product acceptance",
+  "coordination_claim_commit": "10051b5b88cc4fc1e0e4ac1cf318b6b3a7012ad4",
+  "cdc_pinned_version": "2.12.1",
+  "spec_prerequisite": "SPEC51_GREEN; spec51.md/json read",
+  "observed_start_utc": "2026-10-10T01:43:04Z",
+  "observed_finish_utc": "2026-10-10T01:44:41Z",
+  "provider_agent_start_utc": null,
+  "timing_basis": "First actual clock observation through report preparation; provider launch unknown",
+  "candidate_sha": "68da62237ecfa5377fcc31c5641b3baaebea39a9",
+  "zip_sha256": "a76d2c0f1d0d9d59fd569ef4dd0b3a7d848ca2af74ca8ad79c9bf97d01c21539",
+  "probe_sha256": "3fa0a335dcb4d339078c58e49960a02e5115fbb2d73941fd3356abf3e27ddac4",
+  "patch_sha256": "edf2b7f28578efc5284490f28dad42a31f2b410ff82b5618367e2f02fabcb693",
+  "report_path": "/workspace/scratch/ac06fa404c9c/huawei1010-reviews/quality52.md",
+  "report_sha256": "d80d8b7b874aa27c8f5f60bc65f182305732e75c725f818fc3a5fbbaba8ed8a1",
+  "blocking_findings": 2,
+  "findings": [
+    {
+      "id": "Q1",
+      "severity": "P1",
+      "blocking": true,
+      "location": "Read-HuaweiBiosEvidence.ps1:199-200,239-245",
+      "summary": "BCD output is uncapped; fixed-name file reads/hash have no enforced size/deadline bound",
+      "evidence_basis": "Static control flow/API contract; no induced runtime failure"
+    },
+    {
+      "id": "Q2",
+      "severity": "P2",
+      "blocking": true,
+      "location": "Read-HuaweiBiosEvidence.ps1:110,254-264",
+      "summary": "Intervening directory creation permits overwrite of pre-existing evidence.sha256",
+      "evidence_basis": "Static schedule and documented CreateDirectory/WriteAllText semantics; Windows race NOT_RUN"
+    }
+  ],
+  "verification": {
+    "archive_members_compared": 7,
+    "manifest_hashes_checked": 6,
+    "exact_source_git_show": true,
+    "proposed_bytes_hash_verified_in_memory": true,
+    "patch_applied": false,
+    "patch_compiled": false,
+    "Windows_runtime": "NOT_RUN",
+    "Huawei_runtime": "NOT_RUN",
+    "PowerShell_embedded_selftests": "NOT_RUN",
+    "independent_tree_sitter_execution": "NOT_RUN",
+    "product_source_or_exe_changed": false,
+    "backend_started": false,
+    "coordination_changed": false,
+    "delegation_started": false,
+    "product_acceptance_authorized": false
+  },
+  "limitations": [
+    "Static review is not Windows execution",
+    "Provider start unknown",
+    "Exact-SHA Windows/interactive gates outstanding",
+    "Source7aa/original CI6 UNKNOWN guard remains untouched"
+  ]
+}

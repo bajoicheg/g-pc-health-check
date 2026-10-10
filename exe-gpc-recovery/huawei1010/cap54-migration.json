@@ -1,0 +1,63 @@
+{
+  "adapter_sha256": "effd71582e6c64446f866c3ad7b185324fedecd53d82100953e07c44e0582e4a",
+  "all_unknown_slots_and_failure_circuits_preserved": true,
+  "at_utc": "2026-10-10T01:49:05.933978Z",
+  "authority": {
+    "instruction": "\u041f\u043e\u0434\u043d\u0438\u043c\u0438 \u0441\u0435\u0431\u0435 \u043b\u0438\u043c\u0438\u0442\u044b \u043f\u043e \u043d\u0435\u043e\u0431\u0445\u043e\u0434\u0438\u043c\u043e\u0441\u0442\u0438 \u0441\u0435\u0439\u0447\u0430\u0441 \u0438 \u043f\u0440\u043e\u0434\u043e\u043b\u0436\u0430\u0439",
+    "scope": "Only two necessary independent re-reviews after concrete QUALITY52 findings; existing prior user authorization, no financial/provider settings"
+  },
+  "effective_adapter_ref": "git:refs/heads/cdc/coordination:effective-adapter-cap54.yaml",
+  "event_history_preserved": true,
+  "new_digest": "sha256:9e61fff5aa59f16d95973a1ecba943137c3eab1599ed115081c68e2d1050a306",
+  "new_policy": {
+    "actions_budget": "conserve",
+    "checkpoint_reserve": {
+      "tokens": 4000,
+      "tool_calls": 8
+    },
+    "max_parallel_agents": 4,
+    "provider_max_age_seconds": 300,
+    "task_limits": {
+      "agent_starts": 54,
+      "ci_starts": 13,
+      "compute_starts": null
+    },
+    "wake_limits": {
+      "compute_starts": 6,
+      "status_polls": null,
+      "tool_calls": 80
+    }
+  },
+  "old_digest": "sha256:e8c01332dd1bd5fcee072bed8760181b8f1d1a4125b6b3fac3b73de5bdf26c68",
+  "old_policy": {
+    "actions_budget": "conserve",
+    "checkpoint_reserve": {
+      "tokens": 4000,
+      "tool_calls": 8
+    },
+    "max_parallel_agents": 4,
+    "provider_max_age_seconds": 300,
+    "task_limits": {
+      "agent_starts": 52,
+      "ci_starts": 13,
+      "compute_starts": null
+    },
+    "wake_limits": {
+      "compute_starts": 6,
+      "status_polls": null,
+      "tool_calls": 80
+    }
+  },
+  "review": {
+    "checks": [
+      "only taskagentcap52->54",
+      "CI13/conserve/parallel4/wakecompute6/reserve4000tokens8tools unchanged",
+      "old UNKNOWNs/no refunds preserved",
+      "CDC2.12.1 unchanged"
+    ],
+    "result": "PASS Root limited policy diff"
+  },
+  "schema": "owner-approved-budget-policy-migration/v1",
+  "source_adapter_write": "Not performed; guarded product source remains7aa",
+  "wake_ids_preserved": true
+}
