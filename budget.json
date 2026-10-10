@@ -2668,6 +2668,37 @@
         "tokens": null,
         "elapsed_seconds": null
       }
+    },
+    {
+      "type": "outcome",
+      "event_id": "gpc-huawei-spec58-20261010-actual-terminal",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-max-huawei-20261010-123856",
+      "at_utc": "2026-10-10T10:06:05.645890Z",
+      "reservation_id": "gpc-huawei-spec58-20261010-agent_start",
+      "status": "succeeded",
+      "usage": {
+        "tokens": null,
+        "elapsed_seconds": null
+      },
+      "failure": null
+    },
+    {
+      "type": "reserve",
+      "event_id": "gpc-huawei-quality59-20261010-agent_start",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-max-huawei-20261010-123856",
+      "at_utc": "2026-10-10T10:06:05.645890Z",
+      "operation_key": "sha256:123c74e035a744f261393e1e0dd4ac44e86140ee1006bb12b1772d35e10e7bf2",
+      "attempt_id": "gpc-huawei-quality59-20261010",
+      "kind": "agent_start",
+      "scope": "gpc/readonly/huawei-bcd-candidate-quality-review",
+      "recovery_ref": null,
+      "cost": {
+        "tool_calls": 1,
+        "tokens": null,
+        "elapsed_seconds": null
+      }
     }
   ],
   "policy": {

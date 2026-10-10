@@ -1,0 +1,100 @@
+{
+  "schema": "gpc-huawei-independent-spec-review/v1",
+  "task_id": "spec",
+  "attempt_id": "gpc-huawei-spec58-20261010",
+  "reservation_token": "983e4bc2-9ca0-462c-b2d4-b42adb089c16",
+  "coordination_claim_commit": "c58f5d31de184b38cae56a12ad43861dcaa0454b",
+  "coordination_plan_path": "exe-gpc-recovery/max1010/final-plan.json",
+  "coordination_state_path": "exe-gpc-recovery/max1010/final-state.json",
+  "cdc_pinned_version": "2.12.1",
+  "disposition": "SPEC_GREEN",
+  "blocking_findings": 0,
+  "scope": "Isolated alias-command correction, regression test, exact provenance and honest validation limits; no release acceptance",
+  "candidate_sha": "ca354d2194a454b0356057c2db34e94cea8ffbbe",
+  "candidate_tree": "ad95b455107256e7288f53fa04bb249f397e7ad7",
+  "parent_sha": "68da62237ecfa5377fcc31c5641b3baaebea39a9",
+  "observed_start_utc": "2026-10-10T10:01:47Z",
+  "observed_finish_utc": "2026-10-10T10:05:14Z",
+  "provider_agent_start_utc": null,
+  "timing_basis": "Local first clock and report-preparation finish; provider/physical start unknown",
+  "report_path": "/workspace/scratch/ac06fa404c9c/max1010-reviews/spec58.md",
+  "report_sha256": "9a24db6c85045e52d1a21a2d7717bdad004a01c5901151e6ddc8012d16c133d7",
+  "exe_sha256": "484b95a877a2e2543ce2937598ab58ea9d51e0fa29d2d6ff5ca5dd732adf41cf",
+  "exe_bytes": 78764002,
+  "source_patch_sha256": "f1a7a172b4fabd11ee468a332facfd6654196ed6954a2144899769628da7d8a2",
+  "bundle_sha256": "f8fe0a5c1f058ecdcc0f2142210902d9961abac8b3e8fac78d84188899e88b18",
+  "handoff_sha256": "f696b3b4653c6d6af3abbbdf28175700d6585d44d83e45ce2d8a8e31b508d1be",
+  "manifest_sha256": "e696d1ed63382d396045cd85b6c719bdf78191f2b8bb2f63843c0c219ca71836",
+  "red_packet_sha256": "bab71adcba3359aa8f395f74bb934f08f41c6763cdfc2a177f51b449fe530f21",
+  "delivered_verification_sha256": "c1e6bc3e6e78486271f9352bb60d28fab4c403b977cb30cd1b6d38c078cd502f",
+  "findings": [
+    {
+      "id": "F1",
+      "severity": "INFO",
+      "disposition": "Meets scoped requirement",
+      "summary": "/enum FIRMWARE aliases now match unchanged fwbootmgr parser; command-seam regression covers argument and launch flags"
+    },
+    {
+      "id": "F2",
+      "severity": "INFO",
+      "disposition": "Preserved",
+      "summary": "Shell/redirection/window/timeout/error behavior and Unknown/no absence-based boot Pass are unchanged"
+    },
+    {
+      "id": "F3",
+      "severity": "INFO",
+      "disposition": "No scope expansion",
+      "summary": "No new OEM invocation, secret material, remediation/elevation or ABI claim"
+    },
+    {
+      "id": "F4",
+      "severity": "INFO",
+      "disposition": "Honest bounded evidence",
+      "summary": "Authenticated Native57 portable RED11/12 exit1 and GREEN12/12 exit0 plus publish pass; not full Windows/application/hardware validation"
+    }
+  ],
+  "independent_checks": {
+    "exact_git_object_source": true,
+    "raw_commit_identity": true,
+    "one_commit_two_paths": true,
+    "RED_internal_bytes_hash_blob": true,
+    "final_equals_prepared_RED_only_v_removal": true,
+    "handoff_embedded_sources_equal_candidate": true,
+    "patch_exact_git_diff_abbrev8": true,
+    "delivered_exe_hash_size_AMD64_PE32plus_GUI": true,
+    "official_Microsoft_contract_freshly_opened": true,
+    "reviewer_compiler_or_tests_started": false,
+    "reviewer_bundle453_version_resource_checks": "NOT_RERUN; authenticated root evidence retained"
+  },
+  "supplied_execution_evidence": {
+    "portable_RED_passed": 11,
+    "portable_RED_total": 12,
+    "portable_RED_exit": 1,
+    "portable_GREEN_passed": 12,
+    "portable_GREEN_total": 12,
+    "portable_GREEN_exit": 0,
+    "publish_SDK": "8.0.425",
+    "publish_exit": 0,
+    "publish_warnings": 0,
+    "publish_errors": 0,
+    "scope": "Production fake-source firmware selftests in portable harness; no BCD/WMI/OEM runtime"
+  },
+  "limitations": {
+    "full_application_tests": "NOT_RUN",
+    "Windows11_UAC_UI_DPI_RDP": "NOT_RUN",
+    "physical_Huawei": "NOT_RUN",
+    "fresh_brand_generator": "NOT_RUN",
+    "OEM_ABI": "UNKNOWN",
+    "OEM_download": "Proxy CONNECT403; bytes0; retries0; no interface absence inference",
+    "CI6": "UNKNOWN preserved",
+    "quality59": "OUTSTANDING",
+    "production_release": false
+  },
+  "mutations": {
+    "product_source": false,
+    "Git": false,
+    "backend": false,
+    "pool_or_lease": false,
+    "delegation": false
+  }
+}

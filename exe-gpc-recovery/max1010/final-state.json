@@ -8,29 +8,31 @@
   "integrator_id": "Work-root",
   "coordination_ref": "refs/heads/cdc/coordination",
   "coordination_store_id": "sha256:e9c5798b2e5857d11563b10845ae993ed5b0e7b040ffd6611bdbd1a36aad08d3",
-  "revision": 2,
+  "revision": 6,
   "execution_mode": "parallel",
   "tasks": [
     {
       "id": "spec",
-      "status": "running",
+      "status": "succeeded",
       "attempt_ids": [
         "gpc-huawei-spec58-20261010"
       ],
-      "active_attempt_id": "gpc-huawei-spec58-20261010",
-      "reservation_token": "983e4bc2-9ca0-462c-b2d4-b42adb089c16",
-      "accepted_result_ref": null,
-      "integrated": false,
+      "active_attempt_id": null,
+      "reservation_token": null,
+      "accepted_result_ref": "sha256:9a24db6c85045e52d1a21a2d7717bdad004a01c5901151e6ddc8012d16c133d7",
+      "integrated": true,
       "discarded": false,
-      "runtime_seconds": 0,
-      "cost_units": 0
+      "runtime_seconds": 301.998326,
+      "cost_units": 1
     },
     {
       "id": "quality",
-      "status": "planned",
-      "attempt_ids": [],
-      "active_attempt_id": null,
-      "reservation_token": null,
+      "status": "running",
+      "attempt_ids": [
+        "gpc-huawei-quality59-20261010"
+      ],
+      "active_attempt_id": "gpc-huawei-quality59-20261010",
+      "reservation_token": "766fcfb3-8487-4b35-9f7e-8340cf338d39",
       "accepted_result_ref": null,
       "integrated": false,
       "discarded": false,
@@ -38,8 +40,8 @@
       "cost_units": 0
     }
   ],
-  "runtime_consumed_seconds": 0,
-  "cost_consumed_units": 0,
+  "runtime_consumed_seconds": 301.998326,
+  "cost_consumed_units": 1,
   "authorizes_worker_launch": false,
   "authorizes_shared_branch_write": false,
   "authorizes_merge": false,
