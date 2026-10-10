@@ -1,0 +1,15 @@
+{
+  "schema": "blocked-state-proof/v1",
+  "dependency_id": "gpc-ci6-original-git-terminal-receipt",
+  "category": "external_evidence_unavailable",
+  "observed_at_utc": "2026-10-10T01:17:27.179987Z",
+  "max_age_seconds": 600,
+  "evidence_refs": [
+    "git:73e3d2ea46b017e0143b0e1dbafcd118a7d8819c:lease.json@blob409cb124c37d7b4875e59c82716ac5b563c6424c",
+    "git:refs/heads/cdc/intent-gpc-native-diagnostic-CI6-20261009@57d4176f8fadbc9a498fcab771b4909ecc8250ac",
+    "git:73e3d2ea46b017e0143b0e1dbafcd118a7d8819c:exe-gpc-recovery/reviews52/recovery46.md"
+  ],
+  "next_action": "Obtain authenticated original CI6 receive-pack transaction/terminal receipt bound to candidate53636f45, original pilot, request/grant and original operation key; validate admissibility under pinnedCDC2.12.1 before canonical managed reconciliation",
+  "recheck_trigger": "Genuine original provider terminal receipt or new evidenced compatible independently authorized Windows execution capability becomes available",
+  "same_invocation_work_exhausted": true
+}

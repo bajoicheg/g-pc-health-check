@@ -1,0 +1,19 @@
+{
+  "zip": "/workspace/scratch/ac06fa404c9c/gpc-delivery/G-PC-Health-0.17.1-Windows-Check.zip",
+  "bytes": 78769009,
+  "sha256": "fd9e9e9827aca124dd01fc85f34a0a50b64b8d1273d5b396e8342eb5fc67f2cb",
+  "ZIP_CRC": "PASS",
+  "embedded_exact_EXE_hash": "PASS",
+  "native_script_exact_candidate_bytes": "PASS",
+  "product_changes": false,
+  "native_execution": "NOT_RUN",
+  "items": [
+    "G-PC-Health-0.17.1-ui-corrected.exe",
+    "KIT-INFO.json",
+    "README-RU.txt",
+    "Test-ReadableLayout.ps1",
+    "G-PC-Health-0.17.1-ui-corrected.exe.sha256",
+    "G-PC-Health-0.17.1-ui-corrected-verification.json"
+  ],
+  "preflight_EXE_hash_instruction": true
+}

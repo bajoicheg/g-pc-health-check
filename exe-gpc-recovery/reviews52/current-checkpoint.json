@@ -31,7 +31,7 @@
     "local_metadata_applied_all4": true,
     "status": "succeeded"
   },
-  "at_utc": "2026-10-09T21:07:19.789163Z",
+  "at_utc": "2026-10-10T01:17:27.179987Z",
   "authorizes_guard_clear": false,
   "authorizes_release": false,
   "budget_summary": {
@@ -119,5 +119,56 @@
     "original_CI6_UNKNOWN_preserved": true,
     "replay_or_guard_clear": "NOT_ADMITTED",
     "source_sha": "7aaefdebca68eed64c8e92d7dfff7384f0a3c800"
-  }
+  },
+  "resumed_invocation": "Work-root-gpc-20261010-041201",
+  "Windows_check_kit": {
+    "zip": "/workspace/scratch/ac06fa404c9c/gpc-delivery/G-PC-Health-0.17.1-Windows-Check.zip",
+    "bytes": 78769009,
+    "sha256": "fd9e9e9827aca124dd01fc85f34a0a50b64b8d1273d5b396e8342eb5fc67f2cb",
+    "ZIP_CRC": "PASS",
+    "embedded_exact_EXE_hash": "PASS",
+    "native_script_exact_candidate_bytes": "PASS",
+    "product_changes": false,
+    "native_execution": "NOT_RUN",
+    "items": [
+      "G-PC-Health-0.17.1-ui-corrected.exe",
+      "KIT-INFO.json",
+      "README-RU.txt",
+      "Test-ReadableLayout.ps1",
+      "G-PC-Health-0.17.1-ui-corrected.exe.sha256",
+      "G-PC-Health-0.17.1-ui-corrected-verification.json"
+    ],
+    "preflight_EXE_hash_instruction": true,
+    "library_file_id": "libfile_d68868596648819191ae1c216db50217",
+    "checksum_library_file_id": "libfile_f50aa8006524819199af56d19718ab82",
+    "README_library_file_id": "libfile_2258e8e253188191a5ed34185e5c055f",
+    "script_unchanged_from68da": true,
+    "new_product_changes": false,
+    "Windows_RUN_status": "NOT_RUN",
+    "next_native_action": "Run existing --selftest via included Test-ReadableLayout.ps1 on an authorized interactive Windows x64 host, retaining actual exit/text and fresh30renders; inspect nested footer clipping/overlap and progress separately"
+  },
+  "fresh_probe": {
+    "observed_at_utc": "2026-10-10T01:17:27.179987Z",
+    "coordination_sha": "73e3d2ea46b017e0143b0e1dbafcd118a7d8819c",
+    "source_sha": "7aaefdebca68eed64c8e92d7dfff7384f0a3c800",
+    "main_sha": "09a6956bb74ae1459bea2effe1605700ef861ea0",
+    "evidence_sha": "b1879fa648e5286f15b0dc148be8e27df2d86c71",
+    "task_prs": [
+      {
+        "number": 92,
+        "head": "7aaefdebca68eed64c8e92d7dfff7384f0a3c800",
+        "base": "d00257004bb1a12918b201e60929a7b61673e38d",
+        "state": "open"
+      }
+    ],
+    "lease_blob": "409cb124c37d7b4875e59c82716ac5b563c6424c",
+    "Windows_runs_exact68da": {
+      "total_count": 0,
+      "workflow_runs": []
+    }
+  },
+  "new_provider_starts": 0,
+  "new_CI_starts": 0,
+  "new_subagents": 0,
+  "old_historical_UNKNOWNs_and_budget_retained": true
 }
