@@ -1,0 +1,50 @@
+{
+  "schema": "owner-approved-budget-policy-migration/v1",
+  "at_utc": "2026-10-10T09:43:43.984294Z",
+  "authority": "existing user instruction Подними себе лимиты по необходимости сейчас и продолжай; current Продолжай максимально",
+  "scope": "One OEM analyst, one isolated validation/build controller and two required independent reviews if executable candidate prepared",
+  "old_policy": {
+    "actions_budget": "conserve",
+    "checkpoint_reserve": {
+      "tokens": 4000,
+      "tool_calls": 8
+    },
+    "max_parallel_agents": 4,
+    "provider_max_age_seconds": 300,
+    "task_limits": {
+      "agent_starts": 55,
+      "ci_starts": 13,
+      "compute_starts": null
+    },
+    "wake_limits": {
+      "compute_starts": 6,
+      "status_polls": null,
+      "tool_calls": 80
+    }
+  },
+  "old_digest": "sha256:289aeb05ee87308ed637350eee9e4ca6cc6d8b977b7eef1887bbec689f5e443b",
+  "new_policy": {
+    "actions_budget": "conserve",
+    "checkpoint_reserve": {
+      "tokens": 4000,
+      "tool_calls": 8
+    },
+    "max_parallel_agents": 4,
+    "provider_max_age_seconds": 300,
+    "task_limits": {
+      "agent_starts": 59,
+      "ci_starts": 13,
+      "compute_starts": null
+    },
+    "wake_limits": {
+      "compute_starts": 6,
+      "status_polls": null,
+      "tool_calls": 80
+    }
+  },
+  "new_digest": "sha256:cd1a977f28cafbdbc80e8ac8245b761d7de7bf9d3dedecd5dac36aefc128ee8b",
+  "events_preserved": true,
+  "historical_unknowns_preserved": true,
+  "CDC": "2.12.1 unchanged",
+  "financial_or_provider_settings_changed": false
+}

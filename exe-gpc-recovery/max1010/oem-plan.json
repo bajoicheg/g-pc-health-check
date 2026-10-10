@@ -1,0 +1,37 @@
+{
+  "schema": "managed-executor-pool-plan/v1",
+  "pool_id": "gpc-max-huawei-OEM56-20261010",
+  "change_id": "gpc-huawei-verified-readonly-OEM-contract-research",
+  "parent_invocation_id": "Work-root-gpc-20261010-123856",
+  "base_sha": "7aaefdebca68eed64c8e92d7dfff7384f0a3c800",
+  "integrator_id": "Work-root",
+  "coordination_ref": "refs/heads/cdc/coordination",
+  "coordination_store_id": "sha256:e9c5798b2e5857d11563b10845ae993ed5b0e7b040ffd6611bdbd1a36aad08d3",
+  "max_parallel": 1,
+  "total_runtime_budget_seconds": 1800,
+  "total_cost_budget_units": 1,
+  "tasks": [
+    {
+      "id": "oem",
+      "role": "read_only",
+      "required": true,
+      "dependencies": [],
+      "executor_id": "Work-root-huawei-OEM-analyst56",
+      "branch": null,
+      "worktree": null,
+      "write_paths": [],
+      "expected_outputs": [
+        "huawei-OEM56-report"
+      ],
+      "expected_evidence": [
+        "primary-source-pinned-findings",
+        "actual-terminal-report-digest"
+      ],
+      "backend_preferences": [
+        "Work-subagent"
+      ],
+      "max_runtime_seconds": 1800,
+      "max_cost_units": 1
+    }
+  ]
+}
