@@ -1,0 +1,1072 @@
+﻿2026-10-11T08:41:18.1118464Z Current runner version: '2.337.0'
+2026-10-11T08:41:18.1147670Z ##[group]Runner Image Provisioner
+2026-10-11T08:41:18.1148493Z Hosted Compute Agent
+2026-10-11T08:41:18.1149030Z Version: 20260901.588
+2026-10-11T08:41:18.1149671Z Commit: f88ec8081b781fac6c440065ac7ff9e710ce3d0b
+2026-10-11T08:41:18.1150380Z Build Date: 2026-09-01T19:56:44Z
+2026-10-11T08:41:18.1151018Z Worker ID: {833adfe3-4d8e-4af2-8245-5d3829670841}
+2026-10-11T08:41:18.1151673Z Azure Region: eastus
+2026-10-11T08:41:18.1152177Z ##[endgroup]
+2026-10-11T08:41:18.1153644Z ##[group]Operating System
+2026-10-11T08:41:18.1154261Z Microsoft Windows Server 2025
+2026-10-11T08:41:18.1154837Z 10.0.26100
+2026-10-11T08:41:18.1155316Z Datacenter
+2026-10-11T08:41:18.1155778Z ##[endgroup]
+2026-10-11T08:41:18.1156289Z ##[group]Runner Image
+2026-10-11T08:41:18.1156865Z Image: windows-2025-vs2026
+2026-10-11T08:41:18.1157412Z Version: 20260925.250.1
+2026-10-11T08:41:18.1158856Z Included Software: https://github.com/actions/runner-images/blob/win25-vs2026/20260925.250/images/windows/Windows2025-VS2026-Readme.md
+2026-10-11T08:41:18.1160477Z Image Release: https://github.com/actions/runner-images/releases/tag/win25-vs2026%2F20260925.250
+2026-10-11T08:41:18.1161405Z ##[endgroup]
+2026-10-11T08:41:18.1162427Z ##[group]GITHUB_TOKEN Permissions
+2026-10-11T08:41:18.1164285Z Contents: read
+2026-10-11T08:41:18.1164879Z Metadata: read
+2026-10-11T08:41:18.1165712Z ##[endgroup]
+2026-10-11T08:41:18.1168242Z Secret source: Actions
+2026-10-11T08:41:18.1169170Z Cache mode: write
+2026-10-11T08:41:18.1169830Z Prepare workflow directory
+2026-10-11T08:41:18.1565564Z Prepare all required actions
+2026-10-11T08:41:18.1629968Z Getting action download info
+2026-10-11T08:41:18.3078282Z Download action repository 'actions/checkout@11d5960a326750d5838078e36cf38b85af677262' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-11T08:41:18.4430332Z Download action repository 'actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9' (SHA:67a3573c9a986a3f9c594539f4ab511d57bb3ce9)
+2026-10-11T08:41:18.7232924Z Download action repository 'actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-11T08:41:19.0689778Z Complete job name: developer-tools
+2026-10-11T08:41:19.2255266Z ##[group]Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+2026-10-11T08:41:19.2256825Z with:
+2026-10-11T08:41:19.2257487Z   persist-credentials: false
+2026-10-11T08:41:19.2258148Z   repository: bajoicheg/g-pc-health-check
+2026-10-11T08:41:19.2262420Z   token: ***
+2026-10-11T08:41:19.2262990Z   ssh-strict: true
+2026-10-11T08:41:19.2263522Z   ssh-user: git
+2026-10-11T08:41:19.2264028Z   clean: true
+2026-10-11T08:41:19.2264611Z   sparse-checkout-cone-mode: true
+2026-10-11T08:41:19.2265229Z   fetch-depth: 1
+2026-10-11T08:41:19.2265770Z   fetch-tags: false
+2026-10-11T08:41:19.2266302Z   show-progress: true
+2026-10-11T08:41:19.2266864Z   lfs: false
+2026-10-11T08:41:19.2267368Z   submodules: false
+2026-10-11T08:41:19.2267957Z   set-safe-directory: true
+2026-10-11T08:41:19.2268560Z   allow-unsafe-pr-checkout: false
+2026-10-11T08:41:19.2269447Z env:
+2026-10-11T08:41:19.2269969Z   DOTNET_NOLOGO: true
+2026-10-11T08:41:19.2270739Z   DOTNET_CLI_TELEMETRY_OPTOUT: true
+2026-10-11T08:41:19.2271345Z ##[endgroup]
+2026-10-11T08:41:19.3781040Z Syncing repository: bajoicheg/g-pc-health-check
+2026-10-11T08:41:19.3783402Z ##[group]Getting Git version info
+2026-10-11T08:41:19.3784318Z Working directory is 'D:\a\g-pc-health-check\g-pc-health-check'
+2026-10-11T08:41:19.4893332Z [command]"C:\Program Files\Git\bin\git.exe" version
+2026-10-11T08:41:19.8813724Z git version 2.55.0.windows.5
+2026-10-11T08:41:19.8863594Z ##[endgroup]
+2026-10-11T08:41:19.8884812Z Temporarily overriding HOME='D:\a\_temp\27f5cd65-2d73-480d-99cd-811df2dbaeee' before making global git config changes
+2026-10-11T08:41:19.8886885Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-11T08:41:19.8895880Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\g-pc-health-check\g-pc-health-check
+2026-10-11T08:41:19.9578174Z Deleting the contents of 'D:\a\g-pc-health-check\g-pc-health-check'
+2026-10-11T08:41:19.9585312Z ##[group]Initializing the repository
+2026-10-11T08:41:19.9594728Z [command]"C:\Program Files\Git\bin\git.exe" init D:\a\g-pc-health-check\g-pc-health-check
+2026-10-11T08:41:20.0460347Z Initialized empty Git repository in D:/a/g-pc-health-check/g-pc-health-check/.git/
+2026-10-11T08:41:20.0512516Z [command]"C:\Program Files\Git\bin\git.exe" remote add origin https://github.com/bajoicheg/g-pc-health-check
+2026-10-11T08:41:20.1185679Z ##[endgroup]
+2026-10-11T08:41:20.1188295Z ##[group]Disabling automatic garbage collection
+2026-10-11T08:41:20.1192090Z [command]"C:\Program Files\Git\bin\git.exe" config --local gc.auto 0
+2026-10-11T08:41:20.1673341Z ##[endgroup]
+2026-10-11T08:41:20.1680705Z ##[group]Setting up auth
+2026-10-11T08:41:20.1685134Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-10-11T08:41:20.1965087Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-10-11T08:41:21.7145756Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-11T08:41:21.7466603Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-10-11T08:41:22.3561841Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-11T08:41:22.3908588Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-10-11T08:41:22.9660064Z [command]"C:\Program Files\Git\bin\git.exe" config --local http.https://github.com/.extraheader "AUTHORIZATION: basic ***"
+2026-10-11T08:41:22.9998718Z ##[endgroup]
+2026-10-11T08:41:23.0002880Z ##[group]Fetching the repository
+2026-10-11T08:41:23.0013421Z [command]"C:\Program Files\Git\bin\git.exe" -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +5185cf44cd53438c44dac4d3fabc0a531895f795:refs/remotes/pull/92/merge
+2026-10-11T08:41:24.0542919Z From https://github.com/bajoicheg/g-pc-health-check
+2026-10-11T08:41:24.0543987Z  * [new ref]         5185cf44cd53438c44dac4d3fabc0a531895f795 -> pull/92/merge
+2026-10-11T08:41:24.0592280Z ##[endgroup]
+2026-10-11T08:41:24.0593282Z ##[group]Determining the checkout info
+2026-10-11T08:41:24.0595311Z ##[endgroup]
+2026-10-11T08:41:24.0605692Z [command]"C:\Program Files\Git\bin\git.exe" sparse-checkout disable
+2026-10-11T08:41:24.1077553Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset-all extensions.worktreeConfig
+2026-10-11T08:41:24.1435884Z ##[group]Checking out the ref
+2026-10-11T08:41:24.1445826Z [command]"C:\Program Files\Git\bin\git.exe" checkout --progress --force refs/remotes/pull/92/merge
+2026-10-11T08:41:24.4117040Z Note: switching to 'refs/remotes/pull/92/merge'.
+2026-10-11T08:41:24.4117798Z 
+2026-10-11T08:41:24.4118175Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-10-11T08:41:24.4120427Z changes and commit them, and you can discard any commits you make in this
+2026-10-11T08:41:24.4121320Z state without impacting any branches by switching back to a branch.
+2026-10-11T08:41:24.4121836Z 
+2026-10-11T08:41:24.4122177Z If you want to create a new branch to retain commits you create, you may
+2026-10-11T08:41:24.4123076Z do so (now or later) by using -c with the switch command. Example:
+2026-10-11T08:41:24.4123535Z 
+2026-10-11T08:41:24.4123723Z   git switch -c <new-branch-name>
+2026-10-11T08:41:24.4125348Z 
+2026-10-11T08:41:24.4125523Z Or undo this operation with:
+2026-10-11T08:41:24.4125843Z 
+2026-10-11T08:41:24.4125995Z   git switch -
+2026-10-11T08:41:24.4126200Z 
+2026-10-11T08:41:24.4126578Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-10-11T08:41:24.4127126Z 
+2026-10-11T08:41:24.4127878Z HEAD is now at 5185cf4 Merge 6d65482be7045243501644807a54f6e5f6d6e9ce into 09a6956bb74ae1459bea2effe1605700ef861ea0
+2026-10-11T08:41:24.4259154Z ##[endgroup]
+2026-10-11T08:41:24.4713542Z [command]"C:\Program Files\Git\bin\git.exe" log -1 --format=%H
+2026-10-11T08:41:24.5002376Z 5185cf44cd53438c44dac4d3fabc0a531895f795
+2026-10-11T08:41:24.5050005Z ##[group]Removing auth
+2026-10-11T08:41:24.5058616Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-10-11T08:41:24.5389129Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-10-11T08:41:25.1061045Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-11T08:41:25.1353743Z http.https://github.com/.extraheader
+2026-10-11T08:41:25.1405686Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset-all http.https://github.com/.extraheader
+2026-10-11T08:41:25.1737096Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-10-11T08:41:25.7603776Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-11T08:41:25.7904581Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-10-11T08:41:26.3358156Z ##[endgroup]
+2026-10-11T08:41:26.3752520Z ##[group]Run ./tools/dev/Test-DevWorkflow.ps1
+2026-10-11T08:41:26.3752998Z [36;1m./tools/dev/Test-DevWorkflow.ps1[0m
+2026-10-11T08:41:26.4322398Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-11T08:41:26.4322835Z env:
+2026-10-11T08:41:26.4323041Z   DOTNET_NOLOGO: true
+2026-10-11T08:41:26.4323814Z   DOTNET_CLI_TELEMETRY_OPTOUT: true
+2026-10-11T08:41:26.4324106Z ##[endgroup]
+2026-10-11T08:41:26.9930284Z PASS Quick checks source without packaging
+2026-10-11T08:41:26.9945540Z PASS Full retains Quick and adds packaged/portable checks
+2026-10-11T08:41:27.0284153Z PASS Unknown profile cannot silently skip checks
+2026-10-11T08:41:27.0743220Z PASS Complete clean audit accepted
+2026-10-11T08:41:27.0838087Z PASS Empty audit rejected
+2026-10-11T08:41:27.0920037Z PASS Malformed audit rejected
+2026-10-11T08:41:27.0938251Z PASS No projects rejected
+2026-10-11T08:41:27.1032435Z PASS No frameworks rejected
+2026-10-11T08:41:27.1075504Z PASS Audit error log rejected
+2026-10-11T08:41:27.1245624Z PASS Reject vulnerabilities in topLevelPackages
+2026-10-11T08:41:27.1278601Z PASS Reject vulnerabilities in transitivePackages
+2026-10-11T08:41:27.1716587Z START one
+2026-10-11T08:41:27.1840195Z Passed one (0.005 s)
+2026-10-11T08:41:27.1859832Z START two
+2026-10-11T08:41:27.1879474Z Passed two (0.001 s)
+2026-10-11T08:41:27.1905225Z Results: C:\Users\runneradmin\AppData\Local\Temp\GpcDevTools-Tests-af63ba4df7cd4986bf9ed55208993d98\success\summary.json
+2026-10-11T08:41:27.2028992Z PASS Successful sequence records exact metadata and all steps
+2026-10-11T08:41:27.2096047Z START one
+2026-10-11T08:41:27.2145700Z Passed one (0.004 s)
+2026-10-11T08:41:27.2164090Z START two
+2026-10-11T08:41:27.2241340Z FAILED two: Synthetic failure
+2026-10-11T08:41:27.2260757Z Failed two (0.008 s)
+2026-10-11T08:41:27.2280191Z Results: C:\Users\runneradmin\AppData\Local\Temp\GpcDevTools-Tests-af63ba4df7cd4986bf9ed55208993d98\failure\summary.json
+2026-10-11T08:41:27.2307578Z PASS Failure stops later steps and leaves evidence
+2026-10-11T08:41:27.2354731Z START one
+2026-10-11T08:41:27.2387897Z Passed one (0.002 s)
+2026-10-11T08:41:27.2406703Z Results: C:\Users\runneradmin\AppData\Local\Temp\GpcDevTools-Tests-af63ba4df7cd4986bf9ed55208993d98\running\summary.json
+2026-10-11T08:41:27.2413079Z PASS In-progress snapshot exists before executing a step
+2026-10-11T08:41:27.2439030Z PASS Empty sequence cannot report success
+2026-10-11T08:41:27.2542083Z PASS Existing result directory cannot be overwritten
+2026-10-11T08:41:27.6695552Z synthetic stderr
+2026-10-11T08:41:27.6801351Z PASS Native nonzero exit throws with exact code and saves log
+2026-10-11T08:41:28.0108514Z synthetic warning
+2026-10-11T08:41:28.0132374Z PASS Native stderr with exit zero is not a false failure
+2026-10-11T08:41:28.3564465Z Тест (1) & [x]
+2026-10-11T08:41:28.3591218Z PASS Native arguments preserve Unicode spaces and metacharacters
+2026-10-11T08:41:28.3655002Z START native
+2026-10-11T08:41:28.3726629Z FAILED native: Exception calling "Start" with "0" argument(s): "An error occurred trying to start process 'C:\Users\runneradmin\AppData\Local\Temp\GpcDevTools-Tests-af63ba4df7cd4986bf9ed55208993d98\absent.exe' with working directory 'D:\a\g-pc-health-check\g-pc-health-check'. The system cannot find the file specified."
+2026-10-11T08:41:28.3749172Z Failed native (0.008 s)
+2026-10-11T08:41:28.3770234Z Results: C:\Users\runneradmin\AppData\Local\Temp\GpcDevTools-Tests-af63ba4df7cd4986bf9ed55208993d98\missing-tool\summary.json
+2026-10-11T08:41:28.3777003Z PASS Launch failure is not a successful step
+2026-10-11T08:41:28.3931161Z Development workflow: 20/20 passed.
+2026-10-11T08:41:28.4791583Z ##[group]Run actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9
+2026-10-11T08:41:28.4792044Z with:
+2026-10-11T08:41:28.4792241Z   global-json-file: global.json
+2026-10-11T08:41:28.4792483Z   cache: false
+2026-10-11T08:41:28.4792643Z env:
+2026-10-11T08:41:28.4792799Z   DOTNET_NOLOGO: true
+2026-10-11T08:41:28.4793026Z   DOTNET_CLI_TELEMETRY_OPTOUT: true
+2026-10-11T08:41:28.4793258Z ##[endgroup]
+2026-10-11T08:41:28.6557295Z (node:9200) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-11T08:41:28.6558545Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-11T08:41:28.7721981Z [command]"C:\Program Files\PowerShell\7\pwsh.exe" -NoLogo -Sta -NoProfile -NonInteractive -ExecutionPolicy Unrestricted -Command & 'D:\a\_actions\actions\setup-dotnet\67a3573c9a986a3f9c594539f4ab511d57bb3ce9\externals\install-dotnet.ps1' -SkipNonVersionedFiles -Runtime dotnet -Channel LTS
+2026-10-11T08:41:29.9567957Z dotnet-install: .NET Core Runtime with version '10.0.12' is already installed.
+2026-10-11T08:41:30.1224816Z [command]"C:\Program Files\PowerShell\7\pwsh.exe" -NoLogo -Sta -NoProfile -NonInteractive -ExecutionPolicy Unrestricted -Command & 'D:\a\_actions\actions\setup-dotnet\67a3573c9a986a3f9c594539f4ab511d57bb3ce9\externals\install-dotnet.ps1' -SkipNonVersionedFiles -Version 8.0.425
+2026-10-11T08:41:30.8426632Z dotnet-install: .NET Core SDK with version '8.0.425' is already installed.
+2026-10-11T08:41:30.9489131Z ##[group]Run ./tools/dev/Invoke-DevCheck.ps1 -Profile Full
+2026-10-11T08:41:30.9489640Z [36;1m./tools/dev/Invoke-DevCheck.ps1 -Profile Full[0m
+2026-10-11T08:41:30.9563720Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-11T08:41:30.9564076Z env:
+2026-10-11T08:41:30.9564258Z   DOTNET_NOLOGO: true
+2026-10-11T08:41:30.9564475Z   DOTNET_CLI_TELEMETRY_OPTOUT: true
+2026-10-11T08:41:30.9564966Z   DOTNET_ROOT: C:\Program Files\dotnet
+2026-10-11T08:41:30.9565283Z ##[endgroup]
+2026-10-11T08:41:31.5158230Z START preflight
+2026-10-11T08:41:31.6234683Z 5185cf44cd53438c44dac4d3fabc0a531895f795
+2026-10-11T08:41:33.7968656Z 8.0.425
+2026-10-11T08:41:34.0978304Z Passed preflight (2.575 s)
+2026-10-11T08:41:34.0997105Z START tool-tests
+2026-10-11T08:41:36.0764030Z PASS Quick checks source without packaging
+2026-10-11T08:41:36.0764731Z PASS Full retains Quick and adds packaged/portable checks
+2026-10-11T08:41:36.0765516Z PASS Unknown profile cannot silently skip checks
+2026-10-11T08:41:36.0766076Z PASS Complete clean audit accepted
+2026-10-11T08:41:36.0766524Z PASS Empty audit rejected
+2026-10-11T08:41:36.0766869Z PASS Malformed audit rejected
+2026-10-11T08:41:36.0767317Z PASS No projects rejected
+2026-10-11T08:41:36.0767673Z PASS No frameworks rejected
+2026-10-11T08:41:36.0768380Z PASS Audit error log rejected
+2026-10-11T08:41:36.0768885Z PASS Reject vulnerabilities in topLevelPackages
+2026-10-11T08:41:36.0769487Z PASS Reject vulnerabilities in transitivePackages
+2026-10-11T08:41:36.0769944Z START one
+2026-10-11T08:41:36.0770294Z Passed one (0.005 s)
+2026-10-11T08:41:36.0770605Z START two
+2026-10-11T08:41:36.0770936Z Passed two (0.001 s)
+2026-10-11T08:41:36.0771834Z Results: C:\Users\runneradmin\AppData\Local\Temp\GpcDevTools-Tests-29348eb0fe4f42d38ffb3945747195b7\success\summary.json
+2026-10-11T08:41:36.0772926Z PASS Successful sequence records exact metadata and all steps
+2026-10-11T08:41:36.0773423Z START one
+2026-10-11T08:41:36.0773709Z Passed one (0.004 s)
+2026-10-11T08:41:36.0773980Z START two
+2026-10-11T08:41:36.0774279Z FAILED two: Synthetic failure
+2026-10-11T08:41:36.0774634Z Failed two (0.009 s)
+2026-10-11T08:41:36.0775476Z Results: C:\Users\runneradmin\AppData\Local\Temp\GpcDevTools-Tests-29348eb0fe4f42d38ffb3945747195b7\failure\summary.json
+2026-10-11T08:41:36.0776488Z PASS Failure stops later steps and leaves evidence
+2026-10-11T08:41:36.0776946Z START one
+2026-10-11T08:41:36.0777234Z Passed one (0.003 s)
+2026-10-11T08:41:36.0778146Z Results: C:\Users\runneradmin\AppData\Local\Temp\GpcDevTools-Tests-29348eb0fe4f42d38ffb3945747195b7\running\summary.json
+2026-10-11T08:41:36.0779326Z PASS In-progress snapshot exists before executing a step
+2026-10-11T08:41:36.0779991Z PASS Empty sequence cannot report success
+2026-10-11T08:41:36.0780630Z PASS Existing result directory cannot be overwritten
+2026-10-11T08:41:36.0781164Z synthetic stderr
+2026-10-11T08:41:36.0781637Z PASS Native nonzero exit throws with exact code and saves log
+2026-10-11T08:41:36.0782185Z synthetic warning
+2026-10-11T08:41:36.0782671Z PASS Native stderr with exit zero is not a false failure
+2026-10-11T08:41:36.0783404Z Тест (1) & [x]
+2026-10-11T08:41:36.0783927Z PASS Native arguments preserve Unicode spaces and metacharacters
+2026-10-11T08:41:36.0784473Z START native
+2026-10-11T08:41:36.0786642Z FAILED native: Exception calling "Start" with "0" argument(s): "An error occurred trying to start process 'C:\Users\runneradmin\AppData\Local\Temp\GpcDevTools-Tests-29348eb0fe4f42d38ffb3945747195b7\absent.exe' with working directory 'D:\a\g-pc-health-check\g-pc-health-check'. The system cannot find the file specified."
+2026-10-11T08:41:36.0789196Z Failed native (0.007 s)
+2026-10-11T08:41:36.0790175Z Results: C:\Users\runneradmin\AppData\Local\Temp\GpcDevTools-Tests-29348eb0fe4f42d38ffb3945747195b7\missing-tool\summary.json
+2026-10-11T08:41:36.0791324Z PASS Launch failure is not a successful step
+2026-10-11T08:41:36.0791865Z Development workflow: 20/20 passed.
+2026-10-11T08:41:36.5811871Z SDK audit contract: 6/6 passed.
+2026-10-11T08:41:36.5834768Z Passed tool-tests (2.482 s)
+2026-10-11T08:41:36.5852946Z START restore
+2026-10-11T08:41:50.9397184Z   Determining projects to restore...
+2026-10-11T08:41:50.9397962Z   Restored D:\a\g-pc-health-check\g-pc-health-check\src\G.PcHealthCheck\G.PcHealthCheck.csproj (in 9.92 sec).
+2026-10-11T08:41:50.9419934Z Passed restore (14.355 s)
+2026-10-11T08:41:50.9434447Z START audit
+2026-10-11T08:41:52.4045122Z {
+2026-10-11T08:41:52.4045488Z   "version": 1,
+2026-10-11T08:41:52.4045879Z   "parameters": "--vulnerable --include-transitive",
+2026-10-11T08:41:52.4046313Z   "sources": [
+2026-10-11T08:41:52.4046608Z     "https://api.nuget.org/v3/index.json",
+2026-10-11T08:41:52.4047095Z     "C:/Program Files (x86)/Microsoft SDKs/NuGetPackages/"
+2026-10-11T08:41:52.4049253Z   ],
+2026-10-11T08:41:52.4049497Z   "projects": [
+2026-10-11T08:41:52.4049736Z     {
+2026-10-11T08:41:52.4050313Z       "path": "D:/a/g-pc-health-check/g-pc-health-check/src/G.PcHealthCheck/G.PcHealthCheck.csproj"
+2026-10-11T08:41:52.4050990Z     }
+2026-10-11T08:41:52.4051204Z   ]
+2026-10-11T08:41:52.4051420Z }
+2026-10-11T08:41:52.4251440Z Passed audit (1.48 s)
+2026-10-11T08:41:52.4264501Z START build
+2026-10-11T08:42:13.8862432Z   Corporate shield: 5157c5cf83a6cfddb74c51701a693e401e36b400812505a1e46e15d760c72877
+2026-10-11T08:42:13.8863868Z   Green application icon: D:\a\g-pc-health-check\g-pc-health-check\src\G.PcHealthCheck\obj\brand\gpchc.ico (105197 bytes)
+2026-10-11T08:42:13.8865540Z   G.PcHealthCheck -> D:\a\g-pc-health-check\g-pc-health-check\src\G.PcHealthCheck\bin\Release\net8.0-windows10.0.19041.0\win-x64\G-PC-Health.dll
+2026-10-11T08:42:13.8866557Z 
+2026-10-11T08:42:13.8866685Z Build succeeded.
+2026-10-11T08:42:13.8866973Z     0 Warning(s)
+2026-10-11T08:42:13.8867313Z     0 Error(s)
+2026-10-11T08:42:13.8867500Z 
+2026-10-11T08:42:13.8867669Z Time Elapsed 00:00:21.21
+2026-10-11T08:42:13.8882774Z Passed build (21.461 s)
+2026-10-11T08:42:13.8898117Z START selftest
+2026-10-11T08:42:30.9465298Z Primary guidance regression: 19/19 passed.
+2026-10-11T08:42:30.9466144Z Diagnostic completeness regression: 22/22 passed.
+2026-10-11T08:42:30.9466779Z Common problems regression: 36/36 passed.
+2026-10-11T08:42:30.9467364Z Common problems completion regression: 8/8 passed.
+2026-10-11T08:42:30.9468403Z Common problems presentation: URI allow-list, HTML encoding, JSON envelope, menu layout and detail reselection passed.
+2026-10-11T08:42:30.9469877Z Common problems command evidence: unconfirmed attempt, nullable exit code, redacted error and export passed.
+2026-10-11T08:42:30.9470918Z Common problems progress ownership regression: 1/1 passed.
+2026-10-11T08:42:30.9471574Z Main scan progress ownership regression: 1/1 passed.
+2026-10-11T08:42:30.9472224Z Main apply progress ownership regression: 1/1 passed.
+2026-10-11T08:42:30.9472809Z Main card resize redraw self-test passed: 1/1.
+2026-10-11T08:42:30.9473455Z Localization and MB presentation self-test passed: 21/21.
+2026-10-11T08:42:30.9473919Z Performance localization self-test: 3/3 passed.
+2026-10-11T08:42:30.9474251Z File Use localization self-test: 3/3 passed.
+2026-10-11T08:42:30.9474597Z Process Observation localization self-test: 3/3 passed.
+2026-10-11T08:42:30.9474986Z Diagnostic Bundle localization self-test: 4/4 passed.
+2026-10-11T08:42:30.9475338Z Localization coverage self-test: 4/4 passed.
+2026-10-11T08:42:30.9475671Z Human-size presentation self-test passed: 12/12.
+2026-10-11T08:42:30.9476014Z Main chrome / About / branding self-test: 4/4 passed.
+2026-10-11T08:42:30.9476547Z Readable layout synthetic render PASS: ru, area=800x600, actual DPI=96; not Windows11/RDP acceptance
+2026-10-11T08:42:30.9509863Z Readable layout synthetic render PASS: ru, area=800x720, actual DPI=96; not Windows11/RDP acceptance
+2026-10-11T08:42:30.9511177Z Readable layout synthetic render PASS: ru, area=950x768, actual DPI=96; not Windows11/RDP acceptance
+2026-10-11T08:42:30.9514037Z Readable layout synthetic render PASS: ru, area=1320x720, actual DPI=96; not Windows11/RDP acceptance
+2026-10-11T08:42:30.9515410Z Readable layout synthetic render PASS: ru, area=1320x1000, actual DPI=96; not Windows11/RDP acceptance
+2026-10-11T08:42:30.9516590Z Readable layout synthetic render PASS: en, area=800x600, actual DPI=96; not Windows11/RDP acceptance
+2026-10-11T08:42:30.9517776Z Readable layout synthetic render PASS: en, area=800x720, actual DPI=96; not Windows11/RDP acceptance
+2026-10-11T08:42:30.9518958Z Readable layout synthetic render PASS: en, area=950x768, actual DPI=96; not Windows11/RDP acceptance
+2026-10-11T08:42:30.9520112Z Readable layout synthetic render PASS: en, area=1320x720, actual DPI=96; not Windows11/RDP acceptance
+2026-10-11T08:42:30.9522335Z Readable layout synthetic render PASS: en, area=1320x1000, actual DPI=96; not Windows11/RDP acceptance
+2026-10-11T08:42:30.9524385Z Readable layout self-test: 18/18 passed
+2026-10-11T08:42:30.9524995Z Analysis auto-collection self-test: 3/3 passed.
+2026-10-11T08:42:30.9525611Z Service Desk action registry self-test: 4/4 passed.
+2026-10-11T08:42:30.9526237Z Service Desk batch planner/UI self-test: 5/5 passed.
+2026-10-11T08:42:30.9526837Z Fixed non-network repair self-test: 6/6 passed.
+2026-10-11T08:42:30.9527386Z Network repair self-test: 6/6 passed.
+2026-10-11T08:42:30.9527951Z Phased worker protocol/planning self-test: 4/4 passed.
+2026-10-11T08:42:30.9528550Z Phased batch executor self-test: 4/4 passed.
+2026-10-11T08:42:30.9529101Z Phased worker engine self-test: 4/4 passed.
+2026-10-11T08:42:30.9529660Z Phased worker transport/CLI self-test: 4/4 passed.
+2026-10-11T08:42:30.9530303Z Windows Service Desk batch runtime self-test: 5/5 passed.
+2026-10-11T08:42:30.9530964Z Service Desk full phased batch self-test: 6/6 passed.
+2026-10-11T08:42:30.9532139Z Security posture evaluator self-test: PASS � final control catalog is exactly 100 points
+2026-10-11T08:42:30.9533386Z Security posture evaluator self-test: PASS � all-pass posture is 100 with full coverage
+2026-10-11T08:42:30.9534645Z Security posture evaluator self-test: PASS � warn earns half weight and fail earns zero
+2026-10-11T08:42:30.9536844Z Security posture evaluator self-test: PASS � unknown lowers coverage without becoming failure
+2026-10-11T08:42:30.9538909Z Security posture evaluator self-test: PASS � not-applicable is removed from both score and coverage denominator
+2026-10-11T08:42:30.9540387Z Security posture evaluator self-test: PASS � coverage below 80 forces assessment incomplete
+2026-10-11T08:42:30.9542037Z Security posture evaluator self-test: PASS � critical Low caps override arithmetic score
+2026-10-11T08:42:30.9543440Z Security posture evaluator self-test: PASS � needs-attention caps override High without becoming Low
+2026-10-11T08:42:30.9544753Z Security posture evaluator self-test: 9/9 passed.
+2026-10-11T08:42:30.9545967Z Windows platform security self-test: PASS � firewall ownership is evaluated without false Defender failure
+2026-10-11T08:42:30.9547457Z Windows platform security self-test: PASS � secure boot distinguishes enabled disabled legacy and unknown
+2026-10-11T08:42:30.9548697Z Windows platform security self-test: PASS � uac EnableLUA semantics are exact
+2026-10-11T08:42:30.9549772Z Windows platform security self-test: PASS � tpm requires present ready and 2.x
+2026-10-11T08:42:30.9550804Z Windows platform security self-test: PASS � vbs hvci uses runtime state
+2026-10-11T08:42:30.9552049Z Windows platform security self-test: PASS � individual source failures degrade only that control to unknown
+2026-10-11T08:42:30.9552940Z Windows platform security self-test: 6/6 passed.
+2026-10-11T08:42:30.9554316Z Antivirus security self-test: PASS � active Kaspersky plus passive Defender selects Kaspersky
+2026-10-11T08:42:30.9555637Z Antivirus security self-test: PASS � Defender-only posture uses Defender enrichment
+2026-10-11T08:42:30.9556817Z Antivirus security self-test: PASS � multiple active providers make primary-dependent controls unknown
+2026-10-11T08:42:30.9558043Z Antivirus security self-test: PASS � missing or explicitly inactive antivirus fails active control
+2026-10-11T08:42:30.9559335Z Antivirus security self-test: PASS � definition status and age are deterministic
+2026-10-11T08:42:30.9560602Z Antivirus security self-test: PASS � Defender core RTP and optional components are separated
+2026-10-11T08:42:30.9561617Z Antivirus security self-test: PASS � malformed provider response becomes unknown without throwing
+2026-10-11T08:42:30.9562434Z Antivirus security self-test: PASS � WSC COM failure recovers from strong Kaspersky provider evidence
+2026-10-11T08:42:30.9563155Z Antivirus security self-test: 8/8 passed.
+2026-10-11T08:42:30.9563764Z Windows Update security self-test: PASS � fresh history with no pending qualifying updates passes
+2026-10-11T08:42:30.9564731Z Windows Update security self-test: PASS � pending qualifying update warns immediately
+2026-10-11T08:42:30.9565318Z Windows Update security self-test: PASS � 46 to 60 day history warns
+2026-10-11T08:42:30.9565833Z Windows Update security self-test: PASS � older than 60 days fails
+2026-10-11T08:42:30.9566379Z Windows Update security self-test: PASS � missing trustworthy history is unknown
+2026-10-11T08:42:30.9567205Z Windows Update security self-test: PASS � fresh history with unavailable pending search warns instead of becoming unknown or pass
+2026-10-11T08:42:30.9568012Z Windows Update security self-test: PASS � source failure is unknown, never healthy
+2026-10-11T08:42:30.9568763Z Windows Update security self-test: PASS � pending reboot is preserved as evidence without inventing update failure
+2026-10-11T08:42:30.9569301Z Windows Update security self-test: 8/8 passed.
+2026-10-11T08:42:30.9569812Z BitLocker security self-test: PASS � OS volume protected and fully encrypted passes
+2026-10-11T08:42:30.9570497Z BitLocker security self-test: PASS � OS encrypting suspended or protection-only fallback warns
+2026-10-11T08:42:30.9571234Z BitLocker security self-test: PASS � OS decrypted or unprotected fails and unavailable is unknown
+2026-10-11T08:42:30.9571930Z BitLocker security self-test: PASS � all applicable fixed data volumes protected passes
+2026-10-11T08:42:30.9572656Z BitLocker security self-test: PASS � data aggregate fails, warns, not-applicable and unknown truthfully
+2026-10-11T08:42:30.9573475Z BitLocker security self-test: PASS � EFI recovery removable and optical volumes are excluded from data aggregate
+2026-10-11T08:42:30.9574265Z BitLocker security self-test: PASS � evidence contains protector types only and never recovery material
+2026-10-11T08:42:30.9574756Z BitLocker security self-test: 7/7 passed.
+2026-10-11T08:42:30.9575319Z Firmware security self-test: PASS � Lenovo PasswordState maps admin, power-on and drive password bits
+2026-10-11T08:42:30.9576047Z Firmware security self-test: PASS � Dell and HP require an already-present supported provider
+2026-10-11T08:42:30.9576785Z Firmware security self-test: PASS � Huawei SMBIOS Type 24 maps password status without secret material
+2026-10-11T08:42:30.9577595Z Firmware security self-test: PASS � Huawei adapter exposes SMBIOS admin password and never invents drive password
+2026-10-11T08:42:30.9578430Z Firmware security self-test: PASS � Huawei firmware query keeps identifiers compatible with the alias parser
+2026-10-11T08:42:30.9579300Z Firmware security self-test: PASS � Huawei firmware boot evidence reports positive external paths but absence never passes
+2026-10-11T08:42:30.9580064Z Firmware security self-test: PASS � firmware password control uses admin password only
+2026-10-11T08:42:30.9580792Z Firmware security self-test: PASS � boot restriction pass requires trusted internal-only firmware evidence
+2026-10-11T08:42:30.9581500Z Firmware security self-test: PASS � internal first with USB or PXE still enabled warns
+2026-10-11T08:42:30.9582388Z Firmware security self-test: PASS � external effective path or legacy boot fails
+2026-10-11T08:42:30.9583355Z Firmware security self-test: PASS � BCD-only or partial boot evidence stays Unknown
+2026-10-11T08:42:30.9584071Z Firmware security self-test: PASS � firmware adapter API cannot accept or return password secrets
+2026-10-11T08:42:30.9584551Z Firmware security self-test: 12/12 passed.
+2026-10-11T08:42:30.9585101Z Local administrators self-test: PASS � glob language is anchored case-insensitive and deterministic
+2026-10-11T08:42:30.9586198Z Local administrators self-test: PASS � machine REG_MULTI_SZ policy normalizes blanks and duplicates
+2026-10-11T08:42:30.9587078Z Local administrators self-test: PASS � missing wrong-type unreadable and explicitly empty policy remain distinct
+2026-10-11T08:42:30.9587909Z Local administrators self-test: PASS � allowed user local user renamed Administrator and direct group pass
+2026-10-11T08:42:30.9588628Z Local administrators self-test: PASS � unresolved name with matching SID rule is allowed
+2026-10-11T08:42:30.9589516Z Local administrators self-test: PASS � unresolved name without sufficient evidence is Unknown not Fail
+2026-10-11T08:42:30.9590310Z Local administrators self-test: PASS � unauthorized member wins aggregate over additional Unknown evidence
+2026-10-11T08:42:30.9590990Z Local administrators self-test: PASS � explicit empty policy permits nobody
+2026-10-11T08:42:30.9591731Z Local administrators self-test: PASS � Administrators discovery is SID-based and control remains weighted critical
+2026-10-11T08:42:30.9592280Z Local administrators self-test: 9/9 passed.
+2026-10-11T08:42:30.9592924Z Security posture integration self-test: PASS � one provider failure becomes Unknown while other controls still evaluate
+2026-10-11T08:42:30.9593782Z Security posture integration self-test: PASS � adding Security never changes the technical Health assessment
+2026-10-11T08:42:30.9594589Z Security posture integration self-test: PASS � pre-cancelled collection does not enter native providers
+2026-10-11T08:42:30.9595418Z Security posture integration self-test: PASS � security progress remains guarded by the main scan progress owner
+2026-10-11T08:42:30.9595980Z Security posture integration self-test: 4/4 passed.
+2026-10-11T08:42:30.9596570Z Security posture UI self-test: PASS � main window exposes seven metric cards and navigable Security card
+2026-10-11T08:42:30.9597234Z Security posture UI self-test: PASS � Security grid has stable evaluation columns
+2026-10-11T08:42:30.9597840Z Security posture UI self-test: PASS � security bands use fixed non-misleading colors
+2026-10-11T08:42:30.9598550Z Security posture UI self-test: PASS � Unknown points stay unknown and never become fake zero or full credit
+2026-10-11T08:42:30.9599300Z Security posture UI self-test: PASS � Security UI resources are complete in Russian and English
+2026-10-11T08:42:30.9600022Z Security posture UI self-test: PASS � stable identifiers and raw evidence values remain untranslated
+2026-10-11T08:42:30.9600520Z Security posture UI self-test: 6/6 passed.
+2026-10-11T08:42:30.9601137Z Security report self-test: PASS � localized Security HTML contains score coverage model IDs and distinct states
+2026-10-11T08:42:30.9602015Z Security report self-test: PASS � ordinary HTML report embeds Security section
+2026-10-11T08:42:30.9602784Z Security report self-test: PASS � public JSON contains bounded Security assessment but excludes raw snapshot
+2026-10-11T08:42:30.9603721Z Security report self-test: PASS � clipboard summary carries concise separate Security posture
+2026-10-11T08:42:30.9604571Z Security report self-test: PASS � hardening before-after and action evidence persist in HTML and public JSON without raw output
+2026-10-11T08:42:30.9605375Z Security report self-test: PASS � raw snapshot secrets never leak to HTML JSON or clipboard
+2026-10-11T08:42:30.9605825Z Security report self-test: 6/6 passed.
+2026-10-11T08:42:30.9606099Z Policy artifacts self-test: 1/1 passed.
+2026-10-11T08:42:30.9606764Z Security hardening planner self-test: PASS � registry is the exact three-action allow-list and contains no prohibited mutations
+2026-10-11T08:42:30.9608521Z Security hardening planner self-test: PASS � Kaspersky primary permits definitions update only when KESCLI support is proven
+2026-10-11T08:42:30.9609522Z Security hardening planner self-test: PASS � Defender primary with RTP off exposes only fixed Defender RTP candidate
+2026-10-11T08:42:30.9610357Z Security hardening planner self-test: PASS � Defender stale definitions expose fixed definitions update
+2026-10-11T08:42:30.9611194Z Security hardening planner self-test: PASS � firewall hardening refuses third-party ownership and central policy
+2026-10-11T08:42:30.9612026Z Security hardening planner self-test: PASS � no applicable hardening action yields disabled-plan explanation
+2026-10-11T08:42:30.9612848Z Security hardening planner self-test: PASS � unknown rights never authorize an administrator hardening action
+2026-10-11T08:42:30.9614369Z Security hardening planner self-test: PASS � planner authorization surface accepts raw snapshot plus execution context only
+2026-10-11T08:42:30.9614982Z Security hardening planner self-test: 8/8 passed.
+2026-10-11T08:42:30.9615602Z Security hardening worker self-test: PASS � worker namespaces reject cross-namespace and unknown actions
+2026-10-11T08:42:30.9616377Z Security hardening worker self-test: PASS � protocol binds namespace session nonce and message phase
+2026-10-11T08:42:30.9617155Z Security hardening worker self-test: PASS � security operation interface exposes fixed typed mutations only
+2026-10-11T08:42:30.9617920Z Security hardening worker self-test: PASS � executor dispatches only fixed actions in registry order
+2026-10-11T08:42:30.9618760Z Security hardening worker self-test: PASS � executor preserves provider and rejects non-preflight or non-admin execution
+2026-10-11T08:42:30.9619628Z Security hardening worker self-test: PASS � worker CLI parsers preserve namespace isolation before opening a pipe
+2026-10-11T08:42:30.9620186Z Security hardening worker self-test: 6/6 passed.
+2026-10-11T08:42:30.9620814Z Security hardening UI self-test: PASS � superbuttons are blue green red in fixed order and red is never default
+2026-10-11T08:42:30.9621684Z Security hardening UI self-test: PASS � confirmation lists runnable skipped reasons risk UAC policy and post-rescan
+2026-10-11T08:42:30.9622915Z Security hardening UI self-test: PASS � workflow uses fresh preflight then executes once and recollects security afterward
+2026-10-11T08:42:30.9623989Z Security hardening UI self-test: PASS � parent worker request is one fixed security worker and one UAC decision
+2026-10-11T08:42:30.9624782Z Security hardening UI self-test: PASS � blue green and red action registries stay strictly separated
+2026-10-11T08:42:30.9625273Z Security hardening UI self-test: 5/5 passed.
+2026-10-11T08:42:30.9625964Z Security localization coverage self-test: PASS � Security resource key sets are identical and non-empty in Russian and English
+2026-10-11T08:42:30.9626834Z Security localization coverage self-test: PASS � English Security operator framing contains no Cyrillic
+2026-10-11T08:42:30.9627711Z Security localization coverage self-test: PASS � stable Security control and hardening action IDs are language independent
+2026-10-11T08:42:30.9628313Z Security localization coverage self-test: 3/3 passed.
+2026-10-11T08:42:30.9628778Z Evidence PASS: explicit denial, timeout and cancellation use exact retained tokens
+2026-10-11T08:42:30.9629357Z Evidence PASS: generic exception, null and empty never invent rights or unsupported OEM
+2026-10-11T08:42:30.9629933Z Evidence PASS: explicit unsupported and missing observation are distinguishable
+2026-10-11T08:42:30.9630471Z Evidence PASS: missing local admin policy differs from unreadable or wrong type
+2026-10-11T08:42:30.9631016Z Evidence PASS: explicit conflict, but grouped volume differences not guessed conflict
+2026-10-11T08:42:30.9631553Z Evidence PASS: source and safe nextstep localized without secret source
+2026-10-11T08:42:30.9632035Z Evidence PASS: incomplete triage not all-clear and preserves assessment
+2026-10-11T08:42:30.9632714Z Evidence PASS: healthy empty differs from collection warning and CRIT order retained
+2026-10-11T08:42:30.9633281Z Evidence PASS: JSON, HTML and clipboard carry explanation and original evidence
+2026-10-11T08:42:30.9633847Z Evidence PASS: symptom routes only existing inspections, no auto probes, batch unchanged
+2026-10-11T08:42:30.9634292Z Evidence presentation: 10/10 passed
+2026-10-11T08:42:30.9634922Z Security evidence safety self-test: PASS � serialized hardening result excludes raw native output and synthetic secrets
+2026-10-11T08:42:30.9635914Z Security evidence safety self-test: PASS � automatic hardening registry remains exact and contains no weakening or generic mutation class
+2026-10-11T08:42:30.9636837Z Security evidence safety self-test: PASS � hardening operation API exposes only fixed typed mutation surfaces
+2026-10-11T08:42:30.9637475Z Security evidence safety self-test: 3/3 passed.
+2026-10-11T08:42:30.9637777Z System volume regression: 24/24 passed.
+2026-10-11T08:42:30.9638072Z Portable elevation regression: 20/20 passed.
+2026-10-11T08:42:30.9638387Z Read-only inspection regression: 36/36 passed.
+2026-10-11T08:42:30.9638715Z Read-only review UI/export regression: 9/9 passed.
+2026-10-11T08:42:30.9639086Z Read-only review progress ownership regression: 1/1 passed.
+2026-10-11T08:42:30.9639443Z Resource diagnostics regression: 55/55 passed.
+2026-10-11T08:42:30.9639754Z Resource integration regression: 9/9 passed.
+2026-10-11T08:42:30.9640093Z Resource cancellation/evidence regression: 4/4 passed.
+2026-10-11T08:42:30.9640431Z Resource export failure regression: 1/1 passed.
+2026-10-11T08:42:30.9640735Z Incident review regression: 44/44 passed.
+2026-10-11T08:42:30.9641027Z Incident integration regression: 9/9 passed.
+2026-10-11T08:42:30.9641346Z Incident cancellation status regression: 1/1 passed.
+2026-10-11T08:42:30.9641678Z Performance session regression: 45/45 passed.
+2026-10-11T08:42:30.9642001Z Performance session integration: 13/13 passed.
+2026-10-11T08:42:30.9642539Z Performance timing/review regression: 7/7 passed.
+2026-10-11T08:42:30.9642912Z Storage review regression: 53/53 passed.
+2026-10-11T08:42:30.9643387Z Storage review integration: 11/11 passed.
+2026-10-11T08:42:30.9643685Z Storage completion review: 5/5 passed.
+2026-10-11T08:42:30.9643974Z Execution context regression: 30/30 passed.
+2026-10-11T08:42:30.9644269Z Execution context integration: 8/8 passed.
+2026-10-11T08:42:30.9644565Z Execution context action review: 8/8 passed.
+2026-10-11T08:42:30.9644857Z Endpoint review regression: 39/39 passed.
+2026-10-11T08:42:30.9645133Z Endpoint integration: 11/11 passed.
+2026-10-11T08:42:30.9645398Z File-use behavior: 44/44 passed.
+2026-10-11T08:42:30.9645652Z File-use integration: 9/9 passed.
+2026-10-11T08:42:30.9645924Z File-use review acceptance: 20/20 passed.
+2026-10-11T08:42:30.9646245Z File-use progress ownership regression: 1/1 passed.
+2026-10-11T08:42:30.9646611Z Process observation behavior: 33/33 passed.
+2026-10-11T08:42:30.9647127Z Process observation integration: 10/10 passed.
+2026-10-11T08:42:30.9647692Z Process observation completion: 8/8 passed.
+2026-10-11T08:42:30.9648242Z Diagnostic bundle regression: 27/27 passed.
+2026-10-11T08:42:30.9648792Z Diagnostic bundle report regression: 11/11 passed.
+2026-10-11T08:42:30.9649419Z Diagnostic bundle Health selection regression: 2/2 passed.
+2026-10-11T08:42:30.9650053Z Diagnostic bundle UI integration: 11/11 passed.
+2026-10-11T08:42:30.9650697Z Diagnostic bundle save failure regression: 1/1 passed.
+2026-10-11T08:42:30.9651375Z Diagnostic bundle stale-options regression: 3/3 passed.
+2026-10-11T08:42:30.9652079Z Diagnostic bundle progress ownership regression: 1/1 passed.
+2026-10-11T08:42:30.9652701Z Diagnostic bundle acceptance: 3/3 passed.
+2026-10-11T08:42:30.9653045Z Passed selftest (17.058 s)
+2026-10-11T08:42:30.9653265Z START publish
+2026-10-11T08:42:59.4858150Z   Corporate shield: 5157c5cf83a6cfddb74c51701a693e401e36b400812505a1e46e15d760c72877
+2026-10-11T08:42:59.4859394Z   Green application icon: D:\a\g-pc-health-check\g-pc-health-check\src\G.PcHealthCheck\obj\brand\gpchc.ico (105197 bytes)
+2026-10-11T08:42:59.4860461Z   G.PcHealthCheck -> D:\a\g-pc-health-check\g-pc-health-check\src\G.PcHealthCheck\bin\Release\net8.0-windows10.0.19041.0\win-x64\G-PC-Health.dll
+2026-10-11T08:42:59.4861519Z   G.PcHealthCheck -> D:\a\g-pc-health-check\g-pc-health-check\artifacts\dev\20261011_084131-9e89873e33f04da28cead6e6479d3314\publish\
+2026-10-11T08:42:59.4880907Z Passed publish (28.536 s)
+2026-10-11T08:42:59.4896811Z START exe-selftest
+2026-10-11T08:43:12.6233851Z Primary guidance regression: 19/19 passed.
+2026-10-11T08:43:12.6234546Z Diagnostic completeness regression: 22/22 passed.
+2026-10-11T08:43:12.6235144Z Common problems regression: 36/36 passed.
+2026-10-11T08:43:12.6235722Z Common problems completion regression: 8/8 passed.
+2026-10-11T08:43:12.6237556Z Common problems presentation: URI allow-list, HTML encoding, JSON envelope, menu layout and detail reselection passed.
+2026-10-11T08:43:12.6239660Z Common problems command evidence: unconfirmed attempt, nullable exit code, redacted error and export passed.
+2026-10-11T08:43:12.6240619Z Common problems progress ownership regression: 1/1 passed.
+2026-10-11T08:43:12.6241259Z Main scan progress ownership regression: 1/1 passed.
+2026-10-11T08:43:12.6241874Z Main apply progress ownership regression: 1/1 passed.
+2026-10-11T08:43:12.6242460Z Main card resize redraw self-test passed: 1/1.
+2026-10-11T08:43:12.6243069Z Localization and MB presentation self-test passed: 21/21.
+2026-10-11T08:43:12.6243717Z Performance localization self-test: 3/3 passed.
+2026-10-11T08:43:12.6244280Z File Use localization self-test: 3/3 passed.
+2026-10-11T08:43:12.6244881Z Process Observation localization self-test: 3/3 passed.
+2026-10-11T08:43:12.6245528Z Diagnostic Bundle localization self-test: 4/4 passed.
+2026-10-11T08:43:12.6246153Z Localization coverage self-test: 4/4 passed.
+2026-10-11T08:43:12.6246721Z Human-size presentation self-test passed: 12/12.
+2026-10-11T08:43:12.6247338Z Main chrome / About / branding self-test: 4/4 passed.
+2026-10-11T08:43:12.6248287Z Readable layout synthetic render PASS: ru, area=800x600, actual DPI=96; not Windows11/RDP acceptance
+2026-10-11T08:43:12.6249567Z Readable layout synthetic render PASS: ru, area=800x720, actual DPI=96; not Windows11/RDP acceptance
+2026-10-11T08:43:12.6250831Z Readable layout synthetic render PASS: ru, area=950x768, actual DPI=96; not Windows11/RDP acceptance
+2026-10-11T08:43:12.6252179Z Readable layout synthetic render PASS: ru, area=1320x720, actual DPI=96; not Windows11/RDP acceptance
+2026-10-11T08:43:12.6253443Z Readable layout synthetic render PASS: ru, area=1320x1000, actual DPI=96; not Windows11/RDP acceptance
+2026-10-11T08:43:12.6254666Z Readable layout synthetic render PASS: en, area=800x600, actual DPI=96; not Windows11/RDP acceptance
+2026-10-11T08:43:12.6255899Z Readable layout synthetic render PASS: en, area=800x720, actual DPI=96; not Windows11/RDP acceptance
+2026-10-11T08:43:12.6257130Z Readable layout synthetic render PASS: en, area=950x768, actual DPI=96; not Windows11/RDP acceptance
+2026-10-11T08:43:12.6258367Z Readable layout synthetic render PASS: en, area=1320x720, actual DPI=96; not Windows11/RDP acceptance
+2026-10-11T08:43:12.6259985Z Readable layout synthetic render PASS: en, area=1320x1000, actual DPI=96; not Windows11/RDP acceptance
+2026-10-11T08:43:12.6260861Z Readable layout self-test: 18/18 passed
+2026-10-11T08:43:12.6261405Z Analysis auto-collection self-test: 3/3 passed.
+2026-10-11T08:43:12.6262006Z Service Desk action registry self-test: 4/4 passed.
+2026-10-11T08:43:12.6262632Z Service Desk batch planner/UI self-test: 5/5 passed.
+2026-10-11T08:43:12.6263233Z Fixed non-network repair self-test: 6/6 passed.
+2026-10-11T08:43:12.6263767Z Network repair self-test: 6/6 passed.
+2026-10-11T08:43:12.6264343Z Phased worker protocol/planning self-test: 4/4 passed.
+2026-10-11T08:43:12.6264966Z Phased batch executor self-test: 4/4 passed.
+2026-10-11T08:43:12.6265532Z Phased worker engine self-test: 4/4 passed.
+2026-10-11T08:43:12.6266439Z Phased worker transport/CLI self-test: 4/4 passed.
+2026-10-11T08:43:12.6267139Z Windows Service Desk batch runtime self-test: 5/5 passed.
+2026-10-11T08:43:12.6267794Z Service Desk full phased batch self-test: 6/6 passed.
+2026-10-11T08:43:12.6269123Z Security posture evaluator self-test: PASS � final control catalog is exactly 100 points
+2026-10-11T08:43:12.6270820Z Security posture evaluator self-test: PASS � all-pass posture is 100 with full coverage
+2026-10-11T08:43:12.6272110Z Security posture evaluator self-test: PASS � warn earns half weight and fail earns zero
+2026-10-11T08:43:12.6273366Z Security posture evaluator self-test: PASS � unknown lowers coverage without becoming failure
+2026-10-11T08:43:12.6274843Z Security posture evaluator self-test: PASS � not-applicable is removed from both score and coverage denominator
+2026-10-11T08:43:12.6276631Z Security posture evaluator self-test: PASS � coverage below 80 forces assessment incomplete
+2026-10-11T08:43:12.6277917Z Security posture evaluator self-test: PASS � critical Low caps override arithmetic score
+2026-10-11T08:43:12.6279672Z Security posture evaluator self-test: PASS � needs-attention caps override High without becoming Low
+2026-10-11T08:43:12.6280630Z Security posture evaluator self-test: 9/9 passed.
+2026-10-11T08:43:12.6281807Z Windows platform security self-test: PASS � firewall ownership is evaluated without false Defender failure
+2026-10-11T08:43:12.6283891Z Windows platform security self-test: PASS � secure boot distinguishes enabled disabled legacy and unknown
+2026-10-11T08:43:12.6285497Z Windows platform security self-test: PASS � uac EnableLUA semantics are exact
+2026-10-11T08:43:12.6286632Z Windows platform security self-test: PASS � tpm requires present ready and 2.x
+2026-10-11T08:43:12.6287693Z Windows platform security self-test: PASS � vbs hvci uses runtime state
+2026-10-11T08:43:12.6288430Z Windows platform security self-test: PASS � individual source failures degrade only that control to unknown
+2026-10-11T08:43:12.6288979Z Windows platform security self-test: 6/6 passed.
+2026-10-11T08:43:12.6289566Z Antivirus security self-test: PASS � active Kaspersky plus passive Defender selects Kaspersky
+2026-10-11T08:43:12.6290250Z Antivirus security self-test: PASS � Defender-only posture uses Defender enrichment
+2026-10-11T08:43:12.6290978Z Antivirus security self-test: PASS � multiple active providers make primary-dependent controls unknown
+2026-10-11T08:43:12.6291742Z Antivirus security self-test: PASS � missing or explicitly inactive antivirus fails active control
+2026-10-11T08:43:12.6292404Z Antivirus security self-test: PASS � definition status and age are deterministic
+2026-10-11T08:43:12.6293066Z Antivirus security self-test: PASS � Defender core RTP and optional components are separated
+2026-10-11T08:43:12.6293796Z Antivirus security self-test: PASS � malformed provider response becomes unknown without throwing
+2026-10-11T08:43:12.6294553Z Antivirus security self-test: PASS � WSC COM failure recovers from strong Kaspersky provider evidence
+2026-10-11T08:43:12.6295045Z Antivirus security self-test: 8/8 passed.
+2026-10-11T08:43:12.6295598Z Windows Update security self-test: PASS � fresh history with no pending qualifying updates passes
+2026-10-11T08:43:12.6296291Z Windows Update security self-test: PASS � pending qualifying update warns immediately
+2026-10-11T08:43:12.6296874Z Windows Update security self-test: PASS � 46 to 60 day history warns
+2026-10-11T08:43:12.6297376Z Windows Update security self-test: PASS � older than 60 days fails
+2026-10-11T08:43:12.6297921Z Windows Update security self-test: PASS � missing trustworthy history is unknown
+2026-10-11T08:43:12.6298736Z Windows Update security self-test: PASS � fresh history with unavailable pending search warns instead of becoming unknown or pass
+2026-10-11T08:43:12.6300041Z Windows Update security self-test: PASS � source failure is unknown, never healthy
+2026-10-11T08:43:12.6302035Z Windows Update security self-test: PASS � pending reboot is preserved as evidence without inventing update failure
+2026-10-11T08:43:12.6303095Z Windows Update security self-test: 8/8 passed.
+2026-10-11T08:43:12.6304052Z BitLocker security self-test: PASS � OS volume protected and fully encrypted passes
+2026-10-11T08:43:12.6305266Z BitLocker security self-test: PASS � OS encrypting suspended or protection-only fallback warns
+2026-10-11T08:43:12.6306464Z BitLocker security self-test: PASS � OS decrypted or unprotected fails and unavailable is unknown
+2026-10-11T08:43:12.6307658Z BitLocker security self-test: PASS � all applicable fixed data volumes protected passes
+2026-10-11T08:43:12.6308964Z BitLocker security self-test: PASS � data aggregate fails, warns, not-applicable and unknown truthfully
+2026-10-11T08:43:12.6310426Z BitLocker security self-test: PASS � EFI recovery removable and optical volumes are excluded from data aggregate
+2026-10-11T08:43:12.6312255Z BitLocker security self-test: PASS � evidence contains protector types only and never recovery material
+2026-10-11T08:43:12.6313163Z BitLocker security self-test: 7/7 passed.
+2026-10-11T08:43:12.6314223Z Firmware security self-test: PASS � Lenovo PasswordState maps admin, power-on and drive password bits
+2026-10-11T08:43:12.6315446Z Firmware security self-test: PASS � Dell and HP require an already-present supported provider
+2026-10-11T08:43:12.6317414Z Firmware security self-test: PASS � Huawei SMBIOS Type 24 maps password status without secret material
+2026-10-11T08:43:12.6318972Z Firmware security self-test: PASS � Huawei adapter exposes SMBIOS admin password and never invents drive password
+2026-10-11T08:43:12.6320417Z Firmware security self-test: PASS � Huawei firmware query keeps identifiers compatible with the alias parser
+2026-10-11T08:43:12.6321814Z Firmware security self-test: PASS � Huawei firmware boot evidence reports positive external paths but absence never passes
+2026-10-11T08:43:12.6322626Z Firmware security self-test: PASS � firmware password control uses admin password only
+2026-10-11T08:43:12.6323809Z Firmware security self-test: PASS � boot restriction pass requires trusted internal-only firmware evidence
+2026-10-11T08:43:12.6325071Z Firmware security self-test: PASS � internal first with USB or PXE still enabled warns
+2026-10-11T08:43:12.6326160Z Firmware security self-test: PASS � external effective path or legacy boot fails
+2026-10-11T08:43:12.6326805Z Firmware security self-test: PASS � BCD-only or partial boot evidence stays Unknown
+2026-10-11T08:43:12.6327511Z Firmware security self-test: PASS � firmware adapter API cannot accept or return password secrets
+2026-10-11T08:43:12.6328006Z Firmware security self-test: 12/12 passed.
+2026-10-11T08:43:12.6328583Z Local administrators self-test: PASS � glob language is anchored case-insensitive and deterministic
+2026-10-11T08:43:12.6329346Z Local administrators self-test: PASS � machine REG_MULTI_SZ policy normalizes blanks and duplicates
+2026-10-11T08:43:12.6330159Z Local administrators self-test: PASS � missing wrong-type unreadable and explicitly empty policy remain distinct
+2026-10-11T08:43:12.6330977Z Local administrators self-test: PASS � allowed user local user renamed Administrator and direct group pass
+2026-10-11T08:43:12.6331710Z Local administrators self-test: PASS � unresolved name with matching SID rule is allowed
+2026-10-11T08:43:12.6332428Z Local administrators self-test: PASS � unresolved name without sufficient evidence is Unknown not Fail
+2026-10-11T08:43:12.6333238Z Local administrators self-test: PASS � unauthorized member wins aggregate over additional Unknown evidence
+2026-10-11T08:43:12.6333937Z Local administrators self-test: PASS � explicit empty policy permits nobody
+2026-10-11T08:43:12.6334688Z Local administrators self-test: PASS � Administrators discovery is SID-based and control remains weighted critical
+2026-10-11T08:43:12.6335252Z Local administrators self-test: 9/9 passed.
+2026-10-11T08:43:12.6336200Z Security posture integration self-test: PASS � one provider failure becomes Unknown while other controls still evaluate
+2026-10-11T08:43:12.6337463Z Security posture integration self-test: PASS � adding Security never changes the technical Health assessment
+2026-10-11T08:43:12.6338297Z Security posture integration self-test: PASS � pre-cancelled collection does not enter native providers
+2026-10-11T08:43:12.6339120Z Security posture integration self-test: PASS � security progress remains guarded by the main scan progress owner
+2026-10-11T08:43:12.6339798Z Security posture integration self-test: 4/4 passed.
+2026-10-11T08:43:12.6340890Z Security posture UI self-test: PASS � main window exposes seven metric cards and navigable Security card
+2026-10-11T08:43:12.6342113Z Security posture UI self-test: PASS � Security grid has stable evaluation columns
+2026-10-11T08:43:12.6343232Z Security posture UI self-test: PASS � security bands use fixed non-misleading colors
+2026-10-11T08:43:12.6344560Z Security posture UI self-test: PASS � Unknown points stay unknown and never become fake zero or full credit
+2026-10-11T08:43:12.6345325Z Security posture UI self-test: PASS � Security UI resources are complete in Russian and English
+2026-10-11T08:43:12.6346078Z Security posture UI self-test: PASS � stable identifiers and raw evidence values remain untranslated
+2026-10-11T08:43:12.6346572Z Security posture UI self-test: 6/6 passed.
+2026-10-11T08:43:12.6347328Z Security report self-test: PASS � localized Security HTML contains score coverage model IDs and distinct states
+2026-10-11T08:43:12.6348577Z Security report self-test: PASS � ordinary HTML report embeds Security section
+2026-10-11T08:43:12.6349819Z Security report self-test: PASS � public JSON contains bounded Security assessment but excludes raw snapshot
+2026-10-11T08:43:12.6351127Z Security report self-test: PASS � clipboard summary carries concise separate Security posture
+2026-10-11T08:43:12.6352467Z Security report self-test: PASS � hardening before-after and action evidence persist in HTML and public JSON without raw output
+2026-10-11T08:43:12.6353905Z Security report self-test: PASS � raw snapshot secrets never leak to HTML JSON or clipboard
+2026-10-11T08:43:12.6354697Z Security report self-test: 6/6 passed.
+2026-10-11T08:43:12.6355176Z Policy artifacts self-test: 1/1 passed.
+2026-10-11T08:43:12.6356380Z Security hardening planner self-test: PASS � registry is the exact three-action allow-list and contains no prohibited mutations
+2026-10-11T08:43:12.6358442Z Security hardening planner self-test: PASS � Kaspersky primary permits definitions update only when KESCLI support is proven
+2026-10-11T08:43:12.6360058Z Security hardening planner self-test: PASS � Defender primary with RTP off exposes only fixed Defender RTP candidate
+2026-10-11T08:43:12.6361536Z Security hardening planner self-test: PASS � Defender stale definitions expose fixed definitions update
+2026-10-11T08:43:12.6362411Z Security hardening planner self-test: PASS � firewall hardening refuses third-party ownership and central policy
+2026-10-11T08:43:12.6363249Z Security hardening planner self-test: PASS � no applicable hardening action yields disabled-plan explanation
+2026-10-11T08:43:12.6364069Z Security hardening planner self-test: PASS � unknown rights never authorize an administrator hardening action
+2026-10-11T08:43:12.6364977Z Security hardening planner self-test: PASS � planner authorization surface accepts raw snapshot plus execution context only
+2026-10-11T08:43:12.6365580Z Security hardening planner self-test: 8/8 passed.
+2026-10-11T08:43:12.6366194Z Security hardening worker self-test: PASS � worker namespaces reject cross-namespace and unknown actions
+2026-10-11T08:43:12.6366974Z Security hardening worker self-test: PASS � protocol binds namespace session nonce and message phase
+2026-10-11T08:43:12.6367757Z Security hardening worker self-test: PASS � security operation interface exposes fixed typed mutations only
+2026-10-11T08:43:12.6368533Z Security hardening worker self-test: PASS � executor dispatches only fixed actions in registry order
+2026-10-11T08:43:12.6369598Z Security hardening worker self-test: PASS � executor preserves provider and rejects non-preflight or non-admin execution
+2026-10-11T08:43:12.6370496Z Security hardening worker self-test: PASS � worker CLI parsers preserve namespace isolation before opening a pipe
+2026-10-11T08:43:12.6371048Z Security hardening worker self-test: 6/6 passed.
+2026-10-11T08:43:12.6371669Z Security hardening UI self-test: PASS � superbuttons are blue green red in fixed order and red is never default
+2026-10-11T08:43:12.6372511Z Security hardening UI self-test: PASS � confirmation lists runnable skipped reasons risk UAC policy and post-rescan
+2026-10-11T08:43:12.6373414Z Security hardening UI self-test: PASS � workflow uses fresh preflight then executes once and recollects security afterward
+2026-10-11T08:43:12.6374409Z Security hardening UI self-test: PASS � parent worker request is one fixed security worker and one UAC decision
+2026-10-11T08:43:12.6375192Z Security hardening UI self-test: PASS � blue green and red action registries stay strictly separated
+2026-10-11T08:43:12.6375676Z Security hardening UI self-test: 5/5 passed.
+2026-10-11T08:43:12.6376344Z Security localization coverage self-test: PASS � Security resource key sets are identical and non-empty in Russian and English
+2026-10-11T08:43:12.6377193Z Security localization coverage self-test: PASS � English Security operator framing contains no Cyrillic
+2026-10-11T08:43:12.6378472Z Security localization coverage self-test: PASS � stable Security control and hardening action IDs are language independent
+2026-10-11T08:43:12.6379083Z Security localization coverage self-test: 3/3 passed.
+2026-10-11T08:43:12.6379547Z Evidence PASS: explicit denial, timeout and cancellation use exact retained tokens
+2026-10-11T08:43:12.6380115Z Evidence PASS: generic exception, null and empty never invent rights or unsupported OEM
+2026-10-11T08:43:12.6380690Z Evidence PASS: explicit unsupported and missing observation are distinguishable
+2026-10-11T08:43:12.6381230Z Evidence PASS: missing local admin policy differs from unreadable or wrong type
+2026-10-11T08:43:12.6381772Z Evidence PASS: explicit conflict, but grouped volume differences not guessed conflict
+2026-10-11T08:43:12.6382494Z Evidence PASS: source and safe nextstep localized without secret source
+2026-10-11T08:43:12.6382984Z Evidence PASS: incomplete triage not all-clear and preserves assessment
+2026-10-11T08:43:12.6383502Z Evidence PASS: healthy empty differs from collection warning and CRIT order retained
+2026-10-11T08:43:12.6384045Z Evidence PASS: JSON, HTML and clipboard carry explanation and original evidence
+2026-10-11T08:43:12.6384601Z Evidence PASS: symptom routes only existing inspections, no auto probes, batch unchanged
+2026-10-11T08:43:12.6385038Z Evidence presentation: 10/10 passed
+2026-10-11T08:43:12.6385685Z Security evidence safety self-test: PASS � serialized hardening result excludes raw native output and synthetic secrets
+2026-10-11T08:43:12.6386679Z Security evidence safety self-test: PASS � automatic hardening registry remains exact and contains no weakening or generic mutation class
+2026-10-11T08:43:12.6387598Z Security evidence safety self-test: PASS � hardening operation API exposes only fixed typed mutation surfaces
+2026-10-11T08:43:12.6388135Z Security evidence safety self-test: 3/3 passed.
+2026-10-11T08:43:12.6388436Z System volume regression: 24/24 passed.
+2026-10-11T08:43:12.6388726Z Portable elevation regression: 20/20 passed.
+2026-10-11T08:43:12.6389036Z Read-only inspection regression: 36/36 passed.
+2026-10-11T08:43:12.6389365Z Read-only review UI/export regression: 9/9 passed.
+2026-10-11T08:43:12.6389734Z Read-only review progress ownership regression: 1/1 passed.
+2026-10-11T08:43:12.6390088Z Resource diagnostics regression: 55/55 passed.
+2026-10-11T08:43:12.6390398Z Resource integration regression: 9/9 passed.
+2026-10-11T08:43:12.6390758Z Resource cancellation/evidence regression: 4/4 passed.
+2026-10-11T08:43:12.6391101Z Resource export failure regression: 1/1 passed.
+2026-10-11T08:43:12.6391553Z Incident review regression: 44/44 passed.
+2026-10-11T08:43:12.6391857Z Incident integration regression: 9/9 passed.
+2026-10-11T08:43:12.6392184Z Incident cancellation status regression: 1/1 passed.
+2026-10-11T08:43:12.6392518Z Performance session regression: 45/45 passed.
+2026-10-11T08:43:12.6392835Z Performance session integration: 13/13 passed.
+2026-10-11T08:43:12.6393159Z Performance timing/review regression: 7/7 passed.
+2026-10-11T08:43:12.6393473Z Storage review regression: 53/53 passed.
+2026-10-11T08:43:12.6393761Z Storage review integration: 11/11 passed.
+2026-10-11T08:43:12.6394040Z Storage completion review: 5/5 passed.
+2026-10-11T08:43:12.6394326Z Execution context regression: 30/30 passed.
+2026-10-11T08:43:12.6394625Z Execution context integration: 8/8 passed.
+2026-10-11T08:43:12.6395039Z Execution context action review: 8/8 passed.
+2026-10-11T08:43:12.6395332Z Endpoint review regression: 39/39 passed.
+2026-10-11T08:43:12.6395608Z Endpoint integration: 11/11 passed.
+2026-10-11T08:43:12.6395868Z File-use behavior: 44/44 passed.
+2026-10-11T08:43:12.6396113Z File-use integration: 9/9 passed.
+2026-10-11T08:43:12.6396375Z File-use review acceptance: 20/20 passed.
+2026-10-11T08:43:12.6396700Z File-use progress ownership regression: 1/1 passed.
+2026-10-11T08:43:12.6397017Z Process observation behavior: 33/33 passed.
+2026-10-11T08:43:12.6397319Z Process observation integration: 10/10 passed.
+2026-10-11T08:43:12.6397621Z Process observation completion: 8/8 passed.
+2026-10-11T08:43:12.6398294Z Diagnostic bundle regression: 27/27 passed.
+2026-10-11T08:43:12.6398607Z Diagnostic bundle report regression: 11/11 passed.
+2026-10-11T08:43:12.6398975Z Diagnostic bundle Health selection regression: 2/2 passed.
+2026-10-11T08:43:12.6399333Z Diagnostic bundle UI integration: 11/11 passed.
+2026-10-11T08:43:12.6399679Z Diagnostic bundle save failure regression: 1/1 passed.
+2026-10-11T08:43:12.6400054Z Diagnostic bundle stale-options regression: 3/3 passed.
+2026-10-11T08:43:12.6400448Z Diagnostic bundle progress ownership regression: 1/1 passed.
+2026-10-11T08:43:12.6400798Z Diagnostic bundle acceptance: 3/3 passed.
+2026-10-11T08:43:12.6401162Z Passed exe-selftest (13.135 s)
+2026-10-11T08:43:12.6401394Z START portable
+2026-10-11T08:44:12.5291032Z [PASS] Self-test: D:\a\g-pc-health-check\g-pc-health-check\artifacts\dev\20261011_084131-9e89873e33f04da28cead6e6479d3314\publish\G-PC-Health.exe (exit 0)
+2026-10-11T08:44:12.5293426Z [PASS] Missing session, not location refusal: D:\a\g-pc-health-check\g-pc-health-check\artifacts\dev\20261011_084131-9e89873e33f04da28cead6e6479d3314\publish\G-PC-Health.exe (exit 20)
+2026-10-11T08:44:12.5295916Z [PASS] Obsolete bootstrap disabled: D:\a\g-pc-health-check\g-pc-health-check\artifacts\dev\20261011_084131-9e89873e33f04da28cead6e6479d3314\publish\G-PC-Health.exe (exit 48)
+2026-10-11T08:44:12.5298374Z [PASS] Reject DefinitelyNotAllowed from D:\a\g-pc-health-check\g-pc-health-check\artifacts\dev\20261011_084131-9e89873e33f04da28cead6e6479d3314\publish\G-PC-Health.exe (exit 21)
+2026-10-11T08:44:12.5301088Z [PASS] Reject CleanTemp from D:\a\g-pc-health-check\g-pc-health-check\artifacts\dev\20261011_084131-9e89873e33f04da28cead6e6479d3314\publish\G-PC-Health.exe (exit 21)
+2026-10-11T08:44:12.5303421Z [PASS] Reject Dism,DefinitelyNotAllowed from D:\a\g-pc-health-check\g-pc-health-check\artifacts\dev\20261011_084131-9e89873e33f04da28cead6e6479d3314\publish\G-PC-Health.exe (exit 21)
+2026-10-11T08:44:12.5305769Z [PASS] Invalid pipe: D:\a\g-pc-health-check\g-pc-health-check\artifacts\dev\20261011_084131-9e89873e33f04da28cead6e6479d3314\publish\G-PC-Health.exe (exit 24)
+2026-10-11T08:44:12.5307829Z [PASS] Invalid nonce: D:\a\g-pc-health-check\g-pc-health-check\artifacts\dev\20261011_084131-9e89873e33f04da28cead6e6479d3314\publish\G-PC-Health.exe (exit 25)
+2026-10-11T08:44:12.5309993Z [PASS] Self-test: C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-04b6b1c42fd94864b5f0428e669f9034\Downloads\G-PC-Health.exe (exit 0)
+2026-10-11T08:44:12.5312585Z [PASS] Missing session, not location refusal: C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-04b6b1c42fd94864b5f0428e669f9034\Downloads\G-PC-Health.exe (exit 20)
+2026-10-11T08:44:12.5315071Z [PASS] Obsolete bootstrap disabled: C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-04b6b1c42fd94864b5f0428e669f9034\Downloads\G-PC-Health.exe (exit 48)
+2026-10-11T08:44:12.5317578Z [PASS] Reject DefinitelyNotAllowed from C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-04b6b1c42fd94864b5f0428e669f9034\Downloads\G-PC-Health.exe (exit 21)
+2026-10-11T08:44:12.5320008Z [PASS] Reject CleanTemp from C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-04b6b1c42fd94864b5f0428e669f9034\Downloads\G-PC-Health.exe (exit 21)
+2026-10-11T08:44:12.5323943Z [PASS] Reject Dism,DefinitelyNotAllowed from C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-04b6b1c42fd94864b5f0428e669f9034\Downloads\G-PC-Health.exe (exit 21)
+2026-10-11T08:44:12.5325938Z [PASS] Invalid pipe: C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-04b6b1c42fd94864b5f0428e669f9034\Downloads\G-PC-Health.exe (exit 24)
+2026-10-11T08:44:12.5327087Z [PASS] Invalid nonce: C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-04b6b1c42fd94864b5f0428e669f9034\Downloads\G-PC-Health.exe (exit 25)
+2026-10-11T08:44:12.5328679Z [PASS] Self-test: C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-04b6b1c42fd94864b5f0428e669f9034\Downloads\Тестовая папка\Проверка ПК (1).exe (exit 0)
+2026-10-11T08:44:12.5330164Z [PASS] Missing session, not location refusal: C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-04b6b1c42fd94864b5f0428e669f9034\Downloads\Тестовая папка\Проверка ПК (1).exe (exit 20)
+2026-10-11T08:44:12.5331694Z [PASS] Obsolete bootstrap disabled: C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-04b6b1c42fd94864b5f0428e669f9034\Downloads\Тестовая папка\Проверка ПК (1).exe (exit 48)
+2026-10-11T08:44:12.5333198Z [PASS] Reject DefinitelyNotAllowed from C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-04b6b1c42fd94864b5f0428e669f9034\Downloads\Тестовая папка\Проверка ПК (1).exe (exit 21)
+2026-10-11T08:44:12.5334658Z [PASS] Reject CleanTemp from C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-04b6b1c42fd94864b5f0428e669f9034\Downloads\Тестовая папка\Проверка ПК (1).exe (exit 21)
+2026-10-11T08:44:12.5336128Z [PASS] Reject Dism,DefinitelyNotAllowed from C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-04b6b1c42fd94864b5f0428e669f9034\Downloads\Тестовая папка\Проверка ПК (1).exe (exit 21)
+2026-10-11T08:44:12.5337549Z [PASS] Invalid pipe: C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-04b6b1c42fd94864b5f0428e669f9034\Downloads\Тестовая папка\Проверка ПК (1).exe (exit 24)
+2026-10-11T08:44:12.5338898Z [PASS] Invalid nonce: C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-04b6b1c42fd94864b5f0428e669f9034\Downloads\Тестовая папка\Проверка ПК (1).exe (exit 25)
+2026-10-11T08:44:12.5340095Z [PASS] Self-test: C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-04b6b1c42fd94864b5f0428e669f9034\Other tools\A & B\health [test].exe (exit 0)
+2026-10-11T08:44:12.5341781Z [PASS] Missing session, not location refusal: C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-04b6b1c42fd94864b5f0428e669f9034\Other tools\A & B\health [test].exe (exit 20)
+2026-10-11T08:44:12.5343183Z [PASS] Obsolete bootstrap disabled: C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-04b6b1c42fd94864b5f0428e669f9034\Other tools\A & B\health [test].exe (exit 48)
+2026-10-11T08:44:12.5344515Z [PASS] Reject DefinitelyNotAllowed from C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-04b6b1c42fd94864b5f0428e669f9034\Other tools\A & B\health [test].exe (exit 21)
+2026-10-11T08:44:12.5346030Z [PASS] Reject CleanTemp from C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-04b6b1c42fd94864b5f0428e669f9034\Other tools\A & B\health [test].exe (exit 21)
+2026-10-11T08:44:12.5347364Z [PASS] Reject Dism,DefinitelyNotAllowed from C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-04b6b1c42fd94864b5f0428e669f9034\Other tools\A & B\health [test].exe (exit 21)
+2026-10-11T08:44:12.5348649Z [PASS] Invalid pipe: C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-04b6b1c42fd94864b5f0428e669f9034\Other tools\A & B\health [test].exe (exit 24)
+2026-10-11T08:44:12.5349847Z [PASS] Invalid nonce: C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-04b6b1c42fd94864b5f0428e669f9034\Other tools\A & B\health [test].exe (exit 25)
+2026-10-11T08:44:12.5350672Z Portable EXE/worker matrix: 32/32 passed across 4 path/name layouts.
+2026-10-11T08:44:12.5351300Z No DISM, SFC, DNS flush or Temp cleanup was executed by this matrix; interactive UAC remains a pilot check.
+2026-10-11T08:44:12.5351898Z Passed portable (59.903 s)
+2026-10-11T08:44:12.5352121Z START package
+2026-10-11T08:44:12.6630870Z Passed package (0.13 s)
+2026-10-11T08:44:12.6644020Z Results: D:\a\g-pc-health-check\g-pc-health-check\artifacts\dev\20261011_084131-9e89873e33f04da28cead6e6479d3314\summary.json
+2026-10-11T08:44:12.6652617Z Full local checks passed. This is NOT a published release, pilot acceptance or artifact attestation.
+2026-10-11T08:44:12.7085296Z ##[group]Run ./tools/dev/Invoke-DevCheck.ps1 -Profile Quick
+2026-10-11T08:44:12.7085817Z [36;1m./tools/dev/Invoke-DevCheck.ps1 -Profile Quick[0m
+2026-10-11T08:44:12.7162723Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-11T08:44:12.7163068Z env:
+2026-10-11T08:44:12.7163246Z   DOTNET_NOLOGO: true
+2026-10-11T08:44:12.7163453Z   DOTNET_CLI_TELEMETRY_OPTOUT: true
+2026-10-11T08:44:12.7163724Z   DOTNET_ROOT: C:\Program Files\dotnet
+2026-10-11T08:44:12.7163974Z ##[endgroup]
+2026-10-11T08:44:13.2788996Z START preflight
+2026-10-11T08:44:13.3869752Z 5185cf44cd53438c44dac4d3fabc0a531895f795
+2026-10-11T08:44:13.6064067Z 8.0.425
+2026-10-11T08:44:13.6714650Z Passed preflight (0.387 s)
+2026-10-11T08:44:13.6734469Z START tool-tests
+2026-10-11T08:44:15.6430788Z PASS Quick checks source without packaging
+2026-10-11T08:44:15.6431980Z PASS Full retains Quick and adds packaged/portable checks
+2026-10-11T08:44:15.6432977Z PASS Unknown profile cannot silently skip checks
+2026-10-11T08:44:15.6433667Z PASS Complete clean audit accepted
+2026-10-11T08:44:15.6434193Z PASS Empty audit rejected
+2026-10-11T08:44:15.6434627Z PASS Malformed audit rejected
+2026-10-11T08:44:15.6435066Z PASS No projects rejected
+2026-10-11T08:44:15.6435372Z PASS No frameworks rejected
+2026-10-11T08:44:15.6435669Z PASS Audit error log rejected
+2026-10-11T08:44:15.6436041Z PASS Reject vulnerabilities in topLevelPackages
+2026-10-11T08:44:15.6436487Z PASS Reject vulnerabilities in transitivePackages
+2026-10-11T08:44:15.6436853Z START one
+2026-10-11T08:44:15.6437192Z Passed one (0.005 s)
+2026-10-11T08:44:15.6437456Z START two
+2026-10-11T08:44:15.6437677Z Passed two (0.001 s)
+2026-10-11T08:44:15.6438386Z Results: C:\Users\runneradmin\AppData\Local\Temp\GpcDevTools-Tests-e8b2ad5ff7ea4e27a7ac22b7d443bda5\success\summary.json
+2026-10-11T08:44:15.6439218Z PASS Successful sequence records exact metadata and all steps
+2026-10-11T08:44:15.6439607Z START one
+2026-10-11T08:44:15.6439827Z Passed one (0.004 s)
+2026-10-11T08:44:15.6440073Z START two
+2026-10-11T08:44:15.6440394Z FAILED two: Synthetic failure
+2026-10-11T08:44:15.6440742Z Failed two (0.009 s)
+2026-10-11T08:44:15.6441583Z Results: C:\Users\runneradmin\AppData\Local\Temp\GpcDevTools-Tests-e8b2ad5ff7ea4e27a7ac22b7d443bda5\failure\summary.json
+2026-10-11T08:44:15.6442413Z PASS Failure stops later steps and leaves evidence
+2026-10-11T08:44:15.6442809Z START one
+2026-10-11T08:44:15.6443106Z Passed one (0.002 s)
+2026-10-11T08:44:15.6443834Z Results: C:\Users\runneradmin\AppData\Local\Temp\GpcDevTools-Tests-e8b2ad5ff7ea4e27a7ac22b7d443bda5\running\summary.json
+2026-10-11T08:44:15.6444702Z PASS In-progress snapshot exists before executing a step
+2026-10-11T08:44:15.6445200Z PASS Empty sequence cannot report success
+2026-10-11T08:44:15.6445672Z PASS Existing result directory cannot be overwritten
+2026-10-11T08:44:15.6446128Z synthetic stderr
+2026-10-11T08:44:15.6446536Z PASS Native nonzero exit throws with exact code and saves log
+2026-10-11T08:44:15.6446988Z synthetic warning
+2026-10-11T08:44:15.6447380Z PASS Native stderr with exit zero is not a false failure
+2026-10-11T08:44:15.6448008Z Тест (1) & [x]
+2026-10-11T08:44:15.6507307Z PASS Native arguments preserve Unicode spaces and metacharacters
+2026-10-11T08:44:15.6507878Z START native
+2026-10-11T08:44:15.6511520Z FAILED native: Exception calling "Start" with "0" argument(s): "An error occurred trying to start process 'C:\Users\runneradmin\AppData\Local\Temp\GpcDevTools-Tests-e8b2ad5ff7ea4e27a7ac22b7d443bda5\absent.exe' with working directory 'D:\a\g-pc-health-check\g-pc-health-check'. The system cannot find the file specified."
+2026-10-11T08:44:15.6514234Z Failed native (0.008 s)
+2026-10-11T08:44:15.6515095Z Results: C:\Users\runneradmin\AppData\Local\Temp\GpcDevTools-Tests-e8b2ad5ff7ea4e27a7ac22b7d443bda5\missing-tool\summary.json
+2026-10-11T08:44:15.6516232Z PASS Launch failure is not a successful step
+2026-10-11T08:44:15.6516730Z Development workflow: 20/20 passed.
+2026-10-11T08:44:16.1732658Z SDK audit contract: 6/6 passed.
+2026-10-11T08:44:16.1758851Z Passed tool-tests (2.5 s)
+2026-10-11T08:44:16.1777434Z START restore
+2026-10-11T08:44:17.1377131Z   Determining projects to restore...
+2026-10-11T08:44:17.1377558Z   All projects are up-to-date for restore.
+2026-10-11T08:44:17.1397172Z Passed restore (0.961 s)
+2026-10-11T08:44:17.1410989Z START audit
+2026-10-11T08:44:18.2447632Z {
+2026-10-11T08:44:18.2448344Z   "version": 1,
+2026-10-11T08:44:18.2448767Z   "parameters": "--vulnerable --include-transitive",
+2026-10-11T08:44:18.2449212Z   "sources": [
+2026-10-11T08:44:18.2449528Z     "https://api.nuget.org/v3/index.json",
+2026-10-11T08:44:18.2449872Z     "C:/Program Files (x86)/Microsoft SDKs/NuGetPackages/"
+2026-10-11T08:44:18.2450165Z   ],
+2026-10-11T08:44:18.2450331Z   "projects": [
+2026-10-11T08:44:18.2450511Z     {
+2026-10-11T08:44:18.2450896Z       "path": "D:/a/g-pc-health-check/g-pc-health-check/src/G.PcHealthCheck/G.PcHealthCheck.csproj"
+2026-10-11T08:44:18.2451348Z     }
+2026-10-11T08:44:18.2451498Z   ]
+2026-10-11T08:44:18.2451643Z }
+2026-10-11T08:44:18.2674067Z Passed audit (1.125 s)
+2026-10-11T08:44:18.2687628Z START build
+2026-10-11T08:44:26.0245702Z   Corporate shield: 5157c5cf83a6cfddb74c51701a693e401e36b400812505a1e46e15d760c72877
+2026-10-11T08:44:26.0247022Z   Green application icon: D:\a\g-pc-health-check\g-pc-health-check\src\G.PcHealthCheck\obj\brand\gpchc.ico (105197 bytes)
+2026-10-11T08:44:26.0248125Z   G.PcHealthCheck -> D:\a\g-pc-health-check\g-pc-health-check\src\G.PcHealthCheck\bin\Release\net8.0-windows10.0.19041.0\win-x64\G-PC-Health.dll
+2026-10-11T08:44:26.0248754Z 
+2026-10-11T08:44:26.0248838Z Build succeeded.
+2026-10-11T08:44:26.0249028Z     0 Warning(s)
+2026-10-11T08:44:26.0249208Z     0 Error(s)
+2026-10-11T08:44:26.0249312Z 
+2026-10-11T08:44:26.0249441Z Time Elapsed 00:00:07.51
+2026-10-11T08:44:26.0268481Z Passed build (7.757 s)
+2026-10-11T08:44:26.0283931Z START selftest
+2026-10-11T08:44:41.2216131Z Primary guidance regression: 19/19 passed.
+2026-10-11T08:44:41.2216543Z Diagnostic completeness regression: 22/22 passed.
+2026-10-11T08:44:41.2217073Z Common problems regression: 36/36 passed.
+2026-10-11T08:44:41.2217411Z Common problems completion regression: 8/8 passed.
+2026-10-11T08:44:41.2218727Z Common problems presentation: URI allow-list, HTML encoding, JSON envelope, menu layout and detail reselection passed.
+2026-10-11T08:44:41.2219987Z Common problems command evidence: unconfirmed attempt, nullable exit code, redacted error and export passed.
+2026-10-11T08:44:41.2220611Z Common problems progress ownership regression: 1/1 passed.
+2026-10-11T08:44:41.2221014Z Main scan progress ownership regression: 1/1 passed.
+2026-10-11T08:44:41.2221375Z Main apply progress ownership regression: 1/1 passed.
+2026-10-11T08:44:41.2221711Z Main card resize redraw self-test passed: 1/1.
+2026-10-11T08:44:41.2222089Z Localization and MB presentation self-test passed: 21/21.
+2026-10-11T08:44:41.2222470Z Performance localization self-test: 3/3 passed.
+2026-10-11T08:44:41.2222804Z File Use localization self-test: 3/3 passed.
+2026-10-11T08:44:41.2223160Z Process Observation localization self-test: 3/3 passed.
+2026-10-11T08:44:41.2223534Z Diagnostic Bundle localization self-test: 4/4 passed.
+2026-10-11T08:44:41.2223869Z Localization coverage self-test: 4/4 passed.
+2026-10-11T08:44:41.2224195Z Human-size presentation self-test passed: 12/12.
+2026-10-11T08:44:41.2224536Z Main chrome / About / branding self-test: 4/4 passed.
+2026-10-11T08:44:41.2225054Z Readable layout synthetic render PASS: ru, area=800x600, actual DPI=96; not Windows11/RDP acceptance
+2026-10-11T08:44:41.2226044Z Readable layout synthetic render PASS: ru, area=800x720, actual DPI=96; not Windows11/RDP acceptance
+2026-10-11T08:44:41.2226705Z Readable layout synthetic render PASS: ru, area=950x768, actual DPI=96; not Windows11/RDP acceptance
+2026-10-11T08:44:41.2228182Z Readable layout synthetic render PASS: ru, area=1320x720, actual DPI=96; not Windows11/RDP acceptance
+2026-10-11T08:44:41.2228941Z Readable layout synthetic render PASS: ru, area=1320x1000, actual DPI=96; not Windows11/RDP acceptance
+2026-10-11T08:44:41.2229965Z Readable layout synthetic render PASS: en, area=800x600, actual DPI=96; not Windows11/RDP acceptance
+2026-10-11T08:44:41.2230628Z Readable layout synthetic render PASS: en, area=800x720, actual DPI=96; not Windows11/RDP acceptance
+2026-10-11T08:44:41.2231271Z Readable layout synthetic render PASS: en, area=950x768, actual DPI=96; not Windows11/RDP acceptance
+2026-10-11T08:44:41.2231927Z Readable layout synthetic render PASS: en, area=1320x720, actual DPI=96; not Windows11/RDP acceptance
+2026-10-11T08:44:41.2232590Z Readable layout synthetic render PASS: en, area=1320x1000, actual DPI=96; not Windows11/RDP acceptance
+2026-10-11T08:44:41.2233056Z Readable layout self-test: 18/18 passed
+2026-10-11T08:44:41.2233368Z Analysis auto-collection self-test: 3/3 passed.
+2026-10-11T08:44:41.2233702Z Service Desk action registry self-test: 4/4 passed.
+2026-10-11T08:44:41.2234047Z Service Desk batch planner/UI self-test: 5/5 passed.
+2026-10-11T08:44:41.2234373Z Fixed non-network repair self-test: 6/6 passed.
+2026-10-11T08:44:41.2234665Z Network repair self-test: 6/6 passed.
+2026-10-11T08:44:41.2234973Z Phased worker protocol/planning self-test: 4/4 passed.
+2026-10-11T08:44:41.2235305Z Phased batch executor self-test: 4/4 passed.
+2026-10-11T08:44:41.2235601Z Phased worker engine self-test: 4/4 passed.
+2026-10-11T08:44:41.2235908Z Phased worker transport/CLI self-test: 4/4 passed.
+2026-10-11T08:44:41.2236266Z Windows Service Desk batch runtime self-test: 5/5 passed.
+2026-10-11T08:44:41.2236624Z Service Desk full phased batch self-test: 6/6 passed.
+2026-10-11T08:44:41.2237371Z Security posture evaluator self-test: PASS � final control catalog is exactly 100 points
+2026-10-11T08:44:41.2238045Z Security posture evaluator self-test: PASS � all-pass posture is 100 with full coverage
+2026-10-11T08:44:41.2238695Z Security posture evaluator self-test: PASS � warn earns half weight and fail earns zero
+2026-10-11T08:44:41.2239854Z Security posture evaluator self-test: PASS � unknown lowers coverage without becoming failure
+2026-10-11T08:44:41.2240678Z Security posture evaluator self-test: PASS � not-applicable is removed from both score and coverage denominator
+2026-10-11T08:44:41.2241432Z Security posture evaluator self-test: PASS � coverage below 80 forces assessment incomplete
+2026-10-11T08:44:41.2242095Z Security posture evaluator self-test: PASS � critical Low caps override arithmetic score
+2026-10-11T08:44:41.2242818Z Security posture evaluator self-test: PASS � needs-attention caps override High without becoming Low
+2026-10-11T08:44:41.2243320Z Security posture evaluator self-test: 9/9 passed.
+2026-10-11T08:44:41.2243929Z Windows platform security self-test: PASS � firewall ownership is evaluated without false Defender failure
+2026-10-11T08:44:41.2244724Z Windows platform security self-test: PASS � secure boot distinguishes enabled disabled legacy and unknown
+2026-10-11T08:44:41.2245409Z Windows platform security self-test: PASS � uac EnableLUA semantics are exact
+2026-10-11T08:44:41.2245994Z Windows platform security self-test: PASS � tpm requires present ready and 2.x
+2026-10-11T08:44:41.2246550Z Windows platform security self-test: PASS � vbs hvci uses runtime state
+2026-10-11T08:44:41.2247221Z Windows platform security self-test: PASS � individual source failures degrade only that control to unknown
+2026-10-11T08:44:41.2247749Z Windows platform security self-test: 6/6 passed.
+2026-10-11T08:44:41.2248487Z Antivirus security self-test: PASS � active Kaspersky plus passive Defender selects Kaspersky
+2026-10-11T08:44:41.2249442Z Antivirus security self-test: PASS � Defender-only posture uses Defender enrichment
+2026-10-11T08:44:41.2250200Z Antivirus security self-test: PASS � multiple active providers make primary-dependent controls unknown
+2026-10-11T08:44:41.2251086Z Antivirus security self-test: PASS � missing or explicitly inactive antivirus fails active control
+2026-10-11T08:44:41.2251755Z Antivirus security self-test: PASS � definition status and age are deterministic
+2026-10-11T08:44:41.2252411Z Antivirus security self-test: PASS � Defender core RTP and optional components are separated
+2026-10-11T08:44:41.2253128Z Antivirus security self-test: PASS � malformed provider response becomes unknown without throwing
+2026-10-11T08:44:41.2253899Z Antivirus security self-test: PASS � WSC COM failure recovers from strong Kaspersky provider evidence
+2026-10-11T08:44:41.2254394Z Antivirus security self-test: 8/8 passed.
+2026-10-11T08:44:41.2254940Z Windows Update security self-test: PASS � fresh history with no pending qualifying updates passes
+2026-10-11T08:44:41.2255619Z Windows Update security self-test: PASS � pending qualifying update warns immediately
+2026-10-11T08:44:41.2256196Z Windows Update security self-test: PASS � 46 to 60 day history warns
+2026-10-11T08:44:41.2256704Z Windows Update security self-test: PASS � older than 60 days fails
+2026-10-11T08:44:41.2257249Z Windows Update security self-test: PASS � missing trustworthy history is unknown
+2026-10-11T08:44:41.2258074Z Windows Update security self-test: PASS � fresh history with unavailable pending search warns instead of becoming unknown or pass
+2026-10-11T08:44:41.2258847Z Windows Update security self-test: PASS � source failure is unknown, never healthy
+2026-10-11T08:44:41.2259868Z Windows Update security self-test: PASS � pending reboot is preserved as evidence without inventing update failure
+2026-10-11T08:44:41.2261599Z Windows Update security self-test: 8/8 passed.
+2026-10-11T08:44:41.2262668Z BitLocker security self-test: PASS � OS volume protected and fully encrypted passes
+2026-10-11T08:44:41.2264860Z BitLocker security self-test: PASS � OS encrypting suspended or protection-only fallback warns
+2026-10-11T08:44:41.2266216Z BitLocker security self-test: PASS � OS decrypted or unprotected fails and unavailable is unknown
+2026-10-11T08:44:41.2267599Z BitLocker security self-test: PASS � all applicable fixed data volumes protected passes
+2026-10-11T08:44:41.2269306Z BitLocker security self-test: PASS � data aggregate fails, warns, not-applicable and unknown truthfully
+2026-10-11T08:44:41.2271016Z BitLocker security self-test: PASS � EFI recovery removable and optical volumes are excluded from data aggregate
+2026-10-11T08:44:41.2272662Z BitLocker security self-test: PASS � evidence contains protector types only and never recovery material
+2026-10-11T08:44:41.2273606Z BitLocker security self-test: 7/7 passed.
+2026-10-11T08:44:41.2274660Z Firmware security self-test: PASS � Lenovo PasswordState maps admin, power-on and drive password bits
+2026-10-11T08:44:41.2275894Z Firmware security self-test: PASS � Dell and HP require an already-present supported provider
+2026-10-11T08:44:41.2277837Z Firmware security self-test: PASS � Huawei SMBIOS Type 24 maps password status without secret material
+2026-10-11T08:44:41.2279657Z Firmware security self-test: PASS � Huawei adapter exposes SMBIOS admin password and never invents drive password
+2026-10-11T08:44:41.2281227Z Firmware security self-test: PASS � Huawei firmware query keeps identifiers compatible with the alias parser
+2026-10-11T08:44:41.2282448Z Firmware security self-test: PASS � Huawei firmware boot evidence reports positive external paths but absence never passes
+2026-10-11T08:44:41.2283240Z Firmware security self-test: PASS � firmware password control uses admin password only
+2026-10-11T08:44:41.2284009Z Firmware security self-test: PASS � boot restriction pass requires trusted internal-only firmware evidence
+2026-10-11T08:44:41.2284954Z Firmware security self-test: PASS � internal first with USB or PXE still enabled warns
+2026-10-11T08:44:41.2285576Z Firmware security self-test: PASS � external effective path or legacy boot fails
+2026-10-11T08:44:41.2286182Z Firmware security self-test: PASS � BCD-only or partial boot evidence stays Unknown
+2026-10-11T08:44:41.2286986Z Firmware security self-test: PASS � firmware adapter API cannot accept or return password secrets
+2026-10-11T08:44:41.2287483Z Firmware security self-test: 12/12 passed.
+2026-10-11T08:44:41.2288049Z Local administrators self-test: PASS � glob language is anchored case-insensitive and deterministic
+2026-10-11T08:44:41.2288790Z Local administrators self-test: PASS � machine REG_MULTI_SZ policy normalizes blanks and duplicates
+2026-10-11T08:44:41.2289944Z Local administrators self-test: PASS � missing wrong-type unreadable and explicitly empty policy remain distinct
+2026-10-11T08:44:41.2290795Z Local administrators self-test: PASS � allowed user local user renamed Administrator and direct group pass
+2026-10-11T08:44:41.2291509Z Local administrators self-test: PASS � unresolved name with matching SID rule is allowed
+2026-10-11T08:44:41.2292223Z Local administrators self-test: PASS � unresolved name without sufficient evidence is Unknown not Fail
+2026-10-11T08:44:41.2293007Z Local administrators self-test: PASS � unauthorized member wins aggregate over additional Unknown evidence
+2026-10-11T08:44:41.2293690Z Local administrators self-test: PASS � explicit empty policy permits nobody
+2026-10-11T08:44:41.2294424Z Local administrators self-test: PASS � Administrators discovery is SID-based and control remains weighted critical
+2026-10-11T08:44:41.2294968Z Local administrators self-test: 9/9 passed.
+2026-10-11T08:44:41.2295601Z Security posture integration self-test: PASS � one provider failure becomes Unknown while other controls still evaluate
+2026-10-11T08:44:41.2296461Z Security posture integration self-test: PASS � adding Security never changes the technical Health assessment
+2026-10-11T08:44:41.2297256Z Security posture integration self-test: PASS � pre-cancelled collection does not enter native providers
+2026-10-11T08:44:41.2298083Z Security posture integration self-test: PASS � security progress remains guarded by the main scan progress owner
+2026-10-11T08:44:41.2298656Z Security posture integration self-test: 4/4 passed.
+2026-10-11T08:44:41.2299529Z Security posture UI self-test: PASS � main window exposes seven metric cards and navigable Security card
+2026-10-11T08:44:41.2300227Z Security posture UI self-test: PASS � Security grid has stable evaluation columns
+2026-10-11T08:44:41.2300837Z Security posture UI self-test: PASS � security bands use fixed non-misleading colors
+2026-10-11T08:44:41.2301544Z Security posture UI self-test: PASS � Unknown points stay unknown and never become fake zero or full credit
+2026-10-11T08:44:41.2302446Z Security posture UI self-test: PASS � Security UI resources are complete in Russian and English
+2026-10-11T08:44:41.2303907Z Security posture UI self-test: PASS � stable identifiers and raw evidence values remain untranslated
+2026-10-11T08:44:41.2304417Z Security posture UI self-test: 6/6 passed.
+2026-10-11T08:44:41.2305040Z Security report self-test: PASS � localized Security HTML contains score coverage model IDs and distinct states
+2026-10-11T08:44:41.2305751Z Security report self-test: PASS � ordinary HTML report embeds Security section
+2026-10-11T08:44:41.2306455Z Security report self-test: PASS � public JSON contains bounded Security assessment but excludes raw snapshot
+2026-10-11T08:44:41.2307199Z Security report self-test: PASS � clipboard summary carries concise separate Security posture
+2026-10-11T08:44:41.2308058Z Security report self-test: PASS � hardening before-after and action evidence persist in HTML and public JSON without raw output
+2026-10-11T08:44:41.2308864Z Security report self-test: PASS � raw snapshot secrets never leak to HTML JSON or clipboard
+2026-10-11T08:44:41.2309874Z Security report self-test: 6/6 passed.
+2026-10-11T08:44:41.2310157Z Policy artifacts self-test: 1/1 passed.
+2026-10-11T08:44:41.2311421Z Security hardening planner self-test: PASS � registry is the exact three-action allow-list and contains no prohibited mutations
+2026-10-11T08:44:41.2314225Z Security hardening planner self-test: PASS � Kaspersky primary permits definitions update only when KESCLI support is proven
+2026-10-11T08:44:41.2315993Z Security hardening planner self-test: PASS � Defender primary with RTP off exposes only fixed Defender RTP candidate
+2026-10-11T08:44:41.2317431Z Security hardening planner self-test: PASS � Defender stale definitions expose fixed definitions update
+2026-10-11T08:44:41.2318964Z Security hardening planner self-test: PASS � firewall hardening refuses third-party ownership and central policy
+2026-10-11T08:44:41.2321050Z Security hardening planner self-test: PASS � no applicable hardening action yields disabled-plan explanation
+2026-10-11T08:44:41.2322496Z Security hardening planner self-test: PASS � unknown rights never authorize an administrator hardening action
+2026-10-11T08:44:41.2323497Z Security hardening planner self-test: PASS � planner authorization surface accepts raw snapshot plus execution context only
+2026-10-11T08:44:41.2324595Z Security hardening planner self-test: 8/8 passed.
+2026-10-11T08:44:41.2325662Z Security hardening worker self-test: PASS � worker namespaces reject cross-namespace and unknown actions
+2026-10-11T08:44:41.2326826Z Security hardening worker self-test: PASS � protocol binds namespace session nonce and message phase
+2026-10-11T08:44:41.2327610Z Security hardening worker self-test: PASS � security operation interface exposes fixed typed mutations only
+2026-10-11T08:44:41.2328543Z Security hardening worker self-test: PASS � executor dispatches only fixed actions in registry order
+2026-10-11T08:44:41.2329538Z Security hardening worker self-test: PASS � executor preserves provider and rejects non-preflight or non-admin execution
+2026-10-11T08:44:41.2330445Z Security hardening worker self-test: PASS � worker CLI parsers preserve namespace isolation before opening a pipe
+2026-10-11T08:44:41.2330998Z Security hardening worker self-test: 6/6 passed.
+2026-10-11T08:44:41.2331622Z Security hardening UI self-test: PASS � superbuttons are blue green red in fixed order and red is never default
+2026-10-11T08:44:41.2332483Z Security hardening UI self-test: PASS � confirmation lists runnable skipped reasons risk UAC policy and post-rescan
+2026-10-11T08:44:41.2333371Z Security hardening UI self-test: PASS � workflow uses fresh preflight then executes once and recollects security afterward
+2026-10-11T08:44:41.2334228Z Security hardening UI self-test: PASS � parent worker request is one fixed security worker and one UAC decision
+2026-10-11T08:44:41.2334994Z Security hardening UI self-test: PASS � blue green and red action registries stay strictly separated
+2026-10-11T08:44:41.2335486Z Security hardening UI self-test: 5/5 passed.
+2026-10-11T08:44:41.2336160Z Security localization coverage self-test: PASS � Security resource key sets are identical and non-empty in Russian and English
+2026-10-11T08:44:41.2337006Z Security localization coverage self-test: PASS � English Security operator framing contains no Cyrillic
+2026-10-11T08:44:41.2337883Z Security localization coverage self-test: PASS � stable Security control and hardening action IDs are language independent
+2026-10-11T08:44:41.2338670Z Security localization coverage self-test: 3/3 passed.
+2026-10-11T08:44:41.2339259Z Evidence PASS: explicit denial, timeout and cancellation use exact retained tokens
+2026-10-11T08:44:41.2339837Z Evidence PASS: generic exception, null and empty never invent rights or unsupported OEM
+2026-10-11T08:44:41.2340407Z Evidence PASS: explicit unsupported and missing observation are distinguishable
+2026-10-11T08:44:41.2340939Z Evidence PASS: missing local admin policy differs from unreadable or wrong type
+2026-10-11T08:44:41.2341709Z Evidence PASS: explicit conflict, but grouped volume differences not guessed conflict
+2026-10-11T08:44:41.2342464Z Evidence PASS: source and safe nextstep localized without secret source
+2026-10-11T08:44:41.2342947Z Evidence PASS: incomplete triage not all-clear and preserves assessment
+2026-10-11T08:44:41.2343737Z Evidence PASS: healthy empty differs from collection warning and CRIT order retained
+2026-10-11T08:44:41.2344560Z Evidence PASS: JSON, HTML and clipboard carry explanation and original evidence
+2026-10-11T08:44:41.2345129Z Evidence PASS: symptom routes only existing inspections, no auto probes, batch unchanged
+2026-10-11T08:44:41.2345566Z Evidence presentation: 10/10 passed
+2026-10-11T08:44:41.2346222Z Security evidence safety self-test: PASS � serialized hardening result excludes raw native output and synthetic secrets
+2026-10-11T08:44:41.2347208Z Security evidence safety self-test: PASS � automatic hardening registry remains exact and contains no weakening or generic mutation class
+2026-10-11T08:44:41.2348285Z Security evidence safety self-test: PASS � hardening operation API exposes only fixed typed mutation surfaces
+2026-10-11T08:44:41.2348854Z Security evidence safety self-test: 3/3 passed.
+2026-10-11T08:44:41.2349269Z System volume regression: 24/24 passed.
+2026-10-11T08:44:41.2349553Z Portable elevation regression: 20/20 passed.
+2026-10-11T08:44:41.2349868Z Read-only inspection regression: 36/36 passed.
+2026-10-11T08:44:41.2350189Z Read-only review UI/export regression: 9/9 passed.
+2026-10-11T08:44:41.2350549Z Read-only review progress ownership regression: 1/1 passed.
+2026-10-11T08:44:41.2350898Z Resource diagnostics regression: 55/55 passed.
+2026-10-11T08:44:41.2351196Z Resource integration regression: 9/9 passed.
+2026-10-11T08:44:41.2351527Z Resource cancellation/evidence regression: 4/4 passed.
+2026-10-11T08:44:41.2351862Z Resource export failure regression: 1/1 passed.
+2026-10-11T08:44:41.2352158Z Incident review regression: 44/44 passed.
+2026-10-11T08:44:41.2352450Z Incident integration regression: 9/9 passed.
+2026-10-11T08:44:41.2352764Z Incident cancellation status regression: 1/1 passed.
+2026-10-11T08:44:41.2353087Z Performance session regression: 45/45 passed.
+2026-10-11T08:44:41.2353388Z Performance session integration: 13/13 passed.
+2026-10-11T08:44:41.2353700Z Performance timing/review regression: 7/7 passed.
+2026-10-11T08:44:41.2354512Z Storage review regression: 53/53 passed.
+2026-10-11T08:44:41.2355129Z Storage review integration: 11/11 passed.
+2026-10-11T08:44:41.2355451Z Storage completion review: 5/5 passed.
+2026-10-11T08:44:41.2355745Z Execution context regression: 30/30 passed.
+2026-10-11T08:44:41.2356201Z Execution context integration: 8/8 passed.
+2026-10-11T08:44:41.2356696Z Execution context action review: 8/8 passed.
+2026-10-11T08:44:41.2358274Z Endpoint review regression: 39/39 passed.
+2026-10-11T08:44:41.2359727Z Endpoint integration: 11/11 passed.
+2026-10-11T08:44:41.2360396Z File-use behavior: 44/44 passed.
+2026-10-11T08:44:41.2360750Z File-use integration: 9/9 passed.
+2026-10-11T08:44:41.2361032Z File-use review acceptance: 20/20 passed.
+2026-10-11T08:44:41.2361355Z File-use progress ownership regression: 1/1 passed.
+2026-10-11T08:44:41.2361683Z Process observation behavior: 33/33 passed.
+2026-10-11T08:44:41.2362005Z Process observation integration: 10/10 passed.
+2026-10-11T08:44:41.2362317Z Process observation completion: 8/8 passed.
+2026-10-11T08:44:41.2362614Z Diagnostic bundle regression: 27/27 passed.
+2026-10-11T08:44:41.2362927Z Diagnostic bundle report regression: 11/11 passed.
+2026-10-11T08:44:41.2363289Z Diagnostic bundle Health selection regression: 2/2 passed.
+2026-10-11T08:44:41.2363646Z Diagnostic bundle UI integration: 11/11 passed.
+2026-10-11T08:44:41.2363992Z Diagnostic bundle save failure regression: 1/1 passed.
+2026-10-11T08:44:41.2364362Z Diagnostic bundle stale-options regression: 3/3 passed.
+2026-10-11T08:44:41.2364750Z Diagnostic bundle progress ownership regression: 1/1 passed.
+2026-10-11T08:44:41.2365324Z Diagnostic bundle acceptance: 3/3 passed.
+2026-10-11T08:44:41.2365633Z Passed selftest (15.195 s)
+2026-10-11T08:44:41.2366203Z Results: D:\a\g-pc-health-check\g-pc-health-check\artifacts\dev\20261011_084413-dfd85099833a4c2d9dd1dac4f8916bc8\summary.json
+2026-10-11T08:44:41.2366985Z Quick local checks passed. This is NOT a published release, pilot acceptance or artifact attestation.
+2026-10-11T08:44:41.2757647Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+2026-10-11T08:44:41.2758271Z with:
+2026-10-11T08:44:41.2758479Z   name: development-check-summary
+2026-10-11T08:44:41.2758746Z   path: artifacts/dev/**/summary.json
+2026-10-11T08:44:41.2758997Z   if-no-files-found: ignore
+2026-10-11T08:44:41.2759369Z   retention-days: 7
+2026-10-11T08:44:41.2759565Z   compression-level: 6
+2026-10-11T08:44:41.2759762Z   overwrite: false
+2026-10-11T08:44:41.2759963Z   include-hidden-files: false
+2026-10-11T08:44:41.2760169Z env:
+2026-10-11T08:44:41.2760346Z   DOTNET_NOLOGO: true
+2026-10-11T08:44:41.2760543Z   DOTNET_CLI_TELEMETRY_OPTOUT: true
+2026-10-11T08:44:41.2760793Z   DOTNET_ROOT: C:\Program Files\dotnet
+2026-10-11T08:44:41.2761026Z ##[endgroup]
+2026-10-11T08:44:41.5032668Z (node:8344) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-11T08:44:41.5034067Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-11T08:44:41.5234647Z With the provided path, there will be 2 files uploaded
+2026-10-11T08:44:41.5243320Z Artifact name is valid!
+2026-10-11T08:44:41.5245606Z Root directory input is valid!
+2026-10-11T08:44:41.7451686Z Beginning upload of artifact content to blob storage
+2026-10-11T08:44:41.7741586Z (node:8344) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-11T08:44:41.8145772Z Uploaded bytes 1623
+2026-10-11T08:44:41.8331276Z Finished uploading artifact content to blob storage!
+2026-10-11T08:44:41.8332685Z SHA256 digest of uploaded artifact zip is 5dbcddb5a34878706491259be6a094919b861778db2c6839dd00a46aca7f268a
+2026-10-11T08:44:41.8336272Z Finalizing artifact upload
+2026-10-11T08:44:42.0536905Z Artifact development-check-summary.zip successfully finalized. Artifact ID 11697201618
+2026-10-11T08:44:42.0538250Z Artifact development-check-summary has been successfully uploaded! Final size is 1623 bytes. Artifact ID is 11697201618
+2026-10-11T08:44:42.0549126Z Artifact download URL: https://github.com/bajoicheg/g-pc-health-check/actions/runs/38125681244/artifacts/11697201618
+2026-10-11T08:44:42.0900134Z Post job cleanup.
+2026-10-11T08:44:42.2659787Z (node:9288) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-11T08:44:42.2796261Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-11T08:44:42.3084520Z Post job cleanup.
+2026-10-11T08:44:42.5436776Z [command]"C:\Program Files\Git\bin\git.exe" version
+2026-10-11T08:44:42.5766789Z git version 2.55.0.windows.5
+2026-10-11T08:44:42.5855892Z Temporarily overriding HOME='D:\a\_temp\d847851e-cfeb-4356-84f0-c0100d00d8b8' before making global git config changes
+2026-10-11T08:44:42.5857507Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-11T08:44:42.5869375Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\g-pc-health-check\g-pc-health-check
+2026-10-11T08:44:42.6231684Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-10-11T08:44:42.6604690Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-10-11T08:44:43.2787876Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-11T08:44:43.3120145Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-10-11T08:44:43.9068359Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-11T08:44:43.9409896Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-10-11T08:44:44.5417231Z Cleaning up orphan processes
+2026-10-11T08:44:44.5598180Z Terminate orphan process: pid (1228) (dotnet)
+2026-10-11T08:44:44.5724045Z Terminate orphan process: pid (7800) (conhost)
+2026-10-11T08:44:44.6570090Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@11d5960a326750d5838078e36cf38b85af677262, actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9, actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

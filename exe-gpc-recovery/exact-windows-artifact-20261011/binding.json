@@ -1,0 +1,10 @@
+{
+  "repository": "bajoicheg/g-pc-health-check",
+  "candidate_sha": "6d65482be7045243501644807a54f6e5f6d6e9ce",
+  "backend": "github-actions",
+  "mode": "CI_ONLY",
+  "environment_id": "windows-latest",
+  "environment_fingerprint": "sha256:feb84db4383949032bee7ea3e0bca719e68bd762243bd8379bcc5771a6dff42d",
+  "check_suite_fingerprint": "sha256:89705b0350adeeea47d956046a81b2267412bb1c96c3151e7d86a5a9c871a7e5",
+  "check_plan_digest": "sha256:65e14177715ef7d5a51754088903d2f2f559e8b78983b1d3444b5550aac902a3"
+}

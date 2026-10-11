@@ -1,0 +1,118 @@
+{
+  "schema": "gpc-exact-windows-workflow-plan/v1",
+  "repository": "bajoicheg/g-pc-health-check",
+  "workflow_path": ".github/workflows/build.yml",
+  "source_ref": "refs/heads/design/0.17.0-security-posture",
+  "candidate_sha": "6d65482be7045243501644807a54f6e5f6d6e9ce",
+  "event": "workflow_dispatch",
+  "ordered_steps": [
+    {
+      "name": "Checkout",
+      "uses": "actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+      "with": {
+        "persist-credentials": false,
+        "fetch-depth": 1
+      }
+    },
+    {
+      "name": "E2E PowerShell tools smoke",
+      "shell": "pwsh",
+      "run": "$ErrorActionPreference = 'Stop'\n$scripts = Get-ChildItem tools/e2e -Filter *.ps1 -File\nif ($scripts.Count -lt 5) { throw \"Expected at least 5 E2E PowerShell tools, found $($scripts.Count).\" }\n\nforeach ($script in $scripts) {\n  $tokens = $null\n  $parseErrors = $null\n  [void][System.Management.Automation.Language.Parser]::ParseFile($script.FullName, [ref]$tokens, [ref]$parseErrors)\n  if (@($parseErrors).Count -gt 0) {\n    $details = @($parseErrors) | ForEach-Object { \"$($_.Extent.StartLineNumber):$($_.Extent.StartColumnNumber) $($_.Message)\" }\n    throw \"PowerShell parse errors in $($script.Name): $($details -join ' | ')\"\n  }\n}\nWrite-Host \"PowerShell parser gate passed for $($scripts.Count) scripts.\"\n\ntry {\n  & pwsh -NoLogo -NoProfile -NonInteractive -File .\\tools\\e2e\\Prepare-CleanTempScenario.ps1\n  if ($LASTEXITCODE -ne 0) { throw \"Prepare-CleanTempScenario failed with exit code $LASTEXITCODE\" }\n\n  $root = Join-Path $env:TEMP 'GPcHealthCheck-E2E'\n  $old = Join-Path $root 'old-delete-me.txt'\n  $fresh = Join-Path $root 'fresh-must-stay.txt'\n  $manifest = Join-Path $root 'e2e-manifest.json'\n  if (-not (Test-Path $old) -or -not (Test-Path $fresh) -or -not (Test-Path $manifest)) {\n    throw 'Prepare scenario did not create all required sentinels/manifest.'\n  }\n\n  # Simulate only the observable effect of successful CleanTemp on our dedicated old sentinel.\n  # The real application's remediation is deliberately not invoked against the shared runner Temp.\n  Remove-Item -LiteralPath $old -Force\n  & pwsh -NoLogo -NoProfile -NonInteractive -File .\\tools\\e2e\\Verify-CleanTempScenario.ps1\n  if ($LASTEXITCODE -ne 0) { throw \"Verify-CleanTempScenario failed with exit code $LASTEXITCODE\" }\n\n  $evidenceOut = Join-Path $env:RUNNER_TEMP 'gpchc-e2e-evidence'\n  New-Item -ItemType Directory -Force -Path $evidenceOut | Out-Null\n  & pwsh -NoLogo -NoProfile -NonInteractive -File .\\tools\\e2e\\Collect-E2EEvidence.ps1 -OutputDirectory $evidenceOut -LatestReportFiles 2\n  if ($LASTEXITCODE -ne 0) { throw \"Collect-E2EEvidence failed with exit code $LASTEXITCODE\" }\n  $zip = Get-ChildItem $evidenceOut -Filter 'G-PC-Health-E2E-*.zip' -File | Select-Object -First 1\n  if ($null -eq $zip -or $zip.Length -le 0) { throw 'Evidence collector did not create a non-empty ZIP.' }\n}\nfinally {\n  & pwsh -NoLogo -NoProfile -NonInteractive -File .\\tools\\e2e\\Cleanup-E2EScenario.ps1\n  if ($LASTEXITCODE -ne 0) { throw \"Cleanup-E2EScenario failed with exit code $LASTEXITCODE\" }\n  if (Test-Path (Join-Path $env:TEMP 'GPcHealthCheck-E2E')) { throw 'E2E Temp root remains after cleanup.' }\n}\n\nWrite-Host 'E2E PowerShell tools smoke passed.'\n"
+    },
+    {
+      "name": "PowerShell parser gates",
+      "shell": "pwsh",
+      "run": "$targets = @(\n  '.\\tools\\ci\\Create-PilotBundle.ps1',\n  '.\\tools\\ci\\Test-PortableWorker.ps1',\n  '.\\tools\\branding\\Generate-BrandAssets.ps1'\n)\nforeach ($target in $targets) {\n  $tokens = $null\n  $parseErrors = $null\n  [void][System.Management.Automation.Language.Parser]::ParseFile((Resolve-Path $target).Path, [ref]$tokens, [ref]$parseErrors)\n  if (@($parseErrors).Count -gt 0) {\n    $details = @($parseErrors) | ForEach-Object { \"$($_.Extent.StartLineNumber):$($_.Extent.StartColumnNumber) $($_.Message)\" }\n    throw \"PowerShell parse errors in ${target}: $($details -join ' | ')\"\n  }\n}\n"
+    },
+    {
+      "name": "Generate and verify brand assets",
+      "shell": "pwsh",
+      "run": "$ErrorActionPreference = 'Stop'\n.\\tools\\branding\\Generate-BrandAssets.ps1\n$shield = '.\\src\\G.PcHealthCheck\\assets\\g-shield.png'\n$icon = '.\\src\\G.PcHealthCheck\\assets\\gpchc.ico'\n$shieldHash = (Get-FileHash $shield -Algorithm SHA256).Hash.ToLowerInvariant()\nif ($shieldHash -ne '5157c5cf83a6cfddb74c51701a693e401e36b400812505a1e46e15d760c72877') {\n  throw \"Corporate shield provenance mismatch: $shieldHash\"\n}\nif ((Get-Item $icon).Length -lt 4096) { throw 'Generated application icon is unexpectedly small.' }\nWrite-Host \"Corporate G-switcher shield verified: $shieldHash\"\n"
+    },
+    {
+      "name": "Setup .NET 8",
+      "uses": "actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9",
+      "with": {
+        "dotnet-version": "8.0.425"
+      }
+    },
+    {
+      "name": "Restore",
+      "run": "dotnet restore src/G.PcHealthCheck/G.PcHealthCheck.csproj"
+    },
+    {
+      "name": "NuGet vulnerability gate",
+      "shell": "pwsh",
+      "run": "$output = dotnet list src/G.PcHealthCheck/G.PcHealthCheck.csproj package --vulnerable --include-transitive --format json\nif ($LASTEXITCODE -ne 0) { throw \"NuGet vulnerability audit command failed with exit code $LASTEXITCODE\" }\n$audit = ($output -join \"`n\") | ConvertFrom-Json\n$vulnerable = @()\nforeach ($project in @($audit.projects)) {\n  foreach ($framework in @($project.frameworks)) {\n    foreach ($package in @($framework.topLevelPackages) + @($framework.transitivePackages)) {\n      if ($null -ne $package -and @($package.vulnerabilities).Count -gt 0) {\n        $vulnerable += $package\n      }\n    }\n  }\n}\nif ($vulnerable.Count -gt 0) {\n  $names = $vulnerable | ForEach-Object { \"$($_.id) $($_.resolvedVersion)\" }\n  throw \"Vulnerable NuGet packages detected: $($names -join ', ')\"\n}\nWrite-Host \"NuGet vulnerability gate: no known vulnerable packages.\"\n"
+    },
+    {
+      "name": "Build",
+      "run": "dotnet build src/G.PcHealthCheck/G.PcHealthCheck.csproj -c Release --no-restore -warnaserror"
+    },
+    {
+      "name": "Source-build self-test",
+      "shell": "pwsh",
+      "run": "dotnet run --project src/G.PcHealthCheck/G.PcHealthCheck.csproj -c Release --no-build -- --selftest\nif ($LASTEXITCODE -ne 0) { throw \"Source-build self-test failed with exit code $LASTEXITCODE\" }\n"
+    },
+    {
+      "name": "Publish single EXE",
+      "run": "dotnet publish src/G.PcHealthCheck/G.PcHealthCheck.csproj -c Release -r win-x64 --self-contained true --no-restore -o artifacts/publish"
+    },
+    {
+      "name": "Published EXE self-test",
+      "shell": "pwsh",
+      "run": "$exe = (Resolve-Path artifacts/publish/G-PC-Health.exe).Path\n$process = Start-Process -FilePath $exe -ArgumentList @('--selftest') -Wait -PassThru\nif ($process.ExitCode -ne 0) { throw \"Published single-file EXE self-test failed with exit code $($process.ExitCode)\" }\nWrite-Host \"Published single-file EXE self-test passed.\"\n"
+    },
+    {
+      "name": "Published portable worker and security negative tests",
+      "shell": "pwsh",
+      "run": ".\\tools\\ci\\Test-PortableWorker.ps1 -ExePath .\\artifacts\\publish\\G-PC-Health.exe\n"
+    },
+    {
+      "name": "Verify package, version and checksum",
+      "shell": "pwsh",
+      "run": "$exe = Get-Item artifacts/publish/G-PC-Health.exe -ErrorAction Stop\n$unexpected = Get-ChildItem artifacts/publish -File | Where-Object Name -ne 'G-PC-Health.exe'\nif ($unexpected) { throw \"Single-file gate failed: $($unexpected.Name -join ', ')\" }\n\n[xml]$project = Get-Content src/G.PcHealthCheck/G.PcHealthCheck.csproj\n$projectVersion = [string]$project.Project.PropertyGroup.Version\n$actualFileVersion = [Version][System.Diagnostics.FileVersionInfo]::GetVersionInfo($exe.FullName).FileVersion\nif ([string]::IsNullOrWhiteSpace($projectVersion)) { throw 'Project Version is empty.' }\n$expectedFileVersion = [Version]::Parse(\"$projectVersion.0\")\nif ($actualFileVersion -ne $expectedFileVersion) {\n  throw \"File version mismatch. Expected=$expectedFileVersion EXE=$actualFileVersion\"\n}\n\n$hash = (Get-FileHash $exe.FullName -Algorithm SHA256).Hash.ToLowerInvariant()\nNew-Item -ItemType Directory -Force artifacts/final | Out-Null\nCopy-Item $exe.FullName artifacts/final/G-PC-Health.exe\nSet-Content artifacts/final/G-PC-Health.exe.sha256 \"$hash  G-PC-Health.exe\" -Encoding ascii\nWrite-Host \"Version: $actualFileVersion\"\nWrite-Host \"SHA-256: $hash\"\n"
+    },
+    {
+      "name": "Create and verify pilot bundle",
+      "shell": "pwsh",
+      "run": "$ErrorActionPreference = 'Stop'\n.\\tools\\ci\\Create-PilotBundle.ps1 `\n  -ExePath .\\artifacts\\final\\G-PC-Health.exe `\n  -ChecksumPath .\\artifacts\\final\\G-PC-Health.exe.sha256 `\n  -OutputDirectory .\\artifacts\\pilot `\n  -GitSha $env:GITHUB_SHA\n\n$pilotZip = Get-ChildItem .\\artifacts\\pilot -Filter 'G-PC-Health-*-pilot.zip' -File | Select-Object -First 1\nif ($null -eq $pilotZip -or $pilotZip.Length -le 0) { throw 'Pilot bundle ZIP missing or empty.' }\n\n$verify = Join-Path $env:RUNNER_TEMP 'gpchc-pilot-verify'\nRemove-Item $verify -Recurse -Force -ErrorAction SilentlyContinue\nNew-Item -ItemType Directory -Force -Path $verify | Out-Null\nExpand-Archive -LiteralPath $pilotZip.FullName -DestinationPath $verify -Force\n\n$manifest = Get-Content (Join-Path $verify 'package-manifest.json') -Raw | ConvertFrom-Json\n$packagedExe = Join-Path $verify 'G-PC-Health.exe'\nif (-not (Test-Path $packagedExe -PathType Leaf)) { throw 'Packaged EXE missing.' }\n$packagedHash = (Get-FileHash $packagedExe -Algorithm SHA256).Hash.ToLowerInvariant()\nif ($packagedHash -ne [string]$manifest.sha256) { throw 'Packaged EXE hash does not match package manifest.' }\nif ([string]$manifest.gitSha -ne $env:GITHUB_SHA) { throw 'Package manifest Git SHA mismatch.' }\nif (-not (Test-Path (Join-Path $verify 'START-HERE.txt'))) { throw 'START-HERE.txt missing.' }\nif (-not (Test-Path (Join-Path $verify 'docs\\E2E-TEST-PLAN.md'))) { throw 'E2E test plan missing.' }\nif (-not (Test-Path (Join-Path $verify 'e2e\\Analyze-E2EEvidence.ps1'))) { throw 'Evidence analyzer missing.' }\n$toolCount = @(Get-ChildItem (Join-Path $verify 'e2e') -Filter '*.ps1' -File).Count\nif ($toolCount -lt 5) { throw \"Expected at least 5 E2E tools in pilot bundle, found $toolCount.\" }\n$strictUtf8Bom = [Text.UTF8Encoding]::new($true, $true)\n$startHereText = [IO.File]::ReadAllText((Join-Path $verify 'START-HERE.txt'), $strictUtf8Bom)\nif (-not $startHereText.Contains('Сверьте SHA-256') -or -not $startHereText.Contains('Диагностику можно запускать')) {\n  throw 'Packaged START-HERE strict UTF-8 verification failed.'\n}\nif ($manifest.trustedRemediationPath -ne $null -or -not $manifest.portableElevation -or $manifest.executableNameRestricted) {\n  throw 'Pilot manifest still restricts portable elevation.'\n}\nWrite-Host \"Pilot bundle verified: $($pilotZip.Name)\"\n"
+    },
+    {
+      "name": "Upload EXE",
+      "if": "github.event_name != 'pull_request'",
+      "uses": "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+      "with": {
+        "name": "g-pc-health-check-windows-x64",
+        "path": "artifacts/final/*",
+        "if-no-files-found": "error",
+        "retention-days": 30
+      }
+    },
+    {
+      "name": "Upload pilot E2E bundle",
+      "if": "github.event_name != 'pull_request'",
+      "uses": "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+      "with": {
+        "name": "g-pc-health-check-pilot-e2e",
+        "path": "artifacts/pilot/G-PC-Health-*-pilot.zip",
+        "if-no-files-found": "error",
+        "retention-days": 30
+      }
+    }
+  ],
+  "expected_outputs": [
+    "g-pc-health-check-windows-x64/G-PC-Health.exe",
+    "g-pc-health-check-windows-x64/G-PC-Health.exe.sha256",
+    "g-pc-health-check-pilot-e2e"
+  ],
+  "required_gates": [
+    "Build warning-as-error",
+    "Source-build self-test",
+    "Published EXE self-test",
+    "Published portable worker and security negative tests",
+    "Verify package, version and checksum",
+    "Create and verify pilot bundle"
+  ],
+  "interactive_acceptance": "Windows UI/UAC/DPI/RDP/Huawei NOT_RUN without actual endpoint"
+}

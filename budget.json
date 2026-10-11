@@ -3471,6 +3471,124 @@
         "tokens": null,
         "elapsed_seconds": null
       }
+    },
+    {
+      "type": "outcome",
+      "event_id": "gpc-cloud-summary-regression-20261011-a1-compute-terminal",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-cloud-summary-regression-20261011",
+      "at_utc": "2026-10-11T08:50:06.205965Z",
+      "reservation_id": "gpc-cloud-summary-regression-20261011-a1-compute",
+      "status": "succeeded",
+      "usage": {
+        "tokens": null,
+        "elapsed_seconds": 379.22481870700017
+      },
+      "failure": null
+    },
+    {
+      "type": "outcome",
+      "event_id": "gpc-cloud-summary-regression-20261011-a1-windows-pr-terminal",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-cloud-summary-regression-20261011",
+      "at_utc": "2026-10-11T08:50:06.205965Z",
+      "reservation_id": "gpc-cloud-summary-regression-20261011-a1-windows-pr",
+      "status": "succeeded",
+      "usage": {
+        "tokens": null,
+        "elapsed_seconds": 178.0
+      },
+      "failure": null
+    },
+    {
+      "type": "outcome",
+      "event_id": "gpc-cloud-summary-regression-20261011-a1-developer-tools-terminal",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-cloud-summary-regression-20261011",
+      "at_utc": "2026-10-11T08:50:06.205965Z",
+      "reservation_id": "gpc-cloud-summary-regression-20261011-a1-developer-tools",
+      "status": "succeeded",
+      "usage": {
+        "tokens": null,
+        "elapsed_seconds": 211.0
+      },
+      "failure": null
+    },
+    {
+      "type": "outcome",
+      "event_id": "gpc-cloud-summary-regression-20261011-a1-evidence-analyzer-terminal",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-cloud-summary-regression-20261011",
+      "at_utc": "2026-10-11T08:50:06.205965Z",
+      "reservation_id": "gpc-cloud-summary-regression-20261011-a1-evidence-analyzer",
+      "status": "succeeded",
+      "usage": {
+        "tokens": null,
+        "elapsed_seconds": 24.0
+      },
+      "failure": null
+    },
+    {
+      "type": "outcome",
+      "event_id": "gpc-cloud-summary-regression-20261011-a1-supply-chain-smoke-terminal",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-cloud-summary-regression-20261011",
+      "at_utc": "2026-10-11T08:50:06.205965Z",
+      "reservation_id": "gpc-cloud-summary-regression-20261011-a1-supply-chain-smoke",
+      "status": "succeeded",
+      "usage": {
+        "tokens": null,
+        "elapsed_seconds": 25.0
+      },
+      "failure": null
+    },
+    {
+      "type": "outcome",
+      "event_id": "gpc-cloud-summary-regression-20261011-a1-cdc-policy-terminal",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-cloud-summary-regression-20261011",
+      "at_utc": "2026-10-11T08:50:06.205965Z",
+      "reservation_id": "gpc-cloud-summary-regression-20261011-a1-cdc-policy",
+      "status": "succeeded",
+      "usage": {
+        "tokens": null,
+        "elapsed_seconds": 12.0
+      },
+      "failure": null
+    },
+    {
+      "type": "reserve",
+      "event_id": "gpc-exact-windows-artifact-20261011-a1-compute",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-exact-windows-artifact-20261011",
+      "at_utc": "2026-10-11T08:50:06.205965Z",
+      "operation_key": "sha256:e97aa667611943e1757513259ae098b1815f04c1f2faef5c3c1bc80de97a97d1",
+      "attempt_id": "gpc-exact-windows-artifact-20261011-a1-compute",
+      "kind": "compute_start",
+      "scope": "GPC/Cloud/read-only-exact-Windows-artifact-orchestration",
+      "recovery_ref": null,
+      "cost": {
+        "tool_calls": 1,
+        "tokens": null,
+        "elapsed_seconds": null
+      }
+    },
+    {
+      "type": "reserve",
+      "event_id": "gpc-exact-windows-artifact-20261011-a1-windows",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-exact-windows-artifact-20261011",
+      "at_utc": "2026-10-11T08:50:06.205965Z",
+      "operation_key": "sha256:c0b4dedcf2a4c099b6930dcb6414266cec10e584eaf56a570c07e26797ff4320",
+      "attempt_id": "gpc-exact-windows-artifact-20261011-a1-windows",
+      "kind": "ci_start",
+      "scope": "GPC/exact-source/manual-Windows-EXE-artifact",
+      "recovery_ref": null,
+      "cost": {
+        "tool_calls": 1,
+        "tokens": null,
+        "elapsed_seconds": null
+      }
     }
   ],
   "policy": {
@@ -3525,6 +3643,7 @@
     "gpc-forward-integration-20261011",
     "gpc-official-cloud-setup-20261011",
     "gpc-cloud-managed-integration-20261011",
-    "gpc-cloud-summary-regression-20261011"
+    "gpc-cloud-summary-regression-20261011",
+    "gpc-exact-windows-artifact-20261011"
   ]
 }

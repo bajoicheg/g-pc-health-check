@@ -1,0 +1,23 @@
+{
+  "schema": "gpc-observed-windows-workflow-contract/v1",
+  "provider": "GitHub Actions",
+  "repository": "bajoicheg/g-pc-health-check",
+  "repository_id": 1362798956,
+  "workflow_id": 354169840,
+  "workflow_path": ".github/workflows/build.yml",
+  "job_id": "build",
+  "provider_environment_association": "windows-latest",
+  "runs_on": "windows-latest",
+  "permissions": {
+    "contents": "read"
+  },
+  "timeout_minutes": 30,
+  "sdk": "8.0.425",
+  "target_framework": "net8.0-windows10.0.19041.0",
+  "runtime_identifier": "win-x64",
+  "self_contained": true,
+  "workflow_sha256": "c4732e4c8b2fe1fa2827476f1da7ea2a4605783845dda47beb97d4053719edf9",
+  "global_json_sha256": "0a15550b7b496f0eb8ea6e405da955cf264bf519fb0fb60dd8a7e25967bbca5d",
+  "project_sha256": "f112b0ded6969c0bb5b177f5c896b837a7b12ecba9a5a5ba60da03d81ec1346c",
+  "fingerprint_excludes_secrets": true
+}
