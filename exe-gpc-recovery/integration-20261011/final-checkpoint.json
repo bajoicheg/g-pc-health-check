@@ -1,0 +1,138 @@
+{
+  "schema": "gpc-forward-integration-checkpoint/v1",
+  "invocation_id": "Work-root-gpc-forward-integration-20261011",
+  "state": "BLOCKED",
+  "at_utc": "2026-10-11T07:34:03.642269Z",
+  "at_moscow": "2026-10-11T10:34:03.642269+03:00",
+  "elapsed_since_user_request_seconds": 1285.642269,
+  "candidate": "36114fa91f12a5e91b23ce46ba5cbb031fa7e06f",
+  "tree": "36e3b1556bf3d0e7df6004c8d9d2eb6e54819f95",
+  "sole_parent": "325fe132be9ff49bc09b8bfb873f6d3e92df1c5e",
+  "source_sha": "325fe132be9ff49bc09b8bfb873f6d3e92df1c5e",
+  "coordination_parent_sha": "2e727065fa0787534bc607b68f203c2f1c58317b",
+  "lease_revision": "08216b898759f560c86b0c4ab7b839dcc50a78e5",
+  "lease_generation": 32,
+  "lease_owner_id": null,
+  "lease_external_guard": null,
+  "root_acquired_managed_lease": false,
+  "prior_submission_retirements_preserved": true,
+  "original_Git_outcome": "UNKNOWN",
+  "original_receive_pack_terminal_receipt_recovered": false,
+  "original_operation_replayed": false,
+  "current_CDC": "3.3.1",
+  "canonical_release": "51740497bea3e1bcbb302e894fda8b7e42bc0087",
+  "canonical_package_tree": "f580a8946c0510540a4be3f4422ab3404875274b",
+  "product_source_equals_standalone": "3e64dbd7cf78ce6a273f454ec97583a454695d5e",
+  "prepared": true,
+  "product_ref_published": false,
+  "new_CI_starts": 0,
+  "new_compute_starts": 0,
+  "new_EXE": false,
+  "Windows_acceptance": "NOT_RUN",
+  "reviews": [
+    {
+      "candidate": "36114fa91f12a5e91b23ce46ba5cbb031fa7e06f",
+      "verdict": "GREEN",
+      "reviewer": "Work-GPC-integration67",
+      "elapsed_seconds": 175.036668
+    },
+    {
+      "candidate": "36114fa91f12a5e91b23ce46ba5cbb031fa7e06f",
+      "verdict": "GREEN",
+      "reviewer": "Work-GPC-integration68",
+      "elapsed_seconds": 158.188861
+    }
+  ],
+  "review_pool_assessment": {
+    "schema": "managed-executor-pool-assessment/v1",
+    "pool_id": "gpc-forward-integration-review-20261011",
+    "complete": true,
+    "terminal_allowed": true,
+    "runnable_task_ids": [],
+    "blockers": [],
+    "next_action": null,
+    "authorizes_worker_launch": false,
+    "authorizes_shared_branch_write": false,
+    "authorizes_merge": false,
+    "authorizes_release": false,
+    "authorizes_scope_expansion": false,
+    "authorizes_scheduler_mutation": false,
+    "authorizes_user_approval": false
+  },
+  "review_actors_terminal": true,
+  "background_watchdogs_started": false,
+  "budget_summary": {
+    "task_id": "g-pc-health-check-0.17.0-pre-integration",
+    "wake_id": "gpc-forward-integration-20261011",
+    "task": {
+      "tokens": null,
+      "tool_calls": 99,
+      "compute_starts": 25,
+      "ci_starts": 6,
+      "status_polls": 0,
+      "elapsed_seconds": null,
+      "agent_starts": 68
+    },
+    "wake": {
+      "tokens": null,
+      "tool_calls": 2,
+      "compute_starts": 0,
+      "ci_starts": 0,
+      "status_polls": 0,
+      "elapsed_seconds": 333.225529,
+      "agent_starts": 2
+    },
+    "known": {
+      "tokens": 0,
+      "tool_calls": 99,
+      "compute_starts": 25,
+      "ci_starts": 6,
+      "status_polls": 0,
+      "elapsed_seconds": 59375.983723044024,
+      "agent_starts": 68
+    },
+    "unknown": {
+      "tokens": 99,
+      "tool_calls": 0,
+      "compute_starts": 0,
+      "ci_starts": 0,
+      "status_polls": 0,
+      "elapsed_seconds": 43,
+      "agent_starts": 0
+    },
+    "observed": {
+      "tokens": null,
+      "elapsed_seconds": null
+    },
+    "active_agents": 2
+  },
+  "evidence_refs": [
+    "git:refs/heads/cdc/coordination:exe-gpc-recovery/integration-20261011/assembly-proof.json",
+    "git:refs/heads/cdc/coordination:exe-gpc-recovery/integration-20261011/assembly.patch",
+    "git:refs/heads/cdc/coordination:exe-gpc-recovery/integration-20261011/candidate-commit.raw",
+    "git:refs/heads/cdc/coordination:exe-gpc-recovery/integration-20261011/packet-reconstruction.json",
+    "git:refs/heads/cdc/coordination:exe-gpc-recovery/integration-20261011/spec67-review.json",
+    "git:refs/heads/cdc/coordination:exe-gpc-recovery/integration-20261011/quality68-review.json",
+    "git:refs/heads/cdc/coordination:exe-gpc-recovery/integration-20261011/transport-observation.json",
+    "git:refs/heads/cdc/coordination:exe-gpc-recovery/integration-20261011/assembly-proof.json"
+  ],
+  "old_EXE": {
+    "library_id": "libfile_eb5224093df0819181aa3891645b9be7",
+    "source_sha": "3e64dbd7cf78ce6a273f454ec97583a454695d5e",
+    "sha256": "c632d6798da8fe994a214d418a6d67c37e44ee01c3840c220696da9cb5e9af06",
+    "qualification": "Historical standalone EXE, not exact36114 build or runtime acceptance"
+  },
+  "next_action": "Restore genuinely authorized managed Git writer transport; reconstruct exact candidate36114fa91f12a5e91b23ce46ba5cbb031fa7e06f from pinned base325fe132be9ff49bc09b8bfb873f6d3e92df1c5e, assembly.patch and candidate-commit.raw, publish through current CDC managed_host_bridge, then run exact-SHA Windows Quick/Full, native UI/UAC/DPI/RDP and Huawei acceptance and verify fresh EXE bytes. Fresh source/coordination reconciliation and existing budgets are mandatory; original536 UNKNOWN must not be replayed.",
+  "recheck_trigger": "authorized-Git-credential-change-or-Native-quota-recovery",
+  "final_response_gate": {
+    "schema": "final-response-gate-result/v1",
+    "authorizes_product_write": false,
+    "authorizes_takeover": false,
+    "authorizes_external_start": false,
+    "authorizes_merge": false,
+    "authorizes_release": false,
+    "allowed": true,
+    "final_response_allowed": true,
+    "reason": "verified_terminal_and_release_boundary"
+  }
+}

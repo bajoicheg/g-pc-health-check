@@ -1,0 +1,20 @@
+{
+  "schema": "gpc-current-review-actors-terminal/v1",
+  "at_utc": "2026-10-11T07:33:19.946Z",
+  "all_current_review_actors_terminal": true,
+  "observed_by": "collaboration.list_agents result after actual final messages",
+  "actors": [
+    {
+      "name": "/root/gpc_integration_spec67",
+      "status": "completed",
+      "elapsed_seconds": 175.036668
+    },
+    {
+      "name": "/root/gpc_integration_quality68",
+      "status": "completed",
+      "elapsed_seconds": 158.188861
+    }
+  ],
+  "old_unresolved_budget_charges_preserved": true,
+  "claims_global_historical_runtime_pid_cleanup": false
+}

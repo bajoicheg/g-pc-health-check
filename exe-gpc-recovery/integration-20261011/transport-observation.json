@@ -1,0 +1,24 @@
+{
+  "schema": "gpc-execution-transport-observation/v1",
+  "at_utc": "2026-10-11T07:33:19.946Z",
+  "Native": {
+    "url": "https://chatgpt.com/local/01a10fc1-6ed7-75ae-b4c9-24a2dcc420e4",
+    "usage_exhausted": true,
+    "visible_text": "Лимит использования исчерпан.",
+    "proof": "Fresh cua_REPL semantic locator isVisible true after updated AX observation; no request sent"
+  },
+  "Git": {
+    "original_dry_run_terminal_code": 128,
+    "stderr": "fatal: could not read Username for 'https://github.com': No such device or address",
+    "tool_session_id": 42959,
+    "remote_effect": false,
+    "repeated": false,
+    "qualification": "Earlier actual dry-run observation from this invocation, not a fresh retry"
+  },
+  "new_send": false,
+  "installed_managed_Native_transport": false,
+  "compute_profile_unconfigured": true,
+  "credential_extraction": false,
+  "quota_bypass": false,
+  "no_watchdogs": true
+}

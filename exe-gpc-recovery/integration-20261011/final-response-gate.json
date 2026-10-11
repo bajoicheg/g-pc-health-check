@@ -1,0 +1,11 @@
+{
+  "schema": "final-response-gate-result/v1",
+  "authorizes_product_write": false,
+  "authorizes_takeover": false,
+  "authorizes_external_start": false,
+  "authorizes_merge": false,
+  "authorizes_release": false,
+  "allowed": true,
+  "final_response_allowed": true,
+  "reason": "verified_terminal_and_release_boundary"
+}

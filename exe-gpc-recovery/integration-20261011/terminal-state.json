@@ -1,0 +1,29 @@
+{
+  "schema": "terminal-state/v2",
+  "invocation_id": "Work-root-gpc-forward-integration-20261011",
+  "scope_id": "gpc-reviewed-product-forward-integration",
+  "observed_head": "325fe132be9ff49bc09b8bfb873f6d3e92df1c5e",
+  "decision": "BLOCKED",
+  "runnable_actions": [],
+  "pending_external": null,
+  "blocker": {
+    "code": "gpc-managed-publication-transport-unavailable",
+    "evidence_refs": [
+      "git:refs/heads/cdc/coordination:exe-gpc-recovery/integration-20261011/transport-observation.json",
+      "git:refs/heads/cdc/coordination:exe-gpc-recovery/integration-20261011/assembly-proof.json"
+    ],
+    "next_action": "Restore genuinely authorized managed Git writer transport; reconstruct exact candidate36114fa91f12a5e91b23ce46ba5cbb031fa7e06f from pinned base325fe132be9ff49bc09b8bfb873f6d3e92df1c5e, assembly.patch and candidate-commit.raw, publish through current CDC managed_host_bridge, then run exact-SHA Windows Quick/Full, native UI/UAC/DPI/RDP and Huawei acceptance and verify fresh EXE bytes. Fresh source/coordination reconciliation and existing budgets are mandatory; original536 UNKNOWN must not be replayed.",
+    "recheck_trigger": "authorized-Git-credential-change-or-Native-quota-recovery"
+  },
+  "meaningful_progress_refs": [
+    "git:refs/heads/cdc/coordination:exe-gpc-recovery/integration-20261011/assembly-proof.json",
+    "git:refs/heads/cdc/coordination:exe-gpc-recovery/integration-20261011/assembly.patch",
+    "git:refs/heads/cdc/coordination:exe-gpc-recovery/integration-20261011/candidate-commit.raw",
+    "git:refs/heads/cdc/coordination:exe-gpc-recovery/integration-20261011/packet-reconstruction.json",
+    "git:refs/heads/cdc/coordination:exe-gpc-recovery/integration-20261011/spec67-review.json",
+    "git:refs/heads/cdc/coordination:exe-gpc-recovery/integration-20261011/quality68-review.json"
+  ],
+  "completion_evidence_refs": [],
+  "checkpoint_ref": "git:refs/heads/cdc/coordination:exe-gpc-recovery/integration-20261011/final-checkpoint.json",
+  "lease_released": true
+}
