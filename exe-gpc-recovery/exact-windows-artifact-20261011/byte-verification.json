@@ -1,0 +1,32 @@
+{
+  "schema": "gpc-exact-windows-artifact-byte-verification/v1",
+  "source_sha": "6d65482be7045243501644807a54f6e5f6d6e9ce",
+  "run_id": 38126586086,
+  "job_id": 114432101817,
+  "artifact_id": 11697577522,
+  "verified_at_utc": "2026-10-11T09:06:44.007061+00:00",
+  "verification_elapsed_seconds": 0.3796135660013533,
+  "archive_path": "/workspace/scratch/ac06fa404c9c/final-exe-6d65482/g-pc-health-check-0.17.1-6d65482-windows.zip",
+  "archive_bytes": 74213403,
+  "archive_sha256": "b76fcad872d7301ecdd8f87887fd3bc99363ac66082d4a8a37b0dcc5e0440e77",
+  "EXE_path": "/workspace/scratch/ac06fa404c9c/final-exe-6d65482/G-PC-Health.exe",
+  "EXE_bytes": 78987256,
+  "EXE_sha256": "11072a75837696de876194a906d9f2e7eee8d5a6ab2dacb8bc6bfedbc3a67e08",
+  "checksum_file": "/workspace/scratch/ac06fa404c9c/final-exe-6d65482/G-PC-Health.exe.sha256",
+  "PE_machine": "AMD64",
+  "PE_signature_verified": true,
+  "CI_FileVersion": "0.17.1.0",
+  "CDC_version": "3.3.1",
+  "actual_bytes_match_server_artifact_digest_and_native_CI_EXE_checksum": true,
+  "layout_images": 30,
+  "local_execution": "NOT_RUN Linux host; actual Windows source and published EXE tests passed",
+  "library_saved": true,
+  "library_receipt_path": "exe-gpc-recovery/exact-windows-artifact-20261011/library-handoff.json",
+  "synthetic_layout_images_original_manifest_hashes_verified": 30,
+  "inspected_synthetic_views": [
+    "ru800x600/actions",
+    "ru800x600/findings",
+    "ru800x600/security"
+  ],
+  "physical_Windows11_RDP_UAC_Huawei_acceptance": "NOT_RUN"
+}

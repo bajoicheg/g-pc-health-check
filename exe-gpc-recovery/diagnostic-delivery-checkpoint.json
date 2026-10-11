@@ -1015,7 +1015,7 @@
   },
   "exact_windows_artifact_20261011": {
     "schema": "gpc-exact-windows-artifact-request/v1",
-    "state": "CI_TERMINAL_SUCCESS_PENDING_DOWNLOAD_AND_SUPPORTED_GUARD_RECONCILIATION",
+    "state": "DELIVERED_VERIFIED_EXE_MANAGED_EXECUTION_RELEASED",
     "prepared_at_utc": "2026-10-11T08:50:06.205965Z",
     "attempt_id": "gpc-exact-windows-artifact-20261011-a1",
     "ci_attempt_id": "gpc-exact-windows-artifact-20261011-a1-windows",
@@ -1187,6 +1187,40 @@
         }
       ],
       "receipt_path": "exe-gpc-recovery/exact-windows-artifact-20261011/terminal-provider.json"
+    },
+    "completion": {
+      "at_utc": "2026-10-11T09:13:03.776999Z",
+      "source_sha": "6d65482be7045243501644807a54f6e5f6d6e9ce",
+      "CDC_version": "3.3.1",
+      "application_version": "0.17.1",
+      "CI_FileVersion": "0.17.1.0",
+      "run_id": 38126586086,
+      "run_duration_seconds": 205,
+      "EXE_bytes": 78987256,
+      "EXE_sha256": "11072a75837696de876194a906d9f2e7eee8d5a6ab2dacb8bc6bfedbc3a67e08",
+      "archive_sha256": "b76fcad872d7301ecdd8f87887fd3bc99363ac66082d4a8a37b0dcc5e0440e77",
+      "byte_proof_path": "exe-gpc-recovery/exact-windows-artifact-20261011/byte-verification.json",
+      "library_handoff_path": "exe-gpc-recovery/exact-windows-artifact-20261011/library-handoff.json",
+      "Cloud_receipt_path": "exe-gpc-recovery/exact-windows-artifact-20261011/cloud-terminal-receipt.json",
+      "Cloud_receipt_commit": "4dbd34d39bed82a8edb7443b24f09fe4d7431b42",
+      "Cloud_receipt_sha256": "402529025db5fcc7fe64945de08d16655636c1f8208e24aad6ad7e6f8877e77e",
+      "Cloud_elapsed_seconds": 653.777371224,
+      "supervisor_quiescent": true,
+      "managed_release_coordination_sha": "1bc860531ded3a2a0b42719404bf0409231b56c1",
+      "lease_generation": 35,
+      "lease_owner": null,
+      "new_external_guard": null,
+      "new_guard_reconciled_from_positive_terminal": true,
+      "all_owned_Cloud_executors_completed": true,
+      "original536_outcome": "UNKNOWN retired; original nested receive-pack terminal evidence still absent; never replayed or reclassified",
+      "original_claim_resolution_retirement_history_preserved": true,
+      "watchdogs_enabled": false,
+      "merge_performed": false,
+      "release_performed": false,
+      "required_PR_CI": "5/5SUCCESS",
+      "Windows_source_published_portable_security_gates": "SUCCESS",
+      "synthetic_layout_proof": "30 hash-verified WinForms fixtures at actual DPI96; RU800x6003views visually inspected; footer/status visible",
+      "physical_Windows11_RDP_UAC_Huawei_acceptance": "NOT_RUN"
     }
   }
 }

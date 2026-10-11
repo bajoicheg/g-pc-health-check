@@ -1,0 +1,44 @@
+{
+  "schema": "gpc-library-artifact-handoff/v1",
+  "saved_files": [
+    {
+      "local_path": "/workspace/scratch/ac06fa404c9c/final-exe-6d65482/G-PC-Health.exe",
+      "purpose": "create_library_file",
+      "status": "succeeded",
+      "file_id": "file_00000000edc081f58c5a382707db1739",
+      "library_file_id": "libfile_62702f864ef48191ac64cce901e25533",
+      "file_name": "G-PC-Health(1).exe",
+      "local_metadata_applied": true,
+      "path": "/G-PC-Health(1).exe",
+      "current_version_number": 0
+    },
+    {
+      "local_path": "/workspace/scratch/ac06fa404c9c/final-exe-6d65482/G-PC-Health.exe.sha256",
+      "purpose": "create_library_file",
+      "status": "succeeded",
+      "file_id": "file_000000003c5481f5bc20b48f98bd849a",
+      "library_file_id": "libfile_7106189ac2a08191ad8be76d41c4cba0",
+      "file_name": "G-PC-Health.exe(1).sha256",
+      "local_metadata_applied": true,
+      "path": "/G-PC-Health.exe(1).sha256",
+      "current_version_number": 0
+    },
+    {
+      "local_path": "/workspace/scratch/ac06fa404c9c/final-exe-6d65482/g-pc-health-check-0.17.1-6d65482-windows.zip",
+      "purpose": "create_library_file",
+      "status": "succeeded",
+      "file_id": "file_00000000598081f7ab613dd822ae3114",
+      "library_file_id": "libfile_d6ed07c34bd08191b253f44bc6d30496",
+      "file_name": "g-pc-health-check-0.17.1-6d65482-windows.zip",
+      "local_metadata_applied": true,
+      "path": "/g-pc-health-check-0.17.1-6d65482-windows.zip",
+      "current_version_number": 0
+    }
+  ],
+  "receipt_count": 3,
+  "source_sha": "6d65482be7045243501644807a54f6e5f6d6e9ce",
+  "run_id": 38126586086,
+  "EXE_SHA256": "11072a75837696de876194a906d9f2e7eee8d5a6ab2dacb8bc6bfedbc3a67e08",
+  "all_saved": true,
+  "local_metadata_applied": true
+}

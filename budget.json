@@ -3589,6 +3589,34 @@
         "tokens": null,
         "elapsed_seconds": null
       }
+    },
+    {
+      "type": "outcome",
+      "event_id": "gpc-exact-windows-artifact-20261011-a1-compute-terminal",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-exact-windows-artifact-20261011",
+      "at_utc": "2026-10-11T09:13:03.776999Z",
+      "reservation_id": "gpc-exact-windows-artifact-20261011-a1-compute",
+      "status": "succeeded",
+      "usage": {
+        "tokens": null,
+        "elapsed_seconds": 653.777371224
+      },
+      "failure": null
+    },
+    {
+      "type": "outcome",
+      "event_id": "gpc-exact-windows-artifact-20261011-a1-windows-terminal",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-exact-windows-artifact-20261011",
+      "at_utc": "2026-10-11T09:13:03.776999Z",
+      "reservation_id": "gpc-exact-windows-artifact-20261011-a1-windows",
+      "status": "succeeded",
+      "usage": {
+        "tokens": null,
+        "elapsed_seconds": 205.0
+      },
+      "failure": null
     }
   ],
   "policy": {
