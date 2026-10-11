@@ -34,7 +34,10 @@ internal static class SupportSummary
         sb.AppendLine(ExecutionPolicy.Describe(d.System.ExecutionContext));
 
         if (a.MissingSignals.Count > 0)
+        {
+            sb.AppendLine(AppLocalization.T("Main.System.MissingSignals") + ": " + string.Join(", ", a.MissingSignals));
             sb.AppendLine(TechnicalEvidence.Format(a, AppLocalization.Language));
+        }
         if (d.CollectionWarnings.Count > 0)
             sb.AppendLine("Предупреждения сбора: " + string.Join(" | ", d.CollectionWarnings));
 
