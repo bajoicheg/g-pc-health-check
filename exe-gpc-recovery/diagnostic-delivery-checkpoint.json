@@ -817,5 +817,21 @@
     "blocker_evidence_path": "exe-gpc-recovery/integration-20261011/transport-observation.json",
     "recheck_trigger": "authorized-Git-credential-change-or-Native-quota-recovery",
     "watchdogs": false
+  },
+  "official_cloud_environment_configuration_20261011": {
+    "state": "PREPARED_NOT_STARTED",
+    "attempt_id": "gpc-official-cloud-environment-setup-20261011-a1",
+    "operation_key": "sha256:98d0946fa23b1cdd0486dacb2bac88336890f16ec59baf5dfe7c6967bfc7eadf",
+    "request_path": "exe-gpc-recovery/cloud-setup-20261011/request.json",
+    "configuration_only": true,
+    "environment_id": null,
+    "source_sha": "325fe132be9ff49bc09b8bfb873f6d3e92df1c5e",
+    "product_candidate": "36114fa91f12a5e91b23ce46ba5cbb031fa7e06f",
+    "product_published": false,
+    "checks": "NOT_RUN",
+    "managed_product_lease_acquired": false,
+    "original_536_outcome": "UNKNOWN; no replay",
+    "watchdogs": false,
+    "at_utc": "2026-10-11T07:45:33.430573Z"
   }
 }

@@ -3122,6 +3122,23 @@
         "elapsed_seconds": 158.188861
       },
       "failure": null
+    },
+    {
+      "type": "reserve",
+      "event_id": "gpc-official-cloud-environment-setup-20261011-a1-compute_start",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-official-cloud-setup-20261011",
+      "at_utc": "2026-10-11T07:45:33.430573Z",
+      "operation_key": "sha256:98d0946fa23b1cdd0486dacb2bac88336890f16ec59baf5dfe7c6967bfc7eadf",
+      "attempt_id": "gpc-official-cloud-environment-setup-20261011-a1",
+      "kind": "compute_start",
+      "scope": "GPC/official-Cloud-personal-environment-configuration",
+      "recovery_ref": null,
+      "cost": {
+        "tool_calls": 1,
+        "tokens": null,
+        "elapsed_seconds": null
+      }
     }
   ],
   "policy": {
@@ -3173,6 +3190,7 @@
     "gpc-max-huawei-20261010-123856",
     "gpc-git-original-receipt-audit-20261010-2048",
     "gpc-no-data-20261010",
-    "gpc-forward-integration-20261011"
+    "gpc-forward-integration-20261011",
+    "gpc-official-cloud-setup-20261011"
   ]
 }
