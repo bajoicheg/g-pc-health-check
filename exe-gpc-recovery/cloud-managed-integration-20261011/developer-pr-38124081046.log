@@ -1,0 +1,329 @@
+﻿2026-10-11T08:14:05.5106195Z Current runner version: '2.337.0'
+2026-10-11T08:14:05.5132472Z ##[group]Runner Image Provisioner
+2026-10-11T08:14:05.5133315Z Hosted Compute Agent
+2026-10-11T08:14:05.5133858Z Version: 20260901.588
+2026-10-11T08:14:05.5134435Z Commit: f88ec8081b781fac6c440065ac7ff9e710ce3d0b
+2026-10-11T08:14:05.5135127Z Build Date: 2026-09-01T19:56:44Z
+2026-10-11T08:14:05.5135791Z Worker ID: {4ad8730e-e390-40a8-a525-b747627d918c}
+2026-10-11T08:14:05.5136487Z Azure Region: westus
+2026-10-11T08:14:05.5136981Z ##[endgroup]
+2026-10-11T08:14:05.5138339Z ##[group]Operating System
+2026-10-11T08:14:05.5138964Z Microsoft Windows Server 2025
+2026-10-11T08:14:05.5139538Z 10.0.26100
+2026-10-11T08:14:05.5140017Z Datacenter
+2026-10-11T08:14:05.5140477Z ##[endgroup]
+2026-10-11T08:14:05.5140956Z ##[group]Runner Image
+2026-10-11T08:14:05.5141516Z Image: windows-2025-vs2026
+2026-10-11T08:14:05.5142123Z Version: 20260925.250.1
+2026-10-11T08:14:05.5143583Z Included Software: https://github.com/actions/runner-images/blob/win25-vs2026/20260925.250/images/windows/Windows2025-VS2026-Readme.md
+2026-10-11T08:14:05.5145245Z Image Release: https://github.com/actions/runner-images/releases/tag/win25-vs2026%2F20260925.250
+2026-10-11T08:14:05.5146252Z ##[endgroup]
+2026-10-11T08:14:05.5147298Z ##[group]GITHUB_TOKEN Permissions
+2026-10-11T08:14:05.5149565Z Contents: read
+2026-10-11T08:14:05.5150138Z Metadata: read
+2026-10-11T08:14:05.5150656Z ##[endgroup]
+2026-10-11T08:14:05.5152713Z Secret source: Actions
+2026-10-11T08:14:05.5153558Z Cache mode: write
+2026-10-11T08:14:05.5154264Z Prepare workflow directory
+2026-10-11T08:14:05.5604184Z Prepare all required actions
+2026-10-11T08:14:05.5671279Z Getting action download info
+2026-10-11T08:14:05.9132552Z Download action repository 'actions/checkout@11d5960a326750d5838078e36cf38b85af677262' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-11T08:14:06.0448379Z Download action repository 'actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9' (SHA:67a3573c9a986a3f9c594539f4ab511d57bb3ce9)
+2026-10-11T08:14:06.4887634Z Download action repository 'actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-11T08:14:06.8301431Z Complete job name: developer-tools
+2026-10-11T08:14:06.9782369Z ##[group]Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+2026-10-11T08:14:06.9783845Z with:
+2026-10-11T08:14:06.9784390Z   persist-credentials: false
+2026-10-11T08:14:06.9785535Z   repository: bajoicheg/g-pc-health-check
+2026-10-11T08:14:06.9790042Z   token: ***
+2026-10-11T08:14:06.9790578Z   ssh-strict: true
+2026-10-11T08:14:06.9791123Z   ssh-user: git
+2026-10-11T08:14:06.9791618Z   clean: true
+2026-10-11T08:14:06.9792147Z   sparse-checkout-cone-mode: true
+2026-10-11T08:14:06.9792777Z   fetch-depth: 1
+2026-10-11T08:14:06.9793290Z   fetch-tags: false
+2026-10-11T08:14:06.9793829Z   show-progress: true
+2026-10-11T08:14:06.9794347Z   lfs: false
+2026-10-11T08:14:06.9794839Z   submodules: false
+2026-10-11T08:14:06.9795425Z   set-safe-directory: true
+2026-10-11T08:14:06.9796056Z   allow-unsafe-pr-checkout: false
+2026-10-11T08:14:06.9796974Z env:
+2026-10-11T08:14:06.9797466Z   DOTNET_NOLOGO: true
+2026-10-11T08:14:06.9798140Z   DOTNET_CLI_TELEMETRY_OPTOUT: true
+2026-10-11T08:14:06.9798741Z ##[endgroup]
+2026-10-11T08:14:07.1206907Z Syncing repository: bajoicheg/g-pc-health-check
+2026-10-11T08:14:07.1208935Z ##[group]Getting Git version info
+2026-10-11T08:14:07.1209840Z Working directory is 'D:\a\g-pc-health-check\g-pc-health-check'
+2026-10-11T08:14:07.2234575Z [command]"C:\Program Files\Git\bin\git.exe" version
+2026-10-11T08:14:07.5820579Z git version 2.55.0.windows.5
+2026-10-11T08:14:07.5870222Z ##[endgroup]
+2026-10-11T08:14:07.5894930Z Temporarily overriding HOME='D:\a\_temp\639599e9-16a4-456f-8c37-560710fdbe50' before making global git config changes
+2026-10-11T08:14:07.5900396Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-11T08:14:07.5912362Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\g-pc-health-check\g-pc-health-check
+2026-10-11T08:14:07.6626976Z Deleting the contents of 'D:\a\g-pc-health-check\g-pc-health-check'
+2026-10-11T08:14:07.6633542Z ##[group]Initializing the repository
+2026-10-11T08:14:07.6644946Z [command]"C:\Program Files\Git\bin\git.exe" init D:\a\g-pc-health-check\g-pc-health-check
+2026-10-11T08:14:07.7471596Z Initialized empty Git repository in D:/a/g-pc-health-check/g-pc-health-check/.git/
+2026-10-11T08:14:07.7527358Z [command]"C:\Program Files\Git\bin\git.exe" remote add origin https://github.com/bajoicheg/g-pc-health-check
+2026-10-11T08:14:07.8247731Z ##[endgroup]
+2026-10-11T08:14:07.8249625Z ##[group]Disabling automatic garbage collection
+2026-10-11T08:14:07.8260555Z [command]"C:\Program Files\Git\bin\git.exe" config --local gc.auto 0
+2026-10-11T08:14:07.8634988Z ##[endgroup]
+2026-10-11T08:14:07.8638154Z ##[group]Setting up auth
+2026-10-11T08:14:07.8651438Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-10-11T08:14:07.9002181Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-10-11T08:14:09.3167998Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-11T08:14:09.3489525Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-10-11T08:14:09.9324876Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-11T08:14:09.9643540Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-10-11T08:14:10.5755777Z [command]"C:\Program Files\Git\bin\git.exe" config --local http.https://github.com/.extraheader "AUTHORIZATION: basic ***"
+2026-10-11T08:14:10.6094307Z ##[endgroup]
+2026-10-11T08:14:10.6097968Z ##[group]Fetching the repository
+2026-10-11T08:14:10.6109875Z [command]"C:\Program Files\Git\bin\git.exe" -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +b68769929c1493e19dbc7f500b5db0b36af4160f:refs/remotes/pull/92/merge
+2026-10-11T08:14:11.8917266Z From https://github.com/bajoicheg/g-pc-health-check
+2026-10-11T08:14:11.8918802Z  * [new ref]         b68769929c1493e19dbc7f500b5db0b36af4160f -> pull/92/merge
+2026-10-11T08:14:11.8971409Z ##[endgroup]
+2026-10-11T08:14:11.8972158Z ##[group]Determining the checkout info
+2026-10-11T08:14:11.8974335Z ##[endgroup]
+2026-10-11T08:14:11.8985324Z [command]"C:\Program Files\Git\bin\git.exe" sparse-checkout disable
+2026-10-11T08:14:11.9423669Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset-all extensions.worktreeConfig
+2026-10-11T08:14:11.9720805Z ##[group]Checking out the ref
+2026-10-11T08:14:11.9728869Z [command]"C:\Program Files\Git\bin\git.exe" checkout --progress --force refs/remotes/pull/92/merge
+2026-10-11T08:14:12.2583151Z Note: switching to 'refs/remotes/pull/92/merge'.
+2026-10-11T08:14:12.2583734Z 
+2026-10-11T08:14:12.2583978Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-10-11T08:14:12.2585088Z changes and commit them, and you can discard any commits you make in this
+2026-10-11T08:14:12.2585768Z state without impacting any branches by switching back to a branch.
+2026-10-11T08:14:12.2586064Z 
+2026-10-11T08:14:12.2586262Z If you want to create a new branch to retain commits you create, you may
+2026-10-11T08:14:12.2586750Z do so (now or later) by using -c with the switch command. Example:
+2026-10-11T08:14:12.2587017Z 
+2026-10-11T08:14:12.2587149Z   git switch -c <new-branch-name>
+2026-10-11T08:14:12.2588386Z 
+2026-10-11T08:14:12.2588493Z Or undo this operation with:
+2026-10-11T08:14:12.2588698Z 
+2026-10-11T08:14:12.2588802Z   git switch -
+2026-10-11T08:14:12.2588916Z 
+2026-10-11T08:14:12.2589285Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-10-11T08:14:12.2589610Z 
+2026-10-11T08:14:12.2589981Z HEAD is now at b687699 Merge 36114fa91f12a5e91b23ce46ba5cbb031fa7e06f into 09a6956bb74ae1459bea2effe1605700ef861ea0
+2026-10-11T08:14:12.2704196Z ##[endgroup]
+2026-10-11T08:14:12.3123867Z [command]"C:\Program Files\Git\bin\git.exe" log -1 --format=%H
+2026-10-11T08:14:12.3384157Z b68769929c1493e19dbc7f500b5db0b36af4160f
+2026-10-11T08:14:12.3425752Z ##[group]Removing auth
+2026-10-11T08:14:12.3434744Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-10-11T08:14:12.3727282Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-10-11T08:14:12.9333105Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-11T08:14:12.9603208Z http.https://github.com/.extraheader
+2026-10-11T08:14:12.9662584Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset-all http.https://github.com/.extraheader
+2026-10-11T08:14:12.9992825Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-10-11T08:14:13.5578945Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-11T08:14:13.5876745Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-10-11T08:14:14.1353268Z ##[endgroup]
+2026-10-11T08:14:14.1736535Z ##[group]Run ./tools/dev/Test-DevWorkflow.ps1
+2026-10-11T08:14:14.1736959Z [36;1m./tools/dev/Test-DevWorkflow.ps1[0m
+2026-10-11T08:14:14.2256986Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-11T08:14:14.2257450Z env:
+2026-10-11T08:14:14.2257680Z   DOTNET_NOLOGO: true
+2026-10-11T08:14:14.2257949Z   DOTNET_CLI_TELEMETRY_OPTOUT: true
+2026-10-11T08:14:14.2258248Z ##[endgroup]
+2026-10-11T08:14:14.7492211Z PASS Quick checks source without packaging
+2026-10-11T08:14:14.7504559Z PASS Full retains Quick and adds packaged/portable checks
+2026-10-11T08:14:14.7914229Z PASS Unknown profile cannot silently skip checks
+2026-10-11T08:14:14.8375468Z PASS Complete clean audit accepted
+2026-10-11T08:14:14.8458763Z PASS Empty audit rejected
+2026-10-11T08:14:14.8530649Z PASS Malformed audit rejected
+2026-10-11T08:14:14.8548031Z PASS No projects rejected
+2026-10-11T08:14:14.8639060Z PASS No frameworks rejected
+2026-10-11T08:14:14.8676443Z PASS Audit error log rejected
+2026-10-11T08:14:14.8841741Z PASS Reject vulnerabilities in topLevelPackages
+2026-10-11T08:14:14.8874026Z PASS Reject vulnerabilities in transitivePackages
+2026-10-11T08:14:14.9350075Z START one
+2026-10-11T08:14:14.9475284Z Passed one (0.004 s)
+2026-10-11T08:14:14.9493773Z START two
+2026-10-11T08:14:14.9513065Z Passed two (0.001 s)
+2026-10-11T08:14:14.9538296Z Results: C:\Users\runneradmin\AppData\Local\Temp\GpcDevTools-Tests-165b16ec80e54a7a8008063f4a866a9d\success\summary.json
+2026-10-11T08:14:14.9664113Z PASS Successful sequence records exact metadata and all steps
+2026-10-11T08:14:14.9727602Z START one
+2026-10-11T08:14:14.9775155Z Passed one (0.004 s)
+2026-10-11T08:14:14.9792301Z START two
+2026-10-11T08:14:14.9869338Z FAILED two: Synthetic failure
+2026-10-11T08:14:14.9887114Z Failed two (0.008 s)
+2026-10-11T08:14:14.9906843Z Results: C:\Users\runneradmin\AppData\Local\Temp\GpcDevTools-Tests-165b16ec80e54a7a8008063f4a866a9d\failure\summary.json
+2026-10-11T08:14:14.9933181Z PASS Failure stops later steps and leaves evidence
+2026-10-11T08:14:14.9978585Z START one
+2026-10-11T08:14:15.0010632Z Passed one (0.002 s)
+2026-10-11T08:14:15.0028844Z Results: C:\Users\runneradmin\AppData\Local\Temp\GpcDevTools-Tests-165b16ec80e54a7a8008063f4a866a9d\running\summary.json
+2026-10-11T08:14:15.0035229Z PASS In-progress snapshot exists before executing a step
+2026-10-11T08:14:15.0060756Z PASS Empty sequence cannot report success
+2026-10-11T08:14:15.0154709Z PASS Existing result directory cannot be overwritten
+2026-10-11T08:14:15.4200943Z synthetic stderr
+2026-10-11T08:14:15.4307386Z PASS Native nonzero exit throws with exact code and saves log
+2026-10-11T08:14:15.7585645Z synthetic warning
+2026-10-11T08:14:15.7608171Z PASS Native stderr with exit zero is not a false failure
+2026-10-11T08:14:16.0925816Z Тест (1) & [x]
+2026-10-11T08:14:16.0952211Z PASS Native arguments preserve Unicode spaces and metacharacters
+2026-10-11T08:14:16.1010886Z START native
+2026-10-11T08:14:16.1075394Z FAILED native: Exception calling "Start" with "0" argument(s): "An error occurred trying to start process 'C:\Users\runneradmin\AppData\Local\Temp\GpcDevTools-Tests-165b16ec80e54a7a8008063f4a866a9d\absent.exe' with working directory 'D:\a\g-pc-health-check\g-pc-health-check'. The system cannot find the file specified."
+2026-10-11T08:14:16.1093010Z Failed native (0.007 s)
+2026-10-11T08:14:16.1113204Z Results: C:\Users\runneradmin\AppData\Local\Temp\GpcDevTools-Tests-165b16ec80e54a7a8008063f4a866a9d\missing-tool\summary.json
+2026-10-11T08:14:16.1119364Z PASS Launch failure is not a successful step
+2026-10-11T08:14:16.1242948Z Development workflow: 20/20 passed.
+2026-10-11T08:14:16.2017956Z ##[group]Run actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9
+2026-10-11T08:14:16.2018401Z with:
+2026-10-11T08:14:16.2018597Z   global-json-file: global.json
+2026-10-11T08:14:16.2018829Z   cache: false
+2026-10-11T08:14:16.2018992Z env:
+2026-10-11T08:14:16.2019148Z   DOTNET_NOLOGO: true
+2026-10-11T08:14:16.2019363Z   DOTNET_CLI_TELEMETRY_OPTOUT: true
+2026-10-11T08:14:16.2019591Z ##[endgroup]
+2026-10-11T08:14:16.3686810Z (node:8056) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-11T08:14:16.3687603Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-11T08:14:16.4741206Z [command]"C:\Program Files\PowerShell\7\pwsh.exe" -NoLogo -Sta -NoProfile -NonInteractive -ExecutionPolicy Unrestricted -Command & 'D:\a\_actions\actions\setup-dotnet\67a3573c9a986a3f9c594539f4ab511d57bb3ce9\externals\install-dotnet.ps1' -SkipNonVersionedFiles -Runtime dotnet -Channel LTS
+2026-10-11T08:14:17.5770477Z dotnet-install: .NET Core Runtime with version '10.0.12' is already installed.
+2026-10-11T08:14:17.7439334Z [command]"C:\Program Files\PowerShell\7\pwsh.exe" -NoLogo -Sta -NoProfile -NonInteractive -ExecutionPolicy Unrestricted -Command & 'D:\a\_actions\actions\setup-dotnet\67a3573c9a986a3f9c594539f4ab511d57bb3ce9\externals\install-dotnet.ps1' -SkipNonVersionedFiles -Version 8.0.425
+2026-10-11T08:14:18.4244598Z dotnet-install: .NET Core SDK with version '8.0.425' is already installed.
+2026-10-11T08:14:18.5252804Z ##[group]Run ./tools/dev/Invoke-DevCheck.ps1 -Profile Full
+2026-10-11T08:14:18.5253313Z [36;1m./tools/dev/Invoke-DevCheck.ps1 -Profile Full[0m
+2026-10-11T08:14:18.5324474Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-11T08:14:18.5324804Z env:
+2026-10-11T08:14:18.5324975Z   DOTNET_NOLOGO: true
+2026-10-11T08:14:18.5325191Z   DOTNET_CLI_TELEMETRY_OPTOUT: true
+2026-10-11T08:14:18.5325444Z   DOTNET_ROOT: C:\Program Files\dotnet
+2026-10-11T08:14:18.5325678Z ##[endgroup]
+2026-10-11T08:14:19.0821152Z START preflight
+2026-10-11T08:14:19.1824875Z b68769929c1493e19dbc7f500b5db0b36af4160f
+2026-10-11T08:14:21.1864758Z 8.0.425
+2026-10-11T08:14:21.4804030Z Passed preflight (2.392 s)
+2026-10-11T08:14:21.4821675Z START tool-tests
+2026-10-11T08:14:23.4388833Z PASS Quick checks source without packaging
+2026-10-11T08:14:23.4389657Z PASS Full retains Quick and adds packaged/portable checks
+2026-10-11T08:14:23.4390382Z PASS Unknown profile cannot silently skip checks
+2026-10-11T08:14:23.4390946Z PASS Complete clean audit accepted
+2026-10-11T08:14:23.4391434Z PASS Empty audit rejected
+2026-10-11T08:14:23.4391839Z PASS Malformed audit rejected
+2026-10-11T08:14:23.4392278Z PASS No projects rejected
+2026-10-11T08:14:23.4392667Z PASS No frameworks rejected
+2026-10-11T08:14:23.4393094Z PASS Audit error log rejected
+2026-10-11T08:14:23.4393584Z PASS Reject vulnerabilities in topLevelPackages
+2026-10-11T08:14:23.4394218Z PASS Reject vulnerabilities in transitivePackages
+2026-10-11T08:14:23.4394698Z START one
+2026-10-11T08:14:23.4395080Z Passed one (0.004 s)
+2026-10-11T08:14:23.4395365Z START two
+2026-10-11T08:14:23.4395683Z Passed two (0.001 s)
+2026-10-11T08:14:23.4396579Z Results: C:\Users\runneradmin\AppData\Local\Temp\GpcDevTools-Tests-b61bfd2828b14ceca0019b2b2657bb57\success\summary.json
+2026-10-11T08:14:23.4397693Z PASS Successful sequence records exact metadata and all steps
+2026-10-11T08:14:23.4398197Z START one
+2026-10-11T08:14:23.4398513Z Passed one (0.004 s)
+2026-10-11T08:14:23.4398800Z START two
+2026-10-11T08:14:23.4399132Z FAILED two: Synthetic failure
+2026-10-11T08:14:23.4399525Z Failed two (0.009 s)
+2026-10-11T08:14:23.4400573Z Results: C:\Users\runneradmin\AppData\Local\Temp\GpcDevTools-Tests-b61bfd2828b14ceca0019b2b2657bb57\failure\summary.json
+2026-10-11T08:14:23.4401802Z PASS Failure stops later steps and leaves evidence
+2026-10-11T08:14:23.4402269Z START one
+2026-10-11T08:14:23.4402568Z Passed one (0.002 s)
+2026-10-11T08:14:23.4403467Z Results: C:\Users\runneradmin\AppData\Local\Temp\GpcDevTools-Tests-b61bfd2828b14ceca0019b2b2657bb57\running\summary.json
+2026-10-11T08:14:23.4404595Z PASS In-progress snapshot exists before executing a step
+2026-10-11T08:14:23.4405168Z PASS Empty sequence cannot report success
+2026-10-11T08:14:23.4405735Z PASS Existing result directory cannot be overwritten
+2026-10-11T08:14:23.4406176Z synthetic stderr
+2026-10-11T08:14:23.4406621Z PASS Native nonzero exit throws with exact code and saves log
+2026-10-11T08:14:23.4407127Z synthetic warning
+2026-10-11T08:14:23.4407596Z PASS Native stderr with exit zero is not a false failure
+2026-10-11T08:14:23.4408332Z Тест (1) & [x]
+2026-10-11T08:14:23.4409247Z PASS Native arguments preserve Unicode spaces and metacharacters
+2026-10-11T08:14:23.4409797Z START native
+2026-10-11T08:14:23.4412168Z FAILED native: Exception calling "Start" with "0" argument(s): "An error occurred trying to start process 'C:\Users\runneradmin\AppData\Local\Temp\GpcDevTools-Tests-b61bfd2828b14ceca0019b2b2657bb57\absent.exe' with working directory 'D:\a\g-pc-health-check\g-pc-health-check'. The system cannot find the file specified."
+2026-10-11T08:14:23.4414568Z Failed native (0.007 s)
+2026-10-11T08:14:23.4415580Z Results: C:\Users\runneradmin\AppData\Local\Temp\GpcDevTools-Tests-b61bfd2828b14ceca0019b2b2657bb57\missing-tool\summary.json
+2026-10-11T08:14:23.4416719Z PASS Launch failure is not a successful step
+2026-10-11T08:14:23.4417222Z Development workflow: 20/20 passed.
+2026-10-11T08:14:23.9321312Z SDK audit contract: 6/6 passed.
+2026-10-11T08:14:23.9344632Z Passed tool-tests (2.451 s)
+2026-10-11T08:14:23.9362201Z START restore
+2026-10-11T08:14:42.9297564Z   Determining projects to restore...
+2026-10-11T08:14:42.9298860Z   Restored D:\a\g-pc-health-check\g-pc-health-check\src\G.PcHealthCheck\G.PcHealthCheck.csproj (in 9.43 sec).
+2026-10-11T08:14:42.9323806Z Passed restore (18.994 s)
+2026-10-11T08:14:42.9339915Z START audit
+2026-10-11T08:14:44.3973908Z {
+2026-10-11T08:14:44.3974353Z   "version": 1,
+2026-10-11T08:14:44.3974824Z   "parameters": "--vulnerable --include-transitive",
+2026-10-11T08:14:44.3975299Z   "sources": [
+2026-10-11T08:14:44.3975628Z     "https://api.nuget.org/v3/index.json",
+2026-10-11T08:14:44.3976131Z     "C:/Program Files (x86)/Microsoft SDKs/NuGetPackages/"
+2026-10-11T08:14:44.3977892Z   ],
+2026-10-11T08:14:44.3978153Z   "projects": [
+2026-10-11T08:14:44.3978403Z     {
+2026-10-11T08:14:44.3979022Z       "path": "D:/a/g-pc-health-check/g-pc-health-check/src/G.PcHealthCheck/G.PcHealthCheck.csproj"
+2026-10-11T08:14:44.3979722Z     }
+2026-10-11T08:14:44.3979934Z   ]
+2026-10-11T08:14:44.3980145Z }
+2026-10-11T08:14:44.4176620Z Passed audit (1.483 s)
+2026-10-11T08:14:44.4190092Z START build
+2026-10-11T08:15:06.6009876Z   Corporate shield: 5157c5cf83a6cfddb74c51701a693e401e36b400812505a1e46e15d760c72877
+2026-10-11T08:15:06.6011174Z   Green application icon: D:\a\g-pc-health-check\g-pc-health-check\src\G.PcHealthCheck\obj\brand\gpchc.ico (105197 bytes)
+2026-10-11T08:15:06.6013210Z   G.PcHealthCheck -> D:\a\g-pc-health-check\g-pc-health-check\src\G.PcHealthCheck\bin\Release\net8.0-windows10.0.19041.0\win-x64\G-PC-Health.dll
+2026-10-11T08:15:06.6014238Z 
+2026-10-11T08:15:06.6014380Z Build succeeded.
+2026-10-11T08:15:06.6014668Z     0 Warning(s)
+2026-10-11T08:15:06.6015042Z     0 Error(s)
+2026-10-11T08:15:06.6015203Z 
+2026-10-11T08:15:06.6015374Z Time Elapsed 00:00:21.94
+2026-10-11T08:15:06.6033804Z Passed build (22.183 s)
+2026-10-11T08:15:06.6047164Z START selftest
+2026-10-11T08:15:07.3716469Z Primary guidance regression: 19/19 passed.
+2026-10-11T08:15:07.3717143Z Diagnostic completeness regression: 21/22 passed.
+2026-10-11T08:15:07.3721955Z FAIL: support summary exposes missing CPU and WARN: Missing CPU is absent from support summary.
+2026-10-11T08:15:07.3917478Z FAILED selftest: Native command failed with exit code 101; see stage logs.
+2026-10-11T08:15:07.3935735Z Failed selftest (0.788 s)
+2026-10-11T08:15:07.3957227Z Results: D:\a\g-pc-health-check\g-pc-health-check\artifacts\dev\20261011_081418-5b77df1451c64d049a202f12efb5bbe1\summary.json
+2026-10-11T08:15:07.5191568Z [31;1mException: [0mD:\a\g-pc-health-check\g-pc-health-check\tools\dev\Invoke-DevCheck.ps1:65[0m
+2026-10-11T08:15:07.5192579Z [31;1m[0m[36;1mLine |[0m
+2026-10-11T08:15:07.5193779Z [31;1m[0m[36;1m[36;1m  65 | [0m … 'Passed') { [36;1mthrow 'Development check failed. See the recorded failing[0m …[0m
+2026-10-11T08:15:07.5195277Z [31;1m[0m[36;1m[36;1m[0m[36;1m[0m[36;1m     | [31;1m               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+2026-10-11T08:15:07.5197147Z [31;1m[0m[36;1m[36;1m[0m[36;1m[0m[36;1m[31;1m[31;1m[36;1m     | [31;1mDevelopment check failed. See the recorded failing stage; later stages were not run.[0m
+2026-10-11T08:15:07.5570082Z ##[error]Process completed with exit code 1.
+2026-10-11T08:15:07.5865245Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+2026-10-11T08:15:07.5865703Z with:
+2026-10-11T08:15:07.5865902Z   name: development-check-summary
+2026-10-11T08:15:07.5866156Z   path: artifacts/dev/**/summary.json
+2026-10-11T08:15:07.5866408Z   if-no-files-found: ignore
+2026-10-11T08:15:07.5866624Z   retention-days: 7
+2026-10-11T08:15:07.5866816Z   compression-level: 6
+2026-10-11T08:15:07.5867045Z   overwrite: false
+2026-10-11T08:15:07.5867259Z   include-hidden-files: false
+2026-10-11T08:15:07.5867475Z env:
+2026-10-11T08:15:07.5867641Z   DOTNET_NOLOGO: true
+2026-10-11T08:15:07.5867852Z   DOTNET_CLI_TELEMETRY_OPTOUT: true
+2026-10-11T08:15:07.5868107Z   DOTNET_ROOT: C:\Program Files\dotnet
+2026-10-11T08:15:07.5868354Z ##[endgroup]
+2026-10-11T08:15:07.8010026Z (node:1364) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-11T08:15:07.8012077Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-11T08:15:07.8148545Z With the provided path, there will be 1 file uploaded
+2026-10-11T08:15:07.8157669Z Artifact name is valid!
+2026-10-11T08:15:07.8158488Z Root directory input is valid!
+2026-10-11T08:15:08.3108870Z Beginning upload of artifact content to blob storage
+2026-10-11T08:15:08.3339820Z (node:1364) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-11T08:15:08.6323634Z Uploaded bytes 836
+2026-10-11T08:15:08.7164157Z Finished uploading artifact content to blob storage!
+2026-10-11T08:15:08.7165439Z SHA256 digest of uploaded artifact zip is 9e9ccb85328a55c8d1b305031b119b9050f946d7b2d642956fffec374fc21ce1
+2026-10-11T08:15:08.7168714Z Finalizing artifact upload
+2026-10-11T08:15:08.9778873Z Artifact development-check-summary.zip successfully finalized. Artifact ID 11696392777
+2026-10-11T08:15:08.9781630Z Artifact development-check-summary has been successfully uploaded! Final size is 836 bytes. Artifact ID is 11696392777
+2026-10-11T08:15:08.9792232Z Artifact download URL: https://github.com/bajoicheg/g-pc-health-check/actions/runs/38124081046/artifacts/11696392777
+2026-10-11T08:15:09.0229796Z Post job cleanup.
+2026-10-11T08:15:09.2723038Z [command]"C:\Program Files\Git\bin\git.exe" version
+2026-10-11T08:15:09.3159085Z git version 2.55.0.windows.5
+2026-10-11T08:15:09.3261164Z Temporarily overriding HOME='D:\a\_temp\97eea20d-61c3-43e8-9084-dc8280ce81f6' before making global git config changes
+2026-10-11T08:15:09.3262790Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-11T08:15:09.3275139Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\g-pc-health-check\g-pc-health-check
+2026-10-11T08:15:09.3644740Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-10-11T08:15:09.3956143Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-10-11T08:15:09.9146119Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-11T08:15:09.9446125Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-10-11T08:15:10.5296947Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-11T08:15:10.5591557Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-10-11T08:15:11.0916726Z Cleaning up orphan processes
+2026-10-11T08:15:11.1481571Z Terminate orphan process: pid (7944) (dotnet)
+2026-10-11T08:15:11.1550068Z Terminate orphan process: pid (4696) (conhost)
+2026-10-11T08:15:11.1560260Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@11d5960a326750d5838078e36cf38b85af677262, actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9, actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
