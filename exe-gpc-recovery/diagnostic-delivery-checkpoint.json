@@ -819,7 +819,7 @@
     "watchdogs": false
   },
   "official_cloud_environment_configuration_20261011": {
-    "state": "SETUP_RUNNING",
+    "state": "SETUP_COMPLETED_CONFIGURATION_PUBLISHED",
     "attempt_id": "gpc-official-cloud-environment-setup-20261011-a1",
     "operation_key": "sha256:98d0946fa23b1cdd0486dacb2bac88336890f16ec59baf5dfe7c6967bfc7eadf",
     "request_path": "exe-gpc-recovery/cloud-setup-20261011/request.json",
@@ -841,7 +841,17 @@
     "last_progress_at_utc": "2026-10-11T08:01:58.462Z",
     "git_transport_probe": "PASS_DRY_RUN_ONLY",
     "git_transport_evidence": "exe-gpc-recovery/cloud-setup-20261011/git-transport-observation.json",
-    "configuration_state": "DRAFT_SAVED_READBACK_REVISION_2",
-    "cdc_full_suite": "RUNNING"
+    "configuration_state": "PUBLISHED_UI_CONFIRMED",
+    "cdc_full_suite": "1346_OK_EXIT0",
+    "terminal_evidence": "exe-gpc-recovery/cloud-setup-20261011/terminal-observation.json",
+    "completed_observed_at_utc": "2026-10-11T08:05:55.970Z"
+  },
+  "cloud_managed_integration_36114_20261011": {
+    "state": "PREPARED_NOT_SUBMITTED",
+    "request": "exe-gpc-recovery/cloud-managed-integration-20261011/request.json",
+    "budget_reservation": "gpc-cloud-managed-integration-36114-20261011-a1-compute",
+    "source_sha": "325fe132be9ff49bc09b8bfb873f6d3e92df1c5e",
+    "candidate_sha": "36114fa91f12a5e91b23ce46ba5cbb031fa7e06f",
+    "original_unknown_preserved": true
   }
 }

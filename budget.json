@@ -3139,6 +3139,122 @@
         "tokens": null,
         "elapsed_seconds": null
       }
+    },
+    {
+      "type": "outcome",
+      "event_id": "gpc-official-cloud-environment-setup-20261011-a1-compute_start-terminal",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-official-cloud-setup-20261011",
+      "at_utc": "2026-10-11T08:05:06.354465Z",
+      "reservation_id": "gpc-official-cloud-environment-setup-20261011-a1-compute_start",
+      "status": "succeeded",
+      "usage": {
+        "tokens": null,
+        "elapsed_seconds": null
+      },
+      "failure": null
+    },
+    {
+      "type": "reserve",
+      "event_id": "gpc-cloud-managed-integration-36114-20261011-a1-compute",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-cloud-managed-integration-20261011",
+      "at_utc": "2026-10-11T08:05:06.354465Z",
+      "operation_key": "sha256:279c428a5755369c6a0802b0fef53b894c71a92b632ff826a2d9f776257f37b0",
+      "attempt_id": "gpc-cloud-managed-integration-36114-20261011-a1-compute",
+      "kind": "compute_start",
+      "scope": "GPC/Cloud/current-CDC-managed-integration-36114",
+      "recovery_ref": null,
+      "cost": {
+        "tool_calls": 1,
+        "tokens": null,
+        "elapsed_seconds": null
+      }
+    },
+    {
+      "type": "reserve",
+      "event_id": "gpc-cloud-managed-integration-36114-20261011-a1-windows-pr",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-cloud-managed-integration-20261011",
+      "at_utc": "2026-10-11T08:05:06.354465Z",
+      "operation_key": "sha256:3037e93345717d84b090d5506c706df7cb5fe04d06fa02be3fe226a481976f45",
+      "attempt_id": "gpc-cloud-managed-integration-36114-20261011-a1-windows-pr",
+      "kind": "ci_start",
+      "scope": "GPC/implicit-PR92/Windows-EXE",
+      "recovery_ref": null,
+      "cost": {
+        "tool_calls": 1,
+        "tokens": null,
+        "elapsed_seconds": null
+      }
+    },
+    {
+      "type": "reserve",
+      "event_id": "gpc-cloud-managed-integration-36114-20261011-a1-developer-tools",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-cloud-managed-integration-20261011",
+      "at_utc": "2026-10-11T08:05:06.354465Z",
+      "operation_key": "sha256:3d0483f26c916fcaa5b8003d424c799f9c96fe0c9ca1d39c166be18aeb2c7b48",
+      "attempt_id": "gpc-cloud-managed-integration-36114-20261011-a1-developer-tools",
+      "kind": "ci_start",
+      "scope": "GPC/implicit-PR92/Developer-Tools",
+      "recovery_ref": null,
+      "cost": {
+        "tool_calls": 1,
+        "tokens": null,
+        "elapsed_seconds": null
+      }
+    },
+    {
+      "type": "reserve",
+      "event_id": "gpc-cloud-managed-integration-36114-20261011-a1-evidence-analyzer",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-cloud-managed-integration-20261011",
+      "at_utc": "2026-10-11T08:05:06.354465Z",
+      "operation_key": "sha256:abce90a11997a00d6722f6d69fd9021c9f4c61bfe5a89cb7de4cee702a493de7",
+      "attempt_id": "gpc-cloud-managed-integration-36114-20261011-a1-evidence-analyzer",
+      "kind": "ci_start",
+      "scope": "GPC/implicit-PR92/E2E-Evidence-Analyzer",
+      "recovery_ref": null,
+      "cost": {
+        "tool_calls": 1,
+        "tokens": null,
+        "elapsed_seconds": null
+      }
+    },
+    {
+      "type": "reserve",
+      "event_id": "gpc-cloud-managed-integration-36114-20261011-a1-supply-chain-smoke",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-cloud-managed-integration-20261011",
+      "at_utc": "2026-10-11T08:05:06.354465Z",
+      "operation_key": "sha256:1b795d1cd607d33ea9a6bf6fc501d1e3acd399e33792a502c27f16fe29f6c743",
+      "attempt_id": "gpc-cloud-managed-integration-36114-20261011-a1-supply-chain-smoke",
+      "kind": "ci_start",
+      "scope": "GPC/implicit-PR92/Supply-Chain-Smoke",
+      "recovery_ref": null,
+      "cost": {
+        "tool_calls": 1,
+        "tokens": null,
+        "elapsed_seconds": null
+      }
+    },
+    {
+      "type": "reserve",
+      "event_id": "gpc-cloud-managed-integration-36114-20261011-a1-cdc-policy",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-cloud-managed-integration-20261011",
+      "at_utc": "2026-10-11T08:05:06.354465Z",
+      "operation_key": "sha256:2004a62de575a76499b428a6c275082f262a9e3099e5229ade9332f1084b1aa1",
+      "attempt_id": "gpc-cloud-managed-integration-36114-20261011-a1-cdc-policy",
+      "kind": "ci_start",
+      "scope": "GPC/implicit-PR92/CDC-Policy-Validation",
+      "recovery_ref": null,
+      "cost": {
+        "tool_calls": 1,
+        "tokens": null,
+        "elapsed_seconds": null
+      }
     }
   ],
   "policy": {
@@ -3191,6 +3307,7 @@
     "gpc-git-original-receipt-audit-20261010-2048",
     "gpc-no-data-20261010",
     "gpc-forward-integration-20261011",
-    "gpc-official-cloud-setup-20261011"
+    "gpc-official-cloud-setup-20261011",
+    "gpc-cloud-managed-integration-20261011"
   ]
 }

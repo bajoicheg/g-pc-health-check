@@ -1,0 +1,52 @@
+{
+  "schema": "gpc-cloud-managed-integration-handoff/v1",
+  "prepared_at_utc": "2026-10-11T08:05:55.969Z",
+  "attempt_id": "gpc-cloud-managed-integration-36114-20261011-a1",
+  "cloud_task_id": "01a129ed-465e-7702-b5a7-2509f51c80c6",
+  "source_repository": "bajoicheg/g-pc-health-check",
+  "source_ref": "refs/heads/design/0.17.0-security-posture",
+  "base_sha": "325fe132be9ff49bc09b8bfb873f6d3e92df1c5e",
+  "candidate_sha": "36114fa91f12a5e91b23ce46ba5cbb031fa7e06f",
+  "candidate_tree": "36e3b1556bf3d0e7df6004c8d9d2eb6e54819f95",
+  "package_tree": "f580a8946c0510540a4be3f4422ab3404875274b",
+  "cdc_version": "3.3.1",
+  "transport": "existing authenticated origin in official Cloud task; actual dry-run exit 0; no credential changes",
+  "authorized_goal": "Use actual current CDC managed_host_bridge to reconstruct and conditionally publish exact reviewed candidate to the design source; preserve existing gates and run required Windows CI afterward",
+  "publication_protocol": "Package-owned real ManagedExecutorRuntime supervisor; isolated writer; fresh source/lease/guard reconciliation; conditional GitLaneIntegrationPublisher; durable original-attempt journal; supported finish and physical supervisor quiescence. No connector product-ref updates.",
+  "coordination_ref": "refs/heads/cdc/coordination",
+  "lease_expected_blob": "08216b898759f560c86b0c4ab7b839dcc50a78e5",
+  "lease_generation_observed": 32,
+  "owner_id": null,
+  "plan_coordination_ref": "refs/heads/cdc/gpc-cloud-managed-integration-36114-20261011",
+  "reservation_token": "gpc-cloud-managed-integration-36114-20261011-a1-compute",
+  "input_evidence_revision": "f949f72942c1e540ad847a2016cc09733030c7c8",
+  "input_directory": "exe-gpc-recovery/integration-20261011",
+  "patch_sha256": "738044efa6b74cface792095158d2e2917dde9cd04cb4ffd8bc144752510b7f7",
+  "reviews": {
+    "spec67": "GREEN",
+    "quality68": "GREEN"
+  },
+  "configuration_published_ui_observed": true,
+  "configuration_provider_environment_id": null,
+  "managed_cloud_profile_qualified": false,
+  "implicit_ci_reserved": [
+    "Windows EXE",
+    "Developer Tools",
+    "E2E Evidence Analyzer",
+    "Supply Chain Smoke",
+    "CDC Policy Validation"
+  ],
+  "no_new_manual_workflow_dispatch_reserved": true,
+  "original_unknown": "gpc-0171-native-diagnostic-CI6-20261009 remains retired UNKNOWN; no new grant/replay; submission_retirements immutable",
+  "worker_requirements": [
+    "freshly read actual current AGENTS/adapter/checkpoint/lease/budget",
+    "derive endpoint store identity from actual existing origin; no invented namespace/environment/identity",
+    "only one writer and actual bridge start; no synthetic Runtime, ownership spoofing or manual grant",
+    "reconstruct hash-pinned exact commit in assigned isolated worktree without editing/suppressing tests or Windows targets",
+    "portable package/policy/checkpoint and source/tree identity checks, preserve exact CDC current core",
+    "finish all owned supervisors and sessions or preserve UNKNOWN/pending guard and exact handle if genuinely unresolved",
+    "append durable checkpoint/receipts/full stdout stderr return code timings; independent readback",
+    "no PR merge or product release; no watchdogs or billing/access changes"
+  ],
+  "state": "PREPARED_NOT_SUBMITTED"
+}

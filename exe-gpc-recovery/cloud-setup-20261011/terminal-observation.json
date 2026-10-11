@@ -1,0 +1,44 @@
+{
+  "schema": "gpc-official-cloud-setup-terminal-observation/v1",
+  "observed_at_utc": "2026-10-11T08:05:55.970Z",
+  "cloud_task_id": "01a129ed-465e-7702-b5a7-2509f51c80c6",
+  "configuration_status": "PUBLISHED_UI_CONFIRMED",
+  "cloud_task_terminal": true,
+  "source_sha": "325fe132be9ff49bc09b8bfb873f6d3e92df1c5e",
+  "final_clean": true,
+  "tools": {
+    "dotnet": "8.0.425",
+    "powershell": "7.4.13",
+    "python": "3.12.14",
+    "PyYAML": "6.0.3",
+    "git": "2.52.0"
+  },
+  "cdc_tests": {
+    "count": 1346,
+    "returncode": 0,
+    "result": "OK",
+    "duration_seconds": 713.815,
+    "full_log": "/workspace/g-pc-health-check/artifacts/cloud-onboarding/cdc-tests.log",
+    "log_creation_utc": "2026-10-11T07:48:56.852588567Z",
+    "log_last_write_utc": "2026-10-11T08:00:51.579608Z",
+    "time_note": "filesystem times are not precise subprocess start/end"
+  },
+  "dev_workflow": {
+    "passed": 20,
+    "total": 20,
+    "returncode": 0
+  },
+  "readback_json_observed_at_utc": "2026-10-11T08:02:00.061374Z",
+  "active_background_processes": false,
+  "process_note": "Observed PID-1-owned Z entries 77168 and102332 empty cmdline; attribution unavailable; no active setup task",
+  "product_build": {
+    "returncode": 1,
+    "status": "FAIL_PLATFORM",
+    "stage": "powershell.exe/System.Drawing Windows branding before C# compilation"
+  },
+  "windows_acceptance": "NOT_RUN",
+  "candidate_published": false,
+  "original_receive_pack": "UNKNOWN_NOT_RECOVERED",
+  "configuration_id": null,
+  "qualification": "Personal configuration published; namespace/environment ID and managed product admission must be verified separately"
+}
