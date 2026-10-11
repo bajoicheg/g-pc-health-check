@@ -1,0 +1,21 @@
+{
+  "schema": "gpc-root-correction-review/v1",
+  "verdict": "APPROVED_FOR_REQUIRED_CI",
+  "candidate_sha": "6d65482be7045243501644807a54f6e5f6d6e9ce",
+  "base_sha": "36114fa91f12a5e91b23ce46ba5cbb031fa7e06f",
+  "tree": "55a198fe449187bb0b57f64a1d041e399b036a8d",
+  "changed_paths": [
+    "src/G.PcHealthCheck/SupportSummary.cs"
+  ],
+  "archive_commit": "360a08a5dfbb70bcef64ef40827c929e25932e04",
+  "archive_document_sha256": "93b95ea8ea2f5d5a5d7d3d35068acac4ab37e5947da9ba3e9512b237b46ad326",
+  "raw_commit_and_patch_original_hash_verified": true,
+  "independent_temporary_index_reconstruction": true,
+  "CDC_tree_unchanged": true,
+  "localized_existing_RU_EN_resources_verified": true,
+  "existing_tests_unchanged": true,
+  "detailed_explanations_retained": true,
+  "Windows_candidate_validation": "NOT_RUN",
+  "quality": "FAST one-file compatibility correction; required Windows CI still mandatory",
+  "original_536_outcome": "UNKNOWN; preserved; no replay"
+}

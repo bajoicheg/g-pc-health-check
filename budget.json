@@ -3362,6 +3362,115 @@
         "tokens": null,
         "elapsed_seconds": null
       }
+    },
+    {
+      "type": "remedy",
+      "event_id": "gpc-cloud-summary-regression-20261011-a1-windows-pr-verified-correction",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-cloud-summary-regression-20261011",
+      "at_utc": "2026-10-11T08:39:22.374005Z",
+      "scope": "GPC/implicit-PR92/Windows-EXE",
+      "signature": "support-summary-missing-signal-heading-CPU",
+      "reference": "gpc-cloud-summary-regression-20261011-a1-windows-pr-verified-correction",
+      "kind": "code_correction",
+      "detail": "Actual candidate 6d65482be7045243501644807a54f6e5f6d6e9ce; Root reviewed localized missing-signal list restoration and unchanged detailed explanations/tests; durable 360a08a5dfbb70bcef64ef40827c929e25932e04"
+    },
+    {
+      "type": "reserve",
+      "event_id": "gpc-cloud-summary-regression-20261011-a1-windows-pr",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-cloud-summary-regression-20261011",
+      "at_utc": "2026-10-11T08:39:22.374005Z",
+      "operation_key": "sha256:b4e011187481b5f370fb505c0517afef1953e7756a8b8f0cca2704cac1869373",
+      "attempt_id": "gpc-cloud-summary-regression-20261011-a1-windows-pr",
+      "kind": "ci_start",
+      "scope": "GPC/implicit-PR92/Windows-EXE",
+      "recovery_ref": "gpc-cloud-summary-regression-20261011-a1-windows-pr-verified-correction",
+      "cost": {
+        "tool_calls": 1,
+        "tokens": null,
+        "elapsed_seconds": null
+      }
+    },
+    {
+      "type": "remedy",
+      "event_id": "gpc-cloud-summary-regression-20261011-a1-developer-tools-verified-correction",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-cloud-summary-regression-20261011",
+      "at_utc": "2026-10-11T08:39:22.374005Z",
+      "scope": "GPC/implicit-PR92/Developer-Tools",
+      "signature": "support-summary-missing-signal-heading-CPU",
+      "reference": "gpc-cloud-summary-regression-20261011-a1-developer-tools-verified-correction",
+      "kind": "code_correction",
+      "detail": "Actual candidate 6d65482be7045243501644807a54f6e5f6d6e9ce; Root reviewed localized missing-signal list restoration and unchanged detailed explanations/tests; durable 360a08a5dfbb70bcef64ef40827c929e25932e04"
+    },
+    {
+      "type": "reserve",
+      "event_id": "gpc-cloud-summary-regression-20261011-a1-developer-tools",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-cloud-summary-regression-20261011",
+      "at_utc": "2026-10-11T08:39:22.374005Z",
+      "operation_key": "sha256:2d2ced7211db0f35f1a82e9590e298958b31b3d9fa95657a04474b1b9a9a49d7",
+      "attempt_id": "gpc-cloud-summary-regression-20261011-a1-developer-tools",
+      "kind": "ci_start",
+      "scope": "GPC/implicit-PR92/Developer-Tools",
+      "recovery_ref": "gpc-cloud-summary-regression-20261011-a1-developer-tools-verified-correction",
+      "cost": {
+        "tool_calls": 1,
+        "tokens": null,
+        "elapsed_seconds": null
+      }
+    },
+    {
+      "type": "reserve",
+      "event_id": "gpc-cloud-summary-regression-20261011-a1-evidence-analyzer",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-cloud-summary-regression-20261011",
+      "at_utc": "2026-10-11T08:39:22.374005Z",
+      "operation_key": "sha256:d81e6a9e20bdc85e0264845e352633defcae24ec3e7d099ef8176a192ce67fb1",
+      "attempt_id": "gpc-cloud-summary-regression-20261011-a1-evidence-analyzer",
+      "kind": "ci_start",
+      "scope": "GPC/implicit-PR92/E2E-Evidence-Analyzer",
+      "recovery_ref": null,
+      "cost": {
+        "tool_calls": 1,
+        "tokens": null,
+        "elapsed_seconds": null
+      }
+    },
+    {
+      "type": "reserve",
+      "event_id": "gpc-cloud-summary-regression-20261011-a1-supply-chain-smoke",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-cloud-summary-regression-20261011",
+      "at_utc": "2026-10-11T08:39:22.374005Z",
+      "operation_key": "sha256:de081afabe8df6998e4a720a778cfb8fd0d41537546f3b1e612265eccc1b8889",
+      "attempt_id": "gpc-cloud-summary-regression-20261011-a1-supply-chain-smoke",
+      "kind": "ci_start",
+      "scope": "GPC/implicit-PR92/Supply-Chain-Smoke",
+      "recovery_ref": null,
+      "cost": {
+        "tool_calls": 1,
+        "tokens": null,
+        "elapsed_seconds": null
+      }
+    },
+    {
+      "type": "reserve",
+      "event_id": "gpc-cloud-summary-regression-20261011-a1-cdc-policy",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-cloud-summary-regression-20261011",
+      "at_utc": "2026-10-11T08:39:22.374005Z",
+      "operation_key": "sha256:5c21ffbb31c460518860ff6a18065678ff3cdb52f37e0c1de5f172ac8037c8f6",
+      "attempt_id": "gpc-cloud-summary-regression-20261011-a1-cdc-policy",
+      "kind": "ci_start",
+      "scope": "GPC/implicit-PR92/CDC-Policy-Validation",
+      "recovery_ref": null,
+      "cost": {
+        "tool_calls": 1,
+        "tokens": null,
+        "elapsed_seconds": null
+      }
     }
   ],
   "policy": {
@@ -3374,7 +3483,7 @@
     "provider_max_age_seconds": 300,
     "task_limits": {
       "agent_starts": 68,
-      "ci_starts": 13,
+      "ci_starts": 17,
       "compute_starts": null
     },
     "wake_limits": {
@@ -3383,7 +3492,7 @@
       "tool_calls": 80
     }
   },
-  "policy_digest": "sha256:a9552cfe843e2c4b35e33d9607c7730d383b813bffe31c7549093e84ed061b93",
+  "policy_digest": "sha256:13246c162bf945642ba66d16292e8cb06f7149561e2dda88548298fa7fad8e8c",
   "schema": "budget-ledger/v1",
   "task_id": "g-pc-health-check-0.17.0-pre-integration",
   "wake_ids": [

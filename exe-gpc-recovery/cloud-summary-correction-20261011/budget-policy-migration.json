@@ -1,0 +1,49 @@
+{
+  "schema": "owner-authorized-budget-policy-migration/v1",
+  "at_utc": "2026-10-11T08:39:22.374005Z",
+  "owner_instruction": "Подними себе лимиты по необходимости; continue GPC through actual Codex Cloud compute to EXE",
+  "old_policy": {
+    "actions_budget": "conserve",
+    "checkpoint_reserve": {
+      "tokens": 4000,
+      "tool_calls": 8
+    },
+    "max_parallel_agents": 4,
+    "provider_max_age_seconds": 300,
+    "task_limits": {
+      "agent_starts": 68,
+      "ci_starts": 13,
+      "compute_starts": null
+    },
+    "wake_limits": {
+      "compute_starts": 6,
+      "status_polls": null,
+      "tool_calls": 80
+    }
+  },
+  "new_policy": {
+    "actions_budget": "conserve",
+    "checkpoint_reserve": {
+      "tokens": 4000,
+      "tool_calls": 8
+    },
+    "max_parallel_agents": 4,
+    "provider_max_age_seconds": 300,
+    "task_limits": {
+      "agent_starts": 68,
+      "ci_starts": 17,
+      "compute_starts": null
+    },
+    "wake_limits": {
+      "compute_starts": 6,
+      "status_polls": null,
+      "tool_calls": 80
+    }
+  },
+  "old_policy_digest": "sha256:a9552cfe843e2c4b35e33d9607c7730d383b813bffe31c7549093e84ed061b93",
+  "new_policy_digest": "sha256:13246c162bf945642ba66d16292e8cb06f7149561e2dda88548298fa7fad8e8c",
+  "reason": "Five required implicit PR checks after genuine Windows regression correction plus one eventual exact-source artifact build; CI charges11 remain consumed",
+  "all_prior_events_preserved": true,
+  "provider_quota_restored": false,
+  "original_unknown_charges_preserved": true
+}
