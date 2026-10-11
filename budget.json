@@ -3255,6 +3255,113 @@
         "tokens": null,
         "elapsed_seconds": null
       }
+    },
+    {
+      "type": "outcome",
+      "event_id": "gpc-cloud-managed-integration-36114-20261011-a1-compute-terminal",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-cloud-managed-integration-20261011",
+      "at_utc": "2026-10-11T08:29:58.891299Z",
+      "reservation_id": "gpc-cloud-managed-integration-36114-20261011-a1-compute",
+      "status": "succeeded",
+      "usage": {
+        "tokens": null,
+        "elapsed_seconds": 139.33424075
+      },
+      "failure": null
+    },
+    {
+      "type": "outcome",
+      "event_id": "gpc-cloud-managed-integration-36114-20261011-a1-windows-pr-terminal",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-cloud-managed-integration-20261011",
+      "at_utc": "2026-10-11T08:29:58.891299Z",
+      "reservation_id": "gpc-cloud-managed-integration-36114-20261011-a1-windows-pr",
+      "status": "failed",
+      "usage": {
+        "tokens": null,
+        "elapsed_seconds": 73.0
+      },
+      "failure": {
+        "signature": "support-summary-missing-signal-heading-CPU",
+        "category": "code"
+      }
+    },
+    {
+      "type": "outcome",
+      "event_id": "gpc-cloud-managed-integration-36114-20261011-a1-developer-tools-terminal",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-cloud-managed-integration-20261011",
+      "at_utc": "2026-10-11T08:29:58.891299Z",
+      "reservation_id": "gpc-cloud-managed-integration-36114-20261011-a1-developer-tools",
+      "status": "failed",
+      "usage": {
+        "tokens": null,
+        "elapsed_seconds": 72.0
+      },
+      "failure": {
+        "signature": "support-summary-missing-signal-heading-CPU",
+        "category": "code"
+      }
+    },
+    {
+      "type": "outcome",
+      "event_id": "gpc-cloud-managed-integration-36114-20261011-a1-evidence-analyzer-terminal",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-cloud-managed-integration-20261011",
+      "at_utc": "2026-10-11T08:29:58.891299Z",
+      "reservation_id": "gpc-cloud-managed-integration-36114-20261011-a1-evidence-analyzer",
+      "status": "succeeded",
+      "usage": {
+        "tokens": null,
+        "elapsed_seconds": 19.0
+      },
+      "failure": null
+    },
+    {
+      "type": "outcome",
+      "event_id": "gpc-cloud-managed-integration-36114-20261011-a1-supply-chain-smoke-terminal",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-cloud-managed-integration-20261011",
+      "at_utc": "2026-10-11T08:29:58.891299Z",
+      "reservation_id": "gpc-cloud-managed-integration-36114-20261011-a1-supply-chain-smoke",
+      "status": "succeeded",
+      "usage": {
+        "tokens": null,
+        "elapsed_seconds": 32.0
+      },
+      "failure": null
+    },
+    {
+      "type": "outcome",
+      "event_id": "gpc-cloud-managed-integration-36114-20261011-a1-cdc-policy-terminal",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-cloud-managed-integration-20261011",
+      "at_utc": "2026-10-11T08:29:58.891299Z",
+      "reservation_id": "gpc-cloud-managed-integration-36114-20261011-a1-cdc-policy",
+      "status": "succeeded",
+      "usage": {
+        "tokens": null,
+        "elapsed_seconds": 10.0
+      },
+      "failure": null
+    },
+    {
+      "type": "reserve",
+      "event_id": "gpc-cloud-summary-regression-20261011-a1-compute",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-cloud-summary-regression-20261011",
+      "at_utc": "2026-10-11T08:29:58.891299Z",
+      "operation_key": "sha256:d6debb9f72fc02d0633c8c35ccb9418bfd2a8eeb41ed267ffc8c2c2c37bc76dd",
+      "attempt_id": "gpc-cloud-summary-regression-20261011-a1",
+      "kind": "compute_start",
+      "scope": "GPC/Cloud/support-summary-compatibility-correction",
+      "recovery_ref": null,
+      "cost": {
+        "tool_calls": 1,
+        "tokens": null,
+        "elapsed_seconds": null
+      }
     }
   ],
   "policy": {
@@ -3308,6 +3415,7 @@
     "gpc-no-data-20261010",
     "gpc-forward-integration-20261011",
     "gpc-official-cloud-setup-20261011",
-    "gpc-cloud-managed-integration-20261011"
+    "gpc-cloud-managed-integration-20261011",
+    "gpc-cloud-summary-regression-20261011"
   ]
 }

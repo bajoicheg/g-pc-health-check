@@ -1,0 +1,85 @@
+{
+  "schema": "gpc-cloud-correction-request/v1",
+  "attempt_id": "gpc-cloud-summary-regression-20261011-a1",
+  "prepared_at_utc": "2026-10-11T08:29:58.891299Z",
+  "repository": "bajoicheg/g-pc-health-check",
+  "source_ref": "refs/heads/design/0.17.0-security-posture",
+  "base_sha": "36114fa91f12a5e91b23ce46ba5cbb031fa7e06f",
+  "coordination_sha": "17f37fce58852b7c1cace2c4dc489bdff978aece",
+  "coordination_generation": 33,
+  "budget_reservation": "gpc-cloud-summary-regression-20261011-a1-compute",
+  "state": "PREPARED_NOT_SUBMITTED",
+  "scope": [
+    "src/G.PcHealthCheck/SupportSummary.cs"
+  ],
+  "failed_required_checks": [
+    {
+      "id": 38124081079,
+      "name": "CDC Policy Validation",
+      "head_sha": "36114fa91f12a5e91b23ce46ba5cbb031fa7e06f",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-11T08:14:01Z",
+      "updated_at": "2026-10-11T08:14:11Z",
+      "html_url": "https://github.com/bajoicheg/g-pc-health-check/actions/runs/38124081079"
+    },
+    {
+      "id": 38124081047,
+      "name": "E2E Evidence Analyzer",
+      "head_sha": "36114fa91f12a5e91b23ce46ba5cbb031fa7e06f",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-11T08:14:01Z",
+      "updated_at": "2026-10-11T08:14:20Z",
+      "html_url": "https://github.com/bajoicheg/g-pc-health-check/actions/runs/38124081047"
+    },
+    {
+      "id": 38124081044,
+      "name": "Supply Chain Smoke",
+      "head_sha": "36114fa91f12a5e91b23ce46ba5cbb031fa7e06f",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-11T08:14:01Z",
+      "updated_at": "2026-10-11T08:14:33Z",
+      "html_url": "https://github.com/bajoicheg/g-pc-health-check/actions/runs/38124081044"
+    },
+    {
+      "id": 38124081046,
+      "name": "Developer Tools",
+      "head_sha": "36114fa91f12a5e91b23ce46ba5cbb031fa7e06f",
+      "status": "completed",
+      "conclusion": "failure",
+      "created_at": "2026-10-11T08:14:01Z",
+      "updated_at": "2026-10-11T08:15:13Z",
+      "html_url": "https://github.com/bajoicheg/g-pc-health-check/actions/runs/38124081046"
+    },
+    {
+      "id": 38124081075,
+      "name": "Windows EXE",
+      "head_sha": "36114fa91f12a5e91b23ce46ba5cbb031fa7e06f",
+      "status": "completed",
+      "conclusion": "failure",
+      "created_at": "2026-10-11T08:14:01Z",
+      "updated_at": "2026-10-11T08:15:14Z",
+      "html_url": "https://github.com/bajoicheg/g-pc-health-check/actions/runs/38124081075"
+    }
+  ],
+  "failure_signature": "support-summary-missing-signal-heading-CPU",
+  "existing_RED_test": "CoverageRegressionSelfTest: support summary exposes missing CPU (21/22 on two real Windows jobs)",
+  "correction": "Restore localized Main.System.MissingSignals header and missing-signal list before existing detailed TechnicalEvidence.Format. Retain detailed explanation and unchanged selftests.",
+  "quality": "FAST: one-file compatibility restoration; Root independently reviews actual diff before finish",
+  "publication": "NOT_AUTHORIZED until Root reviews actual candidate and reserves the five implicit CI starts with actual correction evidence",
+  "runtime_budget_seconds": 600,
+  "original_536_outcome": "UNKNOWN retired; preserved; no replay",
+  "forbidden": [
+    "manual workflow dispatch",
+    "test weakening",
+    "policy/package/lock/version changes",
+    "branding-target suppression",
+    "ordinary persistent lease",
+    "merge",
+    "release",
+    "watchdog",
+    "access expansion"
+  ]
+}

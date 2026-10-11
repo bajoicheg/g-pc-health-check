@@ -1,0 +1,235 @@
+{
+  "schema": "gpc-managed-publication-terminal-evidence/v1",
+  "archive_commit": "105856c51982c13aae4f78a4740f057177691fa8",
+  "archive_document_sha256": "5a97de95559ae5c17ee6bea290c62df6d1c27f9f5ec186f023e4bc9fefa8c809",
+  "git_subprocess": {
+    "argv": [
+      "git",
+      "-C",
+      "/workspace/g-pc-health-check",
+      "-c",
+      "[private command-scoped remote config]",
+      "-c",
+      "push.followTags=false",
+      "push",
+      "--porcelain",
+      "--force-with-lease=refs/heads/design/0.17.0-security-posture:325fe132be9ff49bc09b8bfb873f6d3e92df1c5e",
+      "cdc-isolated-944b7085dc81c61ef2930489716ef14b",
+      "36114fa91f12a5e91b23ce46ba5cbb031fa7e06f:refs/heads/design/0.17.0-security-posture"
+    ],
+    "stage": {
+      "duration_seconds": 1.277074,
+      "ended_moscow": "2026-10-11T11:13:57.199001+03:00",
+      "ended_utc": "2026-10-11T08:13:57.199001+00:00",
+      "returncode": 0,
+      "started_moscow": "2026-10-11T11:13:55.921949+03:00",
+      "started_utc": "2026-10-11T08:13:55.921949+00:00"
+    },
+    "streams": {
+      "stdout": {
+        "metadata": {
+          "byte_count": 161,
+          "original_byte_count": 161,
+          "original_sha256": "4c116c049eb7769f465e5f1493ebbd224f91ffa92a57b30334059b059028a09e",
+          "sha256": "4c116c049eb7769f465e5f1493ebbd224f91ffa92a57b30334059b059028a09e"
+        },
+        "text": "To https://github.com/bajoicheg/g-pc-health-check.git\n \t36114fa91f12a5e91b23ce46ba5cbb031fa7e06f:refs/heads/design/0.17.0-security-posture\t325fe13..36114fa\nDone\n"
+      },
+      "stderr": {
+        "metadata": {
+          "byte_count": 933,
+          "original_byte_count": 933,
+          "original_sha256": "b8ebf85d0363dedccaa2b151d5ab0c28d9ed2f63dddbd006165c8a0f6b96af9d",
+          "sha256": "b8ebf85d0363dedccaa2b151d5ab0c28d9ed2f63dddbd006165c8a0f6b96af9d"
+        },
+        "text": "hint: Support for <GIT_DIR>/info/grafts is deprecated\nhint: and will be removed in a future Git version.\nhint:\nhint: Please use \"git replace --convert-graft-file\"\nhint: to convert the grafts into replace refs.\nhint:\nhint: Turn this message off by running\nhint: \"git config set advice.graftFileDeprecated false\"\nhint: Support for <GIT_DIR>/info/grafts is deprecated\nhint: and will be removed in a future Git version.\nhint:\nhint: Please use \"git replace --convert-graft-file\"\nhint: to convert the grafts into replace refs.\nhint:\nhint: Turn this message off by running\nhint: \"git config set advice.graftFileDeprecated false\"\nhint: Support for <GIT_DIR>/info/grafts is deprecated\nhint: and will be removed in a future Git version.\nhint:\nhint: Please use \"git replace --convert-graft-file\"\nhint: to convert the grafts into replace refs.\nhint:\nhint: Turn this message off by running\nhint: \"git config set advice.graftFileDeprecated false\"\n"
+      }
+    }
+  },
+  "publication_attempt": {
+    "attempt_store_ref": "refs/heads/cdc/managed-host-publish-b8d2d082c91f5b6d9298314166cb08bf",
+    "attempts": {
+      "sha256:c5fe4f3fe37667c745d1b0552a027e39418e4f8ced6f745a3515aacf8f84f655": {
+        "attempt_id": "publication-attempt-89ae57e329a6abd22d9406ea8529dd168baa9d436b75544e",
+        "intended_integrated_head": "36114fa91f12a5e91b23ce46ba5cbb031fa7e06f",
+        "lane_id": "candidate36114",
+        "observed_shared_head": "325fe132be9ff49bc09b8bfb873f6d3e92df1c5e",
+        "operation_id": "sha256:c5fe4f3fe37667c745d1b0552a027e39418e4f8ced6f745a3515aacf8f84f655",
+        "prepared_at_utc": "2026-10-11T08:13:48.016195Z",
+        "remote_id": "sha256:e9c5798b2e5857d11563b10845ae993ed5b0e7b040ffd6611bdbd1a36aad08d3",
+        "resolved_at_utc": "2026-10-11T08:13:58.864252Z",
+        "result_commit": "36114fa91f12a5e91b23ce46ba5cbb031fa7e06f",
+        "shared_ref": "refs/heads/design/0.17.0-security-posture",
+        "status": "confirmed",
+        "submitted_at_utc": "2026-10-11T08:13:52.660589Z"
+      }
+    },
+    "remote_id": "sha256:e9c5798b2e5857d11563b10845ae993ed5b0e7b040ffd6611bdbd1a36aad08d3",
+    "schema": "project-lane-publication-attempts/v1",
+    "shared_ref": "refs/heads/design/0.17.0-security-posture"
+  },
+  "readback": {
+    "Windows": "NOT_RUN",
+    "budget_unchanged": true,
+    "coordination_commit": "17f37fce58852b7c1cace2c4dc489bdff978aece",
+    "final_response_gate": {
+      "allowed": true,
+      "authorizes_external_start": false,
+      "authorizes_merge": false,
+      "authorizes_product_write": false,
+      "authorizes_release": false,
+      "authorizes_takeover": false,
+      "final_response_allowed": true,
+      "reason": "verified_terminal_and_release_boundary",
+      "schema": "final-response-gate-result/v1"
+    },
+    "lease_guard": null,
+    "lease_owner": null,
+    "main_checkout_head": "325fe132be9ff49bc09b8bfb873f6d3e92df1c5e",
+    "new_EXE": false,
+    "original_claims_resolutions_retirements_unchanged": true,
+    "pool_assessment": {
+      "authorizes_merge": false,
+      "authorizes_release": false,
+      "authorizes_scheduler_mutation": false,
+      "authorizes_scope_expansion": false,
+      "authorizes_shared_branch_write": false,
+      "authorizes_user_approval": false,
+      "authorizes_worker_launch": false,
+      "blockers": [],
+      "complete": true,
+      "next_action": null,
+      "pool_id": "gpc-cloud-managed-integration-36114-20261011",
+      "runnable_task_ids": [],
+      "schema": "managed-executor-pool-assessment/v1",
+      "terminal_allowed": true
+    },
+    "pool_commit": "eabd17056d865c90579c6525263be89e2afec4f8",
+    "pool_state": {
+      "authorizes_merge": false,
+      "authorizes_release": false,
+      "authorizes_scheduler_mutation": false,
+      "authorizes_scope_expansion": false,
+      "authorizes_shared_branch_write": false,
+      "authorizes_user_approval": false,
+      "authorizes_worker_launch": false,
+      "base_sha": "325fe132be9ff49bc09b8bfb873f6d3e92df1c5e",
+      "change_id": "gpc-product-integration-36114",
+      "coordination_ref": "refs/heads/cdc/gpc-cloud-managed-integration-36114-20261011",
+      "coordination_store_id": "sha256:e9c5798b2e5857d11563b10845ae993ed5b0e7b040ffd6611bdbd1a36aad08d3",
+      "cost_consumed_units": 0,
+      "execution_mode": "sequential_fallback",
+      "integrator_id": "package-owned-managed-host-bridge",
+      "parent_invocation_id": "cloud-foreground:a64c5940-668d-4acc-8748-29f4cfa8ee0d",
+      "plan_digest": "sha256:5455695cbeb0f8b9ced0612efaf687feacaa7aec62758e99d1d9184106eca61d",
+      "pool_id": "gpc-cloud-managed-integration-36114-20261011",
+      "revision": 4,
+      "runtime_consumed_seconds": 139.33424075,
+      "schema": "managed-executor-pool-state/v1",
+      "tasks": [
+        {
+          "accepted_result_ref": "sha256:13808c6435c2dba99d198c1d95165b107c7e6bd3229e0dc6c3294bad1565e39e",
+          "active_attempt_id": null,
+          "attempt_ids": [
+            "gpc-cloud-managed-integration-36114-20261011-a1"
+          ],
+          "cost_units": 0,
+          "discarded": false,
+          "id": "candidate36114",
+          "integrated": true,
+          "reservation_token": null,
+          "runtime_seconds": 139.33424075,
+          "status": "succeeded"
+        }
+      ]
+    },
+    "publication": {
+      "conditional_update": true,
+      "evidence_ref": "git-cas:refs/heads/design/0.17.0-security-posture@36114fa91f12a5e91b23ce46ba5cbb031fa7e06f",
+      "force_push": false,
+      "integrated": true,
+      "integrated_head": "36114fa91f12a5e91b23ce46ba5cbb031fa7e06f",
+      "observed_shared_head": "325fe132be9ff49bc09b8bfb873f6d3e92df1c5e",
+      "operation_id": "sha256:c5fe4f3fe37667c745d1b0552a027e39418e4f8ced6f745a3515aacf8f84f655",
+      "publication_attempt_id": "publication-attempt-89ae57e329a6abd22d9406ea8529dd168baa9d436b75544e",
+      "publication_attempt_state": "confirmed",
+      "publication_attempt_store_ref": "refs/heads/cdc/managed-host-publish-b8d2d082c91f5b6d9298314166cb08bf",
+      "publication_remote_id": "sha256:e9c5798b2e5857d11563b10845ae993ed5b0e7b040ffd6611bdbd1a36aad08d3",
+      "publication_shared_ref": "refs/heads/design/0.17.0-security-posture",
+      "result_commit": "36114fa91f12a5e91b23ce46ba5cbb031fa7e06f"
+    },
+    "release_receipt": {
+      "lease_revision": "17f37fce58852b7c1cace2c4dc489bdff978aece",
+      "release": {
+        "at_utc": "2026-10-11T08:14:14.008215Z",
+        "checkpoint_ref": "git:refs/heads/design/0.17.0-security-posture@36114fa91f12a5e91b23ce46ba5cbb031fa7e06f",
+        "completion_reason": "scope_complete",
+        "external_reconciliation": "none",
+        "generation": 33,
+        "invocation_id": "managed-terminal:9b69317bd2504d9389190b998b52fc8c4141e512a26f80ded5d3cae6a671b7ac",
+        "owner_id": "476c17d5-05f0-4568-9a2d-6e5770340e72"
+      },
+      "schema": "execution-release-receipt/v1"
+    },
+    "schema": "gpc-managed-integration-independent-readback/v1",
+    "shared_checkpoint_binding": "Root will bind dedicated archive receipt per owner instruction; shared checkpoint not modified by Cloud caller",
+    "source_head": "36114fa91f12a5e91b23ce46ba5cbb031fa7e06f",
+    "source_ref": "refs/heads/design/0.17.0-security-posture",
+    "worker_head": "36114fa91f12a5e91b23ce46ba5cbb031fa7e06f"
+  },
+  "ci_runs": [
+    {
+      "id": 38124081079,
+      "name": "CDC Policy Validation",
+      "head_sha": "36114fa91f12a5e91b23ce46ba5cbb031fa7e06f",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-11T08:14:01Z",
+      "updated_at": "2026-10-11T08:14:11Z",
+      "html_url": "https://github.com/bajoicheg/g-pc-health-check/actions/runs/38124081079"
+    },
+    {
+      "id": 38124081047,
+      "name": "E2E Evidence Analyzer",
+      "head_sha": "36114fa91f12a5e91b23ce46ba5cbb031fa7e06f",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-11T08:14:01Z",
+      "updated_at": "2026-10-11T08:14:20Z",
+      "html_url": "https://github.com/bajoicheg/g-pc-health-check/actions/runs/38124081047"
+    },
+    {
+      "id": 38124081044,
+      "name": "Supply Chain Smoke",
+      "head_sha": "36114fa91f12a5e91b23ce46ba5cbb031fa7e06f",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-11T08:14:01Z",
+      "updated_at": "2026-10-11T08:14:33Z",
+      "html_url": "https://github.com/bajoicheg/g-pc-health-check/actions/runs/38124081044"
+    },
+    {
+      "id": 38124081046,
+      "name": "Developer Tools",
+      "head_sha": "36114fa91f12a5e91b23ce46ba5cbb031fa7e06f",
+      "status": "completed",
+      "conclusion": "failure",
+      "created_at": "2026-10-11T08:14:01Z",
+      "updated_at": "2026-10-11T08:15:13Z",
+      "html_url": "https://github.com/bajoicheg/g-pc-health-check/actions/runs/38124081046"
+    },
+    {
+      "id": 38124081075,
+      "name": "Windows EXE",
+      "head_sha": "36114fa91f12a5e91b23ce46ba5cbb031fa7e06f",
+      "status": "completed",
+      "conclusion": "failure",
+      "created_at": "2026-10-11T08:14:01Z",
+      "updated_at": "2026-10-11T08:15:14Z",
+      "html_url": "https://github.com/bajoicheg/g-pc-health-check/actions/runs/38124081075"
+    }
+  ],
+  "windows_failure": "source-build selftest exit101; Diagnostic completeness21/22; missing CPU summary heading",
+  "root_independent_verification": true,
+  "original_536_status": "UNKNOWN; this distinct publication does not resolve original operation"
+}
