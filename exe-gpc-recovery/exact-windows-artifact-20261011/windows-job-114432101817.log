@@ -1,0 +1,733 @@
+﻿2026-10-11T08:56:37.9476641Z Current runner version: '2.337.0'
+2026-10-11T08:56:37.9501846Z ##[group]Runner Image Provisioner
+2026-10-11T08:56:37.9502636Z Hosted Compute Agent
+2026-10-11T08:56:37.9503324Z Version: 20260901.588
+2026-10-11T08:56:37.9503918Z Commit: f88ec8081b781fac6c440065ac7ff9e710ce3d0b
+2026-10-11T08:56:37.9504606Z Build Date: 2026-09-01T19:56:44Z
+2026-10-11T08:56:37.9505252Z Worker ID: {935f8eb3-0071-47df-ab20-4c81f1a19175}
+2026-10-11T08:56:37.9506017Z Azure Region: westcentralus
+2026-10-11T08:56:37.9506606Z ##[endgroup]
+2026-10-11T08:56:37.9507986Z ##[group]Operating System
+2026-10-11T08:56:37.9508634Z Microsoft Windows Server 2025
+2026-10-11T08:56:37.9509230Z 10.0.26100
+2026-10-11T08:56:37.9509716Z Datacenter
+2026-10-11T08:56:37.9510215Z ##[endgroup]
+2026-10-11T08:56:37.9510721Z ##[group]Runner Image
+2026-10-11T08:56:37.9511272Z Image: windows-2025-vs2026
+2026-10-11T08:56:37.9511897Z Version: 20260925.250.1
+2026-10-11T08:56:37.9513278Z Included Software: https://github.com/actions/runner-images/blob/win25-vs2026/20260925.250/images/windows/Windows2025-VS2026-Readme.md
+2026-10-11T08:56:37.9514993Z Image Release: https://github.com/actions/runner-images/releases/tag/win25-vs2026%2F20260925.250
+2026-10-11T08:56:37.9516370Z ##[endgroup]
+2026-10-11T08:56:37.9517847Z ##[group]GITHUB_TOKEN Permissions
+2026-10-11T08:56:37.9519922Z Contents: read
+2026-10-11T08:56:37.9520520Z Metadata: read
+2026-10-11T08:56:37.9521037Z ##[endgroup]
+2026-10-11T08:56:37.9523067Z Secret source: Actions
+2026-10-11T08:56:37.9523940Z Cache mode: write
+2026-10-11T08:56:37.9524821Z Prepare workflow directory
+2026-10-11T08:56:37.9980034Z Prepare all required actions
+2026-10-11T08:56:38.0027493Z Getting action download info
+2026-10-11T08:56:38.2614433Z Download action repository 'actions/checkout@11d5960a326750d5838078e36cf38b85af677262' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-11T08:56:38.3941462Z Download action repository 'actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9' (SHA:67a3573c9a986a3f9c594539f4ab511d57bb3ce9)
+2026-10-11T08:56:38.9820113Z Download action repository 'actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-11T08:56:39.3484756Z Complete job name: build
+2026-10-11T08:56:39.5018320Z ##[group]Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+2026-10-11T08:56:39.5019535Z with:
+2026-10-11T08:56:39.5019954Z   persist-credentials: false
+2026-10-11T08:56:39.5020437Z   fetch-depth: 1
+2026-10-11T08:56:39.5020872Z   repository: bajoicheg/g-pc-health-check
+2026-10-11T08:56:39.5025232Z   token: ***
+2026-10-11T08:56:39.5025628Z   ssh-strict: true
+2026-10-11T08:56:39.5026023Z   ssh-user: git
+2026-10-11T08:56:39.5026394Z   clean: true
+2026-10-11T08:56:39.5026798Z   sparse-checkout-cone-mode: true
+2026-10-11T08:56:39.5027334Z   fetch-tags: false
+2026-10-11T08:56:39.5027738Z   show-progress: true
+2026-10-11T08:56:39.5028156Z   lfs: false
+2026-10-11T08:56:39.5028539Z   submodules: false
+2026-10-11T08:56:39.5028965Z   set-safe-directory: true
+2026-10-11T08:56:39.5029429Z   allow-unsafe-pr-checkout: false
+2026-10-11T08:56:39.5030147Z env:
+2026-10-11T08:56:39.5030519Z   DOTNET_NOLOGO: true
+2026-10-11T08:56:39.5030993Z   DOTNET_CLI_TELEMETRY_OPTOUT: true
+2026-10-11T08:56:39.5031462Z ##[endgroup]
+2026-10-11T08:56:39.6432187Z Syncing repository: bajoicheg/g-pc-health-check
+2026-10-11T08:56:39.6433986Z ##[group]Getting Git version info
+2026-10-11T08:56:39.6434714Z Working directory is 'D:\a\g-pc-health-check\g-pc-health-check'
+2026-10-11T08:56:39.7742893Z [command]"C:\Program Files\Git\bin\git.exe" version
+2026-10-11T08:56:40.1536433Z git version 2.55.0.windows.5
+2026-10-11T08:56:40.1600041Z ##[endgroup]
+2026-10-11T08:56:40.1634463Z Temporarily overriding HOME='D:\a\_temp\bd1c951d-aec5-4bc2-a86d-1538180d6a28' before making global git config changes
+2026-10-11T08:56:40.1638142Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-11T08:56:40.1649057Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\g-pc-health-check\g-pc-health-check
+2026-10-11T08:56:40.2408083Z Deleting the contents of 'D:\a\g-pc-health-check\g-pc-health-check'
+2026-10-11T08:56:40.2414752Z ##[group]Initializing the repository
+2026-10-11T08:56:40.2425013Z [command]"C:\Program Files\Git\bin\git.exe" init D:\a\g-pc-health-check\g-pc-health-check
+2026-10-11T08:56:40.3434956Z Initialized empty Git repository in D:/a/g-pc-health-check/g-pc-health-check/.git/
+2026-10-11T08:56:40.3501216Z [command]"C:\Program Files\Git\bin\git.exe" remote add origin https://github.com/bajoicheg/g-pc-health-check
+2026-10-11T08:56:40.4248012Z ##[endgroup]
+2026-10-11T08:56:40.4249699Z ##[group]Disabling automatic garbage collection
+2026-10-11T08:56:40.4260169Z [command]"C:\Program Files\Git\bin\git.exe" config --local gc.auto 0
+2026-10-11T08:56:40.4602411Z ##[endgroup]
+2026-10-11T08:56:40.4604022Z ##[group]Setting up auth
+2026-10-11T08:56:40.4615912Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-10-11T08:56:40.5099602Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-10-11T08:56:41.9454329Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-11T08:56:41.9759721Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-10-11T08:56:42.5014611Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-11T08:56:42.5335058Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-10-11T08:56:43.0905044Z [command]"C:\Program Files\Git\bin\git.exe" config --local http.https://github.com/.extraheader "AUTHORIZATION: basic ***"
+2026-10-11T08:56:43.1204958Z ##[endgroup]
+2026-10-11T08:56:43.1208084Z ##[group]Fetching the repository
+2026-10-11T08:56:43.1217874Z [command]"C:\Program Files\Git\bin\git.exe" -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +6d65482be7045243501644807a54f6e5f6d6e9ce:refs/remotes/origin/design/0.17.0-security-posture
+2026-10-11T08:56:44.4690747Z From https://github.com/bajoicheg/g-pc-health-check
+2026-10-11T08:56:44.4692594Z  * [new ref]         6d65482be7045243501644807a54f6e5f6d6e9ce -> origin/design/0.17.0-security-posture
+2026-10-11T08:56:44.4733489Z ##[endgroup]
+2026-10-11T08:56:44.4734121Z ##[group]Determining the checkout info
+2026-10-11T08:56:44.4736378Z ##[endgroup]
+2026-10-11T08:56:44.4750613Z [command]"C:\Program Files\Git\bin\git.exe" sparse-checkout disable
+2026-10-11T08:56:44.5206626Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset-all extensions.worktreeConfig
+2026-10-11T08:56:44.5526494Z ##[group]Checking out the ref
+2026-10-11T08:56:44.5527309Z [command]"C:\Program Files\Git\bin\git.exe" checkout --progress --force -B design/0.17.0-security-posture refs/remotes/origin/design/0.17.0-security-posture
+2026-10-11T08:56:44.8326854Z Switched to a new branch 'design/0.17.0-security-posture'
+2026-10-11T08:56:44.8394982Z branch 'design/0.17.0-security-posture' set up to track 'origin/design/0.17.0-security-posture'.
+2026-10-11T08:56:44.8442508Z ##[endgroup]
+2026-10-11T08:56:44.8850852Z [command]"C:\Program Files\Git\bin\git.exe" log -1 --format=%H
+2026-10-11T08:56:44.9108881Z 6d65482be7045243501644807a54f6e5f6d6e9ce
+2026-10-11T08:56:44.9145843Z ##[group]Removing auth
+2026-10-11T08:56:44.9153521Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-10-11T08:56:44.9432536Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-10-11T08:56:45.4835741Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-11T08:56:45.5082719Z http.https://github.com/.extraheader
+2026-10-11T08:56:45.5121957Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset-all http.https://github.com/.extraheader
+2026-10-11T08:56:45.5415658Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-10-11T08:56:46.0760445Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-11T08:56:46.1075624Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-10-11T08:56:46.6405110Z ##[endgroup]
+2026-10-11T08:56:46.6776264Z ##[group]Run $ErrorActionPreference = 'Stop'
+2026-10-11T08:56:46.6776737Z [36;1m$ErrorActionPreference = 'Stop'[0m
+2026-10-11T08:56:46.6777135Z [36;1m$scripts = Get-ChildItem tools/e2e -Filter *.ps1 -File[0m
+2026-10-11T08:56:46.6777722Z [36;1mif ($scripts.Count -lt 5) { throw "Expected at least 5 E2E PowerShell tools, found $($scripts.Count)." }[0m
+2026-10-11T08:56:46.6778210Z [36;1m[0m
+2026-10-11T08:56:46.6778408Z [36;1mforeach ($script in $scripts) {[0m
+2026-10-11T08:56:46.6778665Z [36;1m  $tokens = $null[0m
+2026-10-11T08:56:46.6778889Z [36;1m  $parseErrors = $null[0m
+2026-10-11T08:56:46.6779442Z [36;1m  [void][System.Management.Automation.Language.Parser]::ParseFile($script.FullName, [ref]$tokens, [ref]$parseErrors)[0m
+2026-10-11T08:56:46.6780023Z [36;1m  if (@($parseErrors).Count -gt 0) {[0m
+2026-10-11T08:56:46.6780644Z [36;1m    $details = @($parseErrors) | ForEach-Object { "$($_.Extent.StartLineNumber):$($_.Extent.StartColumnNumber) $($_.Message)" }[0m
+2026-10-11T08:56:46.6781334Z [36;1m    throw "PowerShell parse errors in $($script.Name): $($details -join ' | ')"[0m
+2026-10-11T08:56:46.6781717Z [36;1m  }[0m
+2026-10-11T08:56:46.6781879Z [36;1m}[0m
+2026-10-11T08:56:46.6782194Z [36;1mWrite-Host "PowerShell parser gate passed for $($scripts.Count) scripts."[0m
+2026-10-11T08:56:46.6782574Z [36;1m[0m
+2026-10-11T08:56:46.6782731Z [36;1mtry {[0m
+2026-10-11T08:56:46.6783116Z [36;1m  & pwsh -NoLogo -NoProfile -NonInteractive -File .\tools\e2e\Prepare-CleanTempScenario.ps1[0m
+2026-10-11T08:56:46.6783813Z [36;1m  if ($LASTEXITCODE -ne 0) { throw "Prepare-CleanTempScenario failed with exit code $LASTEXITCODE" }[0m
+2026-10-11T08:56:46.6784271Z [36;1m[0m
+2026-10-11T08:56:46.6784495Z [36;1m  $root = Join-Path $env:TEMP 'GPcHealthCheck-E2E'[0m
+2026-10-11T08:56:46.6784838Z [36;1m  $old = Join-Path $root 'old-delete-me.txt'[0m
+2026-10-11T08:56:46.6785168Z [36;1m  $fresh = Join-Path $root 'fresh-must-stay.txt'[0m
+2026-10-11T08:56:46.6785509Z [36;1m  $manifest = Join-Path $root 'e2e-manifest.json'[0m
+2026-10-11T08:56:46.6785962Z [36;1m  if (-not (Test-Path $old) -or -not (Test-Path $fresh) -or -not (Test-Path $manifest)) {[0m
+2026-10-11T08:56:46.6786500Z [36;1m    throw 'Prepare scenario did not create all required sentinels/manifest.'[0m
+2026-10-11T08:56:46.6786880Z [36;1m  }[0m
+2026-10-11T08:56:46.6787048Z [36;1m[0m
+2026-10-11T08:56:46.6787406Z [36;1m  # Simulate only the observable effect of successful CleanTemp on our dedicated old sentinel.[0m
+2026-10-11T08:56:46.6788491Z [36;1m  # The real application's remediation is deliberately not invoked against the shared runner Temp.[0m
+2026-10-11T08:56:46.6789015Z [36;1m  Remove-Item -LiteralPath $old -Force[0m
+2026-10-11T08:56:46.6789489Z [36;1m  & pwsh -NoLogo -NoProfile -NonInteractive -File .\tools\e2e\Verify-CleanTempScenario.ps1[0m
+2026-10-11T08:56:46.6790442Z [36;1m  if ($LASTEXITCODE -ne 0) { throw "Verify-CleanTempScenario failed with exit code $LASTEXITCODE" }[0m
+2026-10-11T08:56:46.6790934Z [36;1m[0m
+2026-10-11T08:56:46.6791208Z [36;1m  $evidenceOut = Join-Path $env:RUNNER_TEMP 'gpchc-e2e-evidence'[0m
+2026-10-11T08:56:46.6791685Z [36;1m  New-Item -ItemType Directory -Force -Path $evidenceOut | Out-Null[0m
+2026-10-11T08:56:46.6792416Z [36;1m  & pwsh -NoLogo -NoProfile -NonInteractive -File .\tools\e2e\Collect-E2EEvidence.ps1 -OutputDirectory $evidenceOut -LatestReportFiles 2[0m
+2026-10-11T08:56:46.6793215Z [36;1m  if ($LASTEXITCODE -ne 0) { throw "Collect-E2EEvidence failed with exit code $LASTEXITCODE" }[0m
+2026-10-11T08:56:46.6793880Z [36;1m  $zip = Get-ChildItem $evidenceOut -Filter 'G-PC-Health-E2E-*.zip' -File | Select-Object -First 1[0m
+2026-10-11T08:56:46.6794561Z [36;1m  if ($null -eq $zip -or $zip.Length -le 0) { throw 'Evidence collector did not create a non-empty ZIP.' }[0m
+2026-10-11T08:56:46.6795019Z [36;1m}[0m
+2026-10-11T08:56:46.6795192Z [36;1mfinally {[0m
+2026-10-11T08:56:46.6797062Z [36;1m  & pwsh -NoLogo -NoProfile -NonInteractive -File .\tools\e2e\Cleanup-E2EScenario.ps1[0m
+2026-10-11T08:56:46.6797779Z [36;1m  if ($LASTEXITCODE -ne 0) { throw "Cleanup-E2EScenario failed with exit code $LASTEXITCODE" }[0m
+2026-10-11T08:56:46.6798482Z [36;1m  if (Test-Path (Join-Path $env:TEMP 'GPcHealthCheck-E2E')) { throw 'E2E Temp root remains after cleanup.' }[0m
+2026-10-11T08:56:46.6798974Z [36;1m}[0m
+2026-10-11T08:56:46.6799138Z [36;1m[0m
+2026-10-11T08:56:46.6799378Z [36;1mWrite-Host 'E2E PowerShell tools smoke passed.'[0m
+2026-10-11T08:56:46.7359125Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-11T08:56:46.7359521Z env:
+2026-10-11T08:56:46.7359725Z   DOTNET_NOLOGO: true
+2026-10-11T08:56:46.7359965Z   DOTNET_CLI_TELEMETRY_OPTOUT: true
+2026-10-11T08:56:46.7360234Z ##[endgroup]
+2026-10-11T08:56:47.2520606Z PowerShell parser gate passed for 5 scripts.
+2026-10-11T08:56:47.7910840Z 
+2026-10-11T08:56:47.7921600Z G PC Health — CleanTemp E2E prepared
+2026-10-11T08:56:47.7938871Z Root:      C:\Users\RUNNER~1\AppData\Local\Temp\GPcHealthCheck-E2E
+2026-10-11T08:56:47.7944834Z OLD:       C:\Users\RUNNER~1\AppData\Local\Temp\GPcHealthCheck-E2E\old-delete-me.txt  (must be deleted)
+2026-10-11T08:56:47.7952125Z FRESH:     C:\Users\RUNNER~1\AppData\Local\Temp\GPcHealthCheck-E2E\fresh-must-stay.txt  (must remain unchanged)
+2026-10-11T08:56:47.7959395Z Manifest:  C:\Users\RUNNER~1\AppData\Local\Temp\GPcHealthCheck-E2E\e2e-manifest.json
+2026-10-11T08:56:47.7966057Z 
+2026-10-11T08:56:47.7972004Z Next: run G-PC-Health.exe as a normal user, select CleanTemp, confirm the action (no UAC), then run Verify-CleanTempScenario.ps1.
+2026-10-11T08:56:48.3194568Z 
+2026-10-11T08:56:48.3200924Z G PC Health — CleanTemp E2E verification
+2026-10-11T08:56:48.3224019Z [PASS] Old Temp sentinel deleted
+2026-10-11T08:56:48.3230898Z [PASS] Fresh Temp sentinel preserved
+2026-10-11T08:56:48.3247175Z Evidence: C:\Users\RUNNER~1\AppData\Local\Temp\GPcHealthCheck-E2E\e2e-verification.json
+2026-10-11T08:56:48.3253944Z 
+2026-10-11T08:56:49.3172089Z 
+2026-10-11T08:56:49.3182251Z E2E evidence bundle created.
+2026-10-11T08:56:49.3188674Z ZIP: D:\a\_temp\gpchc-e2e-evidence\G-PC-Health-E2E-runnervmfi6oq-20261011_085648.zip
+2026-10-11T08:56:49.3194200Z 
+2026-10-11T08:56:49.3229466Z D:\a\_temp\gpchc-e2e-evidence\G-PC-Health-E2E-runnervmfi6oq-20261011_085648.zip
+2026-10-11T08:56:49.8195240Z Removed: C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-E2E
+2026-10-11T08:56:49.8208457Z G PC Health E2E test data cleanup completed.
+2026-10-11T08:56:49.8688654Z E2E PowerShell tools smoke passed.
+2026-10-11T08:56:49.9357933Z ##[group]Run $targets = @(
+2026-10-11T08:56:49.9358269Z [36;1m$targets = @([0m
+2026-10-11T08:56:49.9358527Z [36;1m  '.\tools\ci\Create-PilotBundle.ps1',[0m
+2026-10-11T08:56:49.9358845Z [36;1m  '.\tools\ci\Test-PortableWorker.ps1',[0m
+2026-10-11T08:56:49.9359367Z [36;1m  '.\tools\branding\Generate-BrandAssets.ps1'[0m
+2026-10-11T08:56:49.9359642Z [36;1m)[0m
+2026-10-11T08:56:49.9359824Z [36;1mforeach ($target in $targets) {[0m
+2026-10-11T08:56:49.9360071Z [36;1m  $tokens = $null[0m
+2026-10-11T08:56:49.9360285Z [36;1m  $parseErrors = $null[0m
+2026-10-11T08:56:49.9360851Z [36;1m  [void][System.Management.Automation.Language.Parser]::ParseFile((Resolve-Path $target).Path, [ref]$tokens, [ref]$parseErrors)[0m
+2026-10-11T08:56:49.9361472Z [36;1m  if (@($parseErrors).Count -gt 0) {[0m
+2026-10-11T08:56:49.9362029Z [36;1m    $details = @($parseErrors) | ForEach-Object { "$($_.Extent.StartLineNumber):$($_.Extent.StartColumnNumber) $($_.Message)" }[0m
+2026-10-11T08:56:49.9362711Z [36;1m    throw "PowerShell parse errors in ${target}: $($details -join ' | ')"[0m
+2026-10-11T08:56:49.9363075Z [36;1m  }[0m
+2026-10-11T08:56:49.9363236Z [36;1m}[0m
+2026-10-11T08:56:49.9430853Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-11T08:56:49.9431212Z env:
+2026-10-11T08:56:49.9431381Z   DOTNET_NOLOGO: true
+2026-10-11T08:56:49.9431983Z   DOTNET_CLI_TELEMETRY_OPTOUT: true
+2026-10-11T08:56:49.9432276Z ##[endgroup]
+2026-10-11T08:56:50.6225964Z ##[group]Run $ErrorActionPreference = 'Stop'
+2026-10-11T08:56:50.6226361Z [36;1m$ErrorActionPreference = 'Stop'[0m
+2026-10-11T08:56:50.6226683Z [36;1m.\tools\branding\Generate-BrandAssets.ps1[0m
+2026-10-11T08:56:50.6227040Z [36;1m$shield = '.\src\G.PcHealthCheck\assets\g-shield.png'[0m
+2026-10-11T08:56:50.6227399Z [36;1m$icon = '.\src\G.PcHealthCheck\assets\gpchc.ico'[0m
+2026-10-11T08:56:50.6227860Z [36;1m$shieldHash = (Get-FileHash $shield -Algorithm SHA256).Hash.ToLowerInvariant()[0m
+2026-10-11T08:56:50.6228451Z [36;1mif ($shieldHash -ne '5157c5cf83a6cfddb74c51701a693e401e36b400812505a1e46e15d760c72877') {[0m
+2026-10-11T08:56:50.6228992Z [36;1m  throw "Corporate shield provenance mismatch: $shieldHash"[0m
+2026-10-11T08:56:50.6229312Z [36;1m}[0m
+2026-10-11T08:56:50.6229708Z [36;1mif ((Get-Item $icon).Length -lt 4096) { throw 'Generated application icon is unexpectedly small.' }[0m
+2026-10-11T08:56:50.6230288Z [36;1mWrite-Host "Corporate G-switcher shield verified: $shieldHash"[0m
+2026-10-11T08:56:50.6300136Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-11T08:56:50.6300504Z env:
+2026-10-11T08:56:50.6300679Z   DOTNET_NOLOGO: true
+2026-10-11T08:56:50.6300891Z   DOTNET_CLI_TELEMETRY_OPTOUT: true
+2026-10-11T08:56:50.6301124Z ##[endgroup]
+2026-10-11T08:56:53.1931157Z Corporate shield: 5157c5cf83a6cfddb74c51701a693e401e36b400812505a1e46e15d760c72877
+2026-10-11T08:56:53.1946691Z Green application icon: D:\a\g-pc-health-check\g-pc-health-check\src\G.PcHealthCheck\assets\gpchc.ico (105197 bytes)
+2026-10-11T08:56:53.1997812Z Corporate G-switcher shield verified: 5157c5cf83a6cfddb74c51701a693e401e36b400812505a1e46e15d760c72877
+2026-10-11T08:56:53.2771962Z ##[group]Run actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9
+2026-10-11T08:56:53.2772421Z with:
+2026-10-11T08:56:53.2772611Z   dotnet-version: 8.0.425
+2026-10-11T08:56:53.2772815Z   cache: false
+2026-10-11T08:56:53.2773022Z env:
+2026-10-11T08:56:53.2773181Z   DOTNET_NOLOGO: true
+2026-10-11T08:56:53.2773383Z   DOTNET_CLI_TELEMETRY_OPTOUT: true
+2026-10-11T08:56:53.2773611Z ##[endgroup]
+2026-10-11T08:56:53.4411563Z (node:2264) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-11T08:56:53.4412274Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-11T08:56:53.5271048Z [command]"C:\Program Files\PowerShell\7\pwsh.exe" -NoLogo -Sta -NoProfile -NonInteractive -ExecutionPolicy Unrestricted -Command & 'D:\a\_actions\actions\setup-dotnet\67a3573c9a986a3f9c594539f4ab511d57bb3ce9\externals\install-dotnet.ps1' -SkipNonVersionedFiles -Runtime dotnet -Channel LTS
+2026-10-11T08:56:55.3755318Z dotnet-install: .NET Core Runtime with version '10.0.12' is already installed.
+2026-10-11T08:56:55.5762891Z [command]"C:\Program Files\PowerShell\7\pwsh.exe" -NoLogo -Sta -NoProfile -NonInteractive -ExecutionPolicy Unrestricted -Command & 'D:\a\_actions\actions\setup-dotnet\67a3573c9a986a3f9c594539f4ab511d57bb3ce9\externals\install-dotnet.ps1' -SkipNonVersionedFiles -Version 8.0.425
+2026-10-11T08:56:56.3462363Z dotnet-install: .NET Core SDK with version '8.0.425' is already installed.
+2026-10-11T08:56:56.4761129Z ##[group]Run dotnet restore src/G.PcHealthCheck/G.PcHealthCheck.csproj
+2026-10-11T08:56:56.4761697Z [36;1mdotnet restore src/G.PcHealthCheck/G.PcHealthCheck.csproj[0m
+2026-10-11T08:56:56.4836360Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-11T08:56:56.4836695Z env:
+2026-10-11T08:56:56.4836864Z   DOTNET_NOLOGO: true
+2026-10-11T08:56:56.4837081Z   DOTNET_CLI_TELEMETRY_OPTOUT: true
+2026-10-11T08:56:56.4837338Z   DOTNET_ROOT: C:\Program Files\dotnet
+2026-10-11T08:56:56.4837583Z ##[endgroup]
+2026-10-11T08:57:07.4888705Z   Determining projects to restore...
+2026-10-11T08:57:21.1627644Z   Restored D:\a\g-pc-health-check\g-pc-health-check\src\G.PcHealthCheck\G.PcHealthCheck.csproj (in 12.85 sec).
+2026-10-11T08:57:21.3049034Z ##[group]Run $output = dotnet list src/G.PcHealthCheck/G.PcHealthCheck.csproj package --vulnerable --include-transitive --format json
+2026-10-11T08:57:21.3050078Z [36;1m$output = dotnet list src/G.PcHealthCheck/G.PcHealthCheck.csproj package --vulnerable --include-transitive --format json[0m
+2026-10-11T08:57:21.3051144Z [36;1mif ($LASTEXITCODE -ne 0) { throw "NuGet vulnerability audit command failed with exit code $LASTEXITCODE" }[0m
+2026-10-11T08:57:21.3051698Z [36;1m$audit = ($output -join "`n") | ConvertFrom-Json[0m
+2026-10-11T08:57:21.3052009Z [36;1m$vulnerable = @()[0m
+2026-10-11T08:57:21.3052286Z [36;1mforeach ($project in @($audit.projects)) {[0m
+2026-10-11T08:57:21.3052637Z [36;1m  foreach ($framework in @($project.frameworks)) {[0m
+2026-10-11T08:57:21.3053373Z [36;1m    foreach ($package in @($framework.topLevelPackages) + @($framework.transitivePackages)) {[0m
+2026-10-11T08:57:21.3053996Z [36;1m      if ($null -ne $package -and @($package.vulnerabilities).Count -gt 0) {[0m
+2026-10-11T08:57:21.3054385Z [36;1m        $vulnerable += $package[0m
+2026-10-11T08:57:21.3054622Z [36;1m      }[0m
+2026-10-11T08:57:21.3054789Z [36;1m    }[0m
+2026-10-11T08:57:21.3054960Z [36;1m  }[0m
+2026-10-11T08:57:21.3055123Z [36;1m}[0m
+2026-10-11T08:57:21.3055308Z [36;1mif ($vulnerable.Count -gt 0) {[0m
+2026-10-11T08:57:21.3055689Z [36;1m  $names = $vulnerable | ForEach-Object { "$($_.id) $($_.resolvedVersion)" }[0m
+2026-10-11T08:57:21.3056176Z [36;1m  throw "Vulnerable NuGet packages detected: $($names -join ', ')"[0m
+2026-10-11T08:57:21.3056521Z [36;1m}[0m
+2026-10-11T08:57:21.3056813Z [36;1mWrite-Host "NuGet vulnerability gate: no known vulnerable packages."[0m
+2026-10-11T08:57:21.3126608Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-11T08:57:21.3126959Z env:
+2026-10-11T08:57:21.3127137Z   DOTNET_NOLOGO: true
+2026-10-11T08:57:21.3127345Z   DOTNET_CLI_TELEMETRY_OPTOUT: true
+2026-10-11T08:57:21.3127604Z   DOTNET_ROOT: C:\Program Files\dotnet
+2026-10-11T08:57:21.3127841Z ##[endgroup]
+2026-10-11T08:57:23.5457494Z NuGet vulnerability gate: no known vulnerable packages.
+2026-10-11T08:57:23.6302701Z ##[group]Run dotnet build src/G.PcHealthCheck/G.PcHealthCheck.csproj -c Release --no-restore -warnaserror
+2026-10-11T08:57:23.6303518Z [36;1mdotnet build src/G.PcHealthCheck/G.PcHealthCheck.csproj -c Release --no-restore -warnaserror[0m
+2026-10-11T08:57:23.6369970Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-11T08:57:23.6370307Z env:
+2026-10-11T08:57:23.6370479Z   DOTNET_NOLOGO: true
+2026-10-11T08:57:23.6370690Z   DOTNET_CLI_TELEMETRY_OPTOUT: true
+2026-10-11T08:57:23.6370941Z   DOTNET_ROOT: C:\Program Files\dotnet
+2026-10-11T08:57:23.6371179Z ##[endgroup]
+2026-10-11T08:57:31.8717838Z   Corporate shield: 5157c5cf83a6cfddb74c51701a693e401e36b400812505a1e46e15d760c72877
+2026-10-11T08:57:31.8734196Z   Green application icon: D:\a\g-pc-health-check\g-pc-health-check\src\G.PcHealthCheck\obj\brand\gpchc.ico (105197 bytes)
+2026-10-11T08:57:44.1270500Z   G.PcHealthCheck -> D:\a\g-pc-health-check\g-pc-health-check\src\G.PcHealthCheck\bin\Release\net8.0-windows10.0.19041.0\win-x64\G-PC-Health.dll
+2026-10-11T08:57:44.1507448Z 
+2026-10-11T08:57:44.1513591Z Build succeeded.
+2026-10-11T08:57:44.1513966Z     0 Warning(s)
+2026-10-11T08:57:44.1516533Z     0 Error(s)
+2026-10-11T08:57:44.1521595Z 
+2026-10-11T08:57:44.1522134Z Time Elapsed 00:00:20.01
+2026-10-11T08:57:44.3179677Z ##[group]Run dotnet run --project src/G.PcHealthCheck/G.PcHealthCheck.csproj -c Release --no-build -- --selftest
+2026-10-11T08:57:44.3180552Z [36;1mdotnet run --project src/G.PcHealthCheck/G.PcHealthCheck.csproj -c Release --no-build -- --selftest[0m
+2026-10-11T08:57:44.3181278Z [36;1mif ($LASTEXITCODE -ne 0) { throw "Source-build self-test failed with exit code $LASTEXITCODE" }[0m
+2026-10-11T08:57:44.3249858Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-11T08:57:44.3250195Z env:
+2026-10-11T08:57:44.3250370Z   DOTNET_NOLOGO: true
+2026-10-11T08:57:44.3250587Z   DOTNET_CLI_TELEMETRY_OPTOUT: true
+2026-10-11T08:57:44.3250847Z   DOTNET_ROOT: C:\Program Files\dotnet
+2026-10-11T08:57:44.3251455Z ##[endgroup]
+2026-10-11T08:57:45.2595609Z Primary guidance regression: 19/19 passed.
+2026-10-11T08:57:45.2762729Z Diagnostic completeness regression: 22/22 passed.
+2026-10-11T08:57:45.2908202Z Common problems regression: 36/36 passed.
+2026-10-11T08:57:45.4054216Z Common problems completion regression: 8/8 passed.
+2026-10-11T08:57:45.6108622Z Common problems presentation: URI allow-list, HTML encoding, JSON envelope, menu layout and detail reselection passed.
+2026-10-11T08:57:45.6197231Z Common problems command evidence: unconfirmed attempt, nullable exit code, redacted error and export passed.
+2026-10-11T08:57:45.6420045Z Common problems progress ownership regression: 1/1 passed.
+2026-10-11T08:57:45.7599762Z Main scan progress ownership regression: 1/1 passed.
+2026-10-11T08:57:45.8054653Z Main apply progress ownership regression: 1/1 passed.
+2026-10-11T08:57:45.8061707Z Main card resize redraw self-test passed: 1/1.
+2026-10-11T08:57:45.8113650Z Localization and MB presentation self-test passed: 21/21.
+2026-10-11T08:57:45.8895310Z Performance localization self-test: 3/3 passed.
+2026-10-11T08:57:45.9227527Z File Use localization self-test: 3/3 passed.
+2026-10-11T08:57:45.9526459Z Process Observation localization self-test: 3/3 passed.
+2026-10-11T08:57:45.9991932Z Diagnostic Bundle localization self-test: 4/4 passed.
+2026-10-11T08:57:47.2020367Z Localization coverage self-test: 4/4 passed.
+2026-10-11T08:57:47.2641523Z Human-size presentation self-test passed: 12/12.
+2026-10-11T08:57:47.4393545Z Main chrome / About / branding self-test: 4/4 passed.
+2026-10-11T08:57:48.2596400Z Readable layout synthetic render PASS: ru, area=800x600, actual DPI=96; not Windows11/RDP acceptance
+2026-10-11T08:57:49.0030078Z Readable layout synthetic render PASS: ru, area=800x720, actual DPI=96; not Windows11/RDP acceptance
+2026-10-11T08:57:49.7797452Z Readable layout synthetic render PASS: ru, area=950x768, actual DPI=96; not Windows11/RDP acceptance
+2026-10-11T08:57:50.4463419Z Readable layout synthetic render PASS: ru, area=1320x720, actual DPI=96; not Windows11/RDP acceptance
+2026-10-11T08:57:51.0579318Z Readable layout synthetic render PASS: ru, area=1320x1000, actual DPI=96; not Windows11/RDP acceptance
+2026-10-11T08:57:51.6568111Z Readable layout synthetic render PASS: en, area=800x600, actual DPI=96; not Windows11/RDP acceptance
+2026-10-11T08:57:52.2876806Z Readable layout synthetic render PASS: en, area=800x720, actual DPI=96; not Windows11/RDP acceptance
+2026-10-11T08:57:53.0330140Z Readable layout synthetic render PASS: en, area=950x768, actual DPI=96; not Windows11/RDP acceptance
+2026-10-11T08:57:53.6517884Z Readable layout synthetic render PASS: en, area=1320x720, actual DPI=96; not Windows11/RDP acceptance
+2026-10-11T08:57:54.2651362Z Readable layout synthetic render PASS: en, area=1320x1000, actual DPI=96; not Windows11/RDP acceptance
+2026-10-11T08:57:54.3891556Z Readable layout self-test: 18/18 passed
+2026-10-11T08:57:54.5964662Z Analysis auto-collection self-test: 3/3 passed.
+2026-10-11T08:57:54.6032461Z Service Desk action registry self-test: 4/4 passed.
+2026-10-11T08:57:54.6681159Z Service Desk batch planner/UI self-test: 5/5 passed.
+2026-10-11T08:57:54.6863804Z Fixed non-network repair self-test: 6/6 passed.
+2026-10-11T08:57:54.7015877Z Network repair self-test: 6/6 passed.
+2026-10-11T08:57:54.7081903Z Phased worker protocol/planning self-test: 4/4 passed.
+2026-10-11T08:57:54.7169125Z Phased batch executor self-test: 4/4 passed.
+2026-10-11T08:57:54.7249836Z Phased worker engine self-test: 4/4 passed.
+2026-10-11T08:57:54.7610348Z Phased worker transport/CLI self-test: 4/4 passed.
+2026-10-11T08:57:54.7669605Z Windows Service Desk batch runtime self-test: 5/5 passed.
+2026-10-11T08:57:54.8066861Z Service Desk full phased batch self-test: 6/6 passed.
+2026-10-11T08:57:54.8086813Z Security posture evaluator self-test: PASS � final control catalog is exactly 100 points
+2026-10-11T08:57:54.8154898Z Security posture evaluator self-test: PASS � all-pass posture is 100 with full coverage
+2026-10-11T08:57:54.8162670Z Security posture evaluator self-test: PASS � warn earns half weight and fail earns zero
+2026-10-11T08:57:54.8166192Z Security posture evaluator self-test: PASS � unknown lowers coverage without becoming failure
+2026-10-11T08:57:54.8169268Z Security posture evaluator self-test: PASS � not-applicable is removed from both score and coverage denominator
+2026-10-11T08:57:54.8173220Z Security posture evaluator self-test: PASS � coverage below 80 forces assessment incomplete
+2026-10-11T08:57:54.8178069Z Security posture evaluator self-test: PASS � critical Low caps override arithmetic score
+2026-10-11T08:57:54.8180968Z Security posture evaluator self-test: PASS � needs-attention caps override High without becoming Low
+2026-10-11T08:57:54.8181599Z Security posture evaluator self-test: 9/9 passed.
+2026-10-11T08:57:54.8238374Z Windows platform security self-test: PASS � firewall ownership is evaluated without false Defender failure
+2026-10-11T08:57:54.8241243Z Windows platform security self-test: PASS � secure boot distinguishes enabled disabled legacy and unknown
+2026-10-11T08:57:54.8243311Z Windows platform security self-test: PASS � uac EnableLUA semantics are exact
+2026-10-11T08:57:54.8246808Z Windows platform security self-test: PASS � tpm requires present ready and 2.x
+2026-10-11T08:57:54.8252283Z Windows platform security self-test: PASS � vbs hvci uses runtime state
+2026-10-11T08:57:54.8257632Z Windows platform security self-test: PASS � individual source failures degrade only that control to unknown
+2026-10-11T08:57:54.8258215Z Windows platform security self-test: 6/6 passed.
+2026-10-11T08:57:54.8297714Z Antivirus security self-test: PASS � active Kaspersky plus passive Defender selects Kaspersky
+2026-10-11T08:57:54.8305218Z Antivirus security self-test: PASS � Defender-only posture uses Defender enrichment
+2026-10-11T08:57:54.8309586Z Antivirus security self-test: PASS � multiple active providers make primary-dependent controls unknown
+2026-10-11T08:57:54.8315593Z Antivirus security self-test: PASS � missing or explicitly inactive antivirus fails active control
+2026-10-11T08:57:54.8317531Z Antivirus security self-test: PASS � definition status and age are deterministic
+2026-10-11T08:57:54.8319430Z Antivirus security self-test: PASS � Defender core RTP and optional components are separated
+2026-10-11T08:57:54.8321303Z Antivirus security self-test: PASS � malformed provider response becomes unknown without throwing
+2026-10-11T08:57:54.8332951Z Antivirus security self-test: PASS � WSC COM failure recovers from strong Kaspersky provider evidence
+2026-10-11T08:57:54.8333549Z Antivirus security self-test: 8/8 passed.
+2026-10-11T08:57:54.8346829Z Windows Update security self-test: PASS � fresh history with no pending qualifying updates passes
+2026-10-11T08:57:54.8348971Z Windows Update security self-test: PASS � pending qualifying update warns immediately
+2026-10-11T08:57:54.8350723Z Windows Update security self-test: PASS � 46 to 60 day history warns
+2026-10-11T08:57:54.8352577Z Windows Update security self-test: PASS � older than 60 days fails
+2026-10-11T08:57:54.8354268Z Windows Update security self-test: PASS � missing trustworthy history is unknown
+2026-10-11T08:57:54.8357083Z Windows Update security self-test: PASS � fresh history with unavailable pending search warns instead of becoming unknown or pass
+2026-10-11T08:57:54.8358611Z Windows Update security self-test: PASS � source failure is unknown, never healthy
+2026-10-11T08:57:54.8364756Z Windows Update security self-test: PASS � pending reboot is preserved as evidence without inventing update failure
+2026-10-11T08:57:54.8365353Z Windows Update security self-test: 8/8 passed.
+2026-10-11T08:57:54.8391486Z BitLocker security self-test: PASS � OS volume protected and fully encrypted passes
+2026-10-11T08:57:54.8394330Z BitLocker security self-test: PASS � OS encrypting suspended or protection-only fallback warns
+2026-10-11T08:57:54.8397718Z BitLocker security self-test: PASS � OS decrypted or unprotected fails and unavailable is unknown
+2026-10-11T08:57:54.8424885Z BitLocker security self-test: PASS � all applicable fixed data volumes protected passes
+2026-10-11T08:57:54.8429318Z BitLocker security self-test: PASS � data aggregate fails, warns, not-applicable and unknown truthfully
+2026-10-11T08:57:54.8432310Z BitLocker security self-test: PASS � EFI recovery removable and optical volumes are excluded from data aggregate
+2026-10-11T08:57:54.8513225Z BitLocker security self-test: PASS � evidence contains protector types only and never recovery material
+2026-10-11T08:57:54.8513906Z BitLocker security self-test: 7/7 passed.
+2026-10-11T08:57:54.8529793Z Firmware security self-test: PASS � Lenovo PasswordState maps admin, power-on and drive password bits
+2026-10-11T08:57:54.8542147Z Firmware security self-test: PASS � Dell and HP require an already-present supported provider
+2026-10-11T08:57:54.8549205Z Firmware security self-test: PASS � Huawei SMBIOS Type 24 maps password status without secret material
+2026-10-11T08:57:54.8570095Z Firmware security self-test: PASS � Huawei adapter exposes SMBIOS admin password and never invents drive password
+2026-10-11T08:57:54.8576024Z Firmware security self-test: PASS � Huawei firmware query keeps identifiers compatible with the alias parser
+2026-10-11T08:57:54.8740209Z Firmware security self-test: PASS � Huawei firmware boot evidence reports positive external paths but absence never passes
+2026-10-11T08:57:54.8745639Z Firmware security self-test: PASS � firmware password control uses admin password only
+2026-10-11T08:57:54.8750718Z Firmware security self-test: PASS � boot restriction pass requires trusted internal-only firmware evidence
+2026-10-11T08:57:54.8753460Z Firmware security self-test: PASS � internal first with USB or PXE still enabled warns
+2026-10-11T08:57:54.8756012Z Firmware security self-test: PASS � external effective path or legacy boot fails
+2026-10-11T08:57:54.8757845Z Firmware security self-test: PASS � BCD-only or partial boot evidence stays Unknown
+2026-10-11T08:57:54.8766574Z Firmware security self-test: PASS � firmware adapter API cannot accept or return password secrets
+2026-10-11T08:57:54.8767183Z Firmware security self-test: 12/12 passed.
+2026-10-11T08:57:54.8776623Z Local administrators self-test: PASS � glob language is anchored case-insensitive and deterministic
+2026-10-11T08:57:54.8791953Z Local administrators self-test: PASS � machine REG_MULTI_SZ policy normalizes blanks and duplicates
+2026-10-11T08:57:54.8795019Z Local administrators self-test: PASS � missing wrong-type unreadable and explicitly empty policy remain distinct
+2026-10-11T08:57:54.8827695Z Local administrators self-test: PASS � allowed user local user renamed Administrator and direct group pass
+2026-10-11T08:57:54.8829983Z Local administrators self-test: PASS � unresolved name with matching SID rule is allowed
+2026-10-11T08:57:54.8832107Z Local administrators self-test: PASS � unresolved name without sufficient evidence is Unknown not Fail
+2026-10-11T08:57:54.8835498Z Local administrators self-test: PASS � unauthorized member wins aggregate over additional Unknown evidence
+2026-10-11T08:57:54.8836730Z Local administrators self-test: PASS � explicit empty policy permits nobody
+2026-10-11T08:57:54.8838697Z Local administrators self-test: PASS � Administrators discovery is SID-based and control remains weighted critical
+2026-10-11T08:57:54.8839339Z Local administrators self-test: 9/9 passed.
+2026-10-11T08:57:54.8894296Z Security posture integration self-test: PASS � one provider failure becomes Unknown while other controls still evaluate
+2026-10-11T08:57:54.8910845Z Security posture integration self-test: PASS � adding Security never changes the technical Health assessment
+2026-10-11T08:57:54.8915496Z Security posture integration self-test: PASS � pre-cancelled collection does not enter native providers
+2026-10-11T08:57:54.9199408Z Security posture integration self-test: PASS � security progress remains guarded by the main scan progress owner
+2026-10-11T08:57:54.9200053Z Security posture integration self-test: 4/4 passed.
+2026-10-11T08:57:54.9526473Z Security posture UI self-test: PASS � main window exposes seven metric cards and navigable Security card
+2026-10-11T08:57:54.9809884Z Security posture UI self-test: PASS � Security grid has stable evaluation columns
+2026-10-11T08:57:54.9817095Z Security posture UI self-test: PASS � security bands use fixed non-misleading colors
+2026-10-11T08:57:54.9823303Z Security posture UI self-test: PASS � Unknown points stay unknown and never become fake zero or full credit
+2026-10-11T08:57:54.9826734Z Security posture UI self-test: PASS � Security UI resources are complete in Russian and English
+2026-10-11T08:57:54.9827942Z Security posture UI self-test: PASS � stable identifiers and raw evidence values remain untranslated
+2026-10-11T08:57:54.9828457Z Security posture UI self-test: 6/6 passed.
+2026-10-11T08:57:54.9920650Z Security report self-test: PASS � localized Security HTML contains score coverage model IDs and distinct states
+2026-10-11T08:57:54.9955963Z Security report self-test: PASS � ordinary HTML report embeds Security section
+2026-10-11T08:57:55.0165390Z Security report self-test: PASS � public JSON contains bounded Security assessment but excludes raw snapshot
+2026-10-11T08:57:55.0182143Z Security report self-test: PASS � clipboard summary carries concise separate Security posture
+2026-10-11T08:57:55.0221430Z Security report self-test: PASS � hardening before-after and action evidence persist in HTML and public JSON without raw output
+2026-10-11T08:57:55.0228377Z Security report self-test: PASS � raw snapshot secrets never leak to HTML JSON or clipboard
+2026-10-11T08:57:55.0228918Z Security report self-test: 6/6 passed.
+2026-10-11T08:57:55.5637486Z Policy artifacts self-test: 1/1 passed.
+2026-10-11T08:57:55.5658802Z Security hardening planner self-test: PASS � registry is the exact three-action allow-list and contains no prohibited mutations
+2026-10-11T08:57:55.5691396Z Security hardening planner self-test: PASS � Kaspersky primary permits definitions update only when KESCLI support is proven
+2026-10-11T08:57:55.5693985Z Security hardening planner self-test: PASS � Defender primary with RTP off exposes only fixed Defender RTP candidate
+2026-10-11T08:57:55.5696381Z Security hardening planner self-test: PASS � Defender stale definitions expose fixed definitions update
+2026-10-11T08:57:55.5698753Z Security hardening planner self-test: PASS � firewall hardening refuses third-party ownership and central policy
+2026-10-11T08:57:55.5702262Z Security hardening planner self-test: PASS � no applicable hardening action yields disabled-plan explanation
+2026-10-11T08:57:55.5706828Z Security hardening planner self-test: PASS � unknown rights never authorize an administrator hardening action
+2026-10-11T08:57:55.5712242Z Security hardening planner self-test: PASS � planner authorization surface accepts raw snapshot plus execution context only
+2026-10-11T08:57:55.5712910Z Security hardening planner self-test: 8/8 passed.
+2026-10-11T08:57:55.5730172Z Security hardening worker self-test: PASS � worker namespaces reject cross-namespace and unknown actions
+2026-10-11T08:57:55.5737013Z Security hardening worker self-test: PASS � protocol binds namespace session nonce and message phase
+2026-10-11T08:57:55.5748700Z Security hardening worker self-test: PASS � security operation interface exposes fixed typed mutations only
+2026-10-11T08:57:55.5778964Z Security hardening worker self-test: PASS � executor dispatches only fixed actions in registry order
+2026-10-11T08:57:55.5785948Z Security hardening worker self-test: PASS � executor preserves provider and rejects non-preflight or non-admin execution
+2026-10-11T08:57:55.5796500Z Security hardening worker self-test: PASS � worker CLI parsers preserve namespace isolation before opening a pipe
+2026-10-11T08:57:55.5797184Z Security hardening worker self-test: 6/6 passed.
+2026-10-11T08:57:55.6109953Z Security hardening UI self-test: PASS � superbuttons are blue green red in fixed order and red is never default
+2026-10-11T08:57:55.6122474Z Security hardening UI self-test: PASS � confirmation lists runnable skipped reasons risk UAC policy and post-rescan
+2026-10-11T08:57:55.6158246Z Security hardening UI self-test: PASS � workflow uses fresh preflight then executes once and recollects security afterward
+2026-10-11T08:57:55.6213031Z Security hardening UI self-test: PASS � parent worker request is one fixed security worker and one UAC decision
+2026-10-11T08:57:55.6217493Z Security hardening UI self-test: PASS � blue green and red action registries stay strictly separated
+2026-10-11T08:57:55.6218741Z Security hardening UI self-test: 5/5 passed.
+2026-10-11T08:57:55.6238026Z Security localization coverage self-test: PASS � Security resource key sets are identical and non-empty in Russian and English
+2026-10-11T08:57:55.6262744Z Security localization coverage self-test: PASS � English Security operator framing contains no Cyrillic
+2026-10-11T08:57:55.6268790Z Security localization coverage self-test: PASS � stable Security control and hardening action IDs are language independent
+2026-10-11T08:57:55.6269681Z Security localization coverage self-test: 3/3 passed.
+2026-10-11T08:57:55.6278144Z Evidence PASS: explicit denial, timeout and cancellation use exact retained tokens
+2026-10-11T08:57:55.6280865Z Evidence PASS: generic exception, null and empty never invent rights or unsupported OEM
+2026-10-11T08:57:55.6282258Z Evidence PASS: explicit unsupported and missing observation are distinguishable
+2026-10-11T08:57:55.6283877Z Evidence PASS: missing local admin policy differs from unreadable or wrong type
+2026-10-11T08:57:55.6285264Z Evidence PASS: explicit conflict, but grouped volume differences not guessed conflict
+2026-10-11T08:57:55.6302174Z Evidence PASS: source and safe nextstep localized without secret source
+2026-10-11T08:57:55.6306329Z Evidence PASS: incomplete triage not all-clear and preserves assessment
+2026-10-11T08:57:55.6309423Z Evidence PASS: healthy empty differs from collection warning and CRIT order retained
+2026-10-11T08:57:55.6320709Z Evidence PASS: JSON, HTML and clipboard carry explanation and original evidence
+2026-10-11T08:57:55.6335527Z Evidence PASS: symptom routes only existing inspections, no auto probes, batch unchanged
+2026-10-11T08:57:55.6336737Z Evidence presentation: 10/10 passed
+2026-10-11T08:57:55.6377229Z Security evidence safety self-test: PASS � serialized hardening result excludes raw native output and synthetic secrets
+2026-10-11T08:57:55.6381779Z Security evidence safety self-test: PASS � automatic hardening registry remains exact and contains no weakening or generic mutation class
+2026-10-11T08:57:55.6388661Z Security evidence safety self-test: PASS � hardening operation API exposes only fixed typed mutation surfaces
+2026-10-11T08:57:55.6389532Z Security evidence safety self-test: 3/3 passed.
+2026-10-11T08:57:55.6798536Z System volume regression: 24/24 passed.
+2026-10-11T08:57:55.6822457Z Portable elevation regression: 20/20 passed.
+2026-10-11T08:57:55.7515758Z Read-only inspection regression: 36/36 passed.
+2026-10-11T08:57:55.8156019Z Read-only review UI/export regression: 9/9 passed.
+2026-10-11T08:57:55.8306541Z Read-only review progress ownership regression: 1/1 passed.
+2026-10-11T08:57:55.9039228Z Resource diagnostics regression: 55/55 passed.
+2026-10-11T08:57:56.1656939Z Resource integration regression: 9/9 passed.
+2026-10-11T08:57:56.1688359Z Resource cancellation/evidence regression: 4/4 passed.
+2026-10-11T08:57:56.1902727Z Resource export failure regression: 1/1 passed.
+2026-10-11T08:57:56.2328141Z Incident review regression: 44/44 passed.
+2026-10-11T08:57:56.4775172Z Incident integration regression: 9/9 passed.
+2026-10-11T08:57:56.5011874Z Incident cancellation status regression: 1/1 passed.
+2026-10-11T08:57:56.5145624Z Performance session regression: 45/45 passed.
+2026-10-11T08:57:58.6542828Z Performance session integration: 13/13 passed.
+2026-10-11T08:57:58.6543486Z Performance timing/review regression: 7/7 passed.
+2026-10-11T08:57:58.6784814Z Storage review regression: 53/53 passed.
+2026-10-11T08:57:59.6285997Z Storage review integration: 11/11 passed.
+2026-10-11T08:57:59.7304317Z Storage completion review: 5/5 passed.
+2026-10-11T08:57:59.7433770Z Execution context regression: 30/30 passed.
+2026-10-11T08:57:59.8054510Z Execution context integration: 8/8 passed.
+2026-10-11T08:57:59.8132002Z Execution context action review: 8/8 passed.
+2026-10-11T08:57:59.8483088Z Endpoint review regression: 39/39 passed.
+2026-10-11T08:57:59.9475852Z Endpoint integration: 11/11 passed.
+2026-10-11T08:57:59.9651953Z File-use behavior: 44/44 passed.
+2026-10-11T08:58:00.1328790Z File-use integration: 9/9 passed.
+2026-10-11T08:58:00.1384844Z File-use review acceptance: 20/20 passed.
+2026-10-11T08:58:00.1568048Z File-use progress ownership regression: 1/1 passed.
+2026-10-11T08:58:00.1786984Z Process observation behavior: 33/33 passed.
+2026-10-11T08:58:00.3031898Z Process observation integration: 10/10 passed.
+2026-10-11T08:58:00.3518372Z Process observation completion: 8/8 passed.
+2026-10-11T08:58:00.3689050Z Diagnostic bundle regression: 27/27 passed.
+2026-10-11T08:58:00.4551270Z Diagnostic bundle report regression: 11/11 passed.
+2026-10-11T08:58:00.4569553Z Diagnostic bundle Health selection regression: 2/2 passed.
+2026-10-11T08:58:00.6312474Z Diagnostic bundle UI integration: 11/11 passed.
+2026-10-11T08:58:00.6565851Z Diagnostic bundle save failure regression: 1/1 passed.
+2026-10-11T08:58:00.7396668Z Diagnostic bundle stale-options regression: 3/3 passed.
+2026-10-11T08:58:00.7636703Z Diagnostic bundle progress ownership regression: 1/1 passed.
+2026-10-11T08:58:00.7745728Z Diagnostic bundle acceptance: 3/3 passed.
+2026-10-11T08:58:00.9263069Z ##[group]Run dotnet publish src/G.PcHealthCheck/G.PcHealthCheck.csproj -c Release -r win-x64 --self-contained true --no-restore -o artifacts/publish
+2026-10-11T08:58:00.9264187Z [36;1mdotnet publish src/G.PcHealthCheck/G.PcHealthCheck.csproj -c Release -r win-x64 --self-contained true --no-restore -o artifacts/publish[0m
+2026-10-11T08:58:00.9332336Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-11T08:58:00.9332675Z env:
+2026-10-11T08:58:00.9332852Z   DOTNET_NOLOGO: true
+2026-10-11T08:58:00.9333071Z   DOTNET_CLI_TELEMETRY_OPTOUT: true
+2026-10-11T08:58:00.9333327Z   DOTNET_ROOT: C:\Program Files\dotnet
+2026-10-11T08:58:00.9333571Z ##[endgroup]
+2026-10-11T08:58:05.2184411Z   Corporate shield: 5157c5cf83a6cfddb74c51701a693e401e36b400812505a1e46e15d760c72877
+2026-10-11T08:58:05.2200073Z   Green application icon: D:\a\g-pc-health-check\g-pc-health-check\src\G.PcHealthCheck\obj\brand\gpchc.ico (105197 bytes)
+2026-10-11T08:58:11.5633172Z   G.PcHealthCheck -> D:\a\g-pc-health-check\g-pc-health-check\src\G.PcHealthCheck\bin\Release\net8.0-windows10.0.19041.0\win-x64\G-PC-Health.dll
+2026-10-11T08:58:29.1455378Z   G.PcHealthCheck -> D:\a\g-pc-health-check\g-pc-health-check\artifacts\publish\
+2026-10-11T08:58:29.3139429Z ##[group]Run $exe = (Resolve-Path artifacts/publish/G-PC-Health.exe).Path
+2026-10-11T08:58:29.3140384Z [36;1m$exe = (Resolve-Path artifacts/publish/G-PC-Health.exe).Path[0m
+2026-10-11T08:58:29.3141374Z [36;1m$process = Start-Process -FilePath $exe -ArgumentList @('--selftest') -Wait -PassThru[0m
+2026-10-11T08:58:29.3142717Z [36;1mif ($process.ExitCode -ne 0) { throw "Published single-file EXE self-test failed with exit code $($process.ExitCode)" }[0m
+2026-10-11T08:58:29.3143891Z [36;1mWrite-Host "Published single-file EXE self-test passed."[0m
+2026-10-11T08:58:29.3247995Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-11T08:58:29.3248614Z env:
+2026-10-11T08:58:29.3248928Z   DOTNET_NOLOGO: true
+2026-10-11T08:58:29.3249296Z   DOTNET_CLI_TELEMETRY_OPTOUT: true
+2026-10-11T08:58:29.3249766Z   DOTNET_ROOT: C:\Program Files\dotnet
+2026-10-11T08:58:29.3250583Z ##[endgroup]
+2026-10-11T08:58:42.1123380Z Published single-file EXE self-test passed.
+2026-10-11T08:58:42.1502732Z ##[group]Run .\tools\ci\Test-PortableWorker.ps1 -ExePath .\artifacts\publish\G-PC-Health.exe
+2026-10-11T08:58:42.1503443Z [36;1m.\tools\ci\Test-PortableWorker.ps1 -ExePath .\artifacts\publish\G-PC-Health.exe[0m
+2026-10-11T08:58:42.1570494Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-11T08:58:42.1570819Z env:
+2026-10-11T08:58:42.1570991Z   DOTNET_NOLOGO: true
+2026-10-11T08:58:42.1571197Z   DOTNET_CLI_TELEMETRY_OPTOUT: true
+2026-10-11T08:58:42.1571448Z   DOTNET_ROOT: C:\Program Files\dotnet
+2026-10-11T08:58:42.1571685Z ##[endgroup]
+2026-10-11T08:58:55.1517759Z [PASS] Self-test: D:\a\g-pc-health-check\g-pc-health-check\artifacts\publish\G-PC-Health.exe (exit 0)
+2026-10-11T08:58:55.4058430Z [PASS] Missing session, not location refusal: D:\a\g-pc-health-check\g-pc-health-check\artifacts\publish\G-PC-Health.exe (exit 20)
+2026-10-11T08:58:55.6688038Z [PASS] Obsolete bootstrap disabled: D:\a\g-pc-health-check\g-pc-health-check\artifacts\publish\G-PC-Health.exe (exit 48)
+2026-10-11T08:58:55.9299080Z [PASS] Reject DefinitelyNotAllowed from D:\a\g-pc-health-check\g-pc-health-check\artifacts\publish\G-PC-Health.exe (exit 21)
+2026-10-11T08:58:56.1857843Z [PASS] Reject CleanTemp from D:\a\g-pc-health-check\g-pc-health-check\artifacts\publish\G-PC-Health.exe (exit 21)
+2026-10-11T08:58:56.4411037Z [PASS] Reject Dism,DefinitelyNotAllowed from D:\a\g-pc-health-check\g-pc-health-check\artifacts\publish\G-PC-Health.exe (exit 21)
+2026-10-11T08:58:56.6966206Z [PASS] Invalid pipe: D:\a\g-pc-health-check\g-pc-health-check\artifacts\publish\G-PC-Health.exe (exit 24)
+2026-10-11T08:58:56.9512357Z [PASS] Invalid nonce: D:\a\g-pc-health-check\g-pc-health-check\artifacts\publish\G-PC-Health.exe (exit 25)
+2026-10-11T08:59:09.3901828Z [PASS] Self-test: C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-d8db2336a5f34b07ae719faf152b3fdc\Downloads\G-PC-Health.exe (exit 0)
+2026-10-11T08:59:09.6451681Z [PASS] Missing session, not location refusal: C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-d8db2336a5f34b07ae719faf152b3fdc\Downloads\G-PC-Health.exe (exit 20)
+2026-10-11T08:59:09.9016901Z [PASS] Obsolete bootstrap disabled: C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-d8db2336a5f34b07ae719faf152b3fdc\Downloads\G-PC-Health.exe (exit 48)
+2026-10-11T08:59:10.1589864Z [PASS] Reject DefinitelyNotAllowed from C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-d8db2336a5f34b07ae719faf152b3fdc\Downloads\G-PC-Health.exe (exit 21)
+2026-10-11T08:59:10.4230681Z [PASS] Reject CleanTemp from C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-d8db2336a5f34b07ae719faf152b3fdc\Downloads\G-PC-Health.exe (exit 21)
+2026-10-11T08:59:10.6793720Z [PASS] Reject Dism,DefinitelyNotAllowed from C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-d8db2336a5f34b07ae719faf152b3fdc\Downloads\G-PC-Health.exe (exit 21)
+2026-10-11T08:59:10.9459383Z [PASS] Invalid pipe: C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-d8db2336a5f34b07ae719faf152b3fdc\Downloads\G-PC-Health.exe (exit 24)
+2026-10-11T08:59:11.2107317Z [PASS] Invalid nonce: C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-d8db2336a5f34b07ae719faf152b3fdc\Downloads\G-PC-Health.exe (exit 25)
+2026-10-11T08:59:24.3730931Z [PASS] Self-test: C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-d8db2336a5f34b07ae719faf152b3fdc\Downloads\Тестовая папка\Проверка ПК (1).exe (exit 0)
+2026-10-11T08:59:24.6260072Z [PASS] Missing session, not location refusal: C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-d8db2336a5f34b07ae719faf152b3fdc\Downloads\Тестовая папка\Проверка ПК (1).exe (exit 20)
+2026-10-11T08:59:24.8832476Z [PASS] Obsolete bootstrap disabled: C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-d8db2336a5f34b07ae719faf152b3fdc\Downloads\Тестовая папка\Проверка ПК (1).exe (exit 48)
+2026-10-11T08:59:25.1437207Z [PASS] Reject DefinitelyNotAllowed from C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-d8db2336a5f34b07ae719faf152b3fdc\Downloads\Тестовая папка\Проверка ПК (1).exe (exit 21)
+2026-10-11T08:59:25.4130655Z [PASS] Reject CleanTemp from C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-d8db2336a5f34b07ae719faf152b3fdc\Downloads\Тестовая папка\Проверка ПК (1).exe (exit 21)
+2026-10-11T08:59:25.6694706Z [PASS] Reject Dism,DefinitelyNotAllowed from C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-d8db2336a5f34b07ae719faf152b3fdc\Downloads\Тестовая папка\Проверка ПК (1).exe (exit 21)
+2026-10-11T08:59:25.9251037Z [PASS] Invalid pipe: C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-d8db2336a5f34b07ae719faf152b3fdc\Downloads\Тестовая папка\Проверка ПК (1).exe (exit 24)
+2026-10-11T08:59:26.1799142Z [PASS] Invalid nonce: C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-d8db2336a5f34b07ae719faf152b3fdc\Downloads\Тестовая папка\Проверка ПК (1).exe (exit 25)
+2026-10-11T08:59:38.8448422Z [PASS] Self-test: C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-d8db2336a5f34b07ae719faf152b3fdc\Other tools\A & B\health [test].exe (exit 0)
+2026-10-11T08:59:39.0981435Z [PASS] Missing session, not location refusal: C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-d8db2336a5f34b07ae719faf152b3fdc\Other tools\A & B\health [test].exe (exit 20)
+2026-10-11T08:59:39.3551832Z [PASS] Obsolete bootstrap disabled: C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-d8db2336a5f34b07ae719faf152b3fdc\Other tools\A & B\health [test].exe (exit 48)
+2026-10-11T08:59:39.6129204Z [PASS] Reject DefinitelyNotAllowed from C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-d8db2336a5f34b07ae719faf152b3fdc\Other tools\A & B\health [test].exe (exit 21)
+2026-10-11T08:59:39.8733153Z [PASS] Reject CleanTemp from C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-d8db2336a5f34b07ae719faf152b3fdc\Other tools\A & B\health [test].exe (exit 21)
+2026-10-11T08:59:40.1693006Z [PASS] Reject Dism,DefinitelyNotAllowed from C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-d8db2336a5f34b07ae719faf152b3fdc\Other tools\A & B\health [test].exe (exit 21)
+2026-10-11T08:59:40.4335204Z [PASS] Invalid pipe: C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-d8db2336a5f34b07ae719faf152b3fdc\Other tools\A & B\health [test].exe (exit 24)
+2026-10-11T08:59:40.6905695Z [PASS] Invalid nonce: C:\Users\runneradmin\AppData\Local\Temp\GPcHealthCheck-Portable-d8db2336a5f34b07ae719faf152b3fdc\Other tools\A & B\health [test].exe (exit 25)
+2026-10-11T08:59:40.6913022Z Portable EXE/worker matrix: 32/32 passed across 4 path/name layouts.
+2026-10-11T08:59:40.6917885Z No DISM, SFC, DNS flush or Temp cleanup was executed by this matrix; interactive UAC remains a pilot check.
+2026-10-11T08:59:40.7598971Z ##[group]Run $exe = Get-Item artifacts/publish/G-PC-Health.exe -ErrorAction Stop
+2026-10-11T08:59:40.7599629Z [36;1m$exe = Get-Item artifacts/publish/G-PC-Health.exe -ErrorAction Stop[0m
+2026-10-11T08:59:40.7600233Z [36;1m$unexpected = Get-ChildItem artifacts/publish -File | Where-Object Name -ne 'G-PC-Health.exe'[0m
+2026-10-11T08:59:40.7600870Z [36;1mif ($unexpected) { throw "Single-file gate failed: $($unexpected.Name -join ', ')" }[0m
+2026-10-11T08:59:40.7601282Z [36;1m[0m
+2026-10-11T08:59:40.7601584Z [36;1m[xml]$project = Get-Content src/G.PcHealthCheck/G.PcHealthCheck.csproj[0m
+2026-10-11T08:59:40.7602079Z [36;1m$projectVersion = [string]$project.Project.PropertyGroup.Version[0m
+2026-10-11T08:59:40.7602709Z [36;1m$actualFileVersion = [Version][System.Diagnostics.FileVersionInfo]::GetVersionInfo($exe.FullName).FileVersion[0m
+2026-10-11T08:59:40.7603413Z [36;1mif ([string]::IsNullOrWhiteSpace($projectVersion)) { throw 'Project Version is empty.' }[0m
+2026-10-11T08:59:40.7603987Z [36;1m$expectedFileVersion = [Version]::Parse("$projectVersion.0")[0m
+2026-10-11T08:59:40.7604393Z [36;1mif ($actualFileVersion -ne $expectedFileVersion) {[0m
+2026-10-11T08:59:40.7604873Z [36;1m  throw "File version mismatch. Expected=$expectedFileVersion EXE=$actualFileVersion"[0m
+2026-10-11T08:59:40.7605290Z [36;1m}[0m
+2026-10-11T08:59:40.7605451Z [36;1m[0m
+2026-10-11T08:59:40.7605765Z [36;1m$hash = (Get-FileHash $exe.FullName -Algorithm SHA256).Hash.ToLowerInvariant()[0m
+2026-10-11T08:59:40.7606274Z [36;1mNew-Item -ItemType Directory -Force artifacts/final | Out-Null[0m
+2026-10-11T08:59:40.7606709Z [36;1mCopy-Item $exe.FullName artifacts/final/G-PC-Health.exe[0m
+2026-10-11T08:59:40.7607255Z [36;1mSet-Content artifacts/final/G-PC-Health.exe.sha256 "$hash  G-PC-Health.exe" -Encoding ascii[0m
+2026-10-11T08:59:40.7607750Z [36;1mWrite-Host "Version: $actualFileVersion"[0m
+2026-10-11T08:59:40.7608035Z [36;1mWrite-Host "SHA-256: $hash"[0m
+2026-10-11T08:59:40.7675996Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-11T08:59:40.7676341Z env:
+2026-10-11T08:59:40.7676514Z   DOTNET_NOLOGO: true
+2026-10-11T08:59:40.7676727Z   DOTNET_CLI_TELEMETRY_OPTOUT: true
+2026-10-11T08:59:40.7676988Z   DOTNET_ROOT: C:\Program Files\dotnet
+2026-10-11T08:59:40.7677222Z ##[endgroup]
+2026-10-11T08:59:41.3287411Z Version: 0.17.1.0
+2026-10-11T08:59:41.3295125Z SHA-256: 11072a75837696de876194a906d9f2e7eee8d5a6ab2dacb8bc6bfedbc3a67e08
+2026-10-11T08:59:41.4012066Z ##[group]Run $ErrorActionPreference = 'Stop'
+2026-10-11T08:59:41.4012494Z [36;1m$ErrorActionPreference = 'Stop'[0m
+2026-10-11T08:59:41.4012808Z [36;1m.\tools\ci\Create-PilotBundle.ps1 `[0m
+2026-10-11T08:59:41.4013145Z [36;1m  -ExePath .\artifacts\final\G-PC-Health.exe `[0m
+2026-10-11T08:59:41.4013530Z [36;1m  -ChecksumPath .\artifacts\final\G-PC-Health.exe.sha256 `[0m
+2026-10-11T08:59:41.4013900Z [36;1m  -OutputDirectory .\artifacts\pilot `[0m
+2026-10-11T08:59:41.4014191Z [36;1m  -GitSha $env:GITHUB_SHA[0m
+2026-10-11T08:59:41.4014414Z [36;1m[0m
+2026-10-11T08:59:41.4014849Z [36;1m$pilotZip = Get-ChildItem .\artifacts\pilot -Filter 'G-PC-Health-*-pilot.zip' -File | Select-Object -First 1[0m
+2026-10-11T08:59:41.4015565Z [36;1mif ($null -eq $pilotZip -or $pilotZip.Length -le 0) { throw 'Pilot bundle ZIP missing or empty.' }[0m
+2026-10-11T08:59:41.4016000Z [36;1m[0m
+2026-10-11T08:59:41.4016284Z [36;1m$verify = Join-Path $env:RUNNER_TEMP 'gpchc-pilot-verify'[0m
+2026-10-11T08:59:41.4016746Z [36;1mRemove-Item $verify -Recurse -Force -ErrorAction SilentlyContinue[0m
+2026-10-11T08:59:41.4017210Z [36;1mNew-Item -ItemType Directory -Force -Path $verify | Out-Null[0m
+2026-10-11T08:59:41.4017722Z [36;1mExpand-Archive -LiteralPath $pilotZip.FullName -DestinationPath $verify -Force[0m
+2026-10-11T08:59:41.4018131Z [36;1m[0m
+2026-10-11T08:59:41.4018505Z [36;1m$manifest = Get-Content (Join-Path $verify 'package-manifest.json') -Raw | ConvertFrom-Json[0m
+2026-10-11T08:59:41.4019235Z [36;1m$packagedExe = Join-Path $verify 'G-PC-Health.exe'[0m
+2026-10-11T08:59:41.4020090Z [36;1mif (-not (Test-Path $packagedExe -PathType Leaf)) { throw 'Packaged EXE missing.' }[0m
+2026-10-11T08:59:41.4020708Z [36;1m$packagedHash = (Get-FileHash $packagedExe -Algorithm SHA256).Hash.ToLowerInvariant()[0m
+2026-10-11T08:59:41.4021391Z [36;1mif ($packagedHash -ne [string]$manifest.sha256) { throw 'Packaged EXE hash does not match package manifest.' }[0m
+2026-10-11T08:59:41.4022095Z [36;1mif ([string]$manifest.gitSha -ne $env:GITHUB_SHA) { throw 'Package manifest Git SHA mismatch.' }[0m
+2026-10-11T08:59:41.4022733Z [36;1mif (-not (Test-Path (Join-Path $verify 'START-HERE.txt'))) { throw 'START-HERE.txt missing.' }[0m
+2026-10-11T08:59:41.4023377Z [36;1mif (-not (Test-Path (Join-Path $verify 'docs\E2E-TEST-PLAN.md'))) { throw 'E2E test plan missing.' }[0m
+2026-10-11T08:59:41.4024074Z [36;1mif (-not (Test-Path (Join-Path $verify 'e2e\Analyze-E2EEvidence.ps1'))) { throw 'Evidence analyzer missing.' }[0m
+2026-10-11T08:59:41.4024725Z [36;1m$toolCount = @(Get-ChildItem (Join-Path $verify 'e2e') -Filter '*.ps1' -File).Count[0m
+2026-10-11T08:59:41.4025323Z [36;1mif ($toolCount -lt 5) { throw "Expected at least 5 E2E tools in pilot bundle, found $toolCount." }[0m
+2026-10-11T08:59:41.4025838Z [36;1m$strictUtf8Bom = [Text.UTF8Encoding]::new($true, $true)[0m
+2026-10-11T08:59:41.4026341Z [36;1m$startHereText = [IO.File]::ReadAllText((Join-Path $verify 'START-HERE.txt'), $strictUtf8Bom)[0m
+2026-10-11T08:59:41.4027076Z [36;1mif (-not $startHereText.Contains('Сверьте SHA-256') -or -not $startHereText.Contains('Диагностику можно запускать')) {[0m
+2026-10-11T08:59:41.4027706Z [36;1m  throw 'Packaged START-HERE strict UTF-8 verification failed.'[0m
+2026-10-11T08:59:41.4028040Z [36;1m}[0m
+2026-10-11T08:59:41.4028546Z [36;1mif ($manifest.trustedRemediationPath -ne $null -or -not $manifest.portableElevation -or $manifest.executableNameRestricted) {[0m
+2026-10-11T08:59:41.4029225Z [36;1m  throw 'Pilot manifest still restricts portable elevation.'[0m
+2026-10-11T08:59:41.4029547Z [36;1m}[0m
+2026-10-11T08:59:41.4029785Z [36;1mWrite-Host "Pilot bundle verified: $($pilotZip.Name)"[0m
+2026-10-11T08:59:41.4116559Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-11T08:59:41.4116909Z env:
+2026-10-11T08:59:41.4117083Z   DOTNET_NOLOGO: true
+2026-10-11T08:59:41.4117303Z   DOTNET_CLI_TELEMETRY_OPTOUT: true
+2026-10-11T08:59:41.4119467Z   DOTNET_ROOT: C:\Program Files\dotnet
+2026-10-11T08:59:41.4119785Z ##[endgroup]
+2026-10-11T08:59:45.2161722Z Pilot bundle: D:\a\g-pc-health-check\g-pc-health-check\artifacts\pilot\G-PC-Health-0.17.1-pilot.zip
+2026-10-11T08:59:45.2168634Z Version: 0.17.1
+2026-10-11T08:59:45.2176130Z SHA-256: 11072a75837696de876194a906d9f2e7eee8d5a6ab2dacb8bc6bfedbc3a67e08
+2026-10-11T08:59:45.2223866Z D:\a\g-pc-health-check\g-pc-health-check\artifacts\pilot\G-PC-Health-0.17.1-pilot.zip
+2026-10-11T08:59:45.6156512Z Pilot bundle verified: G-PC-Health-0.17.1-pilot.zip
+2026-10-11T08:59:45.7457383Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+2026-10-11T08:59:45.7458118Z with:
+2026-10-11T08:59:45.7458450Z   name: g-pc-health-check-windows-x64
+2026-10-11T08:59:45.7458908Z   path: artifacts/final/*
+2026-10-11T08:59:45.7459275Z   if-no-files-found: error
+2026-10-11T08:59:45.7459633Z   retention-days: 30
+2026-10-11T08:59:45.7459970Z   compression-level: 6
+2026-10-11T08:59:45.7460307Z   overwrite: false
+2026-10-11T08:59:45.7460633Z   include-hidden-files: false
+2026-10-11T08:59:45.7460991Z env:
+2026-10-11T08:59:45.7461255Z   DOTNET_NOLOGO: true
+2026-10-11T08:59:45.7461597Z   DOTNET_CLI_TELEMETRY_OPTOUT: true
+2026-10-11T08:59:45.7462035Z   DOTNET_ROOT: C:\Program Files\dotnet
+2026-10-11T08:59:45.7462445Z ##[endgroup]
+2026-10-11T08:59:45.9833514Z (node:1748) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-11T08:59:45.9836089Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-11T08:59:46.0032825Z With the provided path, there will be 33 files uploaded
+2026-10-11T08:59:46.0046678Z Artifact name is valid!
+2026-10-11T08:59:46.0047828Z Root directory input is valid!
+2026-10-11T08:59:46.3468275Z Beginning upload of artifact content to blob storage
+2026-10-11T08:59:46.8355324Z (node:1748) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-11T08:59:47.7317146Z Uploaded bytes 8388608
+2026-10-11T08:59:48.0391755Z Uploaded bytes 16777216
+2026-10-11T08:59:48.0606185Z Uploaded bytes 25165824
+2026-10-11T08:59:48.2755798Z Uploaded bytes 33554432
+2026-10-11T08:59:48.3611270Z Uploaded bytes 41943040
+2026-10-11T08:59:48.8015980Z Uploaded bytes 50331648
+2026-10-11T08:59:49.1313187Z Uploaded bytes 58720256
+2026-10-11T08:59:49.5103255Z Uploaded bytes 67108864
+2026-10-11T08:59:49.8961237Z Uploaded bytes 74213403
+2026-10-11T08:59:49.9549842Z Finished uploading artifact content to blob storage!
+2026-10-11T08:59:49.9554830Z SHA256 digest of uploaded artifact zip is b76fcad872d7301ecdd8f87887fd3bc99363ac66082d4a8a37b0dcc5e0440e77
+2026-10-11T08:59:49.9557915Z Finalizing artifact upload
+2026-10-11T08:59:50.2096666Z Artifact g-pc-health-check-windows-x64.zip successfully finalized. Artifact ID 11697577522
+2026-10-11T08:59:50.2097894Z Artifact g-pc-health-check-windows-x64 has been successfully uploaded! Final size is 74213403 bytes. Artifact ID is 11697577522
+2026-10-11T08:59:50.2109425Z Artifact download URL: https://github.com/bajoicheg/g-pc-health-check/actions/runs/38126586086/artifacts/11697577522
+2026-10-11T08:59:50.2463208Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+2026-10-11T08:59:50.2463681Z with:
+2026-10-11T08:59:50.2463881Z   name: g-pc-health-check-pilot-e2e
+2026-10-11T08:59:50.2464199Z   path: artifacts/pilot/G-PC-Health-*-pilot.zip
+2026-10-11T08:59:50.2464597Z   if-no-files-found: error
+2026-10-11T08:59:50.2464934Z   retention-days: 30
+2026-10-11T08:59:50.2465134Z   compression-level: 6
+2026-10-11T08:59:50.2465328Z   overwrite: false
+2026-10-11T08:59:50.2465530Z   include-hidden-files: false
+2026-10-11T08:59:50.2465743Z env:
+2026-10-11T08:59:50.2465904Z   DOTNET_NOLOGO: true
+2026-10-11T08:59:50.2466110Z   DOTNET_CLI_TELEMETRY_OPTOUT: true
+2026-10-11T08:59:50.2466368Z   DOTNET_ROOT: C:\Program Files\dotnet
+2026-10-11T08:59:50.2466785Z ##[endgroup]
+2026-10-11T08:59:50.4509931Z (node:5308) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-11T08:59:50.4511211Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-11T08:59:50.4579085Z With the provided path, there will be 1 file uploaded
+2026-10-11T08:59:50.4584926Z Artifact name is valid!
+2026-10-11T08:59:50.4587188Z Root directory input is valid!
+2026-10-11T08:59:50.8097711Z Beginning upload of artifact content to blob storage
+2026-10-11T08:59:51.1367691Z (node:5308) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-11T08:59:52.0632420Z Uploaded bytes 8388608
+2026-10-11T08:59:52.3082309Z Uploaded bytes 16777216
+2026-10-11T08:59:52.3966354Z Uploaded bytes 25165824
+2026-10-11T08:59:52.5835862Z Uploaded bytes 33554432
+2026-10-11T08:59:52.6181871Z Uploaded bytes 41943040
+2026-10-11T08:59:52.7330924Z Uploaded bytes 50331648
+2026-10-11T08:59:52.8828547Z Uploaded bytes 58720256
+2026-10-11T08:59:53.1175114Z Uploaded bytes 67108864
+2026-10-11T08:59:53.3409983Z Uploaded bytes 73402138
+2026-10-11T08:59:53.4012014Z Finished uploading artifact content to blob storage!
+2026-10-11T08:59:53.4016989Z SHA256 digest of uploaded artifact zip is 55bbea3b199bf0fb25aa2cb80aa15f72a1509224e159b795cd9c0f26b1e6707d
+2026-10-11T08:59:53.4020680Z Finalizing artifact upload
+2026-10-11T08:59:53.6693750Z Artifact g-pc-health-check-pilot-e2e.zip successfully finalized. Artifact ID 11697802130
+2026-10-11T08:59:53.6695661Z Artifact g-pc-health-check-pilot-e2e has been successfully uploaded! Final size is 73402138 bytes. Artifact ID is 11697802130
+2026-10-11T08:59:53.6709319Z Artifact download URL: https://github.com/bajoicheg/g-pc-health-check/actions/runs/38126586086/artifacts/11697802130
+2026-10-11T08:59:53.7072181Z Post job cleanup.
+2026-10-11T08:59:53.8648824Z (node:3872) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-11T08:59:53.8650111Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-11T08:59:53.8976133Z Post job cleanup.
+2026-10-11T08:59:54.1453500Z [command]"C:\Program Files\Git\bin\git.exe" version
+2026-10-11T08:59:54.1810767Z git version 2.55.0.windows.5
+2026-10-11T08:59:54.1890990Z Temporarily overriding HOME='D:\a\_temp\783ac009-2c6b-4a29-9a68-eb2af06f13ff' before making global git config changes
+2026-10-11T08:59:54.1892318Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-11T08:59:54.1903125Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\g-pc-health-check\g-pc-health-check
+2026-10-11T08:59:54.2226397Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-10-11T08:59:54.2540807Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-10-11T08:59:54.8476491Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-11T08:59:54.8895194Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-10-11T08:59:55.4425527Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-11T08:59:55.4741515Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-10-11T08:59:56.0892932Z Cleaning up orphan processes
+2026-10-11T08:59:56.1518564Z Terminate orphan process: pid (9736) (dotnet)
+2026-10-11T08:59:56.1587197Z Terminate orphan process: pid (3364) (conhost)
+2026-10-11T08:59:56.1952178Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@11d5960a326750d5838078e36cf38b85af677262, actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9, actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
