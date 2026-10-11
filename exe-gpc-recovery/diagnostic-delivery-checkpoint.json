@@ -1015,7 +1015,7 @@
   },
   "exact_windows_artifact_20261011": {
     "schema": "gpc-exact-windows-artifact-request/v1",
-    "state": "PREPARED_NOT_SUBMITTED",
+    "state": "ACCEPTED_RUNNING",
     "prepared_at_utc": "2026-10-11T08:50:06.205965Z",
     "attempt_id": "gpc-exact-windows-artifact-20261011-a1",
     "ci_attempt_id": "gpc-exact-windows-artifact-20261011-a1-windows",
@@ -1149,6 +1149,21 @@
       "merge",
       "release"
     ],
-    "original_536_outcome": "UNKNOWN retired, all original claims/resolutions/retirements preserved"
+    "original_536_outcome": "UNKNOWN retired, all original claims/resolutions/retirements preserved",
+    "acceptance": {
+      "run_id": 38126586086,
+      "job_id": 114432101817,
+      "run_url": "https://github.com/bajoicheg/g-pc-health-check/actions/runs/38126586086",
+      "provider_event": "workflow_dispatch",
+      "head_sha": "6d65482be7045243501644807a54f6e5f6d6e9ce",
+      "workflow_id": 354169840,
+      "actor": "bajoicheg",
+      "runner_labels": [
+        "windows-latest"
+      ],
+      "grant_id": "83df4853-b2d2-4f9a-a2f7-311f1c841a0a",
+      "receipt_path": "exe-gpc-recovery/exact-windows-artifact-20261011/dispatch-acceptance.json",
+      "host_click_count": 1
+    }
   }
 }
