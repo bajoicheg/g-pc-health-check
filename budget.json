@@ -3679,6 +3679,57 @@
         "tokens": null
       },
       "wake_id": "cdc351-exact-package-delivery-20261012"
+    },
+    {
+      "at_utc": "2026-10-11T23:40:03.371295Z",
+      "attempt_id": "cdc351-delivery-gpc-agent_start-a2",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "cdc351-delivery-gpc-agent_start-a2",
+      "kind": "agent_start",
+      "operation_key": "sha256:71359abb05c4cbe714586d91434461725ada053ca95dbc44abe5c1205bf58059",
+      "recovery_ref": null,
+      "scope": "One genuine native managed package-only writer; exact released3.5.1; product/platform gates preserved",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "cdc351-exact-package-delivery-20261012-a2"
+    },
+    {
+      "at_utc": "2026-10-11T23:40:03.606035Z",
+      "attempt_id": "cdc351-delivery-gpc-compute_start-a2",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "cdc351-delivery-gpc-compute_start-a2",
+      "kind": "compute_start",
+      "operation_key": "sha256:8b7666e1066c64ea6d54cf2828703c85f89042c8d297a5539b89bc374e82f12f",
+      "recovery_ref": null,
+      "scope": "One genuine native managed package-only writer; exact released3.5.1; product/platform gates preserved",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "cdc351-exact-package-delivery-20261012-a2"
+    },
+    {
+      "at_utc": "2026-10-11T23:40:03.800577Z",
+      "attempt_id": "cdc351-delivery-gpc-required-receiving-cycle-a2",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "cdc351-delivery-gpc-required-receiving-cycle-a2",
+      "kind": "ci_start",
+      "operation_key": "sha256:d06c08272b41f9b2949d8bf691a4bd6ab0a8ff540e642c2506fa0f5f9be854c6",
+      "recovery_ref": null,
+      "scope": "ONE owner-authorized automatic receiving CI cycle caused by one exact stock publication; four required PR workflows and guarded skipped downstream observations; all actual runs recorded separately; no dispatch/rerun/core FULL",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "cdc351-exact-package-delivery-20261012-a2"
     }
   ],
   "policy": {
@@ -3690,8 +3741,8 @@
     "max_parallel_agents": 4,
     "provider_max_age_seconds": 300,
     "task_limits": {
-      "agent_starts": 69,
-      "ci_starts": 17,
+      "agent_starts": 70,
+      "ci_starts": 18,
       "compute_starts": null
     },
     "wake_limits": {
@@ -3700,7 +3751,7 @@
       "tool_calls": 80
     }
   },
-  "policy_digest": "sha256:0b85b4f6f03b96b6748d606070fab66ca5dd70e52207ec9e0fc637f07186c322",
+  "policy_digest": "sha256:aa491320bef65b19fcea1ef744d72efdef4e9636d5c49864d15bfb41856ba701",
   "schema": "budget-ledger/v1",
   "task_id": "g-pc-health-check-0.17.0-pre-integration",
   "wake_ids": [
@@ -3735,6 +3786,7 @@
     "gpc-cloud-managed-integration-20261011",
     "gpc-cloud-summary-regression-20261011",
     "gpc-exact-windows-artifact-20261011",
-    "cdc351-exact-package-delivery-20261012"
+    "cdc351-exact-package-delivery-20261012",
+    "cdc351-exact-package-delivery-20261012-a2"
   ]
 }
