@@ -1,0 +1,10 @@
+{
+  "schema": "gpc-independent-packet-reconstruction/v1",
+  "patch_applied_to": "325fe132be9ff49bc09b8bfb873f6d3e92df1c5e",
+  "tree": "36e3b1556bf3d0e7df6004c8d9d2eb6e54819f95",
+  "raw_commit_oid": "36114fa91f12a5e91b23ce46ba5cbb031fa7e06f",
+  "patch_sha256": "738044efa6b74cface792095158d2e2917dde9cd04cb4ffd8bc144752510b7f7",
+  "return_code": 0,
+  "isolation": "temporary alternative index; product index/worktree unchanged",
+  "runtime_tests": "NOT_RUN"
+}

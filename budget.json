@@ -3077,6 +3077,37 @@
         "tokens": null,
         "elapsed_seconds": null
       }
+    },
+    {
+      "type": "outcome",
+      "event_id": "gpc-integration67-spec-20261011-agent_start-terminal",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-forward-integration-20261011",
+      "at_utc": "2026-10-11T07:29:11.564708Z",
+      "reservation_id": "gpc-integration67-spec-20261011-agent_start",
+      "status": "succeeded",
+      "usage": {
+        "tokens": null,
+        "elapsed_seconds": 175.036668
+      },
+      "failure": null
+    },
+    {
+      "type": "reserve",
+      "event_id": "gpc-integration68-quality-20261011-agent_start",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-forward-integration-20261011",
+      "at_utc": "2026-10-11T07:29:11.564708Z",
+      "operation_key": "sha256:e3f1ab56e4e85b404820c7fd573e73d3f6da492ebe709a6feefd324f04011bf4",
+      "attempt_id": "gpc-integration68-quality-20261011",
+      "kind": "agent_start",
+      "scope": "gpc/exact-forward-integration-QUALITY",
+      "recovery_ref": null,
+      "cost": {
+        "tool_calls": 1,
+        "tokens": null,
+        "elapsed_seconds": null
+      }
     }
   ],
   "policy": {

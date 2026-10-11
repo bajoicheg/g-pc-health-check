@@ -1,0 +1,120 @@
+{
+  "schema": "gpc-independent-spec-review/v1",
+  "reviewer": "Work-GPC-integration67",
+  "attempt_id": "gpc-integration67-spec-20261011",
+  "reservation_token": "c4a033ce-abc7-4ab4-943b-da0ab6ac0c85",
+  "admission_coordination": "3ba355ca91939f7345056f3c885072446ee4c9ae",
+  "candidate": "36114fa91f12a5e91b23ce46ba5cbb031fa7e06f",
+  "tree": "36e3b1556bf3d0e7df6004c8d9d2eb6e54819f95",
+  "sole_parent": "325fe132be9ff49bc09b8bfb873f6d3e92df1c5e",
+  "verdict": "GREEN",
+  "scope": "Bounded independent SPEC of the full forward-assembled source and reconstruction evidence; not runtime, platform, product acceptance, managed publication, or release approval.",
+  "findings": [],
+  "evidence": [
+    {
+      "check": "Frozen assembly identity and reconstruction",
+      "result": "PASS",
+      "detail": "Clean HEAD, expected tree and sole parent; git object hash of candidate-commit.raw equals candidate and bytes equal git cat-file commit. SHA256 hashes match assembly-proof.json; assembly.patch equals git diff --binary base candidate exactly. All 42 changed paths inspected and match proof inventory."
+    },
+    {
+      "check": "Accepted standalone product retained in full",
+      "result": "PASS",
+      "detail": "Candidate and accepted3e64 entire src subtree have identical Git tree 778d980769c2946f47a1d58446031f984ce57e41. Existing tests/builds remain their original SHA evidence; no fresh candidate compilation or EXE is asserted."
+    },
+    {
+      "check": "Current process/security controls preserved",
+      "result": "PASS",
+      "detail": "CDC subtree f580a8946c0510540a4be3f4422ab3404875274b, consumer lock, adapter, AGENTS.md, global.json and workflows are identical to325. Current checkpoint preserves released/no-executor state, UNKNOWN non-replay, paused schedulers and pending Windows gates; forwarding docs identify3.3.1 as current authority. No UAC/worker/nonce/same-user Temp/action handler/evaluator changes in42-path delta."
+    },
+    {
+      "check": "Readable UI source contract",
+      "result": "PASS",
+      "detail": "Named Overview/Recommendations/Actions/Compare/Security tabs and stable localization/navigation replace positional assumptions; fixed footer uses shell auto-sized row, wrapping buttons and separate progress/status. Finding/action/security rows are compact; collapsed selectable details retain all columns including hidden action availability/reason/scope. Seven-card geometry and neutral unknown RAM presentation are additive. Native fixture requests30 current-invocation RU/EN renders and checks reachability/selection; fixture execution remains NOT_RUN."
+    },
+    {
+      "check": "Huawei read-only firmware query contract",
+      "result": "PASS",
+      "detail": "bcdedit /enum FIRMWARE uses alias identifiers required by existing parser; /v removed. Shell-free redirected system executable and existing timeout/read-only boundaries retained. Parser still avoids treating absent external evidence as confirmed absence."
+    },
+    {
+      "check": "No-data explanations and triage contract",
+      "result": "PASS",
+      "detail": "Reason code derives only from explicit retained state/error/reason tokens, actual known unsupported-manufacturer shape and policy flags. Generic/empty facts remain cause_not_established. Subject-local Unknown volume/member metadata is retained and exported. Unknown scores/statuses/weights/coverage/evidence remain untouched. No CRIT/WARN plus incomplete collection produces incomplete-data triage; existing critical-first ordering remains."
+    },
+    {
+      "check": "Symptom routing and persistence contract",
+      "result": "PASS",
+      "detail": "Four existing diagnostic forms are opened without automatic collection; CommonProblems autoScan defaults true for existing entry and is false only for symptom entry. Current snapshot selection writes durable JSON/HTML in staging and commits pair by directory rename before UI state updates; failures retain prior state/history and prevent opening destination. Both verification paths copy original symptom notes. Routing does not mutate batches or run repairs."
+    },
+    {
+      "check": "Resource/source format verification",
+      "result": "PASS",
+      "detail": "MainStrings RU/EN key parity111 each; exactly7 existing values per culture change only literal newline escapes;3 added UI keys per culture. Strings RU/EN parity144 each with34 additions and no existing value changes. All33 tracked src .resx/.csproj/.manifest XML files parse. git diff --check base HEAD exit0."
+    },
+    {
+      "check": "Read-only current adapter/checkpoint validators",
+      "result": "PASS",
+      "detail": "python -B validate_adapter.py docs/development-cycle.yaml exit0 PASS adapter v3 types, compatibility and policy. python -B validate_checkpoint_24.py docs/work-status/current.md --adapter docs/development-cycle.yaml exit0 PASS checkpoint v4; output explicitly requires remote observations."
+    }
+  ],
+  "reviewed_paths": [
+    "CHANGELOG.md",
+    "docs/DEVELOPMENT.md",
+    "docs/releases/0.17.1-evidence.md",
+    "docs/releases/0.17.1-validation.md",
+    "docs/releases/0.17.1.md",
+    "docs/superpowers/plans/2026-10-09-readable-tabs.md",
+    "docs/work-status/current.md",
+    "src/G.PcHealthCheck/AboutForm.cs",
+    "src/G.PcHealthCheck/CommonProblemsForm.cs",
+    "src/G.PcHealthCheck/EvidencePresentationSelfTest.cs",
+    "src/G.PcHealthCheck/ExecutionContextForm.cs",
+    "src/G.PcHealthCheck/FirmwareSecurityCollectorSelfTest.cs",
+    "src/G.PcHealthCheck/G.PcHealthCheck.csproj",
+    "src/G.PcHealthCheck/HuaweiFirmwareSecurityAdapter.cs",
+    "src/G.PcHealthCheck/LocalizationAndSizeSelfTest.cs",
+    "src/G.PcHealthCheck/MainForm.ExecutionContext.cs",
+    "src/G.PcHealthCheck/MainForm.Localization.cs",
+    "src/G.PcHealthCheck/MainForm.ReadableLayout.cs",
+    "src/G.PcHealthCheck/MainForm.SecurityPosture.cs",
+    "src/G.PcHealthCheck/MainForm.ServiceDeskActions.cs",
+    "src/G.PcHealthCheck/MainForm.Symptoms.cs",
+    "src/G.PcHealthCheck/MainForm.cs",
+    "src/G.PcHealthCheck/MissingEvidenceExplanation.cs",
+    "src/G.PcHealthCheck/Models.cs",
+    "src/G.PcHealthCheck/Program.cs",
+    "src/G.PcHealthCheck/ReadableLayout.cs",
+    "src/G.PcHealthCheck/ReadableLayoutSelfTest.cs",
+    "src/G.PcHealthCheck/ReadableWindowLayout.cs",
+    "src/G.PcHealthCheck/ReportService.cs",
+    "src/G.PcHealthCheck/Resources/MainStrings.en.resx",
+    "src/G.PcHealthCheck/Resources/MainStrings.resx",
+    "src/G.PcHealthCheck/Resources/Strings.en.resx",
+    "src/G.PcHealthCheck/Resources/Strings.resx",
+    "src/G.PcHealthCheck/SecurityDetailPresentation.cs",
+    "src/G.PcHealthCheck/SecurityPostureModels.cs",
+    "src/G.PcHealthCheck/SecurityPostureUiSelfTest.cs",
+    "src/G.PcHealthCheck/SecurityReportSection.cs",
+    "src/G.PcHealthCheck/ServiceDeskFullBatchUi.cs",
+    "src/G.PcHealthCheck/SupportSummary.cs",
+    "src/G.PcHealthCheck/SymptomRoutes.cs",
+    "src/G.PcHealthCheck/TriageSummary.cs",
+    "tools/dev/Test-ReadableLayout.ps1"
+  ],
+  "non_blocking_notes": [
+    "Historical standalone documents retain earlier stage review-pending text, CDC2.12.1 references and16-render evidence descriptions. Current forwarding authority/evidence headers identify them as historical; actual current fixture and release UI description require30 renders. These historical receipts do not authorize current execution or support a new success claim."
+  ],
+  "limitations": [
+    "No new build, C# harness, CI, EXE packaging, WinForms process or device operation executed by this reviewer; scope expressly excludes runtime/product acceptance.",
+    "Parent-provided prior SPEC65/QUALITY66 and C#9/9, initial10/10, evaluator9/9, firmware12/12, BitLocker7/7 and Windows-target cross-build receipts are historical unchanged-src evidence; their full external logs were not fetched or revalidated here.",
+    "Seven preexisting Linux guidance failures remain documented; no passing result is inferred.",
+    "Exact candidate Windows Quick/Full, native UI/footer clipping/busy-progress/render, UAC/DPI/RDP, physical Huawei and Windows11 pilot remain required and NOT_RUN. Historical footer-failing Windows run is retained as failed evidence, not acceptance.",
+    "No authentic managed Git write capability, product ref publication, new candidate EXE, release or original UNKNOWN outcome reconciliation is proved by this review.",
+    "No external sends, children, background work, builds/CI or shared-source/control mutation. Only this report is written; parent owns durable result acceptance and ordered QUALITY admission."
+  ],
+  "utc_start": "2026-10-11T07:23:54.987260Z",
+  "utc_end": "2026-10-11T07:26:50.023928Z",
+  "elapsed_seconds": 175.036668,
+  "measurement": "Wall elapsed between first terminal UTC observation and report creation UTC; launch preparation time is distinct.",
+  "launch_preparation_utc": "2026-10-11T07:22:42.641206Z"
+}
