@@ -1,0 +1,59 @@
+{
+  "schema": "managed-executor-pool-plan/v1",
+  "pool_id": "gpc-forward-integration-review-20261011",
+  "change_id": "gpc-forward-accepted-product",
+  "parent_invocation_id": "Work-root-gpc-forward-integration-20261011",
+  "base_sha": "36114fa91f12a5e91b23ce46ba5cbb031fa7e06f",
+  "integrator_id": "Work-root",
+  "max_parallel": 1,
+  "total_runtime_budget_seconds": 1200,
+  "total_cost_budget_units": 2,
+  "tasks": [
+    {
+      "id": "spec",
+      "role": "review",
+      "required": true,
+      "dependencies": [],
+      "write_paths": [],
+      "expected_outputs": [
+        "spec-report"
+      ],
+      "expected_evidence": [
+        "spec-verdict"
+      ],
+      "backend_preferences": [
+        "work"
+      ],
+      "max_runtime_seconds": 600,
+      "max_cost_units": 1,
+      "executor_id": "Work-GPC-integration67",
+      "branch": null,
+      "worktree": null
+    },
+    {
+      "id": "quality",
+      "role": "review",
+      "required": true,
+      "dependencies": [
+        "spec"
+      ],
+      "write_paths": [],
+      "expected_outputs": [
+        "quality-report"
+      ],
+      "expected_evidence": [
+        "quality-verdict"
+      ],
+      "backend_preferences": [
+        "work"
+      ],
+      "max_runtime_seconds": 600,
+      "max_cost_units": 1,
+      "executor_id": "Work-GPC-integration68",
+      "branch": null,
+      "worktree": null
+    }
+  ],
+  "coordination_ref": "refs/heads/cdc/coordination",
+  "coordination_store_id": "sha256:e9c5798b2e5857d11563b10845ae993ed5b0e7b040ffd6611bdbd1a36aad08d3"
+}

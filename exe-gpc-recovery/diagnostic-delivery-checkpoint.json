@@ -776,5 +776,19 @@
     "new_executors_terminal": true,
     "watchdogs_enabled": false,
     "next_product_step": "Integrate accepted product delta onto current source through managed CDC3.3.1 process without reverting its process adoption, then required Windows validation and real endpoint UI/UAC/DPI/Huawei acceptance; original536 operation never replayed"
+  },
+  "forward_product_integration_20261011": {
+    "state": "SPEC_RUNNING",
+    "candidate": "36114fa91f12a5e91b23ce46ba5cbb031fa7e06f",
+    "tree": "36e3b1556bf3d0e7df6004c8d9d2eb6e54819f95",
+    "source_sha": "325fe132be9ff49bc09b8bfb873f6d3e92df1c5e",
+    "assembly_proof": "exe-gpc-recovery/integration-20261011/assembly-proof.json",
+    "patch": "exe-gpc-recovery/integration-20261011/assembly.patch",
+    "publication": "NOT_DONE; authentic managed Git transport unavailable",
+    "Native_usage": "EXHAUSTED observed; no send",
+    "Windows": "NOT_RUN",
+    "original_Git_outcome": "UNKNOWN retained",
+    "next_action": "Finish ordered SPEC67 then QUALITY68; then use authorized managed Git writer to publish exact reviewed assembly and run required Windows checks",
+    "watchdogs_enabled": false
   }
 }

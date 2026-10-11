@@ -3060,6 +3060,23 @@
         "elapsed_seconds": 164.072
       },
       "failure": null
+    },
+    {
+      "type": "reserve",
+      "event_id": "gpc-integration67-spec-20261011-agent_start",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "wake_id": "gpc-forward-integration-20261011",
+      "at_utc": "2026-10-11T07:22:42.641206Z",
+      "operation_key": "sha256:baa6d6863cba613d7689ab8b8f88e6a2b61cd5ad6da9c7ad62ce396c4a1cac97",
+      "attempt_id": "gpc-integration67-spec-20261011",
+      "kind": "agent_start",
+      "scope": "gpc/exact-forward-integration-SPEC",
+      "recovery_ref": null,
+      "cost": {
+        "tool_calls": 1,
+        "tokens": null,
+        "elapsed_seconds": null
+      }
     }
   ],
   "policy": {
@@ -3071,7 +3088,7 @@
     "max_parallel_agents": 4,
     "provider_max_age_seconds": 300,
     "task_limits": {
-      "agent_starts": 66,
+      "agent_starts": 68,
       "ci_starts": 13,
       "compute_starts": null
     },
@@ -3081,7 +3098,7 @@
       "tool_calls": 80
     }
   },
-  "policy_digest": "sha256:4a859f15a4c3e14352a08eaa9fa8fe43f6602733982f69aa5dd4b6965539af02",
+  "policy_digest": "sha256:a9552cfe843e2c4b35e33d9607c7730d383b813bffe31c7549093e84ed061b93",
   "schema": "budget-ledger/v1",
   "task_id": "g-pc-health-check-0.17.0-pre-integration",
   "wake_ids": [
@@ -3110,6 +3127,7 @@
     "gpc-huawei-bios-20261010-042502",
     "gpc-max-huawei-20261010-123856",
     "gpc-git-original-receipt-audit-20261010-2048",
-    "gpc-no-data-20261010"
+    "gpc-no-data-20261010",
+    "gpc-forward-integration-20261011"
   ]
 }

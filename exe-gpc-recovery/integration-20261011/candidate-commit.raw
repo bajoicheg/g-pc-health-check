@@ -1,0 +1,6 @@
+tree 36e3b1556bf3d0e7df6004c8d9d2eb6e54819f95
+parent 325fe132be9ff49bc09b8bfb873f6d3e92df1c5e
+author GPC integration preparation <gpc-integration@example.invalid> 1791703177 +0200
+committer GPC integration preparation <gpc-integration@example.invalid> 1791703177 +0200
+
+Prepare reviewed GPC 0.17.1 product integration onto preserved CDC 3.3.1
