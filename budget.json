@@ -3730,6 +3730,34 @@
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
       "type": "reserve",
       "wake_id": "cdc351-exact-package-delivery-20261012-a2"
+    },
+    {
+      "at_utc": "2026-10-11T23:43:55.508996Z",
+      "event_id": "cdc351-delivery-gpc-agent_start-a2-terminal",
+      "failure": null,
+      "reservation_id": "cdc351-delivery-gpc-agent_start-a2",
+      "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": 192.3144031720003,
+        "tokens": null
+      },
+      "wake_id": "cdc351-exact-package-delivery-20261012-a2"
+    },
+    {
+      "at_utc": "2026-10-11T23:43:55.730668Z",
+      "event_id": "cdc351-delivery-gpc-compute_start-a2-terminal",
+      "failure": null,
+      "reservation_id": "cdc351-delivery-gpc-compute_start-a2",
+      "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": 192.3144031720003,
+        "tokens": null
+      },
+      "wake_id": "cdc351-exact-package-delivery-20261012-a2"
     }
   ],
   "policy": {
