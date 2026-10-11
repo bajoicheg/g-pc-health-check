@@ -1,0 +1,29 @@
+{
+  "schema": "gpc-official-cloud-setup-observation/v1",
+  "observed_at_utc": "2026-10-11T07:47:00Z",
+  "attempt_id": "gpc-official-cloud-environment-setup-20261011-a1",
+  "operation_key": "sha256:98d0946fa23b1cdd0486dacb2bac88336890f16ec59baf5dfe7c6967bfc7eadf",
+  "task_id": "01a129ed-465e-7702-b5a7-2509f51c80c6",
+  "task_url": "https://chatgpt.com/local/01a129ed-465e-7702-b5a7-2509f51c80c6?hostId=local",
+  "state": "SETUP_RUNNING",
+  "actual_setup_command_observed": true,
+  "scope": "personal environment configuration only",
+  "linked_GitHub_user": "bajoicheg",
+  "selected_repository": "bajoicheg/g-pc-health-check",
+  "repository_id": "1362798956",
+  "environment_id": null,
+  "environment_published": false,
+  "source_SHA_qualified": false,
+  "product_candidate_published": false,
+  "candidate_build": "NOT_RUN",
+  "adapter_enabled": false,
+  "owner_steering_accepted_in_same_task": true,
+  "steering_forbids": [
+    "product edits",
+    "commit/push/PR",
+    "Actions/watchdogs",
+    "ordinary-caller persistent lease",
+    "original536 replay"
+  ],
+  "task_report_not_terminal": true
+}

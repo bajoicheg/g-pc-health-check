@@ -819,7 +819,7 @@
     "watchdogs": false
   },
   "official_cloud_environment_configuration_20261011": {
-    "state": "PREPARED_NOT_STARTED",
+    "state": "SETUP_RUNNING",
     "attempt_id": "gpc-official-cloud-environment-setup-20261011-a1",
     "operation_key": "sha256:98d0946fa23b1cdd0486dacb2bac88336890f16ec59baf5dfe7c6967bfc7eadf",
     "request_path": "exe-gpc-recovery/cloud-setup-20261011/request.json",
@@ -832,6 +832,11 @@
     "managed_product_lease_acquired": false,
     "original_536_outcome": "UNKNOWN; no replay",
     "watchdogs": false,
-    "at_utc": "2026-10-11T07:45:33.430573Z"
+    "at_utc": "2026-10-11T07:45:33.430573Z",
+    "actual_task_id": "01a129ed-465e-7702-b5a7-2509f51c80c6",
+    "actual_task_url": "https://chatgpt.com/local/01a129ed-465e-7702-b5a7-2509f51c80c6?hostId=local",
+    "observation_path": "exe-gpc-recovery/cloud-setup-20261011/observation.json",
+    "environment_published": false,
+    "owner_steering_accepted_in_same_task": true
   }
 }
