@@ -26,7 +26,10 @@ public sealed record SecurityControlResult(
     int Weight,
     double EarnedFraction,
     string GuidanceCode,
-    IReadOnlyList<SecurityEvidence> Evidence);
+    IReadOnlyList<SecurityEvidence> Evidence)
+{
+    public EvidenceExplanation? Explanation => Status == SecurityControlStatus.Unknown ? MissingEvidenceExplanation.For(Evidence) : null;
+}
 
 public sealed class SecurityPostureAssessment
 {

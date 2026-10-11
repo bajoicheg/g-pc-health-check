@@ -90,6 +90,17 @@ internal static class FirmwareSecurityCollectorSelfTest
                 "Confirmed Huawei administrator password must contribute known Security coverage.");
         });
 
+        Test("Huawei firmware query keeps identifiers compatible with the alias parser", () =>
+        {
+            const string path = @"C:\Windows\System32\bcdedit.exe";
+            var query = HuaweiFirmwareBootReader.CreateFirmwareEnumerationStartInfo(path);
+            Require(query.FileName == path, "Firmware query must use the supplied system executable path.");
+            Require(query.ArgumentList.SequenceEqual(new[] { "/enum", "FIRMWARE" }, StringComparer.OrdinalIgnoreCase),
+                "Firmware query must use aliases expected by the parser; /v prints full GUIDs instead.");
+            Require(!query.UseShellExecute && query.RedirectStandardOutput && query.RedirectStandardError && query.CreateNoWindow,
+                "Firmware query must retain its redirected, shell-free collection boundary.");
+        });
+
         Test("Huawei firmware boot evidence reports positive external paths but absence never passes", () =>
         {
             const string windowsFirstWithUsb = """
@@ -231,7 +242,7 @@ path                    \EFI\Microsoft\Boot\bootmgfw.efi
             }
         });
 
-        Console.WriteLine($"Firmware security self-test: {11 - failures}/11 passed.");
+        Console.WriteLine($"Firmware security self-test: {12 - failures}/12 passed.");
         return failures == 0 ? 0 : 1;
     }
 

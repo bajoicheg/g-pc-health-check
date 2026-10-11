@@ -178,6 +178,7 @@ public sealed class Assessment
     public int CoveragePercent { get; set; } = 100;
     public string CoverageStatus { get; set; } = "HIGH";
     public List<string> MissingSignals { get; set; } = [];
+    public IReadOnlyList<TechnicalSignalExplanation> MissingSignalExplanations => TechnicalEvidence.Explain(this);
     public List<Finding> Findings { get; set; } = [];
 }
 
@@ -250,6 +251,14 @@ public sealed class SecurityHardeningEvidence
 
 public sealed class ScanResult
 {
+    private List<SecuritySubjectDetail>? _securityDetails;
+    // Persist subject metadata even though the collector snapshot is not serialized.
+    public List<SecuritySubjectDetail> SecurityDetails
+    {
+        get => _securityDetails ?? SecurityDetailPresentation.ForScan(this).ToList();
+        set => _securityDetails = value;
+    }
+    public List<SymptomNote> SymptomNotes { get; set; } = [];
     public DiagnosticData Data { get; set; } = new();
     public Assessment Assessment { get; set; } = new();
     public SecurityPostureAssessment? Security { get; set; }

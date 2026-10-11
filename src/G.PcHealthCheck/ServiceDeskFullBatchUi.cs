@@ -127,13 +127,14 @@ public sealed partial class MainForm
             if (ReferenceEquals(_applyProgressOwner, verificationOwner)) _applyProgressOwner = null;
             StampExecutionContext(afterData, context);
             var after = _assessment.Assess(afterData);
+            after.SymptomNotes = before.SymptomNotes.ToList();
             var verification = new VerificationResult { Before = before, After = after, Remediation = batch };
             var saved = _reports.SaveVerification(verification);
             _latestReport = saved.Html;
             _current = after;
             Populate(after);
             PopulateVerification(verification);
-            _tabs.SelectedIndex = 4;
+            _tabs.SelectedTab = _tabs.TabPages["CompareTab"];
             var ok = batch.Actions.Count(x => x.Success);
             MessageBox.Show(
                 this,

@@ -19,6 +19,42 @@ public sealed class ReportService
         }
     }
 
+    public (ScanResult Snapshot, string Html, string Json) SaveSymptomSelection(ScanResult scan, string symptomId)
+    {
+        var snapshot = new ScanResult
+        {
+            Data = scan.Data, Assessment = scan.Assessment, Security = scan.Security,
+            SecurityHardening = scan.SecurityHardening, SecuritySnapshot = scan.SecuritySnapshot,
+            SecurityDetails = scan.SecurityDetails.ToList(), Actions = scan.Actions,
+            SymptomNotes = SymptomRoutes.Select(scan.SymptomNotes, symptomId)
+        };
+        var directory = ReportsDirectory;
+        var id = Guid.NewGuid().ToString("N");
+        var staging = Path.Combine(directory, ".symptom-" + id);
+        var final = Path.Combine(directory, "PCHealth_symptom_" + id);
+        try
+        {
+            Directory.CreateDirectory(staging);
+            WriteDurable(Path.Combine(staging, "report.json"), JsonSerializer.Serialize(snapshot, JsonOptions));
+            WriteDurable(Path.Combine(staging, "report.html"), BuildScanHtml(snapshot));
+            // One directory rename commits the pair; old report history is never overwritten.
+            Directory.Move(staging, final);
+            return (snapshot, Path.Combine(final, "report.html"), Path.Combine(final, "report.json"));
+        }
+        catch
+        {
+            if (Directory.Exists(staging)) Directory.Delete(staging, recursive: true);
+            throw;
+        }
+    }
+
+    private static void WriteDurable(string path, string content)
+    {
+        using var stream = new FileStream(path, FileMode.CreateNew, FileAccess.Write, FileShare.None);
+        var bytes = new UTF8Encoding(false).GetBytes(content);
+        stream.Write(bytes); stream.Flush(flushToDisk: true);
+    }
+
     public (string Html, string Json) SaveScan(ScanResult scan)
     {
         var basePath = BasePath(scan.Data.System.ComputerName, "");
@@ -145,6 +181,9 @@ public sealed class ReportService
     private static void Triage(StringBuilder sb, ScanResult scan)
     {
         var triage = TriageSummary.Build(scan);
+        if (scan.SymptomNotes.Count > 0) sb.Append("<p>").Append(H(SymptomRoutes.Format(scan.SymptomNotes, AppLocalization.Language))).Append("</p>");
+        if (scan.Assessment.MissingSignals.Count > 0)
+            sb.Append("<p>").Append(H(TechnicalEvidence.Format(scan.Assessment, AppLocalization.Language))).Append("</p>");
         sb.Append("<section><h2>Triage</h2><p><b>").Append(H(triage.Title)).Append("</b></p><p>").Append(H(triage.Detail)).Append("</p></section>");
     }
 

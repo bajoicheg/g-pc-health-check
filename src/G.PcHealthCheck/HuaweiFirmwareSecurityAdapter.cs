@@ -278,17 +278,7 @@ internal static class HuaweiFirmwareBootReader
         var path = Path.Combine(Environment.SystemDirectory, "bcdedit.exe");
         if (!File.Exists(path)) return null;
 
-        var psi = new ProcessStartInfo
-        {
-            FileName = path,
-            UseShellExecute = false,
-            RedirectStandardOutput = true,
-            RedirectStandardError = true,
-            CreateNoWindow = true
-        };
-        psi.ArgumentList.Add("/enum");
-        psi.ArgumentList.Add("FIRMWARE");
-        psi.ArgumentList.Add("/v");
+        var psi = CreateFirmwareEnumerationStartInfo(path);
 
         using var process = Process.Start(psi);
         if (process is null) return null;
@@ -304,6 +294,22 @@ internal static class HuaweiFirmwareBootReader
         var output = stdout.GetAwaiter().GetResult();
         _ = stderr.GetAwaiter().GetResult();
         return process.ExitCode == 0 ? output : null;
+    }
+
+    internal static ProcessStartInfo CreateFirmwareEnumerationStartInfo(string path)
+    {
+        var psi = new ProcessStartInfo
+        {
+            FileName = path,
+            UseShellExecute = false,
+            RedirectStandardOutput = true,
+            RedirectStandardError = true,
+            CreateNoWindow = true
+        };
+        psi.ArgumentList.Add("/enum");
+        psi.ArgumentList.Add("FIRMWARE");
+
+        return psi;
     }
 
     private static bool ContainsId(string block, string id)

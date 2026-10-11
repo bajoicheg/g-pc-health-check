@@ -114,4 +114,39 @@
   <data name="ExecutionContext.Flag.Unknown" xml:space="preserve"><value>unknown</value></data>
   <data name="ExecutionContext.Flag.Yes" xml:space="preserve"><value>yes</value></data>
   <data name="ExecutionContext.Flag.No" xml:space="preserve"><value>no</value></data>
+
+  <data name="Evidence.Reason.cause_not_established" xml:space="preserve"><value>The cause of missing data is not established; Unknown does not mean protection is absent.</value></data>
+  <data name="Evidence.Reason.access_denied" xml:space="preserve"><value>The source explicitly reported access denied.</value></data>
+  <data name="Evidence.Reason.timeout" xml:space="preserve"><value>The source explicitly reported a query timeout.</value></data>
+  <data name="Evidence.Reason.cancelled" xml:space="preserve"><value>Collection was explicitly cancelled.</value></data>
+  <data name="Evidence.Reason.not_collected" xml:space="preserve"><value>The expected observation was not collected.</value></data>
+  <data name="Evidence.Reason.unsupported" xml:space="preserve"><value>The source explicitly reported an unsupported field or manufacturer.</value></data>
+  <data name="Evidence.Reason.policy_missing" xml:space="preserve"><value>The baseline policy is not configured; this is not a collector failure.</value></data>
+  <data name="Evidence.Reason.policy_unreadable" xml:space="preserve"><value>The policy could not be read or validated; its existence, type and cause may not be established.</value></data>
+  <data name="Evidence.Reason.conflicting_evidence" xml:space="preserve"><value>The source explicitly recorded conflicting observations.</value></data>
+  <data name="Evidence.Next.cause_not_established" xml:space="preserve"><value>Manually verify the stated source and collection limits before drawing conclusions or changing settings; the app does not elevate automatically.</value></data>
+  <data name="Evidence.Next.access_denied" xml:space="preserve"><value>Manually verify the stated source and collection limits before drawing conclusions or changing settings; the app does not elevate automatically.</value></data>
+  <data name="Evidence.Next.timeout" xml:space="preserve"><value>Manually verify the stated source and collection limits before drawing conclusions or changing settings; the app does not elevate automatically.</value></data>
+  <data name="Evidence.Next.cancelled" xml:space="preserve"><value>Manually verify the stated source and collection limits before drawing conclusions or changing settings; the app does not elevate automatically.</value></data>
+  <data name="Evidence.Next.not_collected" xml:space="preserve"><value>Manually verify the stated source and collection limits before drawing conclusions or changing settings; the app does not elevate automatically.</value></data>
+  <data name="Evidence.Next.unsupported" xml:space="preserve"><value>Manually verify the stated source and collection limits before drawing conclusions or changing settings; the app does not elevate automatically.</value></data>
+  <data name="Evidence.Next.policy_missing" xml:space="preserve"><value>Agree a baseline policy with the owner; an administrator list alone does not prove a violation.</value></data>
+  <data name="Evidence.Next.policy_unreadable" xml:space="preserve"><value>Manually verify the stated source and collection limits before drawing conclusions or changing settings; the app does not elevate automatically.</value></data>
+  <data name="Evidence.Next.conflicting_evidence" xml:space="preserve"><value>Manually verify the stated source and collection limits before drawing conclusions or changing settings; the app does not elevate automatically.</value></data>
+  <data name="Evidence.Reason.Label" xml:space="preserve"><value>Reason</value></data>
+  <data name="Evidence.Source.Label" xml:space="preserve"><value>Source</value></data>
+  <data name="Evidence.Source.NotRecorded" xml:space="preserve"><value>not recorded in the observation</value></data>
+  <data name="Evidence.Next.Label" xml:space="preserve"><value>Next step</value></data>
+  <data name="Evidence.Triage.Incomplete" xml:space="preserve"><value>Insufficient data for an overall conclusion</value></data>
+  <data name="Evidence.Triage.Limits" xml:space="preserve"><value>No CRIT/WARN among known facts, but collection or coverage is incomplete. No findings does not prove health.</value></data>
+  <data name="Evidence.Symptom.Title" xml:space="preserve"><value>What is the symptom?</value></data>
+  <data name="Evidence.Symptom.Slow" xml:space="preserve"><value>Slow PC → performance</value></data>
+  <data name="Evidence.Symptom.Application" xml:space="preserve"><value>Hang / crash → incidents</value></data>
+  <data name="Evidence.Symptom.Resource" xml:space="preserve"><value>Unavailable resource → explicit probe</value></data>
+  <data name="Evidence.Symptom.Printing" xml:space="preserve"><value>Printing → common problems</value></data>
+  <data name="Evidence.Reason.identity_unavailable" xml:space="preserve"><value>A reliable member identity was not obtained.</value></data>
+  <data name="Evidence.Next.identity_unavailable" xml:space="preserve"><value>Manually verify the member name and SID; do not infer authorization without an identity.</value></data>
+  <data name="Evidence.Reason.name_resolution_required" xml:space="preserve"><value>Name resolution is required to compare the member with the rule.</value></data>
+  <data name="Evidence.Next.name_resolution_required" xml:space="preserve"><value>Manually verify name resolution and the policy rule.</value></data>
+  <data name="Evidence.Symptom.SaveFailed" xml:space="preserve"><value>The symptom selection could not be saved to HTML/JSON. The previous snapshot is retained; the tool was not opened.</value></data>
 </root>

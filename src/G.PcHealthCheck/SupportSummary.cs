@@ -14,6 +14,7 @@ internal static class SupportSummary
         var triage = TriageSummary.Build(scan);
         var systemDrive = SystemDiskSelection.Find(d);
         var sb = new StringBuilder();
+        sb.AppendLine(SymptomRoutes.Format(scan.SymptomNotes, AppLocalization.Language));
 
         sb.AppendLine("G PC Health");
         sb.AppendLine($"Компьютер: {d.System.ComputerName}");
@@ -33,7 +34,7 @@ internal static class SupportSummary
         sb.AppendLine(ExecutionPolicy.Describe(d.System.ExecutionContext));
 
         if (a.MissingSignals.Count > 0)
-            sb.AppendLine("Недоступные сигналы: " + string.Join(", ", a.MissingSignals));
+            sb.AppendLine(TechnicalEvidence.Format(a, AppLocalization.Language));
         if (d.CollectionWarnings.Count > 0)
             sb.AppendLine("Предупреждения сбора: " + string.Join(" | ", d.CollectionWarnings));
 

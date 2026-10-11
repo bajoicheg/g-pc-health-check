@@ -35,12 +35,12 @@ internal static class SecurityPostureUiSelfTest
             Require(tab.Name == "SecurityPostureTab", "Security tab stable Name drifted.");
             Require(tabs.TabPages.Contains(tab), "Security tab is not a top-level tab.");
 
-            var root = form.Controls.OfType<TableLayoutPanel>().Single(x => x.RowCount == 5 && x.ColumnCount == 1);
+            var root = tabs.TabPages["OverviewTab"]!.Controls.OfType<Panel>().Single(x => x.Name == "OverviewScrollViewport").Controls.OfType<TableLayoutPanel>().Single(x => x.RowCount == 5 && x.ColumnCount == 1);
             var metrics = root.GetControlFromPosition(0, 2) as TableLayoutPanel
                 ?? throw new InvalidOperationException("Main metric layout missing.");
-            Require(metrics.ColumnCount == 7 && metrics.Controls.Count == 7,
+            Require(metrics.Controls.Count == 7,
                 "Main metrics must contain exactly seven cards.");
-            Require(ReferenceEquals(metrics.GetControlFromPosition(6, 0), card), "Security card must be the seventh metric card.");
+            Require(ReferenceEquals(metrics.Controls.OfType<Panel>().ElementAt(6), card), "Security card must be the seventh metric card.");
 
             var onClick = typeof(Control).GetMethod("OnClick", BindingFlags.Instance | BindingFlags.NonPublic)
                 ?? throw new InvalidOperationException("Control click test hook unavailable.");

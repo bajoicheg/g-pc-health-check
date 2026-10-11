@@ -4,7 +4,7 @@ repository: bajoicheg/g-pc-health-check
 branch: design/0.17.0-security-posture
 policy_revision: 2026-10-10-cdc-3.3.1-independent-gpc-adoption
 policy_digest: 754133586e0cec49f1e1aaa7c36e9662c403c73acc098096e21286e3c5021d8d
-observed_at_utc: '2026-10-10T19:05:04.291408Z'
+observed_at_utc: '2026-10-11T07:19:37.076078Z'
 orchestration_origin: chat
 active_executor: none
 lease_state: released
@@ -25,17 +25,17 @@ execution_continuity:
   last_progress_ref: docs/REBRANDING.md
 control:
   execution_lease_ref: refs/heads/cdc/coordination
-  execution_lease_revision: cad05d820b206b138b714b790311306d2025f238
+  execution_lease_revision: ea8f0713fcfd1b3dbb1d9ff6a11b80a102f64910
   executor_id: null
-  lease_generation: 31
+  lease_generation: 32
   budget_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/budget.json
   recovery_snapshot_ref: null
   external_wait_ref: null
-active_change: g-pc-health-rebranding
-current_task: Branding implementation reviewed; documentation and host budget adapter
-  review before managed publication
+active_change: gpc-forward-reviewed-evidence-and-readable-ui
+current_task: Prepared exact product assembly onto CDC3.3.1; managed publication and
+  Windows validation pending
 phase: blocked
-implementation_sha: 36a62146ed90cd4236e0aaf4a6826a1c6df4cf0a
+implementation_sha: 3e64dbd7cf78ce6a273f454ec97583a454695d5e
 candidate_sha: ''
 last_green_sha: cbd20da8822f321df0d6404a955bf2cea9e553bb
 last_green_evidence: auto pilot push run 36128619572 success; artifacts 10861076525
@@ -47,11 +47,10 @@ last_ci_status: success
 release_version: 0.17.0
 release_candidate_sha: cbd20da8822f321df0d6404a955bf2cea9e553bb
 release_state: blocked
-blocker: host_adapter_review_pending; managed_publication_pending; Windows_checks_not_run;
-  managed_windows_11_retest_pending; explicit_owner_integration_approval_required
-next_action: Read exact final publication candidate from external immutable host journal;
-  after adapter review, fresh gates and durable budget CAS precede managed bridge
-  start.
+blocker: Git_receive_pack_credential_unavailable; Native_Cloud_usage_exhausted; Windows_checks_NOT_RUN
+next_action: Use a genuinely available authorized managed Git writer to publish the
+  exact reviewed forward assembly, then run required Windows checks; never replay
+  original CI6
 ---
 
 ## CDC 2.12.1 atomic process adoption
@@ -208,3 +207,10 @@ Canonical immutable release 62cd32e91446675799d42247eac2a0312c33d363, package 68
 ## Current CDC 3.3.1 independent process maintenance
 
 Canonical released source 51740497bea3e1bcbb302e894fda8b7e42bc0087, exact401-file package tree f580a8946c0510540a4be3f4422ab3404875274b, immutable refs/heads/release/v3.3.1. Separately pinned evidence 245fdf05c272d3f1c49ff0b7903213fac0aaf5a8:release/evidence-3.3.1.json; mandatory canonical CI38076972040 is reused for this identical CDC package. Owner approved administrative isolation of the original consumed CI6 guard through released3.3.1 canonical retirement. Original Git outcome remains UNKNOWN forever; original53636f45 candidate, pilot push, attempt and grant must never be replayed. This independent CDC-only migration preserves all product objects, budgets, audits, previous evidence and Windows0.17.1/0.17.2/0.18/0.19 pending/NOT_RUN gates. No product CI, product approval or product release is inferred. All schedulers/watchdogs/Fleet background remain paused; retiredSupervisor remains cancelled. Read real new managed release/pool/physical closure receipts independently. Earlier CDC sections remain historical.
+
+
+## Reviewed product integration preview — 2026-10-11
+
+This detached preparation carries the complete product source of accepted standalone candidate `3e64dbd7cf78ce6a273f454ec97583a454695d5e` onto current source `325fe132be9ff49bc09b8bfb873f6d3e92df1c5e`. Its existing CDC3.3.1 package, consumer lock and adapter remain byte-identical. The older standalone checkpoint, full source history, test/build receipts and SPEC/QUALITY verdicts are preserved through immutable artifact `a7e4ca5146dfec8202f48a70689faa43728c3030` and delivery coordination `ea8f0713fcfd1b3dbb1d9ff6a11b80a102f64910`. No historical active executor is restored.
+
+This preview is not managed publication, a new exact-SHA binary, Windows acceptance or release. Fresh source publication still requires authentic managed ownership and an authorized Git receive-pack credential. Root observed Git read success but a dry-run Git write failed because this environment has no credential; the former Native Cloud also still displays exhausted usage. No replacement cloud task or original CI6 submission was sent. Exact assembly review and next-action evidence are maintained on the existing coordination checkpoint. Windows PR/Full/UI/UAC/DPI/RDP/Huawei gates remain pending; original Git outcome remains UNKNOWN and must never be replayed. Schedulers stay paused.

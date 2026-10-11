@@ -24,6 +24,7 @@ internal static class Program
             if (result == 0) result = LocalizationCoverageSelfTest.Run();
             if (result == 0) result = HumanSizePresentationSelfTest.Run();
             if (result == 0) result = MainChromeSelfTest.Run();
+            if (result == 0) result = ReadableLayoutSelfTest.Run();
             if (result == 0) result = AnalysisAutoCollectSelfTest.Run();
             if (result == 0) result = ServiceDeskActionRegistrySelfTest.Run();
             if (result == 0) result = ServiceDeskBatchPlannerSelfTest.Run();
@@ -50,6 +51,7 @@ internal static class Program
             if (result == 0) result = SecurityHardeningWorkerSelfTest.Run();
             if (result == 0) result = SecurityHardeningUiSelfTest.Run();
             if (result == 0) result = SecurityLocalizationCoverageSelfTest.Run();
+            if (result == 0) result = EvidencePresentationSelfTest.Run();
             if (result == 0) result = SecurityEvidenceSafetySelfTest.Run();
             if (result == 0) result = SystemDiskSelectionSelfTest.Run();
             if (result == 0) result = PortableElevationSelfTest.Run();

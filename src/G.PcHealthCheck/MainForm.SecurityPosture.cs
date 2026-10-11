@@ -7,8 +7,8 @@ public sealed partial class MainForm
     private readonly DataGridView _securityGrid = new();
     private readonly Label _securityScore = new();
     private readonly Label _securityMetricDetail = new();
-    private readonly Label _securitySummary = new();
-    private readonly Label _securityOverrides = new();
+    private readonly TextBox _securitySummary = new();
+    private readonly TextBox _securityOverrides = new();
     private bool _securityUiInitialized;
 
     private void InitializeSecurityPostureUi(TableLayoutPanel root)
@@ -62,33 +62,33 @@ public sealed partial class MainForm
             Margin = new Padding(0),
             Padding = new Padding(0)
         };
-        layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 78));
+        layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 156));
         layout.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
 
-        var header = Card();
-        header.Margin = new Padding(0, 0, 0, 8);
-        _securitySummary.AutoSize = false;
-        _securitySummary.Font = new Font("Segoe UI Semibold", 11F);
-        _securitySummary.ForeColor = Navy;
-        _securitySummary.Location = new Point(14, 12);
-        _securitySummary.Size = new Size(1000, 24);
-        _securitySummary.Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;
-        _securityOverrides.AutoSize = false;
-        _securityOverrides.ForeColor = Muted;
-        _securityOverrides.Location = new Point(14, 40);
-        _securityOverrides.Size = new Size(1000, 22);
-        _securityOverrides.Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;
-        header.Controls.Add(_securitySummary);
-        header.Controls.Add(_securityOverrides);
-        header.Resize += (_, _) =>
+        // Complete localized coverage/override text remains selectable and vertically scrollable.
+        var header = new TableLayoutPanel { Dock = DockStyle.Fill, ColumnCount = 1, RowCount = 2, Padding = new Padding(12), BackColor = Color.White, Margin = new Padding(0, 0, 0, 8) };
+        header.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
+        header.RowStyles.Add(new RowStyle(SizeType.Percent, 50));
+        header.RowStyles.Add(new RowStyle(SizeType.Percent, 50));
+        foreach (var text in new[] { _securitySummary, _securityOverrides })
         {
-            _securitySummary.Width = Math.Max(100, header.ClientSize.Width - 28);
-            _securityOverrides.Width = Math.Max(100, header.ClientSize.Width - 28);
-        };
+            text.Dock = DockStyle.Fill; text.Multiline = true; text.ReadOnly = true;
+            text.WordWrap = true; text.ScrollBars = ScrollBars.Vertical;
+            text.BorderStyle = BorderStyle.None; text.BackColor = Color.White;
+        }
+        _securitySummary.Name = "SecuritySummary";
+        _securitySummary.AccessibleName = AppLocalization.T("Security.Metric.Caption");
+        _securitySummary.Font = new Font("Segoe UI Semibold", 11F); _securitySummary.ForeColor = Navy;
+        _securityOverrides.Name = "SecurityOverrides";
+        _securityOverrides.AccessibleName = AppLocalization.T("Security.Column.Evidence");
+        _securityOverrides.ForeColor = Muted;
+        header.Controls.Add(_securitySummary, 0, 0); header.Controls.Add(_securityOverrides, 0, 1);
         layout.Controls.Add(header, 0, 0);
 
         ConfigureGrid(_securityGrid);
-        _securityGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+        _securityGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+        _securityGrid.RowTemplate.Height = 28;
+        _securityGrid.DefaultCellStyle.WrapMode = DataGridViewTriState.False;
         _securityGrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "Control", HeaderText = AppLocalization.T("Security.Column.Control"), Width = 210 });
         _securityGrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "Status", HeaderText = AppLocalization.T("Security.Column.Status"), Width = 115 });
         _securityGrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "Points", HeaderText = AppLocalization.T("Security.Column.Points"), Width = 78 });
@@ -96,8 +96,8 @@ public sealed partial class MainForm
         _securityGrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "Recommendation", HeaderText = AppLocalization.T("Security.Column.Recommendation"), Width = 300 });
         _securityGrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "Source", HeaderText = AppLocalization.T("Security.Column.Source"), Width = 180 });
         foreach (DataGridViewColumn column in _securityGrid.Columns)
-            column.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-        layout.Controls.Add(_securityGrid, 0, 1);
+            column.DefaultCellStyle.WrapMode = DataGridViewTriState.False;
+        layout.Controls.Add(DetailPane(_securityGrid, "SecurityDetails"), 0, 1);
 
         page.Controls.Add(layout);
         return page;
@@ -150,6 +150,8 @@ public sealed partial class MainForm
         var evidence = control.Evidence.Count == 0
             ? AppLocalization.T("Security.Evidence.None")
             : string.Join("; ", control.Evidence.Select(x => $"{x.Key}={x.Value}"));
+        if (control.Explanation is { } explanation)
+            evidence += "; " + MissingEvidenceExplanation.Format(explanation, AppLocalization.Language);
         var sources = DistinctSources(control.Evidence);
         var recommendation = control.Status is SecurityControlStatus.Pass or SecurityControlStatus.NotApplicable
             ? "—"
@@ -167,53 +169,22 @@ public sealed partial class MainForm
     private void AddBitLockerDetailRows(SecurityPostureAssessment assessment)
     {
         foreach (var control in assessment.Controls.Where(x => x.Id is "SEC-BITLOCKER-OS" or "SEC-BITLOCKER-DATA"))
-        {
-            var groups = SplitEvidenceGroups(control.Evidence, "Volume");
-            foreach (var group in groups)
-            {
-                var volume = group.FirstOrDefault(x => x.Key == "Volume")?.Value;
-                if (string.IsNullOrWhiteSpace(volume)) continue;
-                var status = SecurityStatusFromBitLockerEvidence(group);
-                var evidence = string.Join("; ", group.Select(x => $"{x.Key}={x.Value}"));
-                var index = _securityGrid.Rows.Add(
-                    control.Id + " · " + volume,
-                    SecurityStatusText(status),
-                    "—",
-                    evidence,
-                    status is SecurityControlStatus.Pass or SecurityControlStatus.NotApplicable ? "—" : SecurityGuidance(control.GuidanceCode),
-                    DistinctSources(group));
-                StyleSecurityRow(_securityGrid.Rows[index], status);
-            }
-        }
+            foreach (var detail in SecurityDetailPresentation.BitLocker(control)) AddSecuritySubjectRow(detail, control.GuidanceCode);
     }
 
     private void AddLocalAdministratorDetailRows(LocalAdministratorsCollectionResult? localAdministrators)
     {
-        if (localAdministrators is null) return;
-        foreach (var member in localAdministrators.Members)
-        {
-            var status = member.Result switch
-            {
-                "Allowed" => SecurityControlStatus.Pass,
-                "Unauthorized" => SecurityControlStatus.Fail,
-                _ => SecurityControlStatus.Unknown
-            };
-            var identity = member.Name ?? (member.Sid is null ? "Unknown" : "SID:" + member.Sid);
-            var facts = new List<string>();
-            if (member.Sid is not null) facts.Add("SID=" + member.Sid);
-            facts.Add("Type=" + member.Type);
-            facts.Add("Result=" + member.Result);
-            facts.Add("Reason=" + member.Reason);
-            if (member.MatchedRule is not null) facts.Add("MatchedRule=" + member.MatchedRule);
-            var index = _securityGrid.Rows.Add(
-                "SEC-LOCAL-ADMINS · " + identity,
-                SecurityStatusText(status),
-                "—",
-                string.Join("; ", facts),
-                status == SecurityControlStatus.Pass ? "—" : SecurityGuidance("SEC-LOCAL-ADMINS"),
-                member.Source);
-            StyleSecurityRow(_securityGrid.Rows[index], status);
-        }
+        if (localAdministrators is not null)
+            foreach (var detail in SecurityDetailPresentation.LocalAdministrators(localAdministrators)) AddSecuritySubjectRow(detail, "SEC-LOCAL-ADMINS");
+    }
+
+    private void AddSecuritySubjectRow(SecuritySubjectDetail detail, string guidanceCode)
+    {
+        var index = _securityGrid.Rows.Add(detail.ControlId + " · " + detail.Subject,
+            SecurityStatusText(detail.Status), "—", detail.DisplayEvidence(AppLocalization.Language),
+            detail.Status is SecurityControlStatus.Pass or SecurityControlStatus.NotApplicable ? "—" : SecurityGuidance(guidanceCode),
+            DistinctSources(detail.Evidence));
+        StyleSecurityRow(_securityGrid.Rows[index], detail.Status);
     }
 
     private static IReadOnlyList<IReadOnlyList<SecurityEvidence>> SplitEvidenceGroups(

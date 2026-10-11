@@ -34,6 +34,11 @@ internal static class SecurityReportSection
         foreach (var control in assessment.Controls.Concat(assessment.Supplemental))
             AppendControlRow(sb, control, language);
 
+        foreach (var detail in scan.SecurityDetails)
+            sb.Append("<tr><td>").Append(H(detail.ControlId + " · " + detail.Subject)).Append("</td><td>")
+                .Append(H(StatusText(language, detail.Status))).Append("</td><td>—</td><td>")
+                .Append(H(detail.DisplayEvidence(language))).Append("</td><td>—</td><td>")
+                .Append(H(string.Join(", ", detail.Evidence.Select(x => x.Source).Distinct()))).Append("</td></tr>");
         sb.Append("</tbody></table>");
         AppendHardeningEvidence(sb, scan.SecurityHardening, language);
         sb.Append("</section>");
@@ -55,12 +60,21 @@ internal static class SecurityReportSection
         if (assessment.CriticalOverrides.Count > 0)
             sb.AppendLine(T(language, "Security.Summary.Overrides", string.Join(", ", assessment.CriticalOverrides)));
 
-        var attention = assessment.Controls
+        var attention = assessment.Controls.Concat(assessment.Supplemental)
             .Where(x => x.Status is SecurityControlStatus.Fail or SecurityControlStatus.Warn or SecurityControlStatus.Unknown)
-            .Take(8)
             .ToList();
         foreach (var control in attention)
+            {
             sb.AppendLine($"- {control.Id}: {StatusText(language, control.Status)}; {PointsText(control)}");
+            if (control.Explanation is { } explanation)
+            {
+                sb.AppendLine(MissingEvidenceExplanation.Format(explanation, language));
+                sb.AppendLine(string.Join("; ", control.Evidence.Select(x => $"{x.Key}={x.Value} ({x.Source})")));
+            }
+        }
+
+        foreach (var detail in scan.SecurityDetails.Where(x => x.Status == SecurityControlStatus.Unknown))
+            sb.AppendLine(detail.ControlId + " · " + detail.Subject + ": " + detail.DisplayEvidence(language));
 
         if (scan.SecurityHardening is { } hardening)
         {
@@ -87,6 +101,7 @@ internal static class SecurityReportSection
         var evidence = control.Evidence.Count == 0
             ? T(language, "Security.Evidence.None")
             : string.Join("; ", control.Evidence.Select(x => $"{x.Key}={x.Value}"));
+        if (control.Explanation is { } explanation) evidence += "; " + MissingEvidenceExplanation.Format(explanation, language);
         var sources = string.Join(", ", control.Evidence.Select(x => x.Source)
             .Where(x => !string.IsNullOrWhiteSpace(x))
             .Distinct(StringComparer.OrdinalIgnoreCase));
