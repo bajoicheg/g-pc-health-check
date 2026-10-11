@@ -837,6 +837,11 @@
     "actual_task_url": "https://chatgpt.com/local/01a129ed-465e-7702-b5a7-2509f51c80c6?hostId=local",
     "observation_path": "exe-gpc-recovery/cloud-setup-20261011/observation.json",
     "environment_published": false,
-    "owner_steering_accepted_in_same_task": true
+    "owner_steering_accepted_in_same_task": true,
+    "last_progress_at_utc": "2026-10-11T08:01:58.462Z",
+    "git_transport_probe": "PASS_DRY_RUN_ONLY",
+    "git_transport_evidence": "exe-gpc-recovery/cloud-setup-20261011/git-transport-observation.json",
+    "configuration_state": "DRAFT_SAVED_READBACK_REVISION_2",
+    "cdc_full_suite": "RUNNING"
   }
 }
