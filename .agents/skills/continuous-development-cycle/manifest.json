@@ -1,7 +1,7 @@
 {
   "name": "continuous-development-cycle",
-  "version": "3.3.1",
+  "version": "3.5.0",
   "schema": "continuous-development-cycle/v3",
   "entrypoint": "SKILL.md",
-  "description": "Owner-authorized isolation of UNKNOWN create-only Git submissions, preserving history and permanent replay protection."
+  "description": "Supported Fleet floor3.3.0 with current-risk qualification and preserved audit history."
 }

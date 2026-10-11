@@ -2,9 +2,9 @@
 schema: development-work-status/v4
 repository: bajoicheg/g-pc-health-check
 branch: design/0.17.0-security-posture
-policy_revision: 2026-10-10-cdc-3.3.1-independent-gpc-adoption
-policy_digest: 754133586e0cec49f1e1aaa7c36e9662c403c73acc098096e21286e3c5021d8d
-observed_at_utc: '2026-10-11T07:19:37.076078Z'
+policy_revision: 2026-10-11-cdc-3.5.0-safe-g-pc-health-check
+policy_digest: b417fe61b26d31e5e3489b5f6af1ad5d84b6ca949d9154e3f6b52a6e2c91148f
+observed_at_utc: '2026-10-11T10:44:19.223413Z'
 orchestration_origin: chat
 active_executor: none
 lease_state: released
@@ -25,9 +25,9 @@ execution_continuity:
   last_progress_ref: docs/REBRANDING.md
 control:
   execution_lease_ref: refs/heads/cdc/coordination
-  execution_lease_revision: ea8f0713fcfd1b3dbb1d9ff6a11b80a102f64910
+  execution_lease_revision: 03364368263fe3ff1fc315c5a577bf959239b6b1
   executor_id: null
-  lease_generation: 32
+  lease_generation: 35
   budget_ref: https://github.com/bajoicheg/g-pc-health-check/blob/cdc/coordination/budget.json
   recovery_snapshot_ref: null
   external_wait_ref: null
@@ -214,3 +214,8 @@ Canonical released source 51740497bea3e1bcbb302e894fda8b7e42bc0087, exact401-fil
 This detached preparation carries the complete product source of accepted standalone candidate `3e64dbd7cf78ce6a273f454ec97583a454695d5e` onto current source `325fe132be9ff49bc09b8bfb873f6d3e92df1c5e`. Its existing CDC3.3.1 package, consumer lock and adapter remain byte-identical. The older standalone checkpoint, full source history, test/build receipts and SPEC/QUALITY verdicts are preserved through immutable artifact `a7e4ca5146dfec8202f48a70689faa43728c3030` and delivery coordination `ea8f0713fcfd1b3dbb1d9ff6a11b80a102f64910`. No historical active executor is restored.
 
 This preview is not managed publication, a new exact-SHA binary, Windows acceptance or release. Fresh source publication still requires authentic managed ownership and an authorized Git receive-pack credential. Root observed Git read success but a dry-run Git write failed because this environment has no credential; the former Native Cloud also still displays exhausted usage. No replacement cloud task or original CI6 submission was sent. Exact assembly review and next-action evidence are maintained on the existing coordination checkpoint. Windows PR/Full/UI/UAC/DPI/RDP/Huawei gates remain pending; original Git outcome remains UNKNOWN and must never be replayed. Schedulers stay paused.
+
+
+## Current CDC 3.5.0 process provenance
+
+CDC3.5.0 process package/lock is current. Product phase, blocker, budgets and platform gates above are preserved; package CI is not product acceptance. The referenced control revision is the authentic prior released safe boundary; genuine new invocation, publication, lease release and physical closure are independently pinned in private per-consumer receipts. Schedulers remain PAUSED. Original CI6 Git stdout/stderr/returncode remain NULL/UNKNOWN, canonically administratively retired under released3.3.1, never replayable and no longer a CDC process blocker. Old unknown/blocker narrative is historical; Windows product gates remain NOT_RUN/pending.
