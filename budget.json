@@ -2715,908 +2715,942 @@
       "wake_id": "gpc-max-huawei-20261010-123856"
     },
     {
-      "type": "reserve",
+      "at_utc": "2026-10-10T17:53:46.256538Z",
+      "attempt_id": "gpc-original-CI6-host-log-audit60-20261010",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
       "event_id": "gpc-original-CI6-host-log-audit60-20261010-agent_start",
-      "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-git-original-receipt-audit-20261010-2048",
-      "at_utc": "2026-10-10T17:53:46.256538Z",
-      "operation_key": "sha256:f88d5a26a8f29ff5805047600d7ccf3da73e11ef5a223a056789d062c68bcd37",
-      "attempt_id": "gpc-original-CI6-host-log-audit60-20261010",
       "kind": "agent_start",
-      "scope": "gpc/readonly-original-host-retained-log-recovery",
+      "operation_key": "sha256:f88d5a26a8f29ff5805047600d7ccf3da73e11ef5a223a056789d062c68bcd37",
       "recovery_ref": null,
-      "cost": {
-        "tool_calls": 1,
-        "tokens": null,
-        "elapsed_seconds": null
-      }
-    },
-    {
+      "scope": "gpc/readonly-original-host-retained-log-recovery",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
       "type": "reserve",
-      "event_id": "gpc-original-CI6-host-log-audit60-20261010-compute_start",
-      "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-git-original-receipt-audit-20261010-2048",
-      "at_utc": "2026-10-10T17:53:46.256538Z",
-      "operation_key": "sha256:5d1ec8b1fbf9bb6038efe1829f7876df63e956feb3dbdd62325a7971c2306dfc",
-      "attempt_id": "gpc-original-CI6-host-log-audit60-20261010",
-      "kind": "compute_start",
-      "scope": "gpc/readonly-original-host-retained-log-recovery",
-      "recovery_ref": null,
-      "cost": {
-        "tool_calls": 1,
-        "tokens": null,
-        "elapsed_seconds": null
-      }
+      "wake_id": "gpc-git-original-receipt-audit-20261010-2048"
     },
     {
-      "type": "outcome",
-      "event_id": "gpc-original-CI6-host-log-audit60-20261010-agent_start-actual-terminal",
+      "at_utc": "2026-10-10T17:53:46.256538Z",
+      "attempt_id": "gpc-original-CI6-host-log-audit60-20261010",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-original-CI6-host-log-audit60-20261010-compute_start",
+      "kind": "compute_start",
+      "operation_key": "sha256:5d1ec8b1fbf9bb6038efe1829f7876df63e956feb3dbdd62325a7971c2306dfc",
+      "recovery_ref": null,
+      "scope": "gpc/readonly-original-host-retained-log-recovery",
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-git-original-receipt-audit-20261010-2048",
+      "type": "reserve",
+      "wake_id": "gpc-git-original-receipt-audit-20261010-2048"
+    },
+    {
       "at_utc": "2026-10-10T18:02:48.087629Z",
+      "event_id": "gpc-original-CI6-host-log-audit60-20261010-agent_start-actual-terminal",
+      "failure": null,
       "reservation_id": "gpc-original-CI6-host-log-audit60-20261010-agent_start",
       "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
       "usage": {
-        "tokens": null,
-        "elapsed_seconds": 245
+        "elapsed_seconds": 245,
+        "tokens": null
       },
-      "failure": null
+      "wake_id": "gpc-git-original-receipt-audit-20261010-2048"
     },
     {
-      "type": "outcome",
-      "event_id": "gpc-original-CI6-host-log-audit60-20261010-compute_start-actual-terminal",
-      "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-git-original-receipt-audit-20261010-2048",
       "at_utc": "2026-10-10T18:02:48.087629Z",
+      "event_id": "gpc-original-CI6-host-log-audit60-20261010-compute_start-actual-terminal",
+      "failure": null,
       "reservation_id": "gpc-original-CI6-host-log-audit60-20261010-compute_start",
       "status": "succeeded",
-      "usage": {
-        "tokens": null,
-        "elapsed_seconds": 245
-      },
-      "failure": null
-    },
-    {
-      "type": "reserve",
-      "event_id": "gpc-no-data61-20261010-agent_start",
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-no-data-20261010",
-      "at_utc": "2026-10-10T19:07:53.816274Z",
-      "operation_key": "sha256:3a9ac406cd58b865fe437ae5e0ccb733ef9718fa74ba7f06d85c0ba06dadcc09",
-      "attempt_id": "gpc-no-data61-20261010",
-      "kind": "agent_start",
-      "scope": "gpc/isolated-explain-missing-evidence",
-      "recovery_ref": null,
-      "cost": {
-        "tool_calls": 1,
-        "tokens": null,
-        "elapsed_seconds": null
-      }
-    },
-    {
-      "type": "reserve",
-      "event_id": "gpc-no-data61-20261010-compute_start",
-      "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-no-data-20261010",
-      "at_utc": "2026-10-10T19:07:53.816274Z",
-      "operation_key": "sha256:6acd59e52280b3c3b54370be50719deaf86a46ee43af6f000326f51bd6e2e4b2",
-      "attempt_id": "gpc-no-data61-20261010",
-      "kind": "compute_start",
-      "scope": "gpc/isolated-explain-missing-evidence",
-      "recovery_ref": null,
-      "cost": {
-        "tool_calls": 1,
-        "tokens": null,
-        "elapsed_seconds": null
-      }
-    },
-    {
       "type": "outcome",
-      "event_id": "gpc-no-data61-20261010-agent_start-terminal",
+      "usage": {
+        "elapsed_seconds": 245,
+        "tokens": null
+      },
+      "wake_id": "gpc-git-original-receipt-audit-20261010-2048"
+    },
+    {
+      "at_utc": "2026-10-10T19:07:53.816274Z",
+      "attempt_id": "gpc-no-data61-20261010",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-no-data61-20261010-agent_start",
+      "kind": "agent_start",
+      "operation_key": "sha256:3a9ac406cd58b865fe437ae5e0ccb733ef9718fa74ba7f06d85c0ba06dadcc09",
+      "recovery_ref": null,
+      "scope": "gpc/isolated-explain-missing-evidence",
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-no-data-20261010",
+      "type": "reserve",
+      "wake_id": "gpc-no-data-20261010"
+    },
+    {
+      "at_utc": "2026-10-10T19:07:53.816274Z",
+      "attempt_id": "gpc-no-data61-20261010",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-no-data61-20261010-compute_start",
+      "kind": "compute_start",
+      "operation_key": "sha256:6acd59e52280b3c3b54370be50719deaf86a46ee43af6f000326f51bd6e2e4b2",
+      "recovery_ref": null,
+      "scope": "gpc/isolated-explain-missing-evidence",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-no-data-20261010"
+    },
+    {
       "at_utc": "2026-10-10T19:40:14.044262Z",
+      "event_id": "gpc-no-data61-20261010-agent_start-terminal",
+      "failure": null,
       "reservation_id": "gpc-no-data61-20261010-agent_start",
       "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
       "usage": {
-        "tokens": null,
-        "elapsed_seconds": 1336
+        "elapsed_seconds": 1336,
+        "tokens": null
       },
-      "failure": null
+      "wake_id": "gpc-no-data-20261010"
     },
     {
-      "type": "outcome",
-      "event_id": "gpc-no-data61-20261010-compute_start-terminal",
-      "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-no-data-20261010",
       "at_utc": "2026-10-10T19:40:14.044262Z",
+      "event_id": "gpc-no-data61-20261010-compute_start-terminal",
+      "failure": null,
       "reservation_id": "gpc-no-data61-20261010-compute_start",
       "status": "succeeded",
-      "usage": {
-        "tokens": null,
-        "elapsed_seconds": 1336
-      },
-      "failure": null
-    },
-    {
-      "type": "reserve",
-      "event_id": "gpc-no-data62-late-steering-20261010-agent_start",
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-no-data-20261010",
-      "at_utc": "2026-10-10T19:40:14.044262Z",
-      "operation_key": "sha256:bdcbff2b2c777985712669c52e230bf4c19a5d3b4737805d9ae5b8e7488c9649",
-      "attempt_id": "gpc-no-data62-late-steering-20261010",
-      "kind": "agent_start",
-      "scope": "gpc/retrospective-unprepaid-late-steering-incident",
-      "recovery_ref": null,
-      "cost": {
-        "tool_calls": 1,
-        "tokens": null,
-        "elapsed_seconds": null
-      }
-    },
-    {
       "type": "outcome",
-      "event_id": "gpc-no-data62-late-steering-20261010-agent_start-terminal",
-      "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-no-data-20261010",
+      "usage": {
+        "elapsed_seconds": 1336,
+        "tokens": null
+      },
+      "wake_id": "gpc-no-data-20261010"
+    },
+    {
       "at_utc": "2026-10-10T19:40:14.044262Z",
+      "attempt_id": "gpc-no-data62-late-steering-20261010",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-no-data62-late-steering-20261010-agent_start",
+      "kind": "agent_start",
+      "operation_key": "sha256:bdcbff2b2c777985712669c52e230bf4c19a5d3b4737805d9ae5b8e7488c9649",
+      "recovery_ref": null,
+      "scope": "gpc/retrospective-unprepaid-late-steering-incident",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-no-data-20261010"
+    },
+    {
+      "at_utc": "2026-10-10T19:40:14.044262Z",
+      "event_id": "gpc-no-data62-late-steering-20261010-agent_start-terminal",
+      "failure": null,
       "reservation_id": "gpc-no-data62-late-steering-20261010-agent_start",
       "status": "succeeded",
-      "usage": {
-        "tokens": null,
-        "elapsed_seconds": null
-      },
-      "failure": null
-    },
-    {
-      "type": "reserve",
-      "event_id": "gpc-no-data62-late-steering-20261010-compute_start",
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-no-data-20261010",
-      "at_utc": "2026-10-10T19:40:14.044262Z",
-      "operation_key": "sha256:3dd6e8e3da9e067405b55084545c4ebb2adf8c695e4e7b4fa7059a1375fc9995",
-      "attempt_id": "gpc-no-data62-late-steering-20261010",
-      "kind": "compute_start",
-      "scope": "gpc/retrospective-unprepaid-late-steering-incident",
-      "recovery_ref": null,
-      "cost": {
-        "tool_calls": 1,
-        "tokens": null,
-        "elapsed_seconds": null
-      }
-    },
-    {
       "type": "outcome",
-      "event_id": "gpc-no-data62-late-steering-20261010-compute_start-terminal",
-      "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-no-data-20261010",
+      "usage": {
+        "elapsed_seconds": null,
+        "tokens": null
+      },
+      "wake_id": "gpc-no-data-20261010"
+    },
+    {
       "at_utc": "2026-10-10T19:40:14.044262Z",
+      "attempt_id": "gpc-no-data62-late-steering-20261010",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-no-data62-late-steering-20261010-compute_start",
+      "kind": "compute_start",
+      "operation_key": "sha256:3dd6e8e3da9e067405b55084545c4ebb2adf8c695e4e7b4fa7059a1375fc9995",
+      "recovery_ref": null,
+      "scope": "gpc/retrospective-unprepaid-late-steering-incident",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-no-data-20261010"
+    },
+    {
+      "at_utc": "2026-10-10T19:40:14.044262Z",
+      "event_id": "gpc-no-data62-late-steering-20261010-compute_start-terminal",
+      "failure": null,
       "reservation_id": "gpc-no-data62-late-steering-20261010-compute_start",
       "status": "succeeded",
-      "usage": {
-        "tokens": null,
-        "elapsed_seconds": null
-      },
-      "failure": null
-    },
-    {
-      "type": "reserve",
-      "event_id": "gpc-no-data63-spec-20261010-agent_start",
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-no-data-20261010",
-      "at_utc": "2026-10-10T19:40:14.044262Z",
-      "operation_key": "sha256:5dcf4a67a286dace81b65fdabeb7b0972637f4be2648b476c2ed363fbf959730",
-      "attempt_id": "gpc-no-data63-spec-20261010",
-      "kind": "agent_start",
-      "scope": "gpc/exact-candidate-spec-review",
-      "recovery_ref": null,
-      "cost": {
-        "tool_calls": 1,
-        "tokens": null,
-        "elapsed_seconds": null
-      }
-    },
-    {
       "type": "outcome",
-      "event_id": "gpc-no-data63-spec-20261010-agent_start-terminal",
+      "usage": {
+        "elapsed_seconds": null,
+        "tokens": null
+      },
+      "wake_id": "gpc-no-data-20261010"
+    },
+    {
+      "at_utc": "2026-10-10T19:40:14.044262Z",
+      "attempt_id": "gpc-no-data63-spec-20261010",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-no-data63-spec-20261010-agent_start",
+      "kind": "agent_start",
+      "operation_key": "sha256:5dcf4a67a286dace81b65fdabeb7b0972637f4be2648b476c2ed363fbf959730",
+      "recovery_ref": null,
+      "scope": "gpc/exact-candidate-spec-review",
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-no-data-20261010",
+      "type": "reserve",
+      "wake_id": "gpc-no-data-20261010"
+    },
+    {
       "at_utc": "2026-10-10T19:45:40.504164Z",
+      "event_id": "gpc-no-data63-spec-20261010-agent_start-terminal",
+      "failure": null,
       "reservation_id": "gpc-no-data63-spec-20261010-agent_start",
       "status": "succeeded",
-      "usage": {
-        "tokens": null,
-        "elapsed_seconds": 241.232
-      },
-      "failure": null
-    },
-    {
-      "type": "reserve",
-      "event_id": "gpc-no-data64-corrective-20261010-agent_start",
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-no-data-20261010",
-      "at_utc": "2026-10-10T19:45:40.504164Z",
-      "operation_key": "sha256:3de9016dccd221a770607a5fb18957af570c9ea925996e95740618c2006f1d23",
-      "attempt_id": "gpc-no-data64-corrective-20261010",
-      "kind": "agent_start",
-      "scope": "gpc/isolated-corrective-missing-evidence",
-      "recovery_ref": null,
-      "cost": {
-        "tool_calls": 1,
-        "tokens": null,
-        "elapsed_seconds": null
-      }
-    },
-    {
-      "type": "reserve",
-      "event_id": "gpc-no-data64-corrective-20261010-compute_start",
-      "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-no-data-20261010",
-      "at_utc": "2026-10-10T19:45:40.504164Z",
-      "operation_key": "sha256:7f1373117ae538fe4eaa87fdd1bd95235749de76cadc7e650891b6b8bdf71311",
-      "attempt_id": "gpc-no-data64-corrective-20261010",
-      "kind": "compute_start",
-      "scope": "gpc/isolated-corrective-missing-evidence",
-      "recovery_ref": null,
-      "cost": {
-        "tool_calls": 1,
-        "tokens": null,
-        "elapsed_seconds": null
-      }
-    },
-    {
       "type": "outcome",
-      "event_id": "gpc-no-data64-corrective-20261010-agent_start-terminal",
+      "usage": {
+        "elapsed_seconds": 241.232,
+        "tokens": null
+      },
+      "wake_id": "gpc-no-data-20261010"
+    },
+    {
+      "at_utc": "2026-10-10T19:45:40.504164Z",
+      "attempt_id": "gpc-no-data64-corrective-20261010",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-no-data64-corrective-20261010-agent_start",
+      "kind": "agent_start",
+      "operation_key": "sha256:3de9016dccd221a770607a5fb18957af570c9ea925996e95740618c2006f1d23",
+      "recovery_ref": null,
+      "scope": "gpc/isolated-corrective-missing-evidence",
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-no-data-20261010",
+      "type": "reserve",
+      "wake_id": "gpc-no-data-20261010"
+    },
+    {
+      "at_utc": "2026-10-10T19:45:40.504164Z",
+      "attempt_id": "gpc-no-data64-corrective-20261010",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-no-data64-corrective-20261010-compute_start",
+      "kind": "compute_start",
+      "operation_key": "sha256:7f1373117ae538fe4eaa87fdd1bd95235749de76cadc7e650891b6b8bdf71311",
+      "recovery_ref": null,
+      "scope": "gpc/isolated-corrective-missing-evidence",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-no-data-20261010"
+    },
+    {
       "at_utc": "2026-10-10T20:06:40.140610Z",
+      "event_id": "gpc-no-data64-corrective-20261010-agent_start-terminal",
+      "failure": {
+        "category": "infrastructure",
+        "signature": "provider_usage_limit_after_artifact_handoff"
+      },
       "reservation_id": "gpc-no-data64-corrective-20261010-agent_start",
       "status": "failed",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
       "usage": {
-        "tokens": null,
-        "elapsed_seconds": 929
+        "elapsed_seconds": 929,
+        "tokens": null
       },
-      "failure": {
-        "signature": "provider_usage_limit_after_artifact_handoff",
-        "category": "infrastructure"
-      }
+      "wake_id": "gpc-no-data-20261010"
     },
     {
-      "type": "outcome",
-      "event_id": "gpc-no-data64-corrective-20261010-compute_start-terminal",
-      "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-no-data-20261010",
       "at_utc": "2026-10-10T20:06:40.140610Z",
+      "event_id": "gpc-no-data64-corrective-20261010-compute_start-terminal",
+      "failure": {
+        "category": "infrastructure",
+        "signature": "provider_usage_limit_after_artifact_handoff"
+      },
       "reservation_id": "gpc-no-data64-corrective-20261010-compute_start",
       "status": "failed",
-      "usage": {
-        "tokens": null,
-        "elapsed_seconds": 929
-      },
-      "failure": {
-        "signature": "provider_usage_limit_after_artifact_handoff",
-        "category": "infrastructure"
-      }
-    },
-    {
-      "type": "reserve",
-      "event_id": "gpc-no-data65-spec-20261010-agent_start",
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-no-data-20261010",
-      "at_utc": "2026-10-10T20:06:40.140610Z",
-      "operation_key": "sha256:3c668cc061e8a3edeb6a48accd86394f2364953e05ce520e6dcb186fb8fd10df",
-      "attempt_id": "gpc-no-data65-spec-20261010",
-      "kind": "agent_start",
-      "scope": "gpc/exact-corrected-spec-review",
-      "recovery_ref": null,
-      "cost": {
-        "tool_calls": 1,
-        "tokens": null,
-        "elapsed_seconds": null
-      }
-    },
-    {
       "type": "outcome",
-      "event_id": "gpc-no-data65-spec-20261010-agent_start-terminal",
+      "usage": {
+        "elapsed_seconds": 929,
+        "tokens": null
+      },
+      "wake_id": "gpc-no-data-20261010"
+    },
+    {
+      "at_utc": "2026-10-10T20:06:40.140610Z",
+      "attempt_id": "gpc-no-data65-spec-20261010",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-no-data65-spec-20261010-agent_start",
+      "kind": "agent_start",
+      "operation_key": "sha256:3c668cc061e8a3edeb6a48accd86394f2364953e05ce520e6dcb186fb8fd10df",
+      "recovery_ref": null,
+      "scope": "gpc/exact-corrected-spec-review",
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-no-data-20261010",
+      "type": "reserve",
+      "wake_id": "gpc-no-data-20261010"
+    },
+    {
       "at_utc": "2026-10-10T20:10:11.291950Z",
+      "event_id": "gpc-no-data65-spec-20261010-agent_start-terminal",
+      "failure": null,
       "reservation_id": "gpc-no-data65-spec-20261010-agent_start",
       "status": "succeeded",
-      "usage": {
-        "tokens": null,
-        "elapsed_seconds": 179.67
-      },
-      "failure": null
-    },
-    {
-      "type": "reserve",
-      "event_id": "gpc-no-data66-quality-20261010-agent_start",
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-no-data-20261010",
-      "at_utc": "2026-10-10T20:10:11.291950Z",
-      "operation_key": "sha256:8605826a2a226df3de496571e41a8a028c87a51c40d62f2be3b1e0f5e2864c0d",
-      "attempt_id": "gpc-no-data66-quality-20261010",
-      "kind": "agent_start",
-      "scope": "gpc/exact-corrected-quality-review",
-      "recovery_ref": null,
-      "cost": {
-        "tool_calls": 1,
-        "tokens": null,
-        "elapsed_seconds": null
-      }
-    },
-    {
       "type": "outcome",
-      "event_id": "gpc-no-data66-quality-20261010-agent_start-terminal",
+      "usage": {
+        "elapsed_seconds": 179.67,
+        "tokens": null
+      },
+      "wake_id": "gpc-no-data-20261010"
+    },
+    {
+      "at_utc": "2026-10-10T20:10:11.291950Z",
+      "attempt_id": "gpc-no-data66-quality-20261010",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-no-data66-quality-20261010-agent_start",
+      "kind": "agent_start",
+      "operation_key": "sha256:8605826a2a226df3de496571e41a8a028c87a51c40d62f2be3b1e0f5e2864c0d",
+      "recovery_ref": null,
+      "scope": "gpc/exact-corrected-quality-review",
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-no-data-20261010",
+      "type": "reserve",
+      "wake_id": "gpc-no-data-20261010"
+    },
+    {
       "at_utc": "2026-10-10T20:14:00.812194Z",
+      "event_id": "gpc-no-data66-quality-20261010-agent_start-terminal",
+      "failure": null,
       "reservation_id": "gpc-no-data66-quality-20261010-agent_start",
       "status": "succeeded",
-      "usage": {
-        "tokens": null,
-        "elapsed_seconds": 164.072
-      },
-      "failure": null
-    },
-    {
-      "type": "reserve",
-      "event_id": "gpc-integration67-spec-20261011-agent_start",
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-forward-integration-20261011",
-      "at_utc": "2026-10-11T07:22:42.641206Z",
-      "operation_key": "sha256:baa6d6863cba613d7689ab8b8f88e6a2b61cd5ad6da9c7ad62ce396c4a1cac97",
-      "attempt_id": "gpc-integration67-spec-20261011",
-      "kind": "agent_start",
-      "scope": "gpc/exact-forward-integration-SPEC",
-      "recovery_ref": null,
-      "cost": {
-        "tool_calls": 1,
-        "tokens": null,
-        "elapsed_seconds": null
-      }
-    },
-    {
       "type": "outcome",
-      "event_id": "gpc-integration67-spec-20261011-agent_start-terminal",
+      "usage": {
+        "elapsed_seconds": 164.072,
+        "tokens": null
+      },
+      "wake_id": "gpc-no-data-20261010"
+    },
+    {
+      "at_utc": "2026-10-11T07:22:42.641206Z",
+      "attempt_id": "gpc-integration67-spec-20261011",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-integration67-spec-20261011-agent_start",
+      "kind": "agent_start",
+      "operation_key": "sha256:baa6d6863cba613d7689ab8b8f88e6a2b61cd5ad6da9c7ad62ce396c4a1cac97",
+      "recovery_ref": null,
+      "scope": "gpc/exact-forward-integration-SPEC",
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-forward-integration-20261011",
+      "type": "reserve",
+      "wake_id": "gpc-forward-integration-20261011"
+    },
+    {
       "at_utc": "2026-10-11T07:29:11.564708Z",
+      "event_id": "gpc-integration67-spec-20261011-agent_start-terminal",
+      "failure": null,
       "reservation_id": "gpc-integration67-spec-20261011-agent_start",
       "status": "succeeded",
-      "usage": {
-        "tokens": null,
-        "elapsed_seconds": 175.036668
-      },
-      "failure": null
-    },
-    {
-      "type": "reserve",
-      "event_id": "gpc-integration68-quality-20261011-agent_start",
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-forward-integration-20261011",
-      "at_utc": "2026-10-11T07:29:11.564708Z",
-      "operation_key": "sha256:e3f1ab56e4e85b404820c7fd573e73d3f6da492ebe709a6feefd324f04011bf4",
-      "attempt_id": "gpc-integration68-quality-20261011",
-      "kind": "agent_start",
-      "scope": "gpc/exact-forward-integration-QUALITY",
-      "recovery_ref": null,
-      "cost": {
-        "tool_calls": 1,
-        "tokens": null,
-        "elapsed_seconds": null
-      }
-    },
-    {
       "type": "outcome",
-      "event_id": "gpc-integration68-quality-20261011-agent_start-terminal",
+      "usage": {
+        "elapsed_seconds": 175.036668,
+        "tokens": null
+      },
+      "wake_id": "gpc-forward-integration-20261011"
+    },
+    {
+      "at_utc": "2026-10-11T07:29:11.564708Z",
+      "attempt_id": "gpc-integration68-quality-20261011",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-integration68-quality-20261011-agent_start",
+      "kind": "agent_start",
+      "operation_key": "sha256:e3f1ab56e4e85b404820c7fd573e73d3f6da492ebe709a6feefd324f04011bf4",
+      "recovery_ref": null,
+      "scope": "gpc/exact-forward-integration-QUALITY",
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-forward-integration-20261011",
+      "type": "reserve",
+      "wake_id": "gpc-forward-integration-20261011"
+    },
+    {
       "at_utc": "2026-10-11T07:33:41.639573Z",
+      "event_id": "gpc-integration68-quality-20261011-agent_start-terminal",
+      "failure": null,
       "reservation_id": "gpc-integration68-quality-20261011-agent_start",
       "status": "succeeded",
-      "usage": {
-        "tokens": null,
-        "elapsed_seconds": 158.188861
-      },
-      "failure": null
-    },
-    {
-      "type": "reserve",
-      "event_id": "gpc-official-cloud-environment-setup-20261011-a1-compute_start",
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-official-cloud-setup-20261011",
-      "at_utc": "2026-10-11T07:45:33.430573Z",
-      "operation_key": "sha256:98d0946fa23b1cdd0486dacb2bac88336890f16ec59baf5dfe7c6967bfc7eadf",
-      "attempt_id": "gpc-official-cloud-environment-setup-20261011-a1",
-      "kind": "compute_start",
-      "scope": "GPC/official-Cloud-personal-environment-configuration",
-      "recovery_ref": null,
-      "cost": {
-        "tool_calls": 1,
-        "tokens": null,
-        "elapsed_seconds": null
-      }
-    },
-    {
       "type": "outcome",
-      "event_id": "gpc-official-cloud-environment-setup-20261011-a1-compute_start-terminal",
+      "usage": {
+        "elapsed_seconds": 158.188861,
+        "tokens": null
+      },
+      "wake_id": "gpc-forward-integration-20261011"
+    },
+    {
+      "at_utc": "2026-10-11T07:45:33.430573Z",
+      "attempt_id": "gpc-official-cloud-environment-setup-20261011-a1",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-official-cloud-environment-setup-20261011-a1-compute_start",
+      "kind": "compute_start",
+      "operation_key": "sha256:98d0946fa23b1cdd0486dacb2bac88336890f16ec59baf5dfe7c6967bfc7eadf",
+      "recovery_ref": null,
+      "scope": "GPC/official-Cloud-personal-environment-configuration",
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-official-cloud-setup-20261011",
+      "type": "reserve",
+      "wake_id": "gpc-official-cloud-setup-20261011"
+    },
+    {
       "at_utc": "2026-10-11T08:05:06.354465Z",
+      "event_id": "gpc-official-cloud-environment-setup-20261011-a1-compute_start-terminal",
+      "failure": null,
       "reservation_id": "gpc-official-cloud-environment-setup-20261011-a1-compute_start",
       "status": "succeeded",
-      "usage": {
-        "tokens": null,
-        "elapsed_seconds": null
-      },
-      "failure": null
-    },
-    {
-      "type": "reserve",
-      "event_id": "gpc-cloud-managed-integration-36114-20261011-a1-compute",
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-cloud-managed-integration-20261011",
-      "at_utc": "2026-10-11T08:05:06.354465Z",
-      "operation_key": "sha256:279c428a5755369c6a0802b0fef53b894c71a92b632ff826a2d9f776257f37b0",
-      "attempt_id": "gpc-cloud-managed-integration-36114-20261011-a1-compute",
-      "kind": "compute_start",
-      "scope": "GPC/Cloud/current-CDC-managed-integration-36114",
-      "recovery_ref": null,
-      "cost": {
-        "tool_calls": 1,
-        "tokens": null,
-        "elapsed_seconds": null
-      }
-    },
-    {
-      "type": "reserve",
-      "event_id": "gpc-cloud-managed-integration-36114-20261011-a1-windows-pr",
-      "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-cloud-managed-integration-20261011",
-      "at_utc": "2026-10-11T08:05:06.354465Z",
-      "operation_key": "sha256:3037e93345717d84b090d5506c706df7cb5fe04d06fa02be3fe226a481976f45",
-      "attempt_id": "gpc-cloud-managed-integration-36114-20261011-a1-windows-pr",
-      "kind": "ci_start",
-      "scope": "GPC/implicit-PR92/Windows-EXE",
-      "recovery_ref": null,
-      "cost": {
-        "tool_calls": 1,
-        "tokens": null,
-        "elapsed_seconds": null
-      }
-    },
-    {
-      "type": "reserve",
-      "event_id": "gpc-cloud-managed-integration-36114-20261011-a1-developer-tools",
-      "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-cloud-managed-integration-20261011",
-      "at_utc": "2026-10-11T08:05:06.354465Z",
-      "operation_key": "sha256:3d0483f26c916fcaa5b8003d424c799f9c96fe0c9ca1d39c166be18aeb2c7b48",
-      "attempt_id": "gpc-cloud-managed-integration-36114-20261011-a1-developer-tools",
-      "kind": "ci_start",
-      "scope": "GPC/implicit-PR92/Developer-Tools",
-      "recovery_ref": null,
-      "cost": {
-        "tool_calls": 1,
-        "tokens": null,
-        "elapsed_seconds": null
-      }
-    },
-    {
-      "type": "reserve",
-      "event_id": "gpc-cloud-managed-integration-36114-20261011-a1-evidence-analyzer",
-      "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-cloud-managed-integration-20261011",
-      "at_utc": "2026-10-11T08:05:06.354465Z",
-      "operation_key": "sha256:abce90a11997a00d6722f6d69fd9021c9f4c61bfe5a89cb7de4cee702a493de7",
-      "attempt_id": "gpc-cloud-managed-integration-36114-20261011-a1-evidence-analyzer",
-      "kind": "ci_start",
-      "scope": "GPC/implicit-PR92/E2E-Evidence-Analyzer",
-      "recovery_ref": null,
-      "cost": {
-        "tool_calls": 1,
-        "tokens": null,
-        "elapsed_seconds": null
-      }
-    },
-    {
-      "type": "reserve",
-      "event_id": "gpc-cloud-managed-integration-36114-20261011-a1-supply-chain-smoke",
-      "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-cloud-managed-integration-20261011",
-      "at_utc": "2026-10-11T08:05:06.354465Z",
-      "operation_key": "sha256:1b795d1cd607d33ea9a6bf6fc501d1e3acd399e33792a502c27f16fe29f6c743",
-      "attempt_id": "gpc-cloud-managed-integration-36114-20261011-a1-supply-chain-smoke",
-      "kind": "ci_start",
-      "scope": "GPC/implicit-PR92/Supply-Chain-Smoke",
-      "recovery_ref": null,
-      "cost": {
-        "tool_calls": 1,
-        "tokens": null,
-        "elapsed_seconds": null
-      }
-    },
-    {
-      "type": "reserve",
-      "event_id": "gpc-cloud-managed-integration-36114-20261011-a1-cdc-policy",
-      "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-cloud-managed-integration-20261011",
-      "at_utc": "2026-10-11T08:05:06.354465Z",
-      "operation_key": "sha256:2004a62de575a76499b428a6c275082f262a9e3099e5229ade9332f1084b1aa1",
-      "attempt_id": "gpc-cloud-managed-integration-36114-20261011-a1-cdc-policy",
-      "kind": "ci_start",
-      "scope": "GPC/implicit-PR92/CDC-Policy-Validation",
-      "recovery_ref": null,
-      "cost": {
-        "tool_calls": 1,
-        "tokens": null,
-        "elapsed_seconds": null
-      }
-    },
-    {
       "type": "outcome",
-      "event_id": "gpc-cloud-managed-integration-36114-20261011-a1-compute-terminal",
+      "usage": {
+        "elapsed_seconds": null,
+        "tokens": null
+      },
+      "wake_id": "gpc-official-cloud-setup-20261011"
+    },
+    {
+      "at_utc": "2026-10-11T08:05:06.354465Z",
+      "attempt_id": "gpc-cloud-managed-integration-36114-20261011-a1-compute",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-cloud-managed-integration-36114-20261011-a1-compute",
+      "kind": "compute_start",
+      "operation_key": "sha256:279c428a5755369c6a0802b0fef53b894c71a92b632ff826a2d9f776257f37b0",
+      "recovery_ref": null,
+      "scope": "GPC/Cloud/current-CDC-managed-integration-36114",
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-cloud-managed-integration-20261011",
+      "type": "reserve",
+      "wake_id": "gpc-cloud-managed-integration-20261011"
+    },
+    {
+      "at_utc": "2026-10-11T08:05:06.354465Z",
+      "attempt_id": "gpc-cloud-managed-integration-36114-20261011-a1-windows-pr",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-cloud-managed-integration-36114-20261011-a1-windows-pr",
+      "kind": "ci_start",
+      "operation_key": "sha256:3037e93345717d84b090d5506c706df7cb5fe04d06fa02be3fe226a481976f45",
+      "recovery_ref": null,
+      "scope": "GPC/implicit-PR92/Windows-EXE",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-cloud-managed-integration-20261011"
+    },
+    {
+      "at_utc": "2026-10-11T08:05:06.354465Z",
+      "attempt_id": "gpc-cloud-managed-integration-36114-20261011-a1-developer-tools",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-cloud-managed-integration-36114-20261011-a1-developer-tools",
+      "kind": "ci_start",
+      "operation_key": "sha256:3d0483f26c916fcaa5b8003d424c799f9c96fe0c9ca1d39c166be18aeb2c7b48",
+      "recovery_ref": null,
+      "scope": "GPC/implicit-PR92/Developer-Tools",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-cloud-managed-integration-20261011"
+    },
+    {
+      "at_utc": "2026-10-11T08:05:06.354465Z",
+      "attempt_id": "gpc-cloud-managed-integration-36114-20261011-a1-evidence-analyzer",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-cloud-managed-integration-36114-20261011-a1-evidence-analyzer",
+      "kind": "ci_start",
+      "operation_key": "sha256:abce90a11997a00d6722f6d69fd9021c9f4c61bfe5a89cb7de4cee702a493de7",
+      "recovery_ref": null,
+      "scope": "GPC/implicit-PR92/E2E-Evidence-Analyzer",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-cloud-managed-integration-20261011"
+    },
+    {
+      "at_utc": "2026-10-11T08:05:06.354465Z",
+      "attempt_id": "gpc-cloud-managed-integration-36114-20261011-a1-supply-chain-smoke",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-cloud-managed-integration-36114-20261011-a1-supply-chain-smoke",
+      "kind": "ci_start",
+      "operation_key": "sha256:1b795d1cd607d33ea9a6bf6fc501d1e3acd399e33792a502c27f16fe29f6c743",
+      "recovery_ref": null,
+      "scope": "GPC/implicit-PR92/Supply-Chain-Smoke",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-cloud-managed-integration-20261011"
+    },
+    {
+      "at_utc": "2026-10-11T08:05:06.354465Z",
+      "attempt_id": "gpc-cloud-managed-integration-36114-20261011-a1-cdc-policy",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-cloud-managed-integration-36114-20261011-a1-cdc-policy",
+      "kind": "ci_start",
+      "operation_key": "sha256:2004a62de575a76499b428a6c275082f262a9e3099e5229ade9332f1084b1aa1",
+      "recovery_ref": null,
+      "scope": "GPC/implicit-PR92/CDC-Policy-Validation",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-cloud-managed-integration-20261011"
+    },
+    {
       "at_utc": "2026-10-11T08:29:58.891299Z",
+      "event_id": "gpc-cloud-managed-integration-36114-20261011-a1-compute-terminal",
+      "failure": null,
       "reservation_id": "gpc-cloud-managed-integration-36114-20261011-a1-compute",
       "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
       "usage": {
-        "tokens": null,
-        "elapsed_seconds": 139.33424075
+        "elapsed_seconds": 139.33424075,
+        "tokens": null
       },
-      "failure": null
+      "wake_id": "gpc-cloud-managed-integration-20261011"
     },
     {
-      "type": "outcome",
-      "event_id": "gpc-cloud-managed-integration-36114-20261011-a1-windows-pr-terminal",
-      "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-cloud-managed-integration-20261011",
       "at_utc": "2026-10-11T08:29:58.891299Z",
+      "event_id": "gpc-cloud-managed-integration-36114-20261011-a1-windows-pr-terminal",
+      "failure": {
+        "category": "code",
+        "signature": "support-summary-missing-signal-heading-CPU"
+      },
       "reservation_id": "gpc-cloud-managed-integration-36114-20261011-a1-windows-pr",
       "status": "failed",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
       "usage": {
-        "tokens": null,
-        "elapsed_seconds": 73.0
+        "elapsed_seconds": 73.0,
+        "tokens": null
       },
-      "failure": {
-        "signature": "support-summary-missing-signal-heading-CPU",
-        "category": "code"
-      }
+      "wake_id": "gpc-cloud-managed-integration-20261011"
     },
     {
-      "type": "outcome",
-      "event_id": "gpc-cloud-managed-integration-36114-20261011-a1-developer-tools-terminal",
-      "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-cloud-managed-integration-20261011",
       "at_utc": "2026-10-11T08:29:58.891299Z",
+      "event_id": "gpc-cloud-managed-integration-36114-20261011-a1-developer-tools-terminal",
+      "failure": {
+        "category": "code",
+        "signature": "support-summary-missing-signal-heading-CPU"
+      },
       "reservation_id": "gpc-cloud-managed-integration-36114-20261011-a1-developer-tools",
       "status": "failed",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
       "usage": {
-        "tokens": null,
-        "elapsed_seconds": 72.0
+        "elapsed_seconds": 72.0,
+        "tokens": null
       },
-      "failure": {
-        "signature": "support-summary-missing-signal-heading-CPU",
-        "category": "code"
-      }
+      "wake_id": "gpc-cloud-managed-integration-20261011"
     },
     {
-      "type": "outcome",
-      "event_id": "gpc-cloud-managed-integration-36114-20261011-a1-evidence-analyzer-terminal",
-      "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-cloud-managed-integration-20261011",
       "at_utc": "2026-10-11T08:29:58.891299Z",
+      "event_id": "gpc-cloud-managed-integration-36114-20261011-a1-evidence-analyzer-terminal",
+      "failure": null,
       "reservation_id": "gpc-cloud-managed-integration-36114-20261011-a1-evidence-analyzer",
       "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
       "usage": {
-        "tokens": null,
-        "elapsed_seconds": 19.0
+        "elapsed_seconds": 19.0,
+        "tokens": null
       },
-      "failure": null
+      "wake_id": "gpc-cloud-managed-integration-20261011"
     },
     {
-      "type": "outcome",
-      "event_id": "gpc-cloud-managed-integration-36114-20261011-a1-supply-chain-smoke-terminal",
-      "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-cloud-managed-integration-20261011",
       "at_utc": "2026-10-11T08:29:58.891299Z",
+      "event_id": "gpc-cloud-managed-integration-36114-20261011-a1-supply-chain-smoke-terminal",
+      "failure": null,
       "reservation_id": "gpc-cloud-managed-integration-36114-20261011-a1-supply-chain-smoke",
       "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
       "usage": {
-        "tokens": null,
-        "elapsed_seconds": 32.0
+        "elapsed_seconds": 32.0,
+        "tokens": null
       },
-      "failure": null
+      "wake_id": "gpc-cloud-managed-integration-20261011"
     },
     {
-      "type": "outcome",
-      "event_id": "gpc-cloud-managed-integration-36114-20261011-a1-cdc-policy-terminal",
-      "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-cloud-managed-integration-20261011",
       "at_utc": "2026-10-11T08:29:58.891299Z",
+      "event_id": "gpc-cloud-managed-integration-36114-20261011-a1-cdc-policy-terminal",
+      "failure": null,
       "reservation_id": "gpc-cloud-managed-integration-36114-20261011-a1-cdc-policy",
       "status": "succeeded",
-      "usage": {
-        "tokens": null,
-        "elapsed_seconds": 10.0
-      },
-      "failure": null
-    },
-    {
-      "type": "reserve",
-      "event_id": "gpc-cloud-summary-regression-20261011-a1-compute",
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-cloud-summary-regression-20261011",
-      "at_utc": "2026-10-11T08:29:58.891299Z",
-      "operation_key": "sha256:d6debb9f72fc02d0633c8c35ccb9418bfd2a8eeb41ed267ffc8c2c2c37bc76dd",
-      "attempt_id": "gpc-cloud-summary-regression-20261011-a1",
-      "kind": "compute_start",
-      "scope": "GPC/Cloud/support-summary-compatibility-correction",
-      "recovery_ref": null,
-      "cost": {
-        "tool_calls": 1,
-        "tokens": null,
-        "elapsed_seconds": null
-      }
-    },
-    {
-      "type": "remedy",
-      "event_id": "gpc-cloud-summary-regression-20261011-a1-windows-pr-verified-correction",
-      "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-cloud-summary-regression-20261011",
-      "at_utc": "2026-10-11T08:39:22.374005Z",
-      "scope": "GPC/implicit-PR92/Windows-EXE",
-      "signature": "support-summary-missing-signal-heading-CPU",
-      "reference": "gpc-cloud-summary-regression-20261011-a1-windows-pr-verified-correction",
-      "kind": "code_correction",
-      "detail": "Actual candidate 6d65482be7045243501644807a54f6e5f6d6e9ce; Root reviewed localized missing-signal list restoration and unchanged detailed explanations/tests; durable 360a08a5dfbb70bcef64ef40827c929e25932e04"
-    },
-    {
-      "type": "reserve",
-      "event_id": "gpc-cloud-summary-regression-20261011-a1-windows-pr",
-      "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-cloud-summary-regression-20261011",
-      "at_utc": "2026-10-11T08:39:22.374005Z",
-      "operation_key": "sha256:b4e011187481b5f370fb505c0517afef1953e7756a8b8f0cca2704cac1869373",
-      "attempt_id": "gpc-cloud-summary-regression-20261011-a1-windows-pr",
-      "kind": "ci_start",
-      "scope": "GPC/implicit-PR92/Windows-EXE",
-      "recovery_ref": "gpc-cloud-summary-regression-20261011-a1-windows-pr-verified-correction",
-      "cost": {
-        "tool_calls": 1,
-        "tokens": null,
-        "elapsed_seconds": null
-      }
-    },
-    {
-      "type": "remedy",
-      "event_id": "gpc-cloud-summary-regression-20261011-a1-developer-tools-verified-correction",
-      "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-cloud-summary-regression-20261011",
-      "at_utc": "2026-10-11T08:39:22.374005Z",
-      "scope": "GPC/implicit-PR92/Developer-Tools",
-      "signature": "support-summary-missing-signal-heading-CPU",
-      "reference": "gpc-cloud-summary-regression-20261011-a1-developer-tools-verified-correction",
-      "kind": "code_correction",
-      "detail": "Actual candidate 6d65482be7045243501644807a54f6e5f6d6e9ce; Root reviewed localized missing-signal list restoration and unchanged detailed explanations/tests; durable 360a08a5dfbb70bcef64ef40827c929e25932e04"
-    },
-    {
-      "type": "reserve",
-      "event_id": "gpc-cloud-summary-regression-20261011-a1-developer-tools",
-      "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-cloud-summary-regression-20261011",
-      "at_utc": "2026-10-11T08:39:22.374005Z",
-      "operation_key": "sha256:2d2ced7211db0f35f1a82e9590e298958b31b3d9fa95657a04474b1b9a9a49d7",
-      "attempt_id": "gpc-cloud-summary-regression-20261011-a1-developer-tools",
-      "kind": "ci_start",
-      "scope": "GPC/implicit-PR92/Developer-Tools",
-      "recovery_ref": "gpc-cloud-summary-regression-20261011-a1-developer-tools-verified-correction",
-      "cost": {
-        "tool_calls": 1,
-        "tokens": null,
-        "elapsed_seconds": null
-      }
-    },
-    {
-      "type": "reserve",
-      "event_id": "gpc-cloud-summary-regression-20261011-a1-evidence-analyzer",
-      "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-cloud-summary-regression-20261011",
-      "at_utc": "2026-10-11T08:39:22.374005Z",
-      "operation_key": "sha256:d81e6a9e20bdc85e0264845e352633defcae24ec3e7d099ef8176a192ce67fb1",
-      "attempt_id": "gpc-cloud-summary-regression-20261011-a1-evidence-analyzer",
-      "kind": "ci_start",
-      "scope": "GPC/implicit-PR92/E2E-Evidence-Analyzer",
-      "recovery_ref": null,
-      "cost": {
-        "tool_calls": 1,
-        "tokens": null,
-        "elapsed_seconds": null
-      }
-    },
-    {
-      "type": "reserve",
-      "event_id": "gpc-cloud-summary-regression-20261011-a1-supply-chain-smoke",
-      "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-cloud-summary-regression-20261011",
-      "at_utc": "2026-10-11T08:39:22.374005Z",
-      "operation_key": "sha256:de081afabe8df6998e4a720a778cfb8fd0d41537546f3b1e612265eccc1b8889",
-      "attempt_id": "gpc-cloud-summary-regression-20261011-a1-supply-chain-smoke",
-      "kind": "ci_start",
-      "scope": "GPC/implicit-PR92/Supply-Chain-Smoke",
-      "recovery_ref": null,
-      "cost": {
-        "tool_calls": 1,
-        "tokens": null,
-        "elapsed_seconds": null
-      }
-    },
-    {
-      "type": "reserve",
-      "event_id": "gpc-cloud-summary-regression-20261011-a1-cdc-policy",
-      "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-cloud-summary-regression-20261011",
-      "at_utc": "2026-10-11T08:39:22.374005Z",
-      "operation_key": "sha256:5c21ffbb31c460518860ff6a18065678ff3cdb52f37e0c1de5f172ac8037c8f6",
-      "attempt_id": "gpc-cloud-summary-regression-20261011-a1-cdc-policy",
-      "kind": "ci_start",
-      "scope": "GPC/implicit-PR92/CDC-Policy-Validation",
-      "recovery_ref": null,
-      "cost": {
-        "tool_calls": 1,
-        "tokens": null,
-        "elapsed_seconds": null
-      }
-    },
-    {
       "type": "outcome",
-      "event_id": "gpc-cloud-summary-regression-20261011-a1-compute-terminal",
+      "usage": {
+        "elapsed_seconds": 10.0,
+        "tokens": null
+      },
+      "wake_id": "gpc-cloud-managed-integration-20261011"
+    },
+    {
+      "at_utc": "2026-10-11T08:29:58.891299Z",
+      "attempt_id": "gpc-cloud-summary-regression-20261011-a1",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-cloud-summary-regression-20261011-a1-compute",
+      "kind": "compute_start",
+      "operation_key": "sha256:d6debb9f72fc02d0633c8c35ccb9418bfd2a8eeb41ed267ffc8c2c2c37bc76dd",
+      "recovery_ref": null,
+      "scope": "GPC/Cloud/support-summary-compatibility-correction",
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-cloud-summary-regression-20261011",
+      "type": "reserve",
+      "wake_id": "gpc-cloud-summary-regression-20261011"
+    },
+    {
+      "at_utc": "2026-10-11T08:39:22.374005Z",
+      "detail": "Actual candidate 6d65482be7045243501644807a54f6e5f6d6e9ce; Root reviewed localized missing-signal list restoration and unchanged detailed explanations/tests; durable 360a08a5dfbb70bcef64ef40827c929e25932e04",
+      "event_id": "gpc-cloud-summary-regression-20261011-a1-windows-pr-verified-correction",
+      "kind": "code_correction",
+      "reference": "gpc-cloud-summary-regression-20261011-a1-windows-pr-verified-correction",
+      "scope": "GPC/implicit-PR92/Windows-EXE",
+      "signature": "support-summary-missing-signal-heading-CPU",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "remedy",
+      "wake_id": "gpc-cloud-summary-regression-20261011"
+    },
+    {
+      "at_utc": "2026-10-11T08:39:22.374005Z",
+      "attempt_id": "gpc-cloud-summary-regression-20261011-a1-windows-pr",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-cloud-summary-regression-20261011-a1-windows-pr",
+      "kind": "ci_start",
+      "operation_key": "sha256:b4e011187481b5f370fb505c0517afef1953e7756a8b8f0cca2704cac1869373",
+      "recovery_ref": "gpc-cloud-summary-regression-20261011-a1-windows-pr-verified-correction",
+      "scope": "GPC/implicit-PR92/Windows-EXE",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-cloud-summary-regression-20261011"
+    },
+    {
+      "at_utc": "2026-10-11T08:39:22.374005Z",
+      "detail": "Actual candidate 6d65482be7045243501644807a54f6e5f6d6e9ce; Root reviewed localized missing-signal list restoration and unchanged detailed explanations/tests; durable 360a08a5dfbb70bcef64ef40827c929e25932e04",
+      "event_id": "gpc-cloud-summary-regression-20261011-a1-developer-tools-verified-correction",
+      "kind": "code_correction",
+      "reference": "gpc-cloud-summary-regression-20261011-a1-developer-tools-verified-correction",
+      "scope": "GPC/implicit-PR92/Developer-Tools",
+      "signature": "support-summary-missing-signal-heading-CPU",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "remedy",
+      "wake_id": "gpc-cloud-summary-regression-20261011"
+    },
+    {
+      "at_utc": "2026-10-11T08:39:22.374005Z",
+      "attempt_id": "gpc-cloud-summary-regression-20261011-a1-developer-tools",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-cloud-summary-regression-20261011-a1-developer-tools",
+      "kind": "ci_start",
+      "operation_key": "sha256:2d2ced7211db0f35f1a82e9590e298958b31b3d9fa95657a04474b1b9a9a49d7",
+      "recovery_ref": "gpc-cloud-summary-regression-20261011-a1-developer-tools-verified-correction",
+      "scope": "GPC/implicit-PR92/Developer-Tools",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-cloud-summary-regression-20261011"
+    },
+    {
+      "at_utc": "2026-10-11T08:39:22.374005Z",
+      "attempt_id": "gpc-cloud-summary-regression-20261011-a1-evidence-analyzer",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-cloud-summary-regression-20261011-a1-evidence-analyzer",
+      "kind": "ci_start",
+      "operation_key": "sha256:d81e6a9e20bdc85e0264845e352633defcae24ec3e7d099ef8176a192ce67fb1",
+      "recovery_ref": null,
+      "scope": "GPC/implicit-PR92/E2E-Evidence-Analyzer",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-cloud-summary-regression-20261011"
+    },
+    {
+      "at_utc": "2026-10-11T08:39:22.374005Z",
+      "attempt_id": "gpc-cloud-summary-regression-20261011-a1-supply-chain-smoke",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-cloud-summary-regression-20261011-a1-supply-chain-smoke",
+      "kind": "ci_start",
+      "operation_key": "sha256:de081afabe8df6998e4a720a778cfb8fd0d41537546f3b1e612265eccc1b8889",
+      "recovery_ref": null,
+      "scope": "GPC/implicit-PR92/Supply-Chain-Smoke",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-cloud-summary-regression-20261011"
+    },
+    {
+      "at_utc": "2026-10-11T08:39:22.374005Z",
+      "attempt_id": "gpc-cloud-summary-regression-20261011-a1-cdc-policy",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-cloud-summary-regression-20261011-a1-cdc-policy",
+      "kind": "ci_start",
+      "operation_key": "sha256:5c21ffbb31c460518860ff6a18065678ff3cdb52f37e0c1de5f172ac8037c8f6",
+      "recovery_ref": null,
+      "scope": "GPC/implicit-PR92/CDC-Policy-Validation",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-cloud-summary-regression-20261011"
+    },
+    {
       "at_utc": "2026-10-11T08:50:06.205965Z",
+      "event_id": "gpc-cloud-summary-regression-20261011-a1-compute-terminal",
+      "failure": null,
       "reservation_id": "gpc-cloud-summary-regression-20261011-a1-compute",
       "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
       "usage": {
-        "tokens": null,
-        "elapsed_seconds": 379.22481870700017
+        "elapsed_seconds": 379.22481870700017,
+        "tokens": null
       },
-      "failure": null
+      "wake_id": "gpc-cloud-summary-regression-20261011"
     },
     {
-      "type": "outcome",
-      "event_id": "gpc-cloud-summary-regression-20261011-a1-windows-pr-terminal",
-      "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-cloud-summary-regression-20261011",
       "at_utc": "2026-10-11T08:50:06.205965Z",
+      "event_id": "gpc-cloud-summary-regression-20261011-a1-windows-pr-terminal",
+      "failure": null,
       "reservation_id": "gpc-cloud-summary-regression-20261011-a1-windows-pr",
       "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
       "usage": {
-        "tokens": null,
-        "elapsed_seconds": 178.0
+        "elapsed_seconds": 178.0,
+        "tokens": null
       },
-      "failure": null
+      "wake_id": "gpc-cloud-summary-regression-20261011"
     },
     {
-      "type": "outcome",
-      "event_id": "gpc-cloud-summary-regression-20261011-a1-developer-tools-terminal",
-      "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-cloud-summary-regression-20261011",
       "at_utc": "2026-10-11T08:50:06.205965Z",
+      "event_id": "gpc-cloud-summary-regression-20261011-a1-developer-tools-terminal",
+      "failure": null,
       "reservation_id": "gpc-cloud-summary-regression-20261011-a1-developer-tools",
       "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
       "usage": {
-        "tokens": null,
-        "elapsed_seconds": 211.0
+        "elapsed_seconds": 211.0,
+        "tokens": null
       },
-      "failure": null
+      "wake_id": "gpc-cloud-summary-regression-20261011"
     },
     {
-      "type": "outcome",
-      "event_id": "gpc-cloud-summary-regression-20261011-a1-evidence-analyzer-terminal",
-      "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-cloud-summary-regression-20261011",
       "at_utc": "2026-10-11T08:50:06.205965Z",
+      "event_id": "gpc-cloud-summary-regression-20261011-a1-evidence-analyzer-terminal",
+      "failure": null,
       "reservation_id": "gpc-cloud-summary-regression-20261011-a1-evidence-analyzer",
       "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
       "usage": {
-        "tokens": null,
-        "elapsed_seconds": 24.0
+        "elapsed_seconds": 24.0,
+        "tokens": null
       },
-      "failure": null
+      "wake_id": "gpc-cloud-summary-regression-20261011"
     },
     {
-      "type": "outcome",
-      "event_id": "gpc-cloud-summary-regression-20261011-a1-supply-chain-smoke-terminal",
-      "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-cloud-summary-regression-20261011",
       "at_utc": "2026-10-11T08:50:06.205965Z",
+      "event_id": "gpc-cloud-summary-regression-20261011-a1-supply-chain-smoke-terminal",
+      "failure": null,
       "reservation_id": "gpc-cloud-summary-regression-20261011-a1-supply-chain-smoke",
       "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
       "usage": {
-        "tokens": null,
-        "elapsed_seconds": 25.0
+        "elapsed_seconds": 25.0,
+        "tokens": null
       },
-      "failure": null
+      "wake_id": "gpc-cloud-summary-regression-20261011"
     },
     {
-      "type": "outcome",
-      "event_id": "gpc-cloud-summary-regression-20261011-a1-cdc-policy-terminal",
-      "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-cloud-summary-regression-20261011",
       "at_utc": "2026-10-11T08:50:06.205965Z",
+      "event_id": "gpc-cloud-summary-regression-20261011-a1-cdc-policy-terminal",
+      "failure": null,
       "reservation_id": "gpc-cloud-summary-regression-20261011-a1-cdc-policy",
       "status": "succeeded",
-      "usage": {
-        "tokens": null,
-        "elapsed_seconds": 12.0
-      },
-      "failure": null
-    },
-    {
-      "type": "reserve",
-      "event_id": "gpc-exact-windows-artifact-20261011-a1-compute",
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-exact-windows-artifact-20261011",
-      "at_utc": "2026-10-11T08:50:06.205965Z",
-      "operation_key": "sha256:e97aa667611943e1757513259ae098b1815f04c1f2faef5c3c1bc80de97a97d1",
-      "attempt_id": "gpc-exact-windows-artifact-20261011-a1-compute",
-      "kind": "compute_start",
-      "scope": "GPC/Cloud/read-only-exact-Windows-artifact-orchestration",
-      "recovery_ref": null,
-      "cost": {
-        "tool_calls": 1,
-        "tokens": null,
-        "elapsed_seconds": null
-      }
-    },
-    {
-      "type": "reserve",
-      "event_id": "gpc-exact-windows-artifact-20261011-a1-windows",
-      "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-exact-windows-artifact-20261011",
-      "at_utc": "2026-10-11T08:50:06.205965Z",
-      "operation_key": "sha256:c0b4dedcf2a4c099b6930dcb6414266cec10e584eaf56a570c07e26797ff4320",
-      "attempt_id": "gpc-exact-windows-artifact-20261011-a1-windows",
-      "kind": "ci_start",
-      "scope": "GPC/exact-source/manual-Windows-EXE-artifact",
-      "recovery_ref": null,
-      "cost": {
-        "tool_calls": 1,
-        "tokens": null,
-        "elapsed_seconds": null
-      }
-    },
-    {
       "type": "outcome",
-      "event_id": "gpc-exact-windows-artifact-20261011-a1-compute-terminal",
+      "usage": {
+        "elapsed_seconds": 12.0,
+        "tokens": null
+      },
+      "wake_id": "gpc-cloud-summary-regression-20261011"
+    },
+    {
+      "at_utc": "2026-10-11T08:50:06.205965Z",
+      "attempt_id": "gpc-exact-windows-artifact-20261011-a1-compute",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-exact-windows-artifact-20261011-a1-compute",
+      "kind": "compute_start",
+      "operation_key": "sha256:e97aa667611943e1757513259ae098b1815f04c1f2faef5c3c1bc80de97a97d1",
+      "recovery_ref": null,
+      "scope": "GPC/Cloud/read-only-exact-Windows-artifact-orchestration",
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-exact-windows-artifact-20261011",
+      "type": "reserve",
+      "wake_id": "gpc-exact-windows-artifact-20261011"
+    },
+    {
+      "at_utc": "2026-10-11T08:50:06.205965Z",
+      "attempt_id": "gpc-exact-windows-artifact-20261011-a1-windows",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "gpc-exact-windows-artifact-20261011-a1-windows",
+      "kind": "ci_start",
+      "operation_key": "sha256:c0b4dedcf2a4c099b6930dcb6414266cec10e584eaf56a570c07e26797ff4320",
+      "recovery_ref": null,
+      "scope": "GPC/exact-source/manual-Windows-EXE-artifact",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "gpc-exact-windows-artifact-20261011"
+    },
+    {
       "at_utc": "2026-10-11T09:13:03.776999Z",
+      "event_id": "gpc-exact-windows-artifact-20261011-a1-compute-terminal",
+      "failure": null,
       "reservation_id": "gpc-exact-windows-artifact-20261011-a1-compute",
       "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
       "usage": {
-        "tokens": null,
-        "elapsed_seconds": 653.777371224
+        "elapsed_seconds": 653.777371224,
+        "tokens": null
       },
-      "failure": null
+      "wake_id": "gpc-exact-windows-artifact-20261011"
     },
     {
-      "type": "outcome",
-      "event_id": "gpc-exact-windows-artifact-20261011-a1-windows-terminal",
-      "task_id": "g-pc-health-check-0.17.0-pre-integration",
-      "wake_id": "gpc-exact-windows-artifact-20261011",
       "at_utc": "2026-10-11T09:13:03.776999Z",
+      "event_id": "gpc-exact-windows-artifact-20261011-a1-windows-terminal",
+      "failure": null,
       "reservation_id": "gpc-exact-windows-artifact-20261011-a1-windows",
       "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
       "usage": {
-        "tokens": null,
-        "elapsed_seconds": 205.0
+        "elapsed_seconds": 205.0,
+        "tokens": null
       },
-      "failure": null
+      "wake_id": "gpc-exact-windows-artifact-20261011"
+    },
+    {
+      "at_utc": "2026-10-11T23:10:04.005387Z",
+      "attempt_id": "cdc351-delivery-g-pc-health-check-agent_start-a1",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "cdc351-delivery-g-pc-health-check-agent_start-a1",
+      "kind": "agent_start",
+      "operation_key": "sha256:00e52b6866219051bdcd33e187f287e775de9c8ac96ab0fe82e88a403e1b3aac",
+      "recovery_ref": null,
+      "scope": "One genuine native managed package-only writer; exact released3.5.1; product/platform gates preserved",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "cdc351-exact-package-delivery-20261012"
+    },
+    {
+      "at_utc": "2026-10-11T23:10:04.189935Z",
+      "attempt_id": "cdc351-delivery-g-pc-health-check-compute_start-a1",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "cdc351-delivery-g-pc-health-check-compute_start-a1",
+      "kind": "compute_start",
+      "operation_key": "sha256:0137255f4ab2af1c79b73ddb5a2ab6645be5a60286944a7d44f7a9c6f23494f7",
+      "recovery_ref": null,
+      "scope": "One genuine native managed package-only writer; exact released3.5.1; product/platform gates preserved",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "cdc351-exact-package-delivery-20261012"
     }
   ],
   "policy": {
@@ -3628,7 +3662,7 @@
     "max_parallel_agents": 4,
     "provider_max_age_seconds": 300,
     "task_limits": {
-      "agent_starts": 68,
+      "agent_starts": 69,
       "ci_starts": 17,
       "compute_starts": null
     },
@@ -3638,7 +3672,7 @@
       "tool_calls": 80
     }
   },
-  "policy_digest": "sha256:13246c162bf945642ba66d16292e8cb06f7149561e2dda88548298fa7fad8e8c",
+  "policy_digest": "sha256:0b85b4f6f03b96b6748d606070fab66ca5dd70e52207ec9e0fc637f07186c322",
   "schema": "budget-ledger/v1",
   "task_id": "g-pc-health-check-0.17.0-pre-integration",
   "wake_ids": [
@@ -3672,6 +3706,7 @@
     "gpc-official-cloud-setup-20261011",
     "gpc-cloud-managed-integration-20261011",
     "gpc-cloud-summary-regression-20261011",
-    "gpc-exact-windows-artifact-20261011"
+    "gpc-exact-windows-artifact-20261011",
+    "cdc351-exact-package-delivery-20261012"
   ]
 }
