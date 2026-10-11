@@ -3651,6 +3651,34 @@
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
       "type": "reserve",
       "wake_id": "cdc351-exact-package-delivery-20261012"
+    },
+    {
+      "at_utc": "2026-10-11T23:28:14.746955Z",
+      "event_id": "cdc351-delivery-g-pc-health-check-agent_start-a1-terminal",
+      "failure": null,
+      "reservation_id": "cdc351-delivery-g-pc-health-check-agent_start-a1",
+      "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": 1000.6753859710007,
+        "tokens": null
+      },
+      "wake_id": "cdc351-exact-package-delivery-20261012"
+    },
+    {
+      "at_utc": "2026-10-11T23:28:14.943939Z",
+      "event_id": "cdc351-delivery-g-pc-health-check-compute_start-a1-terminal",
+      "failure": null,
+      "reservation_id": "cdc351-delivery-g-pc-health-check-compute_start-a1",
+      "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": 1000.6753859710007,
+        "tokens": null
+      },
+      "wake_id": "cdc351-exact-package-delivery-20261012"
     }
   ],
   "policy": {
