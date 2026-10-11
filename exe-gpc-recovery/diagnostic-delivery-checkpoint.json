@@ -996,7 +996,15 @@
       "required_ci": "ALL5SUCCESS",
       "regression": "22/22 on source and published tests, Full and Quick passed",
       "version": "0.17.1.0",
-      "downloadable_exact_source_EXE": false
+      "downloadable_exact_source_EXE": false,
+      "compact_original_receipt": {
+        "commit": "47749951b959c849a122065029101b1f0cd4cc73",
+        "document_sha256": "2eda7a7741d40a10ff7f69ee09aaf1b9da4c935846cc4e4350d409779e49a68a",
+        "checkpoint_path": "exe-gpc-recovery/cloud-summary-correction-20261011/terminal-receipt.json",
+        "root_independently_verified_saved_git_streams": true,
+        "root_independently_verified_server_publication_journal": "e737a46ebc7a458af19d42fa6507018ccd9a0a20",
+        "quiescent": true
+      }
     }
   },
   "current_source_snapshot_20261011": {
