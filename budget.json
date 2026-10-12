@@ -3925,6 +3925,34 @@
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
       "type": "reserve",
       "wake_id": "safe-suite-pruning-20261012"
+    },
+    {
+      "at_utc": "2026-10-12T07:33:43.999378Z",
+      "event_id": "testprune353-gpc-writer-agent_start-a1-terminal",
+      "failure": null,
+      "reservation_id": "testprune353-gpc-writer-agent_start-a1",
+      "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": 3607.5568231949874,
+        "tokens": null
+      },
+      "wake_id": "safe-suite-pruning-20261012"
+    },
+    {
+      "at_utc": "2026-10-12T07:33:44.218902Z",
+      "event_id": "testprune353-gpc-writer-compute_start-a1-terminal",
+      "failure": null,
+      "reservation_id": "testprune353-gpc-writer-compute_start-a1",
+      "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": 3607.5568231949874,
+        "tokens": null
+      },
+      "wake_id": "safe-suite-pruning-20261012"
     }
   ],
   "policy": {
