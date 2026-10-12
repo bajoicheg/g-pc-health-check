@@ -3806,6 +3806,125 @@
       "task_id": "g-pc-health-check-0.17.0-pre-integration",
       "type": "reserve",
       "wake_id": "safe-suite-pruning-20261012"
+    },
+    {
+      "at_utc": "2026-10-12T07:13:05.540536Z",
+      "attempt_id": "testprune353-gpc-receiving-1-a1",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "testprune353-gpc-receiving-1-a1",
+      "kind": "ci_start",
+      "operation_key": "sha256:5785b2a4e283dd56644a9efb0d3047168f3ae6e94ba6f5994899d0f95373b8ce",
+      "recovery_ref": null,
+      "scope": "mandatory automatic pull_request .github/workflows/build.yml exact immutable own-suite candidate; no manual dispatch/rerun/protection waiver",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "safe-suite-pruning-20261012"
+    },
+    {
+      "at_utc": "2026-10-12T07:13:05.744748Z",
+      "attempt_id": "testprune353-gpc-receiving-2-a1",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "testprune353-gpc-receiving-2-a1",
+      "kind": "ci_start",
+      "operation_key": "sha256:223258d550cbb5ef3df045f48b672d76625c564be03cb96ef6f60463a23baabf",
+      "recovery_ref": null,
+      "scope": "mandatory automatic pull_request .github/workflows/cdc-policy.yml exact immutable own-suite candidate; no manual dispatch/rerun/protection waiver",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "safe-suite-pruning-20261012"
+    },
+    {
+      "at_utc": "2026-10-12T07:13:05.951475Z",
+      "attempt_id": "testprune353-gpc-receiving-3-a1",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "testprune353-gpc-receiving-3-a1",
+      "kind": "ci_start",
+      "operation_key": "sha256:ed64990023e1745a6964bbad93c3d43087cc9f8af2835f5ea5861e347a4840e6",
+      "recovery_ref": null,
+      "scope": "mandatory automatic pull_request .github/workflows/developer-tools.yml exact immutable own-suite candidate; no manual dispatch/rerun/protection waiver",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "safe-suite-pruning-20261012"
+    },
+    {
+      "at_utc": "2026-10-12T07:13:06.159676Z",
+      "attempt_id": "testprune353-gpc-receiving-4-a1",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "testprune353-gpc-receiving-4-a1",
+      "kind": "ci_start",
+      "operation_key": "sha256:6c74457e0b56fc725a1ec3eeb99820745489771355855923e1d40da94fb8d420",
+      "recovery_ref": null,
+      "scope": "mandatory automatic pull_request .github/workflows/evidence-analyzer.yml exact immutable own-suite candidate; no manual dispatch/rerun/protection waiver",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "safe-suite-pruning-20261012"
+    },
+    {
+      "at_utc": "2026-10-12T07:13:06.486606Z",
+      "attempt_id": "testprune353-gpc-receiving-5-a1",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "testprune353-gpc-receiving-5-a1",
+      "kind": "ci_start",
+      "operation_key": "sha256:d4845876bb8df418f19ab79dadeafa85351cde441d143db3abf192eb3d53395d",
+      "recovery_ref": null,
+      "scope": "mandatory automatic pull_request .github/workflows/supply-chain-smoke.yml exact immutable own-suite candidate; no manual dispatch/rerun/protection waiver",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "safe-suite-pruning-20261012"
+    },
+    {
+      "at_utc": "2026-10-12T07:13:06.700351Z",
+      "attempt_id": "testprune353-gpc-receiving-6-a1",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "testprune353-gpc-receiving-6-a1",
+      "kind": "ci_start",
+      "operation_key": "sha256:f50d182087b2822f30b8abf9c9d85b05404accd01643638409e10c1ddd4cac6c",
+      "recovery_ref": null,
+      "scope": "mandatory automatic workflow_run .github/workflows/release.yml exact immutable own-suite candidate; no manual dispatch/rerun/protection waiver",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "safe-suite-pruning-20261012"
+    },
+    {
+      "at_utc": "2026-10-12T07:13:06.945777Z",
+      "attempt_id": "testprune353-gpc-receiving-7-a1",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "testprune353-gpc-receiving-7-a1",
+      "kind": "ci_start",
+      "operation_key": "sha256:44f8ae73cf778ca01ecffe646d22a24a6d3bbde077632a44430e06b9159d5519",
+      "recovery_ref": null,
+      "scope": "mandatory automatic workflow_run .github/workflows/supply-chain.yml exact immutable own-suite candidate; no manual dispatch/rerun/protection waiver",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "safe-suite-pruning-20261012"
     }
   ],
   "policy": {
