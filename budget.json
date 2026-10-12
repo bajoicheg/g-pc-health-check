@@ -3772,6 +3772,40 @@
         "tokens": null
       },
       "wake_id": "cdc351-exact-package-delivery-20261012-a2"
+    },
+    {
+      "at_utc": "2026-10-12T06:32:36.563330Z",
+      "attempt_id": "testprune353-gpc-writer-agent_start-a1",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "testprune353-gpc-writer-agent_start-a1",
+      "kind": "agent_start",
+      "operation_key": "sha256:297238676e50a32d29628b8a761aa779430c18077ff221e6c6287715fbe29f8f",
+      "recovery_ref": null,
+      "scope": "genuine project own-suite writer; no vendor/product behavior/Source/GAD/Fleet effects",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "safe-suite-pruning-20261012"
+    },
+    {
+      "at_utc": "2026-10-12T06:32:36.775565Z",
+      "attempt_id": "testprune353-gpc-writer-compute_start-a1",
+      "cost": {
+        "elapsed_seconds": null,
+        "tokens": null,
+        "tool_calls": 1
+      },
+      "event_id": "testprune353-gpc-writer-compute_start-a1",
+      "kind": "compute_start",
+      "operation_key": "sha256:f316e41da39f0ee854d71ce06102b8f1b7fde785b4e59f151034e98b6ecbad35",
+      "recovery_ref": null,
+      "scope": "genuine project own-suite writer; no vendor/product behavior/Source/GAD/Fleet effects",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "reserve",
+      "wake_id": "safe-suite-pruning-20261012"
     }
   ],
   "policy": {
@@ -3783,8 +3817,8 @@
     "max_parallel_agents": 4,
     "provider_max_age_seconds": 300,
     "task_limits": {
-      "agent_starts": 70,
-      "ci_starts": 18,
+      "agent_starts": 73,
+      "ci_starts": 25,
       "compute_starts": null
     },
     "wake_limits": {
@@ -3793,7 +3827,7 @@
       "tool_calls": 80
     }
   },
-  "policy_digest": "sha256:aa491320bef65b19fcea1ef744d72efdef4e9636d5c49864d15bfb41856ba701",
+  "policy_digest": "sha256:d3ba63f7aac84c2306fa1db957cbe91839cc5016507ae4514e9beaf6602af476",
   "schema": "budget-ledger/v1",
   "task_id": "g-pc-health-check-0.17.0-pre-integration",
   "wake_ids": [
@@ -3829,6 +3863,7 @@
     "gpc-cloud-summary-regression-20261011",
     "gpc-exact-windows-artifact-20261011",
     "cdc351-exact-package-delivery-20261012",
-    "cdc351-exact-package-delivery-20261012-a2"
+    "cdc351-exact-package-delivery-20261012-a2",
+    "safe-suite-pruning-20261012"
   ]
 }
