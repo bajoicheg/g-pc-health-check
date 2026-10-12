@@ -11,7 +11,6 @@ internal static class SelfTest
             if (TestMissingTelemetryDoesNotLookHealthy() != 0) return 31;
             if (TestDiffuseEventNoiseDoesNotPenalize() != 0) return 41;
             if (TestRepeatedEventsAreActionable() != 0) return 51;
-            if (TestLegacyBootstrapDisabled() != 0) return 61;
             if (TestSupportSummary() != 0) return 71;
             if (TriageRegressionSelfTest.Run() != 0) return 81;
             if (DiskPressureRegressionSelfTest.Run() != 0) return 91;
@@ -118,8 +117,6 @@ internal static class SelfTest
 
     // Location/name restrictions were removed in 0.5.2 by product-owner request.
     // Portable launch and request-validation coverage lives in PortableElevationSelfTest.
-    private static int TestLegacyBootstrapDisabled()
-        => RemediationWorker.RunBootstrap(["--bootstrap-worker"]) == 48 ? 0 : 1;
 
     private static int TestSupportSummary()
     {

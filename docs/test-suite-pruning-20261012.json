@@ -1,0 +1,43 @@
+{
+  "Windows_manual_platform_release_gates_unchanged": true,
+  "counting_convention": "950 reported module cases plus7→6 unprinted root checks; portable matrix32 separate; unique risk removed0",
+  "deleted": "SelfTest.TestLegacyBootstrapDisabled and its Run invocation",
+  "installed_CDC": "3.5.1",
+  "installed_package_tree": "3d3b07539ccf6e58914e8de03d6adff691f97b10",
+  "local_product_FULL": 0,
+  "new_retired_executed_cases": 1,
+  "new_retired_methods": 1,
+  "parent": "811d95c9a9c1e4b55ea8ae426697881ec302818b",
+  "portable_aggregate_entry_preserved": true,
+  "product_behavior_changed": false,
+  "qualified_floor": "3.3.1",
+  "registered_product_cases_after": 956,
+  "registered_product_cases_before": 957,
+  "reported_module_cases_after": 950,
+  "reported_module_cases_before": 950,
+  "repository": "bajoicheg/g-pc-health-check",
+  "retained": "PortableElevationSelfTest: obsolete bootstrap remains disabled without copying or elevation",
+  "retained_exact_bytes_sha256": "2a9f9b06e260b10160eb858fccb44a1b297f323357e2a538b5a1642733ecf932",
+  "retirement_kind": "same API/input/expected return48 subsumed duplicate, not below-floor safety rejection retirement",
+  "same_assertion": "RunBootstrap == 48; obsolete execution remains rejected",
+  "same_input": "--bootstrap-worker",
+  "schema": "project-safe-test-retirement/v1",
+  "static_GREEN": {
+    "CSharp_AST_no_errors": true,
+    "NOT_product_runtime_execution": true,
+    "actual_call_sites": 1,
+    "raw_return_code": 0
+  },
+  "static_RED": {
+    "NOT_product_runtime_execution": true,
+    "actual_call_sites": 2,
+    "at_utc": "2026-10-12T06:35:10.780614Z",
+    "expected_call_sites": 1,
+    "raw_return_code": 1,
+    "schema": "own-suite-structural-regression/v1",
+    "target": "one canonical identical bootstrap input/48 assertion, retained PortableElevationSelfTest"
+  },
+  "unprinted_root_checks_after": 6,
+  "unprinted_root_checks_before": 7,
+  "vendor_core_unchanged": true
+}
