@@ -3953,6 +3953,104 @@
         "tokens": null
       },
       "wake_id": "safe-suite-pruning-20261012"
+    },
+    {
+      "at_utc": "2026-10-12T07:57:05.244034Z",
+      "event_id": "testprune353-gpc-receiving-1-a1-terminal",
+      "failure": null,
+      "reservation_id": "testprune353-gpc-receiving-1-a1",
+      "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": 184.0,
+        "tokens": null
+      },
+      "wake_id": "safe-suite-pruning-20261012"
+    },
+    {
+      "at_utc": "2026-10-12T07:57:05.486656Z",
+      "event_id": "testprune353-gpc-receiving-2-a1-terminal",
+      "failure": null,
+      "reservation_id": "testprune353-gpc-receiving-2-a1",
+      "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": 9.0,
+        "tokens": null
+      },
+      "wake_id": "safe-suite-pruning-20261012"
+    },
+    {
+      "at_utc": "2026-10-12T07:57:05.767323Z",
+      "event_id": "testprune353-gpc-receiving-3-a1-terminal",
+      "failure": null,
+      "reservation_id": "testprune353-gpc-receiving-3-a1",
+      "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": 193.0,
+        "tokens": null
+      },
+      "wake_id": "safe-suite-pruning-20261012"
+    },
+    {
+      "at_utc": "2026-10-12T07:57:06.017524Z",
+      "event_id": "testprune353-gpc-receiving-4-a1-terminal",
+      "failure": null,
+      "reservation_id": "testprune353-gpc-receiving-4-a1",
+      "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": 29.0,
+        "tokens": null
+      },
+      "wake_id": "safe-suite-pruning-20261012"
+    },
+    {
+      "at_utc": "2026-10-12T07:57:06.281784Z",
+      "event_id": "testprune353-gpc-receiving-5-a1-terminal",
+      "failure": null,
+      "reservation_id": "testprune353-gpc-receiving-5-a1",
+      "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": 25.0,
+        "tokens": null
+      },
+      "wake_id": "safe-suite-pruning-20261012"
+    },
+    {
+      "at_utc": "2026-10-12T07:57:06.524369Z",
+      "event_id": "testprune353-gpc-receiving-6-a1-terminal",
+      "failure": null,
+      "reservation_id": "testprune353-gpc-receiving-6-a1",
+      "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": null,
+        "tokens": null
+      },
+      "wake_id": "safe-suite-pruning-20261012"
+    },
+    {
+      "at_utc": "2026-10-12T07:57:06.776817Z",
+      "event_id": "testprune353-gpc-receiving-7-a1-terminal",
+      "failure": null,
+      "reservation_id": "testprune353-gpc-receiving-7-a1",
+      "status": "succeeded",
+      "task_id": "g-pc-health-check-0.17.0-pre-integration",
+      "type": "outcome",
+      "usage": {
+        "elapsed_seconds": null,
+        "tokens": null
+      },
+      "wake_id": "safe-suite-pruning-20261012"
     }
   ],
   "policy": {
