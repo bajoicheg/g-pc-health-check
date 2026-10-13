@@ -36,7 +36,7 @@ internal static class PortableElevationSelfTest
         // against 0.5.1 and fails on behavior, not a missing compile-time symbol.
         foreach (var path in new[]
         {
-            @"C:\Users\Synthetic\Downloads\G-PC-Health-Check.exe",
+            @"C:\Users\Synthetic\Downloads\G-PC-Health.exe",
             @"C:\Users\Synthetic\Downloads\Проверка ПК (1).exe",
             @"D:\Portable tools\My renamed utility.exe",
             @"C:\Program Files\Other folder\check.exe",

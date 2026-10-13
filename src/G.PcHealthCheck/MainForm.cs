@@ -51,35 +51,59 @@ public sealed partial class MainForm : Form
     private static readonly Color Warn = Color.FromArgb(165, 106, 0);
     private static readonly Color Crit = Color.FromArgb(181, 54, 54);
 
-    public MainForm()
+    public MainForm() : this(true) { }
+
+    internal MainForm(bool autoScan)
     {
-        Text = "G PC Health Check";
+        Text = "G PC Health";
         Width = 1320;
         Height = 900;
-        MinimumSize = new Size(1080, 740);
+        MinimumSize = new Size(800, 600);
+        AutoScaleMode = AutoScaleMode.Dpi;
         StartPosition = FormStartPosition.CenterScreen;
         BackColor = Bg;
         Font = new Font("Segoe UI", 9F);
         try { Icon = Icon.ExtractAssociatedIcon(Environment.ProcessPath ?? Application.ExecutablePath); } catch { }
         BuildUi();
+        ReadableWindowLayout.Attach(this);
         UpdateApplyState();
-        Shown += async (_, _) => await ScanAsync();
+        if (autoScan) Shown += async (_, _) => await ScanAsync();
     }
 
     private void BuildUi()
     {
-        var root = new TableLayoutPanel { Dock = DockStyle.Fill, RowCount = 5, ColumnCount = 1, Padding = new Padding(16), BackColor = Bg };
-        root.RowStyles.Add(new RowStyle(SizeType.Absolute, 86));
-        root.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-        root.RowStyles.Add(new RowStyle(SizeType.Absolute, 112));
-        root.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
-        root.RowStyles.Add(new RowStyle(SizeType.Absolute, 54));
-        Controls.Add(root);
-        root.Controls.Add(Header(), 0, 0);
-        root.Controls.Add(ExecutionContextPanel(), 0, 1);
-        root.Controls.Add(Metrics(), 0, 2);
-        root.Controls.Add(Tabs(), 0, 3);
-        root.Controls.Add(Footer(), 0, 4);
+        var shell = new TableLayoutPanel { Name = "MainShell", Dock = DockStyle.Fill, RowCount = 2, ColumnCount = 1, Padding = new Padding(12), BackColor = Bg };
+        shell.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
+        shell.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
+        shell.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        var footer = Footer();
+        shell.Controls.Add(Tabs(), 0, 0);
+        shell.Controls.Add(footer, 0, 1);
+        Controls.Add(shell);
+        InitializeMainLocalization(_overviewRoot);
+        ArmReadableLayout(_overviewRoot);
+    }
+
+    private TableLayoutPanel _overviewRoot = null!;
+
+    private TabPage OverviewTab()
+    {
+        var page = Page("Обзор"); page.Name = "OverviewTab";
+        _overviewRoot = new TableLayoutPanel { Name = "MainRoot", Dock = DockStyle.Top, RowCount = 5, ColumnCount = 1, Padding = new Padding(8), BackColor = Bg };
+        _overviewRoot.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
+        _overviewRoot.RowStyles.Add(new RowStyle(SizeType.Absolute, 86));
+        _overviewRoot.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        _overviewRoot.RowStyles.Add(new RowStyle(SizeType.Absolute, 112));
+        _overviewRoot.RowStyles.Add(new RowStyle(SizeType.Absolute, 76));
+        _overviewRoot.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        var viewport = new Panel { Name = "OverviewScrollViewport", Dock = DockStyle.Fill, AutoScroll = true };
+        page.Controls.Add(viewport); viewport.Controls.Add(_overviewRoot);
+        _overviewRoot.Controls.Add(Header(), 0, 0);
+        _overviewRoot.Controls.Add(ExecutionContextPanel(), 0, 1);
+        _overviewRoot.Controls.Add(Metrics(), 0, 2);
+        _overviewRoot.Controls.Add(TriageCard(), 0, 3);
+        _overviewRoot.Controls.Add(SymptomEntry(), 0, 4);
+        return page;
     }
 
     private Control Header()
@@ -95,11 +119,17 @@ public sealed partial class MainForm : Form
             Image = BrandAssets.LoadShield()
         };
         p.Controls.Add(logo);
-        p.Controls.Add(new Label { Text = "G PC Health Check", Font = new Font("Segoe UI Semibold", 18F), ForeColor = Navy, AutoSize = true, Location = new Point(86, 13) });
-        p.Controls.Add(new Label { Text = "Service Desk · диагностика и контролируемые действия для Windows 11", ForeColor = Muted, AutoSize = true, Location = new Point(88, 49) });
+        p.Controls.Add(new Label { Text = "G PC Health", Font = new Font("Segoe UI Semibold", 18F), ForeColor = Navy, AutoSize = true, Location = new Point(86, 13) });
+        var subtitle = new Label { Text = "Service Desk · диагностика и контролируемые действия для Windows 11", ForeColor = Muted, AutoSize = false, AutoEllipsis = true, Location = new Point(88, 49), Height = 24 };
+        p.Controls.Add(subtitle);
         _host.Font = new Font("Segoe UI Semibold", 10F); _host.ForeColor = Navy; _host.AutoSize = true; _host.Anchor = AnchorStyles.Top | AnchorStyles.Right;
         p.Controls.Add(_host);
-        p.Resize += (_, _) => _host.Location = new Point(Math.Max(650, p.ClientSize.Width - _host.Width - 18), 27);
+        p.Resize += (_, _) =>
+        {
+            _host.MaximumSize = new Size(Math.Max(100, p.ClientSize.Width / 2 - 18), 30);
+            _host.Location = new Point(Math.Max(360, p.ClientSize.Width - _host.Width - 18), 18);
+            subtitle.Width = Math.Max(100, p.ClientSize.Width - 106);
+        };
         return p;
     }
 
@@ -120,21 +150,19 @@ public sealed partial class MainForm : Form
     {
         _tabs.Dock = DockStyle.Fill;
         _tabs.Padding = new Point(18, 7);
+        _tabs.Multiline = true;
+        _tabs.Controls.Add(OverviewTab());
         _tabs.Controls.Add(RecommendationsTab());
-        _tabs.Controls.Add(ProcessesTab());
-        _tabs.Controls.Add(EventsTab());
-        _tabs.Controls.Add(SystemTab());
-        _tabs.Controls.Add(CompareTab());
+        _tabs.Controls.Add(ActionsTab());
+        var processes = ProcessesTab(); processes.Name = "ProcessesTab"; _tabs.Controls.Add(processes);
+        var events = EventsTab(); events.Name = "EventsTab"; _tabs.Controls.Add(events);
+        var system = SystemTab(); system.Name = "SystemTab"; _tabs.Controls.Add(system);
+        var compare = CompareTab(); compare.Name = "CompareTab"; _tabs.Controls.Add(compare);
         return _tabs;
     }
 
-    private TabPage RecommendationsTab()
+    private Control TriageCard()
     {
-        var page = Page("Рекомендации");
-        var layout = new TableLayoutPanel { Dock = DockStyle.Fill, ColumnCount = 1, RowCount = 2 };
-        layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 76));
-        layout.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
-
         var triage = Card();
         triage.Margin = new Padding(0, 0, 0, 8);
         _triageTitle.Font = new Font("Segoe UI Semibold", 11F);
@@ -149,20 +177,29 @@ public sealed partial class MainForm : Form
         _triageDetail.Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;
         triage.Controls.Add(_triageDetail);
         triage.Resize += (_, _) => _triageDetail.Width = Math.Max(100, triage.ClientSize.Width - 28);
-        layout.Controls.Add(triage, 0, 0);
+        return triage;
+    }
 
-        var split = new SplitContainer { Dock = DockStyle.Fill, Orientation = Orientation.Horizontal, SplitterDistance = 300 };
+    private TabPage ActionsTab()
+    {
+        var page = Page("Действия"); page.Name = "ActionsTab";
+        var layout = new TableLayoutPanel { Name = "ActionsLayout", Dock = DockStyle.Fill, ColumnCount = 1, RowCount = 2 };
+        layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
+        layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        layout.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
         ConfigureGrid(_actions, false);
-        _actions.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+        _actions.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+        _actions.RowTemplate.Height = 34;
         _actions.Columns.Add(new DataGridViewCheckBoxColumn { Name = "Selected", HeaderText = "✓", Width = 42 });
         _actions.Columns.Add(new DataGridViewTextBoxColumn { Name = "Kind", HeaderText = "Тип", Width = 105, ReadOnly = true });
         _actions.Columns.Add(new DataGridViewTextBoxColumn { Name = "Title", HeaderText = "Действие", Width = 220, ReadOnly = true });
-        _actions.Columns.Add(new DataGridViewTextBoxColumn { Name = "Reason", HeaderText = "Почему", AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill, MinimumWidth = 260, ReadOnly = true });
+        _actions.Columns.Add(new DataGridViewTextBoxColumn { Name = "Reason", HeaderText = "Почему", AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill, MinimumWidth = 120, ReadOnly = true });
         _actions.Columns.Add(new DataGridViewTextBoxColumn { Name = "Admin", HeaderText = "Admin", Width = 62, ReadOnly = true });
         _actions.Columns.Add(new DataGridViewTextBoxColumn { Name = "Risk", HeaderText = "Риск", Width = 75, ReadOnly = true });
         _actions.Columns.Add(new DataGridViewTextBoxColumn { Name = "Verify", HeaderText = "Автопроверка", Width = 270, ReadOnly = true });
         _actions.Columns.Add(new DataGridViewTextBoxColumn { Name = "Availability", HeaderText = "Доступность", Width = 155, ReadOnly = true, DisplayIndex = 3 });
-        foreach (DataGridViewColumn c in _actions.Columns) c.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+        foreach (DataGridViewColumn c in _actions.Columns) c.DefaultCellStyle.WrapMode = DataGridViewTriState.False;
+        foreach (var name in new[] { "Kind", "Admin", "Verify", "Availability" }) _actions.Columns[name].Visible = false;
         _actions.CurrentCellDirtyStateChanged += (_, _) =>
         {
             if (_actions.IsCurrentCellDirty && _actions.CurrentCell is DataGridViewCheckBoxCell)
@@ -172,20 +209,26 @@ public sealed partial class MainForm : Form
         {
             if (e.RowIndex >= 0 && e.ColumnIndex == _actions.Columns["Selected"].Index) UpdateApplyState();
         };
-        split.Panel1.Controls.Add(_actions);
+        layout.Controls.Add(DetailPane(_actions, "ActionDetails"), 0, 1);
+        page.Controls.Add(layout);
+        return page;
+    }
+
+    private TabPage RecommendationsTab()
+    {
+        var page = Page("Рекомендации"); page.Name = "RecommendationsTab";
 
         ConfigureGrid(_findings);
-        _findings.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+        _findings.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+        _findings.RowTemplate.Height = 38;
         _findings.Columns.Add("Severity", "Статус");
         _findings.Columns.Add("Category", "Категория");
         _findings.Columns.Add("Title", "Наблюдение");
         _findings.Columns.Add("Value", "Значение");
         _findings.Columns.Add("Recommendation", "Рекомендация");
         _findings.Columns[0].Width = 70; _findings.Columns[1].Width = 105; _findings.Columns[2].Width = 250; _findings.Columns[3].Width = 150; _findings.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-        foreach (DataGridViewColumn c in _findings.Columns) c.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-        split.Panel2.Controls.Add(_findings);
-        layout.Controls.Add(split, 0, 1);
-        page.Controls.Add(layout);
+        foreach (DataGridViewColumn c in _findings.Columns) c.DefaultCellStyle.WrapMode = DataGridViewTriState.False;
+        page.Controls.Add(DetailPane(_findings, "FindingDetails"));
         return page;
     }
 
@@ -229,16 +272,25 @@ public sealed partial class MainForm : Form
 
     private Control Footer()
     {
-        var p = new Panel { Dock = DockStyle.Fill, Padding = new Padding(0, 8, 0, 0) };
-        SetupButton(_scan, "Повторить диагностику", 0, false); _scan.Width = 175; _scan.Click += async (_, _) => await ScanAsync(); p.Controls.Add(_scan);
-        SetupButton(_apply, "Применить выбранное", 185, true); _apply.Width = 205; _apply.Click += async (_, _) => await ApplyAsync(); p.Controls.Add(_apply);
-        SetupButton(_openReport, "Открыть отчёт", 400, false); _openReport.Width = 125; _openReport.Click += (_, _) => OpenReport(); p.Controls.Add(_openReport);
-        SetupButton(_openFolder, "Папка отчётов", 535, false); _openFolder.Width = 125; _openFolder.Click += (_, _) => OpenFolder(); p.Controls.Add(_openFolder);
-        SetupButton(_copySummary, "Копировать сводку", 670, false); _copySummary.Width = 155; _copySummary.Click += (_, _) => CopySummary(); p.Controls.Add(_copySummary);
-        _progress.Style = ProgressBarStyle.Marquee; _progress.MarqueeAnimationSpeed = 25; _progress.Visible = false; _progress.Anchor = AnchorStyles.Top | AnchorStyles.Right; _progress.Size = new Size(180, 12); p.Controls.Add(_progress);
-        _status.AutoSize = true; _status.ForeColor = Muted; _status.Anchor = AnchorStyles.Top | AnchorStyles.Right; p.Controls.Add(_status);
-        p.Resize += (_, _) => { _progress.Location = new Point(Math.Max(840, p.ClientSize.Width - 190), 9); _status.Location = new Point(Math.Max(790, p.ClientSize.Width - _status.Width - 10), 27); };
-        return p;
+        var footer = new TableLayoutPanel { Name = "MainFooter", Dock = DockStyle.Fill, AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink, ColumnCount = 1, RowCount = 2, Margin = new Padding(0), Padding = new Padding(0, 6, 0, 0) };
+        footer.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
+        footer.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        footer.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        var flow = new FlowLayoutPanel { Name = "MainFooterButtons", Dock = DockStyle.Fill, AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink, WrapContents = true, Margin = new Padding(0) };
+        SetupButton(_scan, "Повторить диагностику", 0, false); _scan.AutoSize = true; _scan.Click += async (_, _) => await ScanAsync();
+        SetupButton(_apply, "Применить выбранное", 0, true); _apply.AutoSize = true; _apply.Click += async (_, _) => await ApplyAsync();
+        SetupButton(_openReport, "Открыть отчёт", 0, false); _openReport.AutoSize = true; _openReport.Click += (_, _) => OpenReport();
+        SetupButton(_openFolder, "Папка отчётов", 0, false); _openFolder.AutoSize = true; _openFolder.Click += (_, _) => OpenFolder();
+        SetupButton(_copySummary, "Копировать сводку", 0, false); _copySummary.AutoSize = true; _copySummary.Click += (_, _) => CopySummary();
+        _progress.Style = ProgressBarStyle.Marquee; _progress.MarqueeAnimationSpeed = 25; _progress.Visible = false; _progress.Size = new Size(100, 12);
+        _status.Name = "CollectionStatus"; _status.AutoSize = false; _status.AutoEllipsis = true; _status.Dock = DockStyle.Fill; _status.ForeColor = Muted;
+        var statusRow = new TableLayoutPanel { Name = "MainStatusRow", Dock = DockStyle.Fill, ColumnCount = 2, RowCount = 1, Height = 26, Margin = new Padding(0) };
+        statusRow.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+        statusRow.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
+        statusRow.Controls.Add(_progress, 0, 0); statusRow.Controls.Add(_status, 1, 0);
+        flow.Controls.AddRange([_scan, _apply, _openReport, _openFolder, _copySummary]);
+        footer.Controls.Add(flow, 0, 0); footer.Controls.Add(statusRow, 0, 1);
+        return footer;
     }
 
     private void ApplyScanProgress(object owner, string text)
@@ -265,7 +317,10 @@ public sealed partial class MainForm : Form
             var progress = new Progress<string>(s => ApplyScanProgress(progressOwner, s));
             var data = await _diagnostics.CollectAsync(progress);
             StampExecutionContext(data, context);
-            _current = _assessment.Assess(data);
+            var scan = _assessment.Assess(data);
+            await AttachSecurityPostureAsync(scan, progress);
+            scan.SymptomNotes = _symptomNotes.ToList();
+            _current = scan;
             var saved = _reports.SaveScan(_current);
             _latestReport = saved.Html;
             Populate(_current);
@@ -330,18 +385,20 @@ public sealed partial class MainForm : Form
             var verificationProgress = new Progress<string>(s => ApplyOperationProgress(verificationOwner, s));
             var context = await Task.Run(ExecutionContextService.Capture);
             var afterData = await _diagnostics.CollectAsync(verificationProgress);
-            if (ReferenceEquals(_applyProgressOwner, verificationOwner)) _applyProgressOwner = null;
             StampExecutionContext(afterData, context);
             var after = _assessment.Assess(afterData);
+            after.SymptomNotes = before.SymptomNotes.ToList();
+            await AttachSecurityPostureAsync(after, verificationProgress);
+            if (ReferenceEquals(_applyProgressOwner, verificationOwner)) _applyProgressOwner = null;
             var verification = new VerificationResult { Before = before, After = after, Remediation = batch };
             var saved = _reports.SaveVerification(verification);
             _latestReport = saved.Html;
             _current = after;
             Populate(after);
             PopulateVerification(verification);
-            _tabs.SelectedIndex = 4;
+            _tabs.SelectedTab = _tabs.TabPages["CompareTab"];
             var ok = batch.Actions.Count(x => x.Success);
-            MessageBox.Show(this, $"Выполнено: {ok}/{batch.Actions.Count}. Повторная диагностика завершена.\nИндекс: {before.Assessment.Score} → {after.Assessment.Score}.\nУстранение симптома нужно подтвердить отдельно.", "G PC Health Check", MessageBoxButtons.OK, batch.Actions.All(x => x.Success) ? MessageBoxIcon.Information : MessageBoxIcon.Warning);
+            MessageBox.Show(this, $"Выполнено: {ok}/{batch.Actions.Count}. Повторная диагностика завершена.\nИндекс: {before.Assessment.Score} → {after.Assessment.Score}.\nУстранение симптома нужно подтвердить отдельно.", "G PC Health", MessageBoxButtons.OK, batch.Actions.All(x => x.Success) ? MessageBoxIcon.Information : MessageBoxIcon.Warning);
         }
         catch (OperationCanceledException ex)
         {
@@ -387,6 +444,9 @@ public sealed partial class MainForm : Form
         _state.Text = scan.Assessment.Status == "OK" ? "норма" : scan.Assessment.Status == "WARN" ? "внимание" : "критично"; _state.ForeColor = _score.ForeColor;
         _host.Text = $"{d.System.ComputerName} · {d.System.UserName}";
         _cpu.Text = F(d.Performance.CpuPercent, "%"); _ram.Text = F(d.Performance.MemoryUsedPercent, "%");
+        _ram.ForeColor = ReadableLayout.MemoryBand(d.Performance.MemoryAvailablePercent,
+            _assessment.Thresholds.MemoryCriticalAvailablePercent, _assessment.Thresholds.MemoryWarnAvailablePercent) switch
+        { "CRIT" => Crit, "WARN" => Warn, "UNKNOWN" => Muted, _ => Navy };
         var sd = SystemDiskSelection.Find(d); _disk.Text = sd is null ? "—" : $"{sd.FreeGB:0.#} GB";
         _uptime.Text = $"{d.System.UptimeDays:0.#} дн.";
         _coverage.Text = $"{scan.Assessment.CoveragePercent}%";
@@ -395,7 +455,7 @@ public sealed partial class MainForm : Form
         _triageTitle.Text = triage.Title;
         _triageTitle.ForeColor = scan.Assessment.Status == "OK" ? Ok : scan.Assessment.Status == "WARN" ? Warn : Crit;
         _triageDetail.Text = triage.Detail;
-        _tabs.TabPages[0].Text = triage.SignificantCount > 0 ? $"Рекомендации ({triage.SignificantCount})" : "Рекомендации";
+        _tabs.TabPages["RecommendationsTab"]!.Text = triage.SignificantCount > 0 ? $"Рекомендации ({triage.SignificantCount})" : "Рекомендации";
 
         _actions.Rows.Clear();
         foreach (var a in scan.Actions)
@@ -447,7 +507,7 @@ public sealed partial class MainForm : Form
         Add("Профиль пользователя сеанса", ExecutionPolicy.Value(d.System.ExecutionContext?.SessionProfile));
         Add("Контекст: ограничения", d.System.ExecutionContext is null ? "Контекст не сохранён" : string.Join(" | ", d.System.ExecutionContext.Warnings));
         Add("Покрытие диагностики", $"{scan.Assessment.CoveragePercent}% ({scan.Assessment.CoverageStatus})");
-        Add("Недоступные сигналы", scan.Assessment.MissingSignals.Count == 0 ? "Нет" : string.Join("; ", scan.Assessment.MissingSignals));
+        Add("Недоступные сигналы", scan.Assessment.MissingSignals.Count == 0 ? "Нет" : TechnicalEvidence.Format(scan.Assessment, AppLocalization.Language));
         Add("Pending reboot", d.PendingReboot.Pending ? "Да — " + string.Join("; ", d.PendingReboot.Reasons) : "Нет"); Add("Windows Update", $"wuauserv={d.Updates.Wuauserv}; BITS={d.Updates.Bits}");
         Add("Защита", d.SecurityProducts.Count == 0 ? "Не удалось определить" : string.Join("; ", d.SecurityProducts.Select(x => $"{x.Name} [{x.State}]")));
         Add("Физические диски", d.PhysicalDisks.Count == 0 ? "Не удалось определить" : string.Join("; ", d.PhysicalDisks.Select(x => $"{x.Name}: {x.HealthStatus}")));
@@ -487,6 +547,7 @@ public sealed partial class MainForm : Form
 
     private void Busy(bool value, string? text = null)
     {
+        _symptomButton.Enabled = !value;
         _isBusy = value;
         _scan.Enabled = !value;
         _openReport.Enabled = !value;
@@ -533,8 +594,19 @@ public sealed partial class MainForm : Form
 
     private static Control Metric(string caption, Label value, Control sub)
     {
-        var p = Card(); p.Margin = new Padding(0, 0, 10, 0); p.Controls.Add(new Label { Text = caption, ForeColor = Muted, Font = new Font("Segoe UI Semibold", 8F), AutoSize = true, Location = new Point(14, 12) });
-        value.Font = new Font("Segoe UI Semibold", 21F); value.ForeColor = Navy; value.AutoSize = true; value.Location = new Point(12, 33); p.Controls.Add(value); sub.Location = new Point(14, 74); p.Controls.Add(sub); return p;
+        var p = Card(); p.Margin = new Padding(0, 0, 6, 6);
+        var heading = new Label { Text = caption, ForeColor = Muted, Font = new Font("Segoe UI Semibold", 8F), AutoSize = false };
+        value.Font = new Font("Segoe UI Semibold", 21F); value.ForeColor = Navy; value.AutoSize = false;
+        sub.AutoSize = false;
+        p.Controls.AddRange([heading, value, sub]);
+        p.Resize += (_, _) =>
+        {
+            float scale = p.DeviceDpi / 96f; int pad = (int)(10 * scale), width = Math.Max(1, p.ClientSize.Width - 2 * pad);
+            heading.SetBounds(pad, (int)(6 * scale), width, (int)(20 * scale));
+            value.SetBounds(pad, (int)(27 * scale), width, (int)(38 * scale));
+            sub.SetBounds(pad, (int)(65 * scale), width, Math.Max(1, p.ClientSize.Height - (int)(68 * scale)));
+        };
+        return p;
     }
 
     private static void ConfigureGrid(DataGridView g, bool readOnly = true)

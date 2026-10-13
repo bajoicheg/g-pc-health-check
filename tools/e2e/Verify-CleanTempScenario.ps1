@@ -52,7 +52,7 @@ $resultPath = Join-Path $root 'e2e-verification.json'
 $result | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath $resultPath -Encoding UTF8
 
 Write-Host ''
-Write-Host 'G PC Health Check — CleanTemp E2E verification'
+Write-Host 'G PC Health — CleanTemp E2E verification'
 foreach ($check in $checks) {
     $mark = if ($check.passed) { 'PASS' } else { 'FAIL' }
     $color = if ($check.passed) { 'Green' } else { 'Red' }

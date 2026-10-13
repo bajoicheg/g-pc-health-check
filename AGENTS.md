@@ -1,46 +1,50 @@
-# Development instructions — G PC Health Check
+## Current CDC 3.5.0 process authority
 
-Read this file, `docs/DEVELOPMENT.md`, and the vendored `.agents/skills/continuous-development-cycle/SKILL.md` before changing the project. Higher-priority tool, safety, repository-protection and user-authorization rules still apply.
+Canonical bajoicheg/g-cdc refs/heads/release/v3.5.0 at b8f5b2cc64878715b63af388124ac0656d1c87b4, exact417-file package tree bc7961ffc170db38bfa25d8bd132de127c24a8d0. Separately pinned canonical evidence 17b2718d405ac92bfb86e8f8834d0ebfbb9facea:release/evidence-3.5.0.json. Executable minimum3.3.0; historical records remain readable and never override current authority. Required canonical hosted CI38132248286 qualifies these identical CDC bytes; no product FULL, CI, approval, platform acceptance or release is claimed.
 
-## Continuous Development Cycle v2.6
+All schedulers/watchdogs/Fleet background stay PAUSED. Fleet authority is bajoicheg/g-cdc refs/heads/cdc/fleet; retired G-Supervisor stays owner-cancelled and disabled. Use invocation-bound native ownership, one-use intents/guards, expected-head CAS, accepted integration and genuine executor closure. Never replace an owner, clear guards manually or replay UNKNOWN. Prior complete instruction bytes are preserved at docs/history/cdc-instructions-before-3.5.0.md; old version labels are historical audit, not executable compatibility authority. Product/security/platform/manual/budget constraints remain authoritative.
 
-This repository uses CDC 2.6.0.
+# Development instructions — G PC Health
 
-On resume, validate the project policy/checkpoint and reconcile live repository, PR, CI, coordination and external-operation state. Remote evidence wins over stale chat/checkpoint text.
+Read this file, `docs/DEVELOPMENT.md`, and `.agents/skills/continuous-development-cycle/SKILL.md` before changing the project. These instructions organize legitimate development; they do not override tool restrictions, safety checks, user approvals or repository protections.
 
-Use invocation-bound `execution-lease/v2` for new ownership. An owner mutation is bound to repository/ref + executor UUID + generation + exact invocation ID. Never rewrite an actively owned v1 lease merely to upgrade it.
+## Resume from evidence, not a conversation recap
 
-Use the durable `resume-capsule/v1` only for exact-match fast resume. Repository/ref/HEAD, skill version, policy revision/digest, checkpoint digest and lease revision must all match a fresh complete probe; otherwise do normal reconciliation.
+1. Read the current main ref and the relevant open PR once. Record base SHA, head SHA, branch, task scope and the last tested SHA/run ID. Check actual changes before accepting a previous completion claim.
+2. Read only the files needed for that task, at an explicit SHA. Reuse cached file bodies and returned blob SHAs; do not repeatedly retrieve the entire repository, PR body or successful full logs.
+3. Work on the existing task branch when resuming. One coherent feature or maintenance task per PR. Do not create another release branch or another draft archive merely because a chat turn ended.
+4. Keep one current checkpoint section in the PR body, using `.github/pull_request_template.md`; use `docs/development/handoff-template.json` for a local handoff. Update at a meaningful checkpoint, not on every poll. Remote state may differ from the checkpoint: re-read refs on resume.
 
-A wake cannot terminate after only status, health, lease, polling, report, heartbeat or lease-renewal work while a runnable next action exists. Before final response, pass `scripts/execution_continuity.py`. Allowed terminal boundaries are meaningful durable progress, durable external binding, a resumable blocker with exact next action, or verified task/scope completion.
+## Short iteration loop
 
-If the invocation owns a v2 lease, finalization is transactional:
-`active → draining → checkpointed → reconciled → ready → release`.
-The `ready` transition itself requires an allowed continuity decision bound to the exact invocation. Final response while still owning the lease is a defect.
+- On a prepared Windows checkout: `pwsh -NoProfile -File tools/dev/Invoke-DevCheck.ps1 -Profile Quick`.
+- Quick includes restore, transitive vulnerability audit, warnings-as-errors compilation and ALL source self-tests. It omits EXE packaging and the repeated portable EXE matrix; it does not replace final CI.
+- Before proposing the final head: `pwsh -NoProfile -File tools/dev/Invoke-DevCheck.ps1 -Profile Full`. It adds fresh EXE packaging, the EXE self-test, existing portable matrix, FileVersion and SHA-256 validation.
+- In a connector-only environment, inspect available commands once. If Windows/.NET are absent, use normal Windows CI for runtime evidence; static checks are not C# compilation. Do not repeatedly attempt unavailable local SDK installation.
+- Keep test-first changes small, demonstrate the expected failing behavior, then implement and verify. A test-only RED commit is not a product release. Prepare documentation alongside code to avoid an extra full CI cycle just for forgotten version notes.
+- Do not bump the application version or publish new assets for development-process-only changes. Existing immutable-by-policy release assets stay associated with their tested commit.
 
-Validate with:
+## GitHub interaction budget
 
-- `python -B .agents/skills/continuous-development-cycle/scripts/validate_package.py`
-- `python -B .agents/skills/continuous-development-cycle/scripts/validate_adapter.py docs/development-cycle.yaml`
-- `python -B .agents/skills/continuous-development-cycle/scripts/validate_checkpoint_24.py docs/work-status/current.md --adapter docs/development-cycle.yaml`
-- `python -B -m unittest discover -s .agents/skills/continuous-development-cycle/tests -v`
+- Group logically related file changes in a normal commit from the known base. Preserve transparent source content; batching is not a way to evade a blocked request.
+- After an uncertain write result, read the ref/commit/PR before retrying. Never assume failure means nothing was written, and never force-push to resolve uncertainty.
+- List runs for the exact SHA/event once. Save run/job IDs. Poll the relevant run at sensible intervals (e.g. 30–60 seconds while actively attending); do not request completed-job logs while a job is still running.
+- Read failed-step logs once after completion. For a passing run, step summaries and the compact result artifact normally suffice; inspect full logs when needed to support exact claims.
+- A tool safety denial is NOT a GitHub permission error or a compiler failure. Stop the blocked operation. Do not split, encode, rename, change endpoints/accounts or use an alternate channel to circumvent it. Preserve the checkpoint and error privately; request platform support. Do not loop identical rejected writes. A later legitimate user-authorized continuation still uses ordinary checks.
+- For actual authorization failures, verify account/repository access; do not ask for a token in chat. For a rate limit, respect Retry-After. For transient read failures, bounded retries are acceptable. For writes/timeouts, reconcile state first.
 
-CDC validation does not replace the Windows/.NET Quick, Full, CI, review, release or security gates in `docs/DEVELOPMENT.md`.
+## Observable progress and handoff
 
+Tell the owner what is being done before starting. During a long active operation give factual milestone updates, normally every 2–4 minutes; do not fabricate progress or promise work after the response ends. End with committed changes, exact checks, PR/release state and the one next unresolved step. State clearly whether a binary exists and whether it is a release or only a locally built artifact.
 
-## CDC 2.5 routing, deterministic recovery and event continuation
+Record separately: prepared locally / committed / tested / reviewed / merged / published / downloaded bytes verified. Include stale/partial/unknown states. Keep build logs and handoffs under ignored `artifacts/`; inspect them before sharing. No credentials, env dumps, private workstation evidence or signed download URLs in public issues/PRs. Prefer one current source snapshot and a patch against a named base, not a growing set of ambiguous archives.
 
-Before selecting compute/CI, express required platform/runtime/network/device capabilities explicitly and route them through fresh backend evidence with `.agents/skills/continuous-development-cycle/scripts/capability_router.py`. A selected backend is a recommendation, never launch authority.
+## Existing product boundaries
 
-For known operational diagnoses use deterministic recovery recipes before open-ended RCA. Recipe steps are allow-listed control-plane actions and still require normal ownership/authorization gates.
+- One portable Windows x64 EXE; arbitrary valid EXE location/name remains supported.
+- Preserve UAC, worker allow-list and nonce/session binding; do not reintroduce the retired Program Files-only rule.
+- Elevated read-only Temp preview is allowed. Temp deletion remains tied to a verified same-user non-elevated context.
+- Missing telemetry is not zero or proof of health; query-only tools must not silently become remediation.
+- Preserve read-only PR permissions, pinned Actions, independent required checks and the exact-main-build publication/attestation chain. No bypass merges or disabling failing checks.
+- Hosted Windows Server tests are not interactive Windows 11/UAC/RDP/DPI acceptance. A source review by the implementing agent is not an independent reviewer.
 
-Consume durable continuation events before falling back to polling. Event delivery/claim is not ownership. Immediate event wakes are preferred when supported; the recurring watchdog remains the required scheduler fallback.
-
-
-## CDC 2.6 fleet supervision, convergence, progress SLO and audit
-
-Publish/refresh a fleet project snapshot on authorized control-plane state changes. Fleet assessment is read/control-plane only: it cannot write product code, take ownership, start external work, merge, release, or mutate schedulers.
-
-Convergence requires version + exact package fingerprint + checkpoint schema. Active owners or guards defer adoption to a safe boundary. Meaningful-progress SLO ignores heartbeats/status/polls/reports and distinguishes DEGRADED/STALLED from real BLOCKED/waiting_external state.
-
-Append important control-plane transitions to the hash-chained audit log; audit evidence is not authority.

@@ -4,7 +4,7 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
-  <data name="Performance.Form.Title" xml:space="preserve"><value>G PC Health Check — performance session</value></data>
+  <data name="Performance.Form.Title" xml:space="preserve"><value>G PC Health — performance session</value></data>
   <data name="Performance.Form.Intro" xml:space="preserve"><value>Start observation, reproduce the issue, and mark the symptom. No artificial load is generated.
 The chart uses sample acquisition time; gaps mean missing data. Coincidence with a marker does not establish the cause of a failure.</value></data>
   <data name="Performance.Form.Duration" xml:space="preserve"><value>Duration, s</value></data>
@@ -45,7 +45,7 @@ The chart uses sample acquisition time; gaps mean missing data. Coincidence with
   <data name="Performance.Form.ActionFailedTitle" xml:space="preserve"><value>Action not completed</value></data>
   <data name="Performance.Menu.Item" xml:space="preserve"><value>Performance session…</value></data>
   <data name="Performance.Report.Boundary" xml:space="preserve"><value>This is observation, not a stress test. Crossing a threshold or coinciding with a marker does not prove the cause of a failure. Statistics use available samples, not a share of elapsed time; unavailable and missed values are not replaced with zero. CPU is the average between GetSystemTimes readings, RAM is physical memory, and disks are WMI PhysicalDisk _Total (100 − PercentIdleTime and current queue), not only the system volume. Metrics are read sequentially rather than atomically; WMI has its own refresh interval. Collection and other software can affect load. The health index is not changed.</value></data>
-  <data name="Performance.Report.Title" xml:space="preserve"><value>G PC Health Check — performance session</value></data>
+  <data name="Performance.Report.Title" xml:space="preserve"><value>G PC Health — performance session</value></data>
   <data name="Performance.Report.StartEnd" xml:space="preserve"><value>Started: {0:O}; finished: {1:O}</value></data>
   <data name="Performance.Report.State" xml:space="preserve"><value>State: {0}; actual {1:0.0} s; plan {2} s / {3} s.</value></data>
   <data name="Performance.Report.Counts" xml:space="preserve"><value>Samples received: {0}; missed intervals: {1}. {2}.</value></data>

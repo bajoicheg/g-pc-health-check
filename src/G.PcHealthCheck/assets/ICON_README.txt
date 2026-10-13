@@ -1,1 +1,1 @@
-The binary application icon is stored as gpchc.ico and is embedded into G-PC-Health-Check.exe during build.
+The binary application icon is stored as gpchc.ico and is embedded into G-PC-Health.exe during build.

@@ -9,6 +9,7 @@ internal sealed class ExecutionContextForm : Form
 
     public ExecutionContextForm(ExecutionContextInfo? context)
     {
+        ReadableWindowLayout.Attach(this);
         Text = AppLocalization.T("ExecutionContext.Form.Title");
         Size = new Size(1080, 780); MinimumSize = new Size(820, 620);
         StartPosition = FormStartPosition.CenterParent; AutoScaleMode = AutoScaleMode.Dpi;

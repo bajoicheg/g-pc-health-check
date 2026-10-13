@@ -19,6 +19,42 @@ public sealed class ReportService
         }
     }
 
+    public (ScanResult Snapshot, string Html, string Json) SaveSymptomSelection(ScanResult scan, string symptomId)
+    {
+        var snapshot = new ScanResult
+        {
+            Data = scan.Data, Assessment = scan.Assessment, Security = scan.Security,
+            SecurityHardening = scan.SecurityHardening, SecuritySnapshot = scan.SecuritySnapshot,
+            SecurityDetails = scan.SecurityDetails.ToList(), Actions = scan.Actions,
+            SymptomNotes = SymptomRoutes.Select(scan.SymptomNotes, symptomId)
+        };
+        var directory = ReportsDirectory;
+        var id = Guid.NewGuid().ToString("N");
+        var staging = Path.Combine(directory, ".symptom-" + id);
+        var final = Path.Combine(directory, "PCHealth_symptom_" + id);
+        try
+        {
+            Directory.CreateDirectory(staging);
+            WriteDurable(Path.Combine(staging, "report.json"), JsonSerializer.Serialize(snapshot, JsonOptions));
+            WriteDurable(Path.Combine(staging, "report.html"), BuildScanHtml(snapshot));
+            // One directory rename commits the pair; old report history is never overwritten.
+            Directory.Move(staging, final);
+            return (snapshot, Path.Combine(final, "report.html"), Path.Combine(final, "report.json"));
+        }
+        catch
+        {
+            if (Directory.Exists(staging)) Directory.Delete(staging, recursive: true);
+            throw;
+        }
+    }
+
+    private static void WriteDurable(string path, string content)
+    {
+        using var stream = new FileStream(path, FileMode.CreateNew, FileAccess.Write, FileShare.None);
+        var bytes = new UTF8Encoding(false).GetBytes(content);
+        stream.Write(bytes); stream.Flush(flushToDisk: true);
+    }
+
     public (string Html, string Json) SaveScan(ScanResult scan)
     {
         var basePath = BasePath(scan.Data.System.ComputerName, "");
@@ -72,11 +108,12 @@ public sealed class ReportService
     private static string BuildScanHtml(ScanResult scan)
     {
         var d = scan.Data;
-        var sb = Begin("G PC Health Check — " + d.System.ComputerName);
+        var sb = Begin("G PC Health — " + d.System.ComputerName);
         Header(sb, "Диагностика рабочего места Service Desk", d.System.CollectedAt);
         Hero(sb, scan.Assessment.Score, scan.Assessment.Status, d.System.ComputerName + " · " + d.System.UserName + " · " + d.System.Model);
         Triage(sb, scan);
         Metrics(sb, scan);
+        sb.Append(SecurityReportSection.BuildHtml(scan, AppLocalization.Language));
         ContextBlock(sb, "Контекст диагностики", d.System.ExecutionContext);
         Findings(sb, scan.Assessment.Findings, "Выводы");
         sb.Append("<section><h2>Действия Service Desk</h2><table><thead><tr><th>Тип</th><th>Действие</th><th>Причина</th><th>Авто</th><th>Admin</th><th>Риск</th><th>Доступность при сборе</th></tr></thead><tbody>");
@@ -95,10 +132,11 @@ public sealed class ReportService
 
     private static string BuildVerificationHtml(VerificationResult v)
     {
-        var sb = Begin("G PC Health Check — автопроверка");
+        var sb = Begin("G PC Health — автопроверка");
         Header(sb, "Автопроверка после remediation", DateTime.Now);
         Hero(sb, v.After.Assessment.Score, v.After.Assessment.Status, $"{v.After.Data.System.ComputerName} · было {v.Before.Assessment.Score}/100 → стало {v.After.Assessment.Score}/100");
         Triage(sb, v.After);
+        sb.Append(SecurityReportSection.BuildHtml(v.After, AppLocalization.Language));
         ContextBlock(sb, "Контекст диагностики до действий", v.Before.Data.System.ExecutionContext);
         ContextBlock(sb, "Контекст повторной диагностики", v.After.Data.System.ExecutionContext);
         sb.Append("<section><h2>До / после</h2><p>Сравнивайте полноту и контекст обоих снимков. Изменение индекса не доказывает устранение симптома.</p><table><thead><tr><th>Показатель</th><th>До</th><th>После</th><th>Изменение</th></tr></thead><tbody>");
@@ -131,7 +169,7 @@ public sealed class ReportService
 
     private static void Header(StringBuilder sb, string subtitle, DateTime stamp)
     {
-        sb.Append("<header><div class='brand'>").Append(ShieldSvg()).Append("<div><h1>G PC Health Check</h1><div class='muted'>").Append(H(subtitle)).Append("</div></div></div><div class='stamp'>").Append(H(stamp.ToString("dd.MM.yyyy HH:mm:ss"))).Append("</div></header><main>");
+        sb.Append("<header><div class='brand'>").Append(ShieldSvg()).Append("<div><h1>G PC Health</h1><div class='muted'>").Append(H(subtitle)).Append("</div></div></div><div class='stamp'>").Append(H(stamp.ToString("dd.MM.yyyy HH:mm:ss"))).Append("</div></header><main>");
     }
 
     private static void Hero(StringBuilder sb, int score, string status, string detail)
@@ -143,6 +181,9 @@ public sealed class ReportService
     private static void Triage(StringBuilder sb, ScanResult scan)
     {
         var triage = TriageSummary.Build(scan);
+        if (scan.SymptomNotes.Count > 0) sb.Append("<p>").Append(H(SymptomRoutes.Format(scan.SymptomNotes, AppLocalization.Language))).Append("</p>");
+        if (scan.Assessment.MissingSignals.Count > 0)
+            sb.Append("<p>").Append(H(TechnicalEvidence.Format(scan.Assessment, AppLocalization.Language))).Append("</p>");
         sb.Append("<section><h2>Triage</h2><p><b>").Append(H(triage.Title)).Append("</b></p><p>").Append(H(triage.Detail)).Append("</p></section>");
     }
 

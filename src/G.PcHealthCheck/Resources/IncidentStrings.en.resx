@@ -4,8 +4,8 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
-  <data name="Incident.Form.Title.Events" xml:space="preserve"><value>G PC Health Check — events around an incident</value></data>
-  <data name="Incident.Form.Title.Processes" xml:space="preserve"><value>G PC Health Check — process details</value></data>
+  <data name="Incident.Form.Title.Events" xml:space="preserve"><value>G PC Health — events around an incident</value></data>
+  <data name="Incident.Form.Title.Processes" xml:space="preserve"><value>G PC Health — process details</value></data>
   <data name="Incident.Form.Intro.Events" xml:space="preserve"><value>Local Application and System logs. Specify an interval in Windows local time (up to 7 days).&#10;Collection starts only on request; at most 1000 records per log. Search and filters work on the collected snapshot.</value></data>
   <data name="Incident.Form.Intro.Processes" xml:space="preserve"><value>Current process snapshot: PID, start time, path, command, and memory. Owner lookup is requested separately for the selected row.&#10;Nothing is launched or terminated. Unavailable fields are marked; a missing path does not imply maliciousness.</value></data>
   <data name="Incident.Form.SearchPlaceholder" xml:space="preserve"><value>Search the collected snapshot</value></data>
@@ -70,7 +70,7 @@
   <data name="Incident.MessageState.Unavailable" xml:space="preserve"><value>Unavailable</value></data>
   <data name="Incident.MessageState.Unknown" xml:space="preserve"><value>Unknown</value></data>
   <data name="Incident.Report.Boundary" xml:space="preserve"><value>Events that occur at the same time do not prove the cause of an incident. A PID in an event identifies the emitter, not necessarily the failing application, and must not be automatically correlated with a current process. Processes are a separate current snapshot, not history. Collection completeness is not a health assessment. Search is limited to the collected snapshot; events that are missing or were deleted earlier cannot be recovered.</value></data>
-  <data name="Incident.Report.Title" xml:space="preserve"><value>G PC Health Check — incident review</value></data>
+  <data name="Incident.Report.Title" xml:space="preserve"><value>G PC Health — incident review</value></data>
   <data name="Incident.Report.Collection" xml:space="preserve"><value>Collection: {0:O} — {1:O}; {2}</value></data>
   <data name="Incident.Report.Interval" xml:space="preserve"><value>Interval: {0:O} — {1:O}; limit {2} per log.</value></data>
   <data name="Incident.Report.EventCounts" xml:space="preserve"><value>Stored {0} events; {1} match the current filter.</value></data>

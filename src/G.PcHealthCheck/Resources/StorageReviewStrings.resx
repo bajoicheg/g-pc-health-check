@@ -12,8 +12,8 @@
   <data name="Storage.Form.Close" xml:space="preserve"><value>Закрыть</value></data>
   <data name="Storage.Form.SearchPlaceholder" xml:space="preserve"><value>Поиск по пути, имени или идентификатору…</value></data>
   <data name="Storage.Form.Ready" xml:space="preserve"><value>Готов к сбору.</value></data>
-  <data name="Storage.Form.Title.Folder" xml:space="preserve"><value>G PC Health Check — место по папкам</value></data>
-  <data name="Storage.Form.Title.Disk" xml:space="preserve"><value>G PC Health Check — подробности накопителей</value></data>
+  <data name="Storage.Form.Title.Folder" xml:space="preserve"><value>G PC Health — место по папкам</value></data>
+  <data name="Storage.Form.Title.Disk" xml:space="preserve"><value>G PC Health — подробности накопителей</value></data>
   <data name="Storage.Form.Intro.Folder" xml:space="preserve"><value>АНАЛИЗ ПАПКИ — только метаданные, без удаления. Размеры логические, не физически занятое место.
 Ссылки исключаются. Сетевой/облачный путь может вызвать обращения соответствующего поставщика; выбирайте область осознанно.</value></data>
   <data name="Storage.Form.Intro.Disk" xml:space="preserve"><value>НАКОПИТЕЛИ — сведения локального Windows Storage WMI. Это не полный SMART и не тест поверхности.

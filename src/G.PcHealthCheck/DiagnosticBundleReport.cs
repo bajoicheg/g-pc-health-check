@@ -115,7 +115,7 @@ internal static class DiagnosticBundleReport
         builder.Append("body{margin:0;background:#f4f7fa;color:#172432;font:14px/1.5 'Segoe UI',Arial,sans-serif}main{max-width:1350px;margin:auto;padding:24px}");
         builder.Append("section{background:#fff;border:1px solid #dce5ed;border-radius:12px;padding:20px;margin:0 0 18px}h1,h2{color:#15344f}pre{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit}");
         builder.Append("table{border-collapse:collapse;width:100%;font-size:13px}th,td{padding:8px;border-bottom:1px solid #dce5ed;text-align:left;vertical-align:top;overflow-wrap:anywhere}th{background:#f0f5f8}.table{overflow-x:auto}.muted{color:#607285}.warn{font-weight:600}.files a{display:inline-block;margin-right:12px}@media(max-width:650px){main{padding:8px}}");
-        builder.Append("</style></head><body><main><h1>G PC Health Check</h1><h2>").Append(H(AppLocalization.T("Bundle.Report.Heading"))).Append("</h2>");
+        builder.Append("</style></head><body><main><h1>G PC Health</h1><h2>").Append(H(AppLocalization.T("Bundle.Report.Heading"))).Append("</h2>");
         builder.Append("<section><pre>").Append(H(Summary(snapshot))).Append("</pre></section>");
         AppendSourceMatrix(builder, snapshot);
         AppendFindings(builder, snapshot);

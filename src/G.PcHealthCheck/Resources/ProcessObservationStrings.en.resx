@@ -38,7 +38,7 @@
   <data name="ProcessObservation.Form.NoteDefault" xml:space="preserve"><value>Freeze / delay</value></data>
   <data name="ProcessObservation.Form.Ready" xml:space="preserve"><value>Ready for observation. No data has been collected.</value></data>
   <data name="ProcessObservation.Form.InvalidTarget" xml:space="preserve"><value>The process instance is not defined.</value></data>
-  <data name="ProcessObservation.Form.Title" xml:space="preserve"><value>G PC Health Check — process observation</value></data>
+  <data name="ProcessObservation.Form.Title" xml:space="preserve"><value>G PC Health — process observation</value></data>
   <data name="ProcessObservation.Form.Intro" xml:space="preserve"><value>{0} · PID {1} · created {2:O}
 One process instance is selected. After it exits, computer collection continues; another process that reuses the same PID is not substituted.</value></data>
   <data name="ProcessObservation.Form.Duration" xml:space="preserve"><value>Duration, s</value></data>
@@ -88,7 +88,7 @@ Collection starts only when you click the button. A new session replaces the pre
   <data name="ProcessObservation.Metric.Write" xml:space="preserve"><value>Process I/O write, MiB/s</value></data>
   <data name="ProcessObservation.Report.StatsNone" xml:space="preserve"><value>{0}: no values available (0/{1}).</value></data>
   <data name="ProcessObservation.Report.StatsLine" xml:space="preserve"><value>{0}: min {1}; median {2}; P95 {3}; max {4}; available {5}/{6}.</value></data>
-  <data name="ProcessObservation.Report.Title" xml:space="preserve"><value>G PC Health Check — process observation</value></data>
+  <data name="ProcessObservation.Report.Title" xml:space="preserve"><value>G PC Health — process observation</value></data>
   <data name="ProcessObservation.Report.Target" xml:space="preserve"><value>Computer: {0}; selected: {1}; PID {2}; created {3:O}.</value></data>
   <data name="ProcessObservation.Report.StartEnd" xml:space="preserve"><value>Started: {0:O}; finished: {1:O}. {2}.</value></data>
   <data name="ProcessObservation.Report.Plan" xml:space="preserve"><value>Plan: {0} s / {1} s; actual {2:0.000} s; completed pairs {3}; missed intervals {4}.</value></data>

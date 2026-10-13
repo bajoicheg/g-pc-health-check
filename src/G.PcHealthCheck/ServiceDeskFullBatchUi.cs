@@ -127,18 +127,19 @@ public sealed partial class MainForm
             if (ReferenceEquals(_applyProgressOwner, verificationOwner)) _applyProgressOwner = null;
             StampExecutionContext(afterData, context);
             var after = _assessment.Assess(afterData);
+            after.SymptomNotes = before.SymptomNotes.ToList();
             var verification = new VerificationResult { Before = before, After = after, Remediation = batch };
             var saved = _reports.SaveVerification(verification);
             _latestReport = saved.Html;
             _current = after;
             Populate(after);
             PopulateVerification(verification);
-            _tabs.SelectedIndex = 4;
+            _tabs.SelectedTab = _tabs.TabPages["CompareTab"];
             var ok = batch.Actions.Count(x => x.Success);
             MessageBox.Show(
                 this,
                 AppLocalization.T("Main.Message.Completed", ok, batch.Actions.Count, before.Assessment.Score, after.Assessment.Score),
-                "G PC Health Check",
+                "G PC Health",
                 MessageBoxButtons.OK,
                 batch.Actions.All(x => x.Success) ? MessageBoxIcon.Information : MessageBoxIcon.Warning);
         }

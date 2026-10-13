@@ -9,7 +9,7 @@ $root = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../..'))
 $directory = Join-Path $root ('artifacts/dev/' + [DateTime]::UtcNow.ToString('yyyyMMdd_HHmmss') + '-' + [guid]::NewGuid().ToString('N'))
 $project = 'src/G.PcHealthCheck/G.PcHealthCheck.csproj'
 $publish = Join-Path $directory 'publish'
-$exe = Join-Path $publish 'G-PC-Health-Check.exe'
+$exe = Join-Path $publish 'G-PC-Health.exe'
 $metadata = @{ Profile = $Profile; Sha = $null; Branch = $null; Dirty = $null; Sdk = $null; PowerShell = $PSVersionTable.PSVersion.ToString(); Platform = if ($IsWindows) { 'Windows' } else { 'Unsupported' } }
 $tools = @{}
 Push-Location $root
@@ -50,14 +50,14 @@ try {
             'portable' { Invoke-DevNative $tools.pwsh @('-NoLogo','-NoProfile','-NonInteractive','-File',(Join-Path $root 'tools/ci/Test-PortableWorker.ps1'),'-ExePath',$exe) $log | Out-Null }
             'package' {
                 $files = @(Get-ChildItem $publish -File)
-                if ($files.Count -ne 1 -or $files[0].Name -ne 'G-PC-Health-Check.exe') { throw 'Expected only the single-file EXE in the fresh publish directory.' }
+                if ($files.Count -ne 1 -or $files[0].Name -ne 'G-PC-Health.exe') { throw 'Expected only the single-file EXE in the fresh publish directory.' }
                 [xml]$xml = Get-Content $project -Raw
                 $expected = [version]([string]$xml.Project.PropertyGroup.Version + '.0')
                 $actual = [version][Diagnostics.FileVersionInfo]::GetVersionInfo($exe).FileVersion
                 if ($actual -ne $expected) { throw "EXE version $actual does not match project $expected." }
                 $hash = (Get-FileHash -LiteralPath $exe -Algorithm SHA256).Hash.ToLowerInvariant()
                 $metadata.ExeSha256 = $hash; $metadata.FileVersion = $actual.ToString()
-                [IO.File]::WriteAllText((Join-Path $directory 'G-PC-Health-Check.exe.sha256'), "$hash  G-PC-Health-Check.exe`n", [Text.Encoding]::ASCII)
+                [IO.File]::WriteAllText((Join-Path $directory 'G-PC-Health.exe.sha256'), "$hash  G-PC-Health.exe`n", [Text.Encoding]::ASCII)
             }
             default { throw "Unknown step $id" }
         }

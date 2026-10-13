@@ -178,6 +178,7 @@ public sealed class Assessment
     public int CoveragePercent { get; set; } = 100;
     public string CoverageStatus { get; set; } = "HIGH";
     public List<string> MissingSignals { get; set; } = [];
+    public IReadOnlyList<TechnicalSignalExplanation> MissingSignalExplanations => TechnicalEvidence.Explain(this);
     public List<Finding> Findings { get; set; } = [];
 }
 
@@ -202,10 +203,67 @@ public sealed class ActionRecommendation
     public string Verification { get; set; } = "";
 }
 
+public sealed class SecurityHardeningActionEvidence
+{
+    public string Id { get; set; } = "";
+    public bool Success { get; set; }
+    public bool BlockedByPolicy { get; set; }
+    public int? ExitCode { get; set; }
+    public string Message { get; set; } = "";
+    public string TargetScope { get; set; } = "";
+    public DateTime StartedAt { get; set; }
+    public DateTime FinishedAt { get; set; }
+}
+
+public sealed class SecurityHardeningEvidence
+{
+    public SecurityPostureAssessment Before { get; set; } = new();
+    public SecurityPostureAssessment After { get; set; } = new();
+    public DateTime StartedAt { get; set; }
+    public DateTime FinishedAt { get; set; }
+    public bool Elevated { get; set; }
+    public List<SecurityHardeningActionEvidence> Actions { get; set; } = [];
+
+    internal static SecurityHardeningEvidence From(SecurityHardeningVerification verification)
+    {
+        ArgumentNullException.ThrowIfNull(verification);
+        return new SecurityHardeningEvidence
+        {
+            Before = verification.Before.Assessment,
+            After = verification.After.Assessment,
+            StartedAt = verification.Batch.StartedAt,
+            FinishedAt = verification.Batch.FinishedAt,
+            Elevated = verification.Batch.Elevated,
+            Actions = verification.Batch.Actions.Select(x => new SecurityHardeningActionEvidence
+            {
+                Id = x.Id,
+                Success = x.Success,
+                BlockedByPolicy = x.BlockedByPolicy,
+                ExitCode = x.ExitCode,
+                Message = x.Message,
+                TargetScope = x.TargetScope,
+                StartedAt = x.StartedAt,
+                FinishedAt = x.FinishedAt
+            }).ToList()
+        };
+    }
+}
+
 public sealed class ScanResult
 {
+    private List<SecuritySubjectDetail>? _securityDetails;
+    // Persist subject metadata even though the collector snapshot is not serialized.
+    public List<SecuritySubjectDetail> SecurityDetails
+    {
+        get => _securityDetails ?? SecurityDetailPresentation.ForScan(this).ToList();
+        set => _securityDetails = value;
+    }
+    public List<SymptomNote> SymptomNotes { get; set; } = [];
     public DiagnosticData Data { get; set; } = new();
     public Assessment Assessment { get; set; } = new();
+    public SecurityPostureAssessment? Security { get; set; }
+    public SecurityHardeningEvidence? SecurityHardening { get; set; }
+    [JsonIgnore] internal SecurityPostureSnapshot? SecuritySnapshot { get; set; }
     public List<ActionRecommendation> Actions { get; set; } = [];
 }
 
