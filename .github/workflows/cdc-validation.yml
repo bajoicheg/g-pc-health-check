@@ -1,15 +1,17 @@
-name: CDC 2.5 package validation
+name: CDC package validation
 
 on:
   push:
     branches:
-      - main
+      - 'cdc/2.6.0-fleet-validation'
       - 'cdc/2.5.0-routing-events'
+      - main
     paths:
       - '.agents/skills/continuous-development-cycle/**'
+      - 'AGENTS.md'
       - 'docs/development-cycle.yaml'
       - 'docs/work-status/current.md'
-      - '.github/workflows/cdc-2.5.yml'
+      - '.github/workflows/cdc-validation.yml'
   workflow_dispatch:
 
 permissions:
