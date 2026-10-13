@@ -179,4 +179,4 @@ jobs:
             ${{ steps.sbom.outputs.sbom_path }}
             ${{ steps.sbom.outputs.sbom_path }}.sha256
           if-no-files-found: error
-          retention-days: 90
+          retention-days: 14
