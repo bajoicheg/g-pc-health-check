@@ -1,3 +1,18 @@
+## Current CDC 3.6.17 process contract
+
+Use canonical `bajoicheg/g-cdc` `refs/heads/release/v3.6.17` at
+`20d6830c94c7123994400f3e3dce5840e23a5e79`, exact package TREE
+`f5480729b23a9b470e7b9d221d5a61034e292b7d`, vendored unchanged at
+`.agents/skills/continuous-development-cycle`. Apply its `references/lean-execution-core.md`
+persistent execution contract on every entry. Preserve original IDs, UNKNOWN, budgets/spent and
+history; reuse covered evidence and minimum necessary checks/coordination. Report applied results
+and separate actual usage; unavailable cost stays UNKNOWN. Storage and registry migration mechanisms
+grant no additional product role or UNKNOWN replay. The registered native role stays read_only.
+Kimi is excluded until explicit owner instruction; Fleet remains paused and Gemini deferred.
+The existing public-repository compute policy, Windows evidence, product/security/manual gates and
+source publication restrictions below remain effective. This process adoption starts no CI or Cloud.
+See `docs/cdc-adoption-3.6.17.md` and `docs/cdc-consumer-lock.json`. Earlier authority headers are history.
+
 ## Current CDC authority — 3.3.1
 
 Use the already adopted released canonical CDC3.3.1, commit `51740497bea3e1bcbb302e894fda8b7e42bc0087`, exact package tree `f580a8946c0510540a4be3f4422ab3404875274b`, pinned by `docs/cdc-consumer-lock.json`. This product integration preserves that installed package and current adapter. Older headers below describe historical standalone candidates and do not override the current lock or project policy. Managed ownership, budget/history, UNKNOWN replay prohibition, paused schedulers and all Windows/product gates remain in force.

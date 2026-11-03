@@ -2,9 +2,9 @@
 schema: development-work-status/v4
 repository: bajoicheg/g-pc-health-check
 branch: design/0.17.0-security-posture
-policy_revision: 2026-10-11-cdc-3.5.0-safe-g-pc-health-check
-policy_digest: b417fe61b26d31e5e3489b5f6af1ad5d84b6ca949d9154e3f6b52a6e2c91148f
-observed_at_utc: '2026-10-11T10:44:19.223413Z'
+policy_revision: 2026-11-04-cdc-3.6.17-process-adoption
+policy_digest: 3c6625e7e3fadd059b699850b723e1374e51b1acc8dc04aea49833eceb4afb05
+observed_at_utc: '2026-11-03T22:36:42.391785Z'
 orchestration_origin: chat
 active_executor: none
 lease_state: released
@@ -52,6 +52,25 @@ next_action: Use a genuinely available authorized managed Git writer to publish 
   exact reviewed forward assembly, then run required Windows checks; never replay
   original CI6
 ---
+
+## CDC 3.6.17 process-only adoption — 4 November 2026
+
+Canonical `refs/heads/release/v3.6.17` at `20d6830c94c7123994400f3e3dce5840e23a5e79`,
+exact package TREE `f5480729b23a9b470e7b9d221d5a61034e292b7d`.
+The complete unchanged package, consumer lock, adapter binding and entry guidance move together.
+This release adds bounded opt-in native control storage and a strictly bound original released
+success registry migration. These mechanisms grant no additional role or UNKNOWN retry.
+Original product/checkpoint IDs, UNKNOWN, budgets/spent, platform evidence and manual gates remain
+unchanged. Source adoption, the actual VPS loader and Windows/client loading are separate boundaries;
+Windows/client loading remains UNKNOWN. The registered native VPS role remains read_only.
+
+The existing public-repository compute policy remains authoritative. This adoption starts no CI,
+Cloud or Windows/product acceptance and grants no product release, merge or promotion approval.
+Kimi remains excluded, Fleet paused and Gemini deferred. Apply the loaded package's persistent
+`references/lean-execution-core.md` contract, preserve original ID/UNKNOWN/spent, reuse covered proof,
+and report separate actual App/native/provider usage; unavailable cost stays UNKNOWN.
+Earlier package provenance remains history. Product acceptance and existing blockers remain recorded
+in the unchanged checkpoint product fields below.
 
 ## CDC 2.12.1 atomic process adoption
 
