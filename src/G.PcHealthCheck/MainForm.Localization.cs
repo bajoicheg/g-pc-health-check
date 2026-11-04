@@ -6,37 +6,12 @@ public sealed partial class MainForm
     private bool _mainLocalizationInitialized;
     private bool _refreshingMainLocalization;
 
-    // BuildUi() adds the execution-context panel as row 1 of the five-row root.
-    // Arm from that panel and initialize after the remaining controls have been added,
-    // so the parameterless MainForm constructor is localized before it returns.
-    private void ArmMainLocalization(Control anchor)
-    {
-        EventHandler? parentChanged = null;
-        parentChanged = (_, _) =>
-        {
-            if (anchor.Parent is not TableLayoutPanel root || root.RowCount != 5) return;
-            anchor.ParentChanged -= parentChanged;
-
-            ControlEventHandler? added = null;
-            void TryInitialize()
-            {
-                if (root.Controls.Count < 5) return;
-                if (added is not null) root.ControlAdded -= added;
-                InitializeMainLocalization(root);
-            }
-
-            added = (_, _) => TryInitialize();
-            root.ControlAdded += added;
-            TryInitialize();
-        };
-        anchor.ParentChanged += parentChanged;
-    }
-
     private void InitializeMainLocalization(TableLayoutPanel root)
     {
         if (_mainLocalizationInitialized) return;
         _mainLocalizationInitialized = true;
         _mainLocalizationRoot = root;
+        InitializeSecurityPostureUi(root);
         AppLocalization.CultureChanged += OnMainCultureChanged;
         Disposed += (_, _) => AppLocalization.CultureChanged -= OnMainCultureChanged;
 
@@ -67,6 +42,7 @@ public sealed partial class MainForm
             LocalizeHeader();
             LocalizeMetrics();
             LocalizeTabsAndColumns();
+            RefreshSecurityLocalization();
 
             _scan.Text = AppLocalization.T("Main.Button.Rescan");
             _openReport.Text = AppLocalization.T("Main.Button.OpenReport");
@@ -91,7 +67,9 @@ public sealed partial class MainForm
                 };
                 _uptime.Text = AppLocalization.T("Main.Uptime.Days", scan.Data.System.UptimeDays);
                 var triage = TriageSummary.Build(scan);
-                _tabs.TabPages[0].Text = triage.SignificantCount > 0
+                _triageTitle.Text = triage.Title;
+                _triageDetail.Text = triage.Detail;
+                _tabs.TabPages["RecommendationsTab"]!.Text = triage.SignificantCount > 0
                     ? AppLocalization.T("Main.Tab.Recommendations.Count", triage.SignificantCount)
                     : AppLocalization.T("Main.Tab.Recommendations");
                 RefreshRecommendationDisplayRows();
@@ -126,24 +104,38 @@ public sealed partial class MainForm
         SetMetric(metrics, 3, null, "Main.Metric.Ram.Sub");
         SetMetric(metrics, 4, "Main.Metric.SystemDisk", "Main.Metric.SystemDisk.Sub");
         SetMetric(metrics, 5, null, "Main.Metric.Uptime.Sub");
+        SetMetric(metrics, 6, "Security.Metric.Caption", null);
+    }
+
+    private static IEnumerable<Control> DescendantsForLocalization(Control parent)
+    {
+        foreach (Control child in parent.Controls)
+        {
+            yield return child;
+            foreach (var descendant in DescendantsForLocalization(child)) yield return descendant;
+        }
     }
 
     private static void SetMetric(TableLayoutPanel metrics, int column, string? captionKey, string? subKey)
     {
-        if (metrics.GetControlFromPosition(column, 0) is not Panel card || card.Controls.Count < 3) return;
+        if (metrics.Controls.OfType<Panel>().ElementAtOrDefault(column) is not Panel card || card.Controls.Count < 3) return;
         if (captionKey is not null && card.Controls[0] is Label caption) caption.Text = AppLocalization.T(captionKey);
         if (subKey is not null) card.Controls[2].Text = AppLocalization.T(subKey);
     }
 
     private void LocalizeTabsAndColumns()
     {
-        if (_tabs.TabPages.Count >= 5)
+        _symptomButton.Text = AppLocalization.T("Evidence.Symptom.Title");
+        foreach (var (name, key) in new[] {
+            ("OverviewTab", "Main.Tab.Overview"), ("RecommendationsTab", "Main.Tab.Recommendations"),
+            ("ActionsTab", "Main.Tab.Actions"), ("ProcessesTab", "Main.Tab.Processes"),
+            ("EventsTab", "Main.Tab.Events"), ("SystemTab", "Main.Tab.System"),
+            ("CompareTab", "Main.Tab.Compare"), ("SecurityPostureTab", "Security.Tab.Title") })
+            if (_tabs.TabPages[name] is TabPage page) page.Text = AppLocalization.T(key);
+        foreach (var toggle in DescendantsForLocalization(this).OfType<Button>().Where(x => x.Name is "FindingDetailsToggle" or "ActionDetailsToggle" or "SecurityDetailsToggle"))
         {
-            _tabs.TabPages[0].Text = AppLocalization.T("Main.Tab.Recommendations");
-            _tabs.TabPages[1].Text = AppLocalization.T("Main.Tab.Processes");
-            _tabs.TabPages[2].Text = AppLocalization.T("Main.Tab.Events");
-            _tabs.TabPages[3].Text = AppLocalization.T("Main.Tab.System");
-            _tabs.TabPages[4].Text = AppLocalization.T("Main.Tab.Compare");
+            toggle.Text = AppLocalization.T("Main.Details.Toggle");
+            toggle.AccessibleName = toggle.Text;
         }
 
         SetColumn(_actions, "Kind", "Main.Column.Type");
@@ -230,8 +222,10 @@ public sealed partial class MainForm
             _system.Rows[9].Cells[1].Value = ExecutionPolicy.Value(d.System.ExecutionContext?.ProcessAccount) + " / " + AppLocalization.T("Main.System.ContextNotSaved");
         if (_system.Rows.Count > 11 && d.System.ExecutionContext is null)
             _system.Rows[11].Cells[1].Value = AppLocalization.T("Main.System.ContextNotSaved");
-        if (_system.Rows.Count > 13 && scan.Assessment.MissingSignals.Count == 0)
-            _system.Rows[13].Cells[1].Value = AppLocalization.T("Common.No");
+        if (_system.Rows.Count > 13)
+            _system.Rows[13].Cells[1].Value = scan.Assessment.MissingSignals.Count == 0
+                ? AppLocalization.T("Common.No")
+                : TechnicalEvidence.Format(scan.Assessment, AppLocalization.Language);
         if (_system.Rows.Count > 14)
             _system.Rows[14].Cells[1].Value = d.PendingReboot.Pending
                 ? AppLocalization.T("Common.Yes") + " — " + string.Join("; ", d.PendingReboot.Reasons)

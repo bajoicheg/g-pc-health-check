@@ -4,8 +4,8 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
-  <data name="Review.Form.Title.Temp" xml:space="preserve"><value>G PC Health Check — Temp cleanup preview</value></data>
-  <data name="Review.Form.Title.Startup" xml:space="preserve"><value>G PC Health Check — startup review</value></data>
+  <data name="Review.Form.Title.Temp" xml:space="preserve"><value>G PC Health — Temp cleanup preview</value></data>
+  <data name="Review.Form.Title.Startup" xml:space="preserve"><value>G PC Health — startup review</value></data>
   <data name="Review.Form.Intro.Temp" xml:space="preserve"><value>TEMP PREVIEW — read-only. Deletion is performed separately through recommendations in the main window.</value></data>
   <data name="Review.Form.Intro.Startup" xml:space="preserve"><value>STARTUP — read-only. Commands are not executed and entries are not disabled; enabled state and startup impact are not determined.</value></data>
   <data name="Review.Button.Scan" xml:space="preserve"><value>Check / run again</value></data>

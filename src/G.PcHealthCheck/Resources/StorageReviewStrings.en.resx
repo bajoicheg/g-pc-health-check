@@ -12,8 +12,8 @@
   <data name="Storage.Form.Close" xml:space="preserve"><value>Close</value></data>
   <data name="Storage.Form.SearchPlaceholder" xml:space="preserve"><value>Search by path, name, or identifier…</value></data>
   <data name="Storage.Form.Ready" xml:space="preserve"><value>Ready to collect.</value></data>
-  <data name="Storage.Form.Title.Folder" xml:space="preserve"><value>G PC Health Check — folder space</value></data>
-  <data name="Storage.Form.Title.Disk" xml:space="preserve"><value>G PC Health Check — drive details</value></data>
+  <data name="Storage.Form.Title.Folder" xml:space="preserve"><value>G PC Health — folder space</value></data>
+  <data name="Storage.Form.Title.Disk" xml:space="preserve"><value>G PC Health — drive details</value></data>
   <data name="Storage.Form.Intro.Folder" xml:space="preserve"><value>FOLDER ANALYSIS — metadata only; nothing is deleted. Sizes are logical, not physical disk allocation.
 Links are excluded. A network/cloud path can contact its provider; choose the scope deliberately.</value></data>
   <data name="Storage.Form.Intro.Disk" xml:space="preserve"><value>DRIVES — local Windows Storage WMI information. This is not full SMART data and not a surface test.

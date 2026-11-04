@@ -14,7 +14,6 @@ public sealed partial class MainForm
         panel.Controls.Add(_contextBanner, 0, 0); panel.Controls.Add(_contextDetails, 1, 0);
         _contextDetails.Click += (_, _) => { using var form = new ExecutionContextForm(_executionContext); form.ShowDialog(this); };
         RenderExecutionContext(null);
-        ArmMainLocalization(panel);
         return panel;
     }
 
@@ -48,6 +47,8 @@ public sealed partial class MainForm
             row.Cells["Selected"].ReadOnly = !availability.CanRequest;
             if (!availability.CanRequest) row.Cells["Selected"].Value = false;
         }
+        // ToolTipText and context may change while the displayed State value stays identical.
+        if (_actionDetails is not null) RefreshSelectedDetails(_actions, _actionDetails);
         UpdateApplyState();
     }
 

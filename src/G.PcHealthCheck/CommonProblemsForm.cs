@@ -23,8 +23,9 @@ internal sealed class CommonProblemsForm : Form
     private bool _busy;
     private bool _commandRunning;
 
-    public CommonProblemsForm()
+    public CommonProblemsForm(bool autoScan = true)
     {
+        ReadableWindowLayout.Attach(this);
         Text = AppLocalization.T("CommonProblems.Form.Title");
         Size = new Size(1180, 780); MinimumSize = new Size(880, 620);
         StartPosition = FormStartPosition.CenterParent;
@@ -80,7 +81,7 @@ internal sealed class CommonProblemsForm : Form
         };
         _export.Click += (_, _) => Export();
         _dns.Click += async (_, _) => await FlushDnsAsync();
-        Shown += async (_, _) => await ScanAsync();
+        if (autoScan) Shown += async (_, _) => await ScanAsync();
         FormClosing += (_, e) =>
         {
             if (_commandRunning)

@@ -12,6 +12,7 @@ internal static class AppLocalization
     [
         new("G.PcHealthCheck.Resources.Strings", typeof(AppLocalization).Assembly),
         new("G.PcHealthCheck.Resources.MainStrings", typeof(AppLocalization).Assembly),
+        new("G.PcHealthCheck.Resources.SecurityStrings", typeof(AppLocalization).Assembly),
         new("G.PcHealthCheck.Resources.AnalysisStrings", typeof(AppLocalization).Assembly),
         new("G.PcHealthCheck.Resources.ReviewStrings", typeof(AppLocalization).Assembly),
         new("G.PcHealthCheck.Resources.ResourceProbeUiStrings", typeof(AppLocalization).Assembly),
@@ -112,6 +113,7 @@ internal static class AppLocalization
         catch { }
     }
 
+    // Stable legacy storage identity: the G PC Health rebrand preserves language preferences.
     private static string SettingsPath()
         => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "G", "G PC Health Check", "settings.json");
 }

@@ -14,7 +14,7 @@
   <data name="FileUse.Form.Export" xml:space="preserve"><value>Сохранить HTML / JSON</value></data>
   <data name="FileUse.Form.Close" xml:space="preserve"><value>Закрыть</value></data>
   <data name="FileUse.Form.StageInitial" xml:space="preserve"><value>Выберите файл. Сбор ещё не запускался.</value></data>
-  <data name="FileUse.Form.Title" xml:space="preserve"><value>G PC Health Check — кто использует файл</value></data>
+  <data name="FileUse.Form.Title" xml:space="preserve"><value>G PC Health — кто использует файл</value></data>
   <data name="FileUse.Form.Intro" xml:space="preserve"><value>КТО ИСПОЛЬЗУЕТ ФАЙЛ — запрос Windows Restart Manager, без закрытия приложений и изменения файла.
 Один обычный локальный файл. Это не полный список дескрипторов; отсутствие результатов не гарантирует отсутствие блокировки.</value></data>
   <data name="FileUse.Column.Application" xml:space="preserve"><value>Приложение (RM)</value></data>
@@ -91,7 +91,7 @@
 
   <data name="FileUse.Report.Meaning" xml:space="preserve"><value>Restart Manager сообщает приложения/службы, использующие выбранный путь. Это не полный перечень дескрипторов и не проверка прав удаления. Пустой список не доказывает отсутствие блокировки: повторите именно ту операцию, которая не выполнялась. Названия от Restart Manager и дополнительно проверенные метаданные EXE — разные источники. Результат относится ко времени запроса; файл и процессы могут измениться.</value></data>
   <data name="FileUse.Report.NextSteps" xml:space="preserve"><value>Сохраните работу. Проверьте найденное приложение и при необходимости закройте его обычным способом, затем повторите проверку и исходную операцию. Не завершайте системные процессы и службы по одной строке результата. Если список пуст или недоступен, проверьте права на файл, его атрибуты, область пути и фактическое сообщение Windows; не отключайте защитное ПО для проверки.</value></data>
-  <data name="FileUse.Report.Title" xml:space="preserve"><value>G PC Health Check — кто использует файл</value></data>
+  <data name="FileUse.Report.Title" xml:space="preserve"><value>G PC Health — кто использует файл</value></data>
   <data name="FileUse.Report.Target" xml:space="preserve"><value>Проверенный путь: {0}</value></data>
   <data name="FileUse.Report.Computer" xml:space="preserve"><value>ПК: {0}; {1:O} — {2:O}.</value></data>
   <data name="FileUse.Report.Collection" xml:space="preserve"><value>Сбор: {0}; этап: {1}.</value></data>

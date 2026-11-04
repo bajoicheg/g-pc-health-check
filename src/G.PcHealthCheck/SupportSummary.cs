@@ -14,12 +14,18 @@ internal static class SupportSummary
         var triage = TriageSummary.Build(scan);
         var systemDrive = SystemDiskSelection.Find(d);
         var sb = new StringBuilder();
+        sb.AppendLine(SymptomRoutes.Format(scan.SymptomNotes, AppLocalization.Language));
 
-        sb.AppendLine("G PC Health Check");
+        sb.AppendLine("G PC Health");
         sb.AppendLine($"Компьютер: {d.System.ComputerName}");
         sb.AppendLine($"Пользователь: {d.System.UserName}");
         sb.AppendLine($"Статус: {a.Status}; индекс: {a.Score}/100");
         sb.AppendLine($"Покрытие: {a.CoveragePercent}% ({a.CoverageStatus})");
+        if (scan.Security is not null)
+        {
+            sb.AppendLine(AppLocalization.T("Security.Tab.Title") + ":");
+            sb.AppendLine(SecurityReportSection.BuildClipboardSummary(scan, AppLocalization.Language));
+        }
         sb.AppendLine($"Triage: {triage.Title}");
         sb.AppendLine($"Следующий шаг: {triage.NextAction}");
         sb.AppendLine($"CPU: {Format(d.Performance.CpuPercent, "%")}; RAM: {Format(d.Performance.MemoryUsedPercent, "%")}; {SystemDiskSelection.CurrentDriveId ?? "Системный диск"} {(systemDrive is null ? "—" : $"{systemDrive.FreeGB:0.#} GB свободно")}; uptime: {d.System.UptimeDays:0.#} дн.");
@@ -28,7 +34,10 @@ internal static class SupportSummary
         sb.AppendLine(ExecutionPolicy.Describe(d.System.ExecutionContext));
 
         if (a.MissingSignals.Count > 0)
-            sb.AppendLine("Недоступные сигналы: " + string.Join(", ", a.MissingSignals));
+        {
+            sb.AppendLine(AppLocalization.T("Main.System.MissingSignals") + ": " + string.Join(", ", a.MissingSignals));
+            sb.AppendLine(TechnicalEvidence.Format(a, AppLocalization.Language));
+        }
         if (d.CollectionWarnings.Count > 0)
             sb.AppendLine("Предупреждения сбора: " + string.Join(" | ", d.CollectionWarnings));
 

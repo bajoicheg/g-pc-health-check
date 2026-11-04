@@ -71,7 +71,7 @@ internal static class ReviewReport
     }
     public static string Summary(object snapshot)
     {
-        var sb = new StringBuilder("G PC Health Check\n"); sb.AppendLine(Overview(snapshot));
+        var sb = new StringBuilder("G PC Health\n"); sb.AppendLine(Overview(snapshot));
         if (snapshot is TempPreviewSnapshot t)
             foreach (var row in t.LargestFiles) sb.AppendLine($"{HumanSize.Megabytes(row.Bytes)} | {row.LastWriteTime:O} | {row.Path}");
         else if (snapshot is StartupReviewSnapshot s)
@@ -90,7 +90,7 @@ internal static class ReviewReport
         var sb = new StringBuilder("<!doctype html><html lang='")
             .Append(H(AppLocalization.Language))
             .Append("'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>");
-        sb.Append(H(title)).Append("</title><style>body{margin:0;background:#f4f7fa;color:#172432;font:14px/1.5 'Segoe UI',Arial,sans-serif}header{padding:24px;background:#15344f;color:white}main{padding:24px;max-width:1500px;margin:auto}section{background:white;border:1px solid #dce5ed;border-radius:12px;padding:18px;margin-bottom:18px}pre{white-space:pre-wrap;font:inherit;overflow-wrap:anywhere}table{width:100%;border-collapse:collapse}th,td{padding:10px;text-align:left;vertical-align:top;border-bottom:1px solid #dce5ed;white-space:pre-wrap;overflow-wrap:anywhere}th{background:#edf3f8}.table{overflow-x:auto}footer{padding:24px;color:#556}h1{margin:0;font-size:24px}</style></head><body><header><h1>G PC Health Check · ");
+        sb.Append(H(title)).Append("</title><style>body{margin:0;background:#f4f7fa;color:#172432;font:14px/1.5 'Segoe UI',Arial,sans-serif}header{padding:24px;background:#15344f;color:white}main{padding:24px;max-width:1500px;margin:auto}section{background:white;border:1px solid #dce5ed;border-radius:12px;padding:18px;margin-bottom:18px}pre{white-space:pre-wrap;font:inherit;overflow-wrap:anywhere}table{width:100%;border-collapse:collapse}th,td{padding:10px;text-align:left;vertical-align:top;border-bottom:1px solid #dce5ed;white-space:pre-wrap;overflow-wrap:anywhere}th{background:#edf3f8}.table{overflow-x:auto}footer{padding:24px;color:#556}h1{margin:0;font-size:24px}</style></head><body><header><h1>G PC Health · ");
         sb.Append(H(title)).Append("</h1></header><main><section><pre>").Append(H(Overview(snapshot))).Append("</pre></section><section class='table'><table><thead><tr>");
         if (snapshot is TempPreviewSnapshot t)
         {

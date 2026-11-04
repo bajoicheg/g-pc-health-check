@@ -1,0 +1,86 @@
+name: CDC Policy Validation
+
+on:
+  push:
+    branches:
+      - 'cdc/adopt-*'
+    paths:
+      - '.agents/skills/continuous-development-cycle/**'
+      - 'AGENTS.md'
+      - 'docs/cdc-consumer-lock.json'
+      - 'docs/development-cycle.yaml'
+      - 'docs/work-status/current.md'
+      - '.github/workflows/cdc-policy.yml'
+  pull_request:
+    paths:
+      - '.agents/skills/continuous-development-cycle/**'
+      - 'AGENTS.md'
+      - 'docs/cdc-consumer-lock.json'
+      - 'docs/development-cycle.yaml'
+      - 'docs/work-status/current.md'
+      - '.github/workflows/cdc-policy.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+
+      - name: Install CDC validator dependency
+        run: python -m pip install -r .agents/skills/continuous-development-cycle/scripts/requirements.txt
+
+      - name: Validate CDC package, adapter, lock and exact tree
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -B .agents/skills/continuous-development-cycle/scripts/validate_package.py
+          python -B .agents/skills/continuous-development-cycle/scripts/validate_adapter.py docs/development-cycle.yaml --json | tee /tmp/adapter.json
+          python -B .agents/skills/continuous-development-cycle/scripts/consumer_lock.py docs/cdc-consumer-lock.json
+          python - <<'PY'
+          import json, subprocess
+          lock=json.load(open('docs/cdc-consumer-lock.json',encoding='utf-8'))
+          observed=subprocess.check_output(
+              ['git','rev-parse','HEAD:.agents/skills/continuous-development-cycle'],
+              text=True).strip()
+          if observed != lock['package_tree']:
+              raise SystemExit(f'package tree mismatch: {observed} != {lock["package_tree"]}')
+          print(f'EXACT_PACKAGE_TREE_GREEN {observed}')
+          PY
+
+      - name: Validate checkpoint when policy binding is current
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, pathlib, re, subprocess, yaml
+          adapter=json.load(open('/tmp/adapter.json',encoding='utf-8'))
+          text=pathlib.Path('docs/work-status/current.md').read_text(encoding='utf-8')
+          m=re.match(r'\A---\n(.*?)\n---(?:\n|\Z)',text,re.S)
+          if not m:
+              raise SystemExit('checkpoint frontmatter missing')
+          checkpoint=yaml.safe_load(m.group(1))
+          if (checkpoint.get('policy_revision') != adapter['policy_revision'] or
+              checkpoint.get('policy_digest') != adapter['policy_digest']):
+              print('CHECKPOINT_REBIND_REQUIRED')
+              print('policy_revision='+adapter['policy_revision'])
+              print('policy_digest='+adapter['policy_digest'])
+          else:
+              subprocess.check_call([
+                  'python','-B',
+                  '.agents/skills/continuous-development-cycle/scripts/validate_checkpoint_24.py',
+                  'docs/work-status/current.md','--adapter','docs/development-cycle.yaml'])
+              print('CHECKPOINT_GREEN')
+          PY
+
+      - name: Require clean checkout
+        run: test -z "$(git status --porcelain=v1 --untracked-files=all)"

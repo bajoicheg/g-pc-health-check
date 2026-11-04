@@ -24,6 +24,7 @@ internal static class Program
             if (result == 0) result = LocalizationCoverageSelfTest.Run();
             if (result == 0) result = HumanSizePresentationSelfTest.Run();
             if (result == 0) result = MainChromeSelfTest.Run();
+            if (result == 0) result = ReadableLayoutSelfTest.Run();
             if (result == 0) result = AnalysisAutoCollectSelfTest.Run();
             if (result == 0) result = ServiceDeskActionRegistrySelfTest.Run();
             if (result == 0) result = ServiceDeskBatchPlannerSelfTest.Run();
@@ -35,6 +36,23 @@ internal static class Program
             if (result == 0) result = PhasedWorkerTransportSelfTest.Run();
             if (result == 0) result = WindowsBatchRuntimeSelfTest.Run();
             if (result == 0) result = ServiceDeskFullBatchSelfTest.Run();
+            if (result == 0) result = SecurityPostureEvaluatorSelfTest.Run();
+            if (result == 0) result = WindowsPlatformSecurityCollectorSelfTest.Run();
+            if (result == 0) result = AntivirusSecurityCollectorSelfTest.Run();
+            if (result == 0) result = WindowsUpdateSecurityCollectorSelfTest.Run();
+            if (result == 0) result = BitLockerSecurityCollectorSelfTest.Run();
+            if (result == 0) result = FirmwareSecurityCollectorSelfTest.Run();
+            if (result == 0) result = LocalAdministratorsSelfTest.Run();
+            if (result == 0) result = SecurityPostureIntegrationSelfTest.Run();
+            if (result == 0) result = SecurityPostureUiSelfTest.Run();
+            if (result == 0) result = SecurityReportSelfTest.Run();
+            if (result == 0) result = PolicyArtifactsSelfTest.Run();
+            if (result == 0) result = SecurityHardeningPlannerSelfTest.Run();
+            if (result == 0) result = SecurityHardeningWorkerSelfTest.Run();
+            if (result == 0) result = SecurityHardeningUiSelfTest.Run();
+            if (result == 0) result = SecurityLocalizationCoverageSelfTest.Run();
+            if (result == 0) result = EvidencePresentationSelfTest.Run();
+            if (result == 0) result = SecurityEvidenceSafetySelfTest.Run();
             if (result == 0) result = SystemDiskSelectionSelfTest.Run();
             if (result == 0) result = PortableElevationSelfTest.Run();
             if (result == 0) result = ReadOnlyReviewSelfTest.Run();
@@ -111,6 +129,11 @@ internal static class Program
         if (args.Any(a => string.Equals(a, "--bootstrap-worker", StringComparison.OrdinalIgnoreCase)))
         {
             Environment.Exit(RemediationWorker.RunBootstrap(args));
+            return;
+        }
+        if (args.Any(a => string.Equals(a, "--security-worker", StringComparison.OrdinalIgnoreCase)))
+        {
+            Environment.Exit(SecurityHardeningWorker.Run(args));
             return;
         }
         if (args.Any(a => string.Equals(a, "--phased-worker", StringComparison.OrdinalIgnoreCase)))

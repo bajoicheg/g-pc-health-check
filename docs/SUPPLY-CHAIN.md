@@ -1,6 +1,8 @@
 # Supply-chain verification
 
-G PC Health Check 0.3.8 provides cryptographically verifiable provenance for public builds without widening the application's runtime privilege boundary.
+G PC Health provides cryptographically verifiable provenance for public builds without widening the application's runtime privilege boundary. The complete attested release path was established in 0.3.8, before the product rebranding.
+
+New rebranded builds use `G-PC-Health.exe`. Historical releases retain their original executable names, checksums and attestations; use the actual downloaded filename when verifying them.
 
 Version 0.3.6 introduced this pipeline, but its first attestation run stopped before SBOM generation with `NETSDK1100` when the Linux runner restored the Windows-targeting project. Version 0.3.8 fixes that metadata-only restore with `EnableWindowsTargeting=true` and supersedes 0.3.6 for the complete attested release path.
 
@@ -8,7 +10,7 @@ Version 0.3.6 introduced this pipeline, but its first attestation run stopped be
 
 For each successful `Windows EXE` push build on `main`, the `Supply Chain Attestations` workflow consumes only artifacts from that exact successful run and produces:
 
-- GitHub/Sigstore build-provenance attestation for `G-PC-Health-Check.exe`;
+- GitHub/Sigstore build-provenance attestation for `G-PC-Health.exe`;
 - GitHub/Sigstore build-provenance attestation for the pilot ZIP;
 - SPDX 2.2 SBOM generated with `Microsoft.Sbom.DotNetTool` 4.1.5;
 - signed SBOM attestation binding that SPDX document to the EXE;
@@ -37,7 +39,7 @@ This prevents artifacts from an untrusted fork Pull Request from being promoted 
 Install or update GitHub CLI, then run from the directory containing the downloaded EXE:
 
 ```powershell
-gh attestation verify .\G-PC-Health-Check.exe --repo bajoicheg/g-pc-health-check
+gh attestation verify .\G-PC-Health.exe --repo bajoicheg/g-pc-health-check
 ```
 
 Verification should identify `bajoicheg/g-pc-health-check` as the source repository and validate the artifact digest against a GitHub Artifact Attestation signed through Sigstore.
@@ -45,8 +47,8 @@ Verification should identify `bajoicheg/g-pc-health-check` as the source reposit
 The traditional checksum can also be verified independently:
 
 ```powershell
-(Get-FileHash .\G-PC-Health-Check.exe -Algorithm SHA256).Hash.ToLowerInvariant()
-Get-Content .\G-PC-Health-Check.exe.sha256
+(Get-FileHash .\G-PC-Health.exe -Algorithm SHA256).Hash.ToLowerInvariant()
+Get-Content .\G-PC-Health.exe.sha256
 ```
 
 Both values must match.

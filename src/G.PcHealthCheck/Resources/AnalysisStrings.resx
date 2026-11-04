@@ -4,7 +4,7 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
-  <data name="CommonProblems.Form.Title" xml:space="preserve"><value>G PC Health Check — типовые проблемы</value></data>
+  <data name="CommonProblems.Form.Title" xml:space="preserve"><value>G PC Health — типовые проблемы</value></data>
   <data name="CommonProblems.Form.Intro" xml:space="preserve"><value>Дополнительные проверки сети, печати и устройств. Основной индекс здоровья не изменяется.&#10;Сбор не выполняет исправлений. INFO — ограниченная информация; UNKNOWN — недостаток данных. Параметры Windows открываются для ручной работы инженера.</value></data>
   <data name="CommonProblems.Button.Scan" xml:space="preserve"><value>Проверить / повторить</value></data>
   <data name="CommonProblems.Button.Cancel" xml:space="preserve"><value>Отменить сбор</value></data>
@@ -32,12 +32,12 @@
   <data name="CommonProblems.Export.Saved" xml:space="preserve"><value>Сохранены: {0}.html и .json</value></data>
   <data name="CommonProblems.ActionFailed" xml:space="preserve"><value>Действие не выполнено полностью</value></data>
   <data name="CommonProblems.Report.Scope" xml:space="preserve"><value>Дополнительные проверки сети, печати и устройств. Они не изменяют основной Health Score. INFO не подтверждает исправность, UNKNOWN означает недостаток данных. Повторный снимок и успешный код команды не доказывают устранение причины.</value></data>
-  <data name="CommonProblems.Report.SummaryTitle" xml:space="preserve"><value>G PC Health Check {0} — типовые проблемы</value></data>
+  <data name="CommonProblems.Report.SummaryTitle" xml:space="preserve"><value>G PC Health {0} — типовые проблемы</value></data>
   <data name="CommonProblems.Report.CurrentSnapshot" xml:space="preserve"><value>Текущий снимок: {0:O}</value></data>
   <data name="CommonProblems.Report.PreviousSnapshot" xml:space="preserve"><value>Предыдущий снимок: {0:O}</value></data>
   <data name="CommonProblems.Report.WhatToDo" xml:space="preserve"><value>Что делать: {0}</value></data>
   <data name="CommonProblems.Report.LastCommand" xml:space="preserve"><value>Последняя команда: {0}; success={1}; code={2}; {3}</value></data>
-  <data name="CommonProblems.Report.HtmlTitle" xml:space="preserve"><value>G PC Health Check — типовые проблемы</value></data>
+  <data name="CommonProblems.Report.HtmlTitle" xml:space="preserve"><value>G PC Health — типовые проблемы</value></data>
   <data name="CommonProblems.Report.Heading" xml:space="preserve"><value>Типовые проблемы рабочих ПК</value></data>
   <data name="CommonProblems.Report.PreviousHeading" xml:space="preserve"><value>Предыдущий снимок</value></data>
   <data name="CommonProblems.Report.CurrentHeading" xml:space="preserve"><value>Текущий снимок</value></data>

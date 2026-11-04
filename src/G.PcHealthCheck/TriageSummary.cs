@@ -34,6 +34,14 @@ internal static class TriageSummary
 
         if (primary is null)
         {
+            bool incomplete = scan.Assessment.CoveragePercent < 100 || scan.Assessment.MissingSignals.Count > 0 || scan.Data.CollectionWarnings.Count > 0;
+            if (incomplete)
+                return new TriageInsight
+                {
+                    Title = MissingEvidenceExplanation.Text(AppLocalization.Language, "Evidence.Triage.Incomplete"),
+                    Detail = MissingEvidenceExplanation.Text(AppLocalization.Language, "Evidence.Triage.Limits") + $" ({scan.Assessment.CoveragePercent}%) " + TechnicalEvidence.Format(scan.Assessment, AppLocalization.Language),
+                    NextAction = MissingEvidenceExplanation.Text(AppLocalization.Language, "Evidence.Next.cause_not_established")
+                };
             const string next = "Автоматические действия не требуются.";
             return new TriageInsight
             {

@@ -25,37 +25,28 @@ public sealed partial class MainForm
         if (_serviceDeskActionsUiInitialized) return;
         _serviceDeskActionsUiInitialized = true;
 
-        var page = _tabs.TabPages.Count > 0 ? _tabs.TabPages[0] : null;
+        var page = _tabs.TabPages["ActionsTab"];
         var layout = page?.Controls.OfType<TableLayoutPanel>().FirstOrDefault();
         if (layout is null)
             throw new InvalidOperationException(AppLocalization.T("Main.ServiceDesk.MissingPanel"));
-
-        var split = layout.Controls.OfType<SplitContainer>().SingleOrDefault();
-        layout.RowCount = 3;
-        layout.RowStyles.Clear();
-        layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 76));
-        layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 42));
-        layout.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
-        if (split is not null) layout.SetRow(split, 2);
 
         var bar = new FlowLayoutPanel
         {
             Name = "ServiceDeskActionBar",
             Dock = DockStyle.Fill,
-            AutoSize = false,
-            WrapContents = false,
+            AutoSize = true,
+            WrapContents = true,
             FlowDirection = FlowDirection.LeftToRight,
             Padding = new Padding(4, 3, 4, 2),
             Margin = new Padding(0, 0, 0, 4)
         };
+        _hardenSecurity.AutoSize = true;
         _makeBetter.AutoSize = true;
         _doEverything.AutoSize = true;
-        // Until all fixed handlers have passed their own TDD tasks, the red batch is
-        // deliberately visible but not requestable. This prevents a partial "all".
         _doEverything.Enabled = ServiceDeskActionRegistry.ExecutableHandlerIds.Count == ServiceDeskActionRegistry.All.Count;
         _doEverything.Cursor = _doEverything.Enabled ? Cursors.Hand : Cursors.Default;
-        bar.Controls.AddRange([_selectAllAvailable, _makeBetter, _doEverything]);
-        layout.Controls.Add(bar, 0, 1);
+        bar.Controls.AddRange([_selectAllAvailable, _hardenSecurity, _makeBetter, _doEverything]);
+        layout.Controls.Add(bar, 0, 0);
 
         _selectAllAvailable.CheckedChanged += (_, _) => ApplySelectAllAvailable();
         _actions.CellValueChanged += (_, e) =>
@@ -65,8 +56,10 @@ public sealed partial class MainForm
         };
         _actions.RowsAdded += (_, _) => SyncSelectAllAvailable();
         _actions.RowsRemoved += (_, _) => SyncSelectAllAvailable();
+        _hardenSecurity.Click += async (_, _) => await HardenSecurityAsync();
         _makeBetter.Click += async (_, _) => await MakeBetterAsync();
         SyncSelectAllAvailable();
+        RefreshSecurityHardeningButtonState();
         RefreshMainLocalization();
     }
 
@@ -110,10 +103,9 @@ public sealed partial class MainForm
         finally
         {
             Busy(false);
+            RefreshSecurityHardeningButtonState();
         }
 
-        // ApplyAsync performs a second fresh native context capture immediately before
-        // confirmation/execution. The first capture above is only the planning snapshot.
         await ApplyAsync();
     }
 

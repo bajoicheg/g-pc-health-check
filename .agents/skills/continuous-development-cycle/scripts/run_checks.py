@@ -12,6 +12,7 @@ from pathlib import Path
 import platform
 import re
 import signal
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -48,7 +49,9 @@ def load_json(path):
 
 def load_plan(path):
     plan = load_json(path)
-    if not isinstance(plan, dict) or set(plan) != {"schema", "checks"} or plan["schema"] != PLAN_SCHEMA:
+    v2 = isinstance(plan, dict) and plan.get('schema') == 'command-check-plan/v2'
+    expected = {"schema", "checks", "economics"} if v2 else {"schema", "checks"}
+    if not isinstance(plan, dict) or set(plan) != expected or plan["schema"] not in (PLAN_SCHEMA, 'command-check-plan/v2'):
         raise ValueError(f"plan requires schema {PLAN_SCHEMA} and checks only")
     if not isinstance(plan["checks"], list) or not plan["checks"]:
         raise ValueError("plan requires a nonempty checks list")
@@ -79,6 +82,9 @@ def load_plan(path):
                 raise ValueError(f"{name}: expected_red requires nonzero exit_code (1..255), literal signature and reason")
     if not any(check["required"] for check in plan["checks"]):
         raise ValueError("plan must contain at least one required check")
+    if v2:
+        from verification_economics import validate_aggregate_repeats
+        validate_aggregate_repeats(plan)
     return plan
 
 
@@ -281,7 +287,7 @@ def stop_process(process):
     process.wait(timeout=10)
 
 
-def run_one(check, evidence, output, index, blocked):
+def run_one(check, evidence, output, index, blocked, economics_plan=None, prior_records=()):
     directory = output / f"{index:03d}-{check['id']}"
     directory.mkdir()
     relative = directory.relative_to(output)
@@ -293,9 +299,21 @@ def run_one(check, evidence, output, index, blocked):
               "started_at_utc": utc_now(), "before": observe_source(evidence["worktree"]),
               "executed": False, "exit_code": None, "termination": "not_run", "diagnostic": "",
               "test_report": None, "result_path": (relative / "result.json").as_posix()}
-    log_path = directory / "command.log"
-    temporary_log = directory / "command.log.part"
-    with temporary_log.open("xb") as log:
+    if economics_plan is not None and not blocked and source_matches(result['before'], evidence['candidate_sha']):
+        from verification_economics import select
+        selection = select(economics_plan, check, evidence['worktree'], evidence['environment'],
+                           evidence['candidate_sha'], prior_records)
+        result['validation_inputs'] = selection['inputs']
+        result['repeat_exception'] = selection.get('repeat_exception')
+        if selection['action'] == 'REUSE':
+            result.update(status='REUSED', reason='original dependency-bound success reused',
+                          reuse=selection['reuse'], after=observe_source(evidence['worktree']),
+                          ended_at_utc=utc_now(), duration_seconds=round(time.monotonic()-started, 6))
+            atomic_json(directory / 'result.json', result)
+            return result
+    pending_error = None
+    stdout_path, stderr_path = directory / "stdout.raw", directory / "stderr.raw"
+    with stdout_path.open("xb") as stdout, stderr_path.open("xb") as stderr:
         if blocked or not source_matches(result["before"], evidence["candidate_sha"]):
             result["diagnostic"] = "candidate SHA or clean source requirement failed; command withheld"
         elif not check["argv"]:
@@ -305,7 +323,7 @@ def run_one(check, evidence, output, index, blocked):
                                PYTHONDONTWRITEBYTECODE="1")
             try:
                 process = subprocess.Popen(result["argv"], cwd=evidence["worktree"], env=environment, shell=False,
-                                           stdin=subprocess.DEVNULL, stdout=log, stderr=subprocess.STDOUT,
+                                           stdin=subprocess.DEVNULL, stdout=stdout, stderr=stderr,
                                            start_new_session=(os.name == "posix"))
                 result["executed"] = True
             except OSError as error:
@@ -319,18 +337,42 @@ def run_one(check, evidence, output, index, blocked):
                     result["exit_code"] = process.returncode
                     result["termination"] = "timeout"
                     result["diagnostic"] = "timeout; process terminated"
-                except BaseException:
+                except BaseException as error:
                     stop_process(process)
-                    raise
+                    result["exit_code"] = process.returncode
+                    result["termination"] = "interrupted"
+                    result["diagnostic"] = "runner interrupted: " + type(error).__name__
+                    pending_error = error
+        for stream in (stdout, stderr):
+            stream.flush()
+            os.fsync(stream.fileno())
+    result["ended_at_utc"] = utc_now()
+    result["duration_seconds"] = round(time.monotonic() - started, 6)
+    terminal = {key: result[key] for key in ("id", "candidate_sha", "plan_sha256", "environment", "argv",
+        "timeout_seconds", "started_at_utc", "ended_at_utc", "duration_seconds", "before", "executed",
+        "exit_code", "termination", "diagnostic")}
+    terminal["schema"] = "command-terminal/v1"
+    for name, path in (("stdout", stdout_path), ("stderr", stderr_path)):
+        terminal[name] = {"path": (relative / path.name).as_posix(), "sha256": file_digest(path)}
+    # Terminal bytes/facts precede JUnit parsing, source-after probing and classification.
+    # These are local observations, not authenticated provider attestation.
+    atomic_json(directory / "terminal.json", terminal)
+    result["terminal"] = {"path": (relative / "terminal.json").as_posix(),
+                          "sha256": file_digest(directory / "terminal.json")}
+    if pending_error is not None:
+        raise pending_error
+    log_path = directory / "command.log"
+    with log_path.open("xb") as log:
+        # Compatibility projection: stdout then stderr, with no chronology claim.
+        for path in (stdout_path, stderr_path):
+            with path.open("rb") as source:
+                shutil.copyfileobj(source, log)
         log.flush()
         os.fsync(log.fileno())
-    os.replace(temporary_log, log_path)
     result["log"] = {"path": (relative / "command.log").as_posix(), "sha256": file_digest(log_path)}
     if check["kind"] == "test":
         result["test_report"] = junit_report(output, (relative / "junit.xml").as_posix())
     result["after"] = observe_source(evidence["worktree"])
-    result["ended_at_utc"] = utc_now()
-    result["duration_seconds"] = round(time.monotonic() - started, 6)
     result["status"], result["reason"] = classify(check, result, output, evidence["candidate_sha"])
     atomic_json(directory / "result.json", result)
     return result
@@ -349,18 +391,26 @@ def run(args):
     if output.resolve() != output or output == worktree or worktree in output.parents:
         raise ValueError("output-dir must be outside the worktree and have no symlink components")
     environment = environment_identity(args.environment_id, args.environment_config_sha256)
+    economics_plan = plan if plan['schema'] == 'command-check-plan/v2' else None
+    records = ()
+    if economics_plan is not None:
+        from verification_economics import prior_records, current_inputs
+        records = prior_records(plan['economics'])
+        for check in plan['checks']:
+            current_inputs(plan, check, worktree, environment)
     output.mkdir(parents=True, exist_ok=False)
     evidence = {"schema": EVIDENCE_SCHEMA, "skill_version": SKILL_VERSION, "candidate_sha": args.candidate_sha,
                 "worktree": str(worktree), "output_dir": str(output), "environment": environment,
                 "plan_sha256": digest(canonical(plan)), "started_at_utc": utc_now(), "ended_at_utc": None,
                 "runner_status": "RUNNING", "gate_status": "NOT_RUN", "final_green": False,
+                "terminal_capture_schema": "command-terminal/v1",
                 "source_before": observe_source(worktree), "source_after": None, "checks": []}
     atomic_json(output / "plan.json", plan)
     atomic_json(output / "evidence.json", evidence)
     try:
         blocked = False
         for index, check in enumerate(plan["checks"], 1):
-            result = run_one(check, evidence, output, index, blocked)
+            result = run_one(check, evidence, output, index, blocked, economics_plan, records)
             evidence["checks"].append(result)
             blocked = blocked or any(not source_matches(result[side], args.candidate_sha) for side in ("before", "after"))
             atomic_json(output / "evidence.json", evidence)
@@ -368,6 +418,9 @@ def run(args):
         evidence["runner_status"] = "COMPLETE"
         evidence["gate_status"] = gate_status(evidence, plan)
         evidence["final_green"] = evidence["gate_status"] == "GREEN"
+        evidence['economics'] = {'executed_checks':sum(c['executed'] for c in evidence['checks']),
+            'reused_checks':sum(c['status']=='REUSED' for c in evidence['checks']),
+            'provider_token_usage':None}
     except BaseException as error:
         evidence["runner_status"] = "ERROR"
         evidence["gate_status"] = "NOT_RUN"

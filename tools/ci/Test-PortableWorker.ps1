@@ -34,7 +34,7 @@ try {
     $executables = [Collections.Generic.List[string]]::new()
     $executables.Add($exe)
     foreach ($variant in @(
-        @{ Directory = 'Downloads'; Name = 'G-PC-Health-Check.exe' },
+        @{ Directory = 'Downloads'; Name = 'G-PC-Health.exe' },
         @{ Directory = 'Downloads\Тестовая папка'; Name = 'Проверка ПК (1).exe' },
         @{ Directory = 'Other tools\A & B'; Name = 'health [test].exe' }
     )) {

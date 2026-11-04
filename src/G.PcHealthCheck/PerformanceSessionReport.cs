@@ -12,7 +12,7 @@ internal static class PerformanceSessionReport
     private static readonly JsonSerializerOptions Options = new() { WriteIndented = true, Converters = { new JsonStringEnumConverter() } };
 
     public static string Json(PerformanceSessionSnapshot snapshot)
-        => JsonSerializer.Serialize(new { SchemaVersion = 1, Product = "G PC Health Check", Boundary, DataCompleteness = PerformanceStatistics.Completeness(snapshot), Snapshot = snapshot, Statistics = Enum.GetValues<SessionMetric>().Select(m => PerformanceStatistics.For(snapshot, m)).ToArray() }, Options);
+        => JsonSerializer.Serialize(new { SchemaVersion = 1, Product = "G PC Health", Boundary, DataCompleteness = PerformanceStatistics.Completeness(snapshot), Snapshot = snapshot, Statistics = Enum.GetValues<SessionMetric>().Select(m => PerformanceStatistics.For(snapshot, m)).ToArray() }, Options);
 
     public static string Summary(PerformanceSessionSnapshot snapshot)
     {
@@ -38,7 +38,7 @@ internal static class PerformanceSessionReport
         var language = AppLocalization.Language;
         var sb = new StringBuilder("<!doctype html><html lang='").Append(language).Append("'><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>")
             .Append(H(AppLocalization.T("Performance.Report.Title")))
-            .Append("</title><style>body{font:15px/1.5 'Segoe UI',Arial,sans-serif;margin:24px;color:#15344f;background:#f4f7fa}main{max-width:1200px;margin:auto}section{background:white;padding:20px;border:1px solid #dce5ed;border-radius:12px;margin:16px 0}pre{white-space:pre-wrap;overflow-wrap:anywhere}table{width:100%;border-collapse:collapse;font-size:13px}td,th{padding:7px;border-bottom:1px solid #dce5ed;text-align:left;overflow-wrap:anywhere}svg{width:100%;height:auto}.table{overflow:auto}</style><main><h1>G PC Health Check</h1><h2>")
+            .Append("</title><style>body{font:15px/1.5 'Segoe UI',Arial,sans-serif;margin:24px;color:#15344f;background:#f4f7fa}main{max-width:1200px;margin:auto}section{background:white;padding:20px;border:1px solid #dce5ed;border-radius:12px;margin:16px 0}pre{white-space:pre-wrap;overflow-wrap:anywhere}table{width:100%;border-collapse:collapse;font-size:13px}td,th{padding:7px;border-bottom:1px solid #dce5ed;text-align:left;overflow-wrap:anywhere}svg{width:100%;height:auto}.table{overflow:auto}</style><main><h1>G PC Health</h1><h2>")
             .Append(H(AppLocalization.T("Performance.Report.Heading"))).Append("</h2><section><pre>");
         sb.Append(H(Summary(snapshot))).Append("</pre></section>");
         foreach (var metric in Enum.GetValues<SessionMetric>())

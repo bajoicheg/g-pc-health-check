@@ -40,7 +40,7 @@ internal static class CommonProblemsReport
         return JsonSerializer.Serialize(new
         {
             SchemaVersion = 1,
-            Product = "G PC Health Check",
+            Product = "G PC Health",
             Version = Application.ProductVersion,
             Scope,
             PreviousSnapshot = before,
@@ -61,7 +61,7 @@ internal static class CommonProblemsReport
             .Append("</title><style>body{font:16px system-ui,sans-serif;max-width:1200px;margin:32px auto;padding:0 20px;color:#17334d}table{border-collapse:collapse;width:100%;margin:20px 0}th,td{border:1px solid #ccd6df;padding:12px;vertical-align:top;text-align:left;white-space:pre-wrap;overflow-wrap:anywhere}th{background:#edf3f7}p{line-height:1.6}h2{margin-top:32px}</style></head><body><h1>")
             .Append(H(AppLocalization.T("CommonProblems.Report.Heading")))
             .Append("</h1>");
-        sb.Append("<p>G PC Health Check ").Append(H(Application.ProductVersion)).Append("</p><p>").Append(H(Scope)).Append("</p>");
+        sb.Append("<p>G PC Health ").Append(H(Application.ProductVersion)).Append("</p><p>").Append(H(Scope)).Append("</p>");
         if (before is not null) Table(sb, AppLocalization.T("CommonProblems.Report.PreviousHeading"), before);
         Table(sb, AppLocalization.T("CommonProblems.Report.CurrentHeading"), after);
         if (lastCommand is not null)

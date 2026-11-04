@@ -1,0 +1,5 @@
+
+
+## Current CDC 3.3.1 independent process maintenance
+
+Canonical released source 51740497bea3e1bcbb302e894fda8b7e42bc0087, exact401-file package tree f580a8946c0510540a4be3f4422ab3404875274b, immutable refs/heads/release/v3.3.1. Separately pinned evidence 245fdf05c272d3f1c49ff0b7903213fac0aaf5a8:release/evidence-3.3.1.json; mandatory canonical CI38076972040 is reused for this identical CDC package. Owner approved administrative isolation of the original consumed CI6 guard through released3.3.1 canonical retirement. Original Git outcome remains UNKNOWN forever; original53636f45 candidate, pilot push, attempt and grant must never be replayed. This independent CDC-only migration preserves all product objects, budgets, audits, previous evidence and Windows0.17.1/0.17.2/0.18/0.19 pending/NOT_RUN gates. No product CI, product approval or product release is inferred. All schedulers/watchdogs/Fleet background remain paused; retiredSupervisor remains cancelled. Read real new managed release/pool/physical closure receipts independently. Earlier CDC sections remain historical.

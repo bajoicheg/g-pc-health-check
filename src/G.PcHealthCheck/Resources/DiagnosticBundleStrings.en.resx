@@ -55,7 +55,7 @@
   <data name="Bundle.Form.MarkerPlaceholder" xml:space="preserve"><value>Symptom note (up to 160 characters)</value></data>
   <data name="Bundle.Form.Mark" xml:space="preserve"><value>Mark symptom</value></data>
   <data name="Bundle.Form.ReadyInitial" xml:space="preserve"><value>Ready to collect.</value></data>
-  <data name="Bundle.Form.Title" xml:space="preserve"><value>G PC Health Check — Service Desk bundle</value></data>
+  <data name="Bundle.Form.Title" xml:space="preserve"><value>G PC Health — Service Desk bundle</value></data>
   <data name="Bundle.Form.Column.Include" xml:space="preserve"><value>Include</value></data>
   <data name="Bundle.Form.Column.Category" xml:space="preserve"><value>Category</value></data>
   <data name="Bundle.Form.Column.Privacy" xml:space="preserve"><value>Collected data / sensitive content</value></data>
@@ -102,7 +102,7 @@ Review the evidence before external sharing. Search/filtering is not anonymizati
   <data name="Bundle.Form.ActionFailed" xml:space="preserve"><value>Action not completed</value></data>
   <data name="Bundle.Menu.Item" xml:space="preserve"><value>Collect Service Desk bundle…</value></data>
 
-  <data name="Bundle.Report.Title" xml:space="preserve"><value>G PC Health Check — Service Desk diagnostic bundle</value></data>
+  <data name="Bundle.Report.Title" xml:space="preserve"><value>G PC Health — Service Desk diagnostic bundle</value></data>
   <data name="Bundle.Report.Version" xml:space="preserve"><value>Application version: {0}</value></data>
   <data name="Bundle.Report.Computer" xml:space="preserve"><value>Computer: {0}</value></data>
   <data name="Bundle.Report.Mode" xml:space="preserve"><value>Mode: {0}</value></data>

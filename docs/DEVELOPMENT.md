@@ -1,3 +1,35 @@
+## Current CDC 3.6.17 process contract
+
+Use canonical `bajoicheg/g-cdc` `refs/heads/release/v3.6.17` at
+`20d6830c94c7123994400f3e3dce5840e23a5e79`, exact package TREE
+`f5480729b23a9b470e7b9d221d5a61034e292b7d`, vendored unchanged at
+`.agents/skills/continuous-development-cycle`. Apply its `references/lean-execution-core.md`
+persistent execution contract on every entry. Preserve original IDs, UNKNOWN, budgets/spent and
+history; reuse covered evidence and minimum necessary checks/coordination. Report applied results
+and separate actual usage; unavailable cost stays UNKNOWN. Storage and registry migration mechanisms
+grant no additional product role or UNKNOWN replay. The registered native role stays read_only.
+Kimi is excluded until explicit owner instruction; Fleet remains paused and Gemini deferred.
+The existing public-repository compute policy, Windows evidence, product/security/manual gates and
+source publication restrictions below remain effective. This process adoption starts no CI or Cloud.
+See `docs/cdc-adoption-3.6.17.md` and `docs/cdc-consumer-lock.json`. Earlier authority headers are history.
+
+## Current CDC authority — 3.3.1
+
+Use the already adopted released canonical CDC3.3.1, commit `51740497bea3e1bcbb302e894fda8b7e42bc0087`, exact package tree `f580a8946c0510540a4be3f4422ab3404875274b`, pinned by `docs/cdc-consumer-lock.json`. This product integration preserves that installed package and current adapter. Older headers below describe historical standalone candidates and do not override the current lock or project policy. Managed ownership, budget/history, UNKNOWN replay prohibition, paused schedulers and all Windows/product gates remain in force.
+
+### Historical standalone candidate instructions
+
+## Current CDC authority — 2.12.1
+
+Use canonical `bajoicheg/g-cdc` CDC **2.12.1**, immutable `refs/heads/release/v2.12.1`, release commit `9b38bd4d9f5fb113ec10bdbca9fbe33908619a54`, exact 352-file package tree `9c45d98c3254e9658d452c505d8c97698e3fc9a7`. The complete package is vendored at `.agents/skills/continuous-development-cycle/`. Use verified canonical managed controls and the explicitly selected approved task-local adapter with strict live-ledger parity; historical source adapter limits are not the effective policy. Product/native/manual gates and scheduler pause remain.
+
+### Historical authority header before adopted CDC2.12.1
+
+## Current CDC authority — 2.11.6
+
+Use canonical `bajoicheg/g-cdc` CDC **2.11.6**, immutable `refs/heads/release/v2.11.6`, release commit `b3b517fb70e2deea4006e265f708f29881377885`, exact 329-file package tree `79257a06c40de6f514f9b059be05d610885a50e7`. The complete package is vendored at `.agents/skills/continuous-development-cycle/`. Earlier version statements below are historical when they conflict. Use the verified released `scripts/managed_host_bridge.py`; ordinary Work is observer/orchestrator-only. Preserve product gates, budgets, append-only coordination and the owner scheduler pause. Fleet adoption is separate; this project update does not assert fleet convergence.
+
+
 # Development without losing work between sessions
 
 This workflow addresses the connector interruptions seen while preparing 0.10.0 and 0.13.0. It reduces avoidable round trips and preserves evidence; it does not fix or disable OpenAI's internal tool evaluation or expand GitHub permissions. Application version 0.13.0 is unchanged by this maintenance update.
@@ -32,7 +64,7 @@ Quick skips four expensive stages during edits: publish, published-EXE self-test
 
 Restore/audit may contact configured package sources. Existing tests use the documented synthetic/native fixtures, not real repairs. Review the test code before running on a machine with valuable data.
 
-Every run writes to a unique ignored `artifacts/dev/<UTC-time>-<id>/` directory. Per-stage stdout/stderr and `summary.json` record Git SHA, branch, dirty-worktree flag, SDK, profile, timestamps, durations, stage states and exit codes. Full adds `publish/G-PC-Health-Check.exe` and its checksum. `Dirty=true` means the tested workspace differs from its recorded SHA; it must not be claimed as exact-commit validation.
+Every run writes to a unique ignored `artifacts/dev/<UTC-time>-<id>/` directory. Per-stage stdout/stderr and `summary.json` record Git SHA, branch, dirty-worktree flag, SDK, profile, timestamps, durations, stage states and exit codes. Full adds `publish/G-PC-Health.exe` and its checksum. `Dirty=true` means the tested workspace differs from its recorded SHA; it must not be claimed as exact-commit validation.
 
 The summary is replaced atomically before/after each step. A killed runner may leave `Running` or `NotRun`, never an inferred pass. This is progress preservation, not automatic resume: rerun verification after restarting. Native calls have no hard local timeout. Ctrl+C or shell closure may leave child work running; inspect owned processes before another run. CI job timeouts remain in force. The runner does not forcibly terminate other processes.
 

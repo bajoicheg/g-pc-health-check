@@ -20,7 +20,7 @@ internal static class StorageReviewReport
     public static string Summary(object snapshot)
     {
         Validate(snapshot);
-        var b = new StringBuilder("G PC Health Check — анализ хранения\n");
+        var b = new StringBuilder("G PC Health — анализ хранения\n");
         if (snapshot is FolderUsageSnapshot f)
         {
             b.AppendLine($"Папка: {f.Root}");
@@ -65,12 +65,12 @@ internal static class StorageReviewReport
     {
         Validate(snapshot);
         var b = new StringBuilder("<!doctype html><html lang='ru'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>");
-        b.Append("<title>G PC Health Check — анализ хранения</title><style>");
+        b.Append("<title>G PC Health — анализ хранения</title><style>");
         b.Append("body{margin:0;background:#f4f7fa;color:#172432;font:14px/1.5 'Segoe UI',Arial,sans-serif}main{max-width:1350px;margin:auto;padding:24px}");
         b.Append("section{background:white;border:1px solid #dce5ed;border-radius:12px;padding:20px;margin-bottom:18px}h1,h2{color:#15344f}pre{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit}");
         b.Append("table{border-collapse:collapse;width:100%;font-size:13px}th,td{padding:8px;border-bottom:1px solid #dce5ed;text-align:left;vertical-align:top;overflow-wrap:anywhere}th{background:#f0f5f8}");
         b.Append(".table{overflow-x:auto}.bar{display:block;height:12px;background:#2386c0;border-radius:3px}.muted{color:#607285}@media(max-width:650px){main{padding:8px}}");
-        b.Append("</style></head><body><main><h1>G PC Health Check — анализ хранения</h1><section><pre>");
+        b.Append("</style></head><body><main><h1>G PC Health — анализ хранения</h1><section><pre>");
         b.Append(H(Summary(snapshot))).Append("</pre></section>");
         if (snapshot is FolderUsageSnapshot f)
         {

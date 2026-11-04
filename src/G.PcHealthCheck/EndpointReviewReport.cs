@@ -11,7 +11,7 @@ internal static class EndpointReviewReport
     {
         ArgumentNullException.ThrowIfNull(current);
         var rows = current.Tables.SelectMany(x => x.Rows).ToList(); var s = new StringBuilder();
-        s.AppendLine("G PC Health Check — сетевые соединения и порты");
+        s.AppendLine("G PC Health — сетевые соединения и порты");
         s.AppendLine($"ПК: {current.ComputerName}; снимок: {current.StartedAt:O} — {current.FinishedAt:O}.");
         s.AppendLine($"Таблицы: {EndpointReviewCore.CollectionText(current.State)}. Записей: {rows.Count}; TCP LISTEN: {rows.Count(x => x.State == "LISTEN")}; TCP ESTABLISHED: {rows.Count(x => x.State == "ESTABLISHED")}; UDP: {rows.Count(x => x.Protocol == "UDP")}.");
         s.AppendLine($"Имя процесса сопоставлено: {rows.Count(x => x.ProcessEvidence == "Stable")}/{rows.Count}.");
@@ -33,7 +33,7 @@ internal static class EndpointReviewReport
         => JsonSerializer.Serialize(new { SchemaVersion = 1, Current = current, Previous = previous, Observations = EndpointReviewCore.Compare(current, previous), Interpretation = Meaning }, new JsonSerializerOptions { WriteIndented = true });
     public static string Html(EndpointSnapshot current, EndpointSnapshot? previous)
     {
-        var s = new StringBuilder("<!doctype html><html lang='ru'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>G PC Health Check — сетевые соединения</title><style>body{font:14px/1.5 'Segoe UI',sans-serif;margin:24px}table{border-collapse:collapse;width:100%;margin-bottom:20px}td,th{border:1px solid #ddd;padding:7px;text-align:left;vertical-align:top;overflow-wrap:anywhere}th{background:#f3f5f7}pre{white-space:pre-wrap;overflow-wrap:anywhere}section{overflow:auto}small{color:#555}</style></head><body><h1>Сетевые соединения и порты</h1><pre>");
+        var s = new StringBuilder("<!doctype html><html lang='ru'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>G PC Health — сетевые соединения</title><style>body{font:14px/1.5 'Segoe UI',sans-serif;margin:24px}table{border-collapse:collapse;width:100%;margin-bottom:20px}td,th{border:1px solid #ddd;padding:7px;text-align:left;vertical-align:top;overflow-wrap:anywhere}th{background:#f3f5f7}pre{white-space:pre-wrap;overflow-wrap:anywhere}section{overflow:auto}small{color:#555}</style></head><body><h1>Сетевые соединения и порты</h1><pre>");
         s.Append(H(Summary(current, previous))).Append("</pre><section><h2>Наблюдения между снимками</h2>");
         Rows(s, EndpointReviewCore.Compare(current, previous)); s.Append("</section>");
         Raw(s, current, "Текущий снимок"); if (previous is not null) Raw(s, previous, "Предыдущий снимок");
